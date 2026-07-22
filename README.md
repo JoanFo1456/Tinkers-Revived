@@ -1,4 +1,4 @@
-# [Tinkers' Construct](https://slimeknights.github.io/projects/#tinkers-construct)
+# [Tinkers Revived](https://slimeknights.github.io/projects/#tinkers-construct)
 
 Modify all the things, then do it again!   
 Melt down any metals you find. 	 
