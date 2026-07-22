@@ -203,7 +203,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.42'
 
     // would ideally use API for this, but that does not work well with fg.deobf in my understanding
-    implementation "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
+    // implementation "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
 
      implementation files("libs/MantleRevived-${mantle_version}.jar")
 
@@ -248,6 +248,7 @@ tasks.named('processResources', ProcessResources).configure {
         'minecraft_range': minecraft_range,
         'neo_range': neo_range,
         'mantle_range': mantle_range,
+        'mantle_version': mantle_version,
         'jei_range': jei_range,
         'json_things_range': json_things_range
     ]
