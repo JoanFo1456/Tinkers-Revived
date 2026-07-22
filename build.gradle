@@ -205,6 +205,8 @@ dependencies {
     // would ideally use API for this, but that does not work well with fg.deobf in my understanding
     implementation "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
 
+    implementation fileTree(dir: 'libs', include: '*.jar')
+
     // compile against the JEI API but do not include it at runtime
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
