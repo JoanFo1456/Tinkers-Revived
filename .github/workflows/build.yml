@@ -28,7 +28,9 @@ jobs:
         id: gradle_props
         run: |
           VERSION=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)
+          MANTLE_VERSION=$(grep '^mantle_version=' gradle.properties | cut -d'=' -f2)
           echo "mod_version=$VERSION" >> $GITHUB_OUTPUT
+          echo "mantle_version=$MANTLE_VERSION" >> $GITHUB_OUTPUT
           echo "release_version=${VERSION}-build.${{ github.run_number }}" >> $GITHUB_OUTPUT
 
       - name: Setup Gradle
@@ -36,6 +38,34 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x gradlew
+
+      - name: Download latest Mantle-Revived build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p libs mantle-dl
+          # Grab the latest published Mantle-Revived release jars
+          gh release download \
+            --repo KingNadienDev/Mantle-Revived \
+            --dir mantle-dl \
+            --pattern 'MantleRevived-*.jar' \
+            --clobber
+          # Pick the main jar (exclude sources/javadoc/all classifiers)
+          MANTLE_JAR=$(ls mantle-dl/MantleRevived-*.jar \
+            | grep -v -- '-sources' \
+            | grep -v -- '-javadoc' \
+            | grep -v -- '-all' \
+            | head -n1)
+          if [ -z "$MANTLE_JAR" ]; then
+            echo "::error::No Mantle jar found in the latest KingNadienDev/Mantle-Revived release"
+            ls -la mantle-dl/ || true
+            exit 1
+          fi
+          echo "Latest Mantle jar: $MANTLE_JAR"
+          # Copy into the exact filename Tinkers' build.gradle expects
+          cp "$MANTLE_JAR" "libs/MantleRevived-${{ steps.gradle_props.outputs.mantle_version }}.jar"
+          echo "Placed as libs/MantleRevived-${{ steps.gradle_props.outputs.mantle_version }}.jar"
+          ls -la libs/
 
       - name: Build
         run: ./gradlew build
