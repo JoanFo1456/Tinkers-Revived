@@ -15,7 +15,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.capabilities.Capability;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
-import slimeknights.mantle.compat.neoforged.neoforge.common.util.NonNullConsumer;
+import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
@@ -40,7 +40,7 @@ import java.util.Map;
 /**
  * Logic for channel fluid transfer
  */
-public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacketReceiver {
+public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacketReceiver, ILegacyCapabilityBlockEntity {
 	/** Channel internal tank */
 	private final ChannelTank tank = new ChannelTank(FaucetBlockEntity.MB_PER_TICK * 4, this);
 	/** Handler to return from channel top */
@@ -59,7 +59,7 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
 	/** Cache of tanks on all neighboring sides */
 	private final Map<Direction,LazyOptional<IFluidHandler>> neighborTanks = new EnumMap<>(Direction.class);
 	/** Consumers to attach to each of the neighbors */
-	private final Map<Direction,NonNullConsumer<LazyOptional<IFluidHandler>>> neighborConsumers = new EnumMap<>(Direction.class);
+	private final Map<Direction,Consumer<LazyOptional<IFluidHandler>>> neighborConsumers = new EnumMap<>(Direction.class);
 
   /** Ticker instance for this TE, serverside only */
   public static final BlockEntityTicker<ChannelBlockEntity> SERVER_TICKER = (level, pos, state, self) -> self.tick(state);
@@ -99,7 +99,6 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
 
 	/* Fluid handlers */
 
-	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
 		// top side gets the insert direct
     if (capability == ForgeCapabilities.FLUID_HANDLER) {
@@ -120,7 +119,7 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
       }
     }
 
-		return super.getCapability(capability, side);
+		return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
 	}
 
 	/**
@@ -190,9 +189,8 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
 		}
 	}
 
-	@Override
 	public void invalidateCaps() {
-		super.invalidateCaps();
+		// TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
 		topHandler.invalidate();
 		for (LazyOptional<IFluidHandler> handler : sideHandlers.values()) {
 			if (handler != null) {

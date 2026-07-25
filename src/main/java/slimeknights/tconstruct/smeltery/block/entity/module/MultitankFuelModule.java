@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
-import slimeknights.mantle.compat.neoforged.neoforge.common.util.NonNullConsumer;
+import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
@@ -38,7 +38,7 @@ public class MultitankFuelModule extends FuelModule implements IFluidHandler {
   /** Map of all tank handlers at each relevant position. Used for fast switching between handlers, notably in the UI */
   private Map<BlockPos,LazyOptional<IFluidHandler>> tankHandlers;
   /** Listener to attach to display capabilities */
-  private final NonNullConsumer<LazyOptional<IFluidHandler>> tankHandlerListener = new WeakConsumerWrapper<>(this, (self, cap) -> {
+  private final Consumer<LazyOptional<IFluidHandler>> tankHandlerListener = new WeakConsumerWrapper<>(this, (self, cap) -> {
     if (self.tankHandlers != null) {
       self.tankHandlers.values().remove(cap);
     }

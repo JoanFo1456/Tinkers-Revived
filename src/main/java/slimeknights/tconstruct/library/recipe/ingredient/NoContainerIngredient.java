@@ -2,23 +2,29 @@ package slimeknights.tconstruct.library.recipe.ingredient;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
-import net.minecraft.network.FriendlyByteBuf;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.MapLike;
+import com.mojang.serialization.RecordBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import slimeknights.mantle.compat.neoforged.neoforge.common.crafting.IIngredientSerializer;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.library.utils.JsonUtils;
 
 import javax.annotation.Nullable;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 /** Ingredient matching an item with no container item, used to ensure NBT fluid items are empty */
 public class NoContainerIngredient extends NestedIngredient {
@@ -67,11 +73,11 @@ public class NoContainerIngredient extends NestedIngredient {
     return Objects.hash(nested);
   }
 
-  public enum Serializer implements IIngredientSerializer<NoContainerIngredient> {
+  public enum Serializer {
     INSTANCE;
 
-    @Override
-    public NoContainerIngredient parse(JsonObject json) {
+    /** Parses the ingredient from the legacy JSON format (supports both the inline vanilla form and the "match" wrapper) */
+    private static NoContainerIngredient parseJson(JsonObject json) {
       // if we have match, parse as a nested object. Without match, just parse the object as vanilla
       Ingredient ingredient;
       if (json.has("match")) {
@@ -84,14 +90,46 @@ public class NoContainerIngredient extends NestedIngredient {
       return new NoContainerIngredient(ingredient);
     }
 
-    @Override
-    public NoContainerIngredient parse(FriendlyByteBuf buffer) {
-      return new NoContainerIngredient(Ingredient.CONTENTS_STREAM_CODEC.decode((RegistryFriendlyByteBuf)buffer));
+    private static final MapCodec<NoContainerIngredient> MAP_CODEC = new MapCodec<>() {
+      @Override
+      public <T> Stream<T> keys(DynamicOps<T> ops) {
+        return Stream.empty();
+      }
+
+      @Override
+      public <T> DataResult<NoContainerIngredient> decode(DynamicOps<T> ops, MapLike<T> input) {
+        JsonObject json = new JsonObject();
+        input.entries().forEach(pair -> json.add(
+          ops.convertTo(JsonOps.INSTANCE, pair.getFirst()).getAsString(),
+          ops.convertTo(JsonOps.INSTANCE, pair.getSecond())));
+        try {
+          return DataResult.success(parseJson(json));
+        } catch (RuntimeException e) {
+          return DataResult.error(() -> "Failed to parse no_container ingredient: " + e.getMessage());
+        }
+      }
+
+      @Override
+      public <T> RecordBuilder<T> encode(NoContainerIngredient input, DynamicOps<T> ops, RecordBuilder<T> prefix) {
+        for (Map.Entry<String, JsonElement> entry : input.toJson().getAsJsonObject().entrySet()) {
+          if (!"type".equals(entry.getKey())) {
+            prefix.add(entry.getKey(), JsonOps.INSTANCE.convertTo(ops, entry.getValue()));
+          }
+        }
+        return prefix;
+      }
+    };
+
+    private static final StreamCodec<RegistryFriendlyByteBuf, NoContainerIngredient> STREAM_CODEC = StreamCodec.of(
+      (buffer, ingredient) -> Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient.nested),
+      buffer -> new NoContainerIngredient(Ingredient.CONTENTS_STREAM_CODEC.decode(buffer)));
+
+    public MapCodec<NoContainerIngredient> codec() {
+      return MAP_CODEC;
     }
 
-    @Override
-    public void write(FriendlyByteBuf buffer, NoContainerIngredient ingredient) {
-      Ingredient.CONTENTS_STREAM_CODEC.encode((RegistryFriendlyByteBuf)buffer, ingredient.nested);
+    public StreamCodec<RegistryFriendlyByteBuf, NoContainerIngredient> streamCodec() {
+      return STREAM_CODEC;
     }
   }
 

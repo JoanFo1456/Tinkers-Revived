@@ -23,7 +23,7 @@ import slimeknights.tconstruct.smeltery.block.entity.tank.ProxyItemTank;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 /** Block entity with a tank that proxies to the nested item handler */
-public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTankUpdater {
+public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTankUpdater, ILegacyCapabilityBlockEntity {
   /** Direct access to the fluid handler and item handler */
   @Getter
   private final ProxyItemTank<ProxyTankBlockEntity> itemTank = new ProxyItemTank<>(this);
@@ -42,17 +42,15 @@ public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTan
 
   /* Capability */
 
-  @Override
   public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
     if (cap == ForgeCapabilities.ITEM_HANDLER || cap == ForgeCapabilities.FLUID_HANDLER) {
       return capability.cast();
     }
-    return super.getCapability(cap, side);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     capability.invalidate();
   }
 

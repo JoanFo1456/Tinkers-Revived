@@ -2,15 +2,21 @@ package slimeknights.tconstruct.library.recipe.ingredient;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.DynamicOps;
+import com.mojang.serialization.JsonOps;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.MapLike;
+import com.mojang.serialization.RecordBuilder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.crafting.ICustomIngredient;
-import slimeknights.mantle.compat.neoforged.neoforge.common.crafting.IIngredientSerializer;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import slimeknights.mantle.data.loadable.field.LoadableField;
 import slimeknights.mantle.data.predicate.IJsonPredicate;
@@ -24,6 +30,7 @@ import slimeknights.tconstruct.shared.TinkerMaterials;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -152,13 +159,13 @@ public class MaterialValueIngredient implements ICustomIngredient {
 
 
   /** Serializer instance */
-  public enum Serializer implements IIngredientSerializer<MaterialValueIngredient> {
+  public enum Serializer {
     INSTANCE;
     public static final ResourceLocation ID = TConstruct.getResource("material_value");
     private static final LoadableField<IJsonPredicate<MaterialVariantId>, MaterialValueIngredient> MATERIAL_FIELD = new MaterialPredicateField<>("material", i -> i.material);
 
-    @Override
-    public MaterialValueIngredient parse(JsonObject json) {
+    /** Parses the ingredient from the legacy JSON format */
+    private static MaterialValueIngredient parseJson(JsonObject json) {
       float minValue, maxValue;
       JsonElement value = json.get("value");
       if (value.isJsonPrimitive()) {
@@ -171,20 +178,53 @@ public class MaterialValueIngredient implements ICustomIngredient {
       return new MaterialValueIngredient(MATERIAL_FIELD.get(json), minValue, maxValue);
     }
 
-    @Override
-    public MaterialValueIngredient parse(FriendlyByteBuf buffer) {
-      return new MaterialValueIngredient(
+    private static final MapCodec<MaterialValueIngredient> MAP_CODEC = new MapCodec<>() {
+      @Override
+      public <T> Stream<T> keys(DynamicOps<T> ops) {
+        return Stream.empty();
+      }
+
+      @Override
+      public <T> DataResult<MaterialValueIngredient> decode(DynamicOps<T> ops, MapLike<T> input) {
+        JsonObject json = new JsonObject();
+        input.entries().forEach(pair -> json.add(
+          ops.convertTo(JsonOps.INSTANCE, pair.getFirst()).getAsString(),
+          ops.convertTo(JsonOps.INSTANCE, pair.getSecond())));
+        try {
+          return DataResult.success(parseJson(json));
+        } catch (RuntimeException e) {
+          return DataResult.error(() -> "Failed to parse material_value ingredient: " + e.getMessage());
+        }
+      }
+
+      @Override
+      public <T> RecordBuilder<T> encode(MaterialValueIngredient input, DynamicOps<T> ops, RecordBuilder<T> prefix) {
+        for (Map.Entry<String, JsonElement> entry : input.toJson().getAsJsonObject().entrySet()) {
+          if (!"type".equals(entry.getKey())) {
+            prefix.add(entry.getKey(), JsonOps.INSTANCE.convertTo(ops, entry.getValue()));
+          }
+        }
+        return prefix;
+      }
+    };
+
+    private static final StreamCodec<RegistryFriendlyByteBuf, MaterialValueIngredient> STREAM_CODEC = StreamCodec.of(
+      (buffer, ingredient) -> {
+        MATERIAL_FIELD.encode(buffer, ingredient);
+        buffer.writeFloat(ingredient.minValue);
+        buffer.writeFloat(ingredient.maxValue);
+      },
+      buffer -> new MaterialValueIngredient(
         MATERIAL_FIELD.decode(buffer),
         buffer.readFloat(),
-        buffer.readFloat()
-      );
+        buffer.readFloat()));
+
+    public MapCodec<MaterialValueIngredient> codec() {
+      return MAP_CODEC;
     }
 
-    @Override
-    public void write(FriendlyByteBuf buffer, MaterialValueIngredient ingredient) {
-      MATERIAL_FIELD.encode(buffer, ingredient);
-      buffer.writeFloat(ingredient.minValue);
-      buffer.writeFloat(ingredient.maxValue);
+    public StreamCodec<RegistryFriendlyByteBuf, MaterialValueIngredient> streamCodec() {
+      return STREAM_CODEC;
     }
   }
 }

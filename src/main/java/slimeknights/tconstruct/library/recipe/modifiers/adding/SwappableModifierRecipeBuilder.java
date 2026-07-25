@@ -2,7 +2,7 @@ package slimeknights.tconstruct.library.recipe.modifiers.adding;
 
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.modifiers.util.LazyModifier;
@@ -52,6 +52,6 @@ public class SwappableModifierRecipeBuilder extends ModifierRecipeBuilder {
       throw new IllegalStateException("Must have at least 1 input");
     }
     ResourceLocation advancementId = buildOptionalAdvancement(id, "modifiers");
-    consumer.accept(new LoadableFinishedRecipe<>(new SwappableModifierRecipe(id, inputs, tools, maxToolSize, result, value, variantFormatter, slots, allowCrystal), SwappableModifierRecipe.LOADER, advancementId));
+    consumer.accept(new LoadableFinishedRecipe<>(id, new SwappableModifierRecipe(id, inputs, tools, maxToolSize, result, value, variantFormatter, slots, allowCrystal), SwappableModifierRecipe.LOADER, advancementId));
   }
 }

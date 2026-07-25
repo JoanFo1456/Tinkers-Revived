@@ -30,7 +30,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import slimeknights.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
 import net.neoforged.neoforge.registries.RegisterEvent;
-import slimeknights.mantle.compat.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import slimeknights.mantle.data.predicate.block.BlockPredicate;
 import slimeknights.mantle.data.predicate.damage.DamageSourcePredicate;
 import slimeknights.mantle.data.predicate.entity.LivingEntityPredicate;
@@ -88,7 +88,7 @@ import static slimeknights.tconstruct.TConstruct.getResource;
 @SuppressWarnings("unused")
 public final class TinkerCommons extends TinkerModule {
   /** Creative tab for general items, or those that lack another tab */
-  public static final RegistryObject<CreativeModeTab> tabGeneral = CREATIVE_TABS.register(
+  public static final DeferredHolder<? super CreativeModeTab, CreativeModeTab> tabGeneral = CREATIVE_TABS.register(
     "general", () -> CreativeModeTab.builder().title(TConstruct.makeTranslation("itemGroup", "general"))
                                     .icon(() -> new ItemStack(TinkerCommons.materialsAndYou))
                                     .displayItems(TinkerCommons::addTabItems)
@@ -103,7 +103,7 @@ public final class TinkerCommons extends TinkerModule {
    */
   @SuppressWarnings({"unchecked", "rawtypes"})
   @Deprecated(forRemoval = true)
-  public static final RegistryObject<GlowBlock> glow = (RegistryObject)RegistryObject.create(glowBlock.getId(), ForgeRegistries.BLOCKS);
+  public static final DeferredHolder<? super GlowBlock, GlowBlock> glow = (DeferredHolder) DeferredHolder.create(net.minecraft.core.registries.Registries.BLOCK, glowBlock.getId());
   // glass
   public static final ItemObject<GlassBlock> clearGlass = BLOCKS.register("clear_glass", () -> new GlassBlock(glassBuilder(MapColor.NONE)), BLOCK_ITEM);
   public static final ItemObject<TintedGlassBlock> clearTintedGlass = BLOCKS.register("clear_tinted_glass", () -> new TintedGlassBlock(glassBuilder(MapColor.COLOR_GRAY).noOcclusion().isValidSpawn((state, level, pos, entity) -> false).isRedstoneConductor((state, level, pos) -> false).isSuffocating((state, level, pos) -> false).isViewBlocking((state, level, pos) -> false)), BLOCK_ITEM);
@@ -148,32 +148,32 @@ public final class TinkerCommons extends TinkerModule {
   public static final ItemObject<TinkerBookItem> fantasticFoundry = ITEMS.register("fantastic_foundry", () -> new TinkerBookItem(UNSTACKABLE_PROPS, BookType.FANTASTIC_FOUNDRY));
   public static final ItemObject<TinkerBookItem> encyclopedia     = ITEMS.register("encyclopedia",      () -> new TinkerBookItem(UNSTACKABLE_PROPS, BookType.ENCYCLOPEDIA));
 
-  public static final RegistryObject<ParticleType<FluidParticleData>> fluidParticle = PARTICLE_TYPES.register("fluid", FluidParticleData.Type::new);
-  public static final RegistryObject<ItemSubPredicate.Type<ToolStackItemPredicate>> toolStackItemPredicate = ITEM_SUB_PREDICATES.register("tool_stack", () -> new ItemSubPredicate.Type<>(ToolStackItemPredicate.CODEC));
+  public static final DeferredHolder<? super ParticleType<FluidParticleData>, ParticleType<FluidParticleData>> fluidParticle = PARTICLE_TYPES.register("fluid", FluidParticleData.Type::new);
+  public static final DeferredHolder<? super ItemSubPredicate.Type<ToolStackItemPredicate>, ItemSubPredicate.Type<ToolStackItemPredicate>> toolStackItemPredicate = ITEM_SUB_PREDICATES.register("tool_stack", () -> new ItemSubPredicate.Type<>(ToolStackItemPredicate.CODEC));
 
   /* Loot conditions */
-  public static final RegistryObject<LootItemConditionType> lootConfig = LOOT_CONDITIONS.register(ConfigEnabledCondition.ID.getPath(), () -> new LootItemConditionType(ConfigEnabledCondition.CODEC));
-  public static final RegistryObject<LootItemConditionType> lootBlockOrEntity = LOOT_CONDITIONS.register("block_or_entity", () -> new LootItemConditionType(BlockOrEntityCondition.CODEC));
-  public static final RegistryObject<LootItemConditionType> hasLootContextSet = LOOT_CONDITIONS.register("has_context_set", () -> new LootItemConditionType(HasLootContextSetCondition.CODEC));
+  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> lootConfig = LOOT_CONDITIONS.register(ConfigEnabledCondition.ID.getPath(), () -> new LootItemConditionType(ConfigEnabledCondition.CODEC));
+  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> lootBlockOrEntity = LOOT_CONDITIONS.register("block_or_entity", () -> new LootItemConditionType(BlockOrEntityCondition.CODEC));
+  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> hasLootContextSet = LOOT_CONDITIONS.register("has_context_set", () -> new LootItemConditionType(HasLootContextSetCondition.CODEC));
   /** @deprecated use {@link slimeknights.mantle.loot.MantleLoot#TAG_FILLED} */
   @SuppressWarnings("removal")
   @Deprecated(forRemoval = true)
-  public static final RegistryObject<LootItemConditionType> lootTagNotEmptyCondition = LOOT_CONDITIONS.register("tag_not_empty", () -> new LootItemConditionType(TagNotEmptyCondition.CODEC));
+  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> lootTagNotEmptyCondition = LOOT_CONDITIONS.register("tag_not_empty", () -> new LootItemConditionType(TagNotEmptyCondition.CODEC));
   /** @deprecated use {@link slimeknights.mantle.loot.MantleLoot#TAG_PREFERENCE} */
   @SuppressWarnings("removal")
   @Deprecated(forRemoval = true)
-  public static final RegistryObject<LootPoolEntryType> lootTagPreference = LOOT_ENTRIES.register("tag_preference", () -> new LootPoolEntryType(TagPreferenceLootEntry.CODEC));
-  public static final RegistryObject<IngredientType<NoContainerIngredient>> noContainerIngredient = INGREDIENT_TYPES.register("no_container", () -> new IngredientType<>(NoContainerIngredient.Serializer.INSTANCE.codec(), NoContainerIngredient.Serializer.INSTANCE.streamCodec()));
-  public static final RegistryObject<IngredientType<BlockTagIngredient>> blockTagIngredient = INGREDIENT_TYPES.register("block_tag", () -> new IngredientType<>(BlockTagIngredient.Serializer.INSTANCE.codec(), BlockTagIngredient.Serializer.INSTANCE.streamCodec()));
+  public static final DeferredHolder<? super LootPoolEntryType, LootPoolEntryType> lootTagPreference = LOOT_ENTRIES.register("tag_preference", () -> new LootPoolEntryType(TagPreferenceLootEntry.CODEC));
+  public static final DeferredHolder<? super IngredientType<NoContainerIngredient>, IngredientType<NoContainerIngredient>> noContainerIngredient = INGREDIENT_TYPES.register("no_container", () -> new IngredientType<>(NoContainerIngredient.Serializer.INSTANCE.codec(), NoContainerIngredient.Serializer.INSTANCE.streamCodec()));
+  public static final DeferredHolder<? super IngredientType<BlockTagIngredient>, IngredientType<BlockTagIngredient>> blockTagIngredient = INGREDIENT_TYPES.register("block_tag", () -> new IngredientType<>(BlockTagIngredient.Serializer.INSTANCE.codec(), BlockTagIngredient.Serializer.INSTANCE.streamCodec()));
 
   /* Recipe conditions */
-  public static final RegistryObject<com.mojang.serialization.MapCodec<? extends ICondition>> configCondition = CONDITION_CODECS.register(ConfigEnabledCondition.ID.getPath(), () -> ConfigEnabledCondition.CODEC);
+  public static final DeferredHolder<? super com.mojang.serialization.MapCodec<? extends ICondition>, com.mojang.serialization.MapCodec<? extends ICondition>> configCondition = CONDITION_CODECS.register(ConfigEnabledCondition.ID.getPath(), () -> ConfigEnabledCondition.CODEC);
   @SuppressWarnings("removal")
-  public static final RegistryObject<com.mojang.serialization.MapCodec<? extends ICondition>> tagIntersectionPresentCondition = CONDITION_CODECS.register("tag_intersection_present", () -> TagIntersectionPresentCondition.CODEC);
+  public static final DeferredHolder<? super com.mojang.serialization.MapCodec<? extends ICondition>, com.mojang.serialization.MapCodec<? extends ICondition>> tagIntersectionPresentCondition = CONDITION_CODECS.register("tag_intersection_present", () -> TagIntersectionPresentCondition.CODEC);
   @SuppressWarnings("removal")
-  public static final RegistryObject<com.mojang.serialization.MapCodec<? extends ICondition>> tagDifferencePresentCondition = CONDITION_CODECS.register("tag_difference_present", () -> TagDifferencePresentCondition.CODEC);
+  public static final DeferredHolder<? super com.mojang.serialization.MapCodec<? extends ICondition>, com.mojang.serialization.MapCodec<? extends ICondition>> tagDifferencePresentCondition = CONDITION_CODECS.register("tag_difference_present", () -> TagDifferencePresentCondition.CODEC);
   @SuppressWarnings("removal")
-  public static final RegistryObject<com.mojang.serialization.MapCodec<? extends ICondition>> tagNotEmptyCondition = CONDITION_CODECS.register("tag_not_empty", () -> TagNotEmptyCondition.CODEC);
+  public static final DeferredHolder<? super com.mojang.serialization.MapCodec<? extends ICondition>, com.mojang.serialization.MapCodec<? extends ICondition>> tagNotEmptyCondition = CONDITION_CODECS.register("tag_not_empty", () -> TagNotEmptyCondition.CODEC);
 
   /* Slime Balls are edible, believe it or not */
   public static final EnumObject<SlimeType, Item> slimeball = new EnumObject.Builder<SlimeType, Item>(SlimeType.class)

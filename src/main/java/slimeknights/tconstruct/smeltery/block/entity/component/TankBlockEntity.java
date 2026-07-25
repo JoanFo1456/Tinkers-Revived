@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.smeltery.block.entity.component;
+import slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,7 +34,7 @@ import slimeknights.tconstruct.smeltery.item.TankItem;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITankBlockEntity {
+public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITankBlockEntity, ILegacyCapabilityBlockEntity {
   /** Max capacity for the tank */
   public static final int DEFAULT_CAPACITY = FluidType.BUCKET_VOLUME * 4;
 
@@ -104,18 +105,16 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
    * Tank methods
    */
 
-  @Override
   @Nonnull
   public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
     if (capability == ForgeCapabilities.FLUID_HANDLER) {
       return holder.cast();
     }
-    return super.getCapability(capability, facing);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     holder.invalidate();
   }
 

@@ -107,7 +107,7 @@ public class EquipmentContext {
   /** Gets the tinker data capability, or null if absent */
   @Nullable
   public TinkerDataCapability.Holder getDataHolder() {
-    return LogicHelper.orElseNull(getTinkerData());
+    return LogicHelper.orElseNull(getTinkerData().resolve());
   }
 
 

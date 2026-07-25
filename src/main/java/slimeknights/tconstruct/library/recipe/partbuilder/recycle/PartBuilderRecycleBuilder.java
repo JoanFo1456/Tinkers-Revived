@@ -3,7 +3,7 @@ package slimeknights.tconstruct.library.recipe.partbuilder.recycle;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -63,6 +63,6 @@ public class PartBuilderRecycleBuilder extends AbstractRecipeBuilder<PartBuilder
   @Override
   public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
     ResourceLocation advancementId = buildOptionalAdvancement(id, "parts");
-    consumer.accept(new LoadableFinishedRecipe<>(new PartBuilderRecycle(id, tool, pattern, results), PartBuilderRecycle.LOADER, advancementId));
+    consumer.accept(new LoadableFinishedRecipe<>(id, new PartBuilderRecycle(id, tool, pattern, results), PartBuilderRecycle.LOADER, advancementId));
   }
 }

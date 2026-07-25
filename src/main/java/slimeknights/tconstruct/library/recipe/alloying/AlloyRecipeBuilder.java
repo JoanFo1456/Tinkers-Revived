@@ -2,7 +2,7 @@ package slimeknights.tconstruct.library.recipe.alloying;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
@@ -121,7 +121,7 @@ public class AlloyRecipeBuilder extends AbstractRecipeBuilder<AlloyRecipeBuilder
     if (inputs.size() < 2) {
       throw new IllegalStateException("Invalid alloying recipe " + id + ", must have at least two inputs");
     }
-    consumer.accept(new LoadableFinishedRecipe<>(
+    consumer.accept(new LoadableFinishedRecipe<>(id,
       new AlloyRecipe(id, inputs, output, temperature),
       AlloyRecipe.LOADER,
       this.buildOptionalAdvancement(id, "alloys")

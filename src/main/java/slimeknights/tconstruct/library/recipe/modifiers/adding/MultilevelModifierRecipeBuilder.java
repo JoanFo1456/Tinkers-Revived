@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.library.recipe.modifiers.adding;
 
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -101,6 +101,6 @@ public class MultilevelModifierRecipeBuilder extends AbstractMultilevelModifierR
       throw new IllegalStateException("Must have at least 1 level");
     }
     ResourceLocation advancementId = buildOptionalAdvancement(id, "modifiers");
-    consumer.accept(new LoadableFinishedRecipe<>(new MultilevelModifierRecipe(id, inputs, tools, maxToolSize, result, allowCrystal, levels, checkTraitLevel), MultilevelModifierRecipe.LOADER, advancementId));
+    consumer.accept(new LoadableFinishedRecipe<>(id, new MultilevelModifierRecipe(id, inputs, tools, maxToolSize, result, allowCrystal, levels, checkTraitLevel), MultilevelModifierRecipe.LOADER, advancementId));
   }
 }

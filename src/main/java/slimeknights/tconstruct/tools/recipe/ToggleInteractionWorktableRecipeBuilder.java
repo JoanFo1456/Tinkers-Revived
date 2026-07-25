@@ -3,7 +3,7 @@ package slimeknights.tconstruct.tools.recipe;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import slimeknights.mantle.data.loadable.Loadables;
@@ -30,6 +30,6 @@ public class ToggleInteractionWorktableRecipeBuilder extends AbstractSizedIngred
       throw new IllegalStateException("Must have at least one ingredient");
     }
     ResourceLocation advancementId = buildOptionalAdvancement(id, "modifiers");
-    consumer.accept(new LoadableFinishedRecipe<>(new ToggleInteractionWorktableRecipe(id, tools, inputs), ToggleInteractionWorktableRecipe.LOADER, advancementId));
+    consumer.accept(new LoadableFinishedRecipe<>(id, new ToggleInteractionWorktableRecipe(id, tools, inputs), ToggleInteractionWorktableRecipe.LOADER, advancementId));
   }
 }

@@ -239,18 +239,16 @@ public class CastingTankBlockEntity extends TableBlockEntity implements ITankBlo
    * Tank methods
    */
 
-  @Override
   @Nonnull
   public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
     if (capability == ForgeCapabilities.FLUID_HANDLER) {
       return fluidHolder.cast();
     }
-    return super.getCapability(capability, facing);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     fluidHolder.invalidate();
   }
 

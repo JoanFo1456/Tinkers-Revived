@@ -2,16 +2,20 @@ package slimeknights.tconstruct.library.recipe.ingredient;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.JsonOps;
-import net.minecraft.network.FriendlyByteBuf;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.MapLike;
+import com.mojang.serialization.RecordBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import slimeknights.mantle.compat.neoforged.neoforge.common.crafting.IIngredientSerializer;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import slimeknights.mantle.data.loadable.field.LoadableField;
 import slimeknights.mantle.data.predicate.IJsonPredicate;
@@ -29,6 +33,7 @@ import slimeknights.tconstruct.shared.TinkerMaterials;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -204,13 +209,13 @@ public class MaterialIngredient extends NestedIngredient {
   }
 
   /** Serializer instance */
-  public enum Serializer implements IIngredientSerializer<MaterialIngredient> {
+  public enum Serializer {
     INSTANCE;
     public static final ResourceLocation ID = TConstruct.getResource("material");
     private static final LoadableField<IJsonPredicate<MaterialVariantId>,MaterialIngredient> MATERIAL_FIELD = new MaterialPredicateField<>("material", i -> i.material);
 
-    @Override
-    public MaterialIngredient parse(JsonObject json) {
+    /** Parses the ingredient from the legacy JSON format (supports both the inline vanilla form and the "match" wrapper) */
+    private static MaterialIngredient parseJson(JsonObject json) {
       // if we have match, parse as a nested object. Without match, just parse the object as vanilla
       Ingredient ingredient;
       if (json.has("match")) {
@@ -234,18 +239,51 @@ public class MaterialIngredient extends NestedIngredient {
       return new MaterialIngredient(ingredient, material);
     }
 
-    @Override
-    public MaterialIngredient parse(FriendlyByteBuf buffer) {
-      return new MaterialIngredient(
-        Ingredient.CONTENTS_STREAM_CODEC.decode((RegistryFriendlyByteBuf)buffer),
-        MATERIAL_FIELD.decode(buffer)
-      );
+    private static final MapCodec<MaterialIngredient> MAP_CODEC = new MapCodec<>() {
+      @Override
+      public <T> Stream<T> keys(DynamicOps<T> ops) {
+        return Stream.empty();
+      }
+
+      @Override
+      public <T> DataResult<MaterialIngredient> decode(DynamicOps<T> ops, MapLike<T> input) {
+        JsonObject json = new JsonObject();
+        input.entries().forEach(pair -> json.add(
+          ops.convertTo(JsonOps.INSTANCE, pair.getFirst()).getAsString(),
+          ops.convertTo(JsonOps.INSTANCE, pair.getSecond())));
+        try {
+          return DataResult.success(parseJson(json));
+        } catch (RuntimeException e) {
+          return DataResult.error(() -> "Failed to parse material ingredient: " + e.getMessage());
+        }
+      }
+
+      @Override
+      public <T> RecordBuilder<T> encode(MaterialIngredient input, DynamicOps<T> ops, RecordBuilder<T> prefix) {
+        for (Map.Entry<String, JsonElement> entry : input.toJson().getAsJsonObject().entrySet()) {
+          if (!"type".equals(entry.getKey())) {
+            prefix.add(entry.getKey(), JsonOps.INSTANCE.convertTo(ops, entry.getValue()));
+          }
+        }
+        return prefix;
+      }
+    };
+
+    private static final StreamCodec<RegistryFriendlyByteBuf, MaterialIngredient> STREAM_CODEC = StreamCodec.of(
+      (buffer, ingredient) -> {
+        Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient.nested);
+        MATERIAL_FIELD.encode(buffer, ingredient);
+      },
+      buffer -> new MaterialIngredient(
+        Ingredient.CONTENTS_STREAM_CODEC.decode(buffer),
+        MATERIAL_FIELD.decode(buffer)));
+
+    public MapCodec<MaterialIngredient> codec() {
+      return MAP_CODEC;
     }
 
-    @Override
-    public void write(FriendlyByteBuf buffer, MaterialIngredient ingredient) {
-      Ingredient.CONTENTS_STREAM_CODEC.encode((RegistryFriendlyByteBuf)buffer, ingredient.nested);
-      MATERIAL_FIELD.encode(buffer, ingredient);
+    public StreamCodec<RegistryFriendlyByteBuf, MaterialIngredient> streamCodec() {
+      return STREAM_CODEC;
     }
   }
 }

@@ -3,7 +3,7 @@ package slimeknights.tconstruct.compat.neoforged.neoforge.common.crafting;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.conditions.ICondition;
 

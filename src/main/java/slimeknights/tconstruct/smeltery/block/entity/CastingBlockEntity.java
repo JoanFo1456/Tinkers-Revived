@@ -54,7 +54,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public abstract class CastingBlockEntity extends TableBlockEntity implements WorldlyContainer, FluidUpdatePacket.IFluidPacketReceiver {
+public abstract class CastingBlockEntity extends TableBlockEntity implements WorldlyContainer, FluidUpdatePacket.IFluidPacketReceiver, ILegacyCapabilityBlockEntity {
   // slots
   public static final int INPUT = 0;
   public static final int OUTPUT = 1;
@@ -123,12 +123,11 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     this.moldingInventory = new MoldingContainerWrapper(itemHandler, INPUT);
   }
 
-  @Override
   @Nonnull
   public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
     if (capability == ForgeCapabilities.FLUID_HANDLER)
       return holder.cast();
-    return super.getCapability(capability, facing);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
   /**

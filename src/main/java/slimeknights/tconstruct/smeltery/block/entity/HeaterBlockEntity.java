@@ -24,7 +24,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /** Tile entity for the heater block below the melter */
-public class HeaterBlockEntity extends NameableBlockEntity {
+public class HeaterBlockEntity extends NameableBlockEntity implements ILegacyCapabilityBlockEntity {
   private static final String TAG_ITEM = "item";
   private static final Component TITLE = TConstruct.makeTranslation("gui", "heater");
 
@@ -49,17 +49,15 @@ public class HeaterBlockEntity extends NameableBlockEntity {
   /* Capability */
 
   @Nonnull
-  @Override
   public <C> LazyOptional<C> getCapability(Capability<C> capability, @Nullable Direction facing) {
     if (capability == ForgeCapabilities.ITEM_HANDLER) {
       return itemCapability.cast();
     }
-    return super.getCapability(capability, facing);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     itemCapability.invalidate();
   }
 

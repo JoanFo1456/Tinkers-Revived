@@ -3,7 +3,7 @@ package slimeknights.tconstruct.library.recipe.melting;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
@@ -189,15 +189,15 @@ public class MeltingRecipeBuilder extends AbstractRecipeBuilder<MeltingRecipeBui
     ResourceLocation advancementId = this.buildOptionalAdvancement(id, "melting");
     // based on properties, choose which recipe to build
     if (oreRate != null) {
-      consumer.accept(new LoadableFinishedRecipe<>(
+      consumer.accept(new LoadableFinishedRecipe<>(id,
         new OreMeltingRecipe(id, group, input, output, temperature, time, byproducts, oreRate, byproductRates),
         OreMeltingRecipe.LOADER, advancementId));
     } else if (unitSizes != null) {
-      consumer.accept(new LoadableFinishedRecipe<>(
+      consumer.accept(new LoadableFinishedRecipe<>(id,
         new DamageableMeltingRecipe(id, group, input, output, temperature, time, byproducts, unitSizes[0], List.of(Arrays.stream(unitSizes, 1, unitSizes.length).boxed().toArray(Integer[]::new))),
         DamageableMeltingRecipe.LOADER, advancementId));
     } else {
-      consumer.accept(new LoadableFinishedRecipe<>(
+      consumer.accept(new LoadableFinishedRecipe<>(id,
         new MeltingRecipe(id, group, input, output, temperature, time, byproducts),
         MeltingRecipe.LOADER, advancementId));
     }

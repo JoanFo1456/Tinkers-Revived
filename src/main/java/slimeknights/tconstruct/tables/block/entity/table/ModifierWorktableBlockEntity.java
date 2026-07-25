@@ -68,7 +68,7 @@ public class ModifierWorktableBlockEntity extends RetexturedTableBlockEntity imp
   public ModifierWorktableBlockEntity(BlockPos pos, BlockState state) {
     super(TinkerTables.modifierWorktableTile.get(), pos, state, NAME, 3);
     this.itemHandler = new ConfigurableInvWrapperCapability(this, false, false);
-    this.itemHandlerCap = LazyOptional.of(() -> this.itemHandler);
+    // TODO(neoforge-capabilities): itemHandlerCap removed; re-expose item handler via RegisterCapabilitiesEvent
     this.inventoryWrapper = new ModifierWorktableContainerWrapper(this);
     this.craftingResult = new LazyResultContainer(this);
   }

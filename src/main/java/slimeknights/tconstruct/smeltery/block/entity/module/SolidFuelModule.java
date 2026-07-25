@@ -9,7 +9,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import slimeknights.tconstruct.compat.neoforged.neoforge.common.ForgeHooks;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
-import slimeknights.mantle.compat.neoforged.neoforge.common.util.NonNullConsumer;
+import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 /** Fuel module variant that supports both item and fluid fuels. Only supports a single fluid position which should not change. */
 public class SolidFuelModule extends FuelModule {
   /** Listener to attach to stored item capabilities */
-  private final NonNullConsumer<LazyOptional<IItemHandler>> itemListener = new WeakConsumerWrapper<>(this, SolidFuelModule::resetHandler);
+  private final Consumer<LazyOptional<IItemHandler>> itemListener = new WeakConsumerWrapper<>(this, SolidFuelModule::resetHandler);
 
   /** Location of the fuel tank */
   private final BlockPos fuelPos;

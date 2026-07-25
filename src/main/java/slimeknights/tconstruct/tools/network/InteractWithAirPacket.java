@@ -7,7 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import slimeknights.mantle.compat.neoforged.neoforge.network.NetworkEvent.Context;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import slimeknights.mantle.network.packet.IThreadsafePacket;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.tools.logic.InteractionHandler;
@@ -40,8 +40,8 @@ public enum InteractWithAirPacket implements IThreadsafePacket {
   }
 
   @Override
-  public void handleThreadsafe(Context context) {
-    ServerPlayer player = context.getSender();
+  public void handleThreadsafe(IPayloadContext context) {
+    ServerPlayer player = (context.player() instanceof net.minecraft.server.level.ServerPlayer sp ? sp : null);
     if (player != null && !player.isSpectator()) {
       if (this == LEFT_CLICK) {
         ItemStack held = player.getItemInHand(hand);

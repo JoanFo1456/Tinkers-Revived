@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
-import slimeknights.mantle.compat.neoforged.fml.ModLoader;
+import net.neoforged.fml.ModLoader;
 import slimeknights.mantle.data.listener.MergingJsonDataLoader;
 import slimeknights.mantle.data.loadable.field.ContextKey;
 import slimeknights.mantle.util.JsonHelper;
@@ -55,7 +55,7 @@ public class ModifierModelMapManager extends MergingJsonDataLoader<Builder> {
   public CompletableFuture<Void> reload(PreparationBarrier stage, ResourceManager resourceManager, ProfilerFiller preparationsProfiler, ProfilerFiller reloadProfiler, Executor backgroundExecutor, Executor gameExecutor) {
     // run in the first stage instead of the second stage
     return CompletableFuture.runAsync(() -> {
-      if (ModLoader.isLoadingStateValid()) {
+      if (!ModLoader.hasErrors()) {
         this.onResourceManagerReload(resourceManager);
       }
     }, backgroundExecutor).thenCompose(stage::wait);

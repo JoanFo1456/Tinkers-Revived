@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.smeltery.block.entity.component;
+import slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity;
 
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
@@ -14,7 +15,7 @@ import net.neoforged.neoforge.client.model.data.ModelData;
 import slimeknights.mantle.compat.neoforged.neoforge.capabilities.Capability;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
-import slimeknights.mantle.compat.neoforged.neoforge.common.util.NonNullConsumer;
+import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -36,13 +37,13 @@ import static slimeknights.mantle.util.RetexturedHelper.TAG_TEXTURE;
 /**
  * Shared logic between drains and ducts
  */
-public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponentBlockEntity implements IRetexturedBlockEntity {
+public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponentBlockEntity implements IRetexturedBlockEntity, ILegacyCapabilityBlockEntity {
   /** Capability this TE watches */
   private final Capability<T> capability;
   /** Empty capability for in case the valid capability becomes invalid without invalidating */
   protected final T emptyInstance;
   /** Listener to attach to consumed capabilities */
-  protected final NonNullConsumer<LazyOptional<T>> listener = new WeakConsumerWrapper<>(this, (te, cap) -> te.clearHandler());
+  protected final Consumer<LazyOptional<T>> listener = new WeakConsumerWrapper<>(this, (te, cap) -> te.clearHandler());
   @Nullable
   private LazyOptional<T> capabilityHolder = null;
 
@@ -65,9 +66,8 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
     }
   }
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     clearHandler();
   }
 
@@ -99,7 +99,7 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
    * @return  Capability from parent, or empty if absent
    */
   protected LazyOptional<T> getCapability(BlockEntity parent) {
-    LazyOptional<T> handler = parent instanceof MantleBlockEntity mantle ? mantle.getCapability(capability) : LazyOptional.empty();
+    LazyOptional<T> handler = parent instanceof ILegacyCapabilityBlockEntity provider ? provider.getCapability(capability, null) : LazyOptional.empty();
     if (handler.isPresent()) {
       handler.addListener(listener);
 
@@ -129,12 +129,11 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
   }
 
   @Nonnull
-  @Override
   public <C> LazyOptional<C> getCapability(Capability<C> capability, @Nullable Direction facing) {
     if (capability == this.capability) {
       return getCachedCapability().cast();
     }
-    return super.getCapability(capability, facing);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
 

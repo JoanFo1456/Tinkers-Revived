@@ -39,17 +39,15 @@ public abstract class AbstractChestBlockEntity extends NameableBlockEntity {
   }
 
   @Nonnull
-  @Override
   public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
     if (cap == ForgeCapabilities.ITEM_HANDLER) {
       return capability.cast();
     }
-    return super.getCapability(cap, side);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     capability.invalidate();
   }
 

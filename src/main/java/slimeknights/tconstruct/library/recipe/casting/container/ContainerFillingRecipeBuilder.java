@@ -3,7 +3,7 @@ package slimeknights.tconstruct.library.recipe.casting.container;
 import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;

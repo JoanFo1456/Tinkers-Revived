@@ -2,7 +2,7 @@ package slimeknights.tconstruct.tools.recipe;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import slimeknights.tconstruct.library.recipe.worktable.AbstractSizedIngredientRecipeBuilder;
 
@@ -23,6 +23,6 @@ public class ModifierSortingRecipeBuilder extends AbstractSizedIngredientRecipeB
       throw new IllegalStateException("Must have at least one ingredient");
     }
     ResourceLocation advancementId = buildOptionalAdvancement(id, "modifiers");
-    consumer.accept(new LoadableFinishedRecipe<>(new ModifierSortingRecipe(id, inputs), ModifierSortingRecipe.LOADER, advancementId));
+    consumer.accept(new LoadableFinishedRecipe<>(id, new ModifierSortingRecipe(id, inputs), ModifierSortingRecipe.LOADER, advancementId));
   }
 }

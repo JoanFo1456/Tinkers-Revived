@@ -2,7 +2,7 @@ package slimeknights.tconstruct.common.data;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.CachedOutput;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;

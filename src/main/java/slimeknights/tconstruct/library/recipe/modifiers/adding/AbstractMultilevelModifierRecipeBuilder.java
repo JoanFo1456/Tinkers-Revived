@@ -3,7 +3,7 @@ package slimeknights.tconstruct.library.recipe.modifiers.adding;
 import com.google.gson.JsonSyntaxException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -155,7 +155,7 @@ public abstract class AbstractMultilevelModifierRecipeBuilder<T extends Abstract
     }
     for (LevelEntry levelEntry : levels) {
       if (levelEntry.slots() != null) {
-        consumer.accept(new LoadableFinishedRecipe<>(new ModifierSalvage(
+        consumer.accept(new LoadableFinishedRecipe<>(id, new ModifierSalvage(
           id.withSuffix("_level_" + levelEntry.level().min()),
           tools, maxToolSize, result, levelEntry.level(), levelEntry.slots()), ModifierSalvage.LOADER, null));
       }

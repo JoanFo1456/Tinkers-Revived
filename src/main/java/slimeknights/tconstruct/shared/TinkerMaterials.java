@@ -11,7 +11,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
-import slimeknights.mantle.compat.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import slimeknights.mantle.registration.object.FenceBuildingBlockObject;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.mantle.registration.object.MetalItemObject;
@@ -71,8 +71,8 @@ public final class TinkerMaterials extends TinkerModule {
   public static final FenceBuildingBlockObject nahuatl = BLOCKS.registerFenceBuilding("nahuatl", builder(MapColor.COLOR_PURPLE, SoundType.WOOD).instrument(NoteBlockInstrument.BASS).requiresCorrectToolForDrops().strength(25f, 300f), BLOCK_ITEM);
   public static final FenceBuildingBlockObject blazewood = BLOCKS.registerFenceBuilding("blazewood", woodBuilder(MapColor.TERRACOTTA_RED).requiresCorrectToolForDrops().strength(25f, 300f).lightLevel(s -> 7), BLOCK_ITEM);
 
-  public static final RegistryObject<IngredientType<MaterialIngredient>> materialIngredient = INGREDIENT_TYPES.register("material", () -> new IngredientType<>(MaterialIngredient.Serializer.INSTANCE.codec(), MaterialIngredient.Serializer.INSTANCE.streamCodec()));
-  public static final RegistryObject<IngredientType<MaterialValueIngredient>> materialValueIngredient = INGREDIENT_TYPES.register("material_value", () -> new IngredientType<>(MaterialValueIngredient.Serializer.INSTANCE.codec(), MaterialValueIngredient.Serializer.INSTANCE.streamCodec()));
+  public static final DeferredHolder<? super IngredientType<MaterialIngredient>, IngredientType<MaterialIngredient>> materialIngredient = INGREDIENT_TYPES.register("material", () -> new IngredientType<>(MaterialIngredient.Serializer.INSTANCE.codec(), MaterialIngredient.Serializer.INSTANCE.streamCodec()));
+  public static final DeferredHolder<? super IngredientType<MaterialValueIngredient>, IngredientType<MaterialValueIngredient>> materialValueIngredient = INGREDIENT_TYPES.register("material_value", () -> new IngredientType<>(MaterialValueIngredient.Serializer.INSTANCE.codec(), MaterialValueIngredient.Serializer.INSTANCE.streamCodec()));
 
   /*
    * Serializers

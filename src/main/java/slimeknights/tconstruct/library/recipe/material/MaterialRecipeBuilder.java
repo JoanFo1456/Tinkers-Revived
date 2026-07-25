@@ -3,7 +3,7 @@ package slimeknights.tconstruct.library.recipe.material;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -78,6 +78,6 @@ public class MaterialRecipeBuilder extends AbstractRecipeBuilder<MaterialRecipeB
       throw new IllegalStateException("recipe " + id + " has no needed associated with it");
     }
     ResourceLocation advancementId = this.buildOptionalAdvancement(id, "materials");
-    consumerIn.accept(new LoadableFinishedRecipe<>(new MaterialRecipe(id, group, ingredient, value, needed, material, leftover), MaterialRecipe.LOADER, advancementId));
+    consumerIn.accept(new LoadableFinishedRecipe<>(id, new MaterialRecipe(id, group, ingredient, value, needed, material, leftover), MaterialRecipe.LOADER, advancementId));
   }
 }

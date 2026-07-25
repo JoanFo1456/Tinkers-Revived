@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
-import slimeknights.mantle.compat.neoforged.neoforge.common.util.NonNullConsumer;
+import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
@@ -44,7 +44,7 @@ public class MixerAlloyTank implements IMutableAlloyTank {
   /** Cache of tanks for each of the sides */
   private final Map<Direction,LazyOptional<IFluidHandler>> inputs = new EnumMap<>(Direction.class);
   /** Map of invalidation listeners for each side */
-  private final Map<Direction,NonNullConsumer<LazyOptional<IFluidHandler>>> listeners = new EnumMap<>(Direction.class);
+  private final Map<Direction,Consumer<LazyOptional<IFluidHandler>>> listeners = new EnumMap<>(Direction.class);
   /** Map of tank index to tank on the side */
   @Nullable
   private IFluidHandler[] indexedList = null;

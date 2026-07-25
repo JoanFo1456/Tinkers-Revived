@@ -305,14 +305,14 @@ public class ToolEvents {
 
     // conducting - boosts damage from fire
     if (source.is(TinkerTags.DamageTypes.FIRE_PROTECTION)) {
-      int level = TinkerEffect.getLevel(entity, TinkerEffects.conductive);
+      int level = TinkerEffect.getLevel(entity, (net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>) TinkerEffects.conductive);
       if (level > 0) {
         originalDamage *= Math.pow(2, level);
       }
     }
     // venom - boosts damage from magic
     if (source.is(TinkerTags.DamageTypes.MAGIC_PROTECTION)) {
-      int level = TinkerEffect.getLevel(entity, TinkerEffects.venom);
+      int level = TinkerEffect.getLevel(entity, (net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>) TinkerEffects.venom);
       if (level > 0) {
         originalDamage *= Math.pow(2, level);
       }

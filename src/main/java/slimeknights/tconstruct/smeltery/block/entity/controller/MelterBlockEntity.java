@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.smeltery.block.entity.controller;
+import slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,7 +42,7 @@ import slimeknights.tconstruct.smeltery.menu.MelterContainerMenu;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class MelterBlockEntity extends NameableBlockEntity implements ITankInventoryBlockEntity {
+public class MelterBlockEntity extends NameableBlockEntity implements ITankInventoryBlockEntity, ILegacyCapabilityBlockEntity {
 
   /** Max capacity for the tank */
   private static final int TANK_CAPACITY = FluidValues.INGOT * 24;
@@ -110,7 +111,6 @@ public class MelterBlockEntity extends NameableBlockEntity implements ITankInven
   }
 
   @Nonnull
-  @Override
   public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
     if (capability == ForgeCapabilities.FLUID_HANDLER) {
       return tankHolder.cast();
@@ -118,12 +118,11 @@ public class MelterBlockEntity extends NameableBlockEntity implements ITankInven
     if (capability == ForgeCapabilities.ITEM_HANDLER) {
       return inventoryHolder.cast();
     }
-    return super.getCapability(capability, facing);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     this.tankHolder.invalidate();
     this.inventoryHolder.invalidate();
   }

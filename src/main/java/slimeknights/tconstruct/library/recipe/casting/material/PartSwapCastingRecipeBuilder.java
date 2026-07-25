@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.core.registries.BuiltInRegistries;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import slimeknights.mantle.data.predicate.IJsonPredicate;
@@ -56,6 +56,6 @@ public class PartSwapCastingRecipeBuilder extends AbstractRecipeBuilder<PartSwap
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
-    consumer.accept(new LoadableFinishedRecipe<>(new PartSwapCastingRecipe(recipeSerializer, id, group, tools, itemCost, index, allowedMaterials), PartSwapCastingRecipe.LOADER, this.buildOptionalAdvancement(id, "materials")));
+    consumer.accept(new LoadableFinishedRecipe<>(id, new PartSwapCastingRecipe(recipeSerializer, id, group, tools, itemCost, index, allowedMaterials), PartSwapCastingRecipe.LOADER, this.buildOptionalAdvancement(id, "materials")));
   }
 }

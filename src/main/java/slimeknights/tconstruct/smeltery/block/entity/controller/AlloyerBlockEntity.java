@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.smeltery.block.entity.controller;
+import slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -39,7 +40,7 @@ import javax.annotation.Nullable;
 /**
  * Dedicated alloying block
  */
-public class AlloyerBlockEntity extends NameableBlockEntity implements ITankBlockEntity {
+public class AlloyerBlockEntity extends NameableBlockEntity implements ITankBlockEntity, ILegacyCapabilityBlockEntity {
   /** Max capacity for the tank */
   private static final int TANK_CAPACITY = TankType.INGOT_TANK.getCapacity();
   /** Name of the container */
@@ -84,17 +85,15 @@ public class AlloyerBlockEntity extends NameableBlockEntity implements ITankBloc
    */
 
   @Nonnull
-  @Override
   public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
     if (capability == ForgeCapabilities.FLUID_HANDLER) {
       return tankHolder.cast();
     }
-    return super.getCapability(capability, facing);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     this.tankHolder.invalidate();
   }
 

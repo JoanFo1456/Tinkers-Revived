@@ -68,7 +68,7 @@ public record ArmorLevelModule(TinkerDataKey<Integer> key, boolean allowBroken, 
    * @param amount   Amount to add
    */
   public static void addLevels(EquipmentChangeContext context, TinkerDataKey<Integer> key, int amount) {
-    TinkerDataCapability.Holder data = LogicHelper.orElseNull(context.getTinkerData());
+    TinkerDataCapability.Holder data = LogicHelper.orElseNull(context.getTinkerData().resolve());
     if (data != null) {
       int totalLevels = data.get(key, 0) + amount;
       if (totalLevels <= 0) {
@@ -115,7 +115,7 @@ public record ArmorLevelModule(TinkerDataKey<Integer> key, boolean allowBroken, 
    * @return  Level from the key
    */
   public static int getLevel(LazyOptional<TinkerDataCapability.Holder> cap, TinkerDataKey<Integer> key) {
-    TinkerDataCapability.Holder data = LogicHelper.orElseNull(cap);
+    TinkerDataCapability.Holder data = LogicHelper.orElseNull(cap.resolve());
     return data != null ? data.get(key, 0) : 0;
   }
 }

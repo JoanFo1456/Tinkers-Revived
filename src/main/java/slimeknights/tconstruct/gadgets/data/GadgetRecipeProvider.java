@@ -2,7 +2,7 @@ package slimeknights.tconstruct.gadgets.data;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.data.PackOutput;
-import slimeknights.mantle.compat.minecraft.data.recipes.FinishedRecipe;
+import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;

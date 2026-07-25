@@ -1,11 +1,19 @@
 package slimeknights.tconstruct.library.recipe.ingredient;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.DynamicOps;
+import com.mojang.serialization.JsonOps;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.MapLike;
+import com.mojang.serialization.RecordBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -13,7 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.crafting.ICustomIngredient;
-import slimeknights.mantle.compat.neoforged.neoforge.common.crafting.IIngredientSerializer;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import slimeknights.mantle.data.loadable.Loadables;
 import slimeknights.tconstruct.TConstruct;
@@ -26,6 +33,7 @@ import slimeknights.tconstruct.tools.TinkerTools;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -102,31 +110,64 @@ public class ToolHookIngredient implements ICustomIngredient {
   }
 
   /** Serializer instance */
-  public enum Serializer implements IIngredientSerializer<ToolHookIngredient> {
+  public enum Serializer {
     INSTANCE;
 
     public static final ResourceLocation ID = TConstruct.getResource("tool_hook");
 
-    @Override
-    public ToolHookIngredient parse(JsonObject json) {
+    /** Parses the ingredient from the legacy JSON format */
+    private static ToolHookIngredient parseJson(JsonObject json) {
       return new ToolHookIngredient(
         Loadables.ITEM_TAG.getOrDefault(json, "tag", TinkerTags.Items.MODIFIABLE),
         ToolHooks.LOADER.getIfPresent(json, "hook")
       );
     }
 
-    @Override
-    public ToolHookIngredient parse(FriendlyByteBuf buffer) {
-      return new ToolHookIngredient(
+    private static final MapCodec<ToolHookIngredient> MAP_CODEC = new MapCodec<>() {
+      @Override
+      public <T> Stream<T> keys(DynamicOps<T> ops) {
+        return Stream.empty();
+      }
+
+      @Override
+      public <T> DataResult<ToolHookIngredient> decode(DynamicOps<T> ops, MapLike<T> input) {
+        JsonObject json = new JsonObject();
+        input.entries().forEach(pair -> json.add(
+          ops.convertTo(JsonOps.INSTANCE, pair.getFirst()).getAsString(),
+          ops.convertTo(JsonOps.INSTANCE, pair.getSecond())));
+        try {
+          return DataResult.success(parseJson(json));
+        } catch (RuntimeException e) {
+          return DataResult.error(() -> "Failed to parse tool_hook ingredient: " + e.getMessage());
+        }
+      }
+
+      @Override
+      public <T> RecordBuilder<T> encode(ToolHookIngredient input, DynamicOps<T> ops, RecordBuilder<T> prefix) {
+        for (Map.Entry<String, JsonElement> entry : input.toJson().entrySet()) {
+          if (!"type".equals(entry.getKey())) {
+            prefix.add(entry.getKey(), JsonOps.INSTANCE.convertTo(ops, entry.getValue()));
+          }
+        }
+        return prefix;
+      }
+    };
+
+    private static final StreamCodec<RegistryFriendlyByteBuf, ToolHookIngredient> STREAM_CODEC = StreamCodec.of(
+      (buffer, ingredient) -> {
+        Loadables.ITEM_TAG.encode(buffer, ingredient.tag);
+        ToolHooks.LOADER.encode(buffer, ingredient.hook);
+      },
+      buffer -> new ToolHookIngredient(
         Loadables.ITEM_TAG.decode(buffer),
-        ToolHooks.LOADER.decode(buffer)
-      );
+        ToolHooks.LOADER.decode(buffer)));
+
+    public MapCodec<ToolHookIngredient> codec() {
+      return MAP_CODEC;
     }
 
-    @Override
-    public void write(FriendlyByteBuf buffer, ToolHookIngredient ingredient) {
-      Loadables.ITEM_TAG.encode(buffer, ingredient.tag);
-      ToolHooks.LOADER.encode(buffer, ingredient.hook);
+    public StreamCodec<RegistryFriendlyByteBuf, ToolHookIngredient> streamCodec() {
+      return STREAM_CODEC;
     }
   }
 }

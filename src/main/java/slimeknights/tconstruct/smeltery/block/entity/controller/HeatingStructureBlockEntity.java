@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.smeltery.block.entity.controller;
+import slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity;
 
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
@@ -66,7 +67,7 @@ import java.util.function.Consumer;
 
 import static slimeknights.mantle.util.RetexturedHelper.TAG_TEXTURE;
 
-public abstract class HeatingStructureBlockEntity extends NameableBlockEntity implements IMasterLogic, ISmelteryTankHandler, IRetexturedBlockEntity {
+public abstract class HeatingStructureBlockEntity extends NameableBlockEntity implements IMasterLogic, ISmelteryTankHandler, IRetexturedBlockEntity, ILegacyCapabilityBlockEntity {
   private static final String TAG_STRUCTURE = "multiblock";
   private static final String TAG_TANK = "tank";
   private static final String TAG_INVENTORY = "inventory";
@@ -333,9 +334,8 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
 
   /* Capability */
 
-  @Override
   public void invalidateCaps() {
-    super.invalidateCaps();
+    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
     this.itemCapability.invalidate();
     // fluidCapability is only used by drains, but still need to invalidate it so drains stop talking to an invalid smeltery
     // on the chance we have no fluid capability (invalid structure), this will simply no-op internally
@@ -343,12 +343,11 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
   }
 
   @Nonnull
-  @Override
   public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
     if (capability == ForgeCapabilities.ITEM_HANDLER) {
       return itemCapability.cast();
     }
-    return super.getCapability(capability, facing);
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
 
