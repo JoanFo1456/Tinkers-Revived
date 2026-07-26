@@ -2,7 +2,7 @@ package slimeknights.tconstruct.library.tools.capability;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -34,7 +34,7 @@ public class PersistentDataCapability {
   private PersistentDataCapability() {}
 
   /** Capability ID */
-  private static final ResourceLocation ID = TConstruct.getResource("persistent_data");
+  private static final Identifier ID = TConstruct.getResource("persistent_data");
   private static final String DATA_KEY = ID.toString();
   /** Capability type */
   public static final Capability<ModDataNBT> CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});

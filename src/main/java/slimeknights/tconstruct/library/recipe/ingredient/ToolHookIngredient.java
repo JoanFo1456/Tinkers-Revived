@@ -14,7 +14,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -113,7 +113,7 @@ public class ToolHookIngredient implements ICustomIngredient {
   public enum Serializer {
     INSTANCE;
 
-    public static final ResourceLocation ID = TConstruct.getResource("tool_hook");
+    public static final Identifier ID = TConstruct.getResource("tool_hook");
 
     /** Parses the ingredient from the legacy JSON format */
     private static ToolHookIngredient parseJson(JsonObject json) {

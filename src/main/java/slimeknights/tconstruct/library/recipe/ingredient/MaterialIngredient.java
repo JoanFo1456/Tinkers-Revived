@@ -10,7 +10,7 @@ import com.mojang.serialization.MapLike;
 import com.mojang.serialization.RecordBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -211,7 +211,7 @@ public class MaterialIngredient extends NestedIngredient {
   /** Serializer instance */
   public enum Serializer {
     INSTANCE;
-    public static final ResourceLocation ID = TConstruct.getResource("material");
+    public static final Identifier ID = TConstruct.getResource("material");
     private static final LoadableField<IJsonPredicate<MaterialVariantId>,MaterialIngredient> MATERIAL_FIELD = new MaterialPredicateField<>("material", i -> i.material);
 
     /** Parses the ingredient from the legacy JSON format (supports both the inline vanilla form and the "match" wrapper) */

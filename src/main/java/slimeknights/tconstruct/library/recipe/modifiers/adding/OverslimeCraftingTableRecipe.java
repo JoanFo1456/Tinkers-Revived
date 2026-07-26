@@ -2,7 +2,7 @@ package slimeknights.tconstruct.library.recipe.modifiers.adding;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -35,9 +35,9 @@ public class OverslimeCraftingTableRecipe extends CustomRecipe {
   private final Ingredient tools;
   private final Ingredient ingredient;
   private final int restoreAmount;
-  private final ResourceLocation id;
+  private final Identifier id;
 
-  public OverslimeCraftingTableRecipe(ResourceLocation id, Ingredient tools, Ingredient ingredient, int restoreAmount) {
+  public OverslimeCraftingTableRecipe(Identifier id, Ingredient tools, Ingredient ingredient, int restoreAmount) {
     super(CraftingBookCategory.EQUIPMENT);
     this.id = id;
     this.tools = tools;
@@ -45,7 +45,7 @@ public class OverslimeCraftingTableRecipe extends CustomRecipe {
     this.restoreAmount = restoreAmount;
   }
 
-  public ResourceLocation getId() {
+  public Identifier getId() {
     return id;
   }
 

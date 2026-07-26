@@ -17,7 +17,7 @@ import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.SimpleBakedModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -69,7 +69,7 @@ public class FluidTextureModel implements IUnbakedGeometry<FluidTextureModel> {
   private final Set<String> retextured;
 
   @Override
-  public void resolveParents(Function<ResourceLocation, UnbakedModel> modelGetter, IGeometryBakingContext context) {
+  public void resolveParents(Function<Identifier, UnbakedModel> modelGetter, IGeometryBakingContext context) {
     model.resolveParents(modelGetter, context);
   }
 
@@ -83,7 +83,7 @@ public class FluidTextureModel implements IUnbakedGeometry<FluidTextureModel> {
 
   @Override
   public BakedModel bake(IGeometryBakingContext owner, ModelBaker baker, Function<Material,TextureAtlasSprite> spriteGetter, ModelState transform, ItemOverrides overrides) {
-    ResourceLocation modelLocation = ResourceLocation.tryParse(owner.getModelName());
+    Identifier modelLocation = Identifier.tryParse(owner.getModelName());
     if (modelLocation == null) {
       modelLocation = TConstruct.getResource("dynamic_model_baking");
     }
@@ -115,7 +115,7 @@ public class FluidTextureModel implements IUnbakedGeometry<FluidTextureModel> {
     return new Baked(baked, elements, model.getColorData(), owner, transform, fluidTextures, fluidParts, retextured);
   }
 
-  private record BakedCacheKey(FluidStack fluid, @Nullable ResourceLocation texture) {}
+  private record BakedCacheKey(FluidStack fluid, @Nullable Identifier texture) {}
 
   /** Baked wrapper class */
   private static class Baked extends DynamicBakedWrapper<BakedModel> {

@@ -1,7 +1,7 @@
 package slimeknights.mantle.compat.neoforged.neoforge.registries;
 
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.Collection;
 import java.util.Map;
@@ -13,13 +13,13 @@ import java.util.Set;
  */
 public interface IForgeRegistry<T> extends Iterable<T> {
   /** Checks if the registry contains the given id */
-  boolean containsKey(ResourceLocation id);
+  boolean containsKey(Identifier id);
 
   /** Gets the value for the given id, or null if absent */
-  T getValue(ResourceLocation id);
+  T getValue(Identifier id);
 
   /** Registers a value; only valid while the backing registry is unfrozen */
-  void register(ResourceLocation id, T value);
+  void register(Identifier id, T value);
 
   /** Gets all registered values */
   Collection<T> getValues();

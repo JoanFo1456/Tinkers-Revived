@@ -1,9 +1,9 @@
 package slimeknights.tconstruct.library.tools.definition;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 import slimeknights.tconstruct.library.tools.item.armor.DummyArmorMaterial;
 
 import javax.annotation.Nullable;
@@ -11,14 +11,14 @@ import javax.annotation.Nullable;
 /** Armor material that doubles as a container for tool definitions for each armor slot */
 public class ModifiableArmorMaterial extends DummyArmorMaterial {
   /** Array of all four player armor item types. */
-  public static final ArmorItem.Type[] ARMOR_TYPES = {ArmorItem.Type.HELMET, ArmorItem.Type.CHESTPLATE, ArmorItem.Type.LEGGINGS, ArmorItem.Type.BOOTS};
+  public static final ArmorType[] ARMOR_TYPES = {ArmorType.HELMET, ArmorType.CHESTPLATE, ArmorType.LEGGINGS, ArmorType.BOOTS};
   /** Array of all four armor slot types */
   public static final EquipmentSlot[] ARMOR_SLOTS = {EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD};
 
   /** Array of slot index to tool definition for the slot */
   private final ToolDefinition[] armorDefinitions;
 
-  private ModifiableArmorMaterial(ResourceLocation id, SoundEvent equipSound, ToolDefinition... armorDefinitions) {
+  private ModifiableArmorMaterial(Identifier id, SoundEvent equipSound, ToolDefinition... armorDefinitions) {
     super(id, equipSound);
     if (armorDefinitions.length != 4) {
       throw new IllegalArgumentException("Must have an armor definition for each slot");
@@ -27,9 +27,9 @@ public class ModifiableArmorMaterial extends DummyArmorMaterial {
   }
 
   /** Creates a modifiable armor material, creates tool definition for the selected slots */
-  public static ModifiableArmorMaterial create(ResourceLocation id, SoundEvent equipSound, ArmorItem.Type... slots) {
+  public static ModifiableArmorMaterial create(Identifier id, SoundEvent equipSound, ArmorType... slots) {
     ToolDefinition[] definitions = new ToolDefinition[4];
-    for (ArmorItem.Type slot : slots) {
+    for (ArmorType slot : slots) {
       if (!slot.hasTrims()) {
         throw new IllegalArgumentException("Unsupported armor slot " + slot.getName());
       }
@@ -39,7 +39,7 @@ public class ModifiableArmorMaterial extends DummyArmorMaterial {
   }
 
   /** Creates a modifiable armor material, creates tool definition for all four armor slots */
-  public static ModifiableArmorMaterial create(ResourceLocation id, SoundEvent equipSound) {
+  public static ModifiableArmorMaterial create(Identifier id, SoundEvent equipSound) {
     return create(id, equipSound, ARMOR_TYPES);
   }
 
@@ -49,7 +49,7 @@ public class ModifiableArmorMaterial extends DummyArmorMaterial {
    * @return  Armor definition
    */
   @Nullable
-  public ToolDefinition getArmorDefinition(ArmorItem.Type slotType) {
+  public ToolDefinition getArmorDefinition(ArmorType slotType) {
     if (!slotType.hasTrims()) {
       return null;
     }

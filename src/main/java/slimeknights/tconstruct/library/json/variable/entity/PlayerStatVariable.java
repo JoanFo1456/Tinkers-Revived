@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.library.json.variable.entity;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
@@ -16,7 +16,7 @@ public record PlayerStatVariable(Stat<?> stat, float fallback) implements Entity
     FloatLoadable.ANY.defaultField("fallback", 0f, PlayerStatVariable::fallback),
     PlayerStatVariable::new);
 
-  public PlayerStatVariable(ResourceLocation stat, float fallback) {
+  public PlayerStatVariable(Identifier stat, float fallback) {
     this(Stats.CUSTOM.get(stat), fallback);
   }
 

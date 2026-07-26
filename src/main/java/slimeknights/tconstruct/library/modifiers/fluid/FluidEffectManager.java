@@ -7,7 +7,7 @@ import com.mojang.serialization.JsonOps;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.RegistryOps;
 import lombok.Getter;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.GsonHelper;
@@ -75,18 +75,18 @@ public class FluidEffectManager extends SimpleJsonResourceReloadListener {
   }
 
   /** Creates context for modifier parsing */
-  public static TypedMapBuilder contextBuilder(ResourceLocation key) {
+  public static TypedMapBuilder contextBuilder(Identifier key) {
     return TypedMapBuilder.builder().put(ContextKey.ID, key).put(ContextKey.DEBUG, "Fluid Effect " + key);
   }
 
   @Override
-  protected void apply(Map<ResourceLocation,JsonElement> splashList, ResourceManager pResourceManager, ProfilerFiller pProfiler) {
+  protected void apply(Map<Identifier,JsonElement> splashList, ResourceManager pResourceManager, ProfilerFiller pProfiler) {
     long time = System.nanoTime();
 
     // load spilling from JSON
     List<FluidEffects.Entry> fluids = new ArrayList<>(splashList.size());
-    for (Entry<ResourceLocation,JsonElement> entry : splashList.entrySet()) {
-      ResourceLocation key = entry.getKey();
+    for (Entry<Identifier,JsonElement> entry : splashList.entrySet()) {
+      Identifier key = entry.getKey();
       try {
         JsonObject json = GsonHelper.convertToJsonObject(entry.getValue(), "fluid_effect");
 

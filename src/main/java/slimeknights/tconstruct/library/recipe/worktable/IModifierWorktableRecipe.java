@@ -2,7 +2,7 @@ package slimeknights.tconstruct.library.recipe.worktable;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 public interface IModifierWorktableRecipe extends ICommonRecipe<ITinkerableContainer> {
   /** Gets the recipe ID. */
-  ResourceLocation getId();
+  Identifier getId();
 
   @Override
   default RecipeType<?> getType() {

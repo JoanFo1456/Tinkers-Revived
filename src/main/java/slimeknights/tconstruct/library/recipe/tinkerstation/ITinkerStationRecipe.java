@@ -3,7 +3,7 @@ package slimeknights.tconstruct.library.recipe.tinkerstation;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -22,7 +22,7 @@ public interface ITinkerStationRecipe extends ICommonRecipe<ITinkerStationContai
   int DEFAULT_TOOL_STACK_SIZE = 16;
 
   /** Gets the recipe ID. */
-  ResourceLocation getId();
+  Identifier getId();
 
   /* Recipe data */
 

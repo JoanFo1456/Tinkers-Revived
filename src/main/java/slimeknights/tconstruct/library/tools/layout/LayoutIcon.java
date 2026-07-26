@@ -16,7 +16,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -74,7 +74,7 @@ public abstract class LayoutIcon {
         return new ItemStackIcon(stack);
       }
       case PATTERN: {
-        Pattern pattern = new Pattern(buffer.readResourceLocation());
+        Pattern pattern = new Pattern(buffer.readIdentifier());
         return new PatternIcon(pattern);
       }
     }
@@ -136,7 +136,7 @@ public abstract class LayoutIcon {
     @Override
     public void write(FriendlyByteBuf buffer) {
       buffer.writeEnum(Type.PATTERN);
-      buffer.writeResourceLocation(pattern);
+      buffer.writeIdentifier(pattern);
     }
 
     @Override
@@ -164,7 +164,7 @@ public abstract class LayoutIcon {
         return new PatternIcon(pattern);
       }
       if (object.has("item")) {
-        ResourceLocation itemId = JsonHelper.getResourceLocation(object, "item");
+        Identifier itemId = JsonHelper.getResourceLocation(object, "item");
         Item item = BuiltInRegistries.ITEM.getOptional(itemId).orElseThrow(() -> new JsonSyntaxException("Unknown item '" + itemId + "'"));
         ItemStack stack = new ItemStack(item);
         if (object.has("nbt")) {

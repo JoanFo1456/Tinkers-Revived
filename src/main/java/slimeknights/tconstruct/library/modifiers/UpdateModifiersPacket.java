@@ -10,7 +10,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.common.CommonHooks;
@@ -89,12 +89,12 @@ public class UpdateModifiersPacket implements IThreadsafePacket {
   }
 
   /** Looks up an enchantment by ID. */
-  private static Enchantment getEnchantment(ResourceLocation id) {
+  private static Enchantment getEnchantment(Identifier id) {
     return enchantmentLookup().get(ResourceKey.create(Registries.ENCHANTMENT, id)).map(Holder::value).orElseThrow(() -> new DecoderException("Unknown enchantment " + id));
   }
 
   /** Gets the ID for the given enchantment. */
-  private static ResourceLocation getEnchantmentId(Enchantment enchantment) {
+  private static Identifier getEnchantmentId(Enchantment enchantment) {
     return enchantmentLookup().listElements()
       .filter(holder -> holder.value() == enchantment)
       .findFirst()
