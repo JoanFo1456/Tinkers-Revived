@@ -12,7 +12,7 @@ import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.armortrim.TrimMaterial;
+import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.ApiStatus.Internal;
 import slimeknights.mantle.client.model.util.MantleItemLayerModel;
