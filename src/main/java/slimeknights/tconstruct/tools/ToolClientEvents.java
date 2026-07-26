@@ -19,7 +19,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent.RegisterGeometryLoaders;
 import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -105,16 +105,16 @@ public class ToolClientEvents extends ClientEventBase {
   };
 
   @SubscribeEvent
-  static void addResourceListener(RegisterClientReloadListenersEvent manager) {
+  static void addResourceListener(AddClientReloadListenersEvent manager) {
     ModifierModelManager.init(manager);
-    manager.registerReloadListener(ModifierModelMapManager.INSTANCE);
+    manager.addListener(TConstruct.getResource("modifier_model_map"), ModifierModelMapManager.INSTANCE);
     MaterialTooltipCache.init(manager);
     DynamicTextureLoader.init(manager);
-    manager.registerReloadListener(MODIFIER_RELOAD_LISTENER);
-    manager.registerReloadListener(SlimeskullArmorModel.RELOAD_LISTENER);
-    manager.registerReloadListener(HarvestTiers.RELOAD_LISTENER);
+    manager.addListener(TConstruct.getResource("tool_modifier_reload"), MODIFIER_RELOAD_LISTENER);
+    manager.addListener(TConstruct.getResource("slimeskull_armor_model"), SlimeskullArmorModel.RELOAD_LISTENER);
+    manager.addListener(TConstruct.getResource("harvest_tiers"), HarvestTiers.RELOAD_LISTENER);
     ArmorModelManager.init(manager);
-    manager.registerReloadListener(TrimArmorTextureSupplier.CACHE_INVALIDATOR);
+    manager.addListener(TConstruct.getResource("trim_armor_texture"), TrimArmorTextureSupplier.CACHE_INVALIDATOR);
   }
 
   @SubscribeEvent

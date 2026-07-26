@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.inventory.InventoryMenu;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.bus.api.IEventBus;
 import slimeknights.mantle.data.listener.IEarlySafeManagerReloadListener;
 import slimeknights.mantle.util.JsonHelper;
@@ -55,8 +55,8 @@ public class ModifierIconManager implements IEarlySafeManagerReloadListener {
   }
 
   /** Called on resource manager build to add the manager */
-  private static void onResourceManagerRegister(RegisterClientReloadListenersEvent manager) {
-    manager.registerReloadListener(INSTANCE);
+  private static void onResourceManagerRegister(AddClientReloadListenersEvent manager) {
+    manager.addListener(TConstruct.getResource("modifier_icons"), INSTANCE);
   }
 
   @Override

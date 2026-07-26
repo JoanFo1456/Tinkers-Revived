@@ -12,7 +12,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.InventoryMenu;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.bus.api.Event;
 import net.neoforged.fml.event.IModBusEvent;
 import slimeknights.mantle.data.listener.IEarlySafeManagerReloadListener;
@@ -59,8 +59,8 @@ public class ModifierModelManager implements IEarlySafeManagerReloadListener {
    * Initializes this manager, registering it with the resource manager
    * @param manager  Manager
    */
-  public static void init(RegisterClientReloadListenersEvent manager) {
-    manager.registerReloadListener(INSTANCE);
+  public static void init(AddClientReloadListenersEvent manager) {
+    manager.addListener(TConstruct.getResource("modifier_models"), INSTANCE);
   }
 
   /**

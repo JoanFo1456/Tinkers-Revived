@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.client.model;
 
+import slimeknights.tconstruct.TConstruct;
 import lombok.extern.log4j.Log4j2;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -8,7 +9,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.inventory.InventoryMenu;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import slimeknights.mantle.data.listener.ResourceValidator;
 import slimeknights.tconstruct.common.config.Config;
 
@@ -43,8 +44,8 @@ public class DynamicTextureLoader extends ResourceValidator {
   }
 
   /** Registers this manager */
-  public static void init(RegisterClientReloadListenersEvent event) {
-    event.registerReloadListener(INSTANCE);
+  public static void init(AddClientReloadListenersEvent event) {
+    event.addListener(TConstruct.getResource("dynamic_texture_loader"), INSTANCE);
   }
 
   /**

@@ -5,7 +5,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent.RegisterGeometryLoaders;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -34,7 +34,7 @@ import slimeknights.tconstruct.smeltery.client.screen.SingleItemScreenFactory;
 @EventBusSubscriber(modid= TConstruct.MOD_ID, value= Dist.CLIENT)
 public class SmelteryClientEvents extends ClientEventBase {
   @SubscribeEvent
-  static void addResourceListener(RegisterClientReloadListenersEvent event) {
+  static void addResourceListener(AddClientReloadListenersEvent event) {
     FaucetFluid.initialize(event);
     ChannelFluids.initialize(event);
   }

@@ -12,7 +12,7 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.mantle.util.JsonHelper;
@@ -52,8 +52,8 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener {
    * Initializes this manager, registering it with the resource manager
    * @param manager  Manager
    */
-  public static void init(RegisterClientReloadListenersEvent manager) {
-    manager.registerReloadListener(INSTANCE);
+  public static void init(AddClientReloadListenersEvent manager) {
+    manager.addListener(TConstruct.getResource("armor_model_manager"), INSTANCE);
   }
 
   private ArmorModelManager() {

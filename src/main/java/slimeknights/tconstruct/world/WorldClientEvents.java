@@ -37,7 +37,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 @EventBusSubscriber(modid=TConstruct.MOD_ID, value=Dist.CLIENT)
 public class WorldClientEvents extends ClientEventBase {
-  // 26.1.2: client render overhaul — RegisterClientReloadListenersEvent was renamed to
+  // 26.1.2: client render overhaul — AddClientReloadListenersEvent was renamed to
   // AddClientReloadListenersEvent (a SortedReloadListenerEvent); listeners are registered by name via addListener.
   @SubscribeEvent
   static void addResourceListener(AddClientReloadListenersEvent event) {
