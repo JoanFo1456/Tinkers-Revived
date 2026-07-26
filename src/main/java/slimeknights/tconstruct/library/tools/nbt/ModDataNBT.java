@@ -23,6 +23,10 @@ public class ModDataNBT implements IModDataView {
   @Getter(AccessLevel.PROTECTED)
   private final CompoundTag data;
 
+  protected ModDataNBT(CompoundTag data) {
+    this.data = data;
+  }
+
   /**
    * Creates a new mod data containing empty data
    */
@@ -38,7 +42,7 @@ public class ModDataNBT implements IModDataView {
   @Override
   public ListTag getList(Identifier name, int type) {
     // save generation of the extra lambda object
-    return data.getList(name.toString(), type);
+    return data.getListOrEmpty(name.toString());
   }
 
   @Override
@@ -48,7 +52,7 @@ public class ModDataNBT implements IModDataView {
 
   @Override
   public boolean contains(Identifier name, int type) {
-    return data.contains(name.toString(), type);
+    return data.contains(name.toString());
   }
 
   /**
@@ -117,7 +121,7 @@ public class ModDataNBT implements IModDataView {
    * @param data  data
    */
   public void copyFrom(CompoundTag data) {
-    this.data.getAllKeys().clear();
+    this.data.keySet().clear();
     this.data.merge(data);
   }
 

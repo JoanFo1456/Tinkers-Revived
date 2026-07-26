@@ -68,7 +68,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
   private static void processStats(IModDataView persistentData, Identifier key, StatConsumer consumer) {
     if (persistentData.contains(key)) {
       CompoundTag nbt = persistentData.getCompound(key);
-      for (String name : nbt.getAllKeys()) {
+      for (String name : nbt.keySet()) {
         ToolStatId id = ToolStatId.tryParse(name);
         if (id != null) {
           IToolStat<?> stat = ToolStats.getToolStat(id);
@@ -112,7 +112,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
 
       // first one found has special behavior
       boolean first = true;
-      for (String key : stats.getAllKeys()) {
+      for (String key : stats.keySet()) {
         // ignore invalid stat names
         ToolStatId id = ToolStatId.tryParse(key);
         if (id != null) {
@@ -226,7 +226,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
     }
     // remove the value
     nbt.remove(name);
-    if (nbt.getAllKeys().isEmpty()) {
+    if (nbt.keySet().isEmpty()) {
       tool.getPersistentData().remove(groupKey);
       return false;
     }
@@ -264,7 +264,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
     }
     // remove the value if nothing to store
     nbt.remove(name);
-    if (nbt.getAllKeys().isEmpty()) {
+    if (nbt.keySet().isEmpty()) {
       data.remove(StatOverrideModifier.KEY_BONUS);
       return false;
     }
@@ -315,7 +315,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
     }
     // remove the value
     nbt.remove(stat.getName().toString());
-    if (nbt.getAllKeys().isEmpty()) {
+    if (nbt.keySet().isEmpty()) {
       tool.getPersistentData().remove(StatOverrideModifier.KEY_BONUS);
       return false;
     }

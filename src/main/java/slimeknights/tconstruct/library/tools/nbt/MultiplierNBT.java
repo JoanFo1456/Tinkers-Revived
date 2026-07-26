@@ -33,6 +33,10 @@ public class MultiplierNBT {
   /** All currently contained multipliers */
   private final Map<INumericToolStat<?>, Float> stats;
 
+  MultiplierNBT(Map<INumericToolStat<?>, Float> stats) {
+    this.stats = stats;
+  }
+
   /** Creates a new builder */
   public static Builder builder() {
     return new Builder();
@@ -75,9 +79,9 @@ public class MultiplierNBT {
     // simply try each key as a tool stat
     Builder builder = builder();
     CompoundTag nbt = (CompoundTag)inbt;
-    for (String key : nbt.getAllKeys()) {
+    for (String key : nbt.keySet()) {
       if (nbt.contains(key) && StatsNBT.readStatIdFromNBT(key) instanceof INumericToolStat<?> stat) {
-        builder.set(stat, nbt.getFloat(key));
+        builder.set(stat, nbt.getFloatOr(key, 0f));
       }
     }
     return builder.build();

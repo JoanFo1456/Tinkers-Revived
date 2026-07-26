@@ -17,6 +17,7 @@ import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.utils.TagUtil;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -82,15 +83,13 @@ public class MaterialIdNBT {
       return EMPTY;
     }
     ListTag listNBT = (ListTag) nbt;
-    if (listNBT.getElementType() != Tag.TAG_STRING) {
-      return EMPTY;
+    List<MaterialVariantId> materials = new ArrayList<>();
+    for (int i = 0; i < listNBT.size(); i++) {
+      MaterialVariantId id = MaterialVariantId.tryParse(listNBT.getStringOr(i, ""));
+      if (id != null) {
+        materials.add(id);
+      }
     }
-
-    List<MaterialVariantId> materials = listNBT.stream()
-      .map(Tag::getAsString)
-      .map(MaterialVariantId::tryParse)
-      .filter(Objects::nonNull)
-      .collect(Collectors.toList());
     return new MaterialIdNBT(materials);
   }
 

@@ -171,7 +171,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
             if (stack.isEmpty()) {
               list.remove(i);
             } else {
-              compound.getAllKeys().clear();
+              compound.keySet().clear();
               writeStack(stack, slot, compound);
             }
             return;

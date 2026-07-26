@@ -41,6 +41,10 @@ public class StatsNBT {
   /** All currently contained stats */
   private final Map<IToolStat<?>, Object> stats;
 
+  StatsNBT(Map<IToolStat<?>, Object> stats) {
+    this.stats = stats;
+  }
+
   /** Creates a new stats builder */
   public static Builder builder() {
     return new Builder();
@@ -112,7 +116,7 @@ public class StatsNBT {
 
     // simply try each key as a tool stat
     CompoundTag nbt = (CompoundTag)inbt;
-    for (String key : nbt.getAllKeys()) {
+    for (String key : nbt.keySet()) {
       Tag tag = nbt.get(key);
       if (tag != null) {
         IToolStat<?> stat = readStatIdFromNBT(key);
