@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.shared;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.criterion.ItemSubPredicate;
 import net.minecraft.core.particles.ParticleType;
@@ -21,8 +22,8 @@ import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryType;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.crafting.IngredientType;
@@ -152,17 +153,17 @@ public final class TinkerCommons extends TinkerModule {
   public static final DeferredHolder<? super ItemSubPredicate.Type<ToolStackItemPredicate>, ItemSubPredicate.Type<ToolStackItemPredicate>> toolStackItemPredicate = ITEM_SUB_PREDICATES.register("tool_stack", () -> new ItemSubPredicate.Type<>(ToolStackItemPredicate.CODEC));
 
   /* Loot conditions */
-  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> lootConfig = LOOT_CONDITIONS.register(ConfigEnabledCondition.ID.getPath(), () -> new LootItemConditionType(ConfigEnabledCondition.CODEC));
-  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> lootBlockOrEntity = LOOT_CONDITIONS.register("block_or_entity", () -> new LootItemConditionType(BlockOrEntityCondition.CODEC));
-  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> hasLootContextSet = LOOT_CONDITIONS.register("has_context_set", () -> new LootItemConditionType(HasLootContextSetCondition.CODEC));
+  public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> lootConfig = LOOT_CONDITIONS.register(ConfigEnabledCondition.ID.getPath(), () -> ConfigEnabledCondition.CODEC);
+  public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> lootBlockOrEntity = LOOT_CONDITIONS.register("block_or_entity", () -> BlockOrEntityCondition.CODEC);
+  public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> hasLootContextSet = LOOT_CONDITIONS.register("has_context_set", () -> HasLootContextSetCondition.CODEC);
   /** @deprecated use {@link slimeknights.mantle.loot.MantleLoot#TAG_FILLED} */
   @SuppressWarnings("removal")
   @Deprecated(forRemoval = true)
-  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> lootTagNotEmptyCondition = LOOT_CONDITIONS.register("tag_not_empty", () -> new LootItemConditionType(TagNotEmptyCondition.CODEC));
+  public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> lootTagNotEmptyCondition = LOOT_CONDITIONS.register("tag_not_empty", () -> TagNotEmptyCondition.CODEC);
   /** @deprecated use {@link slimeknights.mantle.loot.MantleLoot#TAG_PREFERENCE} */
   @SuppressWarnings("removal")
   @Deprecated(forRemoval = true)
-  public static final DeferredHolder<? super LootPoolEntryType, LootPoolEntryType> lootTagPreference = LOOT_ENTRIES.register("tag_preference", () -> new LootPoolEntryType(TagPreferenceLootEntry.CODEC));
+  public static final DeferredHolder<MapCodec<? extends LootPoolEntryContainer>, ? extends MapCodec<? extends LootPoolEntryContainer>> lootTagPreference = LOOT_ENTRIES.register("tag_preference", () -> TagPreferenceLootEntry.CODEC);
   public static final DeferredHolder<? super IngredientType<NoContainerIngredient>, IngredientType<NoContainerIngredient>> noContainerIngredient = INGREDIENT_TYPES.register("no_container", () -> new IngredientType<>(NoContainerIngredient.Serializer.INSTANCE.codec(), NoContainerIngredient.Serializer.INSTANCE.streamCodec()));
   public static final DeferredHolder<? super IngredientType<BlockTagIngredient>, IngredientType<BlockTagIngredient>> blockTagIngredient = INGREDIENT_TYPES.register("block_tag", () -> new IngredientType<>(BlockTagIngredient.Serializer.INSTANCE.codec(), BlockTagIngredient.Serializer.INSTANCE.streamCodec()));
 

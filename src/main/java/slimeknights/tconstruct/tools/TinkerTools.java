@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.tools;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
@@ -14,7 +15,7 @@ import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
@@ -157,7 +158,7 @@ public final class TinkerTools extends TinkerModule {
                                   .build());
 
   /** Loot function type for tool add data */
-  public static final DeferredHolder<LootItemFunctionType<?>, ? extends LootItemFunctionType<?>> lootAddToolData = LOOT_FUNCTIONS.register("add_tool_data", () -> new LootItemFunctionType<>(AddToolDataFunction.CODEC));
+  public static final DeferredHolder<MapCodec<? extends LootItemFunction>, ? extends MapCodec<? extends LootItemFunction>> lootAddToolData = LOOT_FUNCTIONS.register("add_tool_data", () -> AddToolDataFunction.CODEC);
   public static final DeferredHolder<? super IngredientType<ToolHookIngredient>, IngredientType<ToolHookIngredient>> toolHookIngredient = INGREDIENT_TYPES.register("tool_hook", () -> new IngredientType<>(ToolHookIngredient.Serializer.INSTANCE.codec(), ToolHookIngredient.Serializer.INSTANCE.streamCodec()));
 
   /*

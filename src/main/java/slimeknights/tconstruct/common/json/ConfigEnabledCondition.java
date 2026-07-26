@@ -36,19 +36,15 @@ public class ConfigEnabledCondition implements ICondition, LootItemCondition {
     return supplier.getAsBoolean();
   }
 
+  /** Single codec satisfying both {@link ICondition} and {@link LootItemCondition}, as this class implements both */
   @Override
-  public MapCodec<? extends ICondition> codec() {
+  public MapCodec<ConfigEnabledCondition> codec() {
     return CODEC;
   }
 
   @Override
   public boolean test(LootContext lootContext) {
     return supplier.getAsBoolean();
-  }
-
-  @Override
-  public LootItemConditionType getType() {
-    return TinkerCommons.lootConfig.get();
   }
 
   private static ConfigEnabledCondition get(String prop) {

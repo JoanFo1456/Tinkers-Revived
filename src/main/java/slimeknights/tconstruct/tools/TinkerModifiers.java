@@ -15,8 +15,8 @@ import net.minecraft.world.item.CreativeModeTab.TabVisibility;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
@@ -761,10 +761,10 @@ public final class TinkerModifiers extends TinkerModule {
    * Loot
    */
   public static final DeferredHolder<? super MapCodec<ModifierLootModifier>, MapCodec<ModifierLootModifier>> modifierLootModifier = GLOBAL_LOOT_MODIFIERS.register("modifier_hook", () -> ModifierLootModifier.CODEC);
-  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> hasModifierLootCondition = LOOT_CONDITIONS.register("has_modifier", () -> new LootItemConditionType(HasModifierLootCondition.CODEC));
-  public static final DeferredHolder<LootItemFunctionType<?>, ? extends LootItemFunctionType<?>> modifierBonusFunction = LOOT_FUNCTIONS.register("modifier_bonus", () -> new LootItemFunctionType<>(ModifierBonusLootFunction.CODEC));
-  public static final DeferredHolder<? super LootItemConditionType, LootItemConditionType> chrysophiliteLootCondition = LOOT_CONDITIONS.register("has_chrysophilite", () -> new LootItemConditionType(ChrysophiliteLootCondition.CODEC));
-  public static final DeferredHolder<LootItemFunctionType<?>, ? extends LootItemFunctionType<?>> chrysophiliteBonusFunction = LOOT_FUNCTIONS.register("chrysophilite_bonus", () -> new LootItemFunctionType<>(ChrysophiliteBonusFunction.CODEC));
+  public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> hasModifierLootCondition = LOOT_CONDITIONS.register("has_modifier", () -> HasModifierLootCondition.CODEC);
+  public static final DeferredHolder<MapCodec<? extends LootItemFunction>, ? extends MapCodec<? extends LootItemFunction>> modifierBonusFunction = LOOT_FUNCTIONS.register("modifier_bonus", () -> ModifierBonusLootFunction.CODEC);
+  public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> chrysophiliteLootCondition = LOOT_CONDITIONS.register("has_chrysophilite", () -> ChrysophiliteLootCondition.CODEC);
+  public static final DeferredHolder<MapCodec<? extends LootItemFunction>, ? extends MapCodec<? extends LootItemFunction>> chrysophiliteBonusFunction = LOOT_FUNCTIONS.register("chrysophilite_bonus", () -> ChrysophiliteBonusFunction.CODEC);
 
   /*
    * Events
