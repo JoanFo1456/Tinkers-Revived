@@ -9,7 +9,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.RelativeMovement;
+import net.minecraft.world.entity.Relative;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -20,7 +20,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 public class TeleportHelper {
-  private static final Set<RelativeMovement> PACKET_FLAGS = EnumSet.of(RelativeMovement.X, RelativeMovement.Y, RelativeMovement.Z, RelativeMovement.X_ROT, RelativeMovement.Y_ROT);
+  private static final Set<Relative> PACKET_FLAGS = EnumSet.of(Relative.X, Relative.Y, Relative.Z, Relative.X_ROT, Relative.Y_ROT);
 
   /** Randomly teleports an entity, mostly copied from chorus fruit */
   @CanIgnoreReturnValue

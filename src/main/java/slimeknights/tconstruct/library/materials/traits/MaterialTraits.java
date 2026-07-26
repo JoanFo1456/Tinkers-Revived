@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import slimeknights.tconstruct.library.materials.json.MaterialTraitsJson;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -139,7 +139,7 @@ public class MaterialTraits {
     public MaterialTraitsJson serialize() {
       // need to adjust the map to the right generics
       // also suppress the map if no stat types were defined
-      Map<ResourceLocation,List<ModifierEntry>> newMap = null;
+      Map<Identifier,List<ModifierEntry>> newMap = null;
       if (!traitsPerStats.isEmpty()) {
         newMap = new HashMap<>(traitsPerStats.size());
         newMap.putAll(traitsPerStats);

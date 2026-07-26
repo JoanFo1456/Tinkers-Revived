@@ -1,7 +1,7 @@
 package slimeknights.tconstruct.library.modifiers.fluid;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.ApiStatus.Internal;
 import slimeknights.mantle.network.packet.IThreadsafePacket;
@@ -17,7 +17,7 @@ public record UpdateFluidEffectsPacket(List<FluidEffects.Entry> fluids) implemen
     int size = buffer.readVarInt();
     List<FluidEffects.Entry> entries = new ArrayList<>(size);
     for (int i = 0; i < size; i++) {
-      ResourceLocation key = buffer.readResourceLocation();
+      Identifier key = buffer.readResourceLocation();
       FluidEffects effects = FluidEffects.LOADABLE.decode(buffer, FluidEffectManager.contextBuilder(key).build());
       entries.add(new FluidEffects.Entry(key, effects));
     }
