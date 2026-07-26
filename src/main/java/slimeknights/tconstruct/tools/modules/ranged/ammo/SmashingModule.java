@@ -9,8 +9,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow.Pickup;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -114,7 +114,7 @@ public enum SmashingModule implements ModifierModule, FluidModifierHook, Project
     if (data.contains(KEY_FLUID, Tag.TAG_STRING)) {
       Identifier id = Identifier.tryParse(data.getString(KEY_FLUID));
       if (id != null) {
-        return BuiltInRegistries.FLUID.get(id);
+        return BuiltInRegistries.FLUID.getValue(id);
       }
     }
     return Fluids.EMPTY;
@@ -443,7 +443,7 @@ public enum SmashingModule implements ModifierModule, FluidModifierHook, Project
     if (fluid != Fluids.EMPTY) {
       // formats as <name> <level> (<fluid>)
       return Component.translatable(FORMAT, name,
-        TagUtil.createFluidStack(fluid, FluidValues.BOTTLE, getFluidTag(data)).getDisplayName()
+        TagUtil.createFluidStack(fluid, FluidValues.BOTTLE, getFluidTag(data)).getHoverName()
       ).withStyle(name.getStyle());
     }
     return name;
@@ -457,7 +457,7 @@ public enum SmashingModule implements ModifierModule, FluidModifierHook, Project
       int amount = getAmount(modifier, fluid);
       if (amount > 0) {
         // formats as <fluid>: <amount> mb
-        tooltip.add(modifier.getModifier().applyStyle(TagUtil.createFluidStack(fluid, amount, getFluidTag(data)).getDisplayName().copy()
+        tooltip.add(modifier.getModifier().applyStyle(TagUtil.createFluidStack(fluid, amount, getFluidTag(data)).getHoverName().copy()
           .append(": ").append(Component.translatable(ToolTankHelper.MB_FORMAT, TranslationHelper.COMMA_FORMAT.format(amount)))));
       }
     }

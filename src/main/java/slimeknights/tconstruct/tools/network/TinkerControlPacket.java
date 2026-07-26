@@ -1,6 +1,5 @@
 package slimeknights.tconstruct.tools.network;
 
-import lombok.RequiredArgsConstructor;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,7 +13,6 @@ import slimeknights.tconstruct.tools.logic.InteractionHandler;
 /**
  * Generic packet for various controls the client may send to the server
  */
-@RequiredArgsConstructor
 public enum TinkerControlPacket implements IThreadsafePacket {
   DOUBLE_JUMP,
   ANTIGRAVITY_JUMP,
@@ -35,6 +33,10 @@ public enum TinkerControlPacket implements IThreadsafePacket {
 
   TinkerControlPacket() {
     this(TooltipKey.UNKNOWN);
+  }
+
+  TinkerControlPacket(TooltipKey modifier) {
+    this.modifier = modifier;
   }
 
   /** Gets the packet for helmet interaction */

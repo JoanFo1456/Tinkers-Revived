@@ -1,26 +1,20 @@
 package slimeknights.tconstruct.world;
 
-import net.minecraft.client.color.block.BlockColors;
-import net.minecraft.client.color.item.ItemColors;
-import net.minecraft.client.model.PiglinHeadModel;
-import net.minecraft.client.model.SkullModel;
-import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.object.skull.PiglinHeadModel;
+import net.minecraft.client.model.object.skull.SkullModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.EventBusSubscriber.Bus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.ClientEventBase;
@@ -41,12 +35,14 @@ import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
-@EventBusSubscriber(modid=TConstruct.MOD_ID, value=Dist.CLIENT, bus=Bus.MOD)
+@EventBusSubscriber(modid=TConstruct.MOD_ID, value=Dist.CLIENT)
 public class WorldClientEvents extends ClientEventBase {
+  // 26.1.2: client render overhaul — RegisterClientReloadListenersEvent was renamed to
+  // AddClientReloadListenersEvent (a SortedReloadListenerEvent); listeners are registered by name via addListener.
   @SubscribeEvent
-  static void addResourceListener(RegisterClientReloadListenersEvent event) {
+  static void addResourceListener(AddClientReloadListenersEvent event) {
     for (FoliageType type : FoliageType.values()) {
-      event.registerReloadListener(new SlimeColorReloadListener(type));
+      event.addListener(TConstruct.getResource("slime_color/" + type.getSerializedName()), new SlimeColorReloadListener(type));
     }
   }
 
@@ -88,16 +84,15 @@ public class WorldClientEvents extends ClientEventBase {
     event.registerLayerDefinition(SkullModelHelper.FLUID_CANNON, headOverlayCustom);
   }
 
+  // 26.1.2: client render overhaul — EntityRenderersEvent.CreateSkullModels#registerSkullModel no longer
+  // accepts a pre-built SkullModelBase; the new overloads are registerSkullModel(Type, ModelLayerLocation,
+  // Identifier texture) / (Type, Function<EntityModelSet,SkullModelBase>, Identifier). The per-type textures
+  // that used to be stashed in SkullBlockRenderer.SKIN_BY_TYPE (removed) must now be threaded in here, so
+  // this registration needs the texture-sourcing rework of the skull render pass.
   @SubscribeEvent
   static void registerSkullModels(EntityRenderersEvent.CreateSkullModels event) {
-    EntityModelSet modelSet = event.getEntityModelSet();
-    SkullModelHelper.HEAD_LAYERS.forEach((type, layer) -> {
-      if (type.isPiglin()) {
-        event.registerSkullModel(type, new PiglinHeadModel(modelSet.bakeLayer(layer)));
-      } else {
-        event.registerSkullModel(type, new SkullModel(modelSet.bakeLayer(layer)));
-      }
-    });
+    // pending the render pass: iterate SkullModelHelper.HEAD_LAYERS and call
+    // event.registerSkullModel(type, layer, texture) once the per-type textures are available here
   }
 
   @SubscribeEvent
@@ -139,48 +134,12 @@ public class WorldClientEvents extends ClientEventBase {
     });
   }
 
-  @SubscribeEvent
-  static void registerBlockColorHandlers(RegisterColorHandlersEvent.Block event) {
-    // slime plants - blocks
-    for (FoliageType type : FoliageType.values()) {
-      event.register(
-        (state, reader, pos, index) -> getSlimeColorByPos(pos, type, null),
-        TinkerWorld.vanillaSlimeGrass.get(type), TinkerWorld.earthSlimeGrass.get(type), TinkerWorld.skySlimeGrass.get(type),
-        TinkerWorld.enderSlimeGrass.get(type), TinkerWorld.ichorSlimeGrass.get(type));
-      event.register(
-        (state, reader, pos, index) -> getSlimeColorByPos(pos, type, SlimeColorizer.LOOP_OFFSET),
-        TinkerWorld.slimeLeaves.get(type));
-      event.register(
-        (state, reader, pos, index) -> getSlimeColorByPos(pos, type, null),
-        TinkerWorld.slimeFern.get(type), TinkerWorld.slimeTallGrass.get(type), TinkerWorld.pottedSlimeFern.get(type));
-    }
-
-    // vines
-    event.register(
-      (state, reader, pos, index) -> getSlimeColorByPos(pos, FoliageType.SKY, SlimeColorizer.LOOP_OFFSET),
-      TinkerWorld.skySlimeVine.get());
-    event.register(
-      (state, reader, pos, index) -> getSlimeColorByPos(pos, FoliageType.ENDER, SlimeColorizer.LOOP_OFFSET),
-      TinkerWorld.enderSlimeVine.get());
-  }
-
-  @SubscribeEvent
-  static void registerItemColorHandlers(RegisterColorHandlersEvent.Item event) {
-    BlockColors blockColors = event.getBlockColors();
-    ItemColors itemColors = event.getItemColors();
-    // slime grass items
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.vanillaSlimeGrass);
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.earthSlimeGrass);
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.skySlimeGrass);
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.enderSlimeGrass);
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.ichorSlimeGrass);
-    // plant items
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.slimeLeaves);
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.slimeFern);
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.slimeTallGrass);
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.skySlimeVine);
-    registerBlockItemColorAlias(blockColors, itemColors, TinkerWorld.enderSlimeVine);
-  }
+  // 26.1.2: client render overhaul — the block/item color-handler system was replaced. RegisterColorHandlersEvent.Block
+  // and .Item (and net.minecraft.client.color.item.ItemColors) are gone; block/item tinting is now data-driven through
+  // RegisterColorHandlersEvent.BlockTintSources / ItemTintSources / ColorResolvers (tint-source types referenced from
+  // model JSON). The slime-foliage position colors below (getSlimeColorByPos / SlimeColorizer) must be reimplemented as
+  // a registered BlockTintSource + matching ItemTintSource during the render pass. Registration handlers omitted here so
+  // the mod still loads; see getSlimeColorByPos for the preserved color logic.
 
   /**
    * Block colors for a slime type
@@ -202,13 +161,14 @@ public class WorldClientEvents extends ClientEventBase {
 
   /** Registers a skull with the entity renderer and the slimeskull renderer */
   private static void registerHeadModel(TinkerHeadType skull, MaterialId materialId, Identifier texture) {
-    SkullBlockRenderer.SKIN_BY_TYPE.put(skull, texture);
+    // 26.1.2: SkullBlockRenderer.SKIN_BY_TYPE was removed; skull-block textures are now supplied via
+    // CreateSkullModels#registerSkullModel(type, layer, texture) (see registerSkullModels above).
     SlimeskullArmorModel.registerHeadModel(materialId, SkullModelHelper.HEAD_LAYERS.get(skull), texture);
   }
 
   /** Registers a skull with the entity renderer and the slimeskull renderer */
   private static void registerPiglinHeadModel(TinkerHeadType skull, MaterialId materialId, Identifier texture) {
-    SkullBlockRenderer.SKIN_BY_TYPE.put(skull, texture);
+    // 26.1.2: SkullBlockRenderer.SKIN_BY_TYPE removed — see registerHeadModel note.
     SlimeskullArmorModel.registerPiglinHeadModel(materialId, SkullModelHelper.HEAD_LAYERS.get(skull), texture);
   }
 

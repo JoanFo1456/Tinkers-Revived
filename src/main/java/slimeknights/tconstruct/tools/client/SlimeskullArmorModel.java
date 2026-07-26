@@ -1,26 +1,20 @@
 package slimeknights.tconstruct.tools.client;
 
 import com.google.common.collect.ImmutableMap;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
-import net.minecraft.client.model.PiglinHeadModel;
-import net.minecraft.client.model.SkullModel;
-import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.util.ARGB;
+import net.minecraft.client.model.object.skull.PiglinHeadModel;
+import net.minecraft.client.model.object.skull.SkullModel;
+import net.minecraft.client.model.object.skull.SkullModelBase;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.WalkAnimationState;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
-import org.joml.Quaternionf;
 import slimeknights.mantle.data.listener.ISafeManagerReloadListener;
 import slimeknights.tconstruct.library.client.armor.ArmorModelManager.ArmorModel;
 import slimeknights.tconstruct.library.client.armor.MultilayerArmorModel;
@@ -39,7 +33,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
 
-/** Model to render a slimeskull helmet with both the helmet and skull */
+/**
+ * Model to render a slimeskull helmet with both the helmet and skull.
+ * Minimal placeholder shape pending the armor Model render-system rewrite (Model#renderToBuffer is now final); the combined helmet/skull submission is deferred while head model registration and setup state are retained.
+ */
 public class SlimeskullArmorModel extends MultilayerArmorModel {
   /** Singleton model instance, all data is passed in via setters */
   public static final SlimeskullArmorModel INSTANCE = new SlimeskullArmorModel();
@@ -96,41 +93,6 @@ public class SlimeskullArmorModel extends MultilayerArmorModel {
     headColor = -1;
     walkAnimation = 0;
     return this;
-  }
-
-  @Override
-  public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer vertexBuilder, int packedLightIn, int packedOverlayIn, int color) {
-    if (base != null && buffer != null) {
-      if (model != ArmorModel.EMPTY) {
-        matrixStackIn.pushPose();
-        // TODO: this offset messes with the rotation of the skull slightly, though it is barely noticable
-        matrixStackIn.translate(0.0D, base.young ? -0.015D : -0.02D, 0.0D);
-        matrixStackIn.scale(1.01f, 1.1f, 1.01f);
-        super.renderToBuffer(matrixStackIn, vertexBuilder, packedLightIn, packedOverlayIn, color);
-        matrixStackIn.popPose();
-      }
-      if (headModel != null && headTexture != null) {
-        VertexConsumer heaadBuffer = ItemRenderer.getArmorFoilBuffer(buffer, RenderType.entityCutoutNoCullZOffset(headTexture), hasGlint);
-        matrixStackIn.pushPose();
-        if (base.crouching) {
-          matrixStackIn.translate(0, base.head.y / 16.0F, 0);
-        }
-        if (base.young) {
-          matrixStackIn.scale(0.85F, 0.85F, 0.85F);
-          matrixStackIn.translate(0.0D, 1.0D, 0.0D);
-        } else {
-          matrixStackIn.scale(1.115f, 1.115f, 1.115f);
-        }
-        matrixStackIn.mulPose((new Quaternionf()).rotationZYX(0, base.head.yRot, base.head.xRot));
-        headModel.setupAnim(walkAnimation, 0, 0);
-        float alpha = ARGB.alpha(color) / 255.0F;
-        float red = ARGB.red(color) / 255.0F;
-        float green = ARGB.green(color) / 255.0F;
-        float blue = ARGB.blue(color) / 255.0F;
-        renderColored(headModel, matrixStackIn, heaadBuffer, packedLightIn, packedOverlayIn, headColor, red, green, blue, alpha);
-        matrixStackIn.popPose();
-      }
-    }
   }
 
 

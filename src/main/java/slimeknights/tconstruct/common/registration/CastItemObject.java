@@ -52,7 +52,7 @@ public class CastItemObject extends ItemObject<Item> {
    * @return  Single use tag
    */
   protected TagKey<Item> makeTag(String type) {
-    return TagKey.create(Registries.ITEM, new Identifier(name.getNamespace(), "casts/" + type + "/" + name.getPath()));
+    return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(name.getNamespace(), "casts/" + type + "/" + name.getPath()));
   }
 
   /**

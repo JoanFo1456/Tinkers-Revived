@@ -8,11 +8,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
-import slimeknights.tconstruct.tools.TinkerModifiers;
 
 /** Condition to check if a held tool has the given modifier */
 @RequiredArgsConstructor
@@ -24,13 +22,13 @@ public class HasModifierLootCondition implements LootItemCondition {
   private final ModifierId modifier;
 
   @Override
-  public LootItemConditionType getType() {
-    return TinkerModifiers.hasModifierLootCondition.get();
+  public MapCodec<? extends LootItemCondition> codec() {
+    return CODEC;
   }
 
   @Override
   public boolean test(LootContext context) {
-    ItemStack tool = context.getParamOrNull(LootContextParams.TOOL);
+    ItemStack tool = context.getOptionalParameter(LootContextParams.TOOL) instanceof ItemStack stack ? stack : null;
     return tool != null && tool.is(TinkerTags.Items.MODIFIABLE) && ModifierUtil.getModifierLevel(tool, modifier) > 0;
   }
 

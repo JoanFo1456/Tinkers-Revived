@@ -9,13 +9,22 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.extensions.common.IClientMobEffectExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import slimeknights.tconstruct.TConstruct;
 
-import java.util.function.Consumer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 /** Effect extension with a few helpers */
 public class TinkerEffect extends MobEffect {
+  /** All effects created, used to register client extensions (visibility) which are no longer set via the removed MobEffect#initializeClient */
+  private static final List<TinkerEffect> ALL_EFFECTS = new ArrayList<>();
+
   /** If true, effect is visible, false for hidden */
   private final boolean show;
   public TinkerEffect(MobEffectCategory typeIn, boolean show) {
@@ -25,6 +34,29 @@ public class TinkerEffect extends MobEffect {
   public TinkerEffect(MobEffectCategory typeIn, int color, boolean show) {
     super(typeIn, color);
     this.show = show;
+    ALL_EFFECTS.add(this);
+  }
+
+  /** Registers client mob effect extensions for all Tinkers effects, replacing the removed MobEffect#initializeClient */
+  @EventBusSubscriber(modid = TConstruct.MOD_ID, value = Dist.CLIENT)
+  static class ClientExtensions {
+    @SubscribeEvent
+    static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+      for (TinkerEffect effect : ALL_EFFECTS) {
+        boolean show = effect.show;
+        event.registerMobEffect(new IClientMobEffectExtensions() {
+          @Override
+          public boolean isVisibleInInventory(MobEffectInstance instance) {
+            return show;
+          }
+
+          @Override
+          public boolean isVisibleInGui(MobEffectInstance instance) {
+            return show;
+          }
+        }, effect);
+      }
+    }
   }
 
   // keep old call sites compact while targeting the holder-based 1.21 API
@@ -42,23 +74,6 @@ public class TinkerEffect extends MobEffect {
   public TinkerEffect addAttributeModifier(Holder<Attribute> attribute, Identifier id, double amount, Operation operation) {
     super.addAttributeModifier(attribute, id, amount, operation);
     return this;
-  }
-
-  /* Visibility */
-
-  @Override
-  public void initializeClient(Consumer<IClientMobEffectExtensions> consumer) {
-    consumer.accept(new IClientMobEffectExtensions() {
-      @Override
-      public boolean isVisibleInInventory(MobEffectInstance effect) {
-        return show;
-      }
-
-      @Override
-      public boolean isVisibleInGui(MobEffectInstance effect) {
-        return show;
-      }
-    });
   }
 
   /* Helpers */

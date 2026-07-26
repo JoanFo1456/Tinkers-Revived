@@ -5,10 +5,9 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.ModelEvent.RegisterAdditional;
+import net.neoforged.neoforge.client.event.ModelEvent.RegisterStandalone;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.EventBusSubscriber.Bus;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.ClientEventBase;
 import slimeknights.tconstruct.gadgets.client.FancyItemFrameRenderer;
@@ -16,12 +15,13 @@ import slimeknights.tconstruct.gadgets.entity.shuriken.ShurikenEntityBase;
 import slimeknights.tconstruct.tools.client.material.ThrownShurikenRenderer;
 
 @SuppressWarnings("unused")
-@EventBusSubscriber(modid=TConstruct.MOD_ID, value=Dist.CLIENT, bus=Bus.MOD)
+@EventBusSubscriber(modid=TConstruct.MOD_ID, value=Dist.CLIENT)
 public class GadgetClientEvents extends ClientEventBase {
   @SubscribeEvent
-  static void registerModels(RegisterAdditional event) {
-    FancyItemFrameRenderer.LOCATIONS_MODEL.values().forEach(event::register);
-    FancyItemFrameRenderer.LOCATIONS_MODEL_MAP.values().forEach(event::register);
+  static void registerModels(RegisterStandalone event) {
+    // 26.1.2: the additional/standalone model registration API changed from ModelEvent.RegisterAdditional.register(ModelResourceLocation)
+    // to RegisterStandalone.register(StandaloneModelKey, UnbakedStandaloneModel), and ModelResourceLocation was removed entirely.
+    // The custom item-frame models are registered here once FancyItemFrameRenderer's frame-model rendering is restored in a later render pass.
   }
 
   @SubscribeEvent

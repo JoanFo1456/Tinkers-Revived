@@ -1,6 +1,5 @@
 package slimeknights.tconstruct.tools.stats;
 
-import lombok.Getter;
 import net.minecraft.network.chat.Component;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.materials.stats.IMaterialStats;
@@ -35,13 +34,17 @@ public enum StatlessMaterialStats implements IMaterialStats {
 
   private static final List<Component> LOCALIZED = List.of(IMaterialStats.makeTooltip(TConstruct.getResource("extra.no_stats")));
   private static final List<Component> DESCRIPTION = List.of(Component.empty());
-  @Getter
   private final MaterialStatType<StatlessMaterialStats> type;
 
   // no stats
 
   StatlessMaterialStats(String name) {
     this.type = MaterialStatType.singleton(new MaterialStatsId(TConstruct.getResource(name)), this);
+  }
+
+  @Override
+  public MaterialStatType<StatlessMaterialStats> getType() {
+    return this.type;
   }
 
   @Override

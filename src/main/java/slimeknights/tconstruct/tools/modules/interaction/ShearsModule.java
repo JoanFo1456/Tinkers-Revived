@@ -98,7 +98,7 @@ public record ShearsModule(float flatBonus, float perLevelBonus, float expandedB
     }
     // fallback to forge shearable
     if (entity instanceof IForgeShearable target) {
-      if (!world.isClientSide) {
+      if (!world.isClientSide()) {
         List<ItemStack> drops = target.onSheared(player, itemStack, world, entity.blockPosition(), fortune);
         drops.forEach(stack -> ModifierUtil.dropItem(entity, stack));
         return !drops.isEmpty();

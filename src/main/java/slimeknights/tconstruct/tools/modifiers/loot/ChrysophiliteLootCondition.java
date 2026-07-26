@@ -2,12 +2,10 @@ package slimeknights.tconstruct.tools.modifiers.loot;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.modifiers.traits.skull.ChrysophiliteModifier;
 
 import java.util.Set;
@@ -21,17 +19,17 @@ public class ChrysophiliteLootCondition implements LootItemCondition {
 
   @Override
   public boolean test(LootContext context) {
-    return ChrysophiliteModifier.getTotalGold(context.getParamOrNull(LootContextParams.THIS_ENTITY)) > 0;
+    return ChrysophiliteModifier.getTotalGold(context.getOptionalParameter(LootContextParams.THIS_ENTITY)) > 0;
   }
 
   @Override
-  public Set<LootContextParam<?>> getReferencedContextParams() {
+  public Set<ContextKey<?>> getReferencedContextParams() {
     return ImmutableSet.of(LootContextParams.THIS_ENTITY);
   }
 
   @Override
-  public LootItemConditionType getType() {
-    return TinkerModifiers.chrysophiliteLootCondition.get();
+  public MapCodec<? extends LootItemCondition> codec() {
+    return CODEC;
   }
 
 }

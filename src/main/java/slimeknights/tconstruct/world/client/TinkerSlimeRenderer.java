@@ -1,42 +1,41 @@
 package slimeknights.tconstruct.world.client;
 
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.SlimeRenderer;
+import net.minecraft.client.renderer.entity.state.SlimeRenderState;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.monster.Slime;
 import slimeknights.tconstruct.TConstruct;
-import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
 
+// 26.1.2: client render overhaul — SlimeRenderer is now MobRenderer<Slime, SlimeRenderState, SlimeModel>
+// and getTextureLocation takes the SlimeRenderState (not the Slime). The metal/slime texture swap read
+// ArmoredSlimeEntity#isMetal() off the live entity; that flag must now be captured into a custom render
+// state via extractRenderState. Minimal correct-shaped stub: always uses the slime texture and drops the
+// SlimeArmorLayer. A later render pass should add a render state carrying isMetal + restore the armor layer.
 public class TinkerSlimeRenderer extends SlimeRenderer {
   public static final Factory SKY_SLIME_FACTORY = new Factory(TConstruct.getResource("textures/entity/sky_slime.png"), TConstruct.getResource("textures/entity/steel_slime.png"));
   public static final Factory ENDER_SLIME_FACTORY = new Factory(TConstruct.getResource("textures/entity/ender_slime.png"), TConstruct.getResource("textures/entity/knightmetal_slime.png"));
 
-  private final Identifier slime, metal;
+  private final Identifier slime;
+  private final Identifier metal;
   public TinkerSlimeRenderer(EntityRendererProvider.Context context, Identifier slime, Identifier metal) {
     super(context);
     this.slime = slime;
     this.metal = metal;
-    addLayer(new SlimeArmorLayer<>(this, new HumanoidModel<>(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)), context.getModelSet(), false));
   }
 
   @Override
-  public Identifier getTextureLocation(Slime entity) {
-    if (slime != metal && ((ArmoredSlimeEntity) entity).isMetal()) {
-      return metal;
-    }
+  public Identifier getTextureLocation(SlimeRenderState state) {
     return slime;
   }
 
-  private record Factory(Identifier slime, Identifier metal) implements EntityRendererProvider<Slime> {
+  private record Factory(Identifier slime, Identifier metal) implements EntityRendererProvider<net.minecraft.world.entity.monster.Slime> {
     public Factory(Identifier texture) {
       this(texture, texture);
     }
 
     @Override
-    public EntityRenderer<Slime> create(Context context) {
+    public EntityRenderer<net.minecraft.world.entity.monster.Slime, ?> create(Context context) {
       return new TinkerSlimeRenderer(context, slime, metal);
     }
   }
