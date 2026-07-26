@@ -19,7 +19,7 @@ import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.SimpleBakedModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -59,7 +59,7 @@ import java.util.function.Function;
  */
 @AllArgsConstructor
 public class TankModel implements IUnbakedGeometry<TankModel> {
-  protected static final ResourceLocation BAKE_LOCATION = TConstruct.getResource("dynamic_model_baking");
+  protected static final Identifier BAKE_LOCATION = TConstruct.getResource("dynamic_model_baking");
 
   /** Shared loader instance */
   public static final IGeometryLoader<TankModel> LOADER = TankModel::deserialize;
@@ -71,7 +71,7 @@ public class TankModel implements IUnbakedGeometry<TankModel> {
   protected final boolean forceModelFluid;
 
   @Override
-  public void resolveParents(Function<ResourceLocation,UnbakedModel> modelGetter, IGeometryBakingContext context) {
+  public void resolveParents(Function<Identifier,UnbakedModel> modelGetter, IGeometryBakingContext context) {
     model.resolveParents(modelGetter, context);
     if (gui != null) {
       gui.resolveParents(modelGetter, context);

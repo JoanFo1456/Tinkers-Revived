@@ -21,7 +21,7 @@ import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.SimpleBakedModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -78,7 +78,7 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class MaterialBlockModel implements IUnbakedGeometry<MaterialBlockModel> {
   /** Location for dynamic baking */
-  private static final ResourceLocation BAKE_LOCATION = Mantle.getResource("material_block_dynamic");
+  private static final Identifier BAKE_LOCATION = Mantle.getResource("material_block_dynamic");
   /** Loadable for the list of material textures */
   private static final Loadable<Set<String>> MATERIAL = StringLoadable.DEFAULT.set(ArrayLoadable.COMPACT);
   /** Loadable for the list of parts, each a list of material textures */
@@ -112,7 +112,7 @@ public class MaterialBlockModel implements IUnbakedGeometry<MaterialBlockModel> 
   }
 
   @Override
-  public void resolveParents(Function<ResourceLocation, UnbakedModel> modelGetter, IGeometryBakingContext context) {
+  public void resolveParents(Function<Identifier, UnbakedModel> modelGetter, IGeometryBakingContext context) {
     model.resolveParents(modelGetter, context);
   }
 
@@ -399,8 +399,8 @@ public class MaterialBlockModel implements IUnbakedGeometry<MaterialBlockModel> 
 
   /** Model that supports both block and material textures. */
   private static class BakedAnvil extends BakedSingleMaterial<MaterialVariantId> {
-    private final Map<ResourceLocation, BakedModel> blockCache = new ConcurrentHashMap<>();
-    private final Function<ResourceLocation, BakedModel> blockBaker = this::bakeWithBlock;
+    private final Map<Identifier, BakedModel> blockCache = new ConcurrentHashMap<>();
+    private final Function<Identifier, BakedModel> blockBaker = this::bakeWithBlock;
     @Getter
     private final MaterialBlockOverrides overrides;
     private BakedAnvil(BakedModel original, IGeometryBakingContext owner, SimpleBlockModel model, ModelState transform, Set<String> retexture) {
@@ -409,7 +409,7 @@ public class MaterialBlockModel implements IUnbakedGeometry<MaterialBlockModel> 
     }
 
     /** Rebakes the model with a specific texture. See also {@link RetexturedModel} */
-    private BakedModel bakeWithBlock(ResourceLocation texture) {
+    private BakedModel bakeWithBlock(Identifier texture) {
       return this.model.bakeDynamic(new RetexturedContext(this.owner, this.retexture, texture), this.transform);
     }
 

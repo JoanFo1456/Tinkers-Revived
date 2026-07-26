@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -24,14 +24,14 @@ import slimeknights.tconstruct.library.utils.TagUtil;
 /** Properties for tinker tools */
 public class TinkerItemProperties {
   /** ID for broken property */
-  private static final ResourceLocation BROKEN_ID = TConstruct.getResource("broken");
+  private static final Identifier BROKEN_ID = TConstruct.getResource("broken");
   /** Property declaring broken */
   private static final ItemPropertyFunction BROKEN = (stack, level, entity, seed) -> {
     return ToolDamageUtil.isBroken(stack) ? 1 : 0;
   };
 
   /** ID for ammo property */
-  private static final ResourceLocation AMMO_ID = TConstruct.getResource("ammo");
+  private static final Identifier AMMO_ID = TConstruct.getResource("ammo");
   /** Int declaring ammo type */
   private static final ItemPropertyFunction AMMO = (stack, level, entity, seed) -> {
     CompoundTag nbt = TagUtil.getTag(stack);
@@ -49,7 +49,7 @@ public class TinkerItemProperties {
   };
 
   /** ID for the pulling property */
-  private static final ResourceLocation CHARGING_ID = TConstruct.getResource("charging");
+  private static final Identifier CHARGING_ID = TConstruct.getResource("charging");
   /** Boolean indicating the bow is pulling */
   private static final ItemPropertyFunction CHARGING = (stack, level, holder, seed) -> {
     if (holder != null && holder.isUsingItem() && holder.getUseItem() == stack) {
@@ -69,7 +69,7 @@ public class TinkerItemProperties {
     return 0;
   };
   /** ID for the pull property */
-  private static final ResourceLocation CHARGE_ID = TConstruct.getResource("charge");
+  private static final Identifier CHARGE_ID = TConstruct.getResource("charge");
   /** Property for bow pull amount */
   private static final ItemPropertyFunction CHARGE = (stack, level, holder, seed) -> {
     if (holder == null || holder.getUseItem() != stack) {
@@ -79,7 +79,7 @@ public class TinkerItemProperties {
     return drawtime == -1 ? 0 : (float)(stack.getUseDuration(holder) - holder.getUseItemRemainingTicks()) / drawtime;
   };
   /** ID for the cast fishing rods */
-  private static final ResourceLocation CAST_ID = TConstruct.getResource("cast");
+  private static final Identifier CAST_ID = TConstruct.getResource("cast");
   /** Property for casting a fishing rod */
   private static final ItemPropertyFunction CAST = (stack, level, holder, seed) -> {
     // must be a fishing rod, and the player must be fishing

@@ -4,10 +4,10 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -22,7 +22,7 @@ public final class GuiUtil {
    * @param screen      Parent screen
    * @param background  Background location
    */
-  public static void drawBackground(GuiGraphics graphics, AbstractContainerScreen<?> screen, ResourceLocation background) {
+  public static void drawBackground(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, Identifier background) {
     graphics.blit(background, screen.getGuiLeft(), screen.getGuiTop(), 0, 0, screen.getXSize(), screen.getYSize());
   }
 
@@ -73,7 +73,7 @@ public final class GuiUtil {
    * @param height    Tank height
    * @param depth     Tank depth
    */
-  public static void renderFluidTank(GuiGraphics graphics, AbstractContainerScreen<?> screen, FluidStack stack, int capacity, int x, int y, int width, int height, int depth) {
+  public static void renderFluidTank(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, FluidStack stack, int capacity, int x, int y, int width, int height, int depth) {
     renderFluidTank(graphics, screen, stack, stack.getAmount(), capacity, x, y, width, height, depth);
   }
 
@@ -88,7 +88,7 @@ public final class GuiUtil {
    * @param height    Tank height
    * @param depth     Tank depth
    */
-  public static void renderFluidTank(GuiGraphics graphics, AbstractContainerScreen<?> screen, FluidStack stack, int amount, int capacity, int x, int y, int width, int height, int depth) {
+  public static void renderFluidTank(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, FluidStack stack, int amount, int capacity, int x, int y, int width, int height, int depth) {
     if(!stack.isEmpty() && capacity > 0) {
       int maxY = y + height;
       int fluidHeight = Math.min(height * amount / capacity, height);
@@ -107,7 +107,7 @@ public final class GuiUtil {
    * @param height  Fluid height
    * @param depth   Fluid depth
    */
-  public static void renderTiledFluid(GuiGraphics graphics, AbstractContainerScreen<?> screen, FluidStack stack, int x, int y, int width, int height, int depth) {
+  public static void renderTiledFluid(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, FluidStack stack, int x, int y, int width, int height, int depth) {
     if (!stack.isEmpty()) {
       IClientFluidTypeExtensions clientFluid = IClientFluidTypeExtensions.of(stack.getFluid());
       TextureAtlasSprite fluidSprite = screen.getMinecraft().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(clientFluid.getStillTexture(stack));
@@ -129,7 +129,7 @@ public final class GuiUtil {
    * @param depth       Render depth
    * @param upsideDown  If true, flips the sprite
    */
-  public static void renderTiledTextureAtlas(GuiGraphics graphics, AbstractContainerScreen<?> screen, TextureAtlasSprite sprite, int x, int y, int width, int height, int depth, boolean upsideDown) {
+  public static void renderTiledTextureAtlas(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, TextureAtlasSprite sprite, int x, int y, int width, int height, int depth, boolean upsideDown) {
     float u1 = sprite.getU0();
     float v1 = sprite.getV0();
     int spriteWidth = sprite.contents().width();
@@ -170,7 +170,7 @@ public final class GuiUtil {
    * @param y         Y position to start
    * @param progress  Progress between 0 and 1
    */
-  public static void drawProgressUp(GuiGraphics graphics, ElementScreen element, int x, int y, float progress) {
+  public static void drawProgressUp(GuiGraphicsExtractor graphics, ElementScreen element, int x, int y, float progress) {
     int height;
     if (progress > 1) {
       height = element.h;
@@ -193,7 +193,7 @@ public final class GuiUtil {
    * @param width     Element width
    * @param height    Element height
    */
-  public static void renderHighlight(GuiGraphics graphics, int x, int y, int width, int height) {
+  public static void renderHighlight(GuiGraphicsExtractor graphics, int x, int y, int width, int height) {
       RenderSystem.disableDepthTest();
       RenderSystem.colorMask(true, true, true, false);
       graphics.fill(x, y, x + width, y + height, 100, 0x80FFFFFF);
@@ -202,7 +202,7 @@ public final class GuiUtil {
   }
 
   /** Renders a pattern at the given location */
-  public static void renderPattern(GuiGraphics graphics, Pattern pattern, int x, int y) {
+  public static void renderPattern(GuiGraphicsExtractor graphics, Pattern pattern, int x, int y) {
     TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().getAtlas(InventoryMenu.BLOCK_ATLAS).getSprite(pattern.getTexture());
     graphics.blit(x, y, 100, 16, 16, sprite);
   }

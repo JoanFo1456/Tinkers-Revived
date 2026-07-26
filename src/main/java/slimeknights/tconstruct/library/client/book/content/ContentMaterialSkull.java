@@ -3,7 +3,7 @@ package slimeknights.tconstruct.library.client.book.content;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -33,7 +33,7 @@ public class ContentMaterialSkull extends AbstractMaterialContent {
   /** Translation key for skull recipe */
   private static final String SKULL_FROM = TConstruct.makeTranslationKey("book", "material.skull_from");
   /** Page ID for using this index directly */
-  public static final ResourceLocation ID = TConstruct.getResource("skull_material");
+  public static final Identifier ID = TConstruct.getResource("skull_material");
 
   /** casting recipe used to create this item */
   protected transient IDisplayableCastingRecipe skullRecipe = null;
@@ -47,7 +47,7 @@ public class ContentMaterialSkull extends AbstractMaterialContent {
   }
 
   @Override
-  public ResourceLocation getId() {
+  public Identifier getId() {
     return ID;
   }
 

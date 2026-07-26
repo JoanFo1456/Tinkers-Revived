@@ -2,8 +2,8 @@ package slimeknights.mantle.compat.neoforged.neoforge.registries;
 
 import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -30,17 +30,17 @@ public class ForgeRegistry<T> implements IForgeRegistry<T> {
   }
 
   @Override
-  public boolean containsKey(ResourceLocation id) {
+  public boolean containsKey(Identifier id) {
     return registry.containsKey(id);
   }
 
   @Override
-  public T getValue(ResourceLocation id) {
-    return registry.get(id);
+  public T getValue(Identifier id) {
+    return registry.getValue(id);
   }
 
   @Override
-  public void register(ResourceLocation id, T value) {
+  public void register(Identifier id, T value) {
     Registry.register(registry, id, value);
   }
 

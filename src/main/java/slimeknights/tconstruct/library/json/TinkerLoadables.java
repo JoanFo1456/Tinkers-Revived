@@ -2,7 +2,7 @@ package slimeknights.tconstruct.library.json;
 
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.stats.StatType;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -52,7 +52,7 @@ public class TinkerLoadables {
 
   /* Registries */
   public static final StringLoadable<StatType<?>> STAT_TYPE = new RegistryLoadable<>(BuiltInRegistries.STAT_TYPE);
-  public static final StringLoadable<ResourceLocation> CUSTOM_STAT = new RegistryLoadable<>(BuiltInRegistries.CUSTOM_STAT);
+  public static final StringLoadable<Identifier> CUSTOM_STAT = new RegistryLoadable<>(BuiltInRegistries.CUSTOM_STAT);
   public static final StringLoadable<RecipeType<?>> RECIPE_TYPE = new RegistryLoadable<>(BuiltInRegistries.RECIPE_TYPE);
 
   /* Tag keys */
@@ -74,7 +74,7 @@ public class TinkerLoadables {
     }
     throw error.create("Unknown harvest tier " + id);
   }, (tier, error) -> {
-    ResourceLocation id = TierSortingRegistry.getName(tier);
+    Identifier id = TierSortingRegistry.getName(tier);
     if (id != null) {
       return id;
     }
