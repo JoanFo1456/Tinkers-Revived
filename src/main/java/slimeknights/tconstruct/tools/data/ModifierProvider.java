@@ -19,7 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -325,7 +325,7 @@ public class ModifierProvider extends AbstractModifierProvider implements ICondi
       // melee harvest
       .addModule(StatBoostModule.multiplyConditional(ToolStats.ATTACK_DAMAGE).flat(0.25f))
       .addModule(StatBoostModule.multiplyConditional(ToolStats.MINING_SPEED).flat(0.25f))
-      .addModule(SetStatModule.set(ToolStats.HARVEST_TIER).value(Tiers.IRON))
+      .addModule(SetStatModule.set(ToolStats.HARVEST_TIER).value(ToolMaterial.IRON))
       // ranged
       .addModule(StatBoostModule.add(ToolStats.ACCURACY).flat(0.1f));
     // diamond
@@ -339,7 +339,7 @@ public class ModifierProvider extends AbstractModifierProvider implements ICondi
       // melee harvest
       .addModule(StatBoostModule.add(ToolStats.ATTACK_DAMAGE).flat(0.5f))
       .addModule(StatBoostModule.add(ToolStats.MINING_SPEED).flat(2))
-      .addModule(SetStatModule.set(ToolStats.HARVEST_TIER).value(Tiers.DIAMOND))
+      .addModule(SetStatModule.set(ToolStats.HARVEST_TIER).value(ToolMaterial.DIAMOND))
       // ranged
       .addModule(StatBoostModule.add(ToolStats.PROJECTILE_DAMAGE).flat(0.5f));
     // netherite
@@ -354,7 +354,7 @@ public class ModifierProvider extends AbstractModifierProvider implements ICondi
       // melee harvest
       .addModule(StatBoostModule.multiplyBase(ToolStats.ATTACK_DAMAGE).flat(0.2f))
       .addModule(StatBoostModule.multiplyBase(ToolStats.MINING_SPEED).flat(0.25f))
-      .addModule(SetStatModule.set(ToolStats.HARVEST_TIER).value(Tiers.NETHERITE))
+      .addModule(SetStatModule.set(ToolStats.HARVEST_TIER).value(ToolMaterial.NETHERITE))
       // ranged
       .addModule(StatBoostModule.multiplyBase(ToolStats.VELOCITY).flat(0.1f));
 
