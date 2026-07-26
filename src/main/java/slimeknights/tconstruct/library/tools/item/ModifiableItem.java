@@ -10,7 +10,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlot.Type;
@@ -24,9 +23,9 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
@@ -71,6 +70,7 @@ import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.tools.TinkerToolActions;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +80,7 @@ import java.util.function.Consumer;
  * A standard modifiable item which implements melee hooks
  * This class handles how all the modifier hooks and display data for items made out of different materials
  */
-public class ModifiableItem extends TieredItem implements IModifiableDisplay {
+public class ModifiableItem extends Item implements IModifiableDisplay {
   /** Tool definition for the given tool */
   @Getter
   private final ToolDefinition toolDefinition;
@@ -96,7 +96,7 @@ public class ModifiableItem extends TieredItem implements IModifiableDisplay {
   }
 
   public ModifiableItem(Properties properties, ToolDefinition toolDefinition, int maxStackSize) {
-    super(TinkerTier.INSTANCE, properties);
+    super(properties);
     this.toolDefinition = toolDefinition;
     this.maxStackSize = maxStackSize;
   }
@@ -393,21 +393,21 @@ public class ModifiableItem extends TieredItem implements IModifiableDisplay {
   }
 
   @Override
-  public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand hand) {
+  public InteractionResult use(Level worldIn, Player playerIn, InteractionHand hand) {
     ItemStack stack = playerIn.getItemInHand(hand);
     if (stack.getCount() > 1) {
-      return InteractionResultHolder.pass(stack);
+      return InteractionResult.PASS;
     }
     ToolStack tool = ToolStack.from(stack);
     if (shouldInteract(playerIn, tool, hand)) {
       for (ModifierEntry entry : tool.getModifierList()) {
         InteractionResult result = entry.getHook(ModifierHooks.GENERAL_INTERACT).onToolUse(tool, entry, playerIn, hand, InteractionSource.RIGHT_CLICK);
         if (result.consumesAction()) {
-          return new InteractionResultHolder<>(result, stack);
+          return result;
         }
       }
     }
-    return InteractionResultHolder.pass(stack);
+    return InteractionResult.PASS;
   }
 
   @Override
@@ -478,13 +478,13 @@ public class ModifiableItem extends TieredItem implements IModifiableDisplay {
   }
 
   @Override
-  public UseAnim getUseAnimation(ItemStack stack) {
+  public ItemUseAnimation getUseAnimation(ItemStack stack) {
     ToolStack tool = ToolStack.from(stack);
     ModifierEntry activeModifier = GeneralInteractionModifierHook.getActiveModifier(tool);
     if (activeModifier != ModifierEntry.EMPTY) {
       return activeModifier.getHook(ModifierHooks.GENERAL_INTERACT).getUseAction(tool, activeModifier);
     }
-    return UseAnim.NONE;
+    return ItemUseAnimation.NONE;
   }
 
   @Override
@@ -501,9 +501,11 @@ public class ModifiableItem extends TieredItem implements IModifiableDisplay {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+  public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display, Consumer<Component> tooltip, TooltipFlag flag) {
     Level level = context.registries() == null ? null : SafeClientAccess.getLevel();
-    TooltipUtil.addInformation(this, stack, level, tooltip, SafeClientAccess.getTooltipKey(), flag);
+    List<Component> list = new ArrayList<>();
+    TooltipUtil.addInformation(this, stack, level, list, SafeClientAccess.getTooltipKey(), flag);
+    list.forEach(tooltip);
   }
 
   public int getDefaultTooltipHideFlags(ItemStack stack) {
