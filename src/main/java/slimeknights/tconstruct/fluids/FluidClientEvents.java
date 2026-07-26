@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.Identifier;
 import slimeknights.tconstruct.compat.minecraft.world.item.alchemy.PotionUtils;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.neoforge.client.event.ModelEvent.RegisterGeometryLoaders;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -40,8 +39,8 @@ public class FluidClientEvents extends ClientEventBase {
   }
 
   @SubscribeEvent
-  static void registerModelLoaders(RegisterGeometryLoaders event) {
-    event.register(Identifier.fromNamespaceAndPath(TConstruct.MOD_ID, "fluid_container"), FluidContainerModel.LOADER);
+  static void registerItemModels(net.neoforged.neoforge.client.event.RegisterItemModelsEvent event) {
+    event.register(FluidContainerModel.ID, FluidContainerModel.Unbaked.MAP_CODEC);
   }
 
   private static void setTranslucent(FlowingFluidObject<?> fluid) {

@@ -1,7 +1,7 @@
 {
-  "parent": "neoforge:item/default",
-  "loader": "tconstruct:fluid_container",
+  "parent": "minecraft:item/generated",
   "textures": {
+    "particle": "tconstruct:item/copper_can",
     "base": "tconstruct:item/copper_can",
     "fluid": "tconstruct:item/copper_can_fluid"
   }

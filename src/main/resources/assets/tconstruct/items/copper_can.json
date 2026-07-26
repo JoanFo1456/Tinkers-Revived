@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "tconstruct:fluid_container",
+    "base_model": "tconstruct:item/copper_can"
+  }
+}
