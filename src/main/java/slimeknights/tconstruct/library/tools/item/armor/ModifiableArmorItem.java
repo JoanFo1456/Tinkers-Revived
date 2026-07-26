@@ -8,7 +8,7 @@ import net.minecraft.core.HolderLookup.RegistryLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -72,13 +72,13 @@ import java.util.function.Consumer;
 
 public class ModifiableArmorItem extends ArmorItem implements IModifiableDisplay {
   /** Volatile modifier tag to make piglins neutal when worn */
-  public static final ResourceLocation PIGLIN_NEUTRAL = TConstruct.getResource("piglin_neutral");
+  public static final Identifier PIGLIN_NEUTRAL = TConstruct.getResource("piglin_neutral");
   /** Volatile modifier tag to make this item an elytra */
-  public static final ResourceLocation ELYTRA = TConstruct.getResource("elyta");
+  public static final Identifier ELYTRA = TConstruct.getResource("elyta");
   /** Volatile flag for a boot item to walk on powdered snow. Cold immunity is handled through a tag */
-  public static final ResourceLocation SNOW_BOOTS = TConstruct.getResource("snow_boots");
+  public static final Identifier SNOW_BOOTS = TConstruct.getResource("snow_boots");
   /** Volatile flag for an item to act as an enderman mask, stopping them from getting angry. */
-  public static final ResourceLocation ENDERMASK = TConstruct.getResource("endermask");
+  public static final Identifier ENDERMASK = TConstruct.getResource("endermask");
 
   @Getter
   private final ToolDefinition toolDefinition;

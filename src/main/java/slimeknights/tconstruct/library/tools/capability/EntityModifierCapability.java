@@ -1,7 +1,7 @@
 package slimeknights.tconstruct.library.tools.capability;
 
 import net.minecraft.nbt.Tag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import slimeknights.mantle.compat.neoforged.neoforge.capabilities.Capability;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.CapabilityManager;
@@ -37,7 +37,7 @@ public class EntityModifierCapability {
   private static final List<Predicate<Entity>> ENTITY_PREDICATES = new ArrayList<>();
 
   /** Capability ID */
-  private static final ResourceLocation ID = TConstruct.getResource("modifiers");
+  private static final Identifier ID = TConstruct.getResource("modifiers");
   /** Capability type */
   public static final Capability<EntityModifiers> CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
 

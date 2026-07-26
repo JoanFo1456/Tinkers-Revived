@@ -6,7 +6,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.fluids.FluidStack;
 import slimeknights.mantle.Mantle;
 import slimeknights.mantle.data.registry.NamedComponentRegistry;
@@ -45,7 +45,7 @@ public class ToolTankHelper {
   /** Tool stat handling max tank capacity */
   private final INumericToolStat<?> capacityStat;
   /** Key in persistent data storing the fluid */
-  private final ResourceLocation fluidKey;
+  private final Identifier fluidKey;
 
   /** Gets the capacity for the tool */
   public int getCapacity(IToolStackView tool) {

@@ -3,7 +3,7 @@ package slimeknights.tconstruct.library.recipe.tinkerstation.repairing;
 import lombok.Getter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -37,9 +37,9 @@ public class ModifierRepairCraftingRecipe extends CustomRecipe implements IModif
   private final Ingredient ingredient;
   @Getter
   private final int repairAmount;
-  private final ResourceLocation id;
+  private final Identifier id;
 
-  public ModifierRepairCraftingRecipe(ResourceLocation idIn, ModifierId modifier, Ingredient ingredient, int repairAmount) {
+  public ModifierRepairCraftingRecipe(Identifier idIn, ModifierId modifier, Ingredient ingredient, int repairAmount) {
     super(CraftingBookCategory.EQUIPMENT);
     this.id = idIn;
     this.modifier = modifier;
@@ -47,7 +47,7 @@ public class ModifierRepairCraftingRecipe extends CustomRecipe implements IModif
     this.repairAmount = repairAmount;
   }
 
-  public ResourceLocation getId() {
+  public Identifier getId() {
     return id;
   }
 

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -47,7 +47,7 @@ public class ContainerFillingRecipe implements ICastingRecipe, IMultiRecipe<Disp
   @Getter
   private final TypeAwareRecipeSerializer<?> serializer;
   @Getter
-  private final ResourceLocation id;
+  private final Identifier id;
   @Getter
   private final String group;
   private final int fluidAmount;

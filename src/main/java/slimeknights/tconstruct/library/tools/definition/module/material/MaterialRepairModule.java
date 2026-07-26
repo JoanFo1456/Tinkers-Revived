@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ArmorItem;
 import slimeknights.mantle.data.loadable.IAmLoadable;
 import slimeknights.mantle.data.loadable.field.LoadableField;
@@ -110,7 +110,7 @@ public class MaterialRepairModule implements MaterialRepairToolHook, ToolModule,
     }
 
     /** Gets and caches the repair amount for this module */
-    private int getRepairAmount(@Nullable ResourceLocation toolId) {
+    private int getRepairAmount(@Nullable Identifier toolId) {
       if (repairAmount == -1) {
         repairAmount = getDurability(toolId, material, statType);
       }
@@ -124,7 +124,7 @@ public class MaterialRepairModule implements MaterialRepairToolHook, ToolModule,
   }
 
   /** Gets the durability for the given stat type */
-  public static int getDurability(@Nullable ResourceLocation toolId, MaterialId material, MaterialStatsId statType) {
+  public static int getDurability(@Nullable Identifier toolId, MaterialId material, MaterialStatsId statType) {
     IMaterialStats stats = MaterialRegistry.getInstance().getMaterialStats(material, statType).orElse(null);
     if (stats instanceof IRepairableMaterialStats repairable) {
       return repairable.durability();

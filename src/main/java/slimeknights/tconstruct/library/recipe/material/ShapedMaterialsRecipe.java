@@ -8,7 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -39,7 +39,7 @@ import java.util.Optional;
  * {@link slimeknights.tconstruct.library.recipe.ingredient.MaterialValueIngredient} to set the materials of the result.
  */
 public class ShapedMaterialsRecipe extends ShapedRecipe implements MaterialsCraftingTableRecipe {
-  private final ResourceLocation id;
+  private final Identifier id;
   /** List of tool parts to search for in the final recipe */
   @Getter
   private final List<Ingredient> parts;
@@ -51,7 +51,7 @@ public class ShapedMaterialsRecipe extends ShapedRecipe implements MaterialsCraf
   /** List of additional materials to add beyond the parts */
   @Getter
   private final List<MaterialVariantId> extraMaterials;
-  public ShapedMaterialsRecipe(ResourceLocation id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack result, boolean showNotification, List<Ingredient> parts, List<MaterialVariantId> extraMaterials) {
+  public ShapedMaterialsRecipe(Identifier id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack result, boolean showNotification, List<Ingredient> parts, List<MaterialVariantId> extraMaterials) {
     super(group, category, new ShapedRecipePattern(width, height, ingredients, Optional.empty()), result, showNotification);
     this.id = id;
     this.parts = parts;
@@ -64,7 +64,7 @@ public class ShapedMaterialsRecipe extends ShapedRecipe implements MaterialsCraf
     return parts.size();
   }
 
-  public ResourceLocation getId() {
+  public Identifier getId() {
     return id;
   }
 
@@ -180,7 +180,7 @@ public class ShapedMaterialsRecipe extends ShapedRecipe implements MaterialsCraf
     static final LoadableField<List<MaterialVariantId>, ShapedMaterialsRecipe> MATERIAL_FIELD = EXTRA_MATERIALS.defaultField("extra_materials", List.of(), r -> r.extraMaterials);
 
     @Override
-    public ShapedMaterialsRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+    public ShapedMaterialsRecipe fromJson(Identifier recipeId, JsonObject json) {
       ShapedRecipe vanilla = SHAPED_RECIPE.fromJson(recipeId, json);
       ShapedRecipePattern.Data data = ShapedRecipePattern.Data.MAP_CODEC.codec().parse(JsonOps.INSTANCE, json).getOrThrow(JsonSyntaxException::new);
       Map<Character, Ingredient> key = data.key();
@@ -203,7 +203,7 @@ public class ShapedMaterialsRecipe extends ShapedRecipe implements MaterialsCraf
     @SuppressWarnings("Java8ListReplaceAll")
     @Override
     @Nullable
-    public ShapedMaterialsRecipe fromNetworkSafe(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+    public ShapedMaterialsRecipe fromNetworkSafe(Identifier recipeId, FriendlyByteBuf buffer) {
       // shaped syncing
       int width = buffer.readVarInt();
       int height = buffer.readVarInt();

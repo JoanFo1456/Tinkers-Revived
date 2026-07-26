@@ -2,7 +2,7 @@ package slimeknights.tconstruct.library.tools.capability;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
 public interface BlockItemProviderCapability {
 
   /** Capability ID */
-  ResourceLocation ID = TConstruct.getResource("block_provider");
+  Identifier ID = TConstruct.getResource("block_provider");
   /** Capability type */
   Capability<BlockItemProviderCapability> CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
 
@@ -96,7 +96,7 @@ public interface BlockItemProviderCapability {
    */
   final class SimpleBlockItem implements BlockItemProviderCapability, ICapabilityProvider {
     public static final SimpleBlockItem INSTANCE = new SimpleBlockItem();
-    private static final ResourceLocation ID = TConstruct.getResource("block_item_provider");
+    private static final Identifier ID = TConstruct.getResource("block_item_provider");
 
     private final LazyOptional<BlockItemProviderCapability> lazy = LazyOptional.of(() -> this);
 

@@ -5,7 +5,7 @@ import com.google.gson.JsonSyntaxException;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -32,10 +32,10 @@ import java.util.Optional;
  */
 @Deprecated
 public class ShapedMaterialRecipe extends ShapedRecipe {
-  private final ResourceLocation id;
+  private final Identifier id;
   private MaterialValueIngredient material;
   private final List<MaterialVariantId> extraMaterials;
-  public ShapedMaterialRecipe(ResourceLocation id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack result, boolean showNotification, List<MaterialVariantId> extraMaterials) {
+  public ShapedMaterialRecipe(Identifier id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack result, boolean showNotification, List<MaterialVariantId> extraMaterials) {
     super(group, category, new ShapedRecipePattern(width, height, ingredients, Optional.empty()), result, showNotification);
     this.id = id;
     this.extraMaterials = extraMaterials;
@@ -45,9 +45,9 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
     this(LoggingRecipeSerializer.UNKNOWN_ID, recipe.getGroup(), recipe.category(), recipe.getWidth(), recipe.getHeight(), recipe.getIngredients(), recipe.getResultItem(null), recipe.showNotification(), extraMaterials);
   }
 
-  /** @deprecated use {@link #ShapedMaterialRecipe(ResourceLocation,String,CraftingBookCategory,int,int,NonNullList,ItemStack,boolean,List)} */
+  /** @deprecated use {@link #ShapedMaterialRecipe(Identifier,String,CraftingBookCategory,int,int,NonNullList,ItemStack,boolean,List)} */
   @Deprecated(forRemoval = true)
-  public ShapedMaterialRecipe(ResourceLocation id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack result, boolean showNotification) {
+  public ShapedMaterialRecipe(Identifier id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack result, boolean showNotification) {
     this(id, group, category, width, height, ingredients, result, showNotification, List.of());
   }
 
@@ -57,7 +57,7 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
     this(recipe, List.of());
   }
 
-  public ResourceLocation getId() {
+  public Identifier getId() {
     return id;
   }
 
@@ -152,7 +152,7 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
     static final LoadableField<List<MaterialVariantId>,ShapedMaterialRecipe> MATERIAL_FIELD = EXTRA_MATERIALS.defaultField("extra_materials", List.of(), r -> r.extraMaterials);
 
     @Override
-    public ShapedMaterialRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+    public ShapedMaterialRecipe fromJson(Identifier recipeId, JsonObject json) {
       ShapedMaterialRecipe recipe = new ShapedMaterialRecipe(SHAPED_RECIPE.fromJson(recipeId, json), MATERIAL_FIELD.get(json));
       // ensure the material is valid, since we have all the needed information to check
       // better now than at runtime
@@ -164,7 +164,7 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
 
     @Override
     @Nullable
-    public ShapedMaterialRecipe fromNetworkSafe(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+    public ShapedMaterialRecipe fromNetworkSafe(Identifier recipeId, FriendlyByteBuf buffer) {
       ShapedRecipe recipe = SHAPED_RECIPE.fromNetwork(recipeId, buffer);
       List<MaterialVariantId> extraMaterials = MATERIAL_FIELD.decode(buffer);
       return recipe == null ? null : new ShapedMaterialRecipe(recipe, extraMaterials);

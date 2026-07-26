@@ -6,7 +6,7 @@ import lombok.Getter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -28,7 +28,7 @@ import java.util.List;
  * {@link slimeknights.tconstruct.library.recipe.ingredient.MaterialValueIngredient} to set the materials of the result.
  */
 public class ShapelessMaterialsRecipe extends ShapelessRecipe implements MaterialsCraftingTableRecipe {
-  private final ResourceLocation id;
+  private final Identifier id;
   /** Number of parts to match */
   @Getter
   private final int partCount;
@@ -36,7 +36,7 @@ public class ShapelessMaterialsRecipe extends ShapelessRecipe implements Materia
   @Getter
   private final List<MaterialVariantId> extraMaterials;
 
-  public ShapelessMaterialsRecipe(ResourceLocation id, String group, CraftingBookCategory category, ItemStack result, NonNullList<Ingredient> ingredients, int partCount, List<MaterialVariantId> extraMaterials) {
+  public ShapelessMaterialsRecipe(Identifier id, String group, CraftingBookCategory category, ItemStack result, NonNullList<Ingredient> ingredients, int partCount, List<MaterialVariantId> extraMaterials) {
     super(group, category, result, ingredients);
     this.id = id;
     this.partCount = partCount;
@@ -47,7 +47,7 @@ public class ShapelessMaterialsRecipe extends ShapelessRecipe implements Materia
     this(LoggingRecipeSerializer.UNKNOWN_ID, recipe.getGroup(), recipe.category(), recipe.getResultItem(null), recipe.getIngredients(), partCount, extraMaterials);
   }
 
-  public ResourceLocation getId() {
+  public Identifier getId() {
     return id;
   }
 
@@ -77,7 +77,7 @@ public class ShapelessMaterialsRecipe extends ShapelessRecipe implements Materia
     static final LoadableField<List<MaterialVariantId>,ShapelessMaterialsRecipe> MATERIAL_FIELD = EXTRA_MATERIALS.defaultField("extra_materials", List.of(), r -> r.extraMaterials);
 
     @Override
-    public ShapelessMaterialsRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+    public ShapelessMaterialsRecipe fromJson(Identifier recipeId, JsonObject json) {
       ShapelessRecipe vanilla = SHAPELESS_RECIPE.fromJson(recipeId, json);
       int parts = GsonHelper.getAsInt(json, "parts");
       if (parts < 1 || parts > vanilla.getIngredients().size()) {
@@ -88,7 +88,7 @@ public class ShapelessMaterialsRecipe extends ShapelessRecipe implements Materia
 
     @Override
     @Nullable
-    public ShapelessMaterialsRecipe fromNetworkSafe(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+    public ShapelessMaterialsRecipe fromNetworkSafe(Identifier recipeId, FriendlyByteBuf buffer) {
       ShapelessRecipe recipe = SHAPELESS_RECIPE.fromNetwork(recipeId, buffer);
       return recipe == null ? null : new ShapelessMaterialsRecipe(recipe, buffer.readByte(), MATERIAL_FIELD.decode(buffer));
     }

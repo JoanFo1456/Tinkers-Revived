@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -161,7 +161,7 @@ public class MaterialValueIngredient implements ICustomIngredient {
   /** Serializer instance */
   public enum Serializer {
     INSTANCE;
-    public static final ResourceLocation ID = TConstruct.getResource("material_value");
+    public static final Identifier ID = TConstruct.getResource("material_value");
     private static final LoadableField<IJsonPredicate<MaterialVariantId>, MaterialValueIngredient> MATERIAL_FIELD = new MaterialPredicateField<>("material", i -> i.material);
 
     /** Parses the ingredient from the legacy JSON format */
