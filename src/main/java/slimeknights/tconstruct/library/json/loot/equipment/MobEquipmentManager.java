@@ -19,7 +19,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ICondition.IContext;
-import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.bus.api.EventPriority;
 import org.jetbrains.annotations.ApiStatus.Internal;
@@ -59,7 +59,7 @@ public class MobEquipmentManager extends SimpleJsonResourceReloadListener {
   /** @apiNote no need for addons to call this */
   @Internal
   public static void init() {
-    NeoForge.EVENT_BUS.addListener(EventPriority.NORMAL, false, AddReloadListenerEvent.class, INSTANCE::addDataPackListeners);
+    NeoForge.EVENT_BUS.addListener(EventPriority.NORMAL, false, AddServerReloadListenersEvent.class, INSTANCE::addDataPackListeners);
     NeoForge.EVENT_BUS.addListener(EventPriority.NORMAL, false, FinalizeSpawnEvent.class, INSTANCE::finalizeSpawn);
   }
 
@@ -129,8 +129,8 @@ public class MobEquipmentManager extends SimpleJsonResourceReloadListener {
   /* Events */
 
   /** Adds the managers as datapack listeners */
-  private void addDataPackListeners(AddReloadListenerEvent event) {
-    event.addListener(this);
+  private void addDataPackListeners(AddServerReloadListenersEvent event) {
+    event.addListener(TConstruct.getResource("mob_equipment"), this);
     context = event.getConditionContext();
     registryAccess = event.getRegistryAccess();
   }

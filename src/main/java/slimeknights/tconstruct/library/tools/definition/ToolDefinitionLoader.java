@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.tools.definition;
 
+import slimeknights.tconstruct.TConstruct;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonElement;
 import lombok.extern.log4j.Log4j2;
@@ -9,7 +10,7 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.conditions.ICondition.IContext;
-import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import slimeknights.mantle.data.loadable.field.ContextKey;
 import slimeknights.mantle.util.JsonHelper;
@@ -115,8 +116,8 @@ public class ToolDefinitionLoader extends SimpleJsonResourceReloadListener {
   }
 
   /** Adds the managers as datapack listeners */
-  private void addDataPackListeners(final AddReloadListenerEvent event) {
-    event.addListener(this);
+  private void addDataPackListeners(final AddServerReloadListenersEvent event) {
+    event.addListener(TConstruct.getResource("tool_definitions"), this);
     conditionContext = event.getConditionContext();
   }
 

@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.tools.layout;
 
+import slimeknights.tconstruct.TConstruct;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,7 +22,7 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.conditions.ICondition.IContext;
-import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import slimeknights.mantle.recipe.condition.ConditionHelper;
 import slimeknights.tconstruct.common.network.TinkerNetwork;
@@ -135,8 +136,8 @@ public class StationSlotLayoutLoader extends SimpleJsonResourceReloadListener {
   }
 
   /** Adds the managers as datapack listeners */
-  private void addDataPackListeners(final AddReloadListenerEvent event) {
-    event.addListener(this);
+  private void addDataPackListeners(final AddServerReloadListenersEvent event) {
+    event.addListener(TConstruct.getResource("station_slot_layouts"), this);
     conditionContext = event.getConditionContext();
   }
 
