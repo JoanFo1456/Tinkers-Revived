@@ -14,8 +14,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.FastColor;
-import net.minecraft.util.FastColor.ABGR32;
+import net.minecraft.util.ARGB;
+import slimeknights.tconstruct.library.utils.ABGR;
 import net.minecraft.util.GsonHelper;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import slimeknights.mantle.data.loadable.common.ColorLoadable;
@@ -76,7 +76,7 @@ public class GreyToSpriteTransformer implements IRecolorSpriteTransformer {
   public int getNewColor(int color, int x, int y, int f) {
     // if fully transparent, just return fully transparent
     // we do not do 0 alpha RGB values to save effort
-    if (FastColor.ABGR32.alpha(color) == 0) {
+    if (ABGR.alpha(color) == 0) {
       return 0x00000000;
     }
     int grey = GreyToColorMapping.getGrey(color);
@@ -283,14 +283,14 @@ public class GreyToSpriteTransformer implements IRecolorSpriteTransformer {
           for (int x = 0; x < image.getWidth(); x++) {
             for (int y = 0; y < image.getHeight(); y++) {
               int color = image.getPixelRGBA(x, y);
-              red   += ABGR32.red(color);
-              green += ABGR32.green(color);
-              blue  += ABGR32.blue(color);
-              alpha += ABGR32.alpha(color);
+              red   += ABGR.red(color);
+              green += ABGR.green(color);
+              blue  += ABGR.blue(color);
+              alpha += ABGR.alpha(color);
             }
           }
           int pixels = image.getWidth() * image.getHeight();
-          int spriteColor = ABGR32.color(alpha / pixels, blue / pixels, green / pixels, red / pixels);
+          int spriteColor = ABGR.color(alpha / pixels, blue / pixels, green / pixels, red / pixels);
           // if we have a color set, treat it as a tint
           if (color != -1) {
             spriteColor = GreyToColorMapping.scaleColor(spriteColor, color, 255);

@@ -21,11 +21,11 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.function.ToIntFunction;
 
-import static net.minecraft.util.FastColor.ABGR32.alpha;
-import static net.minecraft.util.FastColor.ABGR32.blue;
-import static net.minecraft.util.FastColor.ABGR32.color;
-import static net.minecraft.util.FastColor.ABGR32.green;
-import static net.minecraft.util.FastColor.ABGR32.red;
+import static slimeknights.tconstruct.library.utils.ABGR.alpha;
+import static slimeknights.tconstruct.library.utils.ABGR.blue;
+import static slimeknights.tconstruct.library.utils.ABGR.color;
+import static slimeknights.tconstruct.library.utils.ABGR.green;
+import static slimeknights.tconstruct.library.utils.ABGR.red;
 
 /** Color mcom.mojang.blaze3d.platform.NativeImager each value */
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
