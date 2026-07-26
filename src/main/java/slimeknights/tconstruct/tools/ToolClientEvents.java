@@ -32,6 +32,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterRenderPipelinesEvent;
 import slimeknights.mantle.client.ResourceColorManager;
 import slimeknights.mantle.client.SafeClientAccess;
 import slimeknights.mantle.client.TooltipKey;
@@ -120,6 +121,11 @@ public class ToolClientEvents extends ClientEventBase {
   @SubscribeEvent
   static void registerSpriteSourceTypes(RegisterSpriteSourceTypesEvent event) {
     ShieldBannerModifierSpriteSource.register(event);
+  }
+
+  @SubscribeEvent
+  static void registerRenderPipelines(RegisterRenderPipelinesEvent event) {
+    slimeknights.tconstruct.library.client.TinkerRenderTypes.registerPipelines(event::registerPipeline);
   }
 
   @SubscribeEvent
