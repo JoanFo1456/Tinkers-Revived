@@ -44,7 +44,7 @@ public class ModifierSetWorktableRecipe extends AbstractWorktableRecipe {
   /** Message to display if there are no matching modifiers on the tool */
   public static final Component NO_MATCHES = TConstruct.makeTranslation("recipe", "modifier_set_worktable.empty");
   /** Logic to fetch a list of strings from the persistent data */
-  public static final BiFunction<CompoundTag, String, ListTag> LIST_GETTER = (tag, name) -> tag.getList(name, Tag.TAG_STRING);
+  public static final BiFunction<CompoundTag, String, ListTag> LIST_GETTER = (tag, name) -> tag.getListOrEmpty(name);
   /** Loader instance */
   public static final RecordLoadable<ModifierSetWorktableRecipe> LOADER = RecordLoadable.create(
     ContextKey.ID.requiredField(),
@@ -151,7 +151,7 @@ public class ModifierSetWorktableRecipe extends AbstractWorktableRecipe {
 
   /** Checks if the given modifier is in the set. Faster to use {@link #getModifierSet(IModDataView, Identifier)} for multiple consecutive queries */
   public static boolean isInSet(IModDataView modData, Identifier key, ModifierId modifier) {
-    if (!modData.contains(key, Tag.TAG_LIST)) {
+    if (!modData.contains(key)) {
       return false;
     }
     return isInSet(modData.get(key, LIST_GETTER), modifier, false);

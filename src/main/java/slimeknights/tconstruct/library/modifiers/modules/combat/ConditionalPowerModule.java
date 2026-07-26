@@ -107,10 +107,10 @@ public record ConditionalPowerModule(IJsonPredicate<LivingEntity> target, IJsonP
       persistentData.putBoolean(key, true);
       if (TinkerPredicate.matches(this.target, target) && TinkerPredicate.matches(this.holder, attacker)) {
         float multiplier = 1;
-        if (persistentData.contains(AMMO_MULTIPLIER, Tag.TAG_ANY_NUMERIC)) {
+        if (persistentData.contains(AMMO_MULTIPLIER)) {
           multiplier *= persistentData.getFloat(AMMO_MULTIPLIER);
         }
-        if (persistentData.contains(BOW_MULTIPLIER, Tag.TAG_ANY_NUMERIC)) {
+        if (persistentData.contains(BOW_MULTIPLIER)) {
           multiplier *= persistentData.getFloat(BOW_MULTIPLIER);
         }
         if (projectile instanceof AbstractArrow arrow) {

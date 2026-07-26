@@ -314,12 +314,12 @@ public class ThrownShuriken extends Projectile implements ToolProjectile, Projec
   @Override
   public void readAdditionalSaveData(CompoundTag tag) {
     super.readAdditionalSaveData(tag);
-    if (tag.contains(KEY_STACK, CompoundTag.TAG_COMPOUND)) {
+    if (tag.contains(KEY_STACK)) {
       setStack(TagUtil.readItem(tag.getCompound(KEY_STACK)));
     }
     this.entityData.set(WATER_INERTIA, tag.getFloat(KEY_WATER_INERTIA));
-    if (tag.contains(KEY_TASKS, CompoundTag.TAG_LIST)) {
-      this.tasks = Schedule.deserialize(tag.getList(KEY_TASKS, CompoundTag.TAG_COMPOUND));
+    if (tag.contains(KEY_TASKS)) {
+      this.tasks = Schedule.deserialize(tag.getListOrEmpty(KEY_TASKS));
     }
   }
 }

@@ -305,12 +305,12 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> im
 
   /** Reads the tank from NBT */
   public void read(CompoundTag tag) {
-    ListTag list = tag.getList(TAG_FLUIDS, Tag.TAG_COMPOUND);
+    ListTag list = tag.getListOrEmpty(TAG_FLUIDS);
     fluids.clear();
     contained = 0;
     for (int i = 0; i < list.size(); i++) {
       CompoundTag fluidTag = list.getCompound(i);
-      FluidStack fluid = fluidTag.contains("FluidName", Tag.TAG_STRING) ? TankItem.readFluid(fluidTag) : FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, fluidTag);
+      FluidStack fluid = fluidTag.contains("FluidName") ? TankItem.readFluid(fluidTag) : FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, fluidTag);
       if (!fluid.isEmpty()) {
         fluids.add(fluid);
         contained += fluid.getAmount();

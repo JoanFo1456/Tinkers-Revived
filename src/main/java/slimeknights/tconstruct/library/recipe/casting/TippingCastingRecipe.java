@@ -55,7 +55,7 @@ public class TippingCastingRecipe extends PotionCastingRecipe {
       // must also have a specific potion, it's what we are going to copy
       // but it can't match what is already on the stack
       CompoundTag fluidTag = inv.getFluidTag();
-      return fluidTag != null && fluidTag.contains(PotionUtils.TAG_POTION, Tag.TAG_STRING)
+      return fluidTag != null && fluidTag.contains(PotionUtils.TAG_POTION)
         && !ModifierUtil.getPersistentString(stack, modifier).equals(fluidTag.getString(PotionUtils.TAG_POTION));
     }
     return false;

@@ -164,10 +164,10 @@ public abstract class FuelModule implements ContainerData {
    * @param nbt  Tag to read from
    */
   public void readFromTag(CompoundTag nbt) {
-    if (nbt.contains(TAG_FUEL, Tag.TAG_ANY_NUMERIC)) {
+    if (nbt.contains(TAG_FUEL)) {
       fuel = nbt.getInt(TAG_FUEL);
     }
-    if (nbt.contains(TAG_TEMPERATURE, Tag.TAG_ANY_NUMERIC)) {
+    if (nbt.contains(TAG_TEMPERATURE)) {
       temperature = nbt.getInt(TAG_TEMPERATURE);
       rate = nbt.getInt(TAG_RATE);
     }

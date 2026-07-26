@@ -44,7 +44,7 @@ public class ReturningEffect extends TinkerEffect {
   @Override
   public boolean applyEffectTick(LivingEntity living, int amplifier) {
     ModDataNBT data = PersistentDataCapability.getOrWarn(living);
-    if (data.contains(KEY, Tag.TAG_COMPOUND)) {
+    if (data.contains(KEY)) {
       CompoundTag tag = data.getCompound(KEY);
       Identifier dimension = Identifier.tryParse(tag.getString("dimension"));
       // no teleporting if you switched dimensions

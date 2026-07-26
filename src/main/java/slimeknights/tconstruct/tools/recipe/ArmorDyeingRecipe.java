@@ -76,7 +76,7 @@ public class ArmorDyeingRecipe implements ITinkerStationRecipe, IMultiRecipe<IDi
     int count = 0;
 
     // copy existing color
-    if (persistentData.contains(key, Tag.TAG_INT)) {
+    if (persistentData.contains(key)) {
       int color = persistentData.getInt(key);
       int r = color >> 16 & 255;
       int g = color >>  8 & 255;

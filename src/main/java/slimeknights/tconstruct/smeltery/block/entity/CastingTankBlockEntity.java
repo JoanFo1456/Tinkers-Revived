@@ -296,7 +296,7 @@ public class CastingTankBlockEntity extends TableBlockEntity implements ITankBlo
   private void updateTank(CompoundTag nbt, HolderLookup.Provider registries) {
     if (nbt.isEmpty()) {
       tank.setFluid(FluidStack.EMPTY);
-    } else if (nbt.contains("FluidName", Tag.TAG_STRING)) {
+    } else if (nbt.contains("FluidName")) {
       tank.setFluid(TankItem.readFluid(nbt));
       TankBlockEntity.updateLight(this, tank);
     } else {

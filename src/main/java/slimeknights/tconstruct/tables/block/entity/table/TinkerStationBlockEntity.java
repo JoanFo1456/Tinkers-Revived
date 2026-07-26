@@ -349,7 +349,7 @@ public class TinkerStationBlockEntity extends RetexturedTableBlockEntity impleme
   @Override
   public void load(CompoundTag tags) {
     super.load(tags);
-    if (tags.contains(MATERIAL_TAG, Tag.TAG_STRING)) {
+    if (tags.contains(MATERIAL_TAG)) {
       material = Objects.requireNonNullElse(MaterialVariantId.tryParse(tags.getString(MATERIAL_TAG)), IMaterial.UNKNOWN_ID);
       RetexturedHelper.onTextureUpdated(this);
     }

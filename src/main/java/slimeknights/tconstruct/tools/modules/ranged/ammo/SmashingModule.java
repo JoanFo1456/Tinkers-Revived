@@ -111,7 +111,7 @@ public enum SmashingModule implements ModifierModule, FluidModifierHook, Project
 
   /** Gets the fluid from the given mod data */
   private static Fluid getFluid(IModDataView data) {
-    if (data.contains(KEY_FLUID, Tag.TAG_STRING)) {
+    if (data.contains(KEY_FLUID)) {
       Identifier id = Identifier.tryParse(data.getString(KEY_FLUID));
       if (id != null) {
         return BuiltInRegistries.FLUID.getValue(id);
@@ -123,7 +123,7 @@ public enum SmashingModule implements ModifierModule, FluidModifierHook, Project
   /** Gets the current fluid NBT */
   @Nullable
   private static CompoundTag getFluidTag(IModDataView data) {
-    if (data.contains(KEY_FLUID_TAG, Tag.TAG_COMPOUND)) {
+    if (data.contains(KEY_FLUID_TAG)) {
       return data.getCompound(KEY_FLUID_TAG);
     }
     return null;
@@ -155,7 +155,7 @@ public enum SmashingModule implements ModifierModule, FluidModifierHook, Project
     }
     ModDataNBT data = tool.getPersistentData();
     // already has fluid? can't fill
-    if (data.contains(KEY_FLUID, Tag.TAG_STRING)) {
+    if (data.contains(KEY_FLUID)) {
       return 0;
     }
     int amount = getAmount(modifier, resource.getFluid());
@@ -274,7 +274,7 @@ public enum SmashingModule implements ModifierModule, FluidModifierHook, Project
   @Override
   public Component validate(IToolStackView tool, ModifierEntry modifier) {
     ModDataNBT data = tool.getPersistentData();
-    if (data.contains(KEY_FLUID, Tag.TAG_STRING)) {
+    if (data.contains(KEY_FLUID)) {
       // if our new level is larger, error to prevent a fluid dupe
       float level = getValidationAmount(tool, modifier);
       if (data.getInt(KEY_VALIDATE) < level) {
@@ -308,7 +308,7 @@ public enum SmashingModule implements ModifierModule, FluidModifierHook, Project
         if (amount > 0) {
           persistentData.putString(KEY_FLUID, toolData.getString(KEY_FLUID));
           persistentData.putInt(KEY_AMOUNT, amount);
-          if (toolData.contains(KEY_FLUID_TAG, Tag.TAG_COMPOUND)) {
+          if (toolData.contains(KEY_FLUID_TAG)) {
             persistentData.put(KEY_FLUID_TAG, toolData.getCompound(KEY_FLUID_TAG));
           }
         }

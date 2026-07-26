@@ -614,7 +614,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     super.load(tags);
     tank.readFromTag(tags.getCompound(TAG_TANK));
     timer = tags.getInt(TAG_TIMER);
-    if (tags.contains(TAG_RECIPE, CompoundTag.TAG_STRING)) {
+    if (tags.contains(TAG_RECIPE)) {
       Identifier name = Identifier.tryParse(tags.getString(TAG_RECIPE));
       if (name == null) {
         return;

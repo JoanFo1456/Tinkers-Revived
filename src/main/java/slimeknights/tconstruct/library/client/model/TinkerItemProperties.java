@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.ItemAbilities;
 import slimeknights.tconstruct.TConstruct;
@@ -53,16 +53,16 @@ public class TinkerItemProperties {
   /** Boolean indicating the bow is pulling */
   private static final ItemPropertyFunction CHARGING = (stack, level, holder, seed) -> {
     if (holder != null && holder.isUsingItem() && holder.getUseItem() == stack) {
-      UseAnim anim = stack.getUseAnimation();
-      if (anim == UseAnim.BLOCK) {
+      ItemUseAnimation anim = stack.getUseAnimation();
+      if (anim == ItemUseAnimation.BLOCK) {
         return ModifierUtil.checkPersistentPresent(stack, ModifiableLauncherItem.KEY_DRAWBACK_AMMO) ? 2.5f : 2;
       }
       // TODO 1.21: space this out a bit more
-      if (anim == UseAnim.SPEAR) {
+      if (anim == ItemUseAnimation.SPEAR) {
         // shouldn't need to worry about arrows on spearing, everything supporting arrows uses just bow or block
         return 1.75f;
       }
-      if (anim != UseAnim.EAT && anim != UseAnim.DRINK) {
+      if (anim != ItemUseAnimation.EAT && anim != ItemUseAnimation.DRINK) {
         return ModifierUtil.checkPersistentPresent(stack, ModifiableLauncherItem.KEY_DRAWBACK_AMMO) ? 1.5f : 1;
       }
     }

@@ -174,7 +174,7 @@ public interface GeneralInteractionModifierHook {
   /** Gets the currently active modifier, or {@link ModifierEntry#EMPTY} if none is active. Generally does not need to be called in modifiers as we call it in internal logic. */
   static ModifierEntry getActiveModifier(IToolStackView tool) {
     IModDataView persistentData = tool.getPersistentData();
-    if (persistentData.contains(KEY_ACTIVE_MODIFIER, Tag.TAG_STRING)) {
+    if (persistentData.contains(KEY_ACTIVE_MODIFIER)) {
       ModifierId modifier = ModifierId.tryParse(persistentData.getString(KEY_ACTIVE_MODIFIER));
       if (modifier != null) {
         return tool.getModifiers().getEntry(modifier);

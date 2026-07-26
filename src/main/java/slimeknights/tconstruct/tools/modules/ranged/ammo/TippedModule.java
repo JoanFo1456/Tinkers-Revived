@@ -70,7 +70,7 @@ public enum TippedModule implements ModifierModule, ProjectileLaunchModifierHook
   public void onProjectileShoot(IToolStackView tool, ModifierEntry modifier, @Nullable LivingEntity shooter, ItemStack ammo, Projectile projectile, @Nullable AbstractArrow arrow, ModDataNBT persistentData, boolean primary) {
     Identifier key = modifier.getId();
     IModDataView toolData = tool.getPersistentData();
-    if (toolData.contains(key, Tag.TAG_STRING)) {
+    if (toolData.contains(key)) {
       persistentData.putString(key, toolData.getString(key));
     }
   }
@@ -93,7 +93,7 @@ public enum TippedModule implements ModifierModule, ProjectileLaunchModifierHook
   @Override
   public boolean onProjectileHitEntity(ModifierNBT modifiers, ModDataNBT persistentData, ModifierEntry modifier, Projectile projectile, EntityHitResult hit, @Nullable LivingEntity attacker, @Nullable LivingEntity target) {
     Identifier key = modifier.getId();
-    if (target != null && persistentData.contains(key, Tag.TAG_STRING)) {
+    if (target != null && persistentData.contains(key)) {
       Identifier id = Identifier.tryParse(persistentData.getString(key));
       if (id != null) {
         Entity source = projectile.getEffectSource();
@@ -122,7 +122,7 @@ public enum TippedModule implements ModifierModule, ProjectileLaunchModifierHook
   public void addTooltip(IToolStackView tool, ModifierEntry modifier, @Nullable Player player, List<Component> tooltip, TooltipKey tooltipKey, TooltipFlag tooltipFlag) {
     Identifier key = modifier.getId();
     IModDataView toolData = tool.getPersistentData();
-    if (toolData.contains(key, Tag.TAG_STRING)) {
+    if (toolData.contains(key)) {
       Identifier id = Identifier.tryParse(toolData.getString(key));
       if (id != null) {
         Holder<Potion> potion = BuiltInRegistries.POTION.get(id).<Holder<Potion>>map(holder -> holder).orElse(Potions.WATER);
@@ -138,7 +138,7 @@ public enum TippedModule implements ModifierModule, ProjectileLaunchModifierHook
   public Component getDisplayName(IToolStackView tool, ModifierEntry entry, Component name, @Nullable RegistryAccess access) {
     Identifier key = entry.getId();
     IModDataView toolData = tool.getPersistentData();
-    if (toolData.contains(key, Tag.TAG_STRING)) {
+    if (toolData.contains(key)) {
       Identifier id = Identifier.tryParse(toolData.getString(key));
       if (id != null) {
         Holder<Potion> potion = BuiltInRegistries.POTION.get(id).<Holder<Potion>>map(holder -> holder).orElse(Potions.WATER);

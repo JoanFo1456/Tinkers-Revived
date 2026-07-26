@@ -828,7 +828,7 @@ public class ToolModel implements IUnbakedGeometry<ToolModel> {
       // fetch ammo info from the stack
       ItemStack ammo;
       ModDataNBT persistentData = tool.getPersistentData();
-      if (ammoKey != null && persistentData.contains(ammoKey, Tag.TAG_COMPOUND)) {
+      if (ammoKey != null && persistentData.contains(ammoKey)) {
         RegistryAccess access = world != null ? world.registryAccess() : Minecraft.getInstance().level != null ? Minecraft.getInstance().level.registryAccess() : RegistryAccess.EMPTY;
         ammo = ItemStack.parse(access, persistentData.getCompound(ammoKey)).orElse(ItemStack.EMPTY);
         builder.add(ammo.getItem());

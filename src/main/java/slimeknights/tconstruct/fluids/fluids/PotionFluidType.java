@@ -51,7 +51,7 @@ public class PotionFluidType extends FluidType {
       @Override
       public int getTintColor(FluidStack stack) {
         CompoundTag tag = TagUtil.getTag(stack);
-        if (tag != null && tag.contains("CustomPotionColor", Tag.TAG_ANY_NUMERIC)) {
+        if (tag != null && tag.contains("CustomPotionColor")) {
           return tag.getInt("CustomPotionColor") | 0xFF000000;
         }
         if (PotionUtils.getPotion(tag).is(Potions.WATER)) {

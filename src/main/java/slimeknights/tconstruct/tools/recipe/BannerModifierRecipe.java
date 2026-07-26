@@ -105,7 +105,7 @@ public class BannerModifierRecipe implements ITinkerStationRecipe, IMultiRecipe<
     CompoundTag bannerData = blockEntityData == null ? null : blockEntityData.copyTag();
     ListTag patterns = new ListTag();
     if (bannerData != null) {
-      patterns = bannerData.getList("Patterns", Tag.TAG_COMPOUND);
+      patterns = bannerData.getListOrEmpty("Patterns");
     }
 
     // apply the pattern

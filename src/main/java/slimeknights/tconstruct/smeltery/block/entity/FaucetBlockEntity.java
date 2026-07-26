@@ -379,12 +379,12 @@ public class FaucetBlockEntity extends MantleBlockEntity {
     stopPouring = compound.getBoolean(TAG_STOP);
     lastRedstoneState = compound.getBoolean(TAG_LAST_REDSTONE);
     // fluids
-    if (compound.contains(TAG_DRAINED, Tag.TAG_COMPOUND)) {
+    if (compound.contains(TAG_DRAINED)) {
       drained = FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, compound.getCompound(TAG_DRAINED));
     } else {
       drained = FluidStack.EMPTY;
     }
-    if (compound.contains(TAG_RENDER_FLUID, Tag.TAG_COMPOUND)) {
+    if (compound.contains(TAG_RENDER_FLUID)) {
       renderFluid = FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, compound.getCompound(TAG_RENDER_FLUID));
     } else {
       renderFluid = FluidStack.EMPTY;

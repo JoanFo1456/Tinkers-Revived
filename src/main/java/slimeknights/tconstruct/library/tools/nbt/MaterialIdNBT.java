@@ -113,7 +113,7 @@ public class MaterialIdNBT {
   public static MaterialIdNBT from(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null) {
-      return readFromNBT(nbt.getList(ToolStack.TAG_MATERIALS, Tag.TAG_STRING));
+      return readFromNBT(nbt.getListOrEmpty(ToolStack.TAG_MATERIALS));
     }
     return EMPTY;
   }

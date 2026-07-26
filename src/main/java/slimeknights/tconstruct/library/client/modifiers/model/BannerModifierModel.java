@@ -65,8 +65,8 @@ public record BannerModifierModel(@Nullable Identifier smallPrefix, @Nullable Id
     if (prefix != null) {
       IModDataView modData = tool.getPersistentData();
       Identifier key = BannerModule.patternKey(modifier.getId());
-      if (modData.contains(key, CompoundTag.TAG_LIST)) {
-        ListTag list = modData.getList(key, ListTag.TAG_COMPOUND);
+      if (modData.contains(key)) {
+        ListTag list = modData.getListOrEmpty(key);
         List<BakedQuad> quads = new ArrayList<>(list.size());
         // iterate all patterns
         for (int i = 0; i < list.size(); i++) {

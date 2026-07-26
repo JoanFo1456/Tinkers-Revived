@@ -608,28 +608,28 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
   /* Tag */
 
   private void loadFromTag(CompoundTag nbt) {
-    if (nbt.contains(TAG_TANK, Tag.TAG_COMPOUND)) {
+    if (nbt.contains(TAG_TANK)) {
       tank.read(nbt.getCompound(TAG_TANK));
       FluidStack first = tank.getFluidInTank(0);
       if (!first.isEmpty()) {
         updateDisplayFluid(first);
       }
     }
-    if (nbt.contains(TAG_INVENTORY, Tag.TAG_COMPOUND)) {
+    if (nbt.contains(TAG_INVENTORY)) {
       meltingInventory.readFromTag(nbt.getCompound(TAG_INVENTORY));
     }
-    if (nbt.contains(TAG_STRUCTURE, Tag.TAG_COMPOUND)) {
+    if (nbt.contains(TAG_STRUCTURE)) {
       setStructure(multiblock.readFromTag(nbt.getCompound(TAG_STRUCTURE), this.worldPosition));
       if (structure != null) {
         fluidCapability = LazyOptional.of(() -> tank);
       }
     }
     // only exists to be sent server to client in update packets
-    if (nbt.contains(TAG_ERROR_POS, Tag.TAG_COMPOUND)) {
+    if (nbt.contains(TAG_ERROR_POS)) {
       this.errorPos = NbtUtils.readBlockPos(nbt.getCompound(TAG_ERROR_POS), "pos").map(pos -> pos.offset(this.worldPosition)).orElse(null);
     }
     fuelModule.readFromTag(nbt);
-    if (nbt.contains(TAG_TEXTURE, Tag.TAG_STRING)) {
+    if (nbt.contains(TAG_TEXTURE)) {
       texture = RetexturedHelper.getBlock(nbt.getString(TAG_TEXTURE));
       RetexturedHelper.onTextureUpdated(this);
     }

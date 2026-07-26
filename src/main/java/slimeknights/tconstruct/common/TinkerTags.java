@@ -669,7 +669,7 @@ public class TinkerTags {
     public static final TagKey<EntityType<?>> KILLAGERS = local("killagers");
     /** Entities in this tag drop bacon from the tasty modifier */
     public static final TagKey<EntityType<?>> BACON_PRODUCER = local("bacon_producer");
-    /** {@link net.minecraft.world.entity.projectile.AbstractArrow} with this tag will not run the enderference override. Ensures we run the proper damaging logic for weird arrows like tridents. */
+    /** {@link net.minecraft.world.entity.projectile.arrow.AbstractArrow} with this tag will not run the enderference override. Ensures we run the proper damaging logic for weird arrows like tridents. */
     public static final TagKey<EntityType<?>> ENDERFERENCE_ARROW_BLACKLIST = local("enderference_arrow_blacklist");
     /** Entities that will not heal you using necrotic */
     public static final TagKey<EntityType<?>> NECROTIC_BLACKLIST = local("necrotic_blacklist");

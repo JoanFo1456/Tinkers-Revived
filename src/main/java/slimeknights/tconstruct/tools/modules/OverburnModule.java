@@ -65,7 +65,7 @@ public enum OverburnModule implements ModifierModule, InventoryTickModifierHook,
     @Nullable
     public static FuelInfo read(IToolStackView tool, Identifier location) {
       ModDataNBT persistentData = tool.getPersistentData();
-      if (persistentData.contains(location, Tag.TAG_COMPOUND)) {
+      if (persistentData.contains(location)) {
         CompoundTag tag = persistentData.getCompound(location);
         return new FuelInfo(tag.getLong(EXPIRATION), tag.getInt(RATE));
       }

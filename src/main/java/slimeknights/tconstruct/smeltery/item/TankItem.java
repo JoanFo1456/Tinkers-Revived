@@ -55,7 +55,7 @@ public class TankItem extends BlockTooltipItem {
   private static boolean isFilled(ItemStack stack) {
     // has a container if not empty
     CompoundTag nbt = TagUtil.getTag(stack);
-    return nbt != null && nbt.contains(NBTTags.TANK, Tag.TAG_COMPOUND);
+    return nbt != null && nbt.contains(NBTTags.TANK);
   }
 
   @Override
@@ -318,7 +318,7 @@ public class TankItem extends BlockTooltipItem {
    */
   public static String getSubtype(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(NBTTags.TANK, Tag.TAG_COMPOUND)) {
+    if (nbt != null && nbt.contains(NBTTags.TANK)) {
       return nbt.getCompound(NBTTags.TANK).getString("FluidName");
     }
     return "";

@@ -42,7 +42,7 @@ public enum DyeModule implements ModifierModule, DisplayNameModifierHook, Modifi
   public Component getDisplayName(IToolStackView tool, ModifierEntry entry, Component name, @Nullable RegistryAccess access) {
     IModDataView persistentData = tool.getPersistentData();
     Identifier key = entry.getId();
-    if (persistentData.contains(key, Tag.TAG_INT)) {
+    if (persistentData.contains(key)) {
       int color = persistentData.getInt(key);
       Modifier modifier = entry.getModifier();
       return modifier.applyStyle(Component.translatable(modifier.getTranslationKey() + ".formatted",

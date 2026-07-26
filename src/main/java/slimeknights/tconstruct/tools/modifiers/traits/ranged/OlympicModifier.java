@@ -10,7 +10,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -81,7 +81,7 @@ public class OlympicModifier extends Modifier implements ProjectileLaunchModifie
     Level level = projectile.level();
     if (notBlocked && !level.isClientSide && targetEntity.getType().getCategory() == MobCategory.MONSTER && RANDOM.nextInt(20) < modifier.getLevel()) {
       CompoundTag startCompound = persistentData.getCompound(OLYMPIC_START);
-      if (!startCompound.isEmpty() && startCompound.contains("X", Tag.TAG_ANY_NUMERIC) && startCompound.contains("Y", Tag.TAG_ANY_NUMERIC) && startCompound.contains("Z", Tag.TAG_ANY_NUMERIC)) {
+      if (!startCompound.isEmpty() && startCompound.contains("X") && startCompound.contains("Y") && startCompound.contains("Z")) {
         // nugget type based on distance
         Item nugget = getNugget(targetEntity.distanceToSqr(startCompound.getDouble("X"), startCompound.getDouble("Y"), startCompound.getDouble("Z")));
         if (nugget != Items.AIR) {

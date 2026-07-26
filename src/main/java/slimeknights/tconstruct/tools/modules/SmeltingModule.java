@@ -157,7 +157,7 @@ public record SmeltingModule(RecipeType<? extends AbstractCookingRecipe> recipeT
     ModDataNBT data = tool.getPersistentData();
     Identifier key = input.getKey(modifier.getModifier());
 
-    if (data.contains(key, Tag.TAG_LIST)) {
+    if (data.contains(key)) {
       // going to cook each slot until we used up all the cooking power
       ListTag list = tool.getPersistentData().get(key, InventoryModule.GET_COMPOUND_LIST);
       float cookingPower = amount * multiplier;

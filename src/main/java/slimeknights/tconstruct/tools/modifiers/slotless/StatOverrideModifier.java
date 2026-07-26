@@ -66,7 +66,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
 
   /** Processes the stats from Tag into the consumer */
   private static void processStats(IModDataView persistentData, Identifier key, StatConsumer consumer) {
-    if (persistentData.contains(key, Tag.TAG_COMPOUND)) {
+    if (persistentData.contains(key)) {
       CompoundTag nbt = persistentData.getCompound(key);
       for (String name : nbt.getAllKeys()) {
         ToolStatId id = ToolStatId.tryParse(name);
@@ -107,7 +107,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
 
   /** Helper to get descriptions for one of the groups */
   private static void addToTooltip(IModDataView persistentData, Identifier groupKey, Component listStart, DecimalFormat format, Consumer<Component> consumer) {
-    if (persistentData.contains(groupKey, Tag.TAG_COMPOUND)) {
+    if (persistentData.contains(groupKey)) {
       CompoundTag stats = persistentData.getCompound(groupKey);
 
       // first one found has special behavior
@@ -180,7 +180,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
     // first, find the proper tag, create if missing
     ModDataNBT data = tool.getPersistentData();
     CompoundTag nbt;
-    if (data.contains(groupKey, Tag.TAG_COMPOUND)) {
+    if (data.contains(groupKey)) {
       return data.getCompound(groupKey);
     } else if (createTag) {
       nbt = new CompoundTag();
@@ -195,10 +195,10 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
   /** Gets the given stat from Tag */
   private static float getStat(IToolStackView tool, Identifier groupKey, INumericToolStat<?> stat, float defaultValue) {
     IModDataView data = tool.getPersistentData();
-    if (data.contains(groupKey, Tag.TAG_COMPOUND)) {
+    if (data.contains(groupKey)) {
       CompoundTag nbt = data.getCompound(groupKey);
       String name = stat.getName().toString();
-      if (nbt.contains(name, Tag.TAG_FLOAT)) {
+      if (nbt.contains(name)) {
         return nbt.getFloat(name);
       }
     }

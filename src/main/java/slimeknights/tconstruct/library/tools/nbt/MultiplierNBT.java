@@ -76,7 +76,7 @@ public class MultiplierNBT {
     Builder builder = builder();
     CompoundTag nbt = (CompoundTag)inbt;
     for (String key : nbt.getAllKeys()) {
-      if (nbt.contains(key, Tag.TAG_ANY_NUMERIC) && StatsNBT.readStatIdFromNBT(key) instanceof INumericToolStat<?> stat) {
+      if (nbt.contains(key) && StatsNBT.readStatIdFromNBT(key) instanceof INumericToolStat<?> stat) {
         builder.set(stat, nbt.getFloat(key));
       }
     }

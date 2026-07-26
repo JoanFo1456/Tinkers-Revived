@@ -126,7 +126,7 @@ public class ServantTileEntity extends MantleBlockEntity implements IServantLogi
     BlockPos masterPos = TagUtil.readOptionalPos(tags, TAG_MASTER_POS, this.worldPosition);
     Block masterBlock = null;
     // if the master position is valid, get the master block
-    if (masterPos != null && tags.contains(TAG_MASTER_BLOCK, Tag.TAG_STRING)) {
+    if (masterPos != null && tags.contains(TAG_MASTER_BLOCK)) {
       Identifier masterBlockName = Identifier.tryParse(tags.getString(TAG_MASTER_BLOCK));
       if (masterBlockName != null && ForgeRegistries.BLOCKS.containsKey(masterBlockName)) {
         masterBlock = ForgeRegistries.BLOCKS.getValue(masterBlockName);

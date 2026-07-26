@@ -168,7 +168,7 @@ public class TooltipUtil {
       tooltip.add(UNINITIALIZED);
       if (definition.hasMaterials()) {
         CompoundTag nbt = TagUtil.getTag(stack);
-        if (nbt == null || !nbt.contains(ToolStack.TAG_MATERIALS, Tag.TAG_LIST)) {
+        if (nbt == null || !nbt.contains(ToolStack.TAG_MATERIALS)) {
           tooltip.add(RANDOM_MATERIALS);
         }
       }

@@ -75,7 +75,7 @@ public class EntityModifierCapability {
 
     @Override
     public ModifierNBT getModifiers() {
-      return ModifierNBT.readFromNBT(entity.getPersistentData().getList(KEY, Tag.TAG_COMPOUND));
+      return ModifierNBT.readFromNBT(entity.getPersistentData().getListOrEmpty(KEY));
     }
 
     @Override

@@ -129,7 +129,7 @@ public class CopperCanItem extends Item {
   /** Gets the fluid from the given stack */
   public static Fluid getFluid(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(TAG_FLUID, Tag.TAG_STRING)) {
+    if (nbt != null && nbt.contains(TAG_FLUID)) {
       Identifier location = Identifier.tryParse(nbt.getString(TAG_FLUID));
       if (location != null && ForgeRegistries.FLUIDS.containsKey(location)) {
         Fluid fluid = ForgeRegistries.FLUIDS.getValue(location);
@@ -156,7 +156,7 @@ public class CopperCanItem extends Item {
   @Nullable
   public static CompoundTag getFluidTag(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(TAG_FLUID_TAG, Tag.TAG_COMPOUND)) {
+    if (nbt != null && nbt.contains(TAG_FLUID_TAG)) {
       return nbt.getCompound(TAG_FLUID_TAG);
     }
     return null;

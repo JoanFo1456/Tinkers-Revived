@@ -94,8 +94,8 @@ public final class ModifierUtil {
   public static int getModifierLevel(ItemStack stack, ModifierId modifier) {
     if (!stack.isEmpty() && stack.is(TinkerTags.Items.MODIFIABLE)) {
       CompoundTag nbt = TagUtil.getTag(stack);
-      if (nbt != null && nbt.contains(ToolStack.TAG_MODIFIERS, Tag.TAG_LIST)) {
-        ListTag list = nbt.getList(ToolStack.TAG_MODIFIERS, Tag.TAG_COMPOUND);
+      if (nbt != null && nbt.contains(ToolStack.TAG_MODIFIERS)) {
+        ListTag list = nbt.getListOrEmpty(ToolStack.TAG_MODIFIERS);
         int size = list.size();
         if (size > 0) {
           String key = modifier.toString();
@@ -115,7 +115,7 @@ public final class ModifierUtil {
   public static boolean hasUpgrades(ItemStack stack) {
     if (!stack.isEmpty() && stack.is(TinkerTags.Items.MODIFIABLE)) {
       CompoundTag nbt = TagUtil.getTag(stack);
-      return nbt != null && !nbt.getList(ToolStack.TAG_UPGRADES, Tag.TAG_COMPOUND).isEmpty();
+      return nbt != null && !nbt.getListOrEmpty(ToolStack.TAG_UPGRADES).isEmpty();
     }
     return false;
   }
@@ -133,7 +133,7 @@ public final class ModifierUtil {
   /** Shortcut to get a volatile flag when the tool stack is not needed otherwise */
   public static boolean checkVolatileFlag(ItemStack stack, Identifier flag) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA, Tag.TAG_COMPOUND)) {
+    if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA)) {
       return nbt.getCompound(ToolStack.TAG_VOLATILE_MOD_DATA).getBoolean(flag.toString());
     }
     return false;
@@ -142,7 +142,7 @@ public final class ModifierUtil {
   /** Shortcut to get a persistent flag when the tool stack is not needed otherwise */
   public static boolean checkPersistentPresent(ItemStack stack, Identifier key) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA, Tag.TAG_COMPOUND)) {
+    if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA)) {
       return nbt.getCompound(ToolStack.TAG_VOLATILE_MOD_DATA).contains(key.toString());
     }
     return false;
@@ -151,7 +151,7 @@ public final class ModifierUtil {
   /** Shortcut to get a volatile int value when the tool stack is not needed otherwise */
   public static int getVolatileInt(ItemStack stack, Identifier flag) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA, Tag.TAG_COMPOUND)) {
+    if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA)) {
       return nbt.getCompound(ToolStack.TAG_VOLATILE_MOD_DATA).getInt(flag.toString());
     }
     return 0;
@@ -160,10 +160,10 @@ public final class ModifierUtil {
   /** Shortcut to get a volatile int value when the tool stack is not needed otherwise */
   public static int getPersistentInt(ItemStack stack, Identifier flag, int defealtValue) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(ToolStack.TAG_PERSISTENT_MOD_DATA, Tag.TAG_COMPOUND)) {
+    if (nbt != null && nbt.contains(ToolStack.TAG_PERSISTENT_MOD_DATA)) {
       CompoundTag persistent = nbt.getCompound(ToolStack.TAG_PERSISTENT_MOD_DATA);
       String flagString = flag.toString();
-      if (persistent.contains(flagString, Tag.TAG_INT)) {
+      if (persistent.contains(flagString)) {
         return persistent.getInt(flagString);
       }
     }
@@ -173,7 +173,7 @@ public final class ModifierUtil {
   /** Shortcut to get a persistent string value when the tool stack is not needed otherwise */
   public static String getPersistentString(ItemStack stack, Identifier flag) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(ToolStack.TAG_PERSISTENT_MOD_DATA, Tag.TAG_COMPOUND)) {
+    if (nbt != null && nbt.contains(ToolStack.TAG_PERSISTENT_MOD_DATA)) {
       return nbt.getCompound(ToolStack.TAG_PERSISTENT_MOD_DATA).getString(flag.toString());
     }
     return "";

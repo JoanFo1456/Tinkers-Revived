@@ -149,8 +149,8 @@ public abstract class MaterialArmorTextureSupplier implements ArmorTextureSuppli
     @Override
     protected String getMaterial(ItemStack stack) {
       CompoundTag tag = TagUtil.getTag(stack);
-      if (tag != null && tag.contains(ToolStack.TAG_MATERIALS, Tag.TAG_LIST)) {
-        return tag.getList(ToolStack.TAG_MATERIALS, Tag.TAG_STRING).getString(index);
+      if (tag != null && tag.contains(ToolStack.TAG_MATERIALS)) {
+        return tag.getListOrEmpty(ToolStack.TAG_MATERIALS).getString(index);
       }
       return "";
     }

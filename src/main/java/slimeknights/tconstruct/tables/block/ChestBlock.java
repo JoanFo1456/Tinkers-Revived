@@ -61,7 +61,7 @@ public class ChestBlock extends TabbedTableBlock {
     // check if we also have an inventory
 
     CompoundTag tag = TagUtil.getTag(stack);
-    if (tag != null && tag.contains("TinkerData", Tag.TAG_COMPOUND)) {
+    if (tag != null && tag.contains("TinkerData")) {
       CompoundTag tinkerData = tag.getCompound("TinkerData");
       BlockEntity te = worldIn.getBlockEntity(pos);
       if (te instanceof AbstractChestBlockEntity chest) {

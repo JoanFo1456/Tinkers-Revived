@@ -203,7 +203,7 @@ public class ModifierEntry implements Comparable<ModifierEntry> {
 
   /** Reads a modifier entry from NBT */
   public static ModifierEntry readFromNBT(CompoundTag tag) {
-    if (tag.contains(TAG_MODIFIER, Tag.TAG_STRING)) {
+    if (tag.contains(TAG_MODIFIER)) {
       ModifierId id = ModifierId.tryParse(tag.getString(TAG_MODIFIER));
       int level = tag.getInt(TAG_LEVEL);
       if (id != null && level > 0) {

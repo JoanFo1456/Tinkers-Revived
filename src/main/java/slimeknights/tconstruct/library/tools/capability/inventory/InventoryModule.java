@@ -58,7 +58,7 @@ import java.util.function.Predicate;
 public class InventoryModule implements ModifierModule, InventoryModifierHook, VolatileDataModifierHook, ValidateModifierHook, ModifierRemovalHook, ModuleWithKey, ConditionalModule<IToolContext>, SlotStackModifierHook {
   private static final List<ModuleHook<?>> DEFAULT_HOOKS = HookProvider.<InventoryModule>defaultHooks(ToolInventoryCapability.HOOK, ModifierHooks.VOLATILE_DATA, ModifierHooks.VALIDATE, ModifierHooks.REMOVE, ModifierHooks.SLOT_STACK);
   /** Mod Data NBT mapper to get a compound list */
-  public static final BiFunction<CompoundTag,String,ListTag> GET_COMPOUND_LIST = (nbt, name) -> nbt.getList(name, Tag.TAG_COMPOUND);
+  public static final BiFunction<CompoundTag,String,ListTag> GET_COMPOUND_LIST = (nbt, name) -> nbt.getListOrEmpty(name);
   /** Error for if the container has items preventing modifier removal */
   private static final Component HAS_ITEMS = TConstruct.makeTranslation("modifier", "inventory_cannot_remove");
   /** NBT key to store the slot for a stack */
@@ -141,7 +141,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
   public ItemStack getStack(IToolStackView tool, ModifierEntry modifier, int slot) {
     IModDataView modData = tool.getPersistentData();
     Identifier key = getKey(modifier.getModifier());
-    if (slot < getSlots(tool, modifier) && modData.contains(key, Tag.TAG_LIST)) {
+    if (slot < getSlots(tool, modifier) && modData.contains(key)) {
       ListTag list = tool.getPersistentData().get(key, GET_COMPOUND_LIST);
       for (int i = 0; i < list.size(); i++) {
         CompoundTag compound = list.getCompound(i);
@@ -161,7 +161,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
       // if the tag exists, fetch it
       Identifier key = getKey(modifier.getModifier());
       int insertIndex = 0;
-      if (modData.contains(key, Tag.TAG_LIST)) {
+      if (modData.contains(key)) {
         list = modData.get(key, GET_COMPOUND_LIST);
         // first, try to find an existing stack in the slot
         for (int i = 0; i < list.size(); i++) {
@@ -212,7 +212,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
       IModDataView persistentData = tool.getPersistentData();
       Identifier key = getKey(modifier.getModifier());
       int maxSlots = getSlots(tool, modifier);
-      if (persistentData.contains(key, Tag.TAG_LIST)) {
+      if (persistentData.contains(key)) {
         ListTag listNBT = persistentData.get(key, GET_COMPOUND_LIST);
         if (!listNBT.isEmpty()) {
           if (maxSlots == 0) {
@@ -248,7 +248,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
     // if we currently have item data, then return an error
     ModDataNBT persistentData = tool.getPersistentData();
     Identifier key = getKey(modifier);
-    if (persistentData.contains(key, Tag.TAG_LIST) && !persistentData.get(key, GET_COMPOUND_LIST).isEmpty()) {
+    if (persistentData.contains(key) && !persistentData.get(key, GET_COMPOUND_LIST).isEmpty()) {
       return HAS_ITEMS;
     }
     // remove the data key, should be empty
@@ -305,7 +305,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
     if (max > 0) {
       IModDataView modData = tool.getPersistentData();
       Identifier key = getKey(entry.getModifier());
-      if (modData.contains(key, Tag.TAG_LIST)) {
+      if (modData.contains(key)) {
         ListTag list = modData.get(key, GET_COMPOUND_LIST);
 
         // make sure the stacks are in order, NBT could store them in any order

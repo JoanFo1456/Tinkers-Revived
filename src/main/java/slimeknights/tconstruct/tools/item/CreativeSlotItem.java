@@ -45,7 +45,7 @@ public class CreativeSlotItem extends Item {
   @Nullable
   public static SlotType getSlot(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    if (nbt != null && nbt.contains(NBT_KEY, Tag.TAG_STRING)) {
+    if (nbt != null && nbt.contains(NBT_KEY)) {
       return SlotType.getIfPresent(nbt.getString(NBT_KEY));
     }
     return null;
@@ -114,7 +114,7 @@ public class CreativeSlotItem extends Item {
           // find the tool data
           ModDataNBT persistentData = tool.getPersistentData();
           CompoundTag slots;
-          if (persistentData.contains(CreativeSlotModifier.KEY_SLOTS, Tag.TAG_COMPOUND)) {
+          if (persistentData.contains(CreativeSlotModifier.KEY_SLOTS)) {
             slots = persistentData.getCompound(CreativeSlotModifier.KEY_SLOTS);
           } else {
             slots = new CompoundTag();

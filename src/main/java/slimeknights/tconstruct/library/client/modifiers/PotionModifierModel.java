@@ -69,7 +69,7 @@ public class PotionModifierModel implements SimpleModifierModel {
     if (texture != null) {
       Identifier key = modifier.getId();
       IModDataView toolData = tool.getPersistentData();
-      if (toolData.contains(key, Tag.TAG_STRING)) {
+      if (toolData.contains(key)) {
         Identifier id = Identifier.tryParse(toolData.getString(key));
         if (id != null) {
           BuiltInRegistries.POTION.getHolder(id).ifPresent(potion ->

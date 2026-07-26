@@ -72,7 +72,7 @@ public abstract class AbstractStructureRepalleter extends GenericNBTProvider {
         for (RepaletteTask task : entry.getValue()) {
           // start by fetching the palette, we assume its not randomized
           CompoundTag newStructure = inputNBT.copy();
-          ListTag palette = newStructure.getList("palette", Tag.TAG_COMPOUND);
+          ListTag palette = newStructure.getListOrEmpty("palette");
 
           // if we have a single palette, modify directly
           if (task.replacements.length == 1) {

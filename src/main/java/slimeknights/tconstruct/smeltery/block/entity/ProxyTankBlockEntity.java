@@ -146,7 +146,7 @@ public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTan
   @Override
   public void load(CompoundTag tag) {
     super.load(tag);
-    if (tag.contains(TAG_ITEM, Tag.TAG_COMPOUND)) {
+    if (tag.contains(TAG_ITEM)) {
       itemTank.readFromNBT(tag.getCompound(TAG_ITEM));
     }
   }

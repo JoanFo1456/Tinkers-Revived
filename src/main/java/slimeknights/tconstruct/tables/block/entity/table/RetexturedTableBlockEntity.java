@@ -77,7 +77,7 @@ public abstract class RetexturedTableBlockEntity extends TableBlockEntity implem
   @Override
   public void load(CompoundTag tags) {
     super.load(tags);
-    if (tags.contains(TAG_TEXTURE, Tag.TAG_STRING)) {
+    if (tags.contains(TAG_TEXTURE)) {
       texture = RetexturedHelper.getBlock(tags.getString(TAG_TEXTURE));
       textureUpdated();
     }

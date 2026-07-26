@@ -68,7 +68,7 @@ public class TippedToolTransformRecipe extends ToolBuildingRecipe {
         // if we found one, set its NBT into the result tool
         if (!stack.isEmpty()) {
           CompoundTag tag = TagUtil.getTag(stack);
-          if (tag != null && tag.contains(PotionUtils.TAG_POTION, Tag.TAG_STRING)) {
+          if (tag != null && tag.contains(PotionUtils.TAG_POTION)) {
             tool.getPersistentData().putString(modifier, tag.getString(PotionUtils.TAG_POTION));
           }
         }

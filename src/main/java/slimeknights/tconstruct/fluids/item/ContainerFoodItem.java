@@ -10,7 +10,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -29,8 +29,8 @@ public class ContainerFoodItem extends Item {
   }
 
   @Override
-  public UseAnim getUseAnimation(ItemStack pStack) {
-    return UseAnim.DRINK;
+  public ItemUseAnimation getUseAnimation(ItemStack pStack) {
+    return ItemUseAnimation.DRINK;
   }
 
   /** Adds effects to the tooltip */
