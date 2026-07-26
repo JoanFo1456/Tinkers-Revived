@@ -7,7 +7,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
@@ -78,7 +78,7 @@ public final class PotionUtils {
 
   private static Holder<Potion> readPotion(CompoundTag tag) {
     if (tag != null && tag.contains(TAG_POTION)) {
-      ResourceLocation id = ResourceLocation.tryParse(tag.getString(TAG_POTION));
+      Identifier id = Identifier.tryParse(tag.getString(TAG_POTION));
       if (id != null) {
         return BuiltInRegistries.POTION.getHolder(id).<Holder<Potion>>map(holder -> holder).orElse(Potions.WATER);
       }

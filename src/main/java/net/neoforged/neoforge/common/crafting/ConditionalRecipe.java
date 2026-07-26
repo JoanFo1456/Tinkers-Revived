@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import slimeknights.mantle.recipe.data.FinishedRecipe;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.conditions.ICondition;
 
 public final class ConditionalRecipe {
@@ -30,7 +30,7 @@ public final class ConditionalRecipe {
       return this;
     }
 
-    public void build(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
+    public void build(Consumer<FinishedRecipe> consumer, Identifier id) {
       if (!recipes.isEmpty()) {
         recipes.get(recipes.size() - 1).accept(recipe -> consumer.accept(recipe));
       }

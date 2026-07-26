@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.compat.neoforged.neoforge.event;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 /** Compatibility shim for removed attach capability event. */
 public class AttachCapabilitiesEvent<T> {
@@ -14,7 +14,7 @@ public class AttachCapabilitiesEvent<T> {
     return object;
   }
 
-  public void addCapability(ResourceLocation id, Object provider) {}
+  public void addCapability(Identifier id, Object provider) {}
 
   public void addListener(Runnable listener) {}
 }

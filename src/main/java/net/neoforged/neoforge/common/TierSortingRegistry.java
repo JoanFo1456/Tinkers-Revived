@@ -2,7 +2,7 @@ package slimeknights.tconstruct.compat.neoforged.neoforge.common;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,16 +17,16 @@ public final class TierSortingRegistry {
   }
 
   @Nullable
-  public static ResourceLocation getName(Tier tier) {
+  public static Identifier getName(Tier tier) {
     if (tier instanceof Tiers vanilla) {
-      return ResourceLocation.withDefaultNamespace(vanilla.name().toLowerCase(java.util.Locale.ROOT));
+      return Identifier.withDefaultNamespace(vanilla.name().toLowerCase(java.util.Locale.ROOT));
     }
     return null;
   }
 
   @Nullable
-  public static Tier byName(ResourceLocation name) {
-    if (!name.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {
+  public static Tier byName(Identifier name) {
+    if (!name.getNamespace().equals(Identifier.DEFAULT_NAMESPACE)) {
       return null;
     }
     return switch (name.getPath()) {

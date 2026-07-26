@@ -6,7 +6,7 @@ import com.mojang.serialization.JsonOps;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import slimeknights.mantle.recipe.condition.ConditionHelper;
 
@@ -26,7 +26,7 @@ public final class ConditionalAdvancement {
       this.advancement = advancement;
     }
 
-    public JsonObject write(ResourceLocation id) {
+    public JsonObject write(Identifier id) {
       if (advancement == null) {
         throw new IllegalStateException("Conditional advancement " + id + " has no advancement");
       }
