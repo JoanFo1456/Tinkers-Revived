@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.model.data.ModelData;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.capabilities.Capability;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;

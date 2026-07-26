@@ -15,7 +15,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.model.data.ModelData;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
 import slimeknights.tconstruct.compat.neoforged.neoforge.event.ForgeEventFactory;
 import org.apache.commons.lang3.StringUtils;
