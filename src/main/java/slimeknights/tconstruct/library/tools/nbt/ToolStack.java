@@ -391,7 +391,7 @@ public class ToolStack implements IToolStackView {
   public boolean isBroken() {
     refreshStackTag();
     if (broken == null) {
-      broken = nbt.getBoolean(TAG_BROKEN);
+      broken = nbt.getBooleanOr(TAG_BROKEN, false);
     }
     return broken;
   }
@@ -399,7 +399,7 @@ public class ToolStack implements IToolStackView {
   @Override
   public boolean isUnbreakable() {
     refreshStackTag();
-    return nbt.getBoolean(TAG_UNBREAKABLE);
+    return nbt.getBooleanOr(TAG_UNBREAKABLE, false);
   }
 
   /**
@@ -427,7 +427,7 @@ public class ToolStack implements IToolStackView {
   protected int getDamageRaw() {
     refreshStackTag();
     if (damage == -1) {
-      damage = nbt.getInt(TAG_DAMAGE);
+      damage = nbt.getIntOr(TAG_DAMAGE, 0);
     }
     return damage;
   }
@@ -696,7 +696,7 @@ public class ToolStack implements IToolStackView {
     if (persistentModData == null) {
       // parse if the tag already exists
       if (nbt.contains(TAG_PERSISTENT_MOD_DATA)) {
-        persistentModData = ToolDataNBT.readFromNBT(nbt.getCompound(TAG_PERSISTENT_MOD_DATA));
+        persistentModData = ToolDataNBT.readFromNBT(nbt.getCompoundOrEmpty(TAG_PERSISTENT_MOD_DATA));
       } else {
         // if no tag exists, create it
         CompoundTag tag = new CompoundTag();
@@ -714,7 +714,7 @@ public class ToolStack implements IToolStackView {
     if (volatileModData == null) {
       // parse if the tag already exists
       if (nbt.contains(TAG_VOLATILE_MOD_DATA)) {
-        volatileModData = ToolDataNBT.readFromNBT(nbt.getCompound(TAG_VOLATILE_MOD_DATA));
+        volatileModData = ToolDataNBT.readFromNBT(nbt.getCompoundOrEmpty(TAG_VOLATILE_MOD_DATA));
       } else {
         // if no tag exists, return empty
         volatileModData = IModDataView.EMPTY;
@@ -919,7 +919,7 @@ public class ToolStack implements IToolStackView {
    */
   public static void verifyTag(Item item, CompoundTag tag, ToolDefinition definition) {
     // this function is sometimes called before datapack contents load, do nothing then
-    if (tag.getBoolean(TooltipUtil.KEY_DISPLAY)) {
+    if (tag.getBooleanOr(TooltipUtil.KEY_DISPLAY, false)) {
       return;
     }
 

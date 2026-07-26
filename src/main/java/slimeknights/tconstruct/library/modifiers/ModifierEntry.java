@@ -205,7 +205,7 @@ public class ModifierEntry implements Comparable<ModifierEntry> {
   public static ModifierEntry readFromNBT(CompoundTag tag) {
     if (tag.contains(TAG_MODIFIER)) {
       ModifierId id = ModifierId.tryParse(tag.getString(TAG_MODIFIER));
-      int level = tag.getInt(TAG_LEVEL);
+      int level = tag.getIntOr(TAG_LEVEL, 0);
       if (id != null && level > 0) {
         // incremental just has more tags, if they are missing they will just 0 and of will give us the base class
         return IncrementalModifierEntry.of(id, level, tag.getInt(TAG_AMOUNT), tag.getInt(TAG_NEEDED));

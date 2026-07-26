@@ -78,7 +78,7 @@ public final class PotionUtils {
 
   private static Holder<Potion> readPotion(CompoundTag tag) {
     if (tag != null && tag.contains(TAG_POTION)) {
-      Identifier id = Identifier.tryParse(tag.getString(TAG_POTION));
+      Identifier id = Identifier.tryParse(tag.getStringOr(TAG_POTION, ""));
       if (id != null) {
         return BuiltInRegistries.POTION.getHolder(id).<Holder<Potion>>map(holder -> holder).orElse(Potions.WATER);
       }

@@ -100,9 +100,9 @@ public final class ModifierUtil {
         if (size > 0) {
           String key = modifier.toString();
           for (int i = 0; i < size; i++) {
-            CompoundTag entry = list.getCompound(i);
+            CompoundTag entry = list.getCompoundOrEmpty(i);
             if (key.equals(entry.getString(ModifierEntry.TAG_MODIFIER))) {
-              return entry.getInt(ModifierEntry.TAG_LEVEL);
+              return entry.getIntOr(ModifierEntry.TAG_LEVEL, 0);
             }
           }
         }
@@ -161,10 +161,10 @@ public final class ModifierUtil {
   public static int getPersistentInt(ItemStack stack, Identifier flag, int defealtValue) {
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null && nbt.contains(ToolStack.TAG_PERSISTENT_MOD_DATA)) {
-      CompoundTag persistent = nbt.getCompound(ToolStack.TAG_PERSISTENT_MOD_DATA);
+      CompoundTag persistent = nbt.getCompoundOrEmpty(ToolStack.TAG_PERSISTENT_MOD_DATA);
       String flagString = flag.toString();
       if (persistent.contains(flagString)) {
-        return persistent.getInt(flagString);
+        return persistent.getIntOr(flagString, 0);
       }
     }
     return defealtValue;
