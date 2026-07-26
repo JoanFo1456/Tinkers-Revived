@@ -30,7 +30,7 @@ public class ModifiableArmorMaterial extends DummyArmorMaterial {
   public static ModifiableArmorMaterial create(Identifier id, SoundEvent equipSound, ArmorType... slots) {
     ToolDefinition[] definitions = new ToolDefinition[4];
     for (ArmorType slot : slots) {
-      if (!slot.hasTrims()) {
+      if (slot == ArmorType.BODY) {
         throw new IllegalArgumentException("Unsupported armor slot " + slot.getName());
       }
       definitions[slot.ordinal()] = ToolDefinition.create(id.withSuffix("_" + slot.getName()));
@@ -50,7 +50,7 @@ public class ModifiableArmorMaterial extends DummyArmorMaterial {
    */
   @Nullable
   public ToolDefinition getArmorDefinition(ArmorType slotType) {
-    if (!slotType.hasTrims()) {
+    if (slotType == ArmorType.BODY) {
       return null;
     }
     return armorDefinitions[slotType.ordinal()];

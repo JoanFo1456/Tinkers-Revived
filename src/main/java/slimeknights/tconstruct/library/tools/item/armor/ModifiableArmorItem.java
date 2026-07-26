@@ -24,9 +24,9 @@ import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
@@ -69,7 +69,7 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class ModifiableArmorItem extends ArmorItem implements IModifiableDisplay {
+public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /** Volatile modifier tag to make piglins neutal when worn */
   public static final Identifier PIGLIN_NEUTRAL = TConstruct.getResource("piglin_neutral");
   /** Volatile modifier tag to make this item an elytra */
@@ -81,15 +81,23 @@ public class ModifiableArmorItem extends ArmorItem implements IModifiableDisplay
 
   @Getter
   private final ToolDefinition toolDefinition;
+  /** Armor slot type this item occupies */
+  private final ArmorType armorType;
   /** Cache of the tool built for rendering */
   private ItemStack toolForRendering = null;
-  public ModifiableArmorItem(Holder<ArmorMaterial> materialIn, ArmorItem.Type type, Properties builderIn, ToolDefinition toolDefinition) {
-    super(materialIn, type, builderIn);
+  public ModifiableArmorItem(ArmorMaterial materialIn, ArmorType type, Properties builderIn, ToolDefinition toolDefinition) {
+    super(builderIn.humanoidArmor(materialIn, type));
+    this.armorType = type;
     this.toolDefinition = toolDefinition;
   }
 
-  public ModifiableArmorItem(ModifiableArmorMaterial material, ArmorItem.Type type, Properties properties) {
-    this(material.getMaterialHolder(), type, properties, Objects.requireNonNull(material.getArmorDefinition(type), "Missing tool definition for " + type.getName()));
+  public ModifiableArmorItem(ModifiableArmorMaterial material, ArmorType type, Properties properties) {
+    this(material.getArmorMaterial(), type, properties, Objects.requireNonNull(material.getArmorDefinition(type), "Missing tool definition for " + type.getName()));
+  }
+
+  /** Gets the equipment slot this armor occupies */
+  public EquipmentSlot getEquipmentSlot() {
+    return armorType.getSlot();
   }
 
   /* Basic properties */
@@ -106,12 +114,12 @@ public class ModifiableArmorItem extends ArmorItem implements IModifiableDisplay
 
   @Override
   public boolean canWalkOnPowderedSnow(ItemStack stack, LivingEntity wearer) {
-    return type == Type.BOOTS && ModifierUtil.checkVolatileFlag(stack, SNOW_BOOTS);
+    return armorType == ArmorType.BOOTS && ModifierUtil.checkVolatileFlag(stack, SNOW_BOOTS);
   }
 
   @Override
   public boolean isEnderMask(ItemStack stack, Player player, EnderMan endermanEntity) {
-    return type == Type.HELMET && ModifierUtil.checkVolatileFlag(stack, ENDERMASK);
+    return armorType == ArmorType.HELMET && ModifierUtil.checkVolatileFlag(stack, ENDERMASK);
   }
 
   @Override
@@ -297,15 +305,15 @@ public class ModifiableArmorItem extends ArmorItem implements IModifiableDisplay
       StatsNBT statsNBT = tool.getStats();
       float armor = statsNBT.get(ToolStats.ARMOR);
       if (armor > 0) {
-        builder.put(Attributes.ARMOR.value(), new AttributeModifier(TConstruct.getResource("armor/" + type.getName() + "/armor"), armor, AttributeModifier.Operation.ADD_VALUE));
+        builder.put(Attributes.ARMOR.value(), new AttributeModifier(TConstruct.getResource("armor/" + armorType.getName() + "/armor"), armor, AttributeModifier.Operation.ADD_VALUE));
       }
       float toughness = statsNBT.get(ToolStats.ARMOR_TOUGHNESS);
       if (toughness > 0) {
-        builder.put(Attributes.ARMOR_TOUGHNESS.value(), new AttributeModifier(TConstruct.getResource("armor/" + type.getName() + "/toughness"), toughness, AttributeModifier.Operation.ADD_VALUE));
+        builder.put(Attributes.ARMOR_TOUGHNESS.value(), new AttributeModifier(TConstruct.getResource("armor/" + armorType.getName() + "/toughness"), toughness, AttributeModifier.Operation.ADD_VALUE));
       }
       double knockbackResistance = statsNBT.get(ToolStats.KNOCKBACK_RESISTANCE);
       if (knockbackResistance > 0) {
-        builder.put(Attributes.KNOCKBACK_RESISTANCE.value(), new AttributeModifier(TConstruct.getResource("armor/" + type.getName() + "/knockback_resistance"), knockbackResistance, AttributeModifier.Operation.ADD_VALUE));
+        builder.put(Attributes.KNOCKBACK_RESISTANCE.value(), new AttributeModifier(TConstruct.getResource("armor/" + armorType.getName() + "/knockback_resistance"), knockbackResistance, AttributeModifier.Operation.ADD_VALUE));
       }
       // grab attributes from modifiers
       BiConsumer<Attribute,AttributeModifier> attributeConsumer = builder::put;
@@ -337,7 +345,7 @@ public class ModifiableArmorItem extends ArmorItem implements IModifiableDisplay
 
   @Override
   public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-    return type == Type.CHESTPLATE && !ToolDamageUtil.isBroken(stack) && ModifierUtil.checkVolatileFlag(stack, ELYTRA);
+    return armorType == ArmorType.CHESTPLATE && !ToolDamageUtil.isBroken(stack) && ModifierUtil.checkVolatileFlag(stack, ELYTRA);
   }
 
   @Override

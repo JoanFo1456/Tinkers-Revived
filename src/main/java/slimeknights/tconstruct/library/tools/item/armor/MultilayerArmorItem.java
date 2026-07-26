@@ -1,51 +1,42 @@
 package slimeknights.tconstruct.library.tools.item.armor;
 
-import net.minecraft.core.Holder;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import slimeknights.tconstruct.library.client.armor.ArmorModelManager.ArmorModelDispatcher;
 import slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
-import slimeknights.tconstruct.library.tools.helper.ArmorUtil;
 
-import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
-/** Armor model that applies multiple texture layers in order */
+/**
+ * Armor item that applies multiple texture layers in order. In 26.1 the actual armor layer textures are data-driven
+ * through the equipment asset referenced by the armor material; the extra rendering layers are supplied client-side by
+ * {@link ArmorModelDispatcher}.
+ */
 public class MultilayerArmorItem extends ModifiableArmorItem {
   private final Identifier name;
-  public MultilayerArmorItem(ModifiableArmorMaterial material, ArmorItem.Type slot, Properties properties) {
+  public MultilayerArmorItem(ModifiableArmorMaterial material, ArmorType slot, Properties properties) {
     this(material, slot, properties, material.getId());
   }
 
-  public MultilayerArmorItem(ModifiableArmorMaterial material, ArmorItem.Type slot, Properties properties, Identifier name) {
+  public MultilayerArmorItem(ModifiableArmorMaterial material, ArmorType slot, Properties properties, Identifier name) {
     super(material, slot, properties);
     this.name = name;
   }
 
-  @SuppressWarnings("removal")
-  public MultilayerArmorItem(DummyArmorMaterial material, ArmorItem.Type slot, Properties properties, ToolDefinition toolDefinition) {
-    this(material.getMaterialHolder(), slot, properties, toolDefinition, material.getId());
+  public MultilayerArmorItem(DummyArmorMaterial material, ArmorType slot, Properties properties, ToolDefinition toolDefinition) {
+    this(material.getArmorMaterial(), slot, properties, toolDefinition, material.getId());
   }
 
-  public MultilayerArmorItem(Holder<ArmorMaterial> material, ArmorItem.Type slot, Properties properties, ToolDefinition toolDefinition, Identifier name) {
+  public MultilayerArmorItem(ArmorMaterial material, ArmorType slot, Properties properties, ToolDefinition toolDefinition, Identifier name) {
     super(material, slot, properties, toolDefinition);
     this.name = name;
   }
 
-  public MultilayerArmorItem(ModifiableArmorMaterial material, ArmorItem.Type slot, Properties properties, ToolDefinition toolDefinition, Identifier name) {
-    this(material.getMaterialHolder(), slot, properties, toolDefinition, name);
-  }
-
-  @Nullable
-  @Override
-  public Identifier getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
-    return Identifier.withDefaultNamespace(ArmorUtil.getDummyArmorTexture(slot));
+  public MultilayerArmorItem(ModifiableArmorMaterial material, ArmorType slot, Properties properties, ToolDefinition toolDefinition, Identifier name) {
+    this(material.getArmorMaterial(), slot, properties, toolDefinition, name);
   }
 
   @Override

@@ -17,7 +17,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -387,7 +386,8 @@ public class ToolEvents {
               ToolDamageUtil.damageAnimated(tool, damageMissed, entity, slotType, ARMOR_DAMAGE);
             } else {
               // if not our armor, damage using vanilla like logic
-              if (!armorStack.isEmpty() && (!source.is(DamageTypeTags.IS_FIRE) || armorStack.canBeHurtBy(source)) && armorStack.getItem() instanceof ArmorItem) {
+              net.minecraft.world.item.equipment.Equippable equippable = armorStack.get(net.minecraft.core.component.DataComponents.EQUIPPABLE);
+              if (!armorStack.isEmpty() && (!source.is(DamageTypeTags.IS_FIRE) || armorStack.canBeHurtBy(source)) && equippable != null && equippable.slot().isArmor()) {
                 armorStack.hurtAndBreak(damageMissed, entity, slotType);
               }
             }
