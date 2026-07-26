@@ -6,7 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
@@ -156,7 +156,7 @@ public class CustomFireball extends Fireball implements ProjectileWithPower {
   /** Parses the given damage type */
   private static ResourceKey<DamageType> parseDamageType(String damageStr, ResourceKey<DamageType> fallback) {
     if (!damageStr.isEmpty()) {
-      ResourceLocation damageLoc = ResourceLocation.tryParse(damageStr);
+      Identifier damageLoc = Identifier.tryParse(damageStr);
       if (damageLoc != null) {
         return ResourceKey.create(Registries.DAMAGE_TYPE, damageLoc);
       }

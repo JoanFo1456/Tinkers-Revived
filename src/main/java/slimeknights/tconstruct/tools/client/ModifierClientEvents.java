@@ -14,7 +14,7 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.contents.TranslatableContents;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -69,8 +69,8 @@ import java.util.List;
 /** Modifier event hooks that run client side */
 @EventBusSubscriber(modid = TConstruct.MOD_ID, value = Dist.CLIENT, bus = Bus.GAME)
 public class ModifierClientEvents {
-  private static final RenderType MAP_BACKGROUND = RenderType.text(ResourceLocation.withDefaultNamespace("textures/map/map_background.png"));
-  private static final RenderType MAP_BACKGROUND_CHECKERBOARD = RenderType.text(ResourceLocation.withDefaultNamespace("textures/map/map_background_checkerboard.png"));
+  private static final RenderType MAP_BACKGROUND = RenderType.text(Identifier.withDefaultNamespace("textures/map/map_background.png"));
+  private static final RenderType MAP_BACKGROUND_CHECKERBOARD = RenderType.text(Identifier.withDefaultNamespace("textures/map/map_background_checkerboard.png"));
 
   @SubscribeEvent
   static void onTooltipEvent(ItemTooltipEvent event) {

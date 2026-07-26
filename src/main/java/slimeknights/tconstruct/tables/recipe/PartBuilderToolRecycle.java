@@ -12,7 +12,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -81,14 +81,14 @@ public class PartBuilderToolRecycle implements IPartBuilderRecipe, IMultiRecipe<
     PartBuilderToolRecycle::new);
 
   @Getter
-  private final ResourceLocation id;
+  private final Identifier id;
   private final SizedIngredient toolRequirement;
   private final Ingredient pattern;
   private final List<IMaterialItem> parts;
 
   /** @deprecated use {@link FinishedRecipe} */
   @Deprecated(forRemoval = true)
-  public PartBuilderToolRecycle(ResourceLocation id, SizedIngredient toolRequirement, Ingredient pattern) {
+  public PartBuilderToolRecycle(Identifier id, SizedIngredient toolRequirement, Ingredient pattern) {
     this(id, toolRequirement, pattern, List.of());
   }
 
@@ -269,7 +269,7 @@ public class PartBuilderToolRecycle implements IPartBuilderRecipe, IMultiRecipe<
 
   /** @deprecated use {@link slimeknights.tconstruct.library.recipe.partbuilder.recycle.PartBuilderToolRecycleBuilder} */
   @Deprecated(forRemoval = true)
-  public record Finished(ResourceLocation getId, SizedIngredient tools, Ingredient pattern) implements FinishedRecipe {
+  public record Finished(Identifier getId, SizedIngredient tools, Ingredient pattern) implements FinishedRecipe {
     @Override
     public void serializeRecipeData(JsonObject json) {
       json.add("tools", SizedIngredient.LOADABLE.serialize(tools));
@@ -289,7 +289,7 @@ public class PartBuilderToolRecycle implements IPartBuilderRecipe, IMultiRecipe<
 
     @Nullable
     @Override
-    public ResourceLocation getAdvancementId() {
+    public Identifier getAdvancementId() {
       return null;
     }
   }

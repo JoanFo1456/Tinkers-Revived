@@ -1,7 +1,7 @@
 package slimeknights.tconstruct.shared;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.critereon.ItemSubPredicate;
+import net.minecraft.advancements.criterion.ItemSubPredicate;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;

@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class GoldGuardModifier extends NoLevelsModifier implements EquipmentChangeModifierHook, TooltipModifierHook {
-  private static final net.minecraft.resources.ResourceLocation GOLD_GUARD_ID = TConstruct.getResource("gold_guard");
+  private static final net.minecraft.resources.Identifier GOLD_GUARD_ID = TConstruct.getResource("gold_guard");
   private static final ComputableDataKey<GoldGuardGold> TOTAL_GOLD = TConstruct.createKey("gold_guard", GoldGuardGold::new);
 
   @Override

@@ -6,7 +6,7 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -103,11 +103,11 @@ public class ModifierEvents {
   private static final TinkerDataKey<Float> PROJECTILE_EXPERIENCE = TConstruct.createKey("projectile_experience");
   // TODO: move following to TinkerDataKeys?
   /** Volatile data float for amount of experience granted per level. Used by both projectiles and held tools. */
-  public static final ResourceLocation EXPERIENCE = TConstruct.getResource("experience");
+  public static final Identifier EXPERIENCE = TConstruct.getResource("experience");
   /** Volatile data flag making a modifier grant the tool soulbound */
-  public static final ResourceLocation SOULBOUND = TConstruct.getResource("soulbound");
+  public static final Identifier SOULBOUND = TConstruct.getResource("soulbound");
   /** Volatile data int for making a modifier on a shield grant reflecting */
-  public static final ResourceLocation REFLECTING = TConstruct.getResource("reflecting");
+  public static final Identifier REFLECTING = TConstruct.getResource("reflecting");
 
   @SuppressWarnings("removal")
   @SubscribeEvent

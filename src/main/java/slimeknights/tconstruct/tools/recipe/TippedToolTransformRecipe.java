@@ -3,7 +3,7 @@ package slimeknights.tconstruct.tools.recipe;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import slimeknights.tconstruct.compat.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -40,7 +40,7 @@ public class TippedToolTransformRecipe extends ToolBuildingRecipe {
     TippedToolTransformRecipe::new);
 
   protected final ModifierId modifier;
-  public TippedToolTransformRecipe(ResourceLocation id, String group, IModifiable output, @Nullable ResourceLocation layoutSlot, Ingredient ingredient, List<MaterialVariantId> materials, ModifierId modifier) {
+  public TippedToolTransformRecipe(Identifier id, String group, IModifiable output, @Nullable Identifier layoutSlot, Ingredient ingredient, List<MaterialVariantId> materials, ModifierId modifier) {
     super(id, group, output, 1, layoutSlot, List.of(ingredient), List.of(), materials);
     this.modifier = modifier;
   }

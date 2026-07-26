@@ -5,7 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import slimeknights.tconstruct.compat.minecraft.world.item.alchemy.PotionUtils;
@@ -63,7 +63,7 @@ public class PotionFluidType extends FluidType {
   }
 
   /** Creates the potion tag */
-  private static CompoundTag potionTag(ResourceLocation location) {
+  private static CompoundTag potionTag(Identifier location) {
     CompoundTag tag = new CompoundTag();
     tag.putString("Potion", location.toString());
     return tag;

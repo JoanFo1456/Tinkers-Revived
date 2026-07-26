@@ -4,7 +4,7 @@ import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -33,7 +33,7 @@ public class ShapedMaterialExtension implements ICraftingCategoryExtension<Shape
     }
 
     @Override
-    public Optional<ResourceLocation> getRegistryName(RecipeHolder<ShapedMaterialRecipe> holder) {
+    public Optional<Identifier> getRegistryName(RecipeHolder<ShapedMaterialRecipe> holder) {
       return Optional.of(holder.id());
     }
 
@@ -81,7 +81,7 @@ public class ShapedMaterialExtension implements ICraftingCategoryExtension<Shape
   }
 
   @Override
-  public ResourceLocation getRegistryName() {
+  public Identifier getRegistryName() {
     return recipe.getId();
   }
 

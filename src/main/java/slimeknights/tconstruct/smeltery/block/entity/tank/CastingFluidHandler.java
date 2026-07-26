@@ -6,7 +6,7 @@ import lombok.Setter;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -181,7 +181,7 @@ public class CastingFluidHandler implements IFluidHandler {
       setFluid(fluidTag.contains("FluidName", Tag.TAG_STRING) ? TankItem.readFluid(fluidTag) : FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, fluidTag));
     }
     if (nbt.contains(TAG_FILTER, Tag.TAG_STRING)) {
-      ResourceLocation id = ResourceLocation.tryParse(nbt.getString(TAG_FILTER));
+      Identifier id = Identifier.tryParse(nbt.getString(TAG_FILTER));
       Fluid fluid = id == null ? null : ForgeRegistries.FLUIDS.getValue(id);
       if (fluid != null) {
         filter = fluid;

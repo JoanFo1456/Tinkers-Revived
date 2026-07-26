@@ -9,7 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -64,9 +64,9 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
   /** Movement speed in water */
   protected static final EntityDataAccessor<Float> WATER_INERTIA = SynchedEntityData.defineId(ThrownTool.class, EntityDataSerializers.FLOAT);
   /** Volatile integer key for the loyalty level */
-  public static final ResourceLocation LOYALTY = TConstruct.getResource("loyalty");
+  public static final Identifier LOYALTY = TConstruct.getResource("loyalty");
   /** Volatile integer key for the magnet level */
-  public static final ResourceLocation MAGNET = TConstruct.getResource("magnet");
+  public static final Identifier MAGNET = TConstruct.getResource("magnet");
 
   @Nullable
   private IToolStackView tool = null;

@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSetPassengersPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -186,7 +186,7 @@ public class PiggyBackPackItem extends TooltipItem {
     public void initializeClient(Consumer<IClientMobEffectExtensions> consumer) {
       consumer.accept(new IClientMobEffectExtensions() {
         private final Minecraft mc = Minecraft.getInstance();
-        private static final ResourceLocation[] ICONS = {
+        private static final Identifier[] ICONS = {
           TConstruct.getResource("carry"),
           TConstruct.getResource("carry_2"),
           TConstruct.getResource("carry_3")

@@ -2,7 +2,7 @@ package slimeknights.tconstruct.tools.modifiers.traits;
 
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -38,7 +38,7 @@ import java.util.function.BiConsumer;
 public class DamageSpeedTradeModifier extends Modifier implements AttributesModifierHook, TooltipModifierHook, BreakSpeedModifierHook {
   private static final Component MINING_SPEED = TConstruct.makeTranslation("armor_stat", "mining_speed");
   private final float multiplier;
-  private final Lazy<ResourceLocation> attributeId = Lazy.of(() -> getId().withSuffix("/attack_damage"));
+  private final Lazy<Identifier> attributeId = Lazy.of(() -> getId().withSuffix("/attack_damage"));
 
   @Override
   protected void registerHooks(Builder hookBuilder) {

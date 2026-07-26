@@ -6,7 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
@@ -89,7 +89,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
   /** Current in progress recipe */
   private RecipeHolder<ICastingRecipe> currentRecipe;
   /** Name of the current recipe, fetched from Tag. Used since Tag is read before recipe manager access */
-  private ResourceLocation recipeName;
+  private Identifier recipeName;
   /** Cache recipe to reduce time during recipe lookups. Not saved to Tag */
   private RecipeHolder<ICastingRecipe> lastCastingRecipe;
   /** Last recipe output for client side display */
@@ -562,7 +562,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
    * @param level  Nonnull level instance
    * @param name   Recipe name to load
    */
-  private void loadRecipe(Level level, ResourceLocation name) {
+  private void loadRecipe(Level level, Identifier name) {
     // if the tank is empty, ignore old recipe
     FluidStack fluid = tank.getFluid();
     if(!fluid.isEmpty()) {
@@ -615,7 +615,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     tank.readFromTag(tags.getCompound(TAG_TANK));
     timer = tags.getInt(TAG_TIMER);
     if (tags.contains(TAG_RECIPE, CompoundTag.TAG_STRING)) {
-      ResourceLocation name = ResourceLocation.tryParse(tags.getString(TAG_RECIPE));
+      Identifier name = Identifier.tryParse(tags.getString(TAG_RECIPE));
       if (name == null) {
         return;
       }

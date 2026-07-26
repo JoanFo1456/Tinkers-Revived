@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.gadgets.capability;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import slimeknights.mantle.compat.neoforged.neoforge.capabilities.Capability;
@@ -16,7 +16,7 @@ import java.util.WeakHashMap;
 
 /** Capability logic */
 public class PiggybackCapability {
-  private static final ResourceLocation ID = TConstruct.getResource("piggyback");
+  private static final Identifier ID = TConstruct.getResource("piggyback");
   public static final Capability<PiggybackHandler> PIGGYBACK = CapabilityManager.get(new CapabilityToken<>() {});
   private static final Map<Player, PiggybackHandler> DATA = new WeakHashMap<>();
 

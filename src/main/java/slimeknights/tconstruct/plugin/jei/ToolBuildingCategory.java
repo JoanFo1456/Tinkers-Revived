@@ -14,7 +14,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.client.GuiUtil;
@@ -34,7 +34,7 @@ import static slimeknights.tconstruct.library.recipe.tinkerstation.building.Tool
 import static slimeknights.tconstruct.library.recipe.tinkerstation.building.ToolBuildingRecipe.Y_OFFSET;
 
 public class ToolBuildingCategory implements IRecipeCategory<ToolBuildingRecipe> {
-  private static final ResourceLocation BACKGROUND_LOC = TConstruct.getResource("textures/gui/jei/tinker_station.png");
+  private static final Identifier BACKGROUND_LOC = TConstruct.getResource("textures/gui/jei/tinker_station.png");
   private static final Component TITLE = TConstruct.makeTranslation("jei", "tinkering.tool_building");
   @Getter
   private final IDrawable icon;
@@ -146,7 +146,7 @@ public class ToolBuildingCategory implements IRecipeCategory<ToolBuildingRecipe>
   }
 
   @Override
-  public ResourceLocation getRegistryName(ToolBuildingRecipe recipe) {
+  public Identifier getRegistryName(ToolBuildingRecipe recipe) {
     return recipe.getId();
   }
 }

@@ -10,15 +10,15 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.AdvancementRequirements.Strategy;
-import net.minecraft.advancements.critereon.ContextAwarePredicate;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.ItemUsedOnLocationTrigger;
-import net.minecraft.advancements.critereon.LocationPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
-import net.minecraft.advancements.critereon.PlayerInteractTrigger;
-import net.minecraft.advancements.critereon.PlayerTrigger;
+import net.minecraft.advancements.criterion.ContextAwarePredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.ItemUsedOnLocationTrigger;
+import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
+import net.minecraft.advancements.criterion.PlayerInteractTrigger;
+import net.minecraft.advancements.criterion.PlayerTrigger;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
@@ -27,7 +27,7 @@ import net.minecraft.data.PackOutput.Target;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ArmorItem;
@@ -99,7 +99,7 @@ public class AdvancementsProvider extends GenericDataProvider {
   /** Advancment consumer instance */
   protected Consumer<AdvancementHolder> advancementConsumer;
   /** Advancment consumer instance */
-  protected BiConsumer<ResourceLocation, ConditionalAdvancement.Builder> conditionalConsumer;
+  protected BiConsumer<Identifier, ConditionalAdvancement.Builder> conditionalConsumer;
 
   public AdvancementsProvider(PackOutput output) {
     super(output, Target.DATA_PACK, "advancements");
@@ -487,8 +487,8 @@ public class AdvancementsProvider extends GenericDataProvider {
 
   @Override
   public CompletableFuture<?> run(CachedOutput cache) {
-    Set<ResourceLocation> set = Sets.newHashSet();
-    record Conditional(ResourceLocation id, ConditionalAdvancement.Builder builder) {}
+    Set<Identifier> set = Sets.newHashSet();
+    record Conditional(Identifier id, ConditionalAdvancement.Builder builder) {}
     List<AdvancementHolder> advancements = new ArrayList<>();
     List<Conditional> conditionals = new ArrayList<>();
     this.advancementConsumer = advancement -> {
@@ -516,7 +516,7 @@ public class AdvancementsProvider extends GenericDataProvider {
   /* Helpers */
 
   /** Gets a tinkers resource location */
-  protected ResourceLocation resource(String name) {
+  protected Identifier resource(String name) {
     return TConstruct.getResource(name);
   }
 
@@ -528,7 +528,7 @@ public class AdvancementsProvider extends GenericDataProvider {
    * @param frame        Frame type
    * @return  Builder
    */
-  protected AdvancementHolder builder(ItemLike display, ResourceLocation name, AdvancementHolder parent, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
+  protected AdvancementHolder builder(ItemLike display, Identifier name, AdvancementHolder parent, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
     return builder(new ItemStack(display), name, parent, frame, consumer);
   }
 
@@ -540,8 +540,8 @@ public class AdvancementsProvider extends GenericDataProvider {
    * @param frame        Frame type
    * @return  Builder
    */
-  protected AdvancementHolder builder(ItemStack display, ResourceLocation name, AdvancementHolder parent, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
-    return builder(display, name, (ResourceLocation)null, frame, builder -> {
+  protected AdvancementHolder builder(ItemStack display, Identifier name, AdvancementHolder parent, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
+    return builder(display, name, (Identifier)null, frame, builder -> {
       builder.parent(parent);
       consumer.accept(builder);
     });
@@ -555,12 +555,12 @@ public class AdvancementsProvider extends GenericDataProvider {
    * @param frame        Frame type
    * @return  Builder
    */
-  protected AdvancementHolder builder(ItemLike display, ResourceLocation name, @Nullable ResourceLocation background, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
+  protected AdvancementHolder builder(ItemLike display, Identifier name, @Nullable Identifier background, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
     return builder(new ItemStack(display), name, background, frame, consumer);
   }
 
   /** Makes an advancement translation key from the given ID */
-  private static String makeTranslationKey(ResourceLocation advancement) {
+  private static String makeTranslationKey(Identifier advancement) {
     return "advancements." + advancement.getNamespace() + "." + advancement.getPath().replace('/', '.');
   }
 
@@ -572,7 +572,7 @@ public class AdvancementsProvider extends GenericDataProvider {
    * @param frame        Frame type
    * @return  Builder
    */
-  protected AdvancementHolder builder(ItemStack display, ResourceLocation name, @Nullable ResourceLocation background, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
+  protected AdvancementHolder builder(ItemStack display, Identifier name, @Nullable Identifier background, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
     Advancement.Builder builder = Advancement.Builder
       .advancement().display(display,
                              Component.translatable(makeTranslationKey(name) + ".title"),
@@ -587,7 +587,7 @@ public class AdvancementsProvider extends GenericDataProvider {
    * @param name         AdvancementHolder name
    */
   @SuppressWarnings("SameParameterValue")
-  protected void hiddenBuilder(ResourceLocation name, ICondition condition, Consumer<Advancement.Builder> consumer) {
+  protected void hiddenBuilder(Identifier name, ICondition condition, Consumer<Advancement.Builder> consumer) {
     Advancement.Builder builder = Advancement.Builder.advancement();
     consumer.accept(builder);
     ConditionalAdvancement.Builder conditionalBuilder = new ConditionalAdvancement.Builder();

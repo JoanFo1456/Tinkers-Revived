@@ -5,7 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -217,7 +217,7 @@ public class TankItem extends BlockTooltipItem {
 
   /** Reads a fluid stack from the legacy tank item tag shape. */
   public static FluidStack readFluid(CompoundTag tag) {
-    ResourceLocation fluidName = ResourceLocation.tryParse(tag.getString("FluidName"));
+    Identifier fluidName = Identifier.tryParse(tag.getString("FluidName"));
     int amount = tag.getInt("Amount");
     if (fluidName == null || amount <= 0) {
       return FluidStack.EMPTY;
@@ -270,7 +270,7 @@ public class TankItem extends BlockTooltipItem {
   }
 
   /** Creates a stack with the given fluid and amount, not validated. */
-  private static ItemStack setTank(ItemLike item, ResourceLocation fluid, int amount) {
+  private static ItemStack setTank(ItemLike item, Identifier fluid, int amount) {
     CompoundTag tag = new CompoundTag();
     tag.putString("FluidName", fluid.toString());
     tag.putInt("Amount", amount);
@@ -340,7 +340,7 @@ public class TankItem extends BlockTooltipItem {
         tank = TankType.FUEL_TANK;
         gauge = TankType.FUEL_GAUGE;
       }
-      ResourceLocation fluidName = holder.key().location();
+      Identifier fluidName = holder.key().location();
       output.accept(setTank(TinkerSmeltery.searedLantern, fluidName, FluidValues.LANTERN_CAPACITY));
       output.accept(fillTank(TinkerSmeltery.searedTank, tank, fluidName));
       output.accept(fillTank(TinkerSmeltery.searedTank, gauge, fluidName));
@@ -356,7 +356,7 @@ public class TankItem extends BlockTooltipItem {
   }
 
   /** Fills a tank stack with the given fluid */
-  public static ItemStack fillTank(EnumObject<TankType,? extends ItemLike> tank, TankType type, ResourceLocation fluid) {
+  public static ItemStack fillTank(EnumObject<TankType,? extends ItemLike> tank, TankType type, Identifier fluid) {
     return setTank(tank.get(type), fluid, type.getCapacity());
   }
 }

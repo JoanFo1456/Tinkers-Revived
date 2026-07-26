@@ -4,7 +4,7 @@ import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import slimeknights.tconstruct.library.recipe.material.ShapedMaterialsRecipe;
@@ -26,7 +26,7 @@ public class ShapedMaterialsExtension extends MaterialsCraftingExtension<ShapedM
     }
 
     @Override
-    public Optional<ResourceLocation> getRegistryName(RecipeHolder<ShapedMaterialsRecipe> holder) {
+    public Optional<Identifier> getRegistryName(RecipeHolder<ShapedMaterialsRecipe> holder) {
       return Optional.of(holder.id());
     }
 

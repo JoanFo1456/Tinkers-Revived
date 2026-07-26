@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.BannerItem;
 import net.minecraft.world.item.DyeColor;
@@ -42,9 +42,9 @@ import java.util.stream.Stream;
 /** Recipe to add a banner to a shield */
 public class BannerModifierRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisplayModifierRecipe> {
   @Getter
-  private final ResourceLocation id;
+  private final Identifier id;
 
-  public BannerModifierRecipe(ResourceLocation id) {
+  public BannerModifierRecipe(Identifier id) {
     this.id = id;
     ModifierRecipeLookup.addRecipeModifier(null, TinkerModifiers.banner);
   }
@@ -141,7 +141,7 @@ public class BannerModifierRecipe implements ITinkerStationRecipe, IMultiRecipe<
           return stack;
         }).toList();
       if (!toolInputs.isEmpty()) {
-        ResourceLocation id = getId();
+        Identifier id = getId();
         displayRecipes = RegistryHelper.getTagValueStream(BuiltInRegistries.ITEM, ItemTags.BANNERS)
           .flatMap(item -> {
             if (item instanceof BannerItem banner) {
@@ -162,7 +162,7 @@ public class BannerModifierRecipe implements ITinkerStationRecipe, IMultiRecipe<
     private final ModifierEntry RESULT = new ModifierEntry(TinkerModifiers.banner, 1);
 
     @Getter
-    private final ResourceLocation recipeId;
+    private final Identifier recipeId;
     private final List<ItemStack> banner;
     @Getter
     private final List<ItemStack> toolWithoutModifier;
@@ -170,7 +170,7 @@ public class BannerModifierRecipe implements ITinkerStationRecipe, IMultiRecipe<
     private final List<ItemStack> toolWithModifier;
     @Getter
     private final Component variant;
-    public DisplayRecipe(ResourceLocation recipeId, List<ItemStack> tools, BannerItem banner) {
+    public DisplayRecipe(Identifier recipeId, List<ItemStack> tools, BannerItem banner) {
       this.recipeId = recipeId;
       this.toolWithoutModifier = tools;
       this.banner = List.of(new ItemStack(banner));

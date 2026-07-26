@@ -2,7 +2,7 @@ package slimeknights.tconstruct.fluids;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import slimeknights.tconstruct.compat.minecraft.world.item.alchemy.PotionUtils;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.ModelEvent.RegisterGeometryLoaders;
@@ -42,7 +42,7 @@ public class FluidClientEvents extends ClientEventBase {
 
   @SubscribeEvent
   static void registerModelLoaders(RegisterGeometryLoaders event) {
-    event.register(ResourceLocation.fromNamespaceAndPath(TConstruct.MOD_ID, "fluid_container"), FluidContainerModel.LOADER);
+    event.register(Identifier.fromNamespaceAndPath(TConstruct.MOD_ID, "fluid_container"), FluidContainerModel.LOADER);
   }
 
   private static void setTranslucent(FlowingFluidObject<?> fluid) {

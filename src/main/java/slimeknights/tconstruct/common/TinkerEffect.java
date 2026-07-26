@@ -2,7 +2,7 @@ package slimeknights.tconstruct.common;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -29,17 +29,17 @@ public class TinkerEffect extends MobEffect {
 
   // keep old call sites compact while targeting the holder-based 1.21 API
   public TinkerEffect addAttributeModifier(Attribute pAttribute, String pUuid, double pAmount, Operation pOperation) {
-    super.addAttributeModifier(BuiltInRegistries.ATTRIBUTE.wrapAsHolder(pAttribute), ResourceLocation.fromNamespaceAndPath("tconstruct", pUuid), pAmount, pOperation);
+    super.addAttributeModifier(BuiltInRegistries.ATTRIBUTE.wrapAsHolder(pAttribute), Identifier.fromNamespaceAndPath("tconstruct", pUuid), pAmount, pOperation);
     return this;
   }
 
   public TinkerEffect addAttributeModifier(Holder<Attribute> attribute, String uuid, double amount, Operation operation) {
-    super.addAttributeModifier(attribute, ResourceLocation.fromNamespaceAndPath("tconstruct", uuid), amount, operation);
+    super.addAttributeModifier(attribute, Identifier.fromNamespaceAndPath("tconstruct", uuid), amount, operation);
     return this;
   }
 
   @Override
-  public TinkerEffect addAttributeModifier(Holder<Attribute> attribute, ResourceLocation id, double amount, Operation operation) {
+  public TinkerEffect addAttributeModifier(Holder<Attribute> attribute, Identifier id, double amount, Operation operation) {
     super.addAttributeModifier(attribute, id, amount, operation);
     return this;
   }

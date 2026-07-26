@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
@@ -23,7 +23,7 @@ import java.util.Set;
 public class ModifierBonusLootFunction extends LootItemConditionalFunction {
   public static final MapCodec<ModifierBonusLootFunction> CODEC = RecordCodecBuilder.mapCodec(
     instance -> commonFields(instance).and(instance.group(
-      ResourceLocation.CODEC.xmap(ModifierId::new, id -> id).fieldOf("modifier").forGetter(loot -> loot.modifier),
+      Identifier.CODEC.xmap(ModifierId::new, id -> id).fieldOf("modifier").forGetter(loot -> loot.modifier),
       BonusFormula.CODEC.forGetter(loot -> loot.formula),
       Codec.BOOL.optionalFieldOf("include_base", true).forGetter(loot -> loot.includeBase)
     )).apply(instance, ModifierBonusLootFunction::new)

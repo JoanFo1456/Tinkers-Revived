@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -107,7 +107,7 @@ public class SlimeArmorLayer<T extends Slime, M extends HierarchicalModel<T>, A 
     }
   }
 
-  private static void renderModel(PoseStack matrices, MultiBufferSource buffer, int packedLight, boolean enchanted, Model model, int color, ResourceLocation texture) {
+  private static void renderModel(PoseStack matrices, MultiBufferSource buffer, int packedLight, boolean enchanted, Model model, int color, Identifier texture) {
     VertexConsumer vertexconsumer = ItemRenderer.getArmorFoilBuffer(buffer, RenderType.armorCutoutNoCull(texture), enchanted);
     model.renderToBuffer(matrices, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY, color);
   }
@@ -124,9 +124,9 @@ public class SlimeArmorLayer<T extends Slime, M extends HierarchicalModel<T>, A 
    * @param stack ItemStack for the armor
    * @param armor Armor item instance
    * @param type Subtype, can be null or "overlay"
-   * @return ResourceLocation pointing at the armor's texture
+   * @return Identifier pointing at the armor's texture
    */
-  public static ResourceLocation getArmorResource(Entity entity, ItemStack stack, ArmorItem armor, String type) {
+  public static Identifier getArmorResource(Entity entity, ItemStack stack, ArmorItem armor, String type) {
     return ClientHooks.getArmorTexture(entity, stack, armor.getMaterial().value().layers().get(0), false, EquipmentSlot.HEAD);
   }
 }

@@ -6,7 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.TooltipFlag;
@@ -48,7 +48,7 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
   /** Tooltip key saying hold shift for patterns */
   private static final Component HOLD_SHIFT = TConstruct.makeTranslation("modifier", "banner.hold_shift").withStyle(ChatFormatting.GRAY);
   /** Vanilla banner pattern IDs used for texture validation. */
-  public static final List<ResourceLocation> VANILLA_PATTERN_IDS = List.of(
+  public static final List<Identifier> VANILLA_PATTERN_IDS = List.of(
     BannerPatterns.BASE.location(),
     BannerPatterns.SQUARE_BOTTOM_LEFT.location(),
     BannerPatterns.SQUARE_BOTTOM_RIGHT.location(),
@@ -94,7 +94,7 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
     BannerPatterns.GUSTER.location()
   );
   /** Mapping of legacy NBT banner hashes to modern pattern IDs. */
-  private static final Map<String,ResourceLocation> LEGACY_PATTERNS = Map.ofEntries(
+  private static final Map<String,Identifier> LEGACY_PATTERNS = Map.ofEntries(
     pattern("b", BannerPatterns.BASE),
     pattern("bl", BannerPatterns.SQUARE_BOTTOM_LEFT),
     pattern("br", BannerPatterns.SQUARE_BOTTOM_RIGHT),
@@ -169,7 +169,7 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
         for (int i = 0; i < patterns.size(); i++) {
           CompoundTag tag = patterns.getCompound(i);
           DyeColor dye = DyeColor.byId(tag.getInt(KEY_DYE));
-          ResourceLocation patternId = patternId(tag.getString(KEY_PATTERN));
+          Identifier patternId = patternId(tag.getString(KEY_PATTERN));
           tooltip.add(Component.translatable("block.minecraft.banner." + patternId.toShortLanguageKey() + '.' + dye.getName()).withStyle(ChatFormatting.GRAY));
         }
       } else {
@@ -179,29 +179,29 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
   }
 
   /** Gets the key for the cache used in the model */
-  public static ResourceLocation cacheKey(ModifierId modifier) {
+  public static Identifier cacheKey(ModifierId modifier) {
     return modifier.withSuffix("_cache");
   }
 
   /** Gets the key for the pattern list in NBT */
-  public static ResourceLocation patternKey(ModifierId modifier) {
+  public static Identifier patternKey(ModifierId modifier) {
     return modifier.withSuffix("_patterns");
   }
 
   /** Converts a legacy short pattern hash or modern ID string to a modern pattern ID. */
-  public static ResourceLocation patternId(String pattern) {
-    ResourceLocation id = LEGACY_PATTERNS.get(pattern);
+  public static Identifier patternId(String pattern) {
+    Identifier id = LEGACY_PATTERNS.get(pattern);
     if (id != null) {
       return id;
     }
-    ResourceLocation parsed = ResourceLocation.tryParse(pattern);
+    Identifier parsed = Identifier.tryParse(pattern);
     if (parsed != null) {
       return parsed;
     }
     return BannerPatterns.BASE.location();
   }
 
-  private static Map.Entry<String,ResourceLocation> pattern(String legacy, ResourceKey<BannerPattern> pattern) {
+  private static Map.Entry<String,Identifier> pattern(String legacy, ResourceKey<BannerPattern> pattern) {
     return Map.entry(legacy, pattern.location());
   }
 
