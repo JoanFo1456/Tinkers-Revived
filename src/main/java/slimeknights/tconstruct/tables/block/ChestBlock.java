@@ -5,7 +5,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -78,7 +77,7 @@ public class ChestBlock extends TabbedTableBlock {
   }
 
   @Override
-  protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+  protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
     BlockEntity te = worldIn.getBlockEntity(pos);
     Inventory playerInventory = player.getInventory();
     ItemStack heldItem = playerInventory.getSelected();
@@ -88,11 +87,11 @@ public class ChestBlock extends TabbedTableBlock {
       ItemStack rest = ItemHandlerHelper.insertItem(itemHandler, heldItem, false);
       if (rest.isEmpty() || rest.getCount() < heldItem.getCount()) {
         playerInventory.items.set(playerInventory.selected, rest);
-        return ItemInteractionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
       }
     }
 
-    return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    return InteractionResult.PASS;
   }
 
   @Override

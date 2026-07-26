@@ -11,7 +11,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerEntity;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.Explosion;
@@ -67,7 +66,7 @@ public class FancyItemFrameEntity extends ItemFrame implements IEntityAdditional
       BlockState state = level.getBlockState(behind);
       if (!state.isAir()) {
         var hit = Util.createTraceResult(behind, direction, false);
-        ItemInteractionResult itemResult = state.useItemOn(player.getItemInHand(hand), level, player, hand, hit);
+        InteractionResult itemResult = state.useItemOn(player.getItemInHand(hand), level, player, hand, hit);
         if (itemResult.consumesAction()) {
           return itemResult.result();
         }

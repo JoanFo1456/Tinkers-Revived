@@ -4,7 +4,7 @@ import java.util.List;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -42,7 +42,7 @@ public final class ForgeEventFactory {
     EventHooks.onExplosionDetonate(level, explosion, list, diameter);
   }
 
-  public static InteractionResultHolder<ItemStack> onArrowNock(ItemStack item, Level level, Player player, InteractionHand hand, boolean hasAmmo) {
+  public static InteractionResult onArrowNock(ItemStack item, Level level, Player player, InteractionHand hand, boolean hasAmmo) {
     return EventHooks.onArrowNock(item, level, player, hand, hasAmmo);
   }
 

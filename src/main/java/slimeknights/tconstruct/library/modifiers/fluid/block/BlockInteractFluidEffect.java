@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -139,7 +138,7 @@ public enum BlockInteractFluidEffect implements FluidEffect<FluidEffectContext.B
       // click the block
       ItemStack original = heldItem.copy();
       if (player != null && (useBlock == TriState.TRUE || (useItem == TriState.DEFAULT && !skipBlock))) {
-        ItemInteractionResult blockResult = state.useItemOn(heldItem, world, player, hand, hitResult);
+        InteractionResult blockResult = state.useItemOn(heldItem, world, player, hand, hitResult);
         if (blockResult.consumesAction()) {
           if (player instanceof ServerPlayer serverPlayer) {
             CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(serverPlayer, pos, original);
@@ -147,7 +146,7 @@ public enum BlockInteractFluidEffect implements FluidEffect<FluidEffectContext.B
           player.swing(hand, true);
           return 1;
         }
-        if (blockResult == ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION && hand == InteractionHand.MAIN_HAND) {
+        if (blockResult == InteractionResult.PASS && hand == InteractionHand.MAIN_HAND) {
           InteractionResult result = state.useWithoutItem(world, player, hitResult);
           if (result.consumesAction()) {
             if (player instanceof ServerPlayer serverPlayer) {

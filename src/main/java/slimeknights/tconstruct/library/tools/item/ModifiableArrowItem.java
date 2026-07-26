@@ -6,7 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
@@ -76,7 +76,7 @@ public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay
   /* Shurikening */
 
   @Override
-  public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+  public InteractionResult use(Level level, Player player, InteractionHand hand) {
     ItemStack stack = player.getItemInHand(hand);
     // only throw arrows if they have the throwable tool action. Useful for the other style of projectile in addons, or a really weird arrow modifier.
     if (stack.is(TinkerTags.Items.THROWN_AMMO)) {
@@ -95,9 +95,9 @@ public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay
         stack.shrink(1);
       }
 
-      return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
+      return InteractionResult.SUCCESS;
     }
-    return InteractionResultHolder.pass(stack);
+    return InteractionResult.PASS;
   }
 
 
