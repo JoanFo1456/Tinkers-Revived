@@ -56,7 +56,7 @@ import java.util.function.Supplier;
  */
 
 @Mod(TConstruct.MOD_ID)
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber
 public class TConstruct {
 
   public static final String MOD_ID = "tconstruct";
