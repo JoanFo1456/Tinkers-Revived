@@ -26,7 +26,11 @@ public class CycleRecipeElement extends ArrowElement {
   public void mouseClicked(double mouseX, double mouseY, int mouseButton) {
     if (this.button != null && this.isHovered(mouseX, mouseY)) {
       this.playDownSound(Minecraft.getInstance().getSoundManager());
-      this.button.onPress();
+      // 26.1: Button.onPress now takes an InputWithModifiers; the recipe-cycle handler ignores it, so a synthetic input is fine
+      this.button.onPress(new net.minecraft.client.input.InputWithModifiers() {
+        @Override public int input() { return 0; }
+        @Override public int modifiers() { return 0; }
+      });
     }
   }
 
