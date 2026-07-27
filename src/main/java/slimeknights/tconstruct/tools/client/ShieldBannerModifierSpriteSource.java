@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader;
-import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
 import net.minecraft.client.renderer.texture.atlas.sources.LazyLoadedImage;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
 import net.minecraft.client.resources.model.sprite.Material;
@@ -21,7 +20,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.level.block.entity.BannerPatterns;
-import net.neoforged.neoforge.client.event.RegisterSpriteSourceTypesEvent;
+import net.neoforged.neoforge.client.event.RegisterSpriteSourcesEvent;
 import org.jetbrains.annotations.ApiStatus.Internal;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.client.materials.MaterialRenderInfo;
@@ -45,8 +44,6 @@ public record ShieldBannerModifierSpriteSource(int cropX, int cropY, int cropWid
     NON_NEGATIVE.fieldOf("offset_y").forGetter(ShieldBannerModifierSpriteSource::offsetY),
     NON_NEGATIVE.fieldOf("output_size").forGetter(ShieldBannerModifierSpriteSource::outSize)
   ).apply(inst, ShieldBannerModifierSpriteSource::new));
-  /** Registered type set on init */
-  private static SpriteSourceType TYPE = null;
   /** Vanilla banner patterns. Banner patterns are datapack controlled in 1.21, but texture generation needs a static client-side list. */
   private static final List<ResourceKey<BannerPattern>> VANILLA_PATTERNS = List.of(
     BannerPatterns.BASE,
@@ -95,11 +92,8 @@ public record ShieldBannerModifierSpriteSource(int cropX, int cropY, int cropWid
 
   /** Registers this sprite source */
   @Internal
-  public static void register(RegisterSpriteSourceTypesEvent event) {
-    if (TYPE == null) {
-      TYPE = new SpriteSourceType(CODEC);
-      event.register(TConstruct.getResource("shield_banner_to_modifier"), TYPE);
-    }
+  public static void register(RegisterSpriteSourcesEvent event) {
+    event.register(TConstruct.getResource("shield_banner_to_modifier"), CODEC);
   }
 
   @Override
@@ -119,19 +113,19 @@ public record ShieldBannerModifierSpriteSource(int cropX, int cropY, int cropWid
   }
 
   @Override
-  public SpriteSourceType type() {
-    return TYPE;
+  public MapCodec<? extends SpriteSource> codec() {
+    return CODEC;
   }
 
   /** Generates a cropped sprite lazily */
   @RequiredArgsConstructor
-  private class BannerModifierSpriteSupplier implements SpriteSupplier {
+  private class BannerModifierSpriteSupplier implements SpriteSource.DiscardableLoader {
     private final LazyLoadedImage original;
     private final Identifier input, output;
 
     @Nullable
     @Override
-    public SpriteContents apply(SpriteResourceLoader loader) {
+    public SpriteContents get(SpriteResourceLoader loader) {
       try {
         // its possible the original is bigger than we expect due to HD pack, if so scale it accordingly
         // we only support scaling if it is a multiple of width
