@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.tools.client;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
@@ -106,14 +107,7 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
   }
 
   @Override
-  public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-    this.renderBackground(graphics, mouseX, mouseY, partialTicks);
-    super.render(graphics, mouseX, mouseY, partialTicks);
-    this.renderTooltip(graphics, mouseX, mouseY);
-  }
-
-  @Override
-  protected void renderBg(GuiGraphics graphics, float partialTicks, int x, int y) {
+  public void extractRenderState(GuiGraphicsExtractor graphics, int x, int y, float partialTicks) {
     int xStart = (this.width - this.imageWidth) / 2;
     int yStart = (this.height - this.imageHeight) / 2;
 
@@ -122,20 +116,20 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
     int slotBackground = REPEAT_BACKGROUND_START + (inventoryRows + craftingHeight) * SLOT_SIZE;
     if (slotBackground < PLAYER_INVENTORY_START) {
       // small background? draw a single segment up to the size
-      graphics.blit(TEXTURE, xStart, yStart, 0, 0, this.imageWidth, slotBackground);
+      graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xStart, yStart, (float)(0), (float)(0), this.imageWidth, slotBackground, 256, 256);
     } else {
       // large background? repeat as needed
       // start with the top bar + roughly 6 slots
-      graphics.blit(TEXTURE, xStart, yStart, 0, 0, this.imageWidth, PLAYER_INVENTORY_START);
+      graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xStart, yStart, (float)(0), (float)(0), this.imageWidth, PLAYER_INVENTORY_START, 256, 256);
       int yOffset = PLAYER_INVENTORY_START;
       int remainingBackground = slotBackground - yOffset;
       // add chunks of about 6 until we run out
       for (; remainingBackground > REPEAT_BACKGROUND_SIZE; remainingBackground -= REPEAT_BACKGROUND_SIZE) {
-        graphics.blit(TEXTURE, xStart, yStart + yOffset, 0, REPEAT_BACKGROUND_START, this.imageWidth, REPEAT_BACKGROUND_SIZE);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xStart, yStart + yOffset, (float)(0), (float)(REPEAT_BACKGROUND_START), this.imageWidth, REPEAT_BACKGROUND_SIZE, 256, 256);
         yOffset += REPEAT_BACKGROUND_SIZE;
       }
       // draw last partial chunk
-      graphics.blit(TEXTURE, xStart, yStart + yOffset, 0, REPEAT_BACKGROUND_START, this.imageWidth, remainingBackground);
+      graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xStart, yStart + yOffset, (float)(0), (float)(REPEAT_BACKGROUND_START), this.imageWidth, remainingBackground, 256, 256);
     }
     // draw tank if we have capacity
     if (tank != null) {
@@ -143,7 +137,7 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
       slotBackground += FLUID_TANK.h;
     }
     // draw the player inventory background
-    graphics.blit(TEXTURE, xStart, yStart + slotBackground, 0, PLAYER_INVENTORY_START, this.imageWidth, PLAYER_INVENTORY_HEIGHT);
+    graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xStart, yStart + slotBackground, (float)(0), (float)(PLAYER_INVENTORY_START), this.imageWidth, PLAYER_INVENTORY_HEIGHT, 256, 256);
 
     // add crafting table slots
     // if we have no slots, push them below the title, otherwise above the title
@@ -160,10 +154,10 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
       int rowLeft = xStart + 7;
       int rowStart = yStart + REPEAT_BACKGROUND_START - SLOT_SIZE + (craftingHeight * SLOT_SIZE);
       for (int i = 1; i < inventoryRows; i++) {
-        graphics.blit(TEXTURE, rowLeft, rowStart + i * SLOT_SIZE, 0, SLOTS_START, 9 * SLOT_SIZE, SLOT_SIZE);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, rowLeft, rowStart + i * SLOT_SIZE, (float)(0), (float)(SLOTS_START), 9 * SLOT_SIZE, SLOT_SIZE, 256, 256);
       }
       // last row may not have all slots
-      graphics.blit(TEXTURE, rowLeft, rowStart + inventoryRows * SLOT_SIZE, 0, SLOTS_START, slotsInLastRow * SLOT_SIZE, SLOT_SIZE);
+      graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, rowLeft, rowStart + inventoryRows * SLOT_SIZE, (float)(0), (float)(SLOTS_START), slotsInLastRow * SLOT_SIZE, SLOT_SIZE, 256, 256);
     }
 
     // draw a background on the selected slot index
@@ -183,12 +177,11 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
     // armor is not shown, so that will be -1
     if (highlightIndex != -1 && highlightIndex < menu.slots.size()) {
       Slot slot = menu.getSlot(highlightIndex);
-      graphics.blit(TEXTURE, xStart + slot.x - 2, yStart + slot.y - 2, SELECTED_X, 0, SLOT_SIZE + 2, SLOT_SIZE + 2);
+      graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xStart + slot.x - 2, yStart + slot.y - 2, (float)(SELECTED_X), (float)(0), SLOT_SIZE + 2, SLOT_SIZE + 2, 256, 256);
     }
 
     // prepare pattern drawing
     assert this.minecraft != null;
-    Function<Identifier,TextureAtlasSprite> spriteGetter = this.minecraft.getTextureAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
 
     // draw slot patterns for all empty slots
     int start = menu.getToolInventoryStart();
@@ -208,8 +201,7 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
         Slot slot = menu.getSlot(start + i);
         Pattern pattern = inventory.getPattern(tool, entry, i, slot.hasItem());
         if (pattern != null) {
-          TextureAtlasSprite sprite = spriteGetter.apply(pattern.getTexture());
-          graphics.blit(xStart + slot.x, yStart + slot.y, 100, 16, 16, sprite);
+          graphics.blitSprite(RenderPipelines.GUI_TEXTURED, slimeknights.mantle.client.render.FluidRenderer.getBlockSprite(pattern.getTexture()), xStart + slot.x, yStart + slot.y, 16, 16);
         }
       }
       start += size;
@@ -219,27 +211,28 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
     if (menu.isShowOffhand()) {
       Slot slot = menu.getSlot(menu.getPlayerInventoryStart() - 1);
       if (!slot.hasItem()) {
-        TextureAtlasSprite sprite = spriteGetter.apply(Patterns.SHIELD.getTexture());
-        graphics.blit(xStart + slot.x, yStart + slot.y, 100, 16, 16, sprite);
+        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, slimeknights.mantle.client.render.FluidRenderer.getBlockSprite(Patterns.SHIELD.getTexture()), xStart + slot.x, yStart + slot.y, 16, 16);
       }
     }
 
     if (tank != null) {
       tank.draw(graphics);
     }
+
+    super.extractRenderState(graphics, x, y, partialTicks);
   }
 
   @Override
-  protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderLabels(graphics, mouseX, mouseY);
+  protected void extractLabels(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractLabels(graphics, mouseX, mouseY);
     if (tank != null) {
       tank.highlightHoveredFluid(graphics, mouseX - this.leftPos, mouseY - this.topPos);
     }
   }
 
   @Override
-  protected void renderTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderTooltip(graphics, mouseX, mouseY);
+  protected void extractTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractTooltip(graphics, mouseX, mouseY);
 
     if (tank != null) {
       tank.renderTooltip(graphics, mouseX, mouseY);

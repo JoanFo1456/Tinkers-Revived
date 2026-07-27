@@ -1,12 +1,11 @@
 package slimeknights.tconstruct.tools.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -235,22 +234,22 @@ public class ModifierClientEvents {
   }
 
   /** Renders an item slot using the vanilla pop animation */
-  private static void renderSlot(Minecraft mc, GuiGraphics graphics, int x, int y, DeltaTracker partialTicks, Player player, ItemStack stack, int seed) {
+  private static void renderSlot(Minecraft mc, GuiGraphicsExtractor graphics, int x, int y, DeltaTracker partialTicks, Player player, ItemStack stack, int seed) {
     if (!stack.isEmpty()) {
       float popTime = stack.getPopTime() - partialTicks.getGameTimeDeltaPartialTick(false);
       if (popTime > 0) {
         float scale = 1.0F + popTime / 5.0F;
-        graphics.pose().pushPose();
-        graphics.pose().translate(x + 8, y + 12, 0);
-        graphics.pose().scale(1.0F / scale, (scale + 1.0F) / 2.0F, 1.0F);
-        graphics.pose().translate(-(x + 8), -(y + 12), 0);
+        graphics.pose().pushMatrix();
+        graphics.pose().translate(x + 8, y + 12);
+        graphics.pose().scale(1.0F / scale, (scale + 1.0F) / 2.0F);
+        graphics.pose().translate(-(x + 8), -(y + 12));
       }
 
-      graphics.renderItem(player, stack, x, y, seed);
+      graphics.item(player, stack, x, y, seed);
       if (popTime > 0) {
-        graphics.pose().popPose();
+        graphics.pose().popMatrix();
       }
-      graphics.renderItemDecorations(mc.font, stack, x, y);
+      graphics.itemDecorations(mc.font, stack, x, y);
     }
   }
 
@@ -310,12 +309,11 @@ public class ModifierClientEvents {
     }
     MultiPlayerGameMode playerController = mc.gameMode;
     if (playerController != null && playerController.getPlayerMode() != GameType.SPECTATOR) {
-      RenderSystem.enableBlend();
-      RenderSystem.defaultBlendFunc();
+      // 26.1: RenderSystem.enableBlend/defaultBlendFunc removed; GUI blending is pipeline-managed
 
       int scaledWidth = mc.getWindow().getGuiScaledWidth();
       int scaledHeight = mc.getWindow().getGuiScaledHeight();
-      GuiGraphics graphics = event.getGuiGraphics();
+      GuiGraphicsExtractor graphics = event.getGuiGraphics();
       DeltaTracker partialTicks = event.getPartialTick();
 
       // want just above the normal offhand item
