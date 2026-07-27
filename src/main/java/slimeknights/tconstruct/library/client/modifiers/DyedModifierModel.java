@@ -73,7 +73,7 @@ public class DyedModifierModel implements SimpleModifierModel {
       IModDataView data = tool.getPersistentData();
       Identifier key = modifier.getId();
       if (data.contains(key)) {
-        quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(0xFF000000 | data.getInt(key), -1, spriteGetter.apply(texture), transforms, 0, pixels));
+        quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(0xFF000000 | data.getInt(key), -1, new Material.Baked(spriteGetter.apply(texture), false), transforms, 0, pixels));
       }
     }
   }

@@ -73,7 +73,7 @@ public class PotionModifierModel implements SimpleModifierModel {
         Identifier id = Identifier.tryParse(toolData.getString(key));
         if (id != null) {
           BuiltInRegistries.POTION.getHolder(id).ifPresent(potion ->
-            quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(0xFF000000 | PotionUtils.getColor(potion), -1, spriteGetter.apply(texture), transforms, 0, pixels)));
+            quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(0xFF000000 | PotionUtils.getColor(potion), -1, new Material.Baked(spriteGetter.apply(texture), false), transforms, 0, pixels)));
         }
       }
     }

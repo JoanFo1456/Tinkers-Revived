@@ -71,7 +71,7 @@ public class NormalModifierModel implements SimpleModifierModel {
   public void addQuads(IToolStackView tool, ModifierEntry entry, Function<Material,TextureAtlasSprite> spriteGetter, Transformation transforms, boolean isLarge, int startTintIndex, Consumer<Collection<BakedQuad>> quadConsumer, @Nullable ItemLayerPixels pixels) {
     Material spriteName = isLarge ? large : small;
     if (spriteName != null) {
-      quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(color, -1, spriteGetter.apply(spriteName), transforms, luminosity, pixels));
+      quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(color, -1, new Material.Baked(spriteGetter.apply(spriteName), false), transforms, luminosity, pixels));
     }
   }
 

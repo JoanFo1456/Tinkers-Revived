@@ -46,7 +46,7 @@ public interface ModifierModel extends IBakedModifierModel, IHaveLoader {
   /** Loader for registering modifier models */
   GenericLoaderRegistry<ModifierModel> LOADER = new GenericLoaderRegistry<>("Modifier Model", EMPTY, false);
   /** Loadable for reading materials, a common feature of modifier models */
-  StringLoadable<Material> MATERIAL_LOADABLE = Loadables.RESOURCE_LOCATION.flatXmap(ModifierModel::blockAtlas, Material::texture);
+  StringLoadable<Material> MATERIAL_LOADABLE = Loadables.RESOURCE_LOCATION.flatXmap(ModifierModel::blockAtlas, Material::sprite);
 
   @Override
   RecordLoadable<? extends ModifierModel> getLoader();
@@ -55,6 +55,7 @@ public interface ModifierModel extends IBakedModifierModel, IHaveLoader {
   void validate(Function<Material, TextureAtlasSprite> spriteGetter);
 
   static Material blockAtlas(Identifier path) {
-    return new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, path);
+    // in 26.1 the sprite Material references the sprite id directly; the block atlas is implicit
+    return new Material(path);
   }
 }
