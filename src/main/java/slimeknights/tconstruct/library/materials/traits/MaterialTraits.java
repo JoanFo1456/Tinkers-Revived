@@ -21,12 +21,23 @@ import java.util.Map.Entry;
 /**
  * Data object holding a list of traits and a map of stat type to trait
  */
-@AllArgsConstructor
 public class MaterialTraits {
-  @Getter
   private final List<ModifierEntry> defaultTraits;
-  @Getter(AccessLevel.PROTECTED)
   private final Map<MaterialStatsId,List<ModifierEntry>> traitsPerStats;
+
+  public MaterialTraits(List<ModifierEntry> defaultTraits, Map<MaterialStatsId,List<ModifierEntry>> traitsPerStats) {
+    this.defaultTraits = defaultTraits;
+    this.traitsPerStats = traitsPerStats;
+  }
+
+  /** Default traits applied to any stat type without unique traits */
+  public List<ModifierEntry> getDefaultTraits() {
+    return defaultTraits;
+  }
+
+  protected Map<MaterialStatsId,List<ModifierEntry>> getTraitsPerStats() {
+    return traitsPerStats;
+  }
 
   /**
    * Checks if the stats ID has unique traits
@@ -55,7 +66,7 @@ public class MaterialTraits {
     // write map of traits
     buffer.writeVarInt(traitsPerStats.size());
     for (Entry<MaterialStatsId,List<ModifierEntry>> entry : traitsPerStats.entrySet()) {
-      buffer.writeResourceLocation(entry.getKey());
+      buffer.writeIdentifier(entry.getKey().getIdentifier());
       writeTraitList(buffer, entry.getValue());
     }
   }
@@ -70,7 +81,7 @@ public class MaterialTraits {
     int statTypeCount = buffer.readVarInt();
     Map<MaterialStatsId,List<ModifierEntry>> statsTraits = new HashMap<>(statTypeCount);
     for (int i = 0; i < statTypeCount; i++) {
-      MaterialStatsId statsId = new MaterialStatsId(buffer.readResourceLocation());
+      MaterialStatsId statsId = new MaterialStatsId(buffer.readIdentifier());
       List<ModifierEntry> traitsList = readTraitList(buffer);
       statsTraits.put(statsId, traitsList);
     }
