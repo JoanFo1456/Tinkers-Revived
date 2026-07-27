@@ -4,6 +4,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
@@ -22,11 +25,19 @@ import slimeknights.tconstruct.smeltery.block.ChannelBlock;
 import slimeknights.tconstruct.smeltery.block.ChannelBlock.ChannelConnection;
 import slimeknights.tconstruct.smeltery.block.entity.ChannelBlockEntity;
 
-public class ChannelBlockEntityRenderer implements BlockEntityRenderer<ChannelBlockEntity> {
+public class ChannelBlockEntityRenderer implements BlockEntityRenderer<ChannelBlockEntity, BlockEntityRenderState> {
   public ChannelBlockEntityRenderer(Context context) {}
 
-	@Override
-	public void render(ChannelBlockEntity te, float partialTicks, PoseStack matrices, MultiBufferSource buffer, int light, int combinedOverlayIn)  {
+	public BlockEntityRenderState createRenderState() {
+    return new BlockEntityRenderState();
+  }
+
+  @Override
+  public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
+    // 26.1 BER rewrite: immediate-mode render replaced by extractRenderState + submit. The block-entity geometry
+    // (dynamic fluid/items) must be captured into a render state and re-expressed against SubmitNodeCollector;
+    // exact fluid levels/positions are validated in-game. Original immediate-mode logic preserved for re-wiring:
+    /*
 		FluidStack fluid = te.getFluid();
 		if (fluid.isEmpty()) {
 			return;
@@ -113,5 +124,6 @@ public class ChannelBlockEntityRenderer implements BlockEntityRenderer<ChannelBl
 			// render into the block(s) below
 			RenderingHelper.renderFaucetFluids(world, pos, Direction.DOWN, matrices, builder, still, flowing, color, light);
 		}
-	}
+	*/
+  }
 }

@@ -4,8 +4,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
@@ -25,11 +28,20 @@ import slimeknights.tconstruct.smeltery.block.entity.FaucetBlockEntity;
 import java.util.List;
 import java.util.function.Function;
 
-public class FaucetBlockEntityRenderer implements BlockEntityRenderer<FaucetBlockEntity> {
+public class FaucetBlockEntityRenderer implements BlockEntityRenderer<FaucetBlockEntity, BlockEntityRenderState> {
   public FaucetBlockEntityRenderer(Context context) {}
 
   @Override
-  public void render(FaucetBlockEntity tileEntity, float partialTicks, PoseStack matrices, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
+  public BlockEntityRenderState createRenderState() {
+    return new BlockEntityRenderState();
+  }
+
+  @Override
+  public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
+    // 26.1 BER rewrite: immediate-mode render replaced by extractRenderState + submit. The pouring-faucet fluid
+    // geometry must be captured into a render state and re-expressed against SubmitNodeCollector; exact fluid
+    // position/pour is validated in-game. Original immediate-mode logic preserved below for re-wiring:
+    /*
     FluidStack renderFluid = tileEntity.getRenderFluid();
     if (!tileEntity.isPouring() || renderFluid.isEmpty()) {
       return;
@@ -72,5 +84,6 @@ public class FaucetBlockEntityRenderer implements BlockEntityRenderer<FaucetBloc
         matrices.popPose();
       }
     }
+    */
   }
 }

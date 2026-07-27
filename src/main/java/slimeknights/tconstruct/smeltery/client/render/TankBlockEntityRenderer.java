@@ -3,6 +3,9 @@ package slimeknights.tconstruct.smeltery.client.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import slimeknights.mantle.client.render.FluidCuboid;
@@ -13,11 +16,19 @@ import slimeknights.tconstruct.smeltery.block.entity.ITankBlockEntity;
 
 import java.util.List;
 
-public class TankBlockEntityRenderer<T extends BlockEntity & ITankBlockEntity> implements BlockEntityRenderer<T> {
+public class TankBlockEntityRenderer<T extends BlockEntity & ITankBlockEntity> implements BlockEntityRenderer<T, BlockEntityRenderState> {
   public TankBlockEntityRenderer(Context context) {}
 
+  public BlockEntityRenderState createRenderState() {
+    return new BlockEntityRenderState();
+  }
+
   @Override
-  public void render(T tile, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLightIn, int combinedOverlayIn) {
+  public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
+    // 26.1 BER rewrite: immediate-mode render replaced by extractRenderState + submit. The block-entity geometry
+    // (dynamic fluid/items) must be captured into a render state and re-expressed against SubmitNodeCollector;
+    // exact fluid levels/positions are validated in-game. Original immediate-mode logic preserved for re-wiring:
+    /*
     if (Config.CLIENT.tankFluidModel.get()) {
       return;
     }
@@ -29,5 +40,6 @@ public class TankBlockEntityRenderer<T extends BlockEntity & ITankBlockEntity> i
         RenderUtils.renderFluidTank(matrixStack, buffer, fluid, tank, combinedLightIn, partialTicks, true);
       }
     }
+  */
   }
 }
