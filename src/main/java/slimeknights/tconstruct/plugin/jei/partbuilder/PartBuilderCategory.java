@@ -13,7 +13,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -55,14 +55,14 @@ public class PartBuilderCategory implements IRecipeCategory<IDisplayPartBuilderR
   }
 
   @Override
-  public void draw(IDisplayPartBuilderRecipe recipe, IRecipeSlotsView slots, GuiGraphics graphics, double mouseX, double mouseY) {
+  public void draw(IDisplayPartBuilderRecipe recipe, IRecipeSlotsView slots, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
     MaterialVariant variant = recipe.getMaterial();
     if (!variant.isEmpty()) {
       Font fontRenderer = Minecraft.getInstance().font;
       Component name = MaterialTooltipCache.getColoredDisplayName(variant.getVariant());
-      graphics.drawString(fontRenderer, name, 3, 2, -1, true);
+      graphics.text(fontRenderer, name, 3, 2, -1, true);
       String coolingString = I18n.get(KEY_COST, recipe.getCost());
-      graphics.drawString(fontRenderer, coolingString, 3, 35, Color.GRAY.getRGB(), false);
+      graphics.text(fontRenderer, coolingString, 3, 35, Color.GRAY.getRGB(), false);
     } else if (recipe.getMaterialItems().isEmpty()) {
       GuiUtil.renderPattern(graphics, Patterns.INGOT, 25, 16);
     }

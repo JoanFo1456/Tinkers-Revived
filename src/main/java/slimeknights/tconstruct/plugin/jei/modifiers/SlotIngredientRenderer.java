@@ -4,7 +4,8 @@ import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
@@ -101,13 +102,13 @@ public enum SlotIngredientRenderer implements IIngredientRenderer<SlotCount> {
   }
 
   @Override
-  public void render(GuiGraphics graphics, @Nullable SlotCount slots) {
+  public void render(GuiGraphicsExtractor graphics, @Nullable SlotCount slots) {
     if (this != INGREDIENT && slots != null && slots.count() > 0) {
       String text = Integer.toString(slots.count());
       Font fontRenderer = Minecraft.getInstance().font;
-      graphics.drawString(fontRenderer, text, 9 - fontRenderer.width(text), 5, Color.GRAY.getRGB(), false);
+      graphics.text(fontRenderer, text, 9 - fontRenderer.width(text), 5, Color.GRAY.getRGB(), false);
     }
-    graphics.blit(this == INGREDIENT ? 0 : 8, 0, 0, 16, 16, SLOT_SPRITES.computeIfAbsent(SlotCount.type(slots), SLOT_LOOKUP));
+    graphics.blitSprite(RenderPipelines.GUI_TEXTURED, SLOT_SPRITES.computeIfAbsent(SlotCount.type(slots), SLOT_LOOKUP), this == INGREDIENT ? 0 : 8, 0, 16, 16);
   }
 
   /** Appends the ID in advanced tooltip */

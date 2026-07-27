@@ -12,7 +12,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
@@ -56,7 +56,7 @@ public class ModifierWorktableCategory implements IRecipeCategory<IModifierWorkt
   }
 
   @Override
-  public void draw(IModifierWorktableRecipe recipe, IRecipeSlotsView slots, GuiGraphics graphics, double mouseX, double mouseY) {
+  public void draw(IModifierWorktableRecipe recipe, IRecipeSlotsView slots, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
     if (recipe.getInputTools().isEmpty()) {
       toolIcon.draw(graphics, 23, 16);
     }
@@ -66,7 +66,7 @@ public class ModifierWorktableCategory implements IRecipeCategory<IModifierWorkt
         slotIcons[i].draw(graphics, 43 + i * 18, 16);
       }
     }
-    graphics.drawString(Minecraft.getInstance().font, recipe.getTitle(), 3, 2, 0x404040, false);
+    graphics.text(Minecraft.getInstance().font, recipe.getTitle(), 3, 2, 0x404040, false);
   }
 
   @Override

@@ -17,7 +17,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -68,7 +68,7 @@ public abstract class AbstractCastingCategory implements IRecipeCategory<IDispla
   }
 
   @Override
-  public void draw(IDisplayableCastingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
+  public void draw(IDisplayableCastingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
     cachedArrows.getUnchecked(Math.max(1, recipe.getCoolingTime())).draw(graphics, 58, 18);
     block.draw(graphics, 38, 35);
     if (recipe.hasCast()) {
@@ -79,7 +79,7 @@ public abstract class AbstractCastingCategory implements IRecipeCategory<IDispla
     String coolingString = I18n.get(KEY_COOLING_TIME, coolingTime);
     Font fontRenderer = Minecraft.getInstance().font;
     int x = 72 - fontRenderer.width(coolingString) / 2;
-    graphics.drawString(fontRenderer, coolingString, x, 2, Color.GRAY.getRGB(), false);
+    graphics.text(fontRenderer, coolingString, x, 2, Color.GRAY.getRGB(), false);
   }
 
   @Override

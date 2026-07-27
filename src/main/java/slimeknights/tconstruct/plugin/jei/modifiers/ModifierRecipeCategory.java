@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.plugin.jei.modifiers;
 
-import com.mojang.blaze3d.vertex.PoseStack;
+import org.joml.Matrix3x2fStack;
 import lombok.Getter;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -14,7 +14,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
@@ -87,7 +87,7 @@ public class ModifierRecipeCategory implements IRecipeCategory<IDisplayModifierR
   }
 
   /** Draws a single slot icon */
-  private void drawSlot(GuiGraphics graphics, IDisplayModifierRecipe recipe, int slot, int x, int y) {
+  private void drawSlot(GuiGraphicsExtractor graphics, IDisplayModifierRecipe recipe, int slot, int x, int y) {
     List<ItemStack> stacks = recipe.getDisplayItems(slot);
     if (stacks.isEmpty()) {
       // -1 as the item list includes the output slot, we skip that
@@ -96,7 +96,7 @@ public class ModifierRecipeCategory implements IRecipeCategory<IDisplayModifierR
   }
 
   @Override
-  public void draw(IDisplayModifierRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
+  public void draw(IDisplayModifierRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
     drawSlot(graphics, recipe, 0,  2, 32);
     drawSlot(graphics, recipe, 1, 24, 14);
     drawSlot(graphics, recipe, 2, 46, 32);
@@ -137,17 +137,17 @@ public class ModifierRecipeCategory implements IRecipeCategory<IDisplayModifierR
     if (levelText != null) {
       // center string
       Font fontRenderer = Minecraft.getInstance().font;
-      graphics.drawString(fontRenderer, levelText, 86 - fontRenderer.width(levelText) / 2, 16, Color.GRAY.getRGB(), false);
+      graphics.text(fontRenderer, levelText, 86 - fontRenderer.width(levelText) / 2, 16, Color.GRAY.getRGB(), false);
     }
 
     // draw slotless icon if needed. Slots are handled by ingredient renderer.
     SlotCount slots = recipe.getSlots();
     if (slots == null) {
-      PoseStack pose = graphics.pose();
-      pose.pushPose();
-      pose.translate(102, 58, 0);
+      Matrix3x2fStack pose = graphics.pose();
+      pose.pushMatrix();
+      pose.translate(102, 58);
       SlotIngredientRenderer.INPUT.render(graphics, null);
-      pose.popPose();
+      pose.popMatrix();
     }
   }
 

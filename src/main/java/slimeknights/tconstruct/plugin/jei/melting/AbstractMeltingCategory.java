@@ -16,7 +16,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -69,7 +69,7 @@ public abstract class AbstractMeltingCategory implements IRecipeCategory<Melting
   }
 
   @Override
-  public void draw(MeltingRecipe recipe, IRecipeSlotsView slots, GuiGraphics graphics, double mouseX, double mouseY) {
+  public void draw(MeltingRecipe recipe, IRecipeSlotsView slots, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
     // draw the arrow
     cachedArrows.getUnchecked(recipe.getTime() * 5).draw(graphics, 56, 18);
     if (recipe.getOreType() != null) {
@@ -81,7 +81,7 @@ public abstract class AbstractMeltingCategory implements IRecipeCategory<Melting
     Font fontRenderer = Minecraft.getInstance().font;
     String tempString = I18n.get(KEY_TEMPERATURE, temperature);
     int x = 56 - fontRenderer.width(tempString) / 2;
-    graphics.drawString(fontRenderer, tempString, x, 3, Color.GRAY.getRGB(), false);
+    graphics.text(fontRenderer, tempString, x, 3, Color.GRAY.getRGB(), false);
   }
 
   @Override
