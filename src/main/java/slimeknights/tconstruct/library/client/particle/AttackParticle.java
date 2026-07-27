@@ -3,18 +3,17 @@ package slimeknights.tconstruct.library.client.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.particles.SimpleParticleType;
 
 /** Simple particle used on attack */
-public class AttackParticle extends TextureSheetParticle {
+public class AttackParticle extends SingleQuadParticle {
 
   private final SpriteSet spriteList;
 
   public AttackParticle(ClientLevel world, double x, double y, double z, double pQuadSizeMultiplier, SpriteSet spriteList) {
-    super(world, x, y, z, 0, 0, 0);
+    super(world, x, y, z, 0, 0, 0, spriteList.first());
     this.spriteList = spriteList;
     float f = this.random.nextFloat() * 0.6F + 0.4F;
     this.rCol = f;
@@ -26,12 +25,13 @@ public class AttackParticle extends TextureSheetParticle {
   }
 
   @Override
-  public ParticleRenderType getRenderType() {
-    return ParticleRenderType.PARTICLE_SHEET_LIT;
+  public SingleQuadParticle.Layer getLayer() {
+    // rendered from the particle atlas; the pre-26.1 PARTICLE_SHEET_LIT lighting is reproduced via full-bright getLightCoords
+    return SingleQuadParticle.Layer.OPAQUE;
   }
 
   @Override
-  public int getLightColor(float partialTicks) {
+  public int getLightCoords(float partialTicks) {
     return 0xF000F0;
   }
 
