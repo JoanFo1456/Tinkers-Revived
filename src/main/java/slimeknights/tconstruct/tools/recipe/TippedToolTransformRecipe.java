@@ -69,7 +69,7 @@ public class TippedToolTransformRecipe extends ToolBuildingRecipe {
         if (!stack.isEmpty()) {
           CompoundTag tag = TagUtil.getTag(stack);
           if (tag != null && tag.contains(PotionUtils.TAG_POTION)) {
-            tool.getPersistentData().putString(modifier.getIdentifier(), tag.getString(PotionUtils.TAG_POTION));
+            tool.getPersistentData().putString(modifier.getIdentifier(), tag.getStringOr(PotionUtils.TAG_POTION, ""));
           }
         }
       }
@@ -86,7 +86,7 @@ public class TippedToolTransformRecipe extends ToolBuildingRecipe {
           CompoundTag tag = TagUtil.getTag(stack);
           if (tag != null) {
             ItemStack copy = result.copy();
-            ToolStack.from(copy).getPersistentData().putString(modifier.getIdentifier(), tag.getString(PotionUtils.TAG_POTION));
+            ToolStack.from(copy).getPersistentData().putString(modifier.getIdentifier(), tag.getStringOr(PotionUtils.TAG_POTION, ""));
             return copy;
           }
           return result;

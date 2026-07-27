@@ -69,7 +69,7 @@ public class MaterialBlockEntity extends MantleBlockEntity {
   protected void loadAdditional(CompoundTag tags, HolderLookup.Provider registries) {
     super.loadAdditional(tags, registries);
     if (tags.contains(MATERIAL_TAG)) {
-      material = Objects.requireNonNullElse(MaterialVariantId.tryParse(tags.getString(MATERIAL_TAG)), IMaterial.UNKNOWN_ID);
+      material = Objects.requireNonNullElse(MaterialVariantId.tryParse(tags.getStringOr(MATERIAL_TAG, "")), IMaterial.UNKNOWN_ID);
       RetexturedHelper.onTextureUpdated(this);
     }
   }

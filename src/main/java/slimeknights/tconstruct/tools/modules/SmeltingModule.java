@@ -166,8 +166,8 @@ public record SmeltingModule(RecipeType<? extends AbstractCookingRecipe> recipeT
         AbstractCookingRecipe recipe = null;
         ItemStack stack = null;
 
-        CompoundTag entry = list.getCompound(i);
-        int time = entry.getInt(TAG_TIME);
+        CompoundTag entry = list.getCompoundOrEmpty(i);
+        int time = entry.getIntOr(TAG_TIME, 0);
         // 0 means no recipe, time for a lookup
         if (time == 0) {
           time = NO_RECIPE;
@@ -186,7 +186,7 @@ public record SmeltingModule(RecipeType<? extends AbstractCookingRecipe> recipeT
             entry.putInt(TAG_TIME, time);
           } else {
             // locate the result and see if we might fit
-            int slot = entry.getInt(TAG_SLOT);
+            int slot = entry.getIntOr(TAG_SLOT, 0);
             ItemStack currentResult = output.getStack(tool, modifier, slot);
             int maxStackSize = 0;
             if (!currentResult.isEmpty()) {

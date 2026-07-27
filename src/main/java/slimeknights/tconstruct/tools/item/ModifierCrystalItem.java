@@ -193,7 +193,7 @@ public class ModifierCrystalItem extends Item {
   public static ModifierId getModifier(ItemStack stack) {
     CompoundTag tag = TagUtil.getTag(stack);
     if (tag != null) {
-      return ModifierId.tryParse(tag.getString(TAG_MODIFIER));
+      return ModifierId.tryParse(tag.getStringOr(TAG_MODIFIER, ""));
     }
     return null;
   }

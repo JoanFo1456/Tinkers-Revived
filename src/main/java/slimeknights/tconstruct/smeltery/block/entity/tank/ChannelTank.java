@@ -69,7 +69,7 @@ public class ChannelTank extends FluidTank {
 	}
 
 	public FluidTank readFromNBT(CompoundTag nbt) {
-		this.locked = nbt.getInt(TAG_LOCKED);
+		this.locked = nbt.getIntOr(TAG_LOCKED, 0);
 		super.readFromNBT(TagUtil.BUILTIN_LOOKUP, nbt);
 		return this;
 	}

@@ -47,7 +47,7 @@ public class PersistentDataCapability {
   /** Gets the persistent data for an entity. */
   public static ModDataNBT getData(Entity entity) {
     CompoundTag persistentData = entity.getPersistentData();
-    CompoundTag data = persistentData.getCompound(DATA_KEY);
+    CompoundTag data = persistentData.getCompoundOrEmpty(DATA_KEY);
     persistentData.put(DATA_KEY, data);
     return ModDataNBT.readFromNBT(data);
   }

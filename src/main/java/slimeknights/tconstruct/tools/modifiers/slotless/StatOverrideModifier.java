@@ -199,7 +199,7 @@ public class StatOverrideModifier extends NoLevelsModifier implements ToolStatsM
       CompoundTag nbt = data.getCompound(groupKey);
       String name = stat.getName().toString();
       if (nbt.contains(name)) {
-        return nbt.getFloat(name);
+        return nbt.getFloatOr(name, 0f);
       }
     }
     return defaultValue;

@@ -46,7 +46,7 @@ public class ReturningEffect extends TinkerEffect {
     ModDataNBT data = PersistentDataCapability.getOrWarn(living);
     if (data.contains(KEY)) {
       CompoundTag tag = data.getCompound(KEY);
-      Identifier dimension = Identifier.tryParse(tag.getString("dimension"));
+      Identifier dimension = Identifier.tryParse(tag.getStringOr("dimension", ""));
       // no teleporting if you switched dimensions
       // TODO: look into cross dimensional teleport, its doable with entity#teleportTo
       if (dimension != null && dimension.equals(living.level().dimension().location())) {

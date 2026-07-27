@@ -83,7 +83,7 @@ public class OlympicModifier extends Modifier implements ProjectileLaunchModifie
       CompoundTag startCompound = persistentData.getCompound(OLYMPIC_START);
       if (!startCompound.isEmpty() && startCompound.contains("X") && startCompound.contains("Y") && startCompound.contains("Z")) {
         // nugget type based on distance
-        Item nugget = getNugget(targetEntity.distanceToSqr(startCompound.getDouble("X"), startCompound.getDouble("Y"), startCompound.getDouble("Z")));
+        Item nugget = getNugget(targetEntity.distanceToSqr(startCompound.getDoubleOr("X", 0.0), startCompound.getDoubleOr("Y", 0.0), startCompound.getDoubleOr("Z", 0.0)));
         if (nugget != Items.AIR) {
           // spawn and play sound
           targetEntity.spawnAtLocation(nugget);

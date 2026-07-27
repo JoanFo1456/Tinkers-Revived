@@ -57,7 +57,7 @@ public enum StatLoadable implements Loadable<Stat<?>> {
     Registry<T> registry = statType.getRegistry();
     Identifier name = Loadables.RESOURCE_LOCATION.convert(element, key, context);
     if (registry.containsKey(name)) {
-      T value = registry.get(name);
+      T value = registry.getValue(name);
       if (value != null) {
         return statType.get(value);
       }

@@ -612,10 +612,10 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
   @Override
   public void load(CompoundTag tags) {
     super.load(tags);
-    tank.readFromTag(tags.getCompound(TAG_TANK));
-    timer = tags.getInt(TAG_TIMER);
+    tank.readFromTag(tags.getCompoundOrEmpty(TAG_TANK));
+    timer = tags.getIntOr(TAG_TIMER, 0);
     if (tags.contains(TAG_RECIPE)) {
-      Identifier name = Identifier.tryParse(tags.getString(TAG_RECIPE));
+      Identifier name = Identifier.tryParse(tags.getStringOr(TAG_RECIPE, ""));
       if (name == null) {
         return;
       }
@@ -627,7 +627,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
         recipeName = name;
       }
     }
-    lastRedstone = tags.getBoolean(TAG_REDSTONE);
+    lastRedstone = tags.getBooleanOr(TAG_REDSTONE, false);
   }
 
   public static class Basin extends CastingBlockEntity {

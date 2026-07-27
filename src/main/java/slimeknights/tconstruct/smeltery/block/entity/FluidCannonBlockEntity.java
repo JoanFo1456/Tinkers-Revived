@@ -187,7 +187,7 @@ public class FluidCannonBlockEntity extends TankBlockEntity implements ITankInve
     super.load(tag);
     tank.readFromNBT(TagUtil.BUILTIN_LOOKUP, tag.getCompound(NBTTags.TANK));
     if (tag.contains(TAG_ITEM)) {
-      itemHandler.readFromNBT(tag.getCompound(TAG_ITEM));
+      itemHandler.readFromNBT(tag.getCompoundOrEmpty(TAG_ITEM));
     }
   }
 

@@ -167,9 +167,9 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
       if (tooltipKey == TooltipKey.SHIFT) {
         ListTag patterns = tool.getPersistentData().getList(patternKey(modifier.getId()), ListTag.TAG_COMPOUND);
         for (int i = 0; i < patterns.size(); i++) {
-          CompoundTag tag = patterns.getCompound(i);
-          DyeColor dye = DyeColor.byId(tag.getInt(KEY_DYE));
-          Identifier patternId = patternId(tag.getString(KEY_PATTERN));
+          CompoundTag tag = patterns.getCompoundOrEmpty(i);
+          DyeColor dye = DyeColor.byId(tag.getIntOr(KEY_DYE, 0));
+          Identifier patternId = patternId(tag.getStringOr(KEY_PATTERN, ""));
           tooltip.add(Component.translatable("block.minecraft.banner." + patternId.toShortLanguageKey() + '.' + dye.getName()).withStyle(ChatFormatting.GRAY));
         }
       } else {
@@ -222,13 +222,13 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
 
     // add in all other patterns
     for (int i = 0; i < banner.size(); i++) {
-      CompoundTag original = banner.getCompound(i);
+      CompoundTag original = banner.getCompoundOrEmpty(i);
       CompoundTag copy = new CompoundTag();
       // copy the pattern as is
-      String pattern = original.getString("Pattern");
+      String pattern = original.getStringOr("Pattern", "");
       copy.putString(KEY_PATTERN, pattern);
       // convert the color from a dye color to an integer
-      dye = DyeColor.byId(original.getInt("Color"));
+      dye = DyeColor.byId(original.getIntOr("Color", 0));
       int color = Util.getColor(dye);
       copy.putInt(KEY_DYE, dye.getId()); // dye for the tooltip
       copy.putInt(KEY_COLOR, color); // color for the model

@@ -144,7 +144,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
     if (slot < getSlots(tool, modifier) && modData.contains(key)) {
       ListTag list = tool.getPersistentData().get(key, GET_COMPOUND_LIST);
       for (int i = 0; i < list.size(); i++) {
-        CompoundTag compound = list.getCompound(i);
+        CompoundTag compound = list.getCompoundOrEmpty(i);
         if (compound.getInt(TAG_SLOT) == slot) {
           return TagUtil.readItem(compound);
         }
@@ -165,8 +165,8 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
         list = modData.get(key, GET_COMPOUND_LIST);
         // first, try to find an existing stack in the slot
         for (int i = 0; i < list.size(); i++) {
-          CompoundTag compound = list.getCompound(i);
-          int listSlot = compound.getInt(TAG_SLOT);
+          CompoundTag compound = list.getCompoundOrEmpty(i);
+          int listSlot = compound.getIntOr(TAG_SLOT, 0);
           if (listSlot == slot) {
             if (stack.isEmpty()) {
               list.remove(i);
@@ -225,7 +225,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
             freeSlots.set(listNBT.getCompound(i).getInt(TAG_SLOT), false);
           }
           for (int i = 0; i < listNBT.size(); i++) {
-            CompoundTag compoundNBT = listNBT.getCompound(i);
+            CompoundTag compoundNBT = listNBT.getCompoundOrEmpty(i);
             if (compoundNBT.getInt(TAG_SLOT) >= maxSlots) {
               int free = freeSlots.stream().findFirst().orElse(-1);
               if (free == -1) {
@@ -283,9 +283,9 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
       if (!slots.isEmpty()) {
         // search all slots for the first match
         for (int i = 0; i < slots.size(); i++) {
-          CompoundTag compound = slots.getCompound(i);
+          CompoundTag compound = slots.getCompoundOrEmpty(i);
           // slot must be valid
-          int slot = compound.getInt(TAG_SLOT);
+          int slot = compound.getIntOr(TAG_SLOT, 0);
           if (slot < max) {
             ItemStack stack = TagUtil.readItem(compound);
             if (!stack.isEmpty() && predicate.test(stack)) {
@@ -311,9 +311,9 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
         // make sure the stacks are in order, NBT could store them in any order
         ItemStack[] parsed = new ItemStack[max];
         for (int i = 0; i < list.size(); i++) {
-          CompoundTag compound = list.getCompound(i);
+          CompoundTag compound = list.getCompoundOrEmpty(i);
           // slot must be valid
-          int slot = compound.getInt(TAG_SLOT);
+          int slot = compound.getIntOr(TAG_SLOT, 0);
           if (slot < max) {
             parsed[slot] = TagUtil.readItem(compound);
           }

@@ -227,9 +227,9 @@ public class MeltingModule implements IMeltingContainer, ContainerData {
   public void readFromTag(CompoundTag nbt) {
     stack = ItemStack.parseOptional(TagUtil.BUILTIN_LOOKUP, nbt);
     if (!stack.isEmpty()) {
-      currentTime = nbt.getInt(TAG_CURRENT_TIME);
-      requiredTime = nbt.getInt(TAG_REQUIRED_TIME);
-      requiredTemp = nbt.getInt(TAG_REQUIRED_TEMP);
+      currentTime = nbt.getIntOr(TAG_CURRENT_TIME, 0);
+      requiredTime = nbt.getIntOr(TAG_REQUIRED_TIME, 0);
+      requiredTemp = nbt.getIntOr(TAG_REQUIRED_TEMP, 0);
     }
   }
 

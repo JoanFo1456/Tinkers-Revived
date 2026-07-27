@@ -426,7 +426,7 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
 
 		// isFlowing
 		if (nbt.contains(TAG_IS_FLOWING)) {
-			byte[] nbtFlowing = nbt.getByteArray(TAG_IS_FLOWING);
+			byte[] nbtFlowing = nbt.getByteArray(TAG_IS_FLOWING).orElse(new byte[0]);
 			int max = Math.min(5, nbtFlowing.length);
 			for (int i = 0; i < max; i++) {
 				byte b = nbtFlowing[i];
@@ -441,7 +441,7 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
 		}
 
 		// tank
-		CompoundTag tankTag = nbt.getCompound(TAG_TANK);
+		CompoundTag tankTag = nbt.getCompoundOrEmpty(TAG_TANK);
 		tank.readFromNBT(tankTag);
 	}
 }

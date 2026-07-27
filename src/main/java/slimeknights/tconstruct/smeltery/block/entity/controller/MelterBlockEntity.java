@@ -198,7 +198,7 @@ public class MelterBlockEntity extends NameableBlockEntity implements ITankInven
     tank.readFromNBT(TagUtil.BUILTIN_LOOKUP, tag.getCompound(NBTTags.TANK));
     fuelModule.readFromTag(tag);
     if (tag.contains(TAG_INVENTORY)) {
-      meltingInventory.readFromTag(tag.getCompound(TAG_INVENTORY));
+      meltingInventory.readFromTag(tag.getCompoundOrEmpty(TAG_INVENTORY));
     }
   }
 

@@ -221,8 +221,8 @@ public class TankItem extends BlockTooltipItem {
 
   /** Reads a fluid stack from the legacy tank item tag shape. */
   public static FluidStack readFluid(CompoundTag tag) {
-    Identifier fluidName = Identifier.tryParse(tag.getString("FluidName"));
-    int amount = tag.getInt("Amount");
+    Identifier fluidName = Identifier.tryParse(tag.getStringOr("FluidName", ""));
+    int amount = tag.getIntOr("Amount", 0);
     if (fluidName == null || amount <= 0) {
       return FluidStack.EMPTY;
     }
@@ -310,7 +310,7 @@ public class TankItem extends BlockTooltipItem {
     FluidTank tank = ScaledFluidTank.create(TankBlockEntity.getCapacity(stack.getItem()), scale);
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null) {
-      readTank(tank, nbt.getCompound(NBTTags.TANK));
+      readTank(tank, nbt.getCompoundOrEmpty(NBTTags.TANK));
     }
     return tank;
   }

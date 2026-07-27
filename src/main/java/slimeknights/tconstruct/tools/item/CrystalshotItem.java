@@ -48,7 +48,7 @@ public class CrystalshotItem extends ArrowItem {
     String variant = "random";
     CompoundTag tag = TagUtil.getTag(pStack);
     if (tag != null && tag.contains(TAG_VARIANT)) {
-      variant = tag.getString(TAG_VARIANT);
+      variant = tag.getStringOr(TAG_VARIANT, "");
     }
     if ("random".equals(variant)) {
       variant = RANDOM_VARIANTS.get(pShooter.getRandom().nextInt(RANDOM_VARIANTS.size()));
@@ -130,7 +130,7 @@ public class CrystalshotItem extends ArrowItem {
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
       super.readAdditionalSaveData(tag);
-      setVariant(tag.getString(TAG_VARIANT));
+      setVariant(tag.getStringOr(TAG_VARIANT, ""));
     }
   }
 }

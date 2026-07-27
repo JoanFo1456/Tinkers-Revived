@@ -115,7 +115,7 @@ public class TooltipUtil {
   public static String getDisplayName(ItemStack tool) {
     CompoundTag tag = TagUtil.getTag(tool);
     if (tag != null) {
-      return tag.getString(KEY_NAME);
+      return tag.getStringOr(KEY_NAME, "");
     }
     return "";
   }

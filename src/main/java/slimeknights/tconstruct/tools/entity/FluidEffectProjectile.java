@@ -353,9 +353,9 @@ public class FluidEffectProjectile extends Projectile implements ProjectileWithK
   @Override
   protected void readAdditionalSaveData(CompoundTag nbt) {
     super.readAdditionalSaveData(nbt);
-    this.power = nbt.getFloat(KEY_POWER);
-    this.knockback = nbt.getFloat(KEY_KNOCKBACK);
-    this.entityData.set(WATER_INERTIA, nbt.getFloat(KEY_WATER_INERTIA));
+    this.power = nbt.getFloatOr(KEY_POWER, 0f);
+    this.knockback = nbt.getFloatOr(KEY_KNOCKBACK, 0f);
+    this.entityData.set(WATER_INERTIA, nbt.getFloatOr(KEY_WATER_INERTIA, 0f));
     if (nbt.contains(KEY_CANNON)) {
       this.cannon = NbtUtils.readBlockPos(nbt, KEY_CANNON).orElse(null);
     } else {

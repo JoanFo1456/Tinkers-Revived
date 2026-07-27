@@ -180,7 +180,7 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
   public void load(CompoundTag tags) {
     super.load(tags);
     if (tags.contains(TAG_TEXTURE)) {
-      texture = RetexturedHelper.getBlock(tags.getString(TAG_TEXTURE));
+      texture = RetexturedHelper.getBlock(tags.getStringOr(TAG_TEXTURE, ""));
       RetexturedHelper.onTextureUpdated(this);
     }
   }

@@ -68,7 +68,7 @@ public class HeaterBlockEntity extends NameableBlockEntity implements ILegacyCap
   public void load(CompoundTag tags) {
     super.load(tags);
     if (tags.contains(TAG_ITEM)) {
-      itemHandler.readFromNBT(tags.getCompound(TAG_ITEM));
+      itemHandler.readFromNBT(tags.getCompoundOrEmpty(TAG_ITEM));
     }
   }
 

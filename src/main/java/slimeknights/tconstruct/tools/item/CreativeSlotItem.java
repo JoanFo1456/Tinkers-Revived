@@ -47,7 +47,7 @@ public class CreativeSlotItem extends Item {
   public static SlotType getSlot(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null && nbt.contains(NBT_KEY)) {
-      return SlotType.getIfPresent(nbt.getString(NBT_KEY));
+      return SlotType.getIfPresent(nbt.getStringOr(NBT_KEY, ""));
     }
     return null;
   }
