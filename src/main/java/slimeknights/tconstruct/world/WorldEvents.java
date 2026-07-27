@@ -12,15 +12,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.SkullBlock;
 import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent.LivingVisibilityEvent;
-import net.neoforged.neoforge.event.village.WandererTradesEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.config.Config;
-import slimeknights.tconstruct.world.logic.AncientToolItemListing;
-
-import java.util.Collections;
 
 @SuppressWarnings("unused")
 @EventBusSubscriber(modid = TConstruct.MOD_ID)
@@ -60,12 +56,8 @@ public class WorldEvents {
     }
   }
 
-  @SubscribeEvent
-  static void wanderingTrades(WandererTradesEvent event) {
-    // add ancient tools to the wandering trader table
-    int weight = Config.COMMON.wandererAncientToolWeight.get();
-    if (weight > 0) {
-      event.getRareTrades().addAll(Collections.nCopies(weight, AncientToolItemListing.INSTANCE));
-    }
-  }
+  // Note: the ancient tool wandering-trader injection was dropped here because NeoForge's WandererTradesEvent was removed
+  // in 26.1 with no event replacement; wandering trades are now data-driven via TradeSets. Reintroducing the ancient tool
+  // trade requires a data-driven trade set plus a custom loot function to build the random-material tool (see
+  // AncientToolItemListing, which retains the offer-building logic).
 }
