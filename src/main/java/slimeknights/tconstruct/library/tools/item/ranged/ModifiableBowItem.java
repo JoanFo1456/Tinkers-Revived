@@ -156,7 +156,7 @@ public class ModifiableBowItem extends ModifiableLauncherItem {
   }
 
   @Override
-  public void releaseUsing(ItemStack bow, Level level, LivingEntity living, int timeLeft) {
+  public boolean releaseUsing(ItemStack bow, Level level, LivingEntity living, int timeLeft) {
     // call the stop using hook
     ToolStack tool = ToolStack.from(bow);
     int duration = getUseDuration(bow, living);
@@ -166,7 +166,7 @@ public class ModifiableBowItem extends ModifiableLauncherItem {
 
     // no broken
     if (tool.isBroken()) {
-      return;
+      return false;
     }
 
     // just not handling vanilla infinity at all, we have our own hooks which someone could use to mimic infinity if they wish with a bit of effort
@@ -191,7 +191,7 @@ public class ModifiableBowItem extends ModifiableLauncherItem {
 
     // no ammo? no charge? nothing to do
     if (!hasAmmo || chargeTime < 0) {
-      return;
+      return false;
     }
 
     // calculate arrow power
@@ -199,7 +199,7 @@ public class ModifiableBowItem extends ModifiableLauncherItem {
     float velocity = ConditionalStatModifierHook.getModifiedStat(tool, living, ToolStats.VELOCITY);
     float power = charge * velocity;
     if (power < 0.1f) {
-      return;
+      return false;
     }
 
     // launch the arrow
@@ -309,6 +309,8 @@ public class ModifiableBowItem extends ModifiableLauncherItem {
     if (player != null) {
       player.awardStat(Stats.ITEM_USED.get(this));
     }
+  
+    return true;
   }
 
   @Override

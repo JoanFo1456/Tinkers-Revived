@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.library.tools.item.ranged;
 
 import com.google.common.collect.ImmutableMultimap;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.component.TooltipDisplay;
 import com.google.common.collect.Multimap;
 import lombok.Getter;
@@ -250,8 +251,8 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
   /* Modifier interactions */
 
   @Override
-  public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-    InventoryTickModifierHook.heldInventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+  public void inventoryTick(ItemStack stack, ServerLevel worldIn, Entity entityIn, @javax.annotation.Nullable net.minecraft.world.entity.EquipmentSlot slot) {
+    InventoryTickModifierHook.heldInventoryTick(stack, worldIn, entityIn, slot != null ? slot.getIndex() : 0, slot == net.minecraft.world.entity.EquipmentSlot.MAINHAND);
   }
 
   @Override

@@ -298,7 +298,7 @@ public class ModifiableCrossbowItem extends ModifiableLauncherItem {
   }
 
   @Override
-  public void releaseUsing(ItemStack bow, Level level, LivingEntity living, int chargeRemaining) {
+  public boolean releaseUsing(ItemStack bow, Level level, LivingEntity living, int chargeRemaining) {
     ToolStack tool = ToolStack.from(bow);
 
     // call the stop using modifier hook
@@ -311,7 +311,7 @@ public class ModifiableCrossbowItem extends ModifiableLauncherItem {
     // specifically: broken, not fully charged, already have ammo
     ModDataNBT persistentData = tool.getPersistentData();
     if (tool.isBroken() || getUseDuration(bow, living) - chargeRemaining < persistentData.getInt(KEY_DRAWTIME) || persistentData.contains(KEY_CROSSBOW_AMMO)) {
-      return;
+      return false;
     }
 
     // find ammo and store it on the bow
@@ -328,6 +328,8 @@ public class ModifiableCrossbowItem extends ModifiableLauncherItem {
         }
       }
     }
+  
+    return true;
   }
 
   @Override

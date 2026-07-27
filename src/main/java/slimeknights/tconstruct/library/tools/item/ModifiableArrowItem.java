@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.library.tools.item;
 
 import lombok.Getter;
+import net.minecraft.server.level.ServerLevel;
 import java.util.function.Consumer;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.nbt.CompoundTag;
@@ -151,8 +152,8 @@ public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay
   /* Modifier interactions */
 
   @Override
-  public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-    InventoryTickModifierHook.heldInventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+  public void inventoryTick(ItemStack stack, ServerLevel worldIn, Entity entityIn, @javax.annotation.Nullable net.minecraft.world.entity.EquipmentSlot slot) {
+    InventoryTickModifierHook.heldInventoryTick(stack, worldIn, entityIn, slot != null ? slot.getIndex() : 0, slot == net.minecraft.world.entity.EquipmentSlot.MAINHAND);
   }
 
   @Override

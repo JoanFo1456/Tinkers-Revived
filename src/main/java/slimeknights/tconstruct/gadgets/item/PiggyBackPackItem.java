@@ -148,7 +148,7 @@ public class PiggyBackPackItem extends TooltipItem {
   }
 
   @Override
-  public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+  public void inventoryTick(ItemStack stack, net.minecraft.server.level.ServerLevel worldIn, Entity entityIn, @javax.annotation.Nullable EquipmentSlot slot) {
     if (entityIn instanceof LivingEntity livingEntity && livingEntity.getItemBySlot(EquipmentSlot.CHEST) == stack && entityIn.isVehicle()) {
       int amplifier = this.getEntitiesCarriedCount(livingEntity) - 1;
       livingEntity.addEffect(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(TinkerGadgets.carryEffect.get()), 2, amplifier, true, false, true));

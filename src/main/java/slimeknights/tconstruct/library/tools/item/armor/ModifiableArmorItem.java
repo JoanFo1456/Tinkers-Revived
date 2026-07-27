@@ -374,16 +374,18 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /* Ticking */
 
   @Override
-  public void inventoryTick(ItemStack stack, Level levelIn, Entity entityIn, int itemSlot, boolean isSelected) {
+  public void inventoryTick(ItemStack stack, net.minecraft.server.level.ServerLevel levelIn, Entity entityIn, @javax.annotation.Nullable EquipmentSlot equipmentSlot) {
     // don't care about non-living, they skip most tool context
     if (entityIn instanceof LivingEntity living) {
       ToolStack tool = ToolStack.from(stack);
-      if (!levelIn.isClientSide) {
-        tool.ensureHasData();
-      }
+      // 26.1 inventoryTick is server-only
+      tool.ensureHasData();
       List<ModifierEntry> modifiers = tool.getModifierList();
       if (!modifiers.isEmpty()) {
         boolean isCorrectSlot = living.getItemBySlot(getEquipmentSlot()) == stack;
+        // 26.1 gives an EquipmentSlot instead of index/selected; derive the legacy flags for the modifier hook
+        boolean isSelected = equipmentSlot == EquipmentSlot.MAINHAND;
+        int itemSlot = equipmentSlot != null ? equipmentSlot.getIndex() : 0;
         // we pass in the stack for most custom context, but for the sake of armor its easier to tell them that this is the correct slot for effects
         for (ModifierEntry entry : modifiers) {
           entry.getHook(ModifierHooks.INVENTORY_TICK).onInventoryTick(tool, entry, levelIn, living, itemSlot, isSelected, isCorrectSlot, stack);
