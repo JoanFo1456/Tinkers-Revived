@@ -10,8 +10,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.TagValueInput;
+import net.minecraft.world.level.storage.TagValueOutput;
+import net.minecraft.world.level.storage.ValueInput;
 import slimeknights.mantle.compat.neoforged.neoforge.capabilities.Capability;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
@@ -72,7 +76,9 @@ public abstract class AbstractChestBlockEntity extends NameableBlockEntity {
     super.saveAdditional(tags);
     // move the items from the serialized result
     // we don't care about the size and need it here for compat with old worlds
-    CompoundTag handlerNBT = itemHandler.serializeNBT(TagUtil.BUILTIN_LOOKUP);
+    TagValueOutput output = TagValueOutput.createWithContext(ProblemReporter.DISCARDING, TagUtil.BUILTIN_LOOKUP);
+    itemHandler.serialize(output);
+    CompoundTag handlerNBT = output.buildResult();
     tags.put(KEY_ITEMS, handlerNBT.getListOrEmpty(KEY_ITEMS));
   }
 
@@ -81,7 +87,8 @@ public abstract class AbstractChestBlockEntity extends NameableBlockEntity {
     // copy in just the items key for deserializing, don't want to change the size
     CompoundTag handlerNBT = new CompoundTag();
     handlerNBT.put(KEY_ITEMS, tags.getListOrEmpty(KEY_ITEMS));
-    itemHandler.deserializeNBT(TagUtil.BUILTIN_LOOKUP, handlerNBT);
+    ValueInput input = TagValueInput.create(ProblemReporter.DISCARDING, TagUtil.BUILTIN_LOOKUP, handlerNBT);
+    itemHandler.deserialize(input);
   }
 
   @Override
