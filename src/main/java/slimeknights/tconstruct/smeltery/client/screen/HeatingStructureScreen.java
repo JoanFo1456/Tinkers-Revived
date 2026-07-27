@@ -1,7 +1,7 @@
 package slimeknights.tconstruct.smeltery.client.screen;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -89,8 +89,9 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
       this.onClose();
     }
   }
+  // 26.1: container background moved to extractBackground (matches Mantle MultiModuleScreen)
   @Override
-  protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
+  public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
     // draw stuff with background
     GuiUtil.drawBackground(graphics, this, BACKGROUND);
     // fuel
@@ -102,7 +103,7 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
     if (tank != null) tank.renderFluids(graphics);
 
     // draw other components
-    super.renderBg(graphics, partialTicks, mouseX, mouseY);
+    super.extractBackground(graphics, mouseX, mouseY, a);
   }
 
   /** Checks if the bucket button is hovered */
@@ -111,8 +112,8 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
   }
 
   @Override
-  protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderLabels(graphics, mouseX, mouseY);
+  protected void extractLabels(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractLabels(graphics, mouseX, mouseY);
 
     SCALA.draw(graphics, 8, 16, 110);
 
@@ -143,16 +144,16 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
   }
 
   @Override
-  protected void renderTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderTooltip(graphics, mouseX, mouseY);
+  protected void extractTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractTooltip(graphics, mouseX, mouseY);
 
     // add the hover text giving info on the button
     if (bucketButtonHovered(mouseX - leftPos, mouseY - topPos)) {
-      graphics.renderTooltip(font, switch (menu.getTransferDirection()) {
+      graphics.setTooltipForNextFrame(font, switch (menu.getTransferDirection()) {
         default -> TOOLTIP_AUTO;
         case EMPTY_ITEM -> TOOLTIP_EMPTY;
         case FILL_ITEM -> TOOLTIP_FILL;
-      }, Optional.empty(), mouseX, mouseY);
+      }, mouseX, mouseY);
     }
 
     // fluid tooltips
