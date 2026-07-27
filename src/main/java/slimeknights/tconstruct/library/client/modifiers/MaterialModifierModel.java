@@ -101,12 +101,12 @@ public class MaterialModifierModel implements SimpleModifierModel {
   @Override
   public Object getCacheKey(IToolStackView tool, ModifierEntry entry) {
     ModifierId modifier = entry.getId();
-    return new CacheKey(modifier, tool.getPersistentData().getString(modifier));
+    return new CacheKey(modifier, tool.getPersistentData().getString(modifier.getIdentifier()));
   }
 
   @Nullable
   private static MaterialVariantId getMaterial(IToolStackView tool, Modifier modifier) {
-    String material = tool.getPersistentData().getString(modifier.getId());
+    String material = tool.getPersistentData().getString(modifier.getId().getIdentifier());
     if (!material.isEmpty()) {
       return MaterialVariantId.tryParse(material);
     }

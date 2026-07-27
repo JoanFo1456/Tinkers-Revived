@@ -60,7 +60,7 @@ public class MaterialFluidRecipeBuilder extends AbstractRecipeBuilder<MaterialFl
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer) {
-    save(consumer, outputId.getId());
+    save(consumer, outputId.getId().getIdentifier());
   }
 
   @Override

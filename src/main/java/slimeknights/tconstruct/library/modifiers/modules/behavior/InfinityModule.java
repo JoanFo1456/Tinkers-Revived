@@ -72,7 +72,7 @@ public record InfinityModule(ItemStack ammo, String variantTag, int durabilityUs
     tag.putBoolean(INFINITY, true);
     // if a variant is requested, set that on the stack
     if (!variantTag.isEmpty()) {
-      String variant = tool.getPersistentData().getString(modifier.getId());
+      String variant = tool.getPersistentData().getString(modifier.getId().getIdentifier());
       if (!variant.isEmpty()) {
         tag.putString(variantTag, variant);
       }
@@ -104,7 +104,7 @@ public record InfinityModule(ItemStack ammo, String variantTag, int durabilityUs
   @Override
   public Component onRemoved(IToolStackView tool, Modifier modifier) {
     if (!variantTag.isEmpty()) {
-      tool.getPersistentData().remove(modifier.getId());
+      tool.getPersistentData().remove(modifier.getId().getIdentifier());
     }
     return null;
   }

@@ -113,7 +113,7 @@ public class UpdateModifiersPacket implements IThreadsafePacket {
     Map<ModifierId,Modifier> modifiers = new HashMap<>();
     for (int i = 0; i < size; i++) {
       ModifierId id = new ModifierId(buffer.readUtf(Short.MAX_VALUE));
-      Modifier modifier = ComposableModifier.LOADER.decode(buffer, ModifierManager.contextBuilder(id).build());
+      Modifier modifier = ComposableModifier.LOADER.decode(buffer, ModifierManager.contextBuilder(id.getIdentifier()).build());
       // need cast to call package private method
       modifier.setId(id);
       modifiers.put(id, modifier);
@@ -152,27 +152,27 @@ public class UpdateModifiersPacket implements IThreadsafePacket {
     // write modifiers
     buffer.writeVarInt(modifiers.size());
     for (ComposableModifier modifier : modifiers) {
-      buffer.writeIdentifier(modifier.getId());
+      buffer.writeIdentifier(modifier.getId().getIdentifier());
       ComposableModifier.LOADER.encode(buffer, modifier);
     }
     // write redirects
     buffer.writeVarInt(redirects.size());
     for (Entry<ModifierId,ModifierId> entry : redirects.entrySet()) {
-      buffer.writeIdentifier(entry.getKey());
-      buffer.writeIdentifier(entry.getValue());
+      buffer.writeIdentifier(entry.getKey().getIdentifier());
+      buffer.writeIdentifier(entry.getValue().getIdentifier());
     }
-    GenericTagUtil.encodeTags(buffer, Modifier::getId, this.tags);
+    GenericTagUtil.encodeTags(buffer, (Modifier m) -> m.getId().getIdentifier(), this.tags);
 
     // enchantment mapping
     buffer.writeVarInt(enchantmentMap.size());
     for (Entry<Enchantment,Modifier> entry : enchantmentMap.entrySet()) {
       buffer.writeIdentifier(getEnchantmentId(entry.getKey()));
-      buffer.writeIdentifier(entry.getValue().getId());
+      buffer.writeIdentifier(entry.getValue().getId().getIdentifier());
     }
     buffer.writeVarInt(enchantmentTagMappings.size());
     for (Entry<TagKey<Enchantment>, Modifier> entry : enchantmentTagMappings.entrySet()) {
       buffer.writeIdentifier(entry.getKey().location());
-      buffer.writeIdentifier(entry.getValue().getId());
+      buffer.writeIdentifier(entry.getValue().getId().getIdentifier());
     }
   }
 

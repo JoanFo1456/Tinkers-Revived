@@ -165,6 +165,6 @@ public abstract class AbstractMultilevelModifierRecipeBuilder<T extends Abstract
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer) {
-    save(consumer, result);
+    save(consumer, result.getIdentifier());
   }
 }

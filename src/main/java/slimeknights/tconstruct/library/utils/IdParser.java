@@ -17,7 +17,7 @@ import java.util.function.Function;
  * Helper to parse variants of resource locations, doubles as a loadable.
  * @see ResourceId
  */
-public record IdParser<T extends Identifier>(Function<String, T> constructor, String name) implements StringLoadable<T> {
+public record IdParser<T extends ResourceId>(Function<String, T> constructor, String name) implements StringLoadable<T> {
   /**
    * Creates a new ID from the given string
    * @param string  String
@@ -53,7 +53,7 @@ public record IdParser<T extends Identifier>(Function<String, T> constructor, St
 
   @Override
   public void encode(FriendlyByteBuf buffer, T object) throws EncoderException {
-    buffer.writeResourceLocation(object);
+    buffer.writeIdentifier(object.getIdentifier());
   }
 
 
@@ -87,7 +87,7 @@ public record IdParser<T extends Identifier>(Function<String, T> constructor, St
    */
   public static Identifier read(String defaultDomain, StringReader reader) throws CommandSyntaxException {
     int start = reader.getCursor();
-    while(reader.canRead() && Identifier.isAllowedInResourceLocation(reader.peek())) {
+    while(reader.canRead() && Identifier.isAllowedInIdentifier(reader.peek())) {
       reader.skip();
     }
     String string = reader.getString().substring(start, reader.getCursor());

@@ -140,7 +140,7 @@ public sealed interface MaterialVariantId permits MaterialId, MaterialVariantIdI
 
   /** Checks if the given character is valid */
   private static boolean isAllowed(char ch) {
-    return ch == '#' || Identifier.isAllowedInResourceLocation(ch);
+    return ch == '#' || Identifier.isAllowedInIdentifier(ch);
   }
 
   /**

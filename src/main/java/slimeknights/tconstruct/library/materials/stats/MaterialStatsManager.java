@@ -85,7 +85,7 @@ public class MaterialStatsManager extends MergingJsonDataLoader<Map<Identifier,J
   @SuppressWarnings("unchecked")
   @Nullable
   public <T extends IMaterialStats> MaterialStatType<T> getStatType(MaterialStatsId id) {
-    return (MaterialStatType<T>) statTypes.getValue(id);
+    return (MaterialStatType<T>) statTypes.getValue(id.getIdentifier());
   }
 
   /**

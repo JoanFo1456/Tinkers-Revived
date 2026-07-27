@@ -27,12 +27,12 @@ public class UpdateMaterialsPacket implements IThreadsafePacket {
     ImmutableMap.Builder<MaterialId,IMaterial> materials = ImmutableMap.builder();
 
     for (int i = 0; i < materialCount; i++) {
-      MaterialId id = new MaterialId(buffer.readResourceLocation());
+      MaterialId id = new MaterialId(buffer.readIdentifier());
       int tier = buffer.readVarInt();
       int sortOrder = buffer.readVarInt();
       boolean craftable = buffer.readBoolean();
       boolean hidden = buffer.readBoolean();
-      materials.put(id, new Material(id, tier, sortOrder, craftable, hidden));
+      materials.put(id, new Material(id.getIdentifier(), tier, sortOrder, craftable, hidden));
     }
     this.materials = materials.build();
     // process redirects
@@ -63,7 +63,7 @@ public class UpdateMaterialsPacket implements IThreadsafePacket {
       buffer.writeUtf(key.toString());
       buffer.writeUtf(value.toString());
     });
-    GenericTagUtil.encodeTags(buffer, IMaterial::getIdentifier, this.tags);
+    GenericTagUtil.encodeTags(buffer, (IMaterial m) -> m.getIdentifier().getIdentifier(), this.tags);
   }
 
   @Override

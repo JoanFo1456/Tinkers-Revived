@@ -58,7 +58,7 @@ public abstract class DurabilityShieldModifier extends Modifier implements Capac
 
   /** Gets the key to use for teh shield */
   protected Identifier getShieldKey() {
-    return getId();
+    return getId().getIdentifier();
   }
 
   /** @deprecated use {@link #getAmount(IToolStackView)} */

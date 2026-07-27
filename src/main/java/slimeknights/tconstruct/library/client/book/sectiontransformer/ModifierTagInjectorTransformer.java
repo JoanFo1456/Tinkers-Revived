@@ -25,7 +25,7 @@ public class ModifierTagInjectorTransformer extends AbstractTagInjectingTransfor
 
   @Override
   protected Identifier getId(Modifier modifier) {
-    return modifier.getId();
+    return modifier.getId().getIdentifier();
   }
 
   @Override

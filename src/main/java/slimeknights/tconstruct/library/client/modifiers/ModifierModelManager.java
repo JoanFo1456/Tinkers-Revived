@@ -216,8 +216,8 @@ public class ModifierModelManager implements IEarlySafeManagerReloadListener {
       IUnbakedModifierModel model = entry.getValue();
       if (!skip.contains(id) && !blacklist.contains(model)) {
         IBakedModifierModel toolModel = model.forTool(
-          name -> getTexture(smallModifierRoots, validator, id, name),
-          name -> getTexture(largeModifierRoots, validator, id, name));
+          name -> getTexture(smallModifierRoots, validator, id.getIdentifier(), name),
+          name -> getTexture(largeModifierRoots, validator, id.getIdentifier(), name));
         if (toolModel != null) {
           modelMap.put(id, toolModel);
         }

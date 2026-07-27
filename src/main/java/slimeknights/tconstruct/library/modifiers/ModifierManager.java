@@ -424,7 +424,7 @@ public class ModifierManager extends SimpleJsonResourceReloadListener<JsonElemen
     // filter out redirects (redirects are any modifiers where the ID does not match the key
     return Stream.concat(staticModifiers.entrySet().stream(), dynamicModifiers.entrySet().stream())
                  .filter(entry -> entry.getKey().equals(entry.getValue().getId()))
-                 .map(Entry::getKey);
+                 .map(entry -> entry.getKey().getIdentifier());
   }
 
   /** Gets a stream of all modifier values */
@@ -498,7 +498,7 @@ public class ModifierManager extends SimpleJsonResourceReloadListener<JsonElemen
     }
 
     /** Validates the namespace of the container registering */
-    private void checkModNamespace(Identifier name) {
+    private void checkModNamespace(ModifierId name) {
       // check mod container, should be the active mod
       // don't want mods registering stuff in Tinkers namespace, or Minecraft
       String activeMod = container.getNamespace();

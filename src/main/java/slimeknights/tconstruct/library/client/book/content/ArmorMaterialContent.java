@@ -166,8 +166,8 @@ public class ArmorMaterialContent extends AbstractMaterialContent {
     // note we don't add separate traits for each plating type, we take a shortcut adding just helmet and shield
     // while this may be inaccurate if someone does weird stuff, we just don't have space for more
     y = Math.max(
-      this.addTraits(x - 3,          y, list, ARMOR_PLATING_LABEL, HELMET.getId()),
-      this.addTraits(x + STAT_WIDTH, y, list, SHIELD_LABEL,        SHIELD.getId()));
+      this.addTraits(x - 3,          y, list, ARMOR_PLATING_LABEL, HELMET.getStatId()),
+      this.addTraits(x + STAT_WIDTH, y, list, SHIELD_LABEL,        SHIELD.getStatId()));
     y = addAllMaterialStats(x, y, list, 2, false);
 
     // material description
@@ -242,10 +242,10 @@ public class ArmorMaterialContent extends AbstractMaterialContent {
     // add traits
     group.add(HtmlElement.div().classes("row-material-stats")
       .add(HtmlElement.div().classes("column").style("gap", 12)
-        .add(makeStatHtml(HELMET.getId(), ARMOR_PLATING_LABEL.getString(), false, false))
+        .add(makeStatHtml(HELMET.getStatId(), ARMOR_PLATING_LABEL.getString(), false, false))
         .add(makeStatHtml(StatlessMaterialStats.MAILLE.getIdentifier(), false, true))
         .add(makeStatHtml(StatlessMaterialStats.SHIELD_CORE.getIdentifier(), false, true)))
-      .add(makeStatHtml(SHIELD.getId(), SHIELD_LABEL.getString(), false, false)));
+      .add(makeStatHtml(SHIELD.getStatId(), SHIELD_LABEL.getString(), false, false)));
     return group;
   }
 }

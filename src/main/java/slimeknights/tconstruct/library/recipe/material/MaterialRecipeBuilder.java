@@ -60,7 +60,7 @@ public class MaterialRecipeBuilder extends AbstractRecipeBuilder<MaterialRecipeB
 
   @Override
   public void save(Consumer<FinishedRecipe> consumerIn) {
-    this.save(consumerIn, material.getId());
+    this.save(consumerIn, material.getId().getIdentifier());
   }
 
   @Override

@@ -113,13 +113,13 @@ public class ModifierRequirementsModule implements ValidateModifierHook, Modifie
 
     /** Sets the translation key from a modifier ID */
     public Builder modifierKey(ModifierId id) {
-      this.translationKey = Util.makeTranslationKey("modifier", id) + ".requirements";
+      this.translationKey = Util.makeTranslationKey("modifier", id.getIdentifier()) + ".requirements";
       return this;
     }
 
     /** Sets the translation key from a modifier ID */
     public Builder modifierKey(LazyModifier id) {
-      this.translationKey = Util.makeTranslationKey("modifier", id.getId()) + ".requirements";
+      this.translationKey = Util.makeTranslationKey("modifier", id.getId().getIdentifier()) + ".requirements";
       return this;
     }
 

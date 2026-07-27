@@ -98,7 +98,7 @@ public record ConditionalPowerModule(IJsonPredicate<LivingEntity> target, IJsonP
 
   @Override
   public boolean onProjectileHitEntity(ModifierNBT modifiers, ModDataNBT persistentData, ModifierEntry modifier, Projectile projectile, EntityHitResult hit, @Nullable LivingEntity attacker, @Nullable LivingEntity target) {
-    Identifier key = modifier.getId();
+    Identifier key = modifier.getId().getIdentifier();
     // if we already boosted power from an entity, don't boost again
     // minimizes issues with projectile bounces and piercing
     if (modifierLevel.test(modifier.getLevel()) && !persistentData.getBoolean(key)) {

@@ -90,7 +90,7 @@ public class SwappableModifierRecipe extends ModifierRecipe {
     }
 
     // do not allow adding the modifier if this variant is already present
-    if (level > 0 && tool.getPersistentData().getString(modifier).equals(value)) {
+    if (level > 0 && tool.getPersistentData().getString(modifier.getIdentifier()).equals(value)) {
       return RecipeResult.failure(ALREADY_PRESENT, result.get().getDisplayName(), variant);
     }
 
@@ -105,7 +105,7 @@ public class SwappableModifierRecipe extends ModifierRecipe {
     }
 
     // set the new value to the modifier
-    persistentData.putString(modifier, value);
+    persistentData.putString(modifier.getIdentifier(), value);
 
     // add modifier if needed
     if (needsModifier) {
@@ -133,7 +133,7 @@ public class SwappableModifierRecipe extends ModifierRecipe {
   @Override
   public List<ItemStack> getToolWithModifier() {
     if (toolWithModifier == null) {
-      Identifier id = result.getId();
+      Identifier id = result.getId().getIdentifier();
       ModifierEntry result = getDisplayResult();
       toolWithModifier = getToolInputs().stream().map(stack -> withModifiers(stack, maxToolSize, modifiersForResult(result, result), data -> data.putString(id, value))).collect(Collectors.toList());
     }
@@ -161,10 +161,10 @@ public class SwappableModifierRecipe extends ModifierRecipe {
 
     /* Formatters */
     /** Formats using the modifier ID as a base translation key */
-    VariantFormatter DEFAULT = LOADER.register(getResource("default"), (modifier, variant) -> Component.translatable(Util.makeTranslationKey("modifier", modifier) + "." + variant));
+    VariantFormatter DEFAULT = LOADER.register(getResource("default"), (modifier, variant) -> Component.translatable(Util.makeTranslationKey("modifier", modifier.getIdentifier()) + "." + variant));
     /** Formats using the material translation key */
     VariantFormatter MATERIAL = LOADER.register(getResource("material"), (modifier, variant) -> MaterialTooltipCache.getDisplayName(Objects.requireNonNullElse(MaterialVariantId.tryParse(variant), IMaterial.UNKNOWN_ID)));
     /** Formats using the modifier ID as the base with the variant as a parameter */
-    VariantFormatter PARAMETER = LOADER.register(getResource("parameter"), (modifier, variant) -> Component.translatable(Util.makeTranslationKey("modifier", modifier) + ".variant", variant));
+    VariantFormatter PARAMETER = LOADER.register(getResource("parameter"), (modifier, variant) -> Component.translatable(Util.makeTranslationKey("modifier", modifier.getIdentifier()) + ".variant", variant));
   }
 }

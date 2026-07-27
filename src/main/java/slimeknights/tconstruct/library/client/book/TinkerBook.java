@@ -108,7 +108,7 @@ public class TinkerBook extends BookData {
           return registry.getMaterialStats(id, StatlessMaterialStats.MAILLE.getIdentifier()).isPresent() ? 2 : 1;
         }
         // anything with plating goes 4th
-        if (registry.getMaterialStats(id, CHESTPLATE.getId()).isPresent()) {
+        if (registry.getMaterialStats(id, CHESTPLATE.getStatId()).isPresent()) {
           return 4;
         }
         // if it has maille, it goes before plating. Otherwise (shield cores), it goes after

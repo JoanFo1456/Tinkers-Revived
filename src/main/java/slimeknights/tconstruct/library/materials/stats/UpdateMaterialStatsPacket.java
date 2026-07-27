@@ -65,7 +65,7 @@ public class UpdateMaterialStatsPacket implements IThreadsafePacket {
    */
   @SuppressWarnings("unchecked")
   private <T extends IMaterialStats> void encodeStat(FriendlyByteBuf buffer, IMaterialStats stat, MaterialStatType<T> type) {
-    MaterialStatsId.PARSER.encode(buffer, type.getId());
+    MaterialStatsId.PARSER.encode(buffer, type.getStatId());
     type.getLoadable().encode(buffer, (T) stat);
   }
 
