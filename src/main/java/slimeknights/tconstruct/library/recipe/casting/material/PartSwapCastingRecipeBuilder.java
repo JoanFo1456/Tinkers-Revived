@@ -36,7 +36,7 @@ public class PartSwapCastingRecipeBuilder extends AbstractRecipeBuilder<PartSwap
    * @return  Builder instance
    */
   public static PartSwapCastingRecipeBuilder basinRecipe(Ingredient tools, int itemCost) {
-    return castingRecipe(tools, itemCost, TinkerSmeltery.basinPartSwappingSerializer.get());
+    return castingRecipe(tools, itemCost, TinkerSmeltery.basinPartSwappingSerializer);
   }
 
   /**
@@ -45,7 +45,7 @@ public class PartSwapCastingRecipeBuilder extends AbstractRecipeBuilder<PartSwap
    * @return  Builder instance
    */
   public static PartSwapCastingRecipeBuilder tableRecipe(Ingredient tools, int itemCost) {
-    return castingRecipe(tools, itemCost, TinkerSmeltery.tablePartSwappingSerializer.get());
+    return castingRecipe(tools, itemCost, TinkerSmeltery.tablePartSwappingSerializer);
   }
 
   @SuppressWarnings("deprecation")

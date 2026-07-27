@@ -34,7 +34,7 @@ public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBui
    * @return  Recipe
    */
   public static MoldingRecipeBuilder moldingTable(ItemLike item) {
-    return molding(ItemOutput.fromItem(item), TinkerSmeltery.moldingTableSerializer.get());
+    return molding(ItemOutput.fromItem(item), TinkerSmeltery.moldingTableSerializer);
   }
 
   /**
@@ -43,7 +43,7 @@ public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBui
    * @return  Recipe
    */
   public static MoldingRecipeBuilder moldingBasin(ItemLike item) {
-    return molding(ItemOutput.fromItem(item), TinkerSmeltery.moldingBasinSerializer.get());
+    return molding(ItemOutput.fromItem(item), TinkerSmeltery.moldingBasinSerializer);
   }
 
   /* Inputs */

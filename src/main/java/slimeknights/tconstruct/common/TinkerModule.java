@@ -84,6 +84,19 @@ public abstract class TinkerModule {
   protected static final SynchronizedDeferredRegister<MapCodec<? extends LootItemFunction>> LOOT_FUNCTIONS = SynchronizedDeferredRegister.create(Registries.LOOT_FUNCTION_TYPE, TConstruct.MOD_ID);
   protected static final SynchronizedDeferredRegister<MapCodec<? extends LootPoolEntryContainer>> LOOT_ENTRIES = SynchronizedDeferredRegister.create(Registries.LOOT_POOL_ENTRY_TYPE, TConstruct.MOD_ID);
 
+  /**
+   * Registers a type aware recipe serializer. In 26.1 {@link RecipeSerializer} is a final record, so type aware serializers
+   * are no longer registry entries; instead we register the memoized {@link net.minecraft.world.item.crafting.RecipeSerializer}
+   * record it wraps (stable instance thanks to Mantle memoization) while returning the type aware wrapper for datagen and recipe use.
+   * @param name        Registry name
+   * @param serializer  Type aware serializer to register
+   * @return  The passed type aware serializer, for use as a static field
+   */
+  protected static <R extends net.minecraft.world.item.crafting.Recipe<?>> slimeknights.mantle.recipe.helper.TypeAwareRecipeSerializer<R> registerTyped(String name, slimeknights.mantle.recipe.helper.TypeAwareRecipeSerializer<R> serializer) {
+    RECIPE_SERIALIZERS.register(name, serializer::serializer);
+    return serializer;
+  }
+
   // base item properties
   protected static final Item.Properties ITEM_PROPS = new Item.Properties();
   protected static final Item.Properties UNSTACKABLE_PROPS = new Item.Properties().stacksTo(1);

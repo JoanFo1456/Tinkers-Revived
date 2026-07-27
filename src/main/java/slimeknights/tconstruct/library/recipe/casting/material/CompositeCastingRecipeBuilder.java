@@ -33,11 +33,11 @@ public class CompositeCastingRecipeBuilder extends AbstractRecipeBuilder<Composi
   private IJsonPredicate<MaterialVariantId> allowedMaterials = MaterialPredicate.ANY;
 
   public static CompositeCastingRecipeBuilder basin(IMaterialItem result, int itemCost) {
-    return composite(result, itemCost, TinkerSmeltery.basinCompositeSerializer.get());
+    return composite(result, itemCost, TinkerSmeltery.basinCompositeSerializer);
   }
 
   public static CompositeCastingRecipeBuilder table(IMaterialItem result, int itemCost) {
-    return composite(result, itemCost, TinkerSmeltery.tableCompositeSerializer.get());
+    return composite(result, itemCost, TinkerSmeltery.tableCompositeSerializer);
   }
 
   @Override

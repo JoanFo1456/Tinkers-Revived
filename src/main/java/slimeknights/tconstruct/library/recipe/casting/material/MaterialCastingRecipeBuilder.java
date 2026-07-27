@@ -51,7 +51,7 @@ public class MaterialCastingRecipeBuilder extends AbstractRecipeBuilder<Material
    * @return  Builder instance
    */
   public static MaterialCastingRecipeBuilder basinRecipe(IMaterialItem result) {
-    return castingRecipe(result, null, TinkerSmeltery.basinMaterialSerializer.get());
+    return castingRecipe(result, null, TinkerSmeltery.basinMaterialSerializer);
   }
 
   /**
@@ -60,7 +60,7 @@ public class MaterialCastingRecipeBuilder extends AbstractRecipeBuilder<Material
    * @return  Builder instance
    */
   public static MaterialCastingRecipeBuilder tableRecipe(IMaterialItem result) {
-    return castingRecipe(result, null, TinkerSmeltery.tableMaterialSerializer.get());
+    return castingRecipe(result, null, TinkerSmeltery.tableMaterialSerializer);
   }
 
   /**
@@ -69,7 +69,7 @@ public class MaterialCastingRecipeBuilder extends AbstractRecipeBuilder<Material
    * @return  Builder instance
    */
   public static MaterialCastingRecipeBuilder basinRecipe(IModifiable result) {
-    return castingRecipe(null, result, TinkerSmeltery.basinToolSerializer.get());
+    return castingRecipe(null, result, TinkerSmeltery.basinToolSerializer);
   }
 
   /**
@@ -78,7 +78,7 @@ public class MaterialCastingRecipeBuilder extends AbstractRecipeBuilder<Material
    * @return  Builder instance
    */
   public static MaterialCastingRecipeBuilder tableRecipe(IModifiable result) {
-    return castingRecipe(null, result, TinkerSmeltery.tableToolSerializer.get());
+    return castingRecipe(null, result, TinkerSmeltery.tableToolSerializer);
   }
 
   /**
