@@ -30,9 +30,9 @@ public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
     MoldingRecipe::new);
 
   @Getter
-  private final RecipeType<?> type;
-  @Getter
-  private final RecipeSerializer<?> serializer;
+  private final RecipeType<? extends MoldingRecipe> type;
+  @Getter(lombok.AccessLevel.NONE)
+  private final TypeAwareRecipeSerializer<?> serializer;
   @Getter
   private final Identifier id;
   @Getter
@@ -43,14 +43,21 @@ public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
   private final boolean patternConsumed;
   private final ItemOutput recipeOutput;
 
+  @SuppressWarnings("unchecked")
   public MoldingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, Ingredient material, Ingredient pattern, boolean patternConsumed, ItemOutput recipeOutput) {
-    this.type = serializer.getType();
+    this.type = (RecipeType<? extends MoldingRecipe>) serializer.getType();
     this.serializer = serializer;
     this.id = id;
     this.material = material;
     this.pattern = pattern;
     this.patternConsumed = pattern != Ingredient.EMPTY && patternConsumed;
     this.recipeOutput = recipeOutput;
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public RecipeSerializer<? extends MoldingRecipe> getSerializer() {
+    return (RecipeSerializer<? extends MoldingRecipe>) serializer.serializer();
   }
 
   @Override

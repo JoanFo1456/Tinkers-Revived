@@ -44,7 +44,7 @@ public class ContainerFillingRecipe implements ICastingRecipe, IMultiRecipe<Disp
     Loadables.ITEM.requiredField("container", r -> r.container),
     ContainerFillingRecipe::new);
 
-  @Getter
+  @Getter(lombok.AccessLevel.NONE)
   private final TypeAwareRecipeSerializer<?> serializer;
   @Getter
   private final Identifier id;
@@ -54,8 +54,15 @@ public class ContainerFillingRecipe implements ICastingRecipe, IMultiRecipe<Disp
   private final Item container;
 
   @Override
-  public RecipeType<?> getType() {
-    return serializer.getType();
+  @SuppressWarnings("unchecked")
+  public RecipeType<? extends ContainerFillingRecipe> getType() {
+    return (RecipeType<? extends ContainerFillingRecipe>) serializer.getType();
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public net.minecraft.world.item.crafting.RecipeSerializer<? extends ContainerFillingRecipe> getSerializer() {
+    return (net.minecraft.world.item.crafting.RecipeSerializer<? extends ContainerFillingRecipe>) serializer.serializer();
   }
 
   @Override

@@ -73,12 +73,12 @@ public class EntityMeltingRecipe implements ICustomOutputRecipe<IEmptyContainer>
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends EntityMeltingRecipe> getSerializer() {
     return TinkerSmeltery.entityMeltingSerializer.get();
   }
 
   @Override
-  public RecipeType<?> getType() {
+  public RecipeType<? extends EntityMeltingRecipe> getType() {
     return TinkerRecipeTypes.ENTITY_MELTING.get();
   }
 

@@ -107,7 +107,7 @@ public class ModifierRepairTinkerStationRecipe implements ITinkerStationRecipe, 
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ModifierRepairTinkerStationRecipe> getSerializer() {
     return TinkerModifiers.modifierRepair.get();
   }
 }

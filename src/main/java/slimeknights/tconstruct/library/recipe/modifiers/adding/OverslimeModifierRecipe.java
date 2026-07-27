@@ -116,7 +116,7 @@ public class OverslimeModifierRecipe implements ITinkerStationRecipe, IDisplayMo
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends OverslimeModifierRecipe> getSerializer() {
     return TinkerModifiers.overslimeSerializer.get();
   }
 

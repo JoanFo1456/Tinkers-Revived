@@ -97,7 +97,7 @@ public class MaterialMeltingRecipe implements IMeltingRecipe, IMultiRecipe<Melti
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends MaterialMeltingRecipe> getSerializer() {
     return TinkerSmeltery.materialMeltingSerializer.get();
   }
 

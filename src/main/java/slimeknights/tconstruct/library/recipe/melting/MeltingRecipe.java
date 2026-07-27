@@ -101,7 +101,7 @@ public class MeltingRecipe implements IMeltingRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends MeltingRecipe> getSerializer() {
     return TinkerSmeltery.meltingSerializer.get();
   }
 

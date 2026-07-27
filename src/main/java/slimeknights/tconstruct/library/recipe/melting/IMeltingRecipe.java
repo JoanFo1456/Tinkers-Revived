@@ -46,7 +46,7 @@ public interface IMeltingRecipe extends ICustomOutputRecipe<IMeltingContainer> {
   /* Recipe data */
 
   @Override
-  default RecipeType<?> getType() {
+  default RecipeType<? extends IMeltingRecipe> getType() {
     return TinkerRecipeTypes.MELTING.get();
   }
 

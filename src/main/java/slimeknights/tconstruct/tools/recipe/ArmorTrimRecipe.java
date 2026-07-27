@@ -133,7 +133,7 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ArmorTrimRecipe> getSerializer() {
     return TinkerModifiers.armorTrimSerializer.get();
   }
 

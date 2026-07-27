@@ -43,7 +43,7 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
     COOLING_TIME_FIELD,
     PotionCastingRecipe::new);
 
-  @Getter
+  @Getter(lombok.AccessLevel.NONE)
   protected final TypeAwareRecipeSerializer<?> serializer;
   @Getter
   protected final Identifier id;
@@ -70,8 +70,15 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
   }
 
   @Override
-  public RecipeType<?> getType() {
-    return serializer.getType();
+  @SuppressWarnings("unchecked")
+  public RecipeType<? extends PotionCastingRecipe> getType() {
+    return (RecipeType<? extends PotionCastingRecipe>) serializer.getType();
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public net.minecraft.world.item.crafting.RecipeSerializer<? extends PotionCastingRecipe> getSerializer() {
+    return (net.minecraft.world.item.crafting.RecipeSerializer<? extends PotionCastingRecipe>) serializer.serializer();
   }
 
   @Override

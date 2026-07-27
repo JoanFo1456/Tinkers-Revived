@@ -128,7 +128,7 @@ public class FixedMaterialSwappingRecipe extends MaterialSwappingRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends FixedMaterialSwappingRecipe> getSerializer() {
     return TinkerTables.fixedMaterialSwapping.get();
   }
 }

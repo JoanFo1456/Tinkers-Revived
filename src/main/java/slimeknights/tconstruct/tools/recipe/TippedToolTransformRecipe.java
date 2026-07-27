@@ -46,7 +46,7 @@ public class TippedToolTransformRecipe extends ToolBuildingRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends TippedToolTransformRecipe> getSerializer() {
     return TinkerModifiers.tippedToolTransformRecipeSerializer.get();
   }
 

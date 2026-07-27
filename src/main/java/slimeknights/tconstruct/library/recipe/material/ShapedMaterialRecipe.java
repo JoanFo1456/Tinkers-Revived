@@ -143,7 +143,7 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ShapedMaterialRecipe> getSerializer() {
     return TinkerTables.shapedMaterialRecipeSerializer.get();
   }
 

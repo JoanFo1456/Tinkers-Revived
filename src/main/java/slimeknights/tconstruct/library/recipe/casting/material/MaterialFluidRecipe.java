@@ -84,12 +84,12 @@ public class MaterialFluidRecipe implements ICustomOutputRecipe<ICastingContaine
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends MaterialFluidRecipe> getSerializer() {
     return TinkerSmeltery.materialFluidRecipe.get();
   }
 
   @Override
-  public RecipeType<?> getType() {
+  public RecipeType<? extends MaterialFluidRecipe> getType() {
     return TinkerRecipeTypes.DATA.get();
   }
 

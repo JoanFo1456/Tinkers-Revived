@@ -27,7 +27,7 @@ public interface ITinkerStationRecipe extends ICommonRecipe<ITinkerStationContai
   /* Recipe data */
 
   @Override
-  default RecipeType<?> getType() {
+  default RecipeType<? extends ITinkerStationRecipe> getType() {
     return TinkerRecipeTypes.TINKER_STATION.get();
   }
 

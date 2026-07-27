@@ -77,7 +77,7 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends PartRecipe> getSerializer() {
     return TinkerTables.partRecipeSerializer.get();
   }
 

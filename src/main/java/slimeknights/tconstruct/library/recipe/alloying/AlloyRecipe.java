@@ -194,12 +194,12 @@ public class AlloyRecipe implements ICustomOutputRecipe<IAlloyTank> {
   }
 
   @Override
-  public RecipeType<?> getType() {
+  public RecipeType<? extends AlloyRecipe> getType() {
     return TinkerRecipeTypes.ALLOYING.get();
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends AlloyRecipe> getSerializer() {
     return TinkerSmeltery.alloyingSerializer.get();
   }
 

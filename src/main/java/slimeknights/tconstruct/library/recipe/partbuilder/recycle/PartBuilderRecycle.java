@@ -133,7 +133,7 @@ public class PartBuilderRecycle implements IPartBuilderRecipe, IMultiRecipe<Disp
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends PartBuilderRecycle> getSerializer() {
     return TinkerTables.partBuilderDamageableRecycling.get();
   }
 

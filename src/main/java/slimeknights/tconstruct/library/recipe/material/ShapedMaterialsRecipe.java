@@ -171,7 +171,7 @@ public class ShapedMaterialsRecipe extends ShapedRecipe implements MaterialsCraf
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ShapedMaterialsRecipe> getSerializer() {
     return TinkerTables.shapedMaterialsRecipeSerializer.get();
   }
 

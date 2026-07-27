@@ -96,7 +96,7 @@ public class MultilevelModifierRecipe extends ModifierRecipe implements IMultiRe
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends MultilevelModifierRecipe> getSerializer() {
     return TinkerModifiers.multilevelModifierSerializer.get();
   }
 

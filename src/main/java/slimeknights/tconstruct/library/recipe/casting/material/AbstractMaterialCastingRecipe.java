@@ -25,8 +25,8 @@ public abstract class AbstractMaterialCastingRecipe extends AbstractCastingRecip
   protected static final LoadableField<Integer,AbstractMaterialCastingRecipe> ITEM_COST_FIELD = IntLoadable.FROM_ONE.requiredField("item_cost", r -> r.itemCost);
   protected static final LoadableField<IJsonPredicate<MaterialVariantId>,AbstractMaterialCastingRecipe> MATERIALS_FIELD = MaterialPredicate.LOADER.defaultField("allowed_materials", r -> r.materials);
 
-  @Getter
-  private final RecipeSerializer<?> serializer;
+  @Getter(lombok.AccessLevel.NONE)
+  private final TypeAwareRecipeSerializer<?> serializer;
   protected final int itemCost;
   protected final IJsonPredicate<MaterialVariantId> materials;
 
@@ -41,6 +41,12 @@ public abstract class AbstractMaterialCastingRecipe extends AbstractCastingRecip
   @Deprecated(forRemoval = true)
   public AbstractMaterialCastingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, String group, Ingredient cast, int itemCost, boolean consumed, boolean switchSlots) {
     this(serializer, id, group, cast, itemCost, consumed, switchSlots, MaterialPredicate.ANY);
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public RecipeSerializer<? extends AbstractMaterialCastingRecipe> getSerializer() {
+    return (RecipeSerializer<? extends AbstractMaterialCastingRecipe>) serializer.serializer();
   }
 
   /** Gets the material fluid recipe for the given recipe */

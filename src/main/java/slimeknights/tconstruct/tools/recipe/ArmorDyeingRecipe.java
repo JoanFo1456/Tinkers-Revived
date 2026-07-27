@@ -133,7 +133,7 @@ public class ArmorDyeingRecipe implements ITinkerStationRecipe, IMultiRecipe<IDi
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ArmorDyeingRecipe> getSerializer() {
     return TinkerModifiers.armorDyeingSerializer.get();
   }
 

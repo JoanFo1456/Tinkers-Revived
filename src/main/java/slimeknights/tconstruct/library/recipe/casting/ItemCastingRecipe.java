@@ -32,6 +32,7 @@ public class ItemCastingRecipe extends AbstractCastingRecipe implements IDisplay
     LoadableRecipeSerializer.RECIPE_GROUP, CAST_FIELD, FLUID_FIELD, RESULT_FIELD, COOLING_TIME_FIELD, CAST_CONSUMED_FIELD, SWITCH_SLOTS_FIELD,
     ItemCastingRecipe::new);
 
+  @Getter(lombok.AccessLevel.NONE)
   private final TypeAwareRecipeSerializer<?> serializer;
   protected final FluidIngredient fluid;
   protected final ItemOutput result;
@@ -43,6 +44,12 @@ public class ItemCastingRecipe extends AbstractCastingRecipe implements IDisplay
     this.result = result;
     this.coolingTime = coolingTime;
     CastingRecipeLookup.registerCastable(result);
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public net.minecraft.world.item.crafting.RecipeSerializer<? extends ItemCastingRecipe> getSerializer() {
+    return (net.minecraft.world.item.crafting.RecipeSerializer<? extends ItemCastingRecipe>) serializer.serializer();
   }
 
   @Override

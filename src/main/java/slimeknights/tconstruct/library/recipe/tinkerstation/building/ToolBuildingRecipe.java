@@ -106,7 +106,7 @@ public class ToolBuildingRecipe implements ITinkerStationRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ToolBuildingRecipe> getSerializer() {
     return TinkerTables.toolBuildingRecipeSerializer.get();
   }
 

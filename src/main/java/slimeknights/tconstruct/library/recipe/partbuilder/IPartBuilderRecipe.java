@@ -76,7 +76,7 @@ public interface IPartBuilderRecipe extends ICommonRecipe<IPartBuilderContainer>
   /* Recipe data */
 
   @Override
-  default RecipeType<?> getType() {
+  default RecipeType<? extends IPartBuilderRecipe> getType() {
     return TinkerRecipeTypes.PART_BUILDER.get();
   }
 

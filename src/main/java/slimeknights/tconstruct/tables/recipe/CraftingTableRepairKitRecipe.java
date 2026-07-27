@@ -151,7 +151,7 @@ public class CraftingTableRepairKitRecipe extends CustomRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends CraftingTableRepairKitRecipe> getSerializer() {
     return TinkerTables.craftingTableRepairSerializer.get();
   }
 }

@@ -20,7 +20,7 @@ public abstract class AbstractCastingRecipe implements ICastingRecipe {
   protected static final LoadableField<Boolean,AbstractCastingRecipe> SWITCH_SLOTS_FIELD = BooleanLoadable.INSTANCE.defaultField("switch_slots", false, false, AbstractCastingRecipe::switchSlots);
 
   @Getter @Nonnull
-  private final RecipeType<?> type;
+  private final RecipeType<? extends ICastingRecipe> type;
   @Getter
   private final Identifier id;
   @Getter
@@ -33,8 +33,9 @@ public abstract class AbstractCastingRecipe implements ICastingRecipe {
   @Getter @Accessors(fluent = true)
   private final boolean switchSlots;
 
+  @SuppressWarnings("unchecked")
   protected AbstractCastingRecipe(RecipeType<?> type, Identifier id, String group, Ingredient cast, boolean consumed, boolean switchSlots) {
-    this.type = type;
+    this.type = (RecipeType<? extends ICastingRecipe>) type;
     this.id = id;
     this.group = group;
     this.cast = cast;

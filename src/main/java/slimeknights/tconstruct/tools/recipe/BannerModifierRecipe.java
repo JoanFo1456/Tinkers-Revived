@@ -119,7 +119,7 @@ public class BannerModifierRecipe implements ITinkerStationRecipe, IMultiRecipe<
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends BannerModifierRecipe> getSerializer() {
     return TinkerModifiers.bannerModifierSerializer.get();
   }
 

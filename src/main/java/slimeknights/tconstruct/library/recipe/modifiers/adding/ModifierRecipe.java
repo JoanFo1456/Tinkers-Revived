@@ -198,7 +198,7 @@ public class ModifierRecipe extends AbstractModifierRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ModifierRecipe> getSerializer() {
     return TinkerModifiers.modifierSerializer.get();
   }
 

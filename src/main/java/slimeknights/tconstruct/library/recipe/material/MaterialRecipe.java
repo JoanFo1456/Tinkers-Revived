@@ -84,7 +84,7 @@ public class MaterialRecipe implements ICustomOutputRecipe<ISingleStackContainer
   /* Basic */
 
   @Override
-  public RecipeType<?> getType() {
+  public RecipeType<? extends MaterialRecipe> getType() {
     return TinkerRecipeTypes.MATERIAL.get();
   }
 
@@ -94,7 +94,7 @@ public class MaterialRecipe implements ICustomOutputRecipe<ISingleStackContainer
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends MaterialRecipe> getSerializer() {
     return TinkerTables.materialRecipeSerializer.get();
   }
 

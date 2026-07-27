@@ -124,7 +124,7 @@ public class ItemPartRecipe implements IDisplayPartBuilderRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ItemPartRecipe> getSerializer() {
     return TinkerTables.itemPartBuilderSerializer.get();
   }
 

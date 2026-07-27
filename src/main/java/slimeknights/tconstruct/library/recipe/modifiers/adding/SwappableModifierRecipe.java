@@ -123,7 +123,7 @@ public class SwappableModifierRecipe extends ModifierRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends SwappableModifierRecipe> getSerializer() {
     return TinkerModifiers.swappableModifierSerializer.get();
   }
 

@@ -68,7 +68,7 @@ public class ShapelessMaterialsRecipe extends ShapelessRecipe implements Materia
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ShapelessMaterialsRecipe> getSerializer() {
     return TinkerTables.shapelessMaterialsRecipeSerializer.get();
   }
 

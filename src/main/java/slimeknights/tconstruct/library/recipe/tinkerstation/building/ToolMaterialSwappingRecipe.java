@@ -121,7 +121,7 @@ public class ToolMaterialSwappingRecipe extends MaterialSwappingRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends ToolMaterialSwappingRecipe> getSerializer() {
     return TinkerTables.toolMaterialSwapping.get();
   }
 }

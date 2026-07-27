@@ -157,7 +157,7 @@ public class OverslimeCraftingTableRecipe extends CustomRecipe {
   }
 
   @Override
-  public RecipeSerializer<?> getSerializer() {
+  public RecipeSerializer<? extends OverslimeCraftingTableRecipe> getSerializer() {
     return TinkerModifiers.craftingOverslimeSerializer.get();
   }
 }
