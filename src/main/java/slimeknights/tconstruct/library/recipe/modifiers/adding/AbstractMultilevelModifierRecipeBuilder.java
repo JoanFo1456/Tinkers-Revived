@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.recipe.modifiers.adding;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import com.google.gson.JsonSyntaxException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -67,7 +68,7 @@ public abstract class AbstractMultilevelModifierRecipeBuilder<T extends Abstract
    * @return  Builder instance
    */
   public T setTools(TagKey<Item> tag) {
-    return this.setTools(Ingredient.of(tag));
+    return this.setTools(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
   }
 
 

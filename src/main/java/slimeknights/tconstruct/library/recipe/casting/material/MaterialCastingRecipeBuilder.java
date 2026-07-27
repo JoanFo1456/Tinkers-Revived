@@ -131,7 +131,7 @@ public class MaterialCastingRecipeBuilder extends AbstractRecipeBuilder<Material
    * @return  Builder instance
    */
   public MaterialCastingRecipeBuilder setCast(TagKey<Item> tag, boolean consumed) {
-    return this.setCast(Ingredient.of(tag), consumed);
+    return this.setCast(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)), consumed);
   }
 
   /**

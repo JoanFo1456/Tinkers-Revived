@@ -61,7 +61,7 @@ public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBui
 
   /** Sets the material item, on the table */
   public MoldingRecipeBuilder setMaterial(TagKey<Item> tag) {
-    return setMaterial(Ingredient.of(tag));
+    return setMaterial(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
   }
 
   /** Sets the mold item, in the players hand */
@@ -78,7 +78,7 @@ public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBui
 
   /** Sets the mold item, in the players hand */
   public MoldingRecipeBuilder setPattern(TagKey<Item> tag, boolean consumed) {
-    return setPattern(Ingredient.of(tag), consumed);
+    return setPattern(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)), consumed);
   }
 
 

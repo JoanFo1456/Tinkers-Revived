@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.recipe.ingredient;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.DataResult;
@@ -131,7 +132,7 @@ public class MaterialIngredient extends NestedIngredient {
    * @return  Material with tag
    */
   public static Ingredient of(TagKey<Item> tag, MaterialVariantId material) {
-    return of(Ingredient.of(tag), material);
+    return of(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)), material);
   }
 
   /**
@@ -140,7 +141,7 @@ public class MaterialIngredient extends NestedIngredient {
    * @return  Material with tag
    */
   public static Ingredient of(TagKey<Item> tag) {
-    return of(Ingredient.of(tag));
+    return of(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
   }
 
   @Override

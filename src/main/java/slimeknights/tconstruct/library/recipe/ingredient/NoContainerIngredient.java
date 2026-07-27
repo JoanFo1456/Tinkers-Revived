@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.recipe.ingredient;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.DataResult;
@@ -153,6 +154,6 @@ public class NoContainerIngredient extends NestedIngredient {
 
   /** Creates an instance from the given tag */
   public static Ingredient of(TagKey<Item> tag) {
-    return of(Ingredient.of(tag));
+    return of(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
   }
 }

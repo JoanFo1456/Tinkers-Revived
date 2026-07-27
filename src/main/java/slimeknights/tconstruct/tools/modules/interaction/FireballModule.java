@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.tools.modules.interaction;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -260,7 +261,7 @@ public record FireballModule(List<FireballType> options, DamageTypePair damageTy
 
     /** Creates a new fireball option */
     public Fireball fireball(TagKey<Item> tag) {
-      return fireball(Ingredient.of(tag));
+      return fireball(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
     }
 
     /** Creates a new fireball option */

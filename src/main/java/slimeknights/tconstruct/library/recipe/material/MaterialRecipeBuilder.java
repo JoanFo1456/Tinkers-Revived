@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.recipe.material;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -36,7 +37,7 @@ public class MaterialRecipeBuilder extends AbstractRecipeBuilder<MaterialRecipeB
    * @return  Builder instance
    */
   public MaterialRecipeBuilder setIngredient(TagKey<Item> tag) {
-    return this.setIngredient(Ingredient.of(tag));
+    return this.setIngredient(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
   }
 
   /**

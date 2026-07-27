@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.recipe.worktable;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +46,7 @@ public class ModifierSetWorktableRecipeBuilder extends AbstractSizedIngredientRe
 
   /** Sets the tool requirement for this recipe */
   public ModifierSetWorktableRecipeBuilder setTools(TagKey<Item> tag) {
-    return this.setTools(Ingredient.of(tag));
+    return this.setTools(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
   }
 
   /** Sets the recipe to allow traits */

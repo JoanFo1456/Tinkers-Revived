@@ -138,7 +138,7 @@ public class PotionCastingRecipeBuilder extends AbstractRecipeBuilder<PotionCast
    * @return  Builder instance
    */
   public PotionCastingRecipeBuilder setBottle(TagKey<Item> tagIn) {
-    return this.setBottle(Ingredient.of(tagIn));
+    return this.setBottle(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tagIn)));
   }
 
   /**

@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 @RequiredArgsConstructor(staticName = "modifier")
 public class OverslimeModifierRecipeBuilder extends AbstractRecipeBuilder<OverslimeModifierRecipeBuilder> {
   @Setter @Accessors(chain = true)
-  private Ingredient tools = Ingredient.of(TinkerTags.Items.DURABILITY);
+  private Ingredient tools = Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(TinkerTags.Items.DURABILITY));
   private final Ingredient ingredient;
   private final int restoreAmount;
 
