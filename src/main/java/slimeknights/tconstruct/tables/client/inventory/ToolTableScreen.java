@@ -1,7 +1,8 @@
 package slimeknights.tconstruct.tables.client.inventory;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
@@ -10,7 +11,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.TooltipContext;
 import net.minecraft.world.item.ItemStack;
@@ -93,12 +95,12 @@ public abstract class ToolTableScreen<T extends BlockEntity, C extends TabbedCon
    * Renders the armor stand
    * @param graphics  Graphics instance
    */
-  protected void renderArmorStand(GuiGraphics graphics) {
+  protected void renderArmorStand(GuiGraphicsExtractor graphics) {
     if (this.armorStandPreview != null) {
       Quaternionf pose = new Quaternionf().rotationXYZ(0.43633232F, 0.0F, (float)Math.PI).rotateY(this.armorStandAngle);
       InventoryScreen.renderEntityInInventory(graphics, this.armorStandX, this.armorStandY, this.armorStandScale, new Vector3f(), pose, null, this.armorStandPreview);
 
-      graphics.blit(ICON_TEXTURE, armorStandX - 16, armorStandY - 16, 0, 184, 32, 32);
+      graphics.blit(RenderPipelines.GUI_TEXTURED, ICON_TEXTURE, armorStandX - 16, armorStandY - 16, 0f, 184f, 32, 32, 256, 256);
     }
   }
 
@@ -124,8 +126,10 @@ public abstract class ToolTableScreen<T extends BlockEntity, C extends TabbedCon
       if (!stack.isEmpty()) {
         ItemStack copy = stack.copy();
         Item item = stack.getItem();
-        if (item instanceof ArmorItem armor) {
-          this.armorStandPreview.setItemSlot(armor.getEquipmentSlot(), copy);
+        // 26.1: ArmorItem removed; resolve the armor slot from the equippable data component
+        Equippable equippable = item.components().get(DataComponents.EQUIPPABLE);
+        if (equippable != null) {
+          this.armorStandPreview.setItemSlot(equippable.slot(), copy);
         } else {
           this.armorStandPreview.setItemSlot(EquipmentSlot.OFFHAND, copy);
         }

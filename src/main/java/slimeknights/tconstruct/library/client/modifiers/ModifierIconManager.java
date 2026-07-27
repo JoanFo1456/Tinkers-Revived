@@ -6,9 +6,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -32,9 +34,9 @@ import java.util.Map.Entry;
  * Class handling the loading of modifier UI icons
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@Log4j2
 public class ModifierIconManager implements IEarlySafeManagerReloadListener {
   /** Icon file to load, has merging behavior but forge prevents multiple mods from loading the same file */
+  private static final Logger log = LogManager.getLogger(ModifierIconManager.class);
   private static final String ICONS = "tinkering/modifier_icons.json";
   /** First layer of the default icon, will be tinted */
   private static final Identifier DEFAULT_PAGES = TConstruct.getResource("gui/modifiers/default_pages");
@@ -118,17 +120,17 @@ public class ModifierIconManager implements IEarlySafeManagerReloadListener {
    * @param size      Size to render, 16 is default
    */
   public static void renderIcon(GuiGraphicsExtractor graphics, Modifier modifier, int x, int y, int z, int size) {
-    TextureAtlas atlas = Minecraft.getInstance().getModelManager().getAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
+    TextureAtlas atlas = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
 
     List<Identifier> icons = modifierIcons.getOrDefault(modifier.getId(), Collections.emptyList());
     if (!icons.isEmpty()) {
       for (Identifier icon : icons) {
-        graphics.blit(x, y, z, size, size, atlas.getSprite(icon));
+        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, atlas.getSprite(icon), x, y, size, size);
       }
     } else {
-      graphics.blit(x, y, z, size, size, atlas.getSprite(DEFAULT_PAGES));
+      graphics.blitSprite(RenderPipelines.GUI_TEXTURED, atlas.getSprite(DEFAULT_PAGES), x, y, size, size);
       RenderUtils.setColorRGBA(0xFF000000 | modifier.getColor());
-      graphics.blit(x, y, z, size, size, atlas.getSprite(DEFAULT_COVER));
+      graphics.blitSprite(RenderPipelines.GUI_TEXTURED, atlas.getSprite(DEFAULT_COVER), x, y, size, size);
       RenderUtils.setColorRGBA(-1);
     }
   }

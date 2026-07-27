@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.tables.client.inventory;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import slimeknights.tconstruct.tables.block.entity.chest.AbstractChestBlockEntity;
@@ -27,14 +27,14 @@ public class TinkerChestScreen extends BaseTabbedScreen<AbstractChestBlockEntity
   }
 
   @Override
-  protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
+  public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
     this.drawBackground(graphics, BLANK_BACK_PLUS_1);
 
     if (this.scalingChestScreen != null) {
       this.scalingChestScreen.update(mouseX, mouseY);
     }
 
-    super.renderBg(graphics, partialTicks, mouseX, mouseY);
+    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
   }
 
   @Override

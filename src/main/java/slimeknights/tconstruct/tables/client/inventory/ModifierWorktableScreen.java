@@ -1,7 +1,7 @@
 package slimeknights.tconstruct.tables.client.inventory;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -112,23 +112,22 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
   }
 
   @Override
-  protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
+  public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
     this.drawBackground(graphics, BACKGROUND);
 
     // draw scrollbar
-    graphics.blit(BACKGROUND, this.cornerX + SLIDER_LEFT, this.cornerY + SLIDER_TOP + (int) (SROLLABLE_AREA * this.sliderProgress), canScroll() ? HANDLE_U : HANDLE_U_DISABLE, 0, SLIDER_WIDTH, HANDLE_HEIGHT);
+    graphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, this.cornerX + SLIDER_LEFT, this.cornerY + SLIDER_TOP + (int) (SROLLABLE_AREA * this.sliderProgress), (float)(canScroll() ? HANDLE_U : HANDLE_U_DISABLE), 0f, SLIDER_WIDTH, HANDLE_HEIGHT, 256, 256);
     this.drawModifierBackgrounds(graphics, mouseX, mouseY, this.cornerX + MODIFIER_LEFT, this.cornerY + MODIFIER_TOP);
 
     // draw slot icons
     List<Slot> slots = this.getMenu().getInputSlots();
     int max = Math.min(slots.size(), INPUT_PATTERNS.length);
-    RenderSystem.setShaderTexture(0, net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
     for (int i = 0; i < max; i++) {
       this.drawIconEmpty(graphics, slots.get(i), INPUT_PATTERNS[i]);
     }
     this.drawModifierIcons(graphics, this.cornerX + MODIFIER_LEFT, this.cornerY + MODIFIER_TOP);
 
-    super.renderBg(graphics, partialTicks, mouseX, mouseY);
+    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
 
     renderArmorStand(graphics);
   }
@@ -160,8 +159,8 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
   }
 
   @Override
-  protected void renderTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderTooltip(graphics, mouseX, mouseY);
+  protected void extractTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractTooltip(graphics, mouseX, mouseY);
 
     // determime which button we are hovering
     if (tile != null) {
@@ -169,14 +168,14 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
       if (!buttons.isEmpty()) {
         int index = getButtonAt(mouseX, mouseY);
         if (index >= 0) {
-          graphics.renderTooltip(this.font, buttons.get(index).getDisplayName(), mouseX, mouseY);
+          graphics.setTooltipForNextFrame(this.font, buttons.get(index).getDisplayName(), mouseX, mouseY);
         }
       }
     }
   }
 
   /** Draw backgrounds for all modifiers */
-  private void drawModifierBackgrounds(GuiGraphics graphics, int mouseX, int mouseY, int left, int top) {
+  private void drawModifierBackgrounds(GuiGraphicsExtractor graphics, int mouseX, int mouseY, int left, int top) {
     if (tile != null) {
       int selectedIndex = this.tile.getSelectedIndex();
       int max = Math.min(this.modifierIndexOffset + MAX_MODIFIER, this.getModifierCount());
@@ -190,18 +189,17 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
         } else if (mouseX >= x && mouseY >= y && mouseX < x + MODIFIER_SIZE && mouseY < y + MODIFIER_SIZE) {
           v += 2 * MODIFIER_SIZE;
         }
-        graphics.blit(BACKGROUND, x, y, MODIFIER_U, v, MODIFIER_SIZE, MODIFIER_SIZE);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, x, y, (float)MODIFIER_U, (float)v, MODIFIER_SIZE, MODIFIER_SIZE, 256, 256);
       }
     }
   }
 
   /** Draw slot icons for all patterns */
-  private void drawModifierIcons(GuiGraphics graphics, int left, int top) {
+  private void drawModifierIcons(GuiGraphicsExtractor graphics, int left, int top) {
     // use block texture list
     if (tile != null) {
       assert this.minecraft != null;
-      RenderSystem.setShaderTexture(0, net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
-      // iterate all recipes
+        // iterate all recipes
       List<ModifierEntry> list = this.tile.getCurrentButtons();
       int max = Math.min(this.modifierIndexOffset + MAX_MODIFIER, this.getModifierCount());
       for (int i = this.modifierIndexOffset; i < max; ++i) {

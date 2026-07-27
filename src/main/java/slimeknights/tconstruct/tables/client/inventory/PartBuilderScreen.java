@@ -2,7 +2,8 @@ package slimeknights.tconstruct.tables.client.inventory;
 
 import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
@@ -96,11 +97,11 @@ public class PartBuilderScreen extends BaseTabbedScreen<PartBuilderBlockEntity,P
   }
 
   @Override
-  protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
+  public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
     this.drawBackground(graphics, BACKGROUND);
 
     // draw scrollbar
-    graphics.blit(BACKGROUND, this.cornerX + SLIDER_LEFT, this.cornerY + SLIDER_TOP + (int) (SROLLABLE_AREA * this.sliderProgress), canScroll() ? HANDLE_U : HANDLE_U_DISABLE, 0, SLIDER_WIDTH, HANDLE_HEIGHT);
+    graphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, this.cornerX + SLIDER_LEFT, this.cornerY + SLIDER_TOP + (int) (SROLLABLE_AREA * this.sliderProgress), (float)(canScroll() ? HANDLE_U : HANDLE_U_DISABLE), 0f, SLIDER_WIDTH, HANDLE_HEIGHT, 256, 256);
     this.drawRecipesBackground(graphics, mouseX, mouseY, this.cornerX + PATTERN_LEFT, this.cornerY + PATTERN_TOP);
 
     // draw slot icons
@@ -108,7 +109,7 @@ public class PartBuilderScreen extends BaseTabbedScreen<PartBuilderBlockEntity,P
     this.drawIconEmpty(graphics, this.getMenu().getInputSlot(), Icons.INGOT);
     this.drawRecipesItems(graphics, this.cornerX + PATTERN_LEFT, this.cornerY + PATTERN_TOP);
 
-    super.renderBg(graphics, partialTicks, mouseX, mouseY);
+    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
   }
 
   /**
@@ -138,8 +139,8 @@ public class PartBuilderScreen extends BaseTabbedScreen<PartBuilderBlockEntity,P
   }
 
   @Override
-  protected void renderTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderTooltip(graphics, mouseX, mouseY);
+  protected void extractTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractTooltip(graphics, mouseX, mouseY);
 
     // determime which button we are hovering
     if (tile != null) {
@@ -147,14 +148,14 @@ public class PartBuilderScreen extends BaseTabbedScreen<PartBuilderBlockEntity,P
       if (!buttons.isEmpty()) {
         int index = getButtonAt(mouseX, mouseY);
         if (index >= 0) {
-          graphics.renderTooltip(this.font, buttons.get(index).getDisplayName(), mouseX, mouseY);
+          graphics.setTooltipForNextFrame(this.font, buttons.get(index).getDisplayName(), mouseX, mouseY);
         }
       }
     }
   }
 
   /** Draw backgrounds for all patterns */
-  private void drawRecipesBackground(GuiGraphics graphics, int mouseX, int mouseY, int left, int top) {
+  private void drawRecipesBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, int left, int top) {
     if (tile == null) {
       return;
     }
@@ -169,16 +170,15 @@ public class PartBuilderScreen extends BaseTabbedScreen<PartBuilderBlockEntity,P
       } else if (mouseX >= x && mouseY >= y && mouseX < x + PATTERN_SIZE && mouseY < y + PATTERN_SIZE) {
         v += 2 * PATTERN_SIZE;
       }
-      graphics.blit(BACKGROUND, x, y, PATTERN_U, v, PATTERN_SIZE, PATTERN_SIZE);
+      graphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, x, y, (float)PATTERN_U, (float)v, PATTERN_SIZE, PATTERN_SIZE, 256, 256);
     }
   }
 
   /** Draw slot icons for all patterns */
-  private void drawRecipesItems(GuiGraphics graphics, int left, int top) {
+  private void drawRecipesItems(GuiGraphicsExtractor graphics, int left, int top) {
     // use block texture list
     assert this.minecraft != null;
     assert this.tile != null;
-    Function<Identifier, TextureAtlasSprite> spriteGetter = this.minecraft.getTextureAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
     // iterate all recipes
     List<Pattern> list = this.tile.getSortedButtons();
     int max = Math.min(this.recipeIndexOffset + MAX_PATTERN, this.getPartRecipeCount());
@@ -188,7 +188,7 @@ public class PartBuilderScreen extends BaseTabbedScreen<PartBuilderBlockEntity,P
       int y = top + (relative / 4) * PATTERN_SIZE + 1;
       // get the sprite for the pattern and draw
       Pattern pattern = list.get(i);
-      graphics.blit(x, y, 100, 16, 16, spriteGetter.apply(pattern.getTexture()));
+      graphics.blitSprite(RenderPipelines.GUI_TEXTURED, slimeknights.mantle.client.render.FluidRenderer.getBlockSprite(pattern.getTexture()), x, y, 16, 16);
     }
   }
 

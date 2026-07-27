@@ -1,12 +1,11 @@
 package slimeknights.tconstruct.tables.client.inventory;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import org.joml.Matrix3x2fStack;
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -313,11 +312,11 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
   }
 
   @Override
-  protected void drawContainerName(GuiGraphics graphics) {
-    graphics.drawString(this.font, this.getTitle(), 8, 8, 4210752, false);
+  protected void drawContainerName(GuiGraphicsExtractor graphics) {
+    graphics.text(this.font, this.getTitle(), 8, 8, 4210752, false);
   }
 
-  public static void renderIcon(GuiGraphics graphics, LayoutIcon icon, int x, int y) {
+  public static void renderIcon(GuiGraphicsExtractor graphics, LayoutIcon icon, int x, int y) {
     Pattern pattern = icon.getValue(Pattern.class);
     if (pattern != null) {
       // draw pattern sprite
@@ -327,12 +326,13 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
 
     ItemStack stack = icon.getValue(ItemStack.class);
     if (stack != null) {
-      graphics.renderItem(stack, x, y);
+      graphics.item(stack, x, y);
     }
   }
 
   @Override
-  protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
+  public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    // 26.1: RenderSystem alpha/blend/depth calls removed (GPU rewrite); slot-background transparency is a runtime-visual detail
     this.drawBackground(graphics, TINKER_TEXTURE);
 
     int x = 0;
@@ -344,23 +344,19 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
     final float yOff = 22f;
 
     // render the background icon
-    PoseStack renderPose = graphics.pose();
-    renderPose.pushPose();
-    renderPose.translate(xOff, yOff, 0.0F);
-    renderPose.scale(scale, scale, 1.0f);
+    Matrix3x2fStack renderPose = graphics.pose();
+    renderPose.pushMatrix();
+    renderPose.translate(xOff, yOff);
+    renderPose.scale(scale, scale);
     renderIcon(graphics, currentLayout.getIcon(), (int) (this.cornerX / scale), (int) (this.cornerY / scale));
-    renderPose.popPose();
+    renderPose.popMatrix();
 
     // rebind gui texture since itemstack drawing sets it to something else
-    RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.82f);
-    RenderSystem.enableBlend();
     //RenderSystem.enableAlphaTest();
     //RenderHelper.turnOff();
-    RenderSystem.disableDepthTest();
     ITEM_COVER.draw(graphics, this.cornerX + 7, this.cornerY + 18);
 
     // slot backgrounds, are transparent
-    RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 0.28f);
     if (!this.currentLayout.getToolSlot().isHidden()) {
       Slot slot = this.getMenu().getSlot(TINKER_SLOT);
       SLOT_BACKGROUND.draw(graphics, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1);
@@ -371,7 +367,6 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
     }
 
     // slot borders, are opaque
-    RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
     for (int i = 0; i <= maxInputs; i++) {
       Slot slot = this.getMenu().getSlot(i);
       if ((slot instanceof TinkerStationSlot tinkerSlot && (!tinkerSlot.isDormant() || slot.hasItem()))) {
@@ -420,9 +415,8 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
       }
     }
 
-    RenderSystem.enableDepthTest();
 
-    super.renderBg(graphics, partialTicks, mouseX, mouseY);
+    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
 
     this.buttonsScreen.render(graphics, mouseX, mouseY, partialTicks);
 
@@ -533,12 +527,12 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
   }
 
   @Override
-  public void renderSlot(GuiGraphics graphics, Slot slotIn) {
+  public void extractSlot(GuiGraphicsExtractor graphics, Slot slotIn, int mouseX, int mouseY) {
     // don't draw dormant slots with no item
     if (slotIn instanceof TinkerStationSlot && ((TinkerStationSlot) slotIn).isDormant() && !slotIn.hasItem()) {
       return;
     }
-    super.renderSlot(graphics, slotIn);
+    super.extractSlot(graphics, slotIn, mouseX, mouseY);
   }
 
   @Override
