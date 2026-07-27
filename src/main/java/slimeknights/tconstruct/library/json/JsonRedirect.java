@@ -3,7 +3,6 @@ package slimeknights.tconstruct.library.json;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.mojang.serialization.JsonOps;
-import lombok.Data;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import slimeknights.mantle.util.JsonHelper;
@@ -11,12 +10,24 @@ import slimeknights.mantle.util.JsonHelper;
 import javax.annotation.Nullable;
 
 /** Represents a redirect in a material or modifier JSON */
-@SuppressWarnings("ClassCanBeRecord") // GSON does not support records
-@Data
 public class JsonRedirect {
   private final Identifier id;
   @Nullable
   private final ICondition condition;
+
+  public JsonRedirect(Identifier id, @Nullable ICondition condition) {
+    this.id = id;
+    this.condition = condition;
+  }
+
+  public Identifier getId() {
+    return id;
+  }
+
+  @Nullable
+  public ICondition getCondition() {
+    return condition;
+  }
 
   /** Serializes this to JSON */
   public JsonObject toJson() {

@@ -1,7 +1,5 @@
 package slimeknights.tconstruct.library.modifiers.util;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import net.minecraft.tags.TagKey;
 import slimeknights.mantle.registration.object.IdAwareObject;
 import slimeknights.tconstruct.TConstruct;
@@ -13,13 +11,20 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 /** Supplier that will return a modifier once they are fully registered, typically used with {@link ModifierDeferredRegister} */
-@RequiredArgsConstructor
 public class LazyModifier implements Supplier<Modifier>, IdAwareObject {
   /** ID of the modifier to fetch */
-  @Getter
   protected final ModifierId id;
   /** Cached value for the modifier */
   protected Modifier result;
+
+  public LazyModifier(ModifierId id) {
+    this.id = id;
+  }
+
+  @Override
+  public ModifierId getId() {
+    return id;
+  }
 
   public LazyModifier(Modifier modifier) {
     this.id = modifier.getId();
