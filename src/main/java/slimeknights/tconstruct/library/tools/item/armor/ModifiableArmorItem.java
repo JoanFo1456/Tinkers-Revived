@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.library.tools.item.armor;
 
 import com.google.common.collect.ImmutableMultimap;
+import net.minecraft.world.item.component.TooltipDisplay;
 import com.google.common.collect.Multimap;
 import lombok.Getter;
 import net.minecraft.core.Holder;
@@ -410,9 +411,12 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+  public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
+    List<Component> tooltip = new java.util.ArrayList<>();
     Level level = context.registries() == null ? null : SafeClientAccess.getLevel();
     TooltipUtil.addInformation(this, stack, level, tooltip, SafeClientAccess.getTooltipKey(), flag);
+  
+    tooltip.forEach(tooltipConsumer);
   }
 
   @Override

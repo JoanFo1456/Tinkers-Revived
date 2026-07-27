@@ -1,6 +1,8 @@
 package slimeknights.tconstruct.library.tools.part.block;
 
 import net.minecraft.nbt.CompoundTag;
+import java.util.function.Consumer;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item.TooltipContext;
@@ -32,9 +34,12 @@ public class MaterialBlockItem extends BlockItem implements IMaterialItem {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+  public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
+    List<Component> tooltip = new java.util.ArrayList<>();
     MaterialItem.appendHoverText(this, stack, tooltip, flag);
     super.appendHoverText(stack, context, tooltip, flag);
+  
+    tooltip.forEach(tooltipConsumer);
   }
 
   @Nullable

@@ -1,6 +1,8 @@
 package slimeknights.tconstruct.gadgets.item;
 
 import net.minecraft.network.chat.Component;
+import java.util.function.Consumer;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -49,8 +51,11 @@ public class ShurikenItem extends SnowballItem {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+  public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
+    List<Component> tooltip = new java.util.ArrayList<>();
     TranslationHelper.addOptionalTooltip(stack, tooltip);
     super.appendHoverText(stack, context, tooltip, flag);
+  
+    tooltip.forEach(tooltipConsumer);
   }
 }

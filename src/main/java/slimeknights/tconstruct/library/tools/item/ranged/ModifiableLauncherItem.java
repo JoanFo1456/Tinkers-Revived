@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.library.tools.item.ranged;
 
 import com.google.common.collect.ImmutableMultimap;
+import net.minecraft.world.item.component.TooltipDisplay;
 import com.google.common.collect.Multimap;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
@@ -351,8 +352,11 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+  public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
+    List<Component> tooltip = new java.util.ArrayList<>();
     TooltipUtil.addInformation(this, stack, context.level(), tooltip, SafeClientAccess.getTooltipKey(), flag);
+  
+    tooltip.forEach(tooltipConsumer);
   }
 
   public int getDefaultTooltipHideFlags(ItemStack stack) {

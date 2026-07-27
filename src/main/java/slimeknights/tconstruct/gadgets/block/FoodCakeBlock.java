@@ -1,6 +1,8 @@
 package slimeknights.tconstruct.gadgets.block;
 
 import net.minecraft.core.BlockPos;
+import java.util.function.Consumer;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionResult;
@@ -38,8 +40,11 @@ public class FoodCakeBlock extends CakeBlock {
   }
 
   @Override
-  public void appendHoverText(ItemStack pStack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag pFlag) {
+  public void appendHoverText(ItemStack pStack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag pFlag) {
+    List<Component> tooltip = new java.util.ArrayList<>();
     ContainerFoodItem.addEffectTooltip(food, tooltip);
+  
+    tooltip.forEach(tooltipConsumer);
   }
 
   @Override

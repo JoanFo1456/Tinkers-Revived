@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.tables.item;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
@@ -56,7 +57,8 @@ public class AnvilBlockItem extends MaterialBlockItem {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+  public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
+    List<Component> tooltip = new java.util.ArrayList<>();
     // ditch the super call advanced tooltip material ID, we will handle it ourselves later
     this.getBlock().appendHoverText(stack, context, tooltip, flag);
     MaterialVariantId material = getMaterial(stack);
@@ -68,6 +70,8 @@ public class AnvilBlockItem extends MaterialBlockItem {
         tooltip.add(Component.translatable(ToolPartItem.MATERIAL_KEY, material).withStyle(ChatFormatting.DARK_GRAY));
       }
     }
+  
+    tooltip.forEach(tooltipConsumer);
   }
 
   public String getCreatorModId(ItemStack stack) {

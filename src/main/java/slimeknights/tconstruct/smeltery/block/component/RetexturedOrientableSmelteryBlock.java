@@ -1,6 +1,8 @@
 package slimeknights.tconstruct.smeltery.block.component;
 
 import net.minecraft.core.BlockPos;
+import java.util.function.Consumer;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -26,8 +28,11 @@ public class RetexturedOrientableSmelteryBlock extends OrientableSmelteryBlock {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag pFlag) {
+  public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag pFlag) {
+    List<Component> tooltip = new java.util.ArrayList<>();
     RetexturedHelper.addTooltip(stack, tooltip);
+  
+    tooltip.forEach(tooltipConsumer);
   }
 
   @Override
