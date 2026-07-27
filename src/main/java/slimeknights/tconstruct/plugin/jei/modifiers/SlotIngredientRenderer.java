@@ -7,18 +7,14 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.sprite.Material;
-import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.TooltipFlag;
-import slimeknights.mantle.client.model.NBTKeyModel;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.tools.SlotType;
 import slimeknights.tconstruct.library.tools.SlotType.SlotCount;
-import slimeknights.tconstruct.tools.TinkerModifiers;
 
 import javax.annotation.Nullable;
 import java.awt.Color;
@@ -81,19 +77,24 @@ public enum SlotIngredientRenderer implements IIngredientRenderer<SlotCount> {
 
   /** Cache of sprite for each slot type */
   private static final Map<SlotType,TextureAtlasSprite> SLOT_SPRITES = new HashMap<>();
+  /**
+   * Slot-name -> texture, mirroring assets/tconstruct/models/item/creative_slot.json. 26.1 removed the
+   * BakedModel/ItemOverrides system this used to read the per-slot texture from, so the map is resolved directly.
+   * The exact atlas the sprites live on is a runtime-visual detail.
+   */
+  private static final Map<String,Identifier> SLOT_TEXTURES = Map.of(
+    "slotless", TConstruct.getResource("item/slot/slotless"),
+    "upgrades", TConstruct.getResource("item/slot/upgrade"),
+    "abilities", TConstruct.getResource("item/slot/ability"),
+    "souls", TConstruct.getResource("item/materials/hollow_gem"),
+    "defense", TConstruct.getResource("item/slot/defense"));
   /** Lookup for sprite for a slot type */
   private static final Function<SlotType,TextureAtlasSprite> SLOT_LOOKUP = slotType -> {
-    Minecraft minecraft = Minecraft.getInstance();
-    ModelManager modelManager = minecraft.getModelManager();
-    // gets the model for the item, its a sepcial one that gives us texture info
-    BakedModel model = minecraft.getItemRenderer().getItemModelShaper().getItemModel(TinkerModifiers.creativeSlotItem.get());
-    if (model != null && model.getOverrides() instanceof NBTKeyModel.Overrides overrides) {
-      Material material = overrides.getTexture(slotType == null ? "slotless" : slotType.getName());
-      return modelManager.getAtlas(material.atlasLocation()).getSprite(material.texture());
-    } else {
-      // failed to use the model, use missing texture
-      return modelManager.getAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS).getSprite(MissingTextureAtlasSprite.getLocation());
-    }
+    TextureAtlas atlas = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(TextureAtlas.LOCATION_BLOCKS);
+    String name = slotType == null ? "slotless" : slotType.getName();
+    Identifier texture = SLOT_TEXTURES.getOrDefault(name, TConstruct.getResource("item/slot/default"));
+    TextureAtlasSprite sprite = atlas.getSprite(texture);
+    return sprite != null ? sprite : atlas.getSprite(MissingTextureAtlasSprite.getLocation());
   };
 
   @Override
