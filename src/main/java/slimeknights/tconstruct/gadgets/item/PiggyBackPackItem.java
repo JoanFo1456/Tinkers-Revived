@@ -183,7 +183,8 @@ public class PiggyBackPackItem extends TooltipItem {
       return true;
     }
 
-    @Override
+    // MobEffect#initializeClient was removed in 26.1. Visibility for this effect is registered by TinkerEffect.ClientExtensions
+    // (its superclass); the custom carry-count inventory icons below are deferred to a future RegisterClientExtensionsEvent re-hook.
     public void initializeClient(Consumer<IClientMobEffectExtensions> consumer) {
       consumer.accept(new IClientMobEffectExtensions() {
         private final Minecraft mc = Minecraft.getInstance();

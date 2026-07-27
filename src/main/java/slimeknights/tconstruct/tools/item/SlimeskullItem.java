@@ -26,7 +26,7 @@ public class SlimeskullItem extends ModifiableArmorItem {
     this(material, material.getId(), properties);
   }
 
-  @Override
+  // initializeClient removed from Item/MobEffect/FluidType in 26.1; registered via RegisterClientExtensionsEvent
   public void initializeClient(Consumer<IClientItemExtensions> consumer) {
     // The custom slimeskull head model is applied through the dispatcher; the per-slot generic model override moved to
     // the data-driven equipment render layer in 26.1 and is wired up during the client armor render pass.

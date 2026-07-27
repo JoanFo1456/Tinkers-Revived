@@ -525,7 +525,7 @@ public class ModifiableItem extends Item implements IModifiableDisplay {
     return toolForRendering;
   }
 
-  @Override
+  // initializeClient removed from Item/MobEffect/FluidType in 26.1; registered via RegisterClientExtensionsEvent
   public void initializeClient(Consumer<IClientItemExtensions> consumer) {
     consumer.accept(ModifiableItemClientExtension.INSTANCE);
   }

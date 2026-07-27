@@ -18,7 +18,7 @@ public class HelmetChargingEffect extends MobEffect {
     super(MobEffectCategory.NEUTRAL, -1);
   }
 
-  @Override
+  // initializeClient removed from Item/MobEffect/FluidType in 26.1; registered via RegisterClientExtensionsEvent
   public void initializeClient(Consumer<IClientMobEffectExtensions> consumer) {
     consumer.accept(new IClientMobEffectExtensions() {
       @Override

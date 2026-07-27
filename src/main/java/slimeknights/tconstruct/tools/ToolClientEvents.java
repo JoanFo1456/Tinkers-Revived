@@ -138,6 +138,35 @@ public class ToolClientEvents extends ClientEventBase {
     event.register(ToolModel.ID, ToolModel.Unbaked.MAP_CODEC);
   }
 
+  /** Registers the item client extensions, replacing the removed Item#initializeClient in 26.1 */
+  @SubscribeEvent
+  static void registerClientItemExtensions(net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent event) {
+    for (Item item : net.minecraft.core.registries.BuiltInRegistries.ITEM) {
+      if (item instanceof slimeknights.tconstruct.library.tools.item.armor.MultilayerArmorItem armor) {
+        armor.initializeClient(ext -> event.registerItem(ext, item));
+      } else if (item instanceof slimeknights.tconstruct.tools.item.SlimeskullItem skull) {
+        skull.initializeClient(ext -> event.registerItem(ext, item));
+      } else if (item instanceof slimeknights.tconstruct.library.tools.item.ranged.ModifiableLauncherItem launcher) {
+        launcher.initializeClient(ext -> event.registerItem(ext, item));
+      } else if (item instanceof slimeknights.tconstruct.library.tools.item.ModifiableItem modifiable) {
+        modifiable.initializeClient(ext -> event.registerItem(ext, item));
+      }
+    }
+    // mob effect extensions (CarryPotionEffect is a TinkerEffect whose visibility is registered by TinkerEffect.ClientExtensions;
+    // its custom carry icons are deferred to a future re-hook)
+    for (net.minecraft.world.effect.MobEffect effect : net.minecraft.core.registries.BuiltInRegistries.MOB_EFFECT) {
+      if (effect instanceof slimeknights.tconstruct.tools.modifiers.effect.HelmetChargingEffect charging) {
+        charging.initializeClient(ext -> event.registerMobEffect(ext, effect));
+      }
+    }
+    // fluid type extensions
+    for (net.neoforged.neoforge.fluids.FluidType type : net.neoforged.neoforge.registries.NeoForgeRegistries.FLUID_TYPES) {
+      if (type instanceof slimeknights.tconstruct.fluids.fluids.PotionFluidType potion) {
+        potion.initializeClient(ext -> event.registerFluidType(ext, type));
+      }
+    }
+  }
+
   @SubscribeEvent
   static void registerModifierModels(ModifierModelRegistrationEvent event) {
     event.registerModel(getResource("normal"), NormalModifierModel.UNBAKED_INSTANCE);

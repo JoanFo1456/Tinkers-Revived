@@ -40,7 +40,7 @@ public class PotionFluidType extends FluidType {
     return itemStack;
   }
 
-  @Override
+  // initializeClient removed from Item/MobEffect/FluidType in 26.1; registered via RegisterClientExtensionsEvent
   public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
     consumer.accept(new ClientTextureFluidType(this) {
       /**

@@ -39,7 +39,7 @@ public class MultilayerArmorItem extends ModifiableArmorItem {
     this(material.getArmorMaterial(), slot, properties, toolDefinition, name);
   }
 
-  @Override
+  // initializeClient removed from Item/MobEffect/FluidType in 26.1; registered via RegisterClientExtensionsEvent
   public void initializeClient(Consumer<IClientItemExtensions> consumer) {
     consumer.accept(new ArmorModelDispatcher() {
       @Override
