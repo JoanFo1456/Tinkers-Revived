@@ -1,8 +1,6 @@
 package slimeknights.tconstruct.library.tools.nbt;
 
 import com.google.common.collect.ImmutableMap;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import net.minecraft.nbt.CompoundTag;
@@ -21,7 +19,6 @@ import java.util.Set;
  * Generic container for tool stats, allows addons to select which stats they wish to use
  */
 @SuppressWarnings("ClassCanBeRecord")
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @EqualsAndHashCode
 @ToString
 public class MultiplierNBT {

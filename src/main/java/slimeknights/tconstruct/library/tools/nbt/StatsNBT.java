@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -29,7 +28,6 @@ import java.util.Set;
  * Generic container for tool stats, allows addons to select which stats they wish to use
  */
 @SuppressWarnings("ClassCanBeRecord")
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @EqualsAndHashCode
 @ToString
 public class StatsNBT {

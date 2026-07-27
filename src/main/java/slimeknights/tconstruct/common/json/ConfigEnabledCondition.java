@@ -1,6 +1,8 @@
 package slimeknights.tconstruct.common.json;
 
 import com.google.gson.JsonSyntaxException;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.resources.Identifier;

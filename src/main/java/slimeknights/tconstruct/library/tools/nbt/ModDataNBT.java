@@ -1,7 +1,6 @@
 package slimeknights.tconstruct.library.tools.nbt;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import net.minecraft.nbt.CompoundTag;
@@ -17,7 +16,6 @@ import java.util.function.BiFunction;
  * Note unlike other NBT classes, the data inside this one is mutable as most of it is directly used by the tools.
  */
 @EqualsAndHashCode
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class ModDataNBT implements IModDataView {
   /** Compound representing modifier data */
   @Getter(AccessLevel.PROTECTED)
