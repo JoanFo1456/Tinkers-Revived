@@ -2,7 +2,6 @@ package slimeknights.tconstruct.library.modifiers.modules.technical;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.neoforged.neoforge.common.EffectCures;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.armor.EquipmentChangeModifierHook;
@@ -35,8 +34,8 @@ public enum CureOnRemovalModule implements HookProvider, EquipmentChangeModifier
     if (context.getChangedSlot() == slot) {
       IToolStackView replacement = context.getReplacementTool();
       if (replacement == null || replacement.getModifierLevel(modifier.getModifier()) == 0 || replacement.getItem() != tool.getItem()) {
-        // cure effects using the helmet
-        context.getEntity().removeEffectsCuredBy(EffectCures.MILK);
+        // cure effects using the helmet; milk cure equates to clearing all effects since the cure registry was removed in 26.1
+        context.getEntity().removeAllEffects();
       }
     }
   }
