@@ -53,7 +53,7 @@ public class AnvilBlockItem extends MaterialBlockItem {
   @Override
   public Component getName(ItemStack stack) {
     // don't put tool material in name
-    return Component.translatable(this.getDescriptionId(stack));
+    return Component.translatable(this.getDescriptionId());
   }
 
   @Override

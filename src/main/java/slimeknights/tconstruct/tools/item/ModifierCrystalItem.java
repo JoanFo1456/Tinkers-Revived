@@ -51,7 +51,7 @@ public class ModifierCrystalItem extends Item {
   public Component getName(ItemStack stack) {
     ModifierId modifier = getModifier(stack);
     if (modifier != null) {
-      return Component.translatable(getDescriptionId(stack) + ".format", Component.translatable(Util.makeTranslationKey("modifier", modifier.getIdentifier())));
+      return Component.translatable(getDescriptionId() + ".format", Component.translatable(Util.makeTranslationKey("modifier", modifier.getIdentifier())));
     }
     return super.getName(stack);
   }

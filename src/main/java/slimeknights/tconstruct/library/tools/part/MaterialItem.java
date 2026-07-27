@@ -80,7 +80,7 @@ public class MaterialItem extends Item implements IMaterialItem {
   public static Component getName(IMaterialItem self, ItemStack stack) {
     // if no material, return part name directly
     MaterialVariantId material = self.getMaterial(stack);
-    String key = self.asItem().getDescriptionId(stack);
+    String key = self.asItem().getDescriptionId();
     if (material.equals(IMaterial.UNKNOWN_ID)) {
       return Component.translatable(key);
     }
