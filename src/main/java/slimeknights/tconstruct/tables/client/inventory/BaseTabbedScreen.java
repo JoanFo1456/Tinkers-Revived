@@ -1,7 +1,6 @@
 package slimeknights.tconstruct.tables.client.inventory;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -52,12 +51,12 @@ public class BaseTabbedScreen<TILE extends BlockEntity, CONTAINER extends Tabbed
     return this.tile;
   }
 
-  protected void drawIcon(GuiGraphics graphics, Slot slot, ElementScreen element) {
-    RenderSystem.setShaderTexture(0, Icons.ICONS);
+  protected void drawIcon(GuiGraphicsExtractor graphics, Slot slot, ElementScreen element) {
+    // 26.1: ElementScreen.draw binds its own texture; RenderSystem.setShaderTexture removed
     element.draw(graphics, slot.x + this.cornerX - 1, slot.y + this.cornerY - 1);
   }
 
-  protected void drawIconEmpty(GuiGraphics graphics, Slot slot, ElementScreen element) {
+  protected void drawIconEmpty(GuiGraphicsExtractor graphics, Slot slot, ElementScreen element) {
     if (slot.hasItem()) {
       return;
     }
@@ -65,7 +64,7 @@ public class BaseTabbedScreen<TILE extends BlockEntity, CONTAINER extends Tabbed
     this.drawIcon(graphics, slot, element);
   }
 
-  protected void drawIconEmpty(GuiGraphics graphics, Slot slot, Pattern pattern) {
+  protected void drawIconEmpty(GuiGraphicsExtractor graphics, Slot slot, Pattern pattern) {
     if (!slot.hasItem()) {
       GuiUtil.renderPattern(graphics, pattern, slot.x + this.cornerX, slot.y + this.cornerY);
     }
