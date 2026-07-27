@@ -58,7 +58,7 @@ public record MaterialTagSource(MaterialManager manager) implements TagSource<IM
     if (entries == null) {
       return null;
     }
-    return entries.stream().map(IMaterial::getIdentifier).collect(Collectors.toList());
+    return entries.stream().map(m -> m.getIdentifier().getIdentifier()).collect(Collectors.toList());
   }
 
 
