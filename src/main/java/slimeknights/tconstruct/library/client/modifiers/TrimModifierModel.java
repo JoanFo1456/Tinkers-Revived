@@ -4,8 +4,10 @@ import com.mojang.math.Transformation;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.equipment.Equippable;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.mantle.data.loadable.record.SingletonLoader;
 import slimeknights.mantle.util.ItemLayerPixels;
@@ -33,7 +35,7 @@ public enum TrimModifierModel implements IBakedModifierModel {
   public static final Identifier[] TRIM_TEXTURES = new Identifier[4];
   static {
     for (Armor type : Armor.values()) {
-      TRIM_TEXTURES[type.ordinal()] = type.getRoot();
+      TRIM_TEXTURES[type.ordinal()] = type.getRoot(false);
     }
   }
 
@@ -56,11 +58,21 @@ public enum TrimModifierModel implements IBakedModifierModel {
 
   @Override
   public void addQuads(IToolStackView tool, ModifierEntry modifier, Function<Material,TextureAtlasSprite> spriteGetter, Transformation transforms, boolean isLarge, int startTintIndex, Consumer<Collection<BakedQuad>> quadConsumer, @Nullable ItemLayerPixels pixels) {
-    if (!isLarge && tool.getItem() instanceof ArmorItem armor) {
-      int ordinal = armor.getType().ordinal();
-      if (ordinal < 4) {
-        Armor model = Armor.values()[ordinal];
-        model.addQuads(tool, modifier, spriteGetter, transforms, isLarge, startTintIndex, quadConsumer, pixels);
+    // 26.1 removed ArmorItem.Type; resolve the armor slot from the equippable data component instead
+    if (!isLarge) {
+      Equippable equippable = tool.getItem().components().get(DataComponents.EQUIPPABLE);
+      if (equippable != null) {
+        int ordinal = switch (equippable.slot()) {
+          case HEAD -> 0;
+          case CHEST -> 1;
+          case LEGS -> 2;
+          case FEET -> 3;
+          default -> -1;
+        };
+        if (ordinal >= 0) {
+          Armor model = Armor.values()[ordinal];
+          model.addQuads(tool, modifier, spriteGetter, transforms, isLarge, startTintIndex, quadConsumer, pixels);
+        }
       }
     }
   }

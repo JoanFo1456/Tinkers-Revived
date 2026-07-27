@@ -1,9 +1,6 @@
 package slimeknights.tconstruct.library.client.modifiers;
 
 import com.mojang.math.Transformation;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.Accessors;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
@@ -29,9 +26,6 @@ import java.util.function.Function;
  * Modifier model that renders the textured tinted based on the active potion color.
  * TODO 1.21: move to {@link slimeknights.tconstruct.library.modifiers.modules}
  */
-@Getter
-@Accessors(fluent = true)
-@RequiredArgsConstructor
 public class PotionModifierModel implements SimpleModifierModel {
   public static final RecordLoadable<PotionModifierModel> LOADER = SimpleModifierModel.loader(PotionModifierModel::new);
   /** @deprecated legacy system, use {@link #LOADER} */
@@ -50,6 +44,23 @@ public class PotionModifierModel implements SimpleModifierModel {
   private final Material small;
   @Nullable
   private final Material large;
+
+  public PotionModifierModel(@Nullable Material small, @Nullable Material large) {
+    this.small = small;
+    this.large = large;
+  }
+
+  @Nullable
+  @Override
+  public Material small() {
+    return small;
+  }
+
+  @Nullable
+  @Override
+  public Material large() {
+    return large;
+  }
 
   @Override
   public RecordLoadable<? extends PotionModifierModel> getLoader() {
@@ -72,8 +83,8 @@ public class PotionModifierModel implements SimpleModifierModel {
       if (toolData.contains(key)) {
         Identifier id = Identifier.tryParse(toolData.getString(key));
         if (id != null) {
-          BuiltInRegistries.POTION.getHolder(id).ifPresent(potion ->
-            quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(0xFF000000 | PotionUtils.getColor(potion), -1, new Material.Baked(spriteGetter.apply(texture), false), transforms, 0, pixels)));
+          BuiltInRegistries.POTION.get(id).ifPresent(holder ->
+            quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(0xFF000000 | PotionUtils.getColor(holder), -1, new Material.Baked(spriteGetter.apply(texture), false), transforms, 0, pixels)));
         }
       }
     }

@@ -7,11 +7,11 @@ import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.ApiStatus.Internal;
@@ -78,12 +78,17 @@ public interface TrimModifierModel extends ModifierModel {
           Level level = Minecraft.getInstance().level;
           if (level != null) {
             // find the material, if missing we use the base texture
-            TrimMaterial material = level.registryAccess().registryOrThrow(Registries.TRIM_MATERIAL).get(Identifier.tryParse(materialId));
+            Identifier materialLoc = Identifier.tryParse(materialId);
+            TrimMaterial material = materialLoc == null ? null : level.registryAccess()
+              .lookupOrThrow(Registries.TRIM_MATERIAL)
+              .get(ResourceKey.create(Registries.TRIM_MATERIAL, materialLoc))
+              .map(Holder::value).orElse(null);
             if (material != null) {
               // base location is based on the armor type
               Identifier root = getRoot(isLarge);
-              // specific location based on the material
-              Identifier path = root.withSuffix("_" + material.assetName());
+              // specific location based on the material. 26.1 removed TrimMaterial#assetName(); the per-material
+              // sprite suffix matches the material's registry id path (vanilla and Tinker datagen convention)
+              Identifier path = root.withSuffix("_" + materialLoc.getPath());
 
               // ensure the material sprite exists, if not we will tint the base sprite
               TextureAtlasSprite sprite = spriteGetter.apply(ModifierModel.blockAtlas(path));
@@ -91,7 +96,7 @@ public interface TrimModifierModel extends ModifierModel {
               if (MissingTextureAtlasSprite.getLocation().equals(sprite.contents().name())) {
                 // if the sprite doesn't exist, will tint the base sprite, assuming we have a component color
                 // helps for mods that don't properly provide all sprites
-                sprite = spriteGetter.apply(new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, root));
+                sprite = spriteGetter.apply(ModifierModel.blockAtlas(root));
                 TextColor textColor = material.description().getStyle().getColor();
                 if (textColor != null) {
                   color = textColor.getValue() | 0xFF000000;
@@ -107,25 +112,26 @@ public interface TrimModifierModel extends ModifierModel {
         }
         // no texture here mean the material is unknown, otherwise add it
         if (texture.sprite != null) {
-          quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(texture.color, -1, texture.sprite, transforms, 0, pixels));
+          quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(texture.color, -1, new Material.Baked(texture.sprite, false), transforms, 0, pixels));
         }
       }
     }
   }
 
   enum Armor implements TrimModifierModel {
-    HELMET(ArmorItem.Type.HELMET),
-    CHESTPLATE(ArmorItem.Type.CHESTPLATE),
-    LEGGINGS(ArmorItem.Type.LEGGINGS),
-    BOOTS(ArmorItem.Type.BOOTS);
+    // 26.1 removed ArmorItem.Type; the trim texture path uses the vanilla armor slot name directly
+    HELMET("helmet"),
+    CHESTPLATE("chestplate"),
+    LEGGINGS("leggings"),
+    BOOTS("boots");
 
     public static final RecordLoadable<Armor> LOADER = new SimpleRecordLoadable<>(new EnumLoadable<>(Armor.class), "slot", null, false);
 
     @Getter
     private final Identifier root;
     private final Map<String, TrimTexture> cache;
-    Armor(ArmorItem.Type type) {
-      root = Identifier.withDefaultNamespace("trims/items/" + type.getName() + "_trim");
+    Armor(String typeName) {
+      root = Identifier.withDefaultNamespace("trims/items/" + typeName + "_trim");
       cache = new HashMap<>();
     }
 

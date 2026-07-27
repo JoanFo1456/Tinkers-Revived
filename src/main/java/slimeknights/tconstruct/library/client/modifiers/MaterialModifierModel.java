@@ -1,9 +1,6 @@
 package slimeknights.tconstruct.library.client.modifiers;
 
 import com.mojang.math.Transformation;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.Accessors;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
@@ -31,9 +28,6 @@ import java.util.function.Function;
  * Model for a modifier that has variants based on a material
  * TODO 1.21: move to {@link slimeknights.tconstruct.library.modifiers.modules}
  */
-@Getter
-@Accessors(fluent = true)
-@RequiredArgsConstructor
 public class MaterialModifierModel implements SimpleModifierModel {
   public static final RecordLoadable<MaterialModifierModel> LOADER = SimpleModifierModel.loader(MaterialModifierModel::new);
   /** Fetches relevant material textures after checking if the texture exists */
@@ -69,6 +63,23 @@ public class MaterialModifierModel implements SimpleModifierModel {
   private final Material small;
   @Nullable
   private final Material large;
+
+  public MaterialModifierModel(@Nullable Material small, @Nullable Material large) {
+    this.small = small;
+    this.large = large;
+  }
+
+  @Nullable
+  @Override
+  public Material small() {
+    return small;
+  }
+
+  @Nullable
+  @Override
+  public Material large() {
+    return large;
+  }
 
   @Override
   public RecordLoadable<? extends ModifierModel> getLoader() {
