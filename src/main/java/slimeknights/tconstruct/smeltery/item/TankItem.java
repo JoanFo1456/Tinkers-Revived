@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.IFluidTank;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import slimeknights.mantle.data.loadable.Loadables;
 import slimeknights.mantle.fluid.FluidTransferHelper;
@@ -230,7 +231,7 @@ public class TankItem extends BlockTooltipItem {
   }
 
   /** Writes a tank to the legacy tank item tag shape. */
-  public static CompoundTag writeTank(FluidTank tank) {
+  public static CompoundTag writeTank(IFluidTank tank) {
     return writeFluid(tank.getFluid());
   }
 
@@ -245,8 +246,8 @@ public class TankItem extends BlockTooltipItem {
    * @param tank   Tank instance
    * @return  Stack with tank
    */
-  public static ItemStack setTank(ItemStack stack, FluidTank tank) {
-    if (tank.isEmpty()) {
+  public static ItemStack setTank(ItemStack stack, IFluidTank tank) {
+    if (tank.getFluid().isEmpty()) {
       removeTank(stack);
     } else {
       CompoundTag nbt = TagUtil.getOrCreateTag(stack);
