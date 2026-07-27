@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.tools.entity;
 
+import net.minecraft.server.level.ServerLevel;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -233,7 +234,7 @@ public class ThrownShuriken extends Projectile implements ToolProjectile, Projec
     Level level = level();
     if (!level.isClientSide) {
       if ((!hit || reclaim) && !this.isRemoved()) {
-        this.spawnAtLocation(stack.copy());
+        this.spawnAtLocation((ServerLevel) level, stack.copy());
       } else {
         level.broadcastEntityEvent(this, (byte) 3); // TODO: find the proper constant for this event ID
       }
@@ -247,7 +248,9 @@ public class ThrownShuriken extends Projectile implements ToolProjectile, Projec
 
     // TODO: can we stick in the block like an arrow instead?
     if (!this.isRemoved()) {
-      this.spawnAtLocation(stack.copy());
+      if (level() instanceof ServerLevel serverLevel) {
+        this.spawnAtLocation(serverLevel, stack.copy());
+      }
       this.discard();
     }
   }

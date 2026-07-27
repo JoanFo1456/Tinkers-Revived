@@ -157,7 +157,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
       if (recipe != null) {
         // if hand is empty, pick up the result (hand empty will only match recipes with no mold item)
         ItemStack result = recipe.assemble(moldingInventory, level.registryAccess());
-        result.onCraftedBy(level, player, 1);
+        result.onCraftedBy(player, 1);
         if (held.isEmpty()) {
           setItem(INPUT, ItemStack.EMPTY);
           player.setItemInHand(hand, result);

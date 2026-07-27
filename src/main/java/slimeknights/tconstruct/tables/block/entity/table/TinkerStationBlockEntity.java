@@ -217,7 +217,7 @@ public class TinkerStationBlockEntity extends RetexturedTableBlockEntity impleme
     }
 
     // fire crafting events
-    resultItem.onCraftedBy(this.level, player, amount);
+    resultItem.onCraftedBy(player, amount);
     ForgeEventFactory.firePlayerCraftingEvent(player, resultItem, this.inventoryWrapper);
     this.playCraftSound(player);
 
