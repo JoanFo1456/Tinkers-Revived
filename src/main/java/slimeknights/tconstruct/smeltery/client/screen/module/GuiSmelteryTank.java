@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.smeltery.client.screen.module;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.Rect2i;
@@ -74,7 +74,7 @@ public class GuiSmelteryTank implements IScreenWithFluidTank {
    * Renders the smeltery tank
    * @param matrices  Matrix stack instance
    */
-  public void renderFluids(GuiGraphics graphics) {
+  public void renderFluids(GuiGraphicsExtractor graphics) {
     // draw liquids
     if (tank.getContained() > 0) {
       int[] heights = calcLiquidHeights(true);
@@ -120,11 +120,11 @@ public class GuiSmelteryTank implements IScreenWithFluidTank {
 
   /**
    * Renders a highlight on the hovered fluid
-   * @param graphics  GuiGraphics instance
+   * @param graphics  GuiGraphicsExtractor instance
    * @param mouseX    Mouse X
    * @param mouseY    Mouse Y
    */
-  public void renderHighlight(GuiGraphics graphics, int mouseX, int mouseY) {
+  public void renderHighlight(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
     int checkX = mouseX - parent.getGuiLeft();
     int checkY = mouseY - parent.getGuiTop();
     if (withinTank(checkX, checkY)) {
@@ -147,11 +147,11 @@ public class GuiSmelteryTank implements IScreenWithFluidTank {
 
   /**
    * Gets the tooltip for the tank based on the given mouse position
-   * @param graphics  GuiGraphics instance
+   * @param graphics  GuiGraphicsExtractor instance
    * @param mouseX    Mouse X
    * @param mouseY    Mouse Y
    */
-  public void drawTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
+  public void drawTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
     // Liquids
     int checkX = mouseX - parent.getGuiLeft();
     int checkY = mouseY - parent.getGuiTop();
@@ -180,7 +180,7 @@ public class GuiSmelteryTank implements IScreenWithFluidTank {
       else {
         tooltip = FluidTooltipHandler.getFluidTooltip(tank.getFluidInTank(hovered));
       }
-      graphics.renderComponentTooltip(parent.getMinecraft().font, tooltip, mouseX, mouseY);
+      graphics.setComponentTooltipForNextFrame(parent.getMinecraft().font, tooltip, mouseX, mouseY);
     }
   }
 

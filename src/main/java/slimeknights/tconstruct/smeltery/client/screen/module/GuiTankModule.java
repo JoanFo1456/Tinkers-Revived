@@ -2,7 +2,7 @@ package slimeknights.tconstruct.smeltery.client.screen.module;
 
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.Rect2i;
@@ -85,9 +85,9 @@ public class GuiTankModule implements IScreenWithFluidTank, ClickableTankModule 
 
   /**
    * Draws the tank
-   * @param graphics  GuiGraphics instance
+   * @param graphics  GuiGraphicsExtractor instance
    */
-  public void draw(GuiGraphics graphics) {
+  public void draw(GuiGraphicsExtractor graphics) {
     FluidStack stack = tank.getFluidInTank(TANK_INDEX);
     int capacity = tank.getTankCapacity(TANK_INDEX);
     if (horizontal) {
@@ -102,11 +102,11 @@ public class GuiTankModule implements IScreenWithFluidTank, ClickableTankModule 
 
   /**
    * Highlights the hovered fluid
-   * @param graphics  GuiGraphics instance
+   * @param graphics  GuiGraphicsExtractor instance
    * @param checkX    Mouse X position, screen relative
    * @param checkY    Mouse Y position, screen relative
    */
-  public void highlightHoveredFluid(GuiGraphics graphics, int checkX, int checkY) {
+  public void highlightHoveredFluid(GuiGraphicsExtractor graphics, int checkX, int checkY) {
     // highlight hovered fluid
     if (isHovered(checkX, checkY)) {
       if (horizontal) {
@@ -137,11 +137,11 @@ public class GuiTankModule implements IScreenWithFluidTank, ClickableTankModule 
 
   /**
    * Renders the tooltip for hovering over the tank
-   * @param graphics  GuiGraphics instance
+   * @param graphics  GuiGraphicsExtractor instance
    * @param mouseX    Global mouse X position
    * @param mouseY    Global mouse Y position
    */
-  public void renderTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
+  public void renderTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
     int checkX = mouseX - screen.getGuiLeft();
     int checkY = mouseY - screen.getGuiTop();
 
@@ -178,8 +178,8 @@ public class GuiTankModule implements IScreenWithFluidTank, ClickableTankModule 
         }
       }
 
-      // TODO: renderComponentTooltip->renderTooltip
-      graphics.renderComponentTooltip(screen.getMinecraft().font, tooltip, mouseX, mouseY);
+      
+      graphics.setComponentTooltipForNextFrame(screen.getMinecraft().font, tooltip, mouseX, mouseY);
     }
   }
 
