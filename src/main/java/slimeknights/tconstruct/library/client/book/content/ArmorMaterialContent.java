@@ -59,11 +59,11 @@ public class ArmorMaterialContent extends AbstractMaterialContent {
   public static final Identifier ID = TConstruct.getResource("armor_material");
   /** Supported stat type set */
   private static final Set<MaterialStatsId> SUPPORTED = Stream.concat(
-    PlatingMaterialStats.TYPES.stream().map(MaterialStatType::getId),
+    PlatingMaterialStats.TYPES.stream().map(MaterialStatType::getStatId),
     Stream.of(StatlessMaterialStats.MAILLE, StatlessMaterialStats.SHIELD_CORE, StatlessMaterialStats.CUIRASS).map(IMaterialStats::getIdentifier)
   ).collect(Collectors.toSet());
   /** Plating stat types in top down order */
-  private static final List<MaterialStatsId> TOP_DOWN_STATS = List.of(HELMET.getId(), CHESTPLATE.getId(), LEGGINGS.getId(), BOOTS.getId(), SHIELD.getId());
+  private static final List<MaterialStatsId> TOP_DOWN_STATS = List.of(HELMET.getStatId(), CHESTPLATE.getStatId(), LEGGINGS.getStatId(), BOOTS.getStatId(), SHIELD.getStatId());
 
   private static final Component PLATING_LABEL = TConstruct.makeTranslation("stat", "plating").withStyle(ChatFormatting.BOLD, ChatFormatting.UNDERLINE);
   private static final Component ARMOR_PLATING_LABEL = TConstruct.makeTranslation("stat", "plating_armor").withStyle(ChatFormatting.BOLD, ChatFormatting.UNDERLINE);

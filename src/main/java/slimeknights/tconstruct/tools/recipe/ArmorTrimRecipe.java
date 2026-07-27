@@ -185,7 +185,7 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
       this.material = List.of(new ItemStack(material.ingredient().value()));
       this.variant = material.description().plainCopy();
 
-      String materialName = holder.key().location().toString();
+      String materialName = holder.key().identifier().toString();
       List<ModifierEntry> results = List.of(RESULT);
       Identifier key = TrimModule.materialKey(TinkerModifiers.trim.getId());
       toolWithModifier = tools.stream().map(stack -> IDisplayModifierRecipe.withModifiers(stack, results, data -> data.putString(key, materialName))).toList();

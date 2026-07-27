@@ -101,8 +101,8 @@ public class BannerModifierRecipe implements ITinkerStationRecipe, IMultiRecipe<
     }
 
     // get the banner data
-    CustomData blockEntityData = banner.get(DataComponents.BLOCK_ENTITY_DATA);
-    CompoundTag bannerData = blockEntityData == null ? null : blockEntityData.copyTag();
+    var blockEntityData = banner.get(DataComponents.BLOCK_ENTITY_DATA);
+    CompoundTag bannerData = blockEntityData == null ? null : blockEntityData.copyTagWithoutId();
     ListTag patterns = new ListTag();
     if (bannerData != null) {
       patterns = bannerData.getListOrEmpty("Patterns");
