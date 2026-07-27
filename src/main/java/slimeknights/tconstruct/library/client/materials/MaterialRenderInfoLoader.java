@@ -111,7 +111,7 @@ public class MaterialRenderInfoLoader implements IEarlySafeManagerReloadListener
   public void onReloadSafe(ResourceManager manager) {
     // first, we need to fetch all relevant JSON files
     Map<Identifier,JsonElement> jsons = new HashMap<>();
-    SimpleJsonResourceReloadListener.scanDirectory(manager, FOLDER, JsonHelper.DEFAULT_GSON, jsons);
+    SimpleJsonResourceReloadListener.scanDirectory(manager, net.minecraft.resources.FileToIdConverter.json(FOLDER), com.mojang.serialization.JsonOps.INSTANCE, net.minecraft.util.ExtraCodecs.JSON, jsons);
     // final result map
     Map<MaterialVariantId,MaterialRenderInfo> map = new HashMap<>();
 

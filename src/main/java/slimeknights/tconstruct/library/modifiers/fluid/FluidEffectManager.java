@@ -36,7 +36,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 /** Manager for spilling fluids for spilling, slurping, and wetting */
-public class FluidEffectManager extends SimpleJsonResourceReloadListener {
+public class FluidEffectManager extends SimpleJsonResourceReloadListener<com.google.gson.JsonElement> {
   /** Recipe folder */
   public static final String FOLDER = "tinkering/fluid_effects";
 
@@ -58,7 +58,7 @@ public class FluidEffectManager extends SimpleJsonResourceReloadListener {
   private RegistryAccess registryAccess = RegistryAccess.EMPTY;
 
   private FluidEffectManager() {
-    super(JsonHelper.DEFAULT_GSON, FOLDER);
+    super(net.minecraft.util.ExtraCodecs.JSON, net.minecraft.resources.FileToIdConverter.json(FOLDER));
   }
 
   /** For internal use only */

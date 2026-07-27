@@ -56,20 +56,20 @@ public final class PotionUtils {
   }
 
   public static int getColor(Holder<Potion> potion) {
-    return PotionContents.getColor(potion);
+    return PotionContents.getColorOptional(potion.value().getEffects()).orElse(-13083194);
   }
 
   public static int getColor(Potion potion) {
-    return PotionContents.getColor(potion.getEffects());
+    return PotionContents.getColorOptional(potion.getEffects()).orElse(-13083194);
   }
 
   public static int getColor(Iterable<MobEffectInstance> effects) {
-    return PotionContents.getColor(effects);
+    return PotionContents.getColorOptional(effects).orElse(-13083194);
   }
 
   public static void addPotionTooltip(ItemStack stack, List<Component> tooltip, float durationFactor) {
     PotionContents contents = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
-    contents.addPotionTooltip(tooltip::add, durationFactor, 20.0F);
+    PotionContents.addPotionTooltip(contents.getAllEffects(), tooltip::add, durationFactor, 20.0F);
   }
 
   public static void addPotionTooltip(Iterable<MobEffectInstance> effects, List<Component> tooltip, float durationFactor) {

@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 
 /** JSON loader that loads tool definitions from JSON */
 @Log4j2
-public class ToolDefinitionLoader extends SimpleJsonResourceReloadListener {
+public class ToolDefinitionLoader extends SimpleJsonResourceReloadListener<com.google.gson.JsonElement> {
   public static final String FOLDER = "tinkering/tool_definitions";
   private static final ToolDefinitionLoader INSTANCE = new ToolDefinitionLoader();
 
@@ -39,7 +39,7 @@ public class ToolDefinitionLoader extends SimpleJsonResourceReloadListener {
   private IContext conditionContext = IContext.EMPTY;
 
   private ToolDefinitionLoader() {
-    super(JsonHelper.DEFAULT_GSON, FOLDER);
+    super(net.minecraft.util.ExtraCodecs.JSON, net.minecraft.resources.FileToIdConverter.json(FOLDER));
   }
 
   /** Gets the instance of the definition loader */
