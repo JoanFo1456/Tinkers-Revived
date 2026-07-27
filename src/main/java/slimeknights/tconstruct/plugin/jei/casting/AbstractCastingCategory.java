@@ -109,7 +109,7 @@ public abstract class AbstractCastingCategory implements IRecipeCategory<IDispla
     int capacity = FluidValues.METAL_BLOCK;
     List<FluidStack> inputs = recipe.getFluids();
     IRecipeSlotBuilder tank = builder.addSlot(RecipeIngredientRole.INPUT, 3, 3)
-           .addTooltipCallback(FluidTooltipCallback.UNITS)
+           .addRichTooltipCallback(FluidTooltipCallback.UNITS)
            .setFluidRenderer(capacity, false, 32, 32)
            .setOverlay(tankOverlay, 0, 0)
            .addIngredients(NeoForgeTypes.FLUID_STACK, inputs);
@@ -119,7 +119,7 @@ public abstract class AbstractCastingCategory implements IRecipeCategory<IDispla
       h += 16;
     }
     IRecipeSlotBuilder faucet = builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 43, 8)
-           .addTooltipCallback(FluidTooltipCallback.UNITS)
+           .addRichTooltipCallback(FluidTooltipCallback.UNITS)
            .setFluidRenderer(1, false, 6, h)
            .addIngredients(NeoForgeTypes.FLUID_STACK, inputs);
 
