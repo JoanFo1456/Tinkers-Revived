@@ -1,5 +1,8 @@
 package slimeknights.tconstruct.tools.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
@@ -305,24 +308,28 @@ public class ThrownShuriken extends Projectile implements ToolProjectile, Projec
   private static final String KEY_TASKS = "tasks";
 
   @Override
-  public void addAdditionalSaveData(CompoundTag tag) {
-    super.addAdditionalSaveData(tag);
-    tag.put(KEY_STACK, TagUtil.saveItem(this.stack, new CompoundTag()));
-    tag.putFloat(KEY_WATER_INERTIA, this.entityData.get(WATER_INERTIA));
+  public void addAdditionalSaveData(ValueOutput output) {
+    super.addAdditionalSaveData(output);
+    output.store(KEY_STACK, CompoundTag.CODEC, TagUtil.saveItem(this.stack, new CompoundTag()));
+    output.putFloat(KEY_WATER_INERTIA, this.entityData.get(WATER_INERTIA));
     if (!this.tasks.isEmpty()) {
-      tag.put(KEY_TASKS, this.tasks.serialize());
+      // ValueOutput has no raw-tag put, so wrap the task list in a compound stored via its codec
+      CompoundTag wrapper = new CompoundTag();
+      wrapper.put(KEY_TASKS, this.tasks.serialize());
+      output.store(KEY_TASKS, CompoundTag.CODEC, wrapper);
     }
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundTag tag) {
-    super.readAdditionalSaveData(tag);
-    if (tag.contains(KEY_STACK)) {
-      setStack(TagUtil.readItem(tag.getCompoundOrEmpty(KEY_STACK)));
-    }
-    this.entityData.set(WATER_INERTIA, tag.getFloatOr(KEY_WATER_INERTIA, 0f));
-    if (tag.contains(KEY_TASKS)) {
-      this.tasks = Schedule.deserialize(tag.getListOrEmpty(KEY_TASKS));
-    }
+  public void readAdditionalSaveData(ValueInput input) {
+    super.readAdditionalSaveData(input);
+    input.read(KEY_STACK, CompoundTag.CODEC).ifPresent(t -> setStack(TagUtil.readItem(t)));
+    this.entityData.set(WATER_INERTIA, input.getFloatOr(KEY_WATER_INERTIA, 0f));
+    input.read(KEY_TASKS, CompoundTag.CODEC).ifPresent(wrapper -> {
+      ListTag list = wrapper.getListOrEmpty(KEY_TASKS);
+      if (!list.isEmpty()) {
+        this.tasks = Schedule.deserialize(list);
+      }
+    });
   }
 }

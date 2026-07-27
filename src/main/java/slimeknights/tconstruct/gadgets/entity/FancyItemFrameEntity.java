@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.gadgets.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -233,22 +235,22 @@ public class FancyItemFrameEntity extends ItemFrame implements IEntityAdditional
 
 
   @Override
-  public void addAdditionalSaveData(CompoundTag compound) {
-    super.addAdditionalSaveData(compound);
+  public void addAdditionalSaveData(ValueOutput output) {
+    super.addAdditionalSaveData(output);
     int frameId = this.getFrameId();
-    compound.putInt(TAG_VARIANT, frameId);
+    output.putInt(TAG_VARIANT, frameId);
     if (doesRotate(frameId)) {
-      compound.putInt(TAG_ROTATION_TIMER, rotationTimer);
+      output.putInt(TAG_ROTATION_TIMER, rotationTimer);
     }
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundTag compound) {
-    super.readAdditionalSaveData(compound);
-    int frameId = compound.getIntOr(TAG_VARIANT, 0);
+  public void readAdditionalSaveData(ValueInput input) {
+    super.readAdditionalSaveData(input);
+    int frameId = input.getIntOr(TAG_VARIANT, 0);
     this.entityData.set(VARIANT, frameId);
     if (doesRotate(frameId)) {
-      rotationTimer = compound.getIntOr(TAG_ROTATION_TIMER, 0);
+      rotationTimer = input.getIntOr(TAG_ROTATION_TIMER, 0);
     }
   }
 

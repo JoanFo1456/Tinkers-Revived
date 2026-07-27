@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.tables.block.entity.table;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -67,18 +69,19 @@ public abstract class RetexturedTableBlockEntity extends TableBlockEntity implem
   }
 
   @Override
-  public void saveSynced(CompoundTag tags) {
-    super.saveSynced(tags);
+  public void saveSynced(ValueOutput output) {
+    super.saveSynced(output);
     if (texture != Blocks.AIR) {
-      tags.putString(TAG_TEXTURE, getTextureName());
+      output.putString(TAG_TEXTURE, getTextureName());
     }
   }
 
   @Override
-  public void load(CompoundTag tags) {
-    super.load(tags);
-    if (tags.contains(TAG_TEXTURE)) {
-      texture = RetexturedHelper.getBlock(tags.getStringOr(TAG_TEXTURE, ""));
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    String tex = input.getStringOr(TAG_TEXTURE, "");
+    if (!tex.isEmpty()) {
+      texture = RetexturedHelper.getBlock(tex);
       textureUpdated();
     }
   }

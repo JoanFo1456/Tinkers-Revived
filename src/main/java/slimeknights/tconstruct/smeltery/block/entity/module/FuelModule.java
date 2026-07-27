@@ -155,6 +155,8 @@ public abstract class FuelModule implements ContainerData {
   public abstract int findFuel(boolean consume);
 
   /* NBT */
+  /** Key used to nest this module's data as a compound when bridging into ValueInput/ValueOutput */
+  public static final String NBT_KEY = "fuel_module";
   private static final String TAG_FUEL = "fuel";
   private static final String TAG_TEMPERATURE = "temperature";
   private static final String TAG_RATE = "rate";

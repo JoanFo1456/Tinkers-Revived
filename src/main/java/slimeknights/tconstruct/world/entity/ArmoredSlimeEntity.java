@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.world.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -195,14 +197,14 @@ public abstract class ArmoredSlimeEntity extends Slime {
   }
 
   @Override
-  public void addAdditionalSaveData(CompoundTag tag) {
-    super.addAdditionalSaveData(tag);
-    tag.putBoolean(TAG_METAL, this.isMetal());
+  public void addAdditionalSaveData(ValueOutput output) {
+    super.addAdditionalSaveData(output);
+    output.putBoolean(TAG_METAL, this.isMetal());
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundTag tag) {
-    super.readAdditionalSaveData(tag);
-    this.setMetal(tag.getBooleanOr(TAG_METAL, false));
+  public void readAdditionalSaveData(ValueInput input) {
+    super.readAdditionalSaveData(input);
+    this.setMetal(input.getBooleanOr(TAG_METAL, false));
   }
 }

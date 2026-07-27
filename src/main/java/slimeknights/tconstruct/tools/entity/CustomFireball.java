@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.tools.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.core.registries.Registries;
@@ -145,12 +147,12 @@ public class CustomFireball extends Fireball implements ProjectileWithPower {
   private static final String TAG_ENDERFERENCE_TYPE = "enderference_type";
 
   @Override
-  public void addAdditionalSaveData(CompoundTag tag) {
-    super.addAdditionalSaveData(tag);
-    tag.putFloat(TAG_POWER, power);
-    tag.putFloat(TAG_MULTIPLIER, damageMultiplier);
-    tag.putString(TAG_DAMAGE_TYPE, damageType.location().toString());
-    tag.putString(TAG_ENDERFERENCE_TYPE, enderferenceType.location().toString());
+  public void addAdditionalSaveData(ValueOutput output) {
+    super.addAdditionalSaveData(output);
+    output.putFloat(TAG_POWER, power);
+    output.putFloat(TAG_MULTIPLIER, damageMultiplier);
+    output.putString(TAG_DAMAGE_TYPE, damageType.location().toString());
+    output.putString(TAG_ENDERFERENCE_TYPE, enderferenceType.location().toString());
   }
 
   /** Parses the given damage type */
@@ -165,11 +167,11 @@ public class CustomFireball extends Fireball implements ProjectileWithPower {
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundTag tag) {
-    super.readAdditionalSaveData(tag);
-    power = tag.getFloatOr(TAG_POWER, 0f);
-    damageMultiplier = tag.getFloatOr(TAG_MULTIPLIER, 0f);
-    damageType = parseDamageType(tag.getStringOr(TAG_DAMAGE_TYPE, ""), DamageTypes.FIREBALL);
-    enderferenceType = parseDamageType(tag.getStringOr(TAG_ENDERFERENCE_TYPE, ""), DamageTypes.ON_FIRE);
+  public void readAdditionalSaveData(ValueInput input) {
+    super.readAdditionalSaveData(input);
+    power = input.getFloatOr(TAG_POWER, 0f);
+    damageMultiplier = input.getFloatOr(TAG_MULTIPLIER, 0f);
+    damageType = parseDamageType(input.getStringOr(TAG_DAMAGE_TYPE, ""), DamageTypes.FIREBALL);
+    enderferenceType = parseDamageType(input.getStringOr(TAG_ENDERFERENCE_TYPE, ""), DamageTypes.ON_FIRE);
   }
 }

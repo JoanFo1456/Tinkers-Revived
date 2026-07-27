@@ -1,4 +1,6 @@
 package slimeknights.tconstruct.smeltery.block.entity.controller;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity;
 
 import lombok.Getter;
@@ -178,21 +180,21 @@ public class AlloyerBlockEntity extends NameableBlockEntity implements ITankBloc
   }
 
   @Override
-  public void saveSynced(CompoundTag tag) {
-    super.saveSynced(tag);
-    tag.put(NBTTags.TANK, tank.writeToNBT(TagUtil.BUILTIN_LOOKUP, new CompoundTag()));
+  public void saveSynced(ValueOutput output) {
+    super.saveSynced(output);
+    output.store(NBTTags.TANK, CompoundTag.CODEC, tank.writeToNBT(TagUtil.BUILTIN_LOOKUP, new CompoundTag()));
   }
 
   @Override
-  public void saveAdditional(CompoundTag tag) {
-    super.saveAdditional(tag);
-    fuelModule.writeToTag(tag);
+  public void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
+    output.store(FuelModule.NBT_KEY, CompoundTag.CODEC, fuelModule.writeToTag(new CompoundTag()));
   }
 
   @Override
-  public void load(CompoundTag nbt) {
-    super.load(nbt);
-    tank.readFromNBT(TagUtil.BUILTIN_LOOKUP, nbt.getCompound(NBTTags.TANK));
-    fuelModule.readFromTag(nbt);
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    input.read(NBTTags.TANK, CompoundTag.CODEC).ifPresent(t -> tank.readFromNBT(TagUtil.BUILTIN_LOOKUP, t));
+    input.read(FuelModule.NBT_KEY, CompoundTag.CODEC).ifPresent(fuelModule::readFromTag);
   }
 }

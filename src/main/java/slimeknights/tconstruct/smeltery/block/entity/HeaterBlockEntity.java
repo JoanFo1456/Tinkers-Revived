@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.smeltery.block.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -65,16 +67,14 @@ public class HeaterBlockEntity extends NameableBlockEntity implements ILegacyCap
   /* NBT */
 
   @Override
-  public void load(CompoundTag tags) {
-    super.load(tags);
-    if (tags.contains(TAG_ITEM)) {
-      itemHandler.readFromNBT(tags.getCompoundOrEmpty(TAG_ITEM));
-    }
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    input.read(TAG_ITEM, CompoundTag.CODEC).ifPresent(itemHandler::readFromNBT);
   }
 
   @Override
-  public void saveAdditional(CompoundTag tags) {
-    super.saveAdditional(tags);
-    tags.put(TAG_ITEM, itemHandler.writeToNBT());
+  public void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
+    output.store(TAG_ITEM, CompoundTag.CODEC, itemHandler.writeToNBT());
   }
 }

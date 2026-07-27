@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.tables.block.entity.table;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -339,18 +341,19 @@ public class TinkerStationBlockEntity extends RetexturedTableBlockEntity impleme
   }
 
   @Override
-  public void saveSynced(CompoundTag tags) {
-    super.saveSynced(tags);
+  public void saveSynced(ValueOutput output) {
+    super.saveSynced(output);
     if (material != IMaterial.UNKNOWN_ID) {
-      tags.putString(MATERIAL_TAG, material.toString());
+      output.putString(MATERIAL_TAG, material.toString());
     }
   }
 
   @Override
-  public void load(CompoundTag tags) {
-    super.load(tags);
-    if (tags.contains(MATERIAL_TAG)) {
-      material = Objects.requireNonNullElse(MaterialVariantId.tryParse(tags.getStringOr(MATERIAL_TAG, "")), IMaterial.UNKNOWN_ID);
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    String mat = input.getStringOr(MATERIAL_TAG, "");
+    if (!mat.isEmpty()) {
+      material = Objects.requireNonNullElse(MaterialVariantId.tryParse(mat), IMaterial.UNKNOWN_ID);
       RetexturedHelper.onTextureUpdated(this);
     }
   }

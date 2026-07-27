@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.smeltery.block.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -353,42 +355,34 @@ public class FaucetBlockEntity extends MantleBlockEntity {
   }
 
   @Override
-  protected void saveSynced(CompoundTag compound) {
-    super.saveSynced(compound);
-    compound.putByte(TAG_STATE, (byte)faucetState.ordinal());
+  protected void saveSynced(ValueOutput output) {
+    super.saveSynced(output);
+    output.putByte(TAG_STATE, (byte)faucetState.ordinal());
     if (!renderFluid.isEmpty()) {
-      compound.put(TAG_RENDER_FLUID, renderFluid.save(TagUtil.BUILTIN_LOOKUP));
+      output.store(TAG_RENDER_FLUID, FluidStack.CODEC, renderFluid);
     }
   }
 
   @Override
-  public void saveAdditional(CompoundTag compound) {
-    super.saveAdditional(compound);
-    compound.putBoolean(TAG_STOP, stopPouring);
-    compound.putBoolean(TAG_LAST_REDSTONE, lastRedstoneState);
+  public void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
+    output.putBoolean(TAG_STOP, stopPouring);
+    output.putBoolean(TAG_LAST_REDSTONE, lastRedstoneState);
     if (!drained.isEmpty()) {
-      compound.put(TAG_DRAINED, drained.save(TagUtil.BUILTIN_LOOKUP));
+      output.store(TAG_DRAINED, FluidStack.CODEC, drained);
     }
   }
 
   @Override
-  public void load(CompoundTag compound) {
-    super.load(compound);
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
 
-    faucetState = FaucetState.fromIndex(compound.getByteOr(TAG_STATE, (byte)0));
-    stopPouring = compound.getBooleanOr(TAG_STOP, false);
-    lastRedstoneState = compound.getBooleanOr(TAG_LAST_REDSTONE, false);
+    faucetState = FaucetState.fromIndex(input.getByteOr(TAG_STATE, (byte)0));
+    stopPouring = input.getBooleanOr(TAG_STOP, false);
+    lastRedstoneState = input.getBooleanOr(TAG_LAST_REDSTONE, false);
     // fluids
-    if (compound.contains(TAG_DRAINED)) {
-      drained = FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, compound.getCompound(TAG_DRAINED));
-    } else {
-      drained = FluidStack.EMPTY;
-    }
-    if (compound.contains(TAG_RENDER_FLUID)) {
-      renderFluid = FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, compound.getCompound(TAG_RENDER_FLUID));
-    } else {
-      renderFluid = FluidStack.EMPTY;
-    }
+    drained = input.read(TAG_DRAINED, FluidStack.CODEC).orElse(FluidStack.EMPTY);
+    renderFluid = input.read(TAG_RENDER_FLUID, FluidStack.CODEC).orElse(FluidStack.EMPTY);
   }
 
   private enum FaucetState {

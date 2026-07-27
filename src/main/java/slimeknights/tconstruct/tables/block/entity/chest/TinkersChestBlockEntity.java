@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.tables.block.entity.chest;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -51,19 +53,17 @@ public class TinkersChestBlockEntity extends AbstractChestBlockEntity {
   }
 
   @Override
-  public void saveSynced(CompoundTag tags) {
-    super.saveSynced(tags);
+  public void saveSynced(ValueOutput output) {
+    super.saveSynced(output);
     if (hasColor) {
-      tags.putInt(TAG_CHEST_COLOR, color);
+      output.putInt(TAG_CHEST_COLOR, color);
     }
   }
 
   @Override
-  public void load(CompoundTag tags) {
-    super.load(tags);
-    if (tags.contains(TAG_CHEST_COLOR)) {
-      setColor(tags.getIntOr(TAG_CHEST_COLOR, 0));
-    }
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    input.getInt(TAG_CHEST_COLOR).ifPresent(this::setColor);
   }
 
   /** Item handler for tinkers chests */

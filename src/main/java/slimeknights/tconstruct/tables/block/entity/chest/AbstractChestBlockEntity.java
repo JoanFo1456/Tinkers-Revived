@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.tables.block.entity.chest;
 
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -72,14 +73,9 @@ public abstract class AbstractChestBlockEntity extends NameableBlockEntity {
   }
 
   @Override
-  public void saveAdditional(CompoundTag tags) {
-    super.saveAdditional(tags);
-    // move the items from the serialized result
-    // we don't care about the size and need it here for compat with old worlds
-    TagValueOutput output = TagValueOutput.createWithContext(ProblemReporter.DISCARDING, TagUtil.BUILTIN_LOOKUP);
+  public void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
     itemHandler.serialize(output);
-    CompoundTag handlerNBT = output.buildResult();
-    tags.put(KEY_ITEMS, handlerNBT.getListOrEmpty(KEY_ITEMS));
   }
 
   /** Reads the inventory from NBT */
@@ -92,8 +88,8 @@ public abstract class AbstractChestBlockEntity extends NameableBlockEntity {
   }
 
   @Override
-  public void load(CompoundTag tags) {
-    super.load(tags);
-    readInventory(tags);
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    itemHandler.deserialize(input);
   }
 }

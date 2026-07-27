@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.smeltery.block.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -414,34 +416,36 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
   }
 
   @Override
-  protected void saveSynced(CompoundTag nbt) {
-    super.saveSynced(nbt);
-    nbt.putByteArray(TAG_IS_FLOWING, isFlowing);
-    nbt.put(TAG_TANK, tank.writeToNBT(new CompoundTag()));
+  protected void saveSynced(ValueOutput output) {
+    super.saveSynced(output);
+    int[] flowing = new int[isFlowing.length];
+    for (int i = 0; i < isFlowing.length; i++) {
+      flowing[i] = isFlowing[i];
+    }
+    output.putIntArray(TAG_IS_FLOWING, flowing);
+    output.store(TAG_TANK, CompoundTag.CODEC, tank.writeToNBT(new CompoundTag()));
   }
 
 	@Override
-	public void load(CompoundTag nbt) {
-		super.load(nbt);
+	public void loadAdditional(ValueInput input) {
+		super.loadAdditional(input);
 
 		// isFlowing
-		if (nbt.contains(TAG_IS_FLOWING)) {
-			byte[] nbtFlowing = nbt.getByteArray(TAG_IS_FLOWING).orElse(new byte[0]);
+		input.getIntArray(TAG_IS_FLOWING).ifPresent(nbtFlowing -> {
 			int max = Math.min(5, nbtFlowing.length);
 			for (int i = 0; i < max; i++) {
-				byte b = nbtFlowing[i];
+				int b = nbtFlowing[i];
 				if (b > 2) {
 					isFlowing[i] = 2;
 				} else if (b < 0) {
 					isFlowing[i] = 0;
 				} else {
-					isFlowing[i] = b;
+					isFlowing[i] = (byte) b;
 				}
 			}
-		}
+		});
 
 		// tank
-		CompoundTag tankTag = nbt.getCompoundOrEmpty(TAG_TANK);
-		tank.readFromNBT(tankTag);
+		input.read(TAG_TANK, CompoundTag.CODEC).ifPresent(tank::readFromNBT);
 	}
 }

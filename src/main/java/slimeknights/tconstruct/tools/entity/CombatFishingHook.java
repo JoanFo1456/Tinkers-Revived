@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.tools.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.core.BlockPos;
@@ -394,16 +396,17 @@ public class CombatFishingHook extends FishingHook implements ProjectileWithKnoc
   private static final String TAG_MATERIAL = "material";
 
   @Override
-  public void addAdditionalSaveData(CompoundTag tag) {
-    super.addAdditionalSaveData(tag);
-    tag.putString(TAG_MATERIAL, getMaterial().toString());
+  public void addAdditionalSaveData(ValueOutput output) {
+    super.addAdditionalSaveData(output);
+    output.putString(TAG_MATERIAL, getMaterial().toString());
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundTag tag) {
-    super.readAdditionalSaveData(tag);
-    if (tag.contains(TAG_MATERIAL)) {
-      setMaterial(Objects.requireNonNullElse(MaterialVariantId.tryParse(tag.getStringOr(TAG_MATERIAL, "")), IMaterial.UNKNOWN_ID));
+  public void readAdditionalSaveData(ValueInput input) {
+    super.readAdditionalSaveData(input);
+    String material = input.getStringOr(TAG_MATERIAL, "");
+    if (!material.isEmpty()) {
+      setMaterial(Objects.requireNonNullElse(MaterialVariantId.tryParse(material), IMaterial.UNKNOWN_ID));
     }
   }
 }

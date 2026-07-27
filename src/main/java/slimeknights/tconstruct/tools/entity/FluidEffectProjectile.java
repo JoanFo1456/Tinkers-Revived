@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.tools.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.core.BlockPos;
@@ -336,31 +338,27 @@ public class FluidEffectProjectile extends Projectile implements ProjectileWithK
   }
 
   @Override
-  protected void addAdditionalSaveData(CompoundTag nbt) {
-    super.addAdditionalSaveData(nbt);
-    nbt.putFloat(KEY_POWER, power);
-    nbt.putFloat(KEY_KNOCKBACK, knockback);
-    nbt.putFloat(KEY_WATER_INERTIA, this.entityData.get(WATER_INERTIA));
+  protected void addAdditionalSaveData(ValueOutput output) {
+    super.addAdditionalSaveData(output);
+    output.putFloat(KEY_POWER, power);
+    output.putFloat(KEY_KNOCKBACK, knockback);
+    output.putFloat(KEY_WATER_INERTIA, this.entityData.get(WATER_INERTIA));
     if (cannon != null) {
-      nbt.put(KEY_CANNON, NbtUtils.writeBlockPos(cannon));
+      output.store(KEY_CANNON, BlockPos.CODEC, cannon);
     }
     FluidStack fluid = getFluid();
     if (!fluid.isEmpty()) {
-      nbt.put(KEY_FLUID, fluid.save(TagUtil.BUILTIN_LOOKUP));
+      output.store(KEY_FLUID, FluidStack.CODEC, fluid);
     }
   }
 
   @Override
-  protected void readAdditionalSaveData(CompoundTag nbt) {
-    super.readAdditionalSaveData(nbt);
-    this.power = nbt.getFloatOr(KEY_POWER, 0f);
-    this.knockback = nbt.getFloatOr(KEY_KNOCKBACK, 0f);
-    this.entityData.set(WATER_INERTIA, nbt.getFloatOr(KEY_WATER_INERTIA, 0f));
-    if (nbt.contains(KEY_CANNON)) {
-      this.cannon = NbtUtils.readBlockPos(nbt, KEY_CANNON).orElse(null);
-    } else {
-      this.cannon = null;
-    }
-    setFluid(FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, nbt.getCompound(KEY_FLUID)));
+  protected void readAdditionalSaveData(ValueInput input) {
+    super.readAdditionalSaveData(input);
+    this.power = input.getFloatOr(KEY_POWER, 0f);
+    this.knockback = input.getFloatOr(KEY_KNOCKBACK, 0f);
+    this.entityData.set(WATER_INERTIA, input.getFloatOr(KEY_WATER_INERTIA, 0f));
+    this.cannon = input.read(KEY_CANNON, BlockPos.CODEC).orElse(null);
+    setFluid(input.read(KEY_FLUID, FluidStack.CODEC).orElse(FluidStack.EMPTY));
   }
 }

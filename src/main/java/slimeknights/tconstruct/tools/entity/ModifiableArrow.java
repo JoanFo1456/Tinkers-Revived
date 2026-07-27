@@ -1,5 +1,8 @@
 package slimeknights.tconstruct.tools.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -239,27 +242,31 @@ public class ModifiableArrow extends AbstractArrow implements ToolProjectile, Re
   private static final String KEY_TASKS = "tasks";
 
   @Override
-  public void addAdditionalSaveData(CompoundTag tag) {
-    super.addAdditionalSaveData(tag);
-    tag.put(KEY_STACK, TagUtil.saveItem(this.stack, new CompoundTag()));
-    tag.putFloat(KEY_WATER_INERTIA, this.entityData.get(WATER_INERTIA));
-    tag.putBoolean(KEY_DEALT_DAMAGE, dealtDamage);
+  public void addAdditionalSaveData(ValueOutput output) {
+    super.addAdditionalSaveData(output);
+    output.store(KEY_STACK, CompoundTag.CODEC, TagUtil.saveItem(this.stack, new CompoundTag()));
+    output.putFloat(KEY_WATER_INERTIA, this.entityData.get(WATER_INERTIA));
+    output.putBoolean(KEY_DEALT_DAMAGE, dealtDamage);
     if (!this.tasks.isEmpty()) {
-      tag.put(KEY_TASKS, this.tasks.serialize());
+      // ValueOutput has no raw-tag put, so wrap the task list in a compound stored via its codec
+      CompoundTag wrapper = new CompoundTag();
+      wrapper.put(KEY_TASKS, this.tasks.serialize());
+      output.store(KEY_TASKS, CompoundTag.CODEC, wrapper);
     }
   }
 
   @Override
-  public void readAdditionalSaveData(CompoundTag tag) {
-    super.readAdditionalSaveData(tag);
-    if (tag.contains(KEY_STACK)) {
-      setStack(TagUtil.readItem(tag.getCompoundOrEmpty(KEY_STACK)));
-    }
-    this.entityData.set(WATER_INERTIA, tag.getFloatOr(KEY_WATER_INERTIA, 0f));
-    this.dealtDamage = tag.getBooleanOr(KEY_DEALT_DAMAGE, false);
-    if (tag.contains(KEY_TASKS)) {
-      this.tasks = Schedule.deserialize(tag.getListOrEmpty(KEY_TASKS));
-    }
+  public void readAdditionalSaveData(ValueInput input) {
+    super.readAdditionalSaveData(input);
+    input.read(KEY_STACK, CompoundTag.CODEC).ifPresent(t -> setStack(TagUtil.readItem(t)));
+    this.entityData.set(WATER_INERTIA, input.getFloatOr(KEY_WATER_INERTIA, 0f));
+    this.dealtDamage = input.getBooleanOr(KEY_DEALT_DAMAGE, false);
+    input.read(KEY_TASKS, CompoundTag.CODEC).ifPresent(wrapper -> {
+      ListTag list = wrapper.getListOrEmpty(KEY_TASKS);
+      if (!list.isEmpty()) {
+        this.tasks = Schedule.deserialize(list);
+      }
+    });
   }
 
   private static class AbstractArrowAccess {

@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.smeltery.block.entity;
 
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -589,33 +591,33 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
   }
 
   @Override
-  public void saveAdditional(CompoundTag tags) {
-    super.saveAdditional(tags);
-    tags.putBoolean(TAG_REDSTONE, lastRedstone);
+  public void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
+    output.putBoolean(TAG_REDSTONE, lastRedstone);
   }
 
   @Override
-  public void saveSynced(CompoundTag tags) {
-    super.saveSynced(tags);
-    tags.put(TAG_TANK, tank.writeToTag(new CompoundTag()));
+  public void saveSynced(ValueOutput output) {
+    super.saveSynced(output);
+    output.store(TAG_TANK, CompoundTag.CODEC, tank.writeToTag(new CompoundTag()));
     if (currentRecipe != null || recipeName != null) {
-      tags.putInt(TAG_TIMER, timer);
+      output.putInt(TAG_TIMER, timer);
     }
     if (currentRecipe != null) {
-      tags.putString(TAG_RECIPE, currentRecipe.id().toString());
+      output.putString(TAG_RECIPE, currentRecipe.id().toString());
     } else if (recipeName != null) {
-      tags.putString(TAG_RECIPE, recipeName.toString());
+      output.putString(TAG_RECIPE, recipeName.toString());
     }
   }
 
-  @SuppressWarnings("removal")
   @Override
-  public void load(CompoundTag tags) {
-    super.load(tags);
-    tank.readFromTag(tags.getCompoundOrEmpty(TAG_TANK));
-    timer = tags.getIntOr(TAG_TIMER, 0);
-    if (tags.contains(TAG_RECIPE)) {
-      Identifier name = Identifier.tryParse(tags.getStringOr(TAG_RECIPE, ""));
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    input.read(TAG_TANK, CompoundTag.CODEC).ifPresent(tank::readFromTag);
+    timer = input.getIntOr(TAG_TIMER, 0);
+    String recipeStr = input.getStringOr(TAG_RECIPE, "");
+    if (!recipeStr.isEmpty()) {
+      Identifier name = Identifier.tryParse(recipeStr);
       if (name == null) {
         return;
       }
@@ -627,7 +629,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
         recipeName = name;
       }
     }
-    lastRedstone = tags.getBooleanOr(TAG_REDSTONE, false);
+    lastRedstone = input.getBooleanOr(TAG_REDSTONE, false);
   }
 
   public static class Basin extends CastingBlockEntity {

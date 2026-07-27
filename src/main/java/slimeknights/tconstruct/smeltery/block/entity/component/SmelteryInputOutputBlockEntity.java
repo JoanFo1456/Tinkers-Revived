@@ -1,4 +1,6 @@
 package slimeknights.tconstruct.smeltery.block.entity.component;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity;
 
 import lombok.Getter;
@@ -169,18 +171,19 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
   }
 
   @Override
-  protected void saveSynced(CompoundTag tags) {
-    super.saveSynced(tags);
+  protected void saveSynced(ValueOutput output) {
+    super.saveSynced(output);
     if (texture != Blocks.AIR) {
-      tags.putString(TAG_TEXTURE, getTextureName());
+      output.putString(TAG_TEXTURE, getTextureName());
     }
   }
 
   @Override
-  public void load(CompoundTag tags) {
-    super.load(tags);
-    if (tags.contains(TAG_TEXTURE)) {
-      texture = RetexturedHelper.getBlock(tags.getStringOr(TAG_TEXTURE, ""));
+  public void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    String tex = input.getStringOr(TAG_TEXTURE, "");
+    if (!tex.isEmpty()) {
+      texture = RetexturedHelper.getBlock(tex);
       RetexturedHelper.onTextureUpdated(this);
     }
   }
