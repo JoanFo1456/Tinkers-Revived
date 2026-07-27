@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.tools.data.sprite;
 
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.client.data.material.AbstractPartSpriteProvider;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
@@ -75,7 +75,7 @@ public class TinkerPartSpriteProvider extends AbstractPartSpriteProvider {
 
     // plate textures
     addPart("maille", StatlessMaterialStats.MAILLE.getIdentifier());
-    for (ArmorItem.Type slot : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
+    for (ArmorType slot : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
       buildTool("armor/plate/" + slot.getName()).disallowAnimated() // the armor model won't be animated, so don't animate the item
         .addBreakablePart("plating", PlatingMaterialStats.TYPES.get(slot.ordinal()).getId())
         .addBreakablePart("maille", StatlessMaterialStats.MAILLE.getIdentifier());

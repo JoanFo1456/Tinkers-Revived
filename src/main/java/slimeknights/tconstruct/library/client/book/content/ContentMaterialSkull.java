@@ -4,7 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import slimeknights.mantle.client.book.data.BookData;
@@ -72,7 +72,7 @@ public class ContentMaterialSkull extends AbstractMaterialContent {
 												 .map(recipe -> (IDisplayableCastingRecipe)recipe)
 												 .filter(recipe -> {
                            ItemStack output = recipe.getOutput();
-                           return output.getItem() == TinkerTools.slimesuit.get(ArmorItem.Type.HELMET) && MaterialIdNBT.from(output).getMaterial(0).getId().toString().equals(materialName);
+                           return output.getItem() == TinkerTools.slimesuit.get(ArmorType.HELMET) && MaterialIdNBT.from(output).getMaterial(0).getId().toString().equals(materialName);
                          })
 												 .findFirst()
 												 .orElse(null);

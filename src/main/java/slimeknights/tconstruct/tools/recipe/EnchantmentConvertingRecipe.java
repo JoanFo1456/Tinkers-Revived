@@ -8,7 +8,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -294,7 +293,7 @@ public class EnchantmentConvertingRecipe extends AbstractWorktableRecipe {
         .flatMap(enchantment -> IntStream.rangeClosed(1, enchantment.getMaxLevel())
           .mapToObj(level -> {
             Holder<Enchantment> holder = getEnchantmentHolder(enchantment);
-            return holder == null ? ItemStack.EMPTY : EnchantedBookItem.createForEnchantment(new EnchantmentInstance(holder, level));
+            return holder == null ? ItemStack.EMPTY : EnchantmentHelper.createBook(new EnchantmentInstance(holder, level));
           }))
         .filter(stack -> !stack.isEmpty())
         .toList();

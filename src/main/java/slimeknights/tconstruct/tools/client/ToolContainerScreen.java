@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.Slot;
 import slimeknights.mantle.client.screen.ElementScreen;
@@ -98,9 +98,9 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
   }
 
   @Override
-  protected void slotClicked(Slot slot, int slotId, int index, ClickType type) {
+  protected void slotClicked(Slot slot, int slotId, int index, ContainerInput type) {
     // disallow swapping the tool slot
-    if (type == ClickType.SWAP && slot.container == menu.getPlayer().getInventory() && slot.getSlotIndex() == menu.getSlotIndex()) {
+    if (type == ContainerInput.SWAP && slot.container == menu.getPlayer().getInventory() && slot.getSlotIndex() == menu.getSlotIndex()) {
       return;
     }
     super.slotClicked(slot, slotId, index, type);

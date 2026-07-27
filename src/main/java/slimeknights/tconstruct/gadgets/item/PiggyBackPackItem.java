@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSetPassengersPacket;
 import net.minecraft.resources.Identifier;
@@ -203,7 +203,7 @@ public class PiggyBackPackItem extends TooltipItem {
         }
 
         @Override
-        public boolean renderInventoryIcon(MobEffectInstance effect, EffectRenderingInventoryScreen<?> gui, GuiGraphicsExtractor graphics, int x, int y, int z) {
+        public boolean renderInventoryIcon(MobEffectInstance effect, AbstractContainerScreen<?> gui, GuiGraphicsExtractor graphics, int x, int y, int z) {
           renderIcon(effect, graphics, x, y + 7);
           return true;
         }
