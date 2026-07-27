@@ -37,7 +37,7 @@ public class MaterialBlockItem extends BlockItem implements IMaterialItem {
   public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
     List<Component> tooltip = new java.util.ArrayList<>();
     MaterialItem.appendHoverText(this, stack, tooltip, flag);
-    super.appendHoverText(stack, context, tooltip, flag);
+    super.appendHoverText(stack, context, tooltipDisplay, tooltip::add, flag);
   
     tooltip.forEach(tooltipConsumer);
   }

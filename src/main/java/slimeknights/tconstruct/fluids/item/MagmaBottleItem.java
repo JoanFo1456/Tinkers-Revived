@@ -29,7 +29,7 @@ public class MagmaBottleItem extends Item {
   @Override
   public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flagIn) {
     List<Component> tooltip = new java.util.ArrayList<>();
-    super.appendHoverText(stack, context, tooltip, flagIn);
+    super.appendHoverText(stack, context, tooltipDisplay, tooltip::add, flagIn);
     tooltip.add(Component.translatable(
       "potion.withDuration",
       Blocks.FIRE.getName(),
