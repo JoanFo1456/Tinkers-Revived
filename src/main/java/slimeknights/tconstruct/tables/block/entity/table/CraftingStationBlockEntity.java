@@ -87,7 +87,7 @@ public class CraftingStationBlockEntity extends RetexturedTableBlockEntity imple
 
       // if we have a recipe, fetch its result
       if (recipe != null) {
-        result = recipe.value().assemble(input, level.registryAccess());
+        result = recipe.value().assemble(input);
 
         // sync if the recipe is different
         if (recipe != lastRecipe) {
@@ -99,7 +99,7 @@ public class CraftingStationBlockEntity extends RetexturedTableBlockEntity imple
     }
     else if (this.lastRecipe != null && this.lastRecipe.value().matches(this.craftingInventory.asCraftingInput(), this.level)) {
       ForgeHooks.setCraftingPlayer(player);
-      result = this.lastRecipe.value().assemble(this.craftingInventory.asCraftingInput(), level.registryAccess());
+      result = this.lastRecipe.value().assemble(this.craftingInventory.asCraftingInput());
       ForgeHooks.setCraftingPlayer(null);
     }
     return result;
@@ -140,7 +140,7 @@ public class CraftingStationBlockEntity extends RetexturedTableBlockEntity imple
 //      }
 //    }
 
-    ItemStack result = recipe.value().assemble(input, level.registryAccess());
+    ItemStack result = recipe.value().assemble(input);
     ForgeHooks.setCraftingPlayer(null);
     return result;
   }

@@ -63,13 +63,14 @@ public class ShapelessMaterialsRecipe extends ShapelessRecipe implements Materia
   }
 
   @Override
-  public ItemStack assemble(CraftingInput inventory, HolderLookup.Provider registryAccess) {
-    return ShapedMaterialsRecipe.assemble(super.assemble(inventory, registryAccess), inventory, getIngredients(), partCount, false, extraMaterials);
+  public ItemStack assemble(CraftingInput inventory) {
+    return ShapedMaterialsRecipe.assemble(super.assemble(inventory), inventory, getIngredients(), partCount, false, extraMaterials);
   }
 
   @Override
-  public RecipeSerializer<? extends ShapelessMaterialsRecipe> getSerializer() {
-    return TinkerTables.shapelessMaterialsRecipeSerializer.get();
+  @SuppressWarnings("unchecked")
+  public RecipeSerializer<ShapelessRecipe> getSerializer() {
+    return (RecipeSerializer<ShapelessRecipe>)(RecipeSerializer<?>) TinkerTables.shapelessMaterialsRecipeSerializer.get();
   }
 
   public static class Serializer implements LoggingRecipeSerializer<ShapelessMaterialsRecipe> {

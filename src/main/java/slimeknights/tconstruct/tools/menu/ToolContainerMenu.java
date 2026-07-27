@@ -295,7 +295,7 @@ public class ToolContainerMenu extends AbstractContainerMenu {
       if (recipe.isPresent()) {
         RecipeHolder<CraftingRecipe> holder = recipe.get();
         if (resultSlots.setRecipeUsed(level, serverPlayer, holder)) {
-          ItemStack assembled = holder.value().assemble(input, level.registryAccess());
+          ItemStack assembled = holder.value().assemble(input);
           if (assembled.isItemEnabled(level.enabledFeatures())) {
             result = assembled;
           }

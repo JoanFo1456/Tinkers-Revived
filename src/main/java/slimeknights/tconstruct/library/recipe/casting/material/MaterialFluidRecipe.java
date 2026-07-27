@@ -89,8 +89,9 @@ public class MaterialFluidRecipe implements ICustomOutputRecipe<ICastingContaine
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public RecipeType<? extends MaterialFluidRecipe> getType() {
-    return TinkerRecipeTypes.DATA.get();
+    return (RecipeType<? extends MaterialFluidRecipe>)(RecipeType<?>) TinkerRecipeTypes.DATA.get();
   }
 
   /** Checks that all materials in this recipe are known */

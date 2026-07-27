@@ -83,8 +83,9 @@ public class ModifierSalvage implements ICustomOutputRecipe<RecipeInput> {
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public RecipeType<? extends ModifierSalvage> getType() {
-    return TinkerRecipeTypes.DATA.get();
+    return (RecipeType<? extends ModifierSalvage>)(RecipeType<?>) TinkerRecipeTypes.DATA.get();
   }
 
   /** @deprecated Use {@link #matches(ItemStack, IToolStackView, int)} */

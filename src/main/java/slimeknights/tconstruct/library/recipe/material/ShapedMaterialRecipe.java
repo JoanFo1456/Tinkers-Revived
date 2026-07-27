@@ -133,8 +133,8 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
   }
 
   @Override
-  public ItemStack assemble(CraftingInput inventory, HolderLookup.Provider registryAccess) {
-    ItemStack stack = super.assemble(inventory, registryAccess);
+  public ItemStack assemble(CraftingInput inventory) {
+    ItemStack stack = super.assemble(inventory);
     MaterialVariantId material = findMaterial(inventory);
     if (material != null) {
       setMaterial(stack, material);
@@ -143,8 +143,9 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
   }
 
   @Override
-  public RecipeSerializer<? extends ShapedMaterialRecipe> getSerializer() {
-    return TinkerTables.shapedMaterialRecipeSerializer.get();
+  @SuppressWarnings("unchecked")
+  public RecipeSerializer<ShapedRecipe> getSerializer() {
+    return (RecipeSerializer<ShapedRecipe>)(RecipeSerializer<?>) TinkerTables.shapedMaterialRecipeSerializer.get();
   }
 
   public static class Serializer implements LoggingRecipeSerializer<ShapedMaterialRecipe> {

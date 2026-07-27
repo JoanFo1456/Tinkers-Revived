@@ -166,13 +166,14 @@ public class ShapedMaterialsRecipe extends ShapedRecipe implements MaterialsCraf
   }
 
   @Override
-  public ItemStack assemble(CraftingInput inventory, HolderLookup.Provider registryAccess) {
-    return assemble(super.assemble(inventory, registryAccess), inventory, parts, parts.size(), checkRepeats, extraMaterials);
+  public ItemStack assemble(CraftingInput inventory) {
+    return assemble(super.assemble(inventory), inventory, parts, parts.size(), checkRepeats, extraMaterials);
   }
 
   @Override
-  public RecipeSerializer<? extends ShapedMaterialsRecipe> getSerializer() {
-    return TinkerTables.shapedMaterialsRecipeSerializer.get();
+  @SuppressWarnings("unchecked")
+  public RecipeSerializer<ShapedRecipe> getSerializer() {
+    return (RecipeSerializer<ShapedRecipe>)(RecipeSerializer<?>) TinkerTables.shapedMaterialsRecipeSerializer.get();
   }
 
   public static class Serializer implements LoggingRecipeSerializer<ShapedMaterialsRecipe> {

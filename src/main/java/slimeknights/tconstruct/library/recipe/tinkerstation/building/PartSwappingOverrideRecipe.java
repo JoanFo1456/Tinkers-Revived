@@ -134,7 +134,8 @@ public class PartSwappingOverrideRecipe extends MaterialSwappingRecipe {
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public RecipeSerializer<? extends PartSwappingOverrideRecipe> getSerializer() {
-    return TinkerTables.fixedMaterialSwapping.get();
+    return (RecipeSerializer<? extends PartSwappingOverrideRecipe>)(RecipeSerializer<?>) TinkerTables.fixedMaterialSwapping.get();
   }
 }

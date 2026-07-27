@@ -67,7 +67,7 @@ public class CompositeCastingRecipeBuilder extends AbstractRecipeBuilder<Composi
 
     @Override
     public RecipeSerializer<?> getType() {
-      return serializer;
+      return serializer.serializer();
     }
   }
 }

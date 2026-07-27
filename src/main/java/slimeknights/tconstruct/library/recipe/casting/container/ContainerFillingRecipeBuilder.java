@@ -93,7 +93,7 @@ public class ContainerFillingRecipeBuilder extends AbstractRecipeBuilder<Contain
 
     @Override
     public RecipeSerializer<?> getType() {
-      return recipeSerializer;
+      return recipeSerializer.serializer();
     }
 
     @Override

@@ -117,7 +117,7 @@ public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBui
 
     @Override
     public RecipeSerializer<?> getType() {
-      return serializer;
+      return serializer.serializer();
     }
   }
 }

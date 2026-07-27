@@ -158,7 +158,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
       MoldingRecipe recipe = findMoldingRecipe();
       if (recipe != null) {
         // if hand is empty, pick up the result (hand empty will only match recipes with no mold item)
-        ItemStack result = recipe.assemble(moldingInventory, level.registryAccess());
+        ItemStack result = recipe.assemble(moldingInventory);
         result.onCraftedBy(player, 1);
         if (held.isEmpty()) {
           setItem(INPUT, ItemStack.EMPTY);
@@ -183,7 +183,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
         recipe = findMoldingRecipe();
         if (recipe != null) {
           setItem(INPUT, ItemStack.EMPTY);
-          ItemHandlerHelper.giveItemToPlayer(player, recipe.assemble(moldingInventory, level.registryAccess()), player.getInventory().selected);
+          ItemHandlerHelper.giveItemToPlayer(player, recipe.assemble(moldingInventory), player.getInventory().selected);
           return;
         }
       }
@@ -305,7 +305,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
         // actual recipe result
         ICastingRecipe recipe = currentRecipe.value();
         boolean consumed = recipe.isConsumed(castingInventory);
-        ItemStack output = recipe.assemble(castingInventory, level.registryAccess());
+        ItemStack output = recipe.assemble(castingInventory);
         if (recipe.switchSlots() != lastRedstone) {
           if (!consumed) {
             setItem(OUTPUT, getItem(INPUT));
@@ -516,7 +516,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
         return ItemStack.EMPTY;
       }
       castingInventory.setFluid(tank.getFluid());
-      lastOutput = currentRecipe.value().assemble(castingInventory, level.registryAccess());
+      lastOutput = currentRecipe.value().assemble(castingInventory);
     }
     return lastOutput;
   }
