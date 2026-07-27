@@ -8,7 +8,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.helpers.IModIdHelper;
-import mezz.jei.api.ingredients.subtypes.IIngredientSubtypeInterpreter;
+import mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter;
 import mezz.jei.api.ingredients.subtypes.UidContext;
 import mezz.jei.api.recipe.transfer.IRecipeTransferHandlerHelper;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
@@ -322,11 +322,11 @@ public class JEIPlugin implements IModPlugin {
   @Override
   public void registerItemSubtypes(ISubtypeRegistration registry) {
     // retexturable blocks
-    IIngredientSubtypeInterpreter<ItemStack> tables = (stack, context) -> {
+    ISubtypeInterpreter<ItemStack> tables = (stack, context) -> {
       if (context == UidContext.Ingredient) {
         return RetexturedHelper.getTextureName(stack);
       }
-      return IIngredientSubtypeInterpreter.NONE;
+      return null;
     };
     registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, TinkerTables.craftingStation.asItem(), tables);
     registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, TinkerTables.partBuilder.asItem(), tables);
@@ -342,15 +342,15 @@ public class JEIPlugin implements IModPlugin {
     registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, TinkerSmeltery.scorchedChute.asItem(), tables);
 
     // anvils have both texture and material blocks
-    IIngredientSubtypeInterpreter<ItemStack> anvils = (stack, context) -> {
+    ISubtypeInterpreter<ItemStack> anvils = (stack, context) -> {
       if (context == UidContext.Ingredient) {
         String name = RetexturedHelper.getTextureName(stack);
         if (!name.isEmpty()) {
           return '#' + name;
         }
-        return ToolPartSubtypeInterpreter.INSTANCE.apply(stack, UidContext.Ingredient);
+        return ToolPartSubtypeInterpreter.INSTANCE.getSubtypeData(stack, UidContext.Ingredient);
       }
-      return IIngredientSubtypeInterpreter.NONE;
+      return null;
     };
     registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, TinkerTables.tinkersAnvil.asItem(), anvils);
     registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, TinkerTables.scorchedAnvil.asItem(), anvils);
@@ -372,7 +372,7 @@ public class JEIPlugin implements IModPlugin {
 
     // fluid containers have types based on fluid, don't bother with different sizes
     registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, TinkerSmeltery.copperCan.get(), (stack, context) -> CopperCanItem.getSubtype(stack));
-    IIngredientSubtypeInterpreter<ItemStack> tankInterpreter = (stack, context) -> TankItem.getSubtype(stack);
+    ISubtypeInterpreter<ItemStack> tankInterpreter = (stack, context) -> TankItem.getSubtype(stack);
     for (TankType type : TankType.values()) {
       registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, TinkerSmeltery.searedTank.get(type).asItem(), tankInterpreter);
       registry.registerSubtypeInterpreter(VanillaTypes.ITEM_STACK, TinkerSmeltery.scorchedTank.get(type).asItem(), tankInterpreter);
