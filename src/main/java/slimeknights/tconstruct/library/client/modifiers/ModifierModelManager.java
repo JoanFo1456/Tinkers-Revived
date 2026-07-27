@@ -150,7 +150,7 @@ public class ModifierModelManager implements IEarlySafeManagerReloadListener {
    */
   @SuppressWarnings("removal")
   private static Material getModifierTexture(Identifier modifierRoot, Identifier modifierId, String suffix) {
-    return new Material(InventoryMenu.BLOCK_ATLAS, Identifier.fromNamespaceAndPath(modifierRoot.getNamespace(), modifierRoot.getPath() + modifierId.getNamespace() + "_" + modifierId.getPath() + suffix));
+    return new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, Identifier.fromNamespaceAndPath(modifierRoot.getNamespace(), modifierRoot.getPath() + modifierId.getNamespace() + "_" + modifierId.getPath() + suffix));
   }
 
   /**

@@ -62,7 +62,7 @@ public class DynamicTextureLoader extends ResourceValidator {
     } else {
       return mat -> {
         // to suppress logging, need to load from our own list. We just load it for `textures/item` on the block atlas
-        if (InventoryMenu.BLOCK_ATLAS.equals(mat.atlasLocation())) {
+        if (net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS.equals(mat.atlasLocation())) {
           Identifier texture = mat.texture();
           if (texture.getPath().startsWith("item/")) {
             return INSTANCE.test(mat.texture());

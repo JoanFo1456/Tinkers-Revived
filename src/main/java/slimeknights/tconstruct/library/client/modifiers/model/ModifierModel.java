@@ -1,7 +1,7 @@
 package slimeknights.tconstruct.library.client.modifiers.model;
 
 import com.mojang.math.Transformation;
-import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
@@ -55,6 +55,6 @@ public interface ModifierModel extends IBakedModifierModel, IHaveLoader {
   void validate(Function<Material, TextureAtlasSprite> spriteGetter);
 
   static Material blockAtlas(Identifier path) {
-    return new Material(InventoryMenu.BLOCK_ATLAS, path);
+    return new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, path);
   }
 }

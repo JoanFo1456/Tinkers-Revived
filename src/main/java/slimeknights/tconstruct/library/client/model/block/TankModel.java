@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -157,8 +157,8 @@ public class TankModel implements IUnbakedGeometry<TankModel> {
       int color = attributes.getTintColor(stack);
       int luminosity = type.getLightLevel(stack);
       Map<String,Material> textures = ImmutableMap.of(
-        "fluid", new Material(InventoryMenu.BLOCK_ATLAS, attributes.getStillTexture(stack)),
-        "flowing_fluid", new Material(InventoryMenu.BLOCK_ATLAS, attributes.getFlowingTexture(stack)));
+        "fluid", new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, attributes.getStillTexture(stack)),
+        "flowing_fluid", new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, attributes.getFlowingTexture(stack)));
       IGeometryBakingContext textured = new ExtraTextureContext(owner, textures);
 
       // add fluid part

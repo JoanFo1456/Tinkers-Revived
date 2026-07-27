@@ -40,7 +40,7 @@ public class CastingItemRenderTypeBuffer implements MultiBufferSource {
   @Override
   public VertexConsumer getBuffer(RenderType type) {
     if (alpha < 255 && MAKE_TRANSPARENT.contains(type.name)) {
-      type = RenderType.entityTranslucentCull(InventoryMenu.BLOCK_ATLAS);
+      type = RenderType.entityTranslucentCull(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
     }
 
     return new TintedVertexBuilder(inner.getBuffer(type), red, green, blue, alpha);

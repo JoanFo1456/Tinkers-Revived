@@ -88,7 +88,7 @@ public record MaterialRenderInfo(MaterialVariantId id, @Nullable Identifier text
    * @return  Material instance
    */
   private static Material getMaterial(Identifier texture, String suffix) {
-    return new Material(InventoryMenu.BLOCK_ATLAS, new Identifier(texture.getNamespace(), texture.getPath() + "_" + suffix));
+    return new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, new Identifier(texture.getNamespace(), texture.getPath() + "_" + suffix));
   }
 
   /**

@@ -91,7 +91,7 @@ public enum SlotIngredientRenderer implements IIngredientRenderer<SlotCount> {
       return modelManager.getAtlas(material.atlasLocation()).getSprite(material.texture());
     } else {
       // failed to use the model, use missing texture
-      return modelManager.getAtlas(InventoryMenu.BLOCK_ATLAS).getSprite(MissingTextureAtlasSprite.getLocation());
+      return modelManager.getAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS).getSprite(MissingTextureAtlasSprite.getLocation());
     }
   };
 

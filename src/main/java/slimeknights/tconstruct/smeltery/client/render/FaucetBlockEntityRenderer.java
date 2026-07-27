@@ -52,7 +52,7 @@ public class FaucetBlockEntityRenderer implements BlockEntityRenderer<FaucetBloc
       // fluid props
       IClientFluidTypeExtensions attributes = IClientFluidTypeExtensions.of(renderFluid.getFluid());
       int color = attributes.getTintColor(renderFluid);
-      Function<Identifier, TextureAtlasSprite> spriteGetter = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS);
+      Function<Identifier, TextureAtlasSprite> spriteGetter = Minecraft.getInstance().getTextureAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
       TextureAtlasSprite still = spriteGetter.apply(attributes.getStillTexture(renderFluid));
       TextureAtlasSprite flowing = spriteGetter.apply(attributes.getFlowingTexture(renderFluid));
       FluidType fluidType = renderFluid.getFluid().getFluidType();

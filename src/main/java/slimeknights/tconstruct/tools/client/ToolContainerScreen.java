@@ -188,7 +188,7 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
 
     // prepare pattern drawing
     assert this.minecraft != null;
-    Function<Identifier,TextureAtlasSprite> spriteGetter = this.minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS);
+    Function<Identifier,TextureAtlasSprite> spriteGetter = this.minecraft.getTextureAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
 
     // draw slot patterns for all empty slots
     int start = menu.getToolInventoryStart();

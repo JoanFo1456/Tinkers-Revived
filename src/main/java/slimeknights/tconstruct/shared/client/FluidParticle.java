@@ -21,7 +21,7 @@ public class FluidParticle extends TextureSheetParticle {
     super(world, x, y, z, motionX, motionY, motionZ);
     this.fluid = fluid;
     IClientFluidTypeExtensions attributes = IClientFluidTypeExtensions.of(fluid.getFluid());
-    this.setSprite(Minecraft.getInstance().getModelManager().getAtlas(InventoryMenu.BLOCK_ATLAS).getSprite(attributes.getStillTexture(fluid)));
+    this.setSprite(Minecraft.getInstance().getModelManager().getAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS).getSprite(attributes.getStillTexture(fluid)));
     this.gravity = 1.0F;
     int color = attributes.getTintColor(fluid);
     this.alpha = ((color >> 24) & 0xFF) / 255f;

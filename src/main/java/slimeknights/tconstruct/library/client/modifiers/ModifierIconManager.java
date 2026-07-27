@@ -118,7 +118,7 @@ public class ModifierIconManager implements IEarlySafeManagerReloadListener {
    * @param size      Size to render, 16 is default
    */
   public static void renderIcon(GuiGraphicsExtractor graphics, Modifier modifier, int x, int y, int z, int size) {
-    TextureAtlas atlas = Minecraft.getInstance().getModelManager().getAtlas(InventoryMenu.BLOCK_ATLAS);
+    TextureAtlas atlas = Minecraft.getInstance().getModelManager().getAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
 
     List<Identifier> icons = modifierIcons.getOrDefault(modifier.getId(), Collections.emptyList());
     if (!icons.isEmpty()) {
