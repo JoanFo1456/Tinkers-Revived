@@ -168,7 +168,8 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
   }
 
   @Override
-  public boolean mouseClicked(double mouseX, double mouseY, int button) {
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean doubleClick) {
+    double mouseX = event.x(); double mouseY = event.y(); int button = event.button();
     assert minecraft != null && minecraft.player != null && minecraft.gameMode != null;
     if (!minecraft.player.isSpectator()) {
       int checkX = (int)mouseX - cornerX;
@@ -204,7 +205,7 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
         }
       }
     }
-    return super.mouseClicked(mouseX, mouseY, button);
+    return super.mouseClicked(event, doubleClick);
   }
 
   @Nullable

@@ -269,7 +269,8 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
   /* Scrollbar logic */
 
   @Override
-  public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean doubleClick) {
+    double mouseX = event.x(); double mouseY = event.y(); int mouseButton = event.button();
     this.clickedOnScrollBar = false;
 
     if (this.tinkerInfo.handleMouseClicked(mouseX, mouseY, mouseButton)
@@ -296,11 +297,12 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
       }
     }
 
-    return super.mouseClicked(mouseX, mouseY, mouseButton);
+    return super.mouseClicked(event, doubleClick);
   }
 
   @Override
-  public boolean mouseDragged(double mouseX, double mouseY, int clickedMouseButton, double timeSinceLastClick, double unknown) {
+  public boolean mouseDragged(net.minecraft.client.input.MouseButtonEvent event, double timeSinceLastClick, double unknown) {
+    double mouseX = event.x(); double mouseY = event.y(); int clickedMouseButton = event.button();
     if (this.tinkerInfo.handleMouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick)
         || this.modifierInfo.handleMouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick)) {
       return false;
@@ -315,7 +317,7 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
       return true;
     }
 
-    return super.mouseDragged(mouseX, mouseY, clickedMouseButton, timeSinceLastClick, unknown);
+    return super.mouseDragged(event, timeSinceLastClick, unknown);
   }
 
   @Override
@@ -338,12 +340,13 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
   }
 
   @Override
-  public boolean mouseReleased(double mouseX, double mouseY, int state) {
+  public boolean mouseReleased(net.minecraft.client.input.MouseButtonEvent event) {
+    double mouseX = event.x(); double mouseY = event.y(); int state = event.button();
     if (this.tinkerInfo.handleMouseReleased(mouseX, mouseY, state)
         || this.modifierInfo.handleMouseReleased(mouseX, mouseY, state)) {
       return false;
     }
-    return super.mouseReleased(mouseX, mouseY, state);
+    return super.mouseReleased(event);
   }
 
 

@@ -132,7 +132,8 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
   }
 
   @Override
-  public boolean mouseClicked(double mouseX, double mouseY, int button) {
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean doubleClick) {
+    double mouseX = event.x(); double mouseY = event.y(); int button = event.button();
     assert minecraft != null && minecraft.player != null && minecraft.gameMode != null;
     if (!minecraft.player.isSpectator() && (button == 0 || button == 1) && !menu.getCarried().isEmpty()) {
       int checkX = (int)mouseX - leftPos;
@@ -153,7 +154,7 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
         }
       }
     }
-    return super.mouseClicked(mouseX, mouseY, button);
+    return super.mouseClicked(event, doubleClick);
   }
 
   @Override
