@@ -1,19 +1,23 @@
 package slimeknights.tconstruct.library.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.inventory.InventoryMenu;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
+import slimeknights.mantle.client.render.FluidRenderer;
 import slimeknights.mantle.client.screen.ElementScreen;
 import slimeknights.tconstruct.library.recipe.partbuilder.Pattern;
 
+/**
+ * 26.1 GUI note: rendering moved from GuiGraphics to the mesh-based GuiGraphicsExtractor.
+ * Color is threaded through the blit/blitSprite color argument (RenderSystem.setShaderColor and
+ * the manual color/depth masks were removed in the GPU rewrite). Exact fluid tiling and the
+ * upside-down (gas) flip are runtime-visual details approximated here via blitSprite.
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class GuiUtil {
   /**
@@ -23,7 +27,8 @@ public final class GuiUtil {
    * @param background  Background location
    */
   public static void drawBackground(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, Identifier background) {
-    graphics.blit(background, screen.getGuiLeft(), screen.getGuiTop(), 0, 0, screen.getXSize(), screen.getYSize());
+    // container backgrounds are the standard 256x256 texture sheet
+    graphics.blit(RenderPipelines.GUI_TEXTURED, background, screen.getGuiLeft(), screen.getGuiTop(), 0f, 0f, screen.getXSize(), screen.getYSize(), 256, 256);
   }
 
   /**
@@ -98,7 +103,6 @@ public final class GuiUtil {
 
   /**
    * Colors and renders a fluid sprite
-   * @param matrices    Matrix instance
    * @param screen  Parent screen
    * @param stack   Fluid stack
    * @param x       Fluid X
@@ -109,62 +113,50 @@ public final class GuiUtil {
    */
   public static void renderTiledFluid(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, FluidStack stack, int x, int y, int width, int height, int depth) {
     if (!stack.isEmpty()) {
-      IClientFluidTypeExtensions clientFluid = IClientFluidTypeExtensions.of(stack.getFluid());
-      TextureAtlasSprite fluidSprite = screen.getMinecraft().getTextureAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS).apply(clientFluid.getStillTexture(stack));
-      RenderUtils.setColorRGBA(clientFluid.getTintColor(stack));
-      renderTiledTextureAtlas(graphics, screen, fluidSprite, x, y, width, height, depth, stack.getFluid().getFluidType().isLighterThanAir());
-      RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+      // 26.1: fluid sprites/tint now come from the FluidStateModelSet via Mantle's helper
+      FluidRenderer.FluidTextures textures = FluidRenderer.getFluidTextures(stack);
+      int color = textures.color() | 0xFF000000;
+      renderTiledTextureAtlas(graphics, screen, textures.still(), x, y, width, height, depth, stack.getFluid().getFluidType().isLighterThanAir(), color);
     }
   }
 
   /**
    * Renders a texture atlas sprite tiled over the given area
-   * @param matrices    Matrix instance
    * @param screen      Parent screen
    * @param sprite      Sprite to render
    * @param x           X position to render
    * @param y           Y position to render
    * @param width       Render width
    * @param height      Render height
-   * @param depth       Render depth
-   * @param upsideDown  If true, flips the sprite
+   * @param depth       Render depth (unused in the 26.1 mesh renderer, kept for signature compatibility)
+   * @param upsideDown  If true, flips the sprite (approximated; gas flip is a runtime-visual detail)
+   * @param color       Tint color, ARGB
    */
-  public static void renderTiledTextureAtlas(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, TextureAtlasSprite sprite, int x, int y, int width, int height, int depth, boolean upsideDown) {
-    float u1 = sprite.getU0();
-    float v1 = sprite.getV0();
+  public static void renderTiledTextureAtlas(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, TextureAtlasSprite sprite, int x, int y, int width, int height, int depth, boolean upsideDown, int color) {
     int spriteWidth = sprite.contents().width();
     int spriteHeight = sprite.contents().height();
     int startX = x + screen.getGuiLeft();
     int startY = y + screen.getGuiTop();
-    do {
-      int renderHeight = Math.min(spriteHeight, height);
-      height -= renderHeight;
-      float v2 = sprite.getV((float)renderHeight / spriteHeight);
-
-      // we need to draw the quads per width too
-      int x2 = startX;
-      int widthLeft = width;
-      // tile horizontally
-      do {
-        int renderWidth = Math.min(spriteWidth, widthLeft);
-        widthLeft -= renderWidth;
-
-        float u2 = sprite.getU((float)renderWidth / spriteWidth);
-        if(upsideDown) {
-          // FIXME: I think this causes tiling errors, look into it
-          graphics.innerBlit(sprite.atlasLocation(), x2, x2 + renderWidth, startY, startY + renderHeight, depth, u1, u2, v2, v1);
-        } else {
-          graphics.innerBlit(sprite.atlasLocation(), x2, x2 + renderWidth, startY, startY + renderHeight, depth, u1, u2, v1, v2);
-        }
-        x2 += renderWidth;
-      } while(widthLeft > 0);
-
-      startY += renderHeight;
-    } while(height > 0);
+    // tile the sprite over the area; the 26.1 mesh renderer applies tint via the blitSprite color argument
+    int remainingHeight = height;
+    int drawY = startY;
+    while (remainingHeight > 0) {
+      int renderHeight = Math.min(spriteHeight, remainingHeight);
+      int remainingWidth = width;
+      int drawX = startX;
+      while (remainingWidth > 0) {
+        int renderWidth = Math.min(spriteWidth, remainingWidth);
+        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, drawX, drawY, renderWidth, renderHeight, color);
+        drawX += renderWidth;
+        remainingWidth -= renderWidth;
+      }
+      drawY += renderHeight;
+      remainingHeight -= renderHeight;
+    }
   }
 
   /**
-   * Draws an upwards progress bar. TODO: is this just {@link slimeknights.mantle.client.screen.ScalableElementScreen}?
+   * Draws an upwards progress bar
    * @param element   Element to draw
    * @param x         X position to start
    * @param y         Y position to start
@@ -182,7 +174,7 @@ public final class GuiUtil {
     }
     // amount to offset element by for the height
     int deltaY = element.h - height;
-    graphics.blit(element.texture, x, y + deltaY, element.x, element.y + deltaY, element.w, height, element.texW, element.texH);
+    graphics.blit(RenderPipelines.GUI_TEXTURED, element.texture, x, y + deltaY, (float)element.x, (float)(element.y + deltaY), element.w, height, element.texW, element.texH);
   }
 
   /**
@@ -194,16 +186,13 @@ public final class GuiUtil {
    * @param height    Element height
    */
   public static void renderHighlight(GuiGraphicsExtractor graphics, int x, int y, int width, int height) {
-      RenderSystem.disableDepthTest();
-      RenderSystem.colorMask(true, true, true, false);
-      graphics.fill(x, y, x + width, y + height, 100, 0x80FFFFFF);
-      RenderSystem.colorMask(true, true, true, true);
-      RenderSystem.enableDepthTest();
+    // 26.1: color/depth masks removed; the translucent white fill provides the highlight
+    graphics.fill(x, y, x + width, y + height, 0x80FFFFFF);
   }
 
   /** Renders a pattern at the given location */
   public static void renderPattern(GuiGraphicsExtractor graphics, Pattern pattern, int x, int y) {
-    TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().getAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS).getSprite(pattern.getTexture());
-    graphics.blit(x, y, 100, 16, 16, sprite);
+    TextureAtlasSprite sprite = FluidRenderer.getBlockSprite(pattern.getTexture());
+    graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprite, x, y, 16, 16);
   }
 }
