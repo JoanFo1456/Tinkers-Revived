@@ -161,9 +161,9 @@ public class ToolEvents {
         pos.getZ() + 0.5D + facing.getStepZ() * 0.65D,
         new ItemStack(Items.PUMPKIN_SEEDS, 4));
       itemEntity.setDeltaMovement(
-        0.05D * facing.getStepX() + world.random.nextDouble() * 0.02D,
+        0.05D * facing.getStepX() + world.getRandom().nextDouble() * 0.02D,
         0.05D,
-        0.05D * facing.getStepZ() + world.random.nextDouble() * 0.02D);
+        0.05D * facing.getStepZ() + world.getRandom().nextDouble() * 0.02D);
       world.addFreshEntity(itemEntity);
       event.setResult(Result.ALLOW);
     }
@@ -435,7 +435,7 @@ public class ToolEvents {
     if (amount > 0 && Config.COMMON.dropDragonScales.get() && entity.getType() == EntityType.ENDER_DRAGON && event.getNewDamage() > 0
         && source.is(DamageTypeTags.IS_EXPLOSION) && source.getEntity() != null && source.getEntity().getType() == EntityType.PLAYER) {
       // drops 1 - 8 scales
-      ModifierUtil.dropItem(entity, new ItemStack(TinkerModifiers.dragonScale, 1 + entity.level().random.nextInt(8)));
+      ModifierUtil.dropItem(entity, new ItemStack(TinkerModifiers.dragonScale, 1 + entity.level().getRandom().nextInt(8)));
     }
   }
 

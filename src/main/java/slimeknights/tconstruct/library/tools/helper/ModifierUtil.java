@@ -49,7 +49,7 @@ public final class ModifierUtil {
     if (!stack.isEmpty() && !level.isClientSide) {
       ItemEntity ent = new ItemEntity(level, x, y, z, stack);
       ent.setDefaultPickUpDelay();
-      RandomSource rand = level.random;
+      RandomSource rand = level.getRandom();
       ent.setDeltaMovement(ent.getDeltaMovement().add((rand.nextFloat() - rand.nextFloat()) * 0.1F,
                                                       rand.nextFloat() * 0.05F,
                                                       (rand.nextFloat() - rand.nextFloat()) * 0.1F));

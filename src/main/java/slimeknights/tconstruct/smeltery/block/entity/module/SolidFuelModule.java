@@ -88,9 +88,9 @@ public class SolidFuelModule extends FuelModule {
               ItemStack notInserted = ItemHandlerHelper.insertItem(handler, container, false);
               if (!notInserted.isEmpty()) {
                 Level world = getLevel();
-                double x = (world.random.nextFloat() * 0.5F) + 0.25D;
-                double y = (world.random.nextFloat() * 0.5F) + 0.25D;
-                double z = (world.random.nextFloat() * 0.5F) + 0.25D;
+                double x = (world.getRandom().nextFloat() * 0.5F) + 0.25D;
+                double y = (world.getRandom().nextFloat() * 0.5F) + 0.25D;
+                double z = (world.getRandom().nextFloat() * 0.5F) + 0.25D;
                 ItemEntity itementity = new ItemEntity(world, fuelPos.getX() + x, fuelPos.getY() + y, fuelPos.getZ() + z, container);
                 itementity.setDefaultPickUpDelay();
                 world.addFreshEntity(itementity);

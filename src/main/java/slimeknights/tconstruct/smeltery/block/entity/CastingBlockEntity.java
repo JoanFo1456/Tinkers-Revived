@@ -336,8 +336,8 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     FluidStack currentFluid = tank.getFluid();
     if (currentFluid.getAmount() >= tank.getCapacity() && !currentFluid.isEmpty()) {
       timer++;
-      if (level.random.nextFloat() > 0.9f) {
-        level.addParticle(ParticleTypes.SMOKE, pos.getX() + level.random.nextDouble(), pos.getY() + 1.1d, pos.getZ() + level.random.nextDouble(), 0.0D, 0.0D, 0.0D);
+      if (level.getRandom().nextFloat() > 0.9f) {
+        level.addParticle(ParticleTypes.SMOKE, pos.getX() + level.getRandom().nextDouble(), pos.getY() + 1.1d, pos.getZ() + level.getRandom().nextDouble(), 0.0D, 0.0D, 0.0D);
       }
     }
   }

@@ -31,7 +31,7 @@ public class BurningLiquidBlock extends LiquidBlock {
     if (!entity.fireImmune() && entity.getFluidTypeHeight(fluid.getFluidType()) > 0) {
       entity.igniteForSeconds(burnTime);
       if (entity.hurt(entity.damageSources().lava(), damage)) {
-        entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + level.random.nextFloat() * 0.4F);
+        entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + level.getRandom().nextFloat() * 0.4F);
       }
     }
   }
