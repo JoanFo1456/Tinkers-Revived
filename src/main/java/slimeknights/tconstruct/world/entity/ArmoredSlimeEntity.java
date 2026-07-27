@@ -166,7 +166,7 @@ public abstract class ArmoredSlimeEntity extends Slime {
       for(int i = 0; i < count; ++i) {
         float x = ((i % 2) - 0.5F) * offset;
         float z = ((i / 2) - 0.5F) * offset;
-        ArmoredSlimeEntity slime = this.getType().create(level);
+        ArmoredSlimeEntity slime = this.getType().create(level, EntitySpawnReason.TRIGGERED);
         assert slime != null;
         if (this.isPersistenceRequired()) {
           slime.setPersistenceRequired();
