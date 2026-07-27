@@ -117,6 +117,13 @@ sourceSets {
             exclude 'slimeknights/tconstruct/tools/data/material/MaterialStatsDataProvider.java'
             exclude 'slimeknights/tconstruct/tools/data/material/MaterialTraitsDataProvider.java'
             exclude 'slimeknights/tconstruct/tools/data/material/TrimMaterialProvider.java'
+            // datagen sprite/texture generators excluded pending ExistingFileHelper migration on 26.1 (re-add when re-enabling datagen)
+            exclude 'slimeknights/tconstruct/library/client/data/GenericTextureGenerator.java'
+            exclude 'slimeknights/tconstruct/library/client/data/material/AbstractMaterialRenderInfoProvider.java'
+            exclude 'slimeknights/tconstruct/library/client/data/material/MaterialPaletteDebugGenerator.java'
+            exclude 'slimeknights/tconstruct/library/client/data/material/TrimMaterialPaletteGenerator.java'
+            exclude 'slimeknights/tconstruct/library/client/data/util/DataGenSpriteReader.java'
+            exclude 'slimeknights/tconstruct/tools/data/sprite/TinkerTrimMaterialPaletteGenerator.java'
         }
         resources {
             srcDirs "src/generated/resources"
