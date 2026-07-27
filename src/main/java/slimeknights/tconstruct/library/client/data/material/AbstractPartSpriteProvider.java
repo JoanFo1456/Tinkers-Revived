@@ -139,14 +139,13 @@ public abstract class AbstractPartSpriteProvider {
   }
 
   /** Data class containing a sprite path, and different bases */
-  @RequiredArgsConstructor
   public static class PartSpriteInfo {
     /** Loadable instance */
     public static final RecordLoadable<PartSpriteInfo> LOADABLE = RecordLoadable.create(
-      Loadables.RESOURCE_LOCATION.requiredField("path", i -> i.path),
-      MaterialStatsId.PARSER.set(CollectionLoadable.COMPACT).requiredField("stat_type", i -> i.statTypes),
-      BooleanLoadable.INSTANCE.defaultField("allow_animated", true, false, i -> i.allowAnimated),
-      BooleanLoadable.INSTANCE.defaultField("skip_variants", false, false, i -> i.skipVariants),
+      Loadables.RESOURCE_LOCATION.requiredField("path", (PartSpriteInfo i) -> i.path),
+      MaterialStatsId.PARSER.set(CollectionLoadable.COMPACT).requiredField("stat_type", (PartSpriteInfo i) -> i.statTypes),
+      BooleanLoadable.INSTANCE.defaultField("allow_animated", true, false, (PartSpriteInfo i) -> i.allowAnimated),
+      BooleanLoadable.INSTANCE.defaultField("skip_variants", false, false, (PartSpriteInfo i) -> i.skipVariants),
       PartSpriteInfo::new);
     /** Loadable for a list, since its the main usage of this */
     public static final Loadable<List<PartSpriteInfo>> LIST_LOADABLE = LOADABLE.list(1);
@@ -165,6 +164,13 @@ public abstract class AbstractPartSpriteProvider {
     /** Cache of fetched images for each sprite name */
     private transient final Map<String,NativeImage> sprites = new HashMap<>();
 
+    public PartSpriteInfo(Identifier path, Set<MaterialStatsId> statTypes, boolean allowAnimated, boolean skipVariants) {
+      this.path = path;
+      this.statTypes = statTypes;
+      this.allowAnimated = allowAnimated;
+      this.skipVariants = skipVariants;
+    }
+
     /** Gets the texture for the given fallback name, use empty string for the default */
     @Nullable
     public NativeImage getTexture(AbstractSpriteReader spriteReader, String name) {
@@ -174,7 +180,7 @@ public abstract class AbstractPartSpriteProvider {
       // determine the path to try for the sprite
       Identifier fallbackPath = path;
       if (!name.isEmpty()) {
-        fallbackPath = new Identifier(path.getNamespace(), path.getPath() + "_" + name);
+        fallbackPath = Identifier.fromNamespaceAndPath(path.getNamespace(), path.getPath() + "_" + name);
       }
       // if the image exists, fetch it and return it
       NativeImage image = spriteReader.readIfExists(fallbackPath);
