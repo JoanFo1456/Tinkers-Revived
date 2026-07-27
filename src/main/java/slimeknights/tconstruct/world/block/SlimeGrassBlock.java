@@ -1,8 +1,10 @@
 package slimeknights.tconstruct.world.block;
 
+import com.mojang.serialization.MapCodec;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.references.BlockIds;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
@@ -13,7 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SnowLayerBlock;
-import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.SpreadingSnowyBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.lighting.LightEngine;
 import slimeknights.tconstruct.common.TinkerTags;
@@ -21,12 +23,20 @@ import slimeknights.tconstruct.world.TinkerWorld;
 
 import javax.annotation.Nullable;
 
-public class SlimeGrassBlock extends SnowyDirtBlock implements BonemealableBlock {
+public class SlimeGrassBlock extends SpreadingSnowyBlock implements BonemealableBlock {
+  // codec follows the SlimeTallGrassBlock convention; the foliage variant is set at registration, not via the codec
+  private static final MapCodec<SlimeGrassBlock> CODEC = simpleCodec(properties -> new SlimeGrassBlock(properties, FoliageType.EARTH));
   @Getter
   private final FoliageType foliageType;
   public SlimeGrassBlock(Properties properties, FoliageType foliageType) {
-    super(properties);
+    // base block is only used by the inherited spread logic, which this block overrides in randomTick; DIRT matches vanilla grass
+    super(properties, BlockIds.DIRT);
     this.foliageType = foliageType;
+  }
+
+  @Override
+  protected MapCodec<? extends SpreadingSnowyBlock> codec() {
+    return CODEC;
   }
 
   /* Bonemeal interactions */
