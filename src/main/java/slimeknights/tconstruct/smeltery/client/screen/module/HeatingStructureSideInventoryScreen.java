@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.smeltery.client.screen.module;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
@@ -35,8 +35,8 @@ public class HeatingStructureSideInventoryScreen extends SideInventoryScreen<Hea
   }
 
   @Override
-  protected void renderTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderTooltip(graphics, mouseX, mouseY);
+  public void handleRenderHoveredTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.handleRenderHoveredTooltip(graphics, mouseX, mouseY);
     if (parent.melting != null) {
       parent.melting.drawHeatTooltips(graphics, mouseX, mouseY);
     }

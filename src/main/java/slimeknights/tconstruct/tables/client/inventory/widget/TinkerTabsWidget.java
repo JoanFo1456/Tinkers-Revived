@@ -1,9 +1,8 @@
 package slimeknights.tconstruct.tables.client.inventory.widget;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
@@ -155,8 +154,7 @@ public class TinkerTabsWidget implements Renderable, GuiEventListener, Narratabl
   }
 
   @Override
-  public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+  public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
     int sel = this.tabs.selected;
     this.tabs.update(mouseX, mouseY);
     this.tabs.draw(graphics);
@@ -170,7 +168,7 @@ public class TinkerTabsWidget implements Renderable, GuiEventListener, Narratabl
     renterTooltip(graphics, mouseX, mouseY);
   }
 
-  protected void renterTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
+  protected void renterTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
     // highlighted tooltip
     Level world = parent.getMinecraft().level;
     if (this.tabs.highlighted > -1 && world != null) {
@@ -183,8 +181,7 @@ public class TinkerTabsWidget implements Renderable, GuiEventListener, Narratabl
         title = world.getBlockState(pos).getBlock().getName();
       }
 
-      // TODO: renderComponentTooltip->renderTooltip
-      graphics.renderComponentTooltip(parent.getMinecraft().font, Lists.newArrayList(title), mouseX, mouseY);
+      graphics.setComponentTooltipForNextFrame(parent.getMinecraft().font, Lists.newArrayList(title), mouseX, mouseY);
     }
   }
 
