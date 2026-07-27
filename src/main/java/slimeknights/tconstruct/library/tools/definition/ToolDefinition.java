@@ -1,8 +1,6 @@
 package slimeknights.tconstruct.library.tools.definition;
 
 import com.google.common.annotations.VisibleForTesting;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -15,16 +13,27 @@ import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
  * This class serves primarily as a container where the datapack tool data will be injected on datapack load
  * @see #create(Identifier)
  */
-@RequiredArgsConstructor
 public class ToolDefinition implements IdAwareObject {
   /** Empty tool definition instance to prevent the need for null for a fallback */
   public static final ToolDefinition EMPTY = new ToolDefinition(TConstruct.getResource("empty"));
 
-  @Getter
   private final Identifier id;
   /** Base data loaded from JSON, contains stats, traits, and starting slots */
-  @Getter
   protected ToolDefinitionData data = ToolDefinitionData.EMPTY;
+
+  public ToolDefinition(Identifier id) {
+    this.id = id;
+  }
+
+  @Override
+  public Identifier getId() {
+    return id;
+  }
+
+  /** Base data loaded from JSON, contains stats, traits, and starting slots */
+  public ToolDefinitionData getData() {
+    return data;
+  }
 
   /** Creates and registers a new tool definition */
   public static ToolDefinition create(Identifier id) {

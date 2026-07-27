@@ -1,8 +1,6 @@
 package slimeknights.tconstruct.library.materials.definition;
 
 import com.google.common.collect.ImmutableMap;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.TagKey;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -15,12 +13,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Getter
-@AllArgsConstructor
 public class UpdateMaterialsPacket implements IThreadsafePacket {
   private final Map<MaterialId,IMaterial> materials;
   private final Map<MaterialId,MaterialId> redirects;
   private final Map<TagKey<IMaterial>,List<IMaterial>> tags;
+
+  public UpdateMaterialsPacket(Map<MaterialId,IMaterial> materials, Map<MaterialId,MaterialId> redirects, Map<TagKey<IMaterial>,List<IMaterial>> tags) {
+    this.materials = materials;
+    this.redirects = redirects;
+    this.tags = tags;
+  }
+
+  public Map<MaterialId,IMaterial> getMaterials() {
+    return materials;
+  }
+
+  public Map<MaterialId,MaterialId> getRedirects() {
+    return redirects;
+  }
+
+  public Map<TagKey<IMaterial>,List<IMaterial>> getTags() {
+    return tags;
+  }
 
   public UpdateMaterialsPacket(FriendlyByteBuf buffer) {
     int materialCount = buffer.readInt();
@@ -52,7 +66,7 @@ public class UpdateMaterialsPacket implements IThreadsafePacket {
   public void encode(FriendlyByteBuf buffer) {
     buffer.writeInt(this.materials.size());
     this.materials.values().forEach(material -> {
-      buffer.writeResourceLocation(material.getIdentifier());
+      buffer.writeIdentifier(material.getIdentifier().getIdentifier());
       buffer.writeVarInt(material.getTier());
       buffer.writeVarInt(material.getSortOrder());
       buffer.writeBoolean(material.isCraftable());
