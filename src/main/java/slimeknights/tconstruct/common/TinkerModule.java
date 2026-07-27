@@ -10,7 +10,7 @@ import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.advancements.criterion.ItemSubPredicate;
+import net.minecraft.core.component.predicates.DataComponentPredicate;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTab.TabVisibility;
@@ -70,7 +70,7 @@ public abstract class TinkerModule {
   protected static final SynchronizedDeferredRegister<ParticleType<?>> PARTICLE_TYPES = SynchronizedDeferredRegister.create(Registries.PARTICLE_TYPE, TConstruct.MOD_ID);
   protected static final SynchronizedDeferredRegister<EntityDataSerializer<?>> DATA_SERIALIZERS = SynchronizedDeferredRegister.create(NeoForgeRegistries.Keys.ENTITY_DATA_SERIALIZERS, TConstruct.MOD_ID);
   protected static final SynchronizedDeferredRegister<CreativeModeTab> CREATIVE_TABS = SynchronizedDeferredRegister.create(Registries.CREATIVE_MODE_TAB, TConstruct.MOD_ID);
-  protected static final SynchronizedDeferredRegister<ItemSubPredicate.Type<?>> ITEM_SUB_PREDICATES = SynchronizedDeferredRegister.create(Registries.ITEM_SUB_PREDICATE_TYPE, TConstruct.MOD_ID);
+  protected static final SynchronizedDeferredRegister<DataComponentPredicate.Type<?>> ITEM_SUB_PREDICATES = SynchronizedDeferredRegister.create(Registries.DATA_COMPONENT_PREDICATE_TYPE, TConstruct.MOD_ID);
   // gameplay instances
   protected static final BlockEntityTypeDeferredRegister BLOCK_ENTITIES = new BlockEntityTypeDeferredRegister(TConstruct.MOD_ID);
   protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(TConstruct.MOD_ID);

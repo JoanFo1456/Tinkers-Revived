@@ -2,7 +2,7 @@ package slimeknights.tconstruct.shared;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.criterion.ItemSubPredicate;
+import net.minecraft.core.component.predicates.DataComponentPredicate;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
@@ -150,7 +150,7 @@ public final class TinkerCommons extends TinkerModule {
   public static final ItemObject<TinkerBookItem> encyclopedia     = ITEMS.register("encyclopedia",      () -> new TinkerBookItem(UNSTACKABLE_PROPS, BookType.ENCYCLOPEDIA));
 
   public static final DeferredHolder<? super ParticleType<FluidParticleData>, ParticleType<FluidParticleData>> fluidParticle = PARTICLE_TYPES.register("fluid", FluidParticleData.Type::new);
-  public static final DeferredHolder<? super ItemSubPredicate.Type<ToolStackItemPredicate>, ItemSubPredicate.Type<ToolStackItemPredicate>> toolStackItemPredicate = ITEM_SUB_PREDICATES.register("tool_stack", () -> new ItemSubPredicate.Type<>(ToolStackItemPredicate.CODEC));
+  public static final DeferredHolder<? super DataComponentPredicate.Type<ToolStackItemPredicate>, DataComponentPredicate.Type<ToolStackItemPredicate>> toolStackItemPredicate = ITEM_SUB_PREDICATES.register("tool_stack", () -> new DataComponentPredicate.ConcreteType<>(ToolStackItemPredicate.CODEC));
 
   /* Loot conditions */
   public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> lootConfig = LOOT_CONDITIONS.register(ConfigEnabledCondition.ID.getPath(), () -> ConfigEnabledCondition.CODEC);
