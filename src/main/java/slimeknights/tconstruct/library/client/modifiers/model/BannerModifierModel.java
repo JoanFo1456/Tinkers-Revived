@@ -66,20 +66,20 @@ public record BannerModifierModel(@Nullable Identifier smallPrefix, @Nullable Id
       IModDataView modData = tool.getPersistentData();
       Identifier key = BannerModule.patternKey(modifier.getId());
       if (modData.contains(key)) {
-        ListTag list = modData.getListOrEmpty(key);
+        ListTag list = modData.getList(key, net.minecraft.nbt.Tag.TAG_COMPOUND);
         List<BakedQuad> quads = new ArrayList<>(list.size());
         // iterate all patterns
         for (int i = 0; i < list.size(); i++) {
           // patterns are stored as short strings for some reason, for consistency we also store as hashes
           // map that back to the pattern
-          CompoundTag tag = list.getCompound(i);
-          Identifier pattern = BannerModule.patternId(tag.getString(BannerModule.KEY_PATTERN));
-          int color = tag.getInt(BannerModule.KEY_COLOR);
+          CompoundTag tag = list.getCompoundOrEmpty(i);
+          Identifier pattern = BannerModule.patternId(tag.getStringOr(BannerModule.KEY_PATTERN, ""));
+          int color = tag.getIntOr(BannerModule.KEY_COLOR, 0);
           if (pattern != null) {
             TextureAtlasSprite sprite = spriteGetter.apply(ModifierModel.blockAtlas(prefix.withSuffix(MaterialRenderInfo.getSuffix(pattern))));
             // skip if sprite is missing - deals with modded patterns that we haven't made textures for
             if (!MissingTextureAtlasSprite.getLocation().equals(sprite.contents().name())) {
-              quads.add(MantleItemLayerModel.getQuadForGui(color, -1, sprite, transforms, 0));
+              quads.add(MantleItemLayerModel.getQuadForGui(color, -1, new Material.Baked(sprite, false), transforms, 0));
             }
           }
         }
