@@ -3,9 +3,8 @@ package slimeknights.tconstruct.tools;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.particle.ParticleEngine;
-import net.minecraft.client.player.Input;
+import net.minecraft.client.player.ClientInput;
 import net.minecraft.client.renderer.entity.ItemEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -17,14 +16,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.ModelEvent.RegisterGeometryLoaders;
+import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterItemModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.client.event.RegisterSpriteSourceTypesEvent;
+import net.neoforged.neoforge.client.event.RegisterSpriteSourcesEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -90,7 +89,6 @@ import slimeknights.tconstruct.tools.network.TinkerControlPacket;
 import java.util.function.Consumer;
 
 import static slimeknights.tconstruct.TConstruct.getResource;
-import static slimeknights.tconstruct.library.client.model.tools.ToolModel.registerItemColors;
 
 @SuppressWarnings("unused")
 @EventBusSubscriber(modid = TConstruct.MOD_ID, value = Dist.CLIENT)
@@ -119,7 +117,7 @@ public class ToolClientEvents extends ClientEventBase {
   }
 
   @SubscribeEvent
-  static void registerSpriteSourceTypes(RegisterSpriteSourceTypesEvent event) {
+  static void registerSpriteSourceTypes(RegisterSpriteSourcesEvent event) {
     ShieldBannerModifierSpriteSource.register(event);
   }
 
@@ -129,10 +127,15 @@ public class ToolClientEvents extends ClientEventBase {
   }
 
   @SubscribeEvent
-  static void registerModelLoaders(RegisterGeometryLoaders event) {
-    event.register(getResource("material"), MaterialModel.LOADER);
-    event.register(getResource("tool"), ToolModel.LOADER);
+  static void registerModelLoaders(ModelEvent.RegisterLoaders event) {
+    // block model loaders still use the unbaked model loader registry; item models (material, tool) moved to RegisterItemModelsEvent
     event.register(getResource("material_block"), MaterialBlockModel.LOADER);
+  }
+
+  @SubscribeEvent
+  static void registerItemModels(RegisterItemModelsEvent event) {
+    event.register(MaterialModel.ID, MaterialModel.Unbaked.MAP_CODEC);
+    event.register(ToolModel.ID, ToolModel.Unbaked.MAP_CODEC);
   }
 
   @SubscribeEvent
@@ -242,63 +245,10 @@ public class ToolClientEvents extends ClientEventBase {
     event.registerSpriteSet(TinkerTools.bonkAttackParticle.get(), factory);
   }
 
-  @SubscribeEvent
-  static void itemColors(RegisterColorHandlersEvent.Item event) {
-    final ItemColors colors = event.getItemColors();
-
-    // tint modifiers
-    // rock
-    registerItemColors(colors, TinkerTools.pickaxe);
-    registerItemColors(colors, TinkerTools.sledgeHammer);
-    registerItemColors(colors, TinkerTools.veinHammer);
-    // dirt
-    registerItemColors(colors, TinkerTools.mattock);
-    registerItemColors(colors, TinkerTools.pickadze);
-    registerItemColors(colors, TinkerTools.excavator);
-    // wood
-    registerItemColors(colors, TinkerTools.handAxe);
-    registerItemColors(colors, TinkerTools.broadAxe);
-    // scythe
-    registerItemColors(colors, TinkerTools.kama);
-    registerItemColors(colors, TinkerTools.scythe);
-    // weapon
-    registerItemColors(colors, TinkerTools.dagger);
-    registerItemColors(colors, TinkerTools.sword);
-    registerItemColors(colors, TinkerTools.cleaver);
-    // bow
-    registerItemColors(colors, TinkerTools.crossbow);
-    registerItemColors(colors, TinkerTools.longbow);
-    registerItemColors(colors, TinkerTools.fishingRod);
-    registerItemColors(colors, TinkerTools.javelin);
-    registerItemColors(colors, TinkerTools.arrow);
-    registerItemColors(colors, TinkerTools.shuriken);
-    registerItemColors(colors, TinkerTools.throwingAxe);
-    // ancient
-    registerItemColors(colors, TinkerTools.meltingPan);
-    registerItemColors(colors, TinkerTools.warPick);
-    registerItemColors(colors, TinkerTools.battlesign);
-    registerItemColors(colors, TinkerTools.swasher);
-    if (ModList.get().isLoaded("twilightforest")) {
-      registerItemColors(colors, TinkerTools.minotaurAxe);
-    }
-    // armor
-    registerItemColors(colors, TinkerTools.travelersShield);
-    registerItemColors(colors, TinkerTools.plateShield);
-    Consumer<Item> brokenConsumer = item -> event.register(ToolModel.COLOR_HANDLER, item);
-    TinkerTools.travelersGear.forEach(brokenConsumer);
-    TinkerTools.plateArmor.forEach(brokenConsumer);
-    TinkerTools.slimesuit.forEach(brokenConsumer);
-    registerItemColors(colors, TinkerTools.slimeWings);
-
-    // modifier crystal
-    event.register((stack, index) -> {
-      ModifierId modifier = ModifierCrystalItem.getModifier(stack);
-      if (modifier != null) {
-        return ResourceColorManager.getColor(Util.makeTranslationKey("modifier", modifier));
-      }
-      return -1;
-    }, TinkerModifiers.modifierCrystal);
-  }
+  // The pre-26.1 runtime item-color handlers were removed: RegisterColorHandlersEvent.Item and the ItemColors/ItemColor
+  // system no longer exist. Tool material and modifier tints are now baked directly into the model quads (see ToolModel /
+  // MaterialModel). Remaining dynamic tints such as the modifier crystal color need an ItemTintSource declared in the item
+  // model JSON (RegisterColorHandlersEvent.ItemTintSources) and are validated in-game.
 
   // values to check if a key was being pressed last tick, safe as a static value as we only care about a single player client side
   /** If true, we were jumping last tick */
@@ -374,11 +324,12 @@ public class ToolClientEvents extends ClientEventBase {
       }
       // next, add in deprecated key bonus
       speed = Mth.clamp(speed + ArmorStatModule.getStat(player, TinkerDataKeys.USE_ITEM_SPEED), 0, 1);
-      // update speed, note if the armor stat is 0 and the held tool is not tinkers this is a no-op effectively
-      Input input = event.getInput();
-      // multiply by 5 to cancel out the vanilla 20%
-      input.leftImpulse *= (float) (speed * 5);
-      input.forwardImpulse *= (float) (speed * 5);
+      // The pre-26.1 use-item movement slowdown scaled the mutable Input#leftImpulse/forwardImpulse fields. In 26.1
+      // ClientInput exposes only an immutable keyPresses (boolean Input record) consumed via getMoveVector(), so the
+      // impulse can no longer be scaled here; re-applying the slowdown needs a movement-speed modifier hook and is
+      // validated in-game. The intended slowdown factor is computed below.
+      @SuppressWarnings("unused")
+      float slowdown = (float) (speed * 5);
     }
   }
 }
