@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.smeltery.client.screen;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -65,15 +65,9 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
     }
   }
 
+  // 26.1 GUI lifecycle: render/renderBg removed; draw container texture + modules in extractRenderState before super
   @Override
-  public void render(GuiGraphics graphics, int x, int y, float partialTicks) {
-    this.renderBackground(graphics, x, y, partialTicks);
-    super.render(graphics, x, y, partialTicks);
-    this.renderTooltip(graphics, x, y);
-  }
-
-  @Override
-  protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
+  public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
     GuiUtil.drawBackground(graphics, this, BACKGROUND);
 
     // fluids
@@ -99,11 +93,13 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
     for (GuiTankModule tankModule : inputTanks) {
       tankModule.draw(graphics);
     }
+
+    super.extractRenderState(graphics, mouseX, mouseY, partialTicks);
   }
 
   @Override
-  protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderLabels(graphics, mouseX, mouseY);
+  protected void extractLabels(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractLabels(graphics, mouseX, mouseY);
     int checkX = mouseX - this.leftPos;
     int checkY = mouseY - this.topPos;
 
@@ -121,8 +117,8 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
   }
 
   @Override
-  protected void renderTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderTooltip(graphics, mouseX, mouseY);
+  protected void extractTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractTooltip(graphics, mouseX, mouseY);
 
     // tank tooltip
     if (outputTank != null) outputTank.renderTooltip(graphics, mouseX, mouseY);
