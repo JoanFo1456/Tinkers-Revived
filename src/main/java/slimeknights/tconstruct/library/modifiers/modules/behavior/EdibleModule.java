@@ -134,7 +134,7 @@ public record EdibleModule(ItemStack representativeItem, LevelingInt duration, L
       position = position.add(entity.getX(), entity.getEyeY(), entity.getZ());
       entity.level().addParticle(new ItemParticleOption(ParticleTypes.ITEM, representativeItem), position.x, position.y, position.z, speed.x, speed.y + 0.05, speed.z);
     }
-    entity.playSound(SoundEvents.GENERIC_EAT, 0.5f + 0.5f * random.nextInt(2), (random.nextFloat() - random.nextFloat()) * 0.2f + 1.0f);
+    entity.playSound(SoundEvents.GENERIC_EAT.value(), 0.5f + 0.5f * random.nextInt(2), (random.nextFloat() - random.nextFloat()) * 0.2f + 1.0f);
   }
 
   @Override

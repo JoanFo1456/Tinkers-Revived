@@ -51,7 +51,7 @@ public enum BlockInteractFluidEffect implements FluidEffect<FluidEffectContext.B
         // but that won't happen, right? will need to consider another workaround in that case.
         stack.shrink(1);
         stack.setDamageValue(0);
-        level.playSound(null, context.getClickedPos(), SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.playSound(null, context.getClickedPos(), SoundEvents.ITEM_BREAK.value(), SoundSource.BLOCKS, 1.0F, 1.0F);
       }
     }
   }
