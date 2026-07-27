@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.smeltery.client.screen;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -39,15 +39,11 @@ public class MelterScreen extends AbstractContainerScreen<MelterContainerMenu> i
     }
   }
 
+  // 26.1 GUI lifecycle: render/renderBg removed; the engine calls extractBackground then
+  // extractRenderState. The container texture + display modules (was renderBg) are drawn at the
+  // start of extractRenderState, before super draws widgets/labels/slots.
   @Override
-  public void render(GuiGraphics graphics, int x, int y, float partialTicks) {
-    this.renderBackground(graphics, x, y, partialTicks);
-    super.render(graphics, x, y, partialTicks);
-    this.renderTooltip(graphics, x, y);
-  }
-
-  @Override
-  protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY) {
+  public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
     GuiUtil.drawBackground(graphics, this, BACKGROUND);
 
     // fuel
@@ -63,11 +59,13 @@ public class MelterScreen extends AbstractContainerScreen<MelterContainerMenu> i
 
     // fluids
     if (tank != null) tank.draw(graphics);
+
+    super.extractRenderState(graphics, mouseX, mouseY, partialTicks);
   }
 
   @Override
-  protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderLabels(graphics, mouseX, mouseY);
+  protected void extractLabels(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractLabels(graphics, mouseX, mouseY);
     int checkX = mouseX - this.leftPos;
     int checkY = mouseY - this.topPos;
 
@@ -86,8 +84,8 @@ public class MelterScreen extends AbstractContainerScreen<MelterContainerMenu> i
   }
 
   @Override
-  protected void renderTooltip(GuiGraphics graphics, int mouseX, int mouseY) {
-    super.renderTooltip(graphics, mouseX, mouseY);
+  protected void extractTooltip(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    super.extractTooltip(graphics, mouseX, mouseY);
 
     // tank tooltip
     if (tank != null) tank.renderTooltip(graphics, mouseX, mouseY);
