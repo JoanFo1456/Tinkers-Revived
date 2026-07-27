@@ -9,7 +9,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import slimeknights.tconstruct.library.fluid.SimpleFluidResourceTank;
 import slimeknights.mantle.fluid.FluidTransferHelper;
 import slimeknights.mantle.fluid.transfer.IFluidContainerTransfer.TransferDirection;
 import slimeknights.mantle.fluid.transfer.IFluidContainerTransfer.TransferResult;
@@ -187,8 +187,8 @@ public class TankModule implements HookProvider, FluidModifierHook, VolatileData
   /* Inventory slot stacking */
 
   /** Gets a tank instance for the given tool */
-  private FluidTank getTank(IToolStackView tool) {
-    FluidTank tank = new FluidTank(helper.getCapacity(tool));
+  private SimpleFluidResourceTank getTank(IToolStackView tool) {
+    SimpleFluidResourceTank tank = new SimpleFluidResourceTank(helper.getCapacity(tool));
     tank.setFluid(helper.getFluid(tool));
     return tank;
   }
@@ -200,7 +200,7 @@ public class TankModule implements HookProvider, FluidModifierHook, VolatileData
     if (!slotStack.isEmpty() && TankItem.mayHaveFluid(slotStack)) {
       // target must be stack size 1, if not then its not safe to modify it
       if (slotStack.getCount() == 1) {
-        FluidTank tank = getTank(heldTool);
+        SimpleFluidResourceTank tank = getTank(heldTool);
         TransferResult result = FluidTransferHelper.interactWithStack(tank, slotStack, TransferDirection.REVERSE);
         // update held tank and slot item if something changed (either we have a result or the stack in the slot was shrunk)
         if (result != null) {
@@ -220,7 +220,7 @@ public class TankModule implements HookProvider, FluidModifierHook, VolatileData
   public boolean overrideOtherStackedOnMe(IToolStackView slotTool, ModifierEntry modifier, ItemStack held, Slot slot, Player player, SlotAccess access) {
     // must have something with possible fluid held
     if (!held.isEmpty() && TankItem.mayHaveFluid(held)) {
-      FluidTank tank = getTank(slotTool);
+      SimpleFluidResourceTank tank = getTank(slotTool);
       TransferResult result = FluidTransferHelper.interactWithStack(tank, held, TransferDirection.AUTO);
       // update tank if something happened
       if (result != null) {

@@ -21,7 +21,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.IFluidTank;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import slimeknights.tconstruct.library.fluid.SimpleFluidResourceTank;
 import slimeknights.mantle.data.loadable.Loadables;
 import slimeknights.mantle.fluid.FluidTransferHelper;
 import slimeknights.mantle.fluid.tooltip.FluidTooltipHandler;
@@ -82,7 +82,7 @@ public class TankItem extends BlockTooltipItem {
   public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
     List<Component> tooltip = new java.util.ArrayList<>();
     if (TagUtil.hasTag(stack)) {
-      FluidTank tank = getTank(stack, 1);
+      SimpleFluidResourceTank tank = getTank(stack, 1);
       if (tank.getFluidAmount() > 0) {
         FluidStack fluid = tank.getFluid();
         tooltip.add(fluid.getDisplayName().plainCopy().withStyle(ChatFormatting.GRAY));
@@ -114,7 +114,7 @@ public class TankItem extends BlockTooltipItem {
         // target must be stack size 1, if not then it's not safe to modify it
         if (slotStack.getCount() == 1) {
           // transfer fluid - but we work with just 1 tank at a time instead of trying to transfer the whole stack
-          FluidTank tank = getTank(held, 1);
+          SimpleFluidResourceTank tank = getTank(held, 1);
           TransferResult result = FluidTransferHelper.interactWithStack(tank, slotStack, TransferDirection.REVERSE);
           // update held tank and slot item if something changed
           if (result != null) {
@@ -179,7 +179,7 @@ public class TankItem extends BlockTooltipItem {
       // though our fluid transfer logic does not handle well transferring between two tanks with no 1mb increments
       if (stack.getCount() == 1 || held.getItem() instanceof TankItem) {
         // transfer the fluid
-        FluidTank tank = getTank(stack);
+        SimpleFluidResourceTank tank = getTank(stack);
         // if both tanks are empty, just do standard stack operations; makes it nice and easy to move just 1 item at a time
         if (tank.isEmpty() && ItemStack.isSameItemSameComponents(stack, held)) {
           return false;
@@ -236,7 +236,7 @@ public class TankItem extends BlockTooltipItem {
   }
 
   /** Reads a tank from the legacy tank item tag shape. */
-  public static void readTank(FluidTank tank, CompoundTag tag) {
+  public static void readTank(SimpleFluidResourceTank tank, CompoundTag tag) {
     tank.setFluid(readFluid(tag));
   }
 
@@ -291,9 +291,9 @@ public class TankItem extends BlockTooltipItem {
    * @param stack  Tank stack
    * @return  Tank stored in the stack
    */
-  public FluidTank getTank(ItemStack stack) {
+  public SimpleFluidResourceTank getTank(ItemStack stack) {
     int count = stack.getCount();
-    FluidTank tank = getTank(stack, count);
+    SimpleFluidResourceTank tank = getTank(stack, count);
     // disallow filling if the current size is larger than 16
     if (limitStackSize && count > 16) {
       tank.setValidator(NO_FILL);
@@ -307,8 +307,8 @@ public class TankItem extends BlockTooltipItem {
    * @param scale  Number of tanks in a stack, being filled or drained together.
    * @return  Tank stored in the stack
    */
-  public static FluidTank getTank(ItemStack stack, int scale) {
-    FluidTank tank = ScaledFluidTank.create(TankBlockEntity.getCapacity(stack.getItem()), scale);
+  public static SimpleFluidResourceTank getTank(ItemStack stack, int scale) {
+    SimpleFluidResourceTank tank = ScaledFluidTank.create(TankBlockEntity.getCapacity(stack.getItem()), scale);
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null) {
       readTank(tank, nbt.getCompoundOrEmpty(NBTTags.TANK));

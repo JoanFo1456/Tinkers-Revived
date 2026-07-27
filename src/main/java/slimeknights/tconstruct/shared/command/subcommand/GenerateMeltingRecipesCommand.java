@@ -34,7 +34,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
-import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import slimeknights.tconstruct.library.fluid.SimpleFluidResourceTank;
 import org.apache.commons.lang3.mutable.MutableInt;
 import slimeknights.mantle.command.GeneratePackHelper;
 import slimeknights.mantle.command.MantleCommand;
@@ -425,7 +425,7 @@ public class GenerateMeltingRecipesCommand {
       ItemStack stack = new ItemStack(item);
       IFluidContainerTransfer transfer = FluidContainerTransferManager.INSTANCE.getTransfer(stack, FluidStack.EMPTY);
       if (transfer != null) {
-        FluidTank tank = new FluidTank(10000);
+        SimpleFluidResourceTank tank = new SimpleFluidResourceTank(10000);
         TransferResult transferResult = transfer.transfer(stack, FluidStack.EMPTY, tank, TransferDirection.EMPTY_ITEM);
         if (transferResult != null) {
           return MeltingResult.from(transferResult.fluid());
