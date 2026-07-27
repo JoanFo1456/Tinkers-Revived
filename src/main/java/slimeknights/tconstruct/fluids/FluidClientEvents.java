@@ -1,11 +1,9 @@
 package slimeknights.tconstruct.fluids;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.Identifier;
 import slimeknights.tconstruct.compat.minecraft.world.item.alchemy.PotionUtils;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+// 26.1: RegisterColorHandlersEvent.Item removed (item tints are data-driven now); potion color must be a tint source.
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -33,10 +31,6 @@ public class FluidClientEvents extends ClientEventBase {
     setTranslucent(TinkerFluids.moltenAmethyst);
   }
 
-  @SubscribeEvent
-  static void itemColors(final RegisterColorHandlersEvent.Item event) {
-    event.register((stack, index) -> index > 0 ? -1 : PotionUtils.getColor(stack), TinkerFluids.potion.asItem());
-  }
 
   @SubscribeEvent
   static void registerItemModels(net.neoforged.neoforge.client.event.RegisterItemModelsEvent event) {
@@ -44,7 +38,8 @@ public class FluidClientEvents extends ClientEventBase {
   }
 
   private static void setTranslucent(FlowingFluidObject<?> fluid) {
-    ItemBlockRenderTypes.setRenderLayer(fluid.getStill(), RenderType.translucent());
-    ItemBlockRenderTypes.setRenderLayer(fluid.getFlowing(), RenderType.translucent());
+    // 26.1: ItemBlockRenderTypes.setRenderLayer was removed; fluid/block render layers are data-driven now
+    // (block render_type in the blockstate/model). Kept as a no-op so the setup call sites still compile;
+    // translucency must be declared on the fluid block's model.
   }
 }

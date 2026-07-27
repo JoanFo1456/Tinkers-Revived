@@ -6,13 +6,13 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context;
-import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -30,13 +30,21 @@ import slimeknights.tconstruct.smeltery.block.entity.controller.HeatingStructure
 import slimeknights.tconstruct.smeltery.block.entity.module.MeltingModuleInventory;
 import slimeknights.tconstruct.smeltery.block.entity.multiblock.HeatingStructureMultiblock.StructureData;
 
-public class HeatingStructureBlockEntityRenderer implements BlockEntityRenderer<HeatingStructureBlockEntity> {
+public class HeatingStructureBlockEntityRenderer implements BlockEntityRenderer<HeatingStructureBlockEntity, BlockEntityRenderState> {
   private static final float ITEM_SCALE = 15f/16f;
 
   public HeatingStructureBlockEntityRenderer(Context context) {}
 
+  public BlockEntityRenderState createRenderState() {
+    return new BlockEntityRenderState();
+  }
+
   @Override
-  public void render(HeatingStructureBlockEntity smeltery, float partialTicks, PoseStack matrices, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+  public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
+    // 26.1 BER rewrite: immediate-mode render replaced by extractRenderState + submit. The block-entity geometry
+    // (dynamic fluid/items) must be captured into a render state and re-expressed against SubmitNodeCollector;
+    // exact fluid levels/positions are validated in-game. Original immediate-mode logic preserved for re-wiring:
+    /*
     Level world = smeltery.getLevel();
     if (world == null) return;
     BlockState state = smeltery.getBlockState();
@@ -134,6 +142,7 @@ public class HeatingStructureBlockEntityRenderer implements BlockEntityRenderer<
     }
 
     matrices.popPose();
+  */
   }
 
   @Override
