@@ -273,7 +273,7 @@ public class MultitankFuelModule extends FuelModule implements IFluidHandler {
             FluidStack fluid = handler.getFluidInTank(0);
             if (fluid.isEmpty()) {
               info.add(0, handler.getTankCapacity(0));
-            } else if (currentFuel.isFluidEqual(fluid)) {
+            } else if (FluidStack.isSameFluidSameComponents(currentFuel, fluid)) {
               info.add(fluid.getAmount(), handler.getTankCapacity(0));
             }
           });

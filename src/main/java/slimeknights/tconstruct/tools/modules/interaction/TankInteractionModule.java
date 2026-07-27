@@ -93,7 +93,7 @@ public record TankInteractionModule(@Nullable InteractionSource source) implemen
       } else {
         // filter drained to be the same as the current fluid
         FluidStack drained = cap.drain(fluidStack.copyWithAmount(TANK_HELPER.getCapacity(tool) - fluidStack.getAmount()), FluidAction.EXECUTE);
-        if (!drained.isEmpty() && drained.isFluidEqual(fluidStack)) {
+        if (!drained.isEmpty() && FluidStack.isSameFluidSameComponents(drained, fluidStack)) {
           fluidStack.grow(drained.getAmount());
           TANK_HELPER.setFluid(tool, fluidStack);
           sound = FluidTransferHelper.getFillSound(fluidStack);

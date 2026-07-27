@@ -244,7 +244,7 @@ public class FaucetBlockEntity extends MantleBlockEntity {
               this.drained = input.drain(filled, FluidAction.EXECUTE);
 
               // sync to clients if we have changes
-              if (faucetState == FaucetState.OFF || !renderFluid.isFluidEqual(drained)) {
+              if (faucetState == FaucetState.OFF || !FluidStack.isSameFluidSameComponents(renderFluid, drained)) {
                 syncToClient(this.drained, true);
               }
               faucetState = FaucetState.POURING;
@@ -259,7 +259,7 @@ public class FaucetBlockEntity extends MantleBlockEntity {
       // if powered, keep faucet running
       if (lastRedstoneState) {
         // sync if either we were not pouring before (particle effects), or if the client thinks we have fluid
-        if (execute && (faucetState == FaucetState.OFF || !renderFluid.isFluidEqual(FluidStack.EMPTY))) {
+        if (execute && (faucetState == FaucetState.OFF || !FluidStack.isSameFluidSameComponents(renderFluid, FluidStack.EMPTY))) {
           syncToClient(FluidStack.EMPTY, true);
         }
         faucetState = FaucetState.POWERED;
@@ -292,7 +292,7 @@ public class FaucetBlockEntity extends MantleBlockEntity {
       int filled = output.fill(fillStack, IFluidHandler.FluidAction.SIMULATE);
       if (filled > 0) {
         // update client if they do not think we have fluid
-        if (!renderFluid.isFluidEqual(drained)) {
+        if (!FluidStack.isSameFluidSameComponents(renderFluid, drained)) {
           syncToClient(drained, true);
         }
 
@@ -314,7 +314,7 @@ public class FaucetBlockEntity extends MantleBlockEntity {
   private void reset() {
     stopPouring = false;
     drained = FluidStack.EMPTY;
-    if (faucetState != FaucetState.OFF || !renderFluid.isFluidEqual(drained)) {
+    if (faucetState != FaucetState.OFF || !FluidStack.isSameFluidSameComponents(renderFluid, drained)) {
       faucetState = FaucetState.OFF;
       syncToClient(FluidStack.EMPTY, false);
     }
