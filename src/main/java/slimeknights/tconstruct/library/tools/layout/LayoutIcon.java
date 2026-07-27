@@ -136,7 +136,7 @@ public abstract class LayoutIcon {
     @Override
     public void write(FriendlyByteBuf buffer) {
       buffer.writeEnum(Type.PATTERN);
-      buffer.writeIdentifier(pattern);
+      buffer.writeIdentifier(pattern.getIdentifier());
     }
 
     @Override

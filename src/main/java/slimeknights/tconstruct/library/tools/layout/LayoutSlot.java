@@ -74,7 +74,7 @@ public class LayoutSlot {
   public void write(FriendlyByteBuf buffer) {
     if (icon != null) {
       buffer.writeBoolean(true);
-      buffer.writeIdentifier(icon);
+      buffer.writeIdentifier(icon.getIdentifier());
     } else {
       buffer.writeBoolean(false);
     }

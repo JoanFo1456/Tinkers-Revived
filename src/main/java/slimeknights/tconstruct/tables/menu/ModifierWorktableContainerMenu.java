@@ -60,7 +60,7 @@ public class ModifierWorktableContainerMenu extends TabbedContainerMenu<Modifier
     for (ArmorType slotType : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
       this.addSlot(new ArmorSlot(inv, slotType.getSlot(), 152, 16 + slotType.ordinal() * 18));
     }
-    this.addSlot(new Slot(inv, 40, 132, 70).setBackground(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
+    this.addSlot(new Slot(inv, 40, 132, 70).setBackground(InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD));
 
     // other inventories
     this.addChestSideInventory();
