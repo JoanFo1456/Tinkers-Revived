@@ -163,7 +163,7 @@ public class CastingTankBlockEntity extends TableBlockEntity implements ITankBlo
       return getItem(INPUT).isEmpty() && getItem(OUTPUT).isEmpty() && !pStack.isEmpty() && (
         // check the various options for some sort of fluid-containing stack
         FluidContainerTransferManager.INSTANCE.mayHaveTransfer(pStack)
-          || pStack.getCapability(Capabilities.FluidHandler.ITEM) != null
+          || net.neoforged.neoforge.capabilities.Capabilities.Fluid.ITEM.getCapability(pStack, net.neoforged.neoforge.transfer.access.ItemAccess.forStack(pStack)) != null
       );
     }
     return false;

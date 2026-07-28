@@ -74,8 +74,8 @@ public class DuctItemHandler extends SingleItemHandler<DuctBlockEntity> {
       }
     }
     // the item must contain fluid (no empty cans or buckets)
-    net.neoforged.neoforge.fluids.capability.IFluidHandlerItem capability = stack.getCapability(Capabilities.FluidHandler.ITEM);
-    return capability != null && !capability.getFluidInTank(0).isEmpty();
+    net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource> capability = Capabilities.Fluid.ITEM.getCapability(stack, net.neoforged.neoforge.transfer.access.ItemAccess.forStack(stack));
+    return capability != null && capability.size() > 0 && !capability.getResource(0).isEmpty();
   }
 
   /**

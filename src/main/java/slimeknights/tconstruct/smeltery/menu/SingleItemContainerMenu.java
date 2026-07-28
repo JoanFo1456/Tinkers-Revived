@@ -19,9 +19,9 @@ public class SingleItemContainerMenu extends TriggeringBaseContainerMenu<BlockEn
     super(TinkerSmeltery.singleItemContainer.get(), id, inv, te);
     if (te != null) {
       if (te.getLevel() != null) {
-        var handler = te.getLevel().getCapability(Capabilities.ItemHandler.BLOCK, te.getBlockPos(), te.getBlockState(), te, null);
-        if (handler != null) {
-          this.addSlot(new SmartItemHandlerSlot(handler, 0, 80, 20));
+        var handlerRh = te.getLevel().getCapability(Capabilities.Item.BLOCK, te.getBlockPos(), te.getBlockState(), te, null);
+        if (handlerRh != null) {
+          this.addSlot(new SmartItemHandlerSlot(net.neoforged.neoforge.items.IItemHandler.of(handlerRh), 0, 80, 20));
         }
       }
       this.addInventorySlots();
