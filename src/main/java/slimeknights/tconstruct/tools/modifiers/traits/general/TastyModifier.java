@@ -40,7 +40,7 @@ public class TastyModifier extends Modifier implements ProcessLootModifierHook {
 
     // must have an entity
     Entity entity = context.getParamOrNull(LootContextParams.THIS_ENTITY);
-    if (entity != null && entity.getType().is(TinkerTags.EntityTypes.BACON_PRODUCER)) {
+    if (entity != null && entity.getType().builtInRegistryHolder().is(TinkerTags.EntityTypes.BACON_PRODUCER)) {
       // at tasty 1, 2, 3, and 4 its a 2%, 4.15%, 6.25%, 8% per level
       Integer lootingLevel = context.getParamOrNull(LootContextParams.ENCHANTMENT_LEVEL);
       int looting = lootingLevel == null ? 0 : lootingLevel;

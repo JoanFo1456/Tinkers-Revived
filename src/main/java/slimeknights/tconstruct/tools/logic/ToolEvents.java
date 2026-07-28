@@ -278,7 +278,7 @@ public class ToolEvents {
     Entity attacker = source.getEntity();
     if (attacker instanceof LivingEntity living) {
       // boost damage based on monster's melee weapon
-      if (Config.COMMON.allowMonsterMeleeModifiers.get() && source.is(TinkerTags.DamageTypes.MODIFIER_WHITELIST) && !living.getType().is(TinkerTags.EntityTypes.DAMAGE_MODIFIER_BLACKLIST)) {
+      if (Config.COMMON.allowMonsterMeleeModifiers.get() && source.is(TinkerTags.DamageTypes.MODIFIER_WHITELIST) && !living.getType().builtInRegistryHolder().is(TinkerTags.EntityTypes.DAMAGE_MODIFIER_BLACKLIST)) {
         ItemStack weapon = living.getMainHandItem();
         if (!weapon.isEmpty() && weapon.is(TinkerTags.Items.MELEE_WEAPON)) {
           IToolStackView tool = ToolStack.from(weapon);
@@ -343,10 +343,10 @@ public class ToolEvents {
       }
 
       // give slimes a 4x armor boost
-      if (entity.getType().is(TinkerTags.EntityTypes.SMALL_ARMOR)) {
+      if (entity.getType().builtInRegistryHolder().is(TinkerTags.EntityTypes.SMALL_ARMOR)) {
         modifierValue *= 4;
       }
-    } else if (DamageSourcePredicate.CAN_PROTECT.matches(source) && entity.getType().is(TinkerTags.EntityTypes.SMALL_ARMOR)) {
+    } else if (DamageSourcePredicate.CAN_PROTECT.matches(source) && entity.getType().builtInRegistryHolder().is(TinkerTags.EntityTypes.SMALL_ARMOR)) {
       vanillaModifier = entity.level() instanceof ServerLevel serverLevel ? EnchantmentHelper.getDamageProtection(serverLevel, entity, source) : 0f;
       modifierValue = vanillaModifier * 4;
     }
@@ -418,7 +418,7 @@ public class ToolEvents {
     // apply post hit modifier effects. Done regardless of damage dealt - don't care if absorption took it all
     if (Config.COMMON.allowMonsterMeleeModifiers.get() && source.is(TinkerTags.DamageTypes.MODIFIER_WHITELIST)) {
       Entity attacker = event.getSource().getEntity();
-      if (attacker != null && !attacker.getType().is(TinkerTags.EntityTypes.DAMAGE_MODIFIER_BLACKLIST) && attacker instanceof LivingEntity living) {
+      if (attacker != null && !attacker.getType().builtInRegistryHolder().is(TinkerTags.EntityTypes.DAMAGE_MODIFIER_BLACKLIST) && attacker instanceof LivingEntity living) {
         ItemStack weapon = living.getMainHandItem();
         if (!weapon.isEmpty() && weapon.is(TinkerTags.Items.MELEE_WEAPON)) {
           // already know we are not a player

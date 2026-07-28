@@ -60,7 +60,7 @@ public enum SeveringModule implements ModifierModule, ProcessLootModifierHook {
           Integer lootingLevel = context.getParamOrNull(LootContextParams.ENCHANTMENT_LEVEL);
           float looting = lootingLevel == null ? 0 : lootingLevel;
           // deprecated method of doubling chances
-          float chanceMultiplier = entity.getType().is(TinkerTags.EntityTypes.RARE_MOBS) ? 2 : 1;
+          float chanceMultiplier = entity.getType().builtInRegistryHolder().is(TinkerTags.EntityTypes.RARE_MOBS) ? 2 : 1;
           for (SeveringRecipe recipe : recipes) {
             if (world.getRandom().nextFloat() < recipe.getChance(level, looting) * chanceMultiplier) {
               ItemStack result = recipe.getOutput(entity);
