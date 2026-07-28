@@ -29,6 +29,6 @@ public record FillBottle(Item filled) implements CauldronInteraction {
       level.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
       level.gameEvent(null, GameEvent.FLUID_PICKUP, pos);
     }
-    return InteractionResult.sidedSuccess(level.isClientSide());
+    return InteractionResult.SUCCESS;
   }
 }

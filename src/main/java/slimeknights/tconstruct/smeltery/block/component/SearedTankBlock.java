@@ -86,7 +86,7 @@ public class SearedTankBlock extends SearedBlock implements ITankBlock, EntityBl
   @Override
   protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
     if (FluidTransferHelper.interactWithTank(world, pos, player, hand, hit)) {
-      return InteractionResult.sidedSuccess(world.isClientSide());
+      return InteractionResult.SUCCESS;
     }
     return super.useItemOn(stack, state, world, pos, player, hand, hit);
   }
