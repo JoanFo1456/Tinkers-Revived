@@ -35,7 +35,8 @@ public class SideInventoryContainer<TILE extends BlockEntity> extends BaseContai
       this.itemHandler = LazyOptional.of(() -> EmptyItemHandler.INSTANCE);
     } else {
       var level = tile.getLevel();
-      IItemHandler handler = level == null ? null : level.getCapability(Capabilities.ItemHandler.BLOCK, tile.getBlockPos(), tile.getBlockState(), tile, inventoryDirection);
+      var handlerRh = level == null ? null : level.getCapability(Capabilities.Item.BLOCK, tile.getBlockPos(), tile.getBlockState(), tile, inventoryDirection);
+      IItemHandler handler = handlerRh == null ? null : IItemHandler.of(handlerRh);
       this.itemHandler = LazyOptional.ofNullable(handler);
     }
 

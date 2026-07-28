@@ -35,7 +35,8 @@ public class GaugeBlockEntity extends BlockEntity {
       BlockPos pos = getBlockPos().relative(side.getOpposite());
       BlockEntity te = level.getBlockEntity(pos);
       if (te != null) {
-        neighbor = LazyOptional.ofNullable(level.getCapability(Capabilities.FluidHandler.BLOCK, pos, level.getBlockState(pos), te, side));
+        var neighborRh = level.getCapability(Capabilities.Fluid.BLOCK, pos, level.getBlockState(pos), te, side);
+        neighbor = LazyOptional.ofNullable(neighborRh == null ? null : IFluidHandler.of(neighborRh));
       } else {
         neighbor = LazyOptional.empty();
       }

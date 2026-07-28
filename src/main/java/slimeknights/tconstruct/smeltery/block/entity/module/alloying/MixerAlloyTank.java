@@ -144,7 +144,8 @@ public class MixerAlloyTank implements IMutableAlloyTank {
             BlockEntity te = world.getBlockEntity(target);
             if (te != null) {
               // if we found a tank, increment the number of tanks
-              IFluidHandler capability = world.getCapability(Capabilities.FluidHandler.BLOCK, target, null, te, direction.getOpposite());
+              var capabilityRh = world.getCapability(Capabilities.Fluid.BLOCK, target, null, te, direction.getOpposite());
+              IFluidHandler capability = capabilityRh == null ? null : IFluidHandler.of(capabilityRh);
               if (capability != null) {
                 // attach a listener so we know when the side invalidates
                 inputs.put(direction, LazyOptional.of(() -> capability));

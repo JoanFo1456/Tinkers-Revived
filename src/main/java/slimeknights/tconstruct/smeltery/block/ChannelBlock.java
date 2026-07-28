@@ -166,7 +166,7 @@ public class ChannelBlock extends Block implements EntityBlock {
 	 */
 	private static boolean isFluidHandler(LevelAccessor world, Direction side, BlockPos pos) {
 		BlockEntity te = world.getBlockEntity(pos);
-		return te != null && world instanceof Level level && level.getCapability(Capabilities.FluidHandler.BLOCK, pos, world.getBlockState(pos), te, side) != null;
+		return te != null && world instanceof Level level && level.getCapability(Capabilities.Fluid.BLOCK, pos, world.getBlockState(pos), te, side) != null;
 	}
 
 	/**

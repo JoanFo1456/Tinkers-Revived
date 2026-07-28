@@ -134,7 +134,8 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
 		// must have a TE with a fluid handler
 		BlockEntity te = level.getBlockEntity(worldPosition.relative(side));
 		if (te != null) {
-			IFluidHandler handler = level.getCapability(Capabilities.FluidHandler.BLOCK, worldPosition.relative(side), null, te, side.getOpposite());
+			var handlerRh = level.getCapability(Capabilities.Fluid.BLOCK, worldPosition.relative(side), null, te, side.getOpposite());
+			IFluidHandler handler = handlerRh == null ? null : IFluidHandler.of(handlerRh);
 			if (handler != null) {
 				return LazyOptional.of(() -> handler);
 			}

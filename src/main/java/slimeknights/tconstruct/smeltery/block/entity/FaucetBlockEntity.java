@@ -88,7 +88,8 @@ public class FaucetBlockEntity extends MantleBlockEntity {
     BlockPos pos = worldPosition.relative(side);
     BlockEntity te = level.getBlockEntity(pos);
     if (te != null) {
-      IFluidHandler handler = level.getCapability(Capabilities.FluidHandler.BLOCK, pos, level.getBlockState(pos), te, side.getOpposite());
+      var handlerRh = level.getCapability(Capabilities.Fluid.BLOCK, pos, level.getBlockState(pos), te, side.getOpposite());
+      IFluidHandler handler = handlerRh == null ? null : IFluidHandler.of(handlerRh);
       return LazyOptional.ofNullable(handler);
     }
     return LazyOptional.empty();
