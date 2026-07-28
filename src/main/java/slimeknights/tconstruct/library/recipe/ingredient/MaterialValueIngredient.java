@@ -75,7 +75,7 @@ public class MaterialValueIngredient implements ICustomIngredient {
     if (items == null) {
       items = MaterialRecipeCache.getAllRecipes().stream()
         .filter(this::test)
-        .flatMap(material -> Arrays.stream(material.getIngredient().getItems()))
+        .flatMap(material -> Arrays.stream(material.getIngredient().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)))
         .toArray(ItemStack[]::new);
     }
     return Arrays.stream(items);

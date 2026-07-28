@@ -88,7 +88,7 @@ public class ItemCastingRecipe extends AbstractCastingRecipe implements IDisplay
 
   @Override
   public List<ItemStack> getCastItems() {
-    return Arrays.asList(getCast().getItems());
+    return Arrays.asList(getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
   }
 
   @Override

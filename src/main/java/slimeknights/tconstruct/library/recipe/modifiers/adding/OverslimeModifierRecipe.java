@@ -145,14 +145,14 @@ public class OverslimeModifierRecipe implements ITinkerStationRecipe, IDisplayMo
   @Override
   public List<ItemStack> getDisplayItems(int slot) {
     if (slot == 0) {
-      return Arrays.asList(ingredient.getItems());
+      return Arrays.asList(ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
     }
     return Collections.emptyList();
   }
   @Override
   public List<ItemStack> getToolWithoutModifier() {
     if (toolWithoutModifier == null) {
-      toolWithoutModifier = Arrays.stream(this.tools.getItems()).map(MAP_TOOL_STACK_FOR_RENDERING).toList();
+      toolWithoutModifier = Arrays.stream(this.tools.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)).map(MAP_TOOL_STACK_FOR_RENDERING).toList();
     }
     return toolWithoutModifier;
   }
@@ -162,7 +162,7 @@ public class OverslimeModifierRecipe implements ITinkerStationRecipe, IDisplayMo
     if (toolWithModifier == null) {
       List<ModifierEntry> result = List.of(RESULT);
       int maxSize = shrinkToolSlotBy();
-      toolWithModifier = Arrays.stream(this.tools.getItems())
+      toolWithModifier = Arrays.stream(this.tools.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new))
         .map(MAP_TOOL_STACK_FOR_RENDERING)
         .map(stack -> withModifiers(stack, maxSize, result, data -> OverslimeModule.INSTANCE.setAmountRaw(data, restoreAmount)))
         .toList();

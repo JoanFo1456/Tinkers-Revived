@@ -57,7 +57,7 @@ public class ToolBuildingCategory implements IRecipeCategory<ToolBuildingRecipe>
   @Override
   public void setRecipe(IRecipeLayoutBuilder builder, ToolBuildingRecipe recipe, IFocusGroup focuses) {
     List<List<ItemStack>> partsAndExtras = Stream.concat(recipe.getAllToolParts().stream(),
-      recipe.getExtraRequirements().stream().map(ingredient -> Arrays.asList(ingredient.getItems()))).toList();
+      recipe.getExtraRequirements().stream().map(ingredient -> Arrays.asList(ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)))).toList();
     List<LayoutSlot> layoutSlots = recipe.getLayoutSlots();
 
     int missingSlots = partsAndExtras.size() - layoutSlots.size();

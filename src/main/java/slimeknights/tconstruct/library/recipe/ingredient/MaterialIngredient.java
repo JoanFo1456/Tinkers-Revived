@@ -161,10 +161,10 @@ public class MaterialIngredient extends NestedIngredient {
   public Stream<ItemStack> getItems() {
     if (materialStacks == null) {
       if (!MaterialRegistry.isFullyLoaded()) {
-        return Arrays.stream(nested.getItems());
+        return Arrays.stream(nested.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
       }
       // no material? apply all materials for variants
-      Stream<ItemStack> items = Arrays.stream(nested.getItems());
+      Stream<ItemStack> items = Arrays.stream(nested.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
       // find all materials matching the filter; note this only shows craftable material variants
       items = items.flatMap(stack -> MaterialRecipeCache.getAllVariants().stream()
         .filter(material::matches)

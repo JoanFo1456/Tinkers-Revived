@@ -121,7 +121,7 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
   public List<DisplayCastingRecipe> getRecipes(RegistryAccess access) {
     if (displayRecipes == null) {
       // create a subrecipe for every potion variant
-      List<ItemStack> bottles = List.of(bottle.getItems());
+      List<ItemStack> bottles = List.of(bottle.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
       displayRecipes = ForgeRegistries.POTIONS.getValues().stream()
         .filter(potion -> potion != Potions.WATER.value())
         .map(potion -> {

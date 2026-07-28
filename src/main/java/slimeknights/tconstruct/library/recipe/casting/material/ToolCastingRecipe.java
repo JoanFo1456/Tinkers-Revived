@@ -240,7 +240,7 @@ public class ToolCastingRecipe extends PartSwapCastingRecipe implements IMultiRe
         tag.putBoolean(TooltipUtil.KEY_DISPLAY, true);
         TagUtil.setTag(partSwapDisplay, tag);
 
-        List<ItemStack> casts = List.of(getCast().getItems());
+        List<ItemStack> casts = List.of(getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
         // if the cast is consumed, add the tool to the list of cast items to show that part swapping is an option
         boolean consumed = castPurpose != CastPurpose.CATALYST;
         List<ItemStack> castsWithTool = consumed ? Streams.concat(casts.stream(), Stream.of(partSwapDisplay)).toList() : casts;

@@ -24,7 +24,7 @@ public abstract class NestedIngredient implements ICustomIngredient {
 
   @Override
   public Stream<ItemStack> getItems() {
-    return Stream.of(nested.getItems());
+    return Stream.of(nested.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
   }
 
   public boolean isEmpty() {

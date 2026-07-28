@@ -78,7 +78,7 @@ public class TippingCastingRecipe extends PotionCastingRecipe {
   public List<DisplayCastingRecipe> getRecipes(RegistryAccess access) {
     if (displayRecipes == null) {
       // create a list of tools with the modifier
-      List<ItemStack> tools = Arrays.stream(bottle.getItems())
+      List<ItemStack> tools = Arrays.stream(bottle.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new))
         .map(stack -> IDisplayModifierRecipe.withModifiers(IModifiableDisplay.getDisplayStack(stack), List.of(new ModifierEntry(modifier, 1))))
         .toList();
       displayRecipes = ForgeRegistries.POTIONS.getValues().stream()

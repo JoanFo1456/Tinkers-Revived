@@ -57,7 +57,7 @@ public class PartBuilderRecycleBuilder extends AbstractRecipeBuilder<PartBuilder
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer) {
-    save(consumer, Loadables.ITEM.getKey(tool.getItems()[0].getItem()));
+    save(consumer, Loadables.ITEM.getKey(tool.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)[0].getItem()));
   }
 
   @Override

@@ -127,11 +127,11 @@ public class MaterialRecipe implements ICustomOutputRecipe<ISingleStackContainer
   public List<ItemStack> getDisplayItems() {
     if (displayItems == null) {
       if (needed > 1) {
-        displayItems = Arrays.stream(ingredient.getItems())
+        displayItems = Arrays.stream(ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new))
                              .map(stack -> stack.copyWithCount(needed))
                              .collect(Collectors.toList());
       } else {
-        displayItems = Arrays.asList(ingredient.getItems());
+        displayItems = Arrays.asList(ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
       }
     }
     return displayItems;

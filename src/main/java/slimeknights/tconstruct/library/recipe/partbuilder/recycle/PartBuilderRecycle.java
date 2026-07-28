@@ -184,8 +184,8 @@ public class PartBuilderRecycle implements IPartBuilderRecipe, IMultiRecipe<Disp
   @Override
   public List<DisplayPartRecipe> getRecipes(RegistryAccess access) {
     if (displayRecipes == null) {
-      List<ItemStack> patternItems = List.of(pattern.getItems());
-      List<ItemStack> toolItems = List.of(tool.getItems());
+      List<ItemStack> patternItems = List.of(pattern.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
+      List<ItemStack> toolItems = List.of(tool.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
       displayRecipes = results.entrySet().stream()
         .map(entry -> new DisplayPartRecipe(id, MaterialVariant.UNKNOWN, entry.getKey(), patternItems, 0, toolItems, List.of(entry.getValue().get()))).toList();
     }

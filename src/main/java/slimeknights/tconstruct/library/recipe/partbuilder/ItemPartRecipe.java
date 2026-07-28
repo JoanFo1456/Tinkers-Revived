@@ -135,7 +135,7 @@ public class ItemPartRecipe implements IDisplayPartBuilderRecipe {
 
   @Override
   public List<ItemStack> getPatternItems() {
-    return Arrays.asList(patternItem.getItems());
+    return Arrays.asList(patternItem.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
   }
 
   @Override

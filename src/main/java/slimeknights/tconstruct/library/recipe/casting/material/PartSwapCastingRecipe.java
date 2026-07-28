@@ -154,7 +154,7 @@ public class PartSwapCastingRecipe extends AbstractMaterialCastingRecipe impleme
 
   @Override
   public ItemStack getResultItem(HolderLookup.Provider registryAccess) {
-    return getCast().getItems()[0].copy();
+    return getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)[0].copy();
   }
 
   @Override
@@ -223,7 +223,7 @@ public class PartSwapCastingRecipe extends AbstractMaterialCastingRecipe impleme
   @Override
   public List<IDisplayableCastingRecipe> getRecipes(RegistryAccess access) {
     if (multiRecipes == null) {
-      List<ItemStack> casts = List.of(getCast().getItems());
+      List<ItemStack> casts = List.of(getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
       Predicate<MaterialFluidRecipe> validRecipe = recipe -> recipe.isVisible() && materials.matches(recipe.getOutput().getVariant());
       multiRecipes = Stream.concat(
           // show recipes for creating the tool from all castable fluids

@@ -143,7 +143,7 @@ public class SwappableModifierRecipe extends ModifierRecipe {
   @Override
   public List<SlotCount> getResultSlots() {
     if (resultSlots == null) {
-      ItemStack[] tools = toolRequirement.getItems();
+      ItemStack[] tools = toolRequirement.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new);
       resultSlots = getResultSlots(getDisplayResult(), tools.length > 0 ? tools[0].getItem() : Items.AIR, value);
     }
     return resultSlots;

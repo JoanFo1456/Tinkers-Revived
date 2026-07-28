@@ -61,7 +61,7 @@ public class ShapedMaterialExtension implements ICraftingCategoryExtension<Shape
         ItemStack stack = plainResult.copy();
         recipe.setMaterial(stack, mat.getMaterial().getVariant());
         // add one copy of the stack per item in the nested ingredient, so the lengths match up
-        return IntStream.range(0, mat.getIngredient().getItems().length).mapToObj(i -> stack);
+        return IntStream.range(0, mat.getIngredient().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new).length).mapToObj(i -> stack);
       }).toList();
     } else {
       this.result = List.of(plainResult);

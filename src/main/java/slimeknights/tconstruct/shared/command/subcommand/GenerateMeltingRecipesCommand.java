@@ -174,7 +174,7 @@ public class GenerateMeltingRecipesCommand {
           // for each ingredient, convert it into the smallest fluid. If we have multiple or anything invalid, give up
           MeltingResult ingredientFluid = null;
           boolean didIgnore = false; // if true, we skipped something and are ineligible for a fluid next
-          for (ItemStack stack : ingredient.getItems()) {
+          for (ItemStack stack : ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)) {
             // if the ingredient has NBT, nothing we can do here
             // also skip if the item is disallowed as an input
             if (stack.isEmpty() || TagUtil.hasTag(stack) || !inputs.matches(stack.getItem())) {

@@ -73,7 +73,7 @@ public abstract class AbstractWorktableRecipe implements IModifierWorktableRecip
   @Override
   public List<ItemStack> getInputTools() {
     if (tools == null) {
-      tools = Arrays.stream(toolRequirement.getItems()).map(stack -> IModifiableDisplay.getDisplayStack(stack.getItem())).toList();
+      tools = Arrays.stream(toolRequirement.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)).map(stack -> IModifiableDisplay.getDisplayStack(stack.getItem())).toList();
     }
     return tools;
   }

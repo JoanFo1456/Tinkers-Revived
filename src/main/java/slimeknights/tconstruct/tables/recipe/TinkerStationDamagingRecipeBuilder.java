@@ -19,7 +19,7 @@ public class TinkerStationDamagingRecipeBuilder extends AbstractRecipeBuilder<Ti
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer) {
-    ItemStack[] stacks = ingredient.getItems();
+    ItemStack[] stacks = ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new);
     if (stacks.length == 0) {
       throw new IllegalStateException("Empty ingredient not allowed");
     }

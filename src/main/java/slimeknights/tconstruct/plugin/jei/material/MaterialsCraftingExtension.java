@@ -60,7 +60,7 @@ public class MaterialsCraftingExtension<T extends CraftingRecipe & MaterialsCraf
     // if we have just the one part, set the output to match its material
     if (recipe.getPartCount() == 1) {
       Ingredient firstPart = recipe.getParts().get(0);
-      this.result = Arrays.stream(firstPart.getItems()).map(variant -> {
+      this.result = Arrays.stream(firstPart.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)).map(variant -> {
         ItemStack stack = plainResult.copy();
         if (variant.getItem() instanceof IMaterialItem materialItem) {
           recipe.setMaterial(stack, materialItem.getMaterial(variant));
@@ -86,7 +86,7 @@ public class MaterialsCraftingExtension<T extends CraftingRecipe & MaterialsCraf
   public static MaterialsCraftingExtension<ShapelessMaterialsRecipe> shapeless(ShapelessMaterialsRecipe recipe) {
     List<Ingredient> parts = recipe.getIngredients();
     for (int i = 0; i < recipe.getPartCount(); i++) {
-      if (parts.get(i).getItems().length == 0) {
+      if (parts.get(i).items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new).length == 0) {
         return null;
       }
     }

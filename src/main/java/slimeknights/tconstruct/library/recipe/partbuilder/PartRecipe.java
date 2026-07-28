@@ -212,7 +212,7 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
             materialItems = List.copyOf(materialItems);
             resultItems = List.copyOf(resultItems);
           }
-          return Stream.of(new DisplayPartRecipe(id, materialTitle, pattern, List.of(patternItem.getItems()), getCost(), materialItems, resultItems));
+          return Stream.of(new DisplayPartRecipe(id, materialTitle, pattern, List.of(patternItem.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)), getCost(), materialItems, resultItems));
         })
         .collect(Collectors.toUnmodifiableList());
     }

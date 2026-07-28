@@ -37,7 +37,7 @@ public class CastDuplicationRecipe extends ItemCastingRecipe implements IMultiRe
 
   @Override
   public ItemStack getResultItem(HolderLookup.Provider access) {
-    ItemStack[] items = getCast().getItems();
+    ItemStack[] items = getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new);
     return items.length == 0 ? ItemStack.EMPTY : items[0];
   }
 
@@ -47,7 +47,7 @@ public class CastDuplicationRecipe extends ItemCastingRecipe implements IMultiRe
   @Override
   public List<DisplayCastingRecipe> getRecipes(RegistryAccess access) {
     if (displayRecipes == null) {
-      displayRecipes = Arrays.stream(getCast().getItems())
+      displayRecipes = Arrays.stream(getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new))
         .map(item -> new DisplayCastingRecipe(getId(), getType(), List.of(item), fluid.getFluids(), item, coolingTime, false))
         .toList();
     }

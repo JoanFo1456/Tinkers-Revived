@@ -189,7 +189,7 @@ public class ContentTool extends PageContent {
                                                                             .map(r -> ((ToolBuildingRecipe)r).getExtraRequirements())
                                                                             .findFirst()).orElse(List.of());
         for (Ingredient ingredient : extraRequirements) {
-          partBuilder.add(ItemStackList.of(ingredient.getItems()));
+          partBuilder.add(ItemStackList.of(ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)));
         }
         this.parts = partBuilder.build();
       }

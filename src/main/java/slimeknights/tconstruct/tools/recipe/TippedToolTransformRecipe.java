@@ -81,7 +81,7 @@ public class TippedToolTransformRecipe extends ToolBuildingRecipe {
   public List<ItemStack> getDisplayOutput() {
     if (displayOutput == null) {
       ItemStack result = super.getDisplayOutput().get(0);
-      displayOutput = Arrays.stream(ingredients.get(0).getItems())
+      displayOutput = Arrays.stream(ingredients.get(0).items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new))
         .map(stack -> {
           CompoundTag tag = TagUtil.getTag(stack);
           if (tag != null) {

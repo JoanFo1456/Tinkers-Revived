@@ -51,7 +51,7 @@ public class TinkerStationPartSwappingBuilder extends AbstractRecipeBuilder<Tink
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer) {
-    save(consumer, Loadables.ITEM.getKey(tools.getItems()[0].getItem()));
+    save(consumer, Loadables.ITEM.getKey(tools.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)[0].getItem()));
   }
 
   @Override

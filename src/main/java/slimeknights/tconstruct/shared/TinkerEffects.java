@@ -85,7 +85,7 @@ public class TinkerEffects extends TinkerModule {
   /** Registers recipes for brewing, longer and stronger potions for the given object */
   private static void brewing(RegisterBrewingRecipesEvent event, EnumObject<PotionType,Potion> potion, Holder<Potion> base, Ingredient ingredient) {
     Potion normal = potion.get(PotionType.NORMAL);
-    event.getBuilder().addMix(base, ingredient.getItems()[0].getItem(), holder(normal));
+    event.getBuilder().addMix(base, ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)[0].getItem(), holder(normal));
     Potion longer = potion.getOrNull(PotionType.LONG);
     if (longer != null) {
       event.getBuilder().addMix(holder(normal), Items.REDSTONE, holder(longer));

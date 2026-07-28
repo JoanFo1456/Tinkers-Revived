@@ -49,7 +49,7 @@ public class ShapedMaterialsExtension extends MaterialsCraftingExtension<ShapedM
   @Nullable
   public static ShapedMaterialsExtension create(ShapedMaterialsRecipe recipe) {
     for (Ingredient ingredient : recipe.getParts()) {
-      if (ingredient.getItems().length == 0) {
+      if (ingredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new).length == 0) {
         return null;
       }
     }
