@@ -12,6 +12,10 @@ import net.minecraft.world.item.ItemStack;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import slimeknights.mantle.fluid.FluidTransferHelper;
 import slimeknights.mantle.fluid.transfer.FluidContainerTransferManager;
 import slimeknights.mantle.fluid.transfer.IFluidContainerTransfer.TransferDirection;
@@ -44,7 +48,7 @@ public class HeatingStructureContainerMenu extends TriggeringMultiModuleContaine
     if (inv != null && structure != null) {
       // slots for emptying/filling buckets - do first but filtered
       if (!inv.player.level().isClientSide) {
-        IFluidHandler tank = structure.getTank();
+        ResourceHandler<FluidResource> tank = structure.getTank();
         addSlot(new BucketInputSlot(bucketContainer, 125, 46, tank, this, inv.player));
         bucketResultSlot = addSlot(new BucketResultSlot(bucketContainer, 125, 104, tank, this, inv.player));
       } else {
@@ -198,16 +202,17 @@ public class HeatingStructureContainerMenu extends TriggeringMultiModuleContaine
 
     @Override
     public boolean mayPlace(ItemStack stack) {
-      return FluidContainerTransferManager.INSTANCE.mayHaveTransfer(stack) || stack.getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM) != null;
+      return FluidContainerTransferManager.INSTANCE.mayHaveTransfer(stack)
+        || (!stack.isEmpty() && Capabilities.Fluid.ITEM.getCapability(stack, ItemAccess.forStack(stack)) != null);
     }
   }
 
   /** Bucket input slot - used serverside only to handle draining the bucket when placed in the slot */
   public static class BucketInputSlot extends BucketSlot {
-    private final IFluidHandler tank;
+    private final ResourceHandler<FluidResource> tank;
     private final TransferDirectionSupplier directionSupplier;
     private final Player player;
-    public BucketInputSlot(Container pContainer, int pX, int pY, IFluidHandler tank, TransferDirectionSupplier directionSupplier, Player player) {
+    public BucketInputSlot(Container pContainer, int pX, int pY, ResourceHandler<FluidResource> tank, TransferDirectionSupplier directionSupplier, Player player) {
       super(pContainer, 0, pX, pY);
       this.tank = tank;
       this.directionSupplier = directionSupplier;
@@ -241,10 +246,10 @@ public class HeatingStructureContainerMenu extends TriggeringMultiModuleContaine
 
   /** Bucket result slot - used serverside to trigger fluid transfer when the slot is emptied */
   public static class BucketResultSlot extends ResultSlot {
-    private final IFluidHandler tank;
+    private final ResourceHandler<FluidResource> tank;
     private final TransferDirectionSupplier directionSupplier;
     private final Player player;
-    public BucketResultSlot(Container pContainer, int pX, int pY, IFluidHandler tank, TransferDirectionSupplier directionSupplier, Player player) {
+    public BucketResultSlot(Container pContainer, int pX, int pY, ResourceHandler<FluidResource> tank, TransferDirectionSupplier directionSupplier, Player player) {
       super(pContainer, 1, pX, pY);
       this.tank = tank;
       this.directionSupplier = directionSupplier;
