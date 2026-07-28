@@ -49,7 +49,7 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
       GuiTankModule[] tanks = new GuiTankModule[numTanks];
       int max = Math.min(numTanks, 5); // only support 5 tanks, any more is impossible
       for (int i = 0; i < max; i++) {
-        tanks[i] = new GuiTankModule(this, alloyTank.getFluidHandler(i), INPUT_TANK_START_X[i], 16, 14, 52, AlloyerContainerMenu.TOOLTIP_FORMAT);
+        tanks[i] = new GuiTankModule(this, net.neoforged.neoforge.fluids.capability.IFluidHandler.of(alloyTank.getFluidHandler(i)), INPUT_TANK_START_X[i], 16, 14, 52, AlloyerContainerMenu.TOOLTIP_FORMAT);
       }
       this.inputTanks = tanks;
     }
