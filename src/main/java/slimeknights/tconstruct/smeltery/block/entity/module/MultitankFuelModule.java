@@ -13,6 +13,8 @@ import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import slimeknights.mantle.block.entity.MantleBlockEntity;
 import slimeknights.mantle.util.WeakConsumerWrapper;
 import slimeknights.tconstruct.library.utils.Util;
@@ -78,7 +80,8 @@ public class MultitankFuelModule extends FuelModule implements IFluidHandler {
   public void ensureTankPresent(BlockEntity be) {
     BlockPos pos = be.getBlockPos();
     if (tankHandlers != null && !tankHandlers.containsKey(pos)) {
-      IFluidHandler capability = be.getLevel() == null ? null : be.getLevel().getCapability(Capabilities.FluidHandler.BLOCK, pos, null, be, null);
+      ResourceHandler<FluidResource> rh = be.getLevel() == null ? null : be.getLevel().getCapability(Capabilities.Fluid.BLOCK, pos, null, be, null);
+      IFluidHandler capability = rh == null ? null : IFluidHandler.of(rh);
       LazyOptional<IFluidHandler> handler = LazyOptional.ofNullable(capability);
       if (handler.isPresent()) {
         handler.addListener(tankHandlerListener);
@@ -95,7 +98,8 @@ public class MultitankFuelModule extends FuelModule implements IFluidHandler {
       for (BlockPos pos : tankSupplier.get()) {
         BlockEntity te = world.getBlockEntity(pos);
         if (te != null) {
-          LazyOptional<IFluidHandler> handler = LazyOptional.ofNullable(world.getCapability(Capabilities.FluidHandler.BLOCK, pos, null, te, null));
+          ResourceHandler<FluidResource> rh = world.getCapability(Capabilities.Fluid.BLOCK, pos, null, te, null);
+          LazyOptional<IFluidHandler> handler = LazyOptional.ofNullable(rh == null ? null : IFluidHandler.of(rh));
           if (handler.isPresent()) {
             handler.addListener(tankHandlerListener);
             tankHandlers.put(pos, handler);

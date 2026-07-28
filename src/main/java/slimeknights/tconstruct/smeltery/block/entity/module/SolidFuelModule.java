@@ -14,6 +14,9 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
+import net.neoforged.neoforge.transfer.item.ItemResource;
 import slimeknights.mantle.block.entity.MantleBlockEntity;
 import slimeknights.mantle.inventory.EmptyItemHandler;
 import slimeknights.mantle.util.WeakConsumerWrapper;
@@ -116,12 +119,14 @@ public class SolidFuelModule extends FuelModule {
     if (te != null) {
       // first, identify a capability that has what we need
       // on the chance both are present, we prioritize fluid; we don't expect that to change
-      IFluidHandler fluidCapability = getLevel().getCapability(Capabilities.FluidHandler.BLOCK, fuelPos, null, te, null);
+      ResourceHandler<FluidResource> fluidRh = getLevel().getCapability(Capabilities.Fluid.BLOCK, fuelPos, null, te, null);
+      IFluidHandler fluidCapability = fluidRh == null ? null : IFluidHandler.of(fluidRh);
       fluidHandler = LazyOptional.ofNullable(fluidCapability);
       if (fluidHandler.isPresent()) {
         fluidHandler.addListener(fluidListener);
       }
-      IItemHandler itemCapability = getLevel().getCapability(Capabilities.ItemHandler.BLOCK, fuelPos, null, te, null);
+      ResourceHandler<ItemResource> itemRh = getLevel().getCapability(Capabilities.Item.BLOCK, fuelPos, null, te, null);
+      IItemHandler itemCapability = itemRh == null ? null : IItemHandler.of(itemRh);
       itemHandler = LazyOptional.ofNullable(itemCapability);
       if (itemHandler.isPresent()) {
         itemHandler.addListener(itemListener);
