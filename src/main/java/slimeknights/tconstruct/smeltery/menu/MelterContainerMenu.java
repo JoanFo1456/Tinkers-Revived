@@ -13,8 +13,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import slimeknights.mantle.fluid.FluidTransferHelper;
 import slimeknights.mantle.fluid.transfer.IFluidContainerTransfer.TransferDirection;
 import slimeknights.mantle.fluid.transfer.IFluidContainerTransfer.TransferResult;
@@ -55,7 +58,8 @@ public class MelterContainerMenu extends TriggeringBaseContainerMenu<MelterBlock
       if (world != null && world.getBlockState(down).is(TinkerTags.Blocks.FUEL_TANKS)) {
         BlockEntity te = world.getBlockEntity(down);
         if (te != null) {
-          IItemHandler handler = world.getCapability(Capabilities.ItemHandler.BLOCK, down, world.getBlockState(down), te, null);
+          var handlerRh = world.getCapability(Capabilities.Item.BLOCK, down, world.getBlockState(down), te, null);
+          IItemHandler handler = handlerRh == null ? null : IItemHandler.of(handlerRh);
           hasFuelSlot = handler != null;
           if (handler != null) {
             this.addSlot(new SmartItemHandlerSlot(handler, 0, 151, 32));
@@ -84,11 +88,12 @@ public class MelterContainerMenu extends TriggeringBaseContainerMenu<MelterBlock
       ItemStack held = getCarried();
       if (!held.isEmpty()) {
         if (!player.level().isClientSide && tile != null) {
-          IFluidHandler tank = id < 2 ? tile.getTank() : tile.getFuelModule().getTank();
+          ResourceHandler<FluidResource> tank = id < 2 ? tile.getTank() : tile.getFuelModule().getTank();
           TransferResult result;
           // even means drain fluid, odd means fill
           if ((id & 1) == 0) {
-            result = FluidTransferHelper.fillStack(tank, held, tank.getFluidInTank(0));
+            FluidStack current = tank.size() > 0 ? tank.getResource(0).toStack(tank.getAmountAsInt(0)) : FluidStack.EMPTY;
+            result = FluidTransferHelper.fillStack(tank, held, current);
           } else {
             result = FluidTransferHelper.interactWithStack(tank, held, TransferDirection.EMPTY_ITEM);
           }

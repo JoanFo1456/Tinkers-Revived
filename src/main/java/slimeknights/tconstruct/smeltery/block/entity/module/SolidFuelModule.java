@@ -14,6 +14,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.neoforged.neoforge.transfer.EmptyResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.item.ItemResource;
@@ -38,6 +39,9 @@ public class SolidFuelModule extends FuelModule {
   /** Last item handler where items were extracted */
   @Nullable
   private LazyOptional<IItemHandler> itemHandler;
+  /** Raw fluid resource handler for the fuel tank, exposed to menus */
+  @Nullable
+  private ResourceHandler<FluidResource> fluidTank;
 
   public SolidFuelModule(MantleBlockEntity parent, BlockPos fuelPos) {
     super(parent);
@@ -59,6 +63,7 @@ public class SolidFuelModule extends FuelModule {
       }
       itemHandler = null;
       fluidHandler = null;
+      fluidTank = null;
     }
   }
 
@@ -120,6 +125,7 @@ public class SolidFuelModule extends FuelModule {
       // first, identify a capability that has what we need
       // on the chance both are present, we prioritize fluid; we don't expect that to change
       ResourceHandler<FluidResource> fluidRh = getLevel().getCapability(Capabilities.Fluid.BLOCK, fuelPos, null, te, null);
+      fluidTank = fluidRh;
       IFluidHandler fluidCapability = fluidRh == null ? null : IFluidHandler.of(fluidRh);
       fluidHandler = LazyOptional.ofNullable(fluidCapability);
       if (fluidHandler.isPresent()) {
@@ -132,6 +138,7 @@ public class SolidFuelModule extends FuelModule {
         itemHandler.addListener(itemListener);
       }
     } else {
+      fluidTank = null;
       fluidHandler = LazyOptional.empty();
       itemHandler = LazyOptional.empty();
     }
@@ -179,10 +186,7 @@ public class SolidFuelModule extends FuelModule {
   /* Fluid handler */
 
   /** Gets the fluid handler for proxy */
-  public IFluidHandler getTank() {
-    if (fluidHandler != null) {
-      return fluidHandler.orElse(EmptyFluidHandler.INSTANCE);
-    }
-    return EmptyFluidHandler.INSTANCE;
+  public ResourceHandler<FluidResource> getTank() {
+    return fluidTank != null ? fluidTank : EmptyResourceHandler.instance();
   }
 }
