@@ -24,7 +24,7 @@ public record PlayerStatVariable(Stat<?> stat, float fallback) implements Entity
   public float getValue(LivingEntity entity) {
     // no attempt is made to fetch the stat client-side as they do not sync
     // no warning however as we need it for the tooltip, use the fallback for a reasonable tooltip value (or 0 to hide it)
-    if (!entity.level().isClientSide && entity instanceof ServerPlayer player) {
+    if (!entity.level().isClientSide() && entity instanceof ServerPlayer player) {
       return player.getStats().getValue(stat);
     }
     return fallback;

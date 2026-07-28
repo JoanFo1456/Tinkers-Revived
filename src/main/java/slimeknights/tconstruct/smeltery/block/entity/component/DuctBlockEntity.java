@@ -119,7 +119,7 @@ public class DuctBlockEntity extends SmelteryFluidIO implements MenuProvider {
   @Override
   public void handleUpdateTag(ValueInput input) {
     super.handleUpdateTag(input);
-    if (level != null && level.isClientSide) {
+    if (level != null && level.isClientSide()) {
       updateFluid();
     }
   }

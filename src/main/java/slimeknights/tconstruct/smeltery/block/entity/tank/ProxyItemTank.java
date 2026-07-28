@@ -54,7 +54,7 @@ public class ProxyItemTank<T extends MantleBlockEntity & IFluidTankUpdater> exte
   /** Sends the current slot contents to nearby clients, as we directly mutate the internal stack */
   private void syncToClients(ItemStack newStack) {
     Level world = parent.getLevel();
-    if (world != null && !world.isClientSide) {
+    if (world != null && !world.isClientSide()) {
       parent.onTankContentsChanged();
       BlockPos pos = parent.getBlockPos();
       TinkerNetwork.getInstance().sendToClientsAround(new InventorySlotSyncPacket(newStack, 0, pos), world, pos);

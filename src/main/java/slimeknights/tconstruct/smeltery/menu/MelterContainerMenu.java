@@ -87,7 +87,7 @@ public class MelterContainerMenu extends TriggeringBaseContainerMenu<MelterBlock
     if (0 <= id && id <= 3 && !player.isSpectator()) {
       ItemStack held = getCarried();
       if (!held.isEmpty()) {
-        if (!player.level().isClientSide && tile != null) {
+        if (!player.level().isClientSide() && tile != null) {
           ResourceHandler<FluidResource> tank = id < 2 ? tile.getTank() : tile.getFuelModule().getTank();
           TransferResult result;
           // even means drain fluid, odd means fill

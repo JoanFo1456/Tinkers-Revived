@@ -43,7 +43,7 @@ public enum BlockInteractFluidEffect implements FluidEffect<FluidEffectContext.B
     // vanilla tools tend not to call the proper damage methods if player is null, so just manually damage the stack
     // we expect modded items will have the same bug, so just go ahead and damage them. On the chance it works, they get 2 damage, no big deal
     // our tools we know work so ignore them
-    if (!level.isClientSide && context.getPlayer() == null && stack.isDamageableItem() && !stack.is(TinkerTags.Items.MODIFIABLE)) {
+    if (!level.isClientSide() && context.getPlayer() == null && stack.isDamageableItem() && !stack.is(TinkerTags.Items.MODIFIABLE)) {
       // unable to call Forge damageItem as that needs entity access, but its just vanilla broken anyways, right?
       stack.setDamageValue(stack.getDamageValue() + 1);
       // calling methods again instead of using return as return may be incorrect for custom broken stacks

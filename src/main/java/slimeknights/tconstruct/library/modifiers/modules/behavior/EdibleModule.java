@@ -148,7 +148,7 @@ public record EdibleModule(ItemStack representativeItem, LevelingInt duration, L
         if (entity instanceof Player player && player.canEat(false)) {
           ItemStack representativeItem = getRepresentativeItem(entity);
           eatEffects(entity, representativeItem, 16);
-          if (!entity.level().isClientSide) {
+          if (!entity.level().isClientSide()) {
             eat(tool, modifier, player, representativeItem);
           }
         }
@@ -167,7 +167,7 @@ public record EdibleModule(ItemStack representativeItem, LevelingInt duration, L
       if (modifier != activeModifier) {
         eatEffects(entity, representativeItem, 5);
       }
-      if (!entity.level().isClientSide) {
+      if (!entity.level().isClientSide()) {
         eat(tool, modifier, player, representativeItem);
       }
     }

@@ -42,7 +42,7 @@ public abstract class HeatingControllerBlock extends ControllerBlock {
     boolean opened = false;
     if (state.getBlock() == this) {
       if (canOpenGui(state)) {
-        if (!world.isClientSide && player instanceof ServerPlayer serverPlayer) {
+        if (!world.isClientSide() && player instanceof ServerPlayer serverPlayer) {
           MenuProvider container = this.getMenuProvider(state, world, pos);
           if (container != null) {
             serverPlayer.openMenu(container, buffer -> {
@@ -62,7 +62,7 @@ public abstract class HeatingControllerBlock extends ControllerBlock {
     }
 
     // only need to update if holding the proper items
-    if (!world.isClientSide) {
+    if (!world.isClientSide()) {
       BlockEntityHelper.get(HeatingStructureBlockEntity.class, world, pos).ifPresent(te -> {
         MultiblockResult result = te.getStructureResult();
         if (!result.isSuccess() && te.showDebugBlockBorder(player)) {
@@ -75,7 +75,7 @@ public abstract class HeatingControllerBlock extends ControllerBlock {
 
   @Override
   protected boolean displayStatus(Player player, Level world, BlockPos pos, BlockState state) {
-    if (!world.isClientSide) {
+    if (!world.isClientSide()) {
       BlockEntityHelper.get(HeatingStructureBlockEntity.class, world, pos).ifPresent(te -> {
         MultiblockResult result = te.getStructureResult();
         if (!result.isSuccess()) {

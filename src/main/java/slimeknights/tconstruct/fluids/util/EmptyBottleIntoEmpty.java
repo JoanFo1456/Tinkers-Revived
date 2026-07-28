@@ -26,7 +26,7 @@ public record EmptyBottleIntoEmpty(Supplier<Item> empty, CauldronInteraction fal
     if (!PotionUtils.getPotion(stack).is(Potions.WATER)) {
       return fallback.interact(state, level, pos, player, hand, stack);
     }
-    if (!level.isClientSide) {
+    if (!level.isClientSide()) {
       Item item = stack.getItem();
       player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(empty.get())));
       player.awardStat(Stats.USE_CAULDRON);
@@ -35,6 +35,6 @@ public record EmptyBottleIntoEmpty(Supplier<Item> empty, CauldronInteraction fal
       level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
       level.gameEvent(null, GameEvent.FLUID_PLACE, pos);
     }
-    return InteractionResult.sidedSuccess(level.isClientSide);
+    return InteractionResult.sidedSuccess(level.isClientSide());
   }
 }

@@ -138,7 +138,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
    */
   public void interact(Player player, InteractionHand hand) {
     // skip client side, and skip if the recipe already started
-    if (level == null || level.isClientSide || (coolingTime >= 0 && timer > 0)) {
+    if (level == null || level.isClientSide() || (coolingTime >= 0 && timer > 0)) {
       return;
     }
     // first try interacting with the table as a tank. If that fails, run normal item swap logic
@@ -227,7 +227,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
       updateAnalogSignal();
     }
     // update the block property for having an item
-    if (level != null && !level.isClientSide) {
+    if (level != null && !level.isClientSide()) {
       boolean hasItem = !getItem(INPUT).isEmpty() || !getItem(OUTPUT).isEmpty();
       BlockState state = getBlockState();
       if (state.getValue(AbstractCastingBlock.HAS_ITEM) != hasItem) {
@@ -476,7 +476,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     updateAnalogSignal();
     // update client
     Level world = getLevel();
-    if (world != null && !world.isClientSide) {
+    if (world != null && !world.isClientSide()) {
       BlockPos pos = getBlockPos();
       TinkerNetwork.getInstance().sendToClientsAround(new FluidUpdatePacket(pos, fluidStack), world, pos);
     }
@@ -523,7 +523,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
 
   /** Updates the comparator strength if needed */
   private void updateAnalogSignal() {
-    if (level == null || !level.isClientSide) {
+    if (level == null || !level.isClientSide()) {
       int newStrength = getAnalogSignal();
       if (newStrength != lastAnalogSignal) {
         lastAnalogSignal = newStrength;
@@ -650,6 +650,6 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
   /** Gets the ticker for a casting entity */
   @Nullable
   public static <CAST extends CastingBlockEntity, RET extends BlockEntity> BlockEntityTicker<RET> getTicker(Level level, BlockEntityType<RET> check, BlockEntityType<CAST> casting) {
-    return BlockEntityHelper.castTicker(check, casting, level.isClientSide ? CLIENT_TICKER : SERVER_TICKER);
+    return BlockEntityHelper.castTicker(check, casting, level.isClientSide() ? CLIENT_TICKER : SERVER_TICKER);
   }
 }

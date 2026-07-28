@@ -112,7 +112,7 @@ public class CustomFireball extends Fireball implements ProjectileWithPower {
   @Override
   protected void onHit(HitResult pResult) {
     super.onHit(pResult);
-    if (!this.level().isClientSide) {
+    if (!this.level().isClientSide()) {
       this.discard();
     }
   }

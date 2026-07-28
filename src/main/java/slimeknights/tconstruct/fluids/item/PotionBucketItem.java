@@ -80,7 +80,7 @@ public class PotionBucketItem extends PotionItem {
     }
 
     // effects are 2x duration
-    if (!level.isClientSide) {
+    if (!level.isClientSide()) {
       for (MobEffectInstance effect : PotionUtils.getMobEffects(stack)) {
         if (effect.getEffect().value().isInstantenous()) {
           effect.getEffect().value().applyInstantenousEffect(player, player, living, effect.getAmplifier(), 2.5D);
