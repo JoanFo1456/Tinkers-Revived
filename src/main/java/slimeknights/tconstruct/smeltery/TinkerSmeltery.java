@@ -479,16 +479,16 @@ public final class TinkerSmeltery extends TinkerModule {
     registerFluid(event, basin.get());
     registerFluid(event, table.get());
     registerFluid(event, proxyTank.get());
-    event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, castingTank.get(), (be, side) -> be.getTank());
+    event.registerBlockEntity(Capabilities.Fluid.BLOCK, castingTank.get(), (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource>)(Object) be.getTank());
     registerFluid(event, melter.get());
     registerFluid(event, alloyer.get());
 
     registerItem(event, chute.get());
     registerItem(event, duct.get());
     registerItem(event, heater.get());
-    event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, basin.get(), (be, side) -> be.getItemHandler());
-    event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, table.get(), (be, side) -> be.getItemHandler());
-    event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, castingTank.get(), (be, side) -> be.getItemHandler());
+    event.registerBlockEntity(Capabilities.Item.BLOCK, basin.get(), (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.item.ItemResource>)(Object) be.getItemHandler());
+    event.registerBlockEntity(Capabilities.Item.BLOCK, table.get(), (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.item.ItemResource>)(Object) be.getItemHandler());
+    event.registerBlockEntity(Capabilities.Item.BLOCK, castingTank.get(), (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.item.ItemResource>)(Object) be.getItemHandler());
     registerItem(event, fluidCannon.get());
     registerItem(event, proxyTank.get());
     registerItem(event, melter.get());
@@ -507,11 +507,11 @@ public final class TinkerSmeltery extends TinkerModule {
   }
 
   private static <BE extends MantleBlockEntity & slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity> void registerFluid(RegisterCapabilitiesEvent event, BlockEntityType<BE> type) {
-    event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, type, (be, side) -> be.getCapability(ForgeCapabilities.FLUID_HANDLER, side).orElse(null));
+    event.registerBlockEntity(Capabilities.Fluid.BLOCK, type, (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource>)(Object) be.getCapability(ForgeCapabilities.FLUID_HANDLER, side).orElse(null));
   }
 
   private static <BE extends MantleBlockEntity & slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity> void registerItem(RegisterCapabilitiesEvent event, BlockEntityType<BE> type) {
-    event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, type, (be, side) -> be.getCapability(ForgeCapabilities.ITEM_HANDLER, side).orElse(null));
+    event.registerBlockEntity(Capabilities.Item.BLOCK, type, (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.item.ItemResource>)(Object) be.getCapability(ForgeCapabilities.ITEM_HANDLER, side).orElse(null));
   }
 
   private static void registerTankItem(RegisterCapabilitiesEvent event, ItemLike item) {
