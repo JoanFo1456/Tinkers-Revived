@@ -193,23 +193,24 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
   }
 
   @Override
-  public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+  public void loadAdditional(net.minecraft.world.level.storage.ValueInput input) {
     tank.setCapacity(getCapacity(getBlockState().getBlock()));
-    if (tag.contains(NBTTags.TANK)) {
-      tank.readFromNBT(registries, tag.getCompound(NBTTags.TANK));
+    java.util.Optional<net.minecraft.world.level.storage.ValueInput> tankInput = input.child(NBTTags.TANK);
+    if (tankInput.isPresent()) {
+      tank.deserialize(tankInput.get());
       updateLight(this, tank);
     } else {
       tank.setFluid(FluidStack.EMPTY);
     }
-    super.loadAdditional(tag, registries);
+    super.loadAdditional(input);
   }
 
   @Override
-  public void saveSynced(CompoundTag tag, HolderLookup.Provider registries) {
-    super.saveSynced(tag, registries);
+  public void saveSynced(net.minecraft.world.level.storage.ValueOutput output) {
+    super.saveSynced(output);
     // want tank on the client on world load
     if (!tank.isEmpty()) {
-      tag.put(NBTTags.TANK, tank.writeToNBT(registries, new CompoundTag()));
+      tank.serialize(output.child(NBTTags.TANK));
     }
   }
 

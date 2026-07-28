@@ -51,11 +51,13 @@ public class DrainBlockEntity extends SmelteryFluidIO implements IDisplayFluidLi
 
   /* Updating */
 
-  // override instead of writeSynced to avoid writing master to the main tag twice
+  // override instead of saveSynced to avoid writing master to the main tag twice
   @Override
-  public CompoundTag getUpdateTag() {
-    CompoundTag nbt = super.getUpdateTag();
-    writeMaster(nbt);
+  public CompoundTag getUpdateTag(net.minecraft.core.HolderLookup.Provider registries) {
+    CompoundTag nbt = super.getUpdateTag(registries);
+    net.minecraft.world.level.storage.TagValueOutput output = net.minecraft.world.level.storage.TagValueOutput.createWithContext(net.minecraft.util.ProblemReporter.DISCARDING, registries);
+    writeMaster(output);
+    nbt.merge(output.buildResult());
     return nbt;
   }
 
