@@ -20,7 +20,7 @@ public class TagIntersectionPresentCondition<T> implements ICondition {
   private static final Identifier NAME = TConstruct.getResource("tag_intersection_present");
   public static final MapCodec<TagIntersectionPresentCondition<?>> CODEC = RecordCodecBuilder.mapCodec(
     instance -> instance.group(
-      Identifier.CODEC.fieldOf("registry").forGetter(condition -> condition.names.get(0).registry().location()),
+      Identifier.CODEC.fieldOf("registry").forGetter(condition -> condition.names.get(0).registry().identifier()),
       Identifier.CODEC.listOf().fieldOf("tags").forGetter(condition -> condition.names.stream().map(TagKey::location).toList())
     ).apply(instance, TagIntersectionPresentCondition::create)
   );

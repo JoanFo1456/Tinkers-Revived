@@ -120,9 +120,9 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
     ToolStack tool = inv.getTinkerable().copy();
     ModDataNBT persistentData = tool.getPersistentData();
     ModifierId modifier = TinkerModifiers.trim.getId();
-    persistentData.putString(TrimModule.materialKey(modifier), material.key().location().toString());
+    persistentData.putString(TrimModule.materialKey(modifier), material.key().identifier().toString());
     if (pattern != null) {
-      persistentData.putString(TrimModule.patternKey(modifier), pattern.key().location().toString());
+      persistentData.putString(TrimModule.patternKey(modifier), pattern.key().identifier().toString());
     }
 
     // add the modifier if missing

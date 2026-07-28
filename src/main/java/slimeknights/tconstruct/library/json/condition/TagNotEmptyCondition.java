@@ -20,7 +20,7 @@ public class TagNotEmptyCondition<T> implements LootItemCondition, ICondition {
   private static final Identifier NAME = TConstruct.getResource("tag_not_empty");
   public static final MapCodec<TagNotEmptyCondition<?>> CODEC = RecordCodecBuilder.mapCodec(
     instance -> instance.group(
-      Identifier.CODEC.fieldOf("registry").forGetter(condition -> condition.tag.registry().location()),
+      Identifier.CODEC.fieldOf("registry").forGetter(condition -> condition.tag.registry().identifier()),
       Identifier.CODEC.fieldOf("tag").forGetter(condition -> condition.tag.location())
     ).apply(instance, TagNotEmptyCondition::create)
   );

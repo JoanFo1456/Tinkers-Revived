@@ -49,49 +49,49 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
   private static final Component HOLD_SHIFT = TConstruct.makeTranslation("modifier", "banner.hold_shift").withStyle(ChatFormatting.GRAY);
   /** Vanilla banner pattern IDs used for texture validation. */
   public static final List<Identifier> VANILLA_PATTERN_IDS = List.of(
-    BannerPatterns.BASE.location(),
-    BannerPatterns.SQUARE_BOTTOM_LEFT.location(),
-    BannerPatterns.SQUARE_BOTTOM_RIGHT.location(),
-    BannerPatterns.SQUARE_TOP_LEFT.location(),
-    BannerPatterns.SQUARE_TOP_RIGHT.location(),
-    BannerPatterns.STRIPE_BOTTOM.location(),
-    BannerPatterns.STRIPE_TOP.location(),
-    BannerPatterns.STRIPE_LEFT.location(),
-    BannerPatterns.STRIPE_RIGHT.location(),
-    BannerPatterns.STRIPE_CENTER.location(),
-    BannerPatterns.STRIPE_MIDDLE.location(),
-    BannerPatterns.STRIPE_DOWNRIGHT.location(),
-    BannerPatterns.STRIPE_DOWNLEFT.location(),
-    BannerPatterns.STRIPE_SMALL.location(),
-    BannerPatterns.CROSS.location(),
-    BannerPatterns.STRAIGHT_CROSS.location(),
-    BannerPatterns.TRIANGLE_BOTTOM.location(),
-    BannerPatterns.TRIANGLE_TOP.location(),
-    BannerPatterns.TRIANGLES_BOTTOM.location(),
-    BannerPatterns.TRIANGLES_TOP.location(),
-    BannerPatterns.DIAGONAL_LEFT.location(),
-    BannerPatterns.DIAGONAL_RIGHT.location(),
-    BannerPatterns.DIAGONAL_LEFT_MIRROR.location(),
-    BannerPatterns.DIAGONAL_RIGHT_MIRROR.location(),
-    BannerPatterns.CIRCLE_MIDDLE.location(),
-    BannerPatterns.RHOMBUS_MIDDLE.location(),
-    BannerPatterns.HALF_VERTICAL.location(),
-    BannerPatterns.HALF_HORIZONTAL.location(),
-    BannerPatterns.HALF_VERTICAL_MIRROR.location(),
-    BannerPatterns.HALF_HORIZONTAL_MIRROR.location(),
-    BannerPatterns.BORDER.location(),
-    BannerPatterns.CURLY_BORDER.location(),
-    BannerPatterns.GRADIENT.location(),
-    BannerPatterns.GRADIENT_UP.location(),
-    BannerPatterns.BRICKS.location(),
-    BannerPatterns.GLOBE.location(),
-    BannerPatterns.CREEPER.location(),
-    BannerPatterns.SKULL.location(),
-    BannerPatterns.FLOWER.location(),
-    BannerPatterns.MOJANG.location(),
-    BannerPatterns.PIGLIN.location(),
-    BannerPatterns.FLOW.location(),
-    BannerPatterns.GUSTER.location()
+    BannerPatterns.BASE.identifier(),
+    BannerPatterns.SQUARE_BOTTOM_LEFT.identifier(),
+    BannerPatterns.SQUARE_BOTTOM_RIGHT.identifier(),
+    BannerPatterns.SQUARE_TOP_LEFT.identifier(),
+    BannerPatterns.SQUARE_TOP_RIGHT.identifier(),
+    BannerPatterns.STRIPE_BOTTOM.identifier(),
+    BannerPatterns.STRIPE_TOP.identifier(),
+    BannerPatterns.STRIPE_LEFT.identifier(),
+    BannerPatterns.STRIPE_RIGHT.identifier(),
+    BannerPatterns.STRIPE_CENTER.identifier(),
+    BannerPatterns.STRIPE_MIDDLE.identifier(),
+    BannerPatterns.STRIPE_DOWNRIGHT.identifier(),
+    BannerPatterns.STRIPE_DOWNLEFT.identifier(),
+    BannerPatterns.STRIPE_SMALL.identifier(),
+    BannerPatterns.CROSS.identifier(),
+    BannerPatterns.STRAIGHT_CROSS.identifier(),
+    BannerPatterns.TRIANGLE_BOTTOM.identifier(),
+    BannerPatterns.TRIANGLE_TOP.identifier(),
+    BannerPatterns.TRIANGLES_BOTTOM.identifier(),
+    BannerPatterns.TRIANGLES_TOP.identifier(),
+    BannerPatterns.DIAGONAL_LEFT.identifier(),
+    BannerPatterns.DIAGONAL_RIGHT.identifier(),
+    BannerPatterns.DIAGONAL_LEFT_MIRROR.identifier(),
+    BannerPatterns.DIAGONAL_RIGHT_MIRROR.identifier(),
+    BannerPatterns.CIRCLE_MIDDLE.identifier(),
+    BannerPatterns.RHOMBUS_MIDDLE.identifier(),
+    BannerPatterns.HALF_VERTICAL.identifier(),
+    BannerPatterns.HALF_HORIZONTAL.identifier(),
+    BannerPatterns.HALF_VERTICAL_MIRROR.identifier(),
+    BannerPatterns.HALF_HORIZONTAL_MIRROR.identifier(),
+    BannerPatterns.BORDER.identifier(),
+    BannerPatterns.CURLY_BORDER.identifier(),
+    BannerPatterns.GRADIENT.identifier(),
+    BannerPatterns.GRADIENT_UP.identifier(),
+    BannerPatterns.BRICKS.identifier(),
+    BannerPatterns.GLOBE.identifier(),
+    BannerPatterns.CREEPER.identifier(),
+    BannerPatterns.SKULL.identifier(),
+    BannerPatterns.FLOWER.identifier(),
+    BannerPatterns.MOJANG.identifier(),
+    BannerPatterns.PIGLIN.identifier(),
+    BannerPatterns.FLOW.identifier(),
+    BannerPatterns.GUSTER.identifier()
   );
   /** Mapping of legacy NBT banner hashes to modern pattern IDs. */
   private static final Map<String,Identifier> LEGACY_PATTERNS = Map.ofEntries(
@@ -198,11 +198,11 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
     if (parsed != null) {
       return parsed;
     }
-    return BannerPatterns.BASE.location();
+    return BannerPatterns.BASE.identifier();
   }
 
   private static Map.Entry<String,Identifier> pattern(String legacy, ResourceKey<BannerPattern> pattern) {
-    return Map.entry(legacy, pattern.location());
+    return Map.entry(legacy, pattern.identifier());
   }
 
   /** Copies the given list of patterns from banner format to the tool's NBT */
@@ -212,7 +212,7 @@ public enum BannerModule implements ModifierModule, DisplayNameModifierHook, Too
 
     // add in the base pattern, it only exists on shields and we copy from banners
     CompoundTag basePattern = new CompoundTag();
-    basePattern.putString(KEY_PATTERN, BannerPatterns.BASE.location().toString());
+    basePattern.putString(KEY_PATTERN, BannerPatterns.BASE.identifier().toString());
     basePattern.putInt(KEY_DYE, dye.getId());
     basePattern.putInt(KEY_COLOR, baseColor);
     patterns.add(basePattern);

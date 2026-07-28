@@ -20,7 +20,7 @@ public class TagDifferencePresentCondition<T> implements ICondition {
   private static final Identifier NAME = TConstruct.getResource("tag_difference_present");
   public static final MapCodec<TagDifferencePresentCondition<?>> CODEC = RecordCodecBuilder.mapCodec(
     instance -> instance.group(
-      Identifier.CODEC.fieldOf("registry").forGetter(condition -> condition.base.registry().location()),
+      Identifier.CODEC.fieldOf("registry").forGetter(condition -> condition.base.registry().identifier()),
       Identifier.CODEC.fieldOf("base").forGetter(condition -> condition.base.location()),
       Identifier.CODEC.listOf().fieldOf("subtracted").forGetter(condition -> condition.subtracted.stream().map(TagKey::location).toList())
     ).apply(instance, TagDifferencePresentCondition::create)

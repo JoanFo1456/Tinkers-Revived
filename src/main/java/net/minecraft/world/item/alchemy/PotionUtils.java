@@ -31,7 +31,7 @@ public final class PotionUtils {
 
   public static ItemStack setPotion(ItemStack stack, Holder<Potion> potion) {
     stack.set(DataComponents.POTION_CONTENTS, new PotionContents(potion));
-    CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> tag.putString(TAG_POTION, potion.unwrapKey().map(key -> key.location().toString()).orElse("minecraft:water")));
+    CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> tag.putString(TAG_POTION, potion.unwrapKey().map(key -> key.identifier().toString()).orElse("minecraft:water")));
     return stack;
   }
 

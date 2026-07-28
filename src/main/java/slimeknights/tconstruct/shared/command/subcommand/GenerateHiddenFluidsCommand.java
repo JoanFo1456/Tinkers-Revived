@@ -48,7 +48,7 @@ public class GenerateHiddenFluidsCommand {
 
     // fetch existing tag, if it exists
     Identifier tag = Fluids.HIDDEN_IN_RECIPE_VIEWERS.location();
-    Path tagPath = pack.resolve(PackType.SERVER_DATA.getDirectory() + '/' + tag.getNamespace() + "/tags/" + Registries.FLUID.location().getPath() + '/' + tag.getPath() + ".json");
+    Path tagPath = pack.resolve(PackType.SERVER_DATA.getDirectory() + '/' + tag.getNamespace() + "/tags/" + Registries.FLUID.identifier().getPath() + '/' + tag.getPath() + ".json");
 
     // load in existing tag from the path, not using resource managers as we are just modifying locally
     List<TagEntry> add = new ArrayList<>();

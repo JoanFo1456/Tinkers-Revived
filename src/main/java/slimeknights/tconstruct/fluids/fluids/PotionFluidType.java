@@ -79,8 +79,8 @@ public class PotionFluidType extends FluidType {
   /** Creates a fluid stack for the given potion */
   public static FluidStack potionFluid(ResourceKey<Potion> potion, int size) {
     CompoundTag tag = null;
-    if (!potion.location().equals(Potions.WATER.unwrapKey().orElseThrow().location())) {
-      tag = potionTag(potion.location());
+    if (!potion.identifier().equals(Potions.WATER.unwrapKey().orElseThrow().identifier())) {
+      tag = potionTag(potion.identifier());
     }
     return potionFluid(tag, size);
   }
@@ -110,8 +110,8 @@ public class PotionFluidType extends FluidType {
   /** Creates a potion bucket for the given potion */
   public static ItemStack potionBucket(ResourceKey<Potion> potion) {
     ItemStack stack = new ItemStack(TinkerFluids.potion);
-    if (!potion.location().equals(Potions.WATER.unwrapKey().orElseThrow().location())) {
-      TagUtil.setTag(stack, potionTag(potion.location()));
+    if (!potion.identifier().equals(Potions.WATER.unwrapKey().orElseThrow().identifier())) {
+      TagUtil.setTag(stack, potionTag(potion.identifier()));
     }
     return stack;
   }
