@@ -128,14 +128,14 @@ public class ModelSpriteProvider extends GenericTextureGenerator {
         // locate the first sprite with a non-zero alpha value and copy the color
         for (NativeImage sprite : sprites) {
           // tile the sprite if its smaller than the output, lets you merge multiple animations
-          int spriteColor = sprite.getPixelRGBA(x % sprite.getHeight(), y % sprite.getHeight());
+          int spriteColor = sprite.getPixel(x % sprite.getHeight(), y % sprite.getHeight());
           if (ARGB.alpha(spriteColor) != 0) {
             // TODO: this does not merge alpha, though will we ever need that?
             color = spriteColor;
             break;
           }
         }
-        generated.setPixelRGBA(x, y, color);
+        generated.setPixel(x, y, color);
       }
     }
     tasks.add(saveImage(cache, output, generated));

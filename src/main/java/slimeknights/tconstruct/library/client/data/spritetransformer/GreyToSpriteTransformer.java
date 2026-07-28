@@ -251,13 +251,13 @@ public class GreyToSpriteTransformer implements IRecolorSpriteTransformer {
           int spriteColor;
           // -1 means we are not doing frames, treat the whole image as one thing. This notably does not require it to be square
           if (frame == -1) {
-            spriteColor = image.getPixelRGBA(x % image.getWidth(), y % image.getHeight());
+            spriteColor = image.getPixel(x % image.getWidth(), y % image.getHeight());
           } else {
             // assume the frames of this are square, otherwise we have to store the ratio somewhere
             int width = image.getWidth();
             // ensure the x and y coordinates are within the individual frame by wrapping, needed notably for large tool sprites
             // then offset the y value, and ensure the offset is within the final height
-            spriteColor = image.getPixelRGBA(x % width, (y % width + frame * width) % image.getHeight());
+            spriteColor = image.getPixel(x % width, (y % width + frame * width) % image.getHeight());
           }
           // if we have a color set, treat it as a tint
           if (color != -1) {
@@ -280,7 +280,7 @@ public class GreyToSpriteTransformer implements IRecolorSpriteTransformer {
           int alpha = 0;
           for (int x = 0; x < image.getWidth(); x++) {
             for (int y = 0; y < image.getHeight(); y++) {
-              int color = image.getPixelRGBA(x, y);
+              int color = image.getPixel(x, y);
               red   += ABGR.red(color);
               green += ABGR.green(color);
               blue  += ABGR.blue(color);

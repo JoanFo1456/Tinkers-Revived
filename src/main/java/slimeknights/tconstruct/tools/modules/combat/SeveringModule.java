@@ -48,7 +48,7 @@ public enum SeveringModule implements ModifierModule, ProcessLootModifierHook {
     }
 
     // must have an entity
-    Entity entity = context.getParamOrNull(LootContextParams.THIS_ENTITY);
+    Entity entity = context.getOptionalParameter(LootContextParams.THIS_ENTITY);
     if (entity != null) {
       // ensure no head so far
       if (generatedLoot.stream().noneMatch(stack -> stack.is(TinkerTags.Items.SKULLS) || stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock)) {
@@ -57,7 +57,7 @@ public enum SeveringModule implements ModifierModule, ProcessLootModifierHook {
         List<SeveringRecipe> recipes = SeveringRecipeCache.findRecipe(world.getRecipeManager(), entity.getType());
         if (!recipes.isEmpty()) {
           float level = modifier.getEffectiveLevel();
-          Integer lootingLevel = context.getParamOrNull(LootContextParams.ENCHANTMENT_LEVEL);
+          Integer lootingLevel = context.getOptionalParameter(LootContextParams.ENCHANTMENT_LEVEL);
           float looting = lootingLevel == null ? 0 : lootingLevel;
           // deprecated method of doubling chances
           float chanceMultiplier = entity.getType().builtInRegistryHolder().is(TinkerTags.EntityTypes.RARE_MOBS) ? 2 : 1;
