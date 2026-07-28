@@ -154,7 +154,7 @@ public class CreativeSlotItem extends Item {
             FluidTransferHelper.playUISound(player, SoundEvents.GRINDSTONE_USE);
           }
         } else if (!player.isCreative()) {
-          player.displayClientMessage(CREATIVE_ONLY, false);
+          player.sendSystemMessage(CREATIVE_ONLY);
         }
       }
       return true;

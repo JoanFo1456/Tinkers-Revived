@@ -89,7 +89,7 @@ public record BreakBlockFluidEffect(float hardness, Map<Enchantment,Integer> enc
         ItemStack fakeTool = ItemStack.EMPTY;
         if (!enchantments.isEmpty()) {
           fakeTool = new ItemStack(Items.STICK);
-          Registry<Enchantment> registry = server.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+          Registry<Enchantment> registry = server.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
           ItemEnchantments.Mutable mutable = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
           enchantments.forEach((enchantment, enchantmentLevel) -> mutable.set(registry.wrapAsHolder(enchantment), enchantmentLevel));
           EnchantmentHelper.setEnchantments(fakeTool, mutable.toImmutable());
