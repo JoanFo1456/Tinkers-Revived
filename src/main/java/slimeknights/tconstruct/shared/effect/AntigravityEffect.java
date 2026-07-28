@@ -75,7 +75,7 @@ public class AntigravityEffect extends TinkerEffect {
           living.setDeltaMovement(velocity.x, lastVelocity.twoTicks, velocity.z);
           BlockPos above = BlockPos.containing(living.getX(), living.getBoundingBox().maxY + 0.1, living.getZ());
           BlockState hit = level.getBlockState(above);
-          float height = (float)(lastVelocity.twoTicks * 10 - 3 - living.getAttributeValue(TinkerAttributes.SAFE_FALL_DISTANCE) - TinkerEffect.getLevel(living, MobEffects.JUMP));
+          float height = (float)(lastVelocity.twoTicks * 10 - 3 - living.getAttributeValue(TinkerAttributes.SAFE_FALL_DISTANCE) - TinkerEffect.getLevel(living, MobEffects.JUMP_BOOST));
           if (height > 0.0F) {
             hit.getBlock().fallOn(level, hit, above, living, height);
           }
