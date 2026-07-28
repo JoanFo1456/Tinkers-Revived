@@ -17,7 +17,7 @@ public record UpdateFluidEffectsPacket(List<FluidEffects.Entry> fluids) implemen
     int size = buffer.readVarInt();
     List<FluidEffects.Entry> entries = new ArrayList<>(size);
     for (int i = 0; i < size; i++) {
-      Identifier key = buffer.readResourceLocation();
+      Identifier key = buffer.readIdentifier();
       FluidEffects effects = FluidEffects.LOADABLE.decode(buffer, FluidEffectManager.contextBuilder(key).build());
       entries.add(new FluidEffects.Entry(key, effects));
     }
@@ -28,7 +28,7 @@ public record UpdateFluidEffectsPacket(List<FluidEffects.Entry> fluids) implemen
   public void encode(FriendlyByteBuf buffer) {
     buffer.writeVarInt(fluids.size());
     for (FluidEffects.Entry entry : fluids) {
-      buffer.writeResourceLocation(entry.name());
+      buffer.writeIdentifier(entry.name());
       FluidEffects.LOADABLE.encode(buffer, entry.effects());
     }
   }

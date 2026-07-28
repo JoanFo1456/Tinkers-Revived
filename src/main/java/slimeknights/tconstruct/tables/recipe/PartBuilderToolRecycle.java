@@ -273,7 +273,7 @@ public class PartBuilderToolRecycle implements IPartBuilderRecipe, IMultiRecipe<
     @Override
     public void serializeRecipeData(JsonObject json) {
       json.add("tools", SizedIngredient.LOADABLE.serialize(tools));
-      json.add("pattern", Ingredient.CODEC_NONEMPTY.encodeStart(JsonOps.INSTANCE, pattern).getOrThrow(IllegalArgumentException::new));
+      json.add("pattern", Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, pattern).getOrThrow(IllegalArgumentException::new));
     }
 
     @Override

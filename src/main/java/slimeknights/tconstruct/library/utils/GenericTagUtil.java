@@ -47,11 +47,11 @@ public class GenericTagUtil {
     ImmutableMap.Builder<TagKey<T>,List<T>> builder = ImmutableMap.builder();
     int mapSize = buf.readVarInt();
     for (int i = 0; i < mapSize; i++) {
-      Identifier tagId = buf.readResourceLocation();
+      Identifier tagId = buf.readIdentifier();
       int tagSize = buf.readVarInt();
       ImmutableList.Builder<T> tagBuilder = ImmutableList.builder();
       for (int j = 0; j < tagSize; j++) {
-        tagBuilder.add(valueGetter.apply(buf.readResourceLocation()));
+        tagBuilder.add(valueGetter.apply(buf.readIdentifier()));
       }
       builder.put(TagKey.create(registry, tagId), tagBuilder.build());
     }
@@ -62,11 +62,11 @@ public class GenericTagUtil {
   public static <T> void encodeTags(FriendlyByteBuf buf, Function<T,Identifier> keyGetter, Map<TagKey<T>,? extends Collection<T>> tags) {
     buf.writeVarInt(tags.size());
     for (Entry<TagKey<T>,? extends Collection<T>> entry : tags.entrySet()) {
-      buf.writeResourceLocation(entry.getKey().location());
+      buf.writeIdentifier(entry.getKey().location());
       Collection<T> values = entry.getValue();
       buf.writeVarInt(values.size());
       for (T value : values) {
-        buf.writeResourceLocation(keyGetter.apply(value));
+        buf.writeIdentifier(keyGetter.apply(value));
       }
     }
   }

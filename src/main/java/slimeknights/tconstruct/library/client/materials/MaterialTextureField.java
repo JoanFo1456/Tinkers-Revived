@@ -60,7 +60,7 @@ enum MaterialTextureField implements RecordField<Identifier, MaterialRenderInfo>
     return switch (buffer.readEnum(TextureType.class)) {
       case NONE -> null;
       case DEFAULT -> Objects.requireNonNull(context.get(MaterialVariantId.CONTEXT_KEY)).getLocation('_');
-      case NAME -> buffer.readResourceLocation();
+      case NAME -> buffer.readIdentifier();
     };
   }
 
@@ -74,7 +74,7 @@ enum MaterialTextureField implements RecordField<Identifier, MaterialRenderInfo>
       buffer.writeEnum(TextureType.DEFAULT);
     } else {
       buffer.writeEnum(TextureType.NAME);
-      buffer.writeResourceLocation(texture);
+      buffer.writeIdentifier(texture);
     }
   }
 }

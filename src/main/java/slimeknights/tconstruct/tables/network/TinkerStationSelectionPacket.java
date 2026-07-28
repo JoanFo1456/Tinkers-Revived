@@ -14,12 +14,12 @@ import slimeknights.tconstruct.tables.menu.TinkerStationContainerMenu;
 public class TinkerStationSelectionPacket implements IThreadsafePacket {
   private final Identifier layoutName;
   public TinkerStationSelectionPacket(FriendlyByteBuf buffer) {
-    this.layoutName = buffer.readResourceLocation();
+    this.layoutName = buffer.readIdentifier();
   }
 
   @Override
   public void encode(FriendlyByteBuf buffer) {
-    buffer.writeResourceLocation(this.layoutName);
+    buffer.writeIdentifier(this.layoutName);
   }
 
   @Override

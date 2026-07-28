@@ -361,12 +361,12 @@ public record SmeltingModule(RecipeType<? extends AbstractCookingRecipe> recipeT
 
     @Override
     public Identifier decode(FriendlyByteBuf buffer, TypedMap context) {
-      return buffer.readResourceLocation();
+      return buffer.readIdentifier();
     }
 
     @Override
     public void encode(FriendlyByteBuf buffer, SmeltingModule module) {
-      buffer.writeResourceLocation(Objects.requireNonNull(module.output.key()));
+      buffer.writeIdentifier(Objects.requireNonNull(module.output.key()));
     }
   }
 }

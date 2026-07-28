@@ -46,7 +46,7 @@ public class NoContainerIngredient extends NestedIngredient {
   }
 
   public JsonElement toJson() {
-    JsonElement nestedElement = Ingredient.CODEC_NONEMPTY.encodeStart(JsonOps.INSTANCE, nested).getOrThrow(IllegalArgumentException::new);
+    JsonElement nestedElement = Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, nested).getOrThrow(IllegalArgumentException::new);
     // if we are a vanilla ingredient, and not an array ingredient, serialize into the ingredient directly
     if (!nested.isCustom() && nestedElement.isJsonObject()) {
       JsonObject nestedObject = nestedElement.getAsJsonObject();
@@ -82,11 +82,11 @@ public class NoContainerIngredient extends NestedIngredient {
       // if we have match, parse as a nested object. Without match, just parse the object as vanilla
       Ingredient ingredient;
       if (json.has("match")) {
-        ingredient = Ingredient.CODEC_NONEMPTY.parse(JsonOps.INSTANCE, json.get("match")).getOrThrow(IllegalArgumentException::new);
+        ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, json.get("match")).getOrThrow(IllegalArgumentException::new);
       } else {
         JsonObject copy = json.deepCopy();
         copy.remove("type");
-        ingredient = Ingredient.CODEC_NONEMPTY.parse(JsonOps.INSTANCE, copy).getOrThrow(IllegalArgumentException::new);
+        ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, copy).getOrThrow(IllegalArgumentException::new);
       }
       return new NoContainerIngredient(ingredient);
     }

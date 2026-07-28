@@ -176,7 +176,7 @@ public class MaterialIngredient extends NestedIngredient {
   }
 
   public JsonElement toJson() {
-    JsonElement parent = Ingredient.CODEC_NONEMPTY.encodeStart(JsonOps.INSTANCE, nested).getOrThrow(IllegalArgumentException::new);
+    JsonElement parent = Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, nested).getOrThrow(IllegalArgumentException::new);
     JsonObject result;
     if (!nested.isCustom() && parent.isJsonObject()) {
       result = parent.getAsJsonObject();
@@ -220,11 +220,11 @@ public class MaterialIngredient extends NestedIngredient {
       // if we have match, parse as a nested object. Without match, just parse the object as vanilla
       Ingredient ingredient;
       if (json.has("match")) {
-        ingredient = Ingredient.CODEC_NONEMPTY.parse(JsonOps.INSTANCE, json.get("match")).getOrThrow(IllegalArgumentException::new);
+        ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, json.get("match")).getOrThrow(IllegalArgumentException::new);
       } else {
         JsonObject copy = json.deepCopy();
         copy.remove("type");
-        ingredient = Ingredient.CODEC_NONEMPTY.parse(JsonOps.INSTANCE, copy).getOrThrow(IllegalArgumentException::new);
+        ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, copy).getOrThrow(IllegalArgumentException::new);
       }
       IJsonPredicate<MaterialVariantId> material = MATERIAL_FIELD.get(json);
       // deprecated tag field

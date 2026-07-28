@@ -28,13 +28,13 @@ public class UpdateTinkerStationRecipePacket implements IThreadsafePacket {
 
   public UpdateTinkerStationRecipePacket(FriendlyByteBuf buffer) {
     this.pos = buffer.readBlockPos();
-    this.recipe = buffer.readResourceLocation();
+    this.recipe = buffer.readIdentifier();
   }
 
   @Override
   public void encode(FriendlyByteBuf buffer) {
     buffer.writeBlockPos(pos);
-    buffer.writeResourceLocation(recipe);
+    buffer.writeIdentifier(recipe);
   }
 
   @Override

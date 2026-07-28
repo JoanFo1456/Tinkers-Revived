@@ -47,7 +47,7 @@ public interface ModuleWithKey {
   @Nullable
   static Identifier fromNetwork(FriendlyByteBuf buffer) {
     if (buffer.readBoolean()) {
-      return buffer.readResourceLocation();
+      return buffer.readIdentifier();
     }
     return null;
   }
@@ -56,7 +56,7 @@ public interface ModuleWithKey {
   static void toNetwork(@Nullable Identifier key, FriendlyByteBuf buffer) {
     if (key != null) {
       buffer.writeBoolean(true);
-      buffer.writeResourceLocation(key);
+      buffer.writeIdentifier(key);
     } else {
       buffer.writeBoolean(false);
     }

@@ -105,9 +105,9 @@ public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBui
 
     @Override
     public void serializeRecipeData(JsonObject json) {
-      json.add("material", Ingredient.CODEC_NONEMPTY.encodeStart(JsonOps.INSTANCE, material).getOrThrow(IllegalArgumentException::new));
+      json.add("material", Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, material).getOrThrow(IllegalArgumentException::new));
       if (pattern != Ingredient.EMPTY) {
-        json.add("pattern", Ingredient.CODEC_NONEMPTY.encodeStart(JsonOps.INSTANCE, pattern).getOrThrow(IllegalArgumentException::new));
+        json.add("pattern", Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, pattern).getOrThrow(IllegalArgumentException::new));
         if (patternConsumed) {
           json.addProperty("pattern_consumed", true);
         }

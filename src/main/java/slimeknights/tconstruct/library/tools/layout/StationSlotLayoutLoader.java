@@ -159,12 +159,12 @@ public class StationSlotLayoutLoader extends SimpleJsonResourceReloadListener<co
   private static class IngredientSerializer implements JsonSerializer<Ingredient>, JsonDeserializer<Ingredient> {
     @Override
     public Ingredient deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-      return Ingredient.CODEC_NONEMPTY.parse(JsonOps.INSTANCE, json).getOrThrow(JsonParseException::new);
+      return Ingredient.CODEC.parse(JsonOps.INSTANCE, json).getOrThrow(JsonParseException::new);
     }
 
     @Override
     public JsonElement serialize(Ingredient ingredient, Type typeOfSrc, JsonSerializationContext context) {
-      return Ingredient.CODEC_NONEMPTY.encodeStart(JsonOps.INSTANCE, ingredient).getOrThrow(JsonParseException::new);
+      return Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, ingredient).getOrThrow(JsonParseException::new);
     }
   }
 }
