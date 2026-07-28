@@ -101,7 +101,8 @@ public class TankItem extends BlockTooltipItem {
 
   /** Checks if the given stack has fluid transfer */
   public static boolean mayHaveFluid(ItemStack stack) {
-    return FluidContainerTransferManager.INSTANCE.mayHaveTransfer(stack) || stack.getCapability(Capabilities.FluidHandler.ITEM) != null;
+    return FluidContainerTransferManager.INSTANCE.mayHaveTransfer(stack)
+      || (!stack.isEmpty() && Capabilities.Fluid.ITEM.getCapability(stack, net.neoforged.neoforge.transfer.access.ItemAccess.forStack(stack)) != null);
   }
 
   @Override

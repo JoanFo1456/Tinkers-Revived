@@ -495,7 +495,7 @@ public final class TinkerSmeltery extends TinkerModule {
     registerItem(event, smeltery.get());
     registerItem(event, foundry.get());
 
-    event.registerItem(Capabilities.FluidHandler.ITEM, (stack, context) -> new CopperCanFluidHandler(stack), copperCan);
+    event.registerItem(Capabilities.Fluid.ITEM, (stack, access) -> new CopperCanFluidHandler(access), copperCan);
     registerTankItem(event, searedCastingTank);
     registerTankItem(event, searedFluidCannon);
     registerTankItem(event, scorchedFluidCannon);
@@ -516,8 +516,8 @@ public final class TinkerSmeltery extends TinkerModule {
 
   private static void registerTankItem(RegisterCapabilitiesEvent event, ItemLike item) {
     event.registerItem(
-      Capabilities.FluidHandler.ITEM,
-      (stack, context) -> stack.getItem() instanceof TankItem tankItem ? new TankItemFluidHandler(tankItem, stack) : null,
+      Capabilities.Fluid.ITEM,
+      (stack, access) -> stack.getItem() instanceof TankItem ? new TankItemFluidHandler(access) : null,
       item);
   }
 

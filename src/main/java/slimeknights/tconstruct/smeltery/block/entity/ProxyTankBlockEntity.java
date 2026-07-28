@@ -29,8 +29,10 @@ public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTan
   /** Direct access to the fluid handler and item handler */
   @Getter
   private final ProxyItemTank<ProxyTankBlockEntity> itemTank = new ProxyItemTank<>(this);
-  /** Capability instance for both items and fluids */
-  private final LazyOptional<ProxyItemTank<?>> capability = LazyOptional.of(() -> itemTank);
+  /** Capability instance for the item handler */
+  private final LazyOptional<ProxyItemTank<?>> itemCapability = LazyOptional.of(() -> itemTank);
+  /** Capability instance for the fluid handler */
+  private final LazyOptional<net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource>> fluidCapability = LazyOptional.of(itemTank::getFluidHandler);
   /** Last comparator strength to reduce block updates */
   private int lastStrength = -1;
   protected ProxyTankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -45,15 +47,18 @@ public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTan
   /* Capability */
 
   public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-    if (cap == ForgeCapabilities.ITEM_HANDLER || cap == ForgeCapabilities.FLUID_HANDLER) {
-      return capability.cast();
+    if (cap == ForgeCapabilities.ITEM_HANDLER) {
+      return itemCapability.cast();
     }
-    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
+    if (cap == ForgeCapabilities.FLUID_HANDLER) {
+      return fluidCapability.cast();
+    }
+    return slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty();
   }
 
   public void invalidateCaps() {
-    // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent (was super.invalidateCaps();)
-    capability.invalidate();
+    itemCapability.invalidate();
+    fluidCapability.invalidate();
   }
 
 
@@ -64,11 +69,15 @@ public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTan
    * @return  Tank comparator strength
    */
   private int calculateComparatorStrength() {
-    int capacity = itemTank.getTankCapacity(0);
+    net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource> handler = itemTank.getFluidHandler();
+    if (handler.size() == 0) {
+      return 0;
+    }
+    int capacity = handler.getCapacityAsInt(0, handler.getResource(0));
     if (capacity == 0) {
       return 0;
     }
-    return 1 + 14 * itemTank.getFluidInTank(0).getAmount() / capacity;
+    return 1 + 14 * handler.getAmountAsInt(0) / capacity;
   }
 
   /** Gets the current comparator strength */
@@ -106,8 +115,8 @@ public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTan
     // if we have an active tank, try interacting
     if (!inventory.isEmpty()) {
       // must have a held item to interact
-      if (!held.isEmpty() && FluidTransferHelper.interactWithContainer(level, worldPosition, itemTank, player, hand).didTransfer()
-        || FluidTransferHelper.interactWithFilledBucket(level, worldPosition, itemTank, player, hand, getBlockState().getValue(HORIZONTAL_FACING)).didTransfer()) {
+      if (!held.isEmpty() && FluidTransferHelper.interactWithContainer(level, worldPosition, itemTank.getFluidHandler(), player, hand).didTransfer()
+        || FluidTransferHelper.interactWithFilledBucket(level, worldPosition, itemTank.getFluidHandler(), player, hand, getBlockState().getValue(HORIZONTAL_FACING)).didTransfer()) {
         return;
       }
       // if we clicked the tank, don't try and swap items unless we have no tank

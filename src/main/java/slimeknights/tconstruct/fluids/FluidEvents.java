@@ -28,8 +28,8 @@ public class FluidEvents {
 
   static void registerCapabilities(RegisterCapabilitiesEvent event) {
     event.registerItem(
-      Capabilities.FluidHandler.ITEM,
-      (stack, context) -> new ConstantFluidContainerWrapper(new FluidStack(TinkerFluids.powderedSnow.get(), FluidType.BUCKET_VOLUME), stack, Items.BUCKET.getDefaultInstance()),
+      Capabilities.Fluid.ITEM,
+      (stack, access) -> new ConstantFluidContainerWrapper(access, new FluidStack(TinkerFluids.powderedSnow.get(), FluidType.BUCKET_VOLUME), net.neoforged.neoforge.transfer.item.ItemResource.of(Items.BUCKET)),
       Items.POWDER_SNOW_BUCKET);
   }
 }
