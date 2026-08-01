@@ -30,7 +30,7 @@ public class ReturningEffect extends TinkerEffect {
     if (!entity.level().isClientSide() && event.getOldEffectInstance() == null && event.getEffectInstance().getEffect().value() == this) {
       ModDataNBT data = PersistentDataCapability.getOrWarn(entity);
       CompoundTag tag = new CompoundTag();
-      tag.put("pos", NbtUtils.writeBlockPos(entity.blockPosition()));
+      tag.put("pos", slimeknights.tconstruct.library.utils.TagUtil.writeBlockPos(entity.blockPosition()));
       tag.putString("dimension", entity.level().dimension().identifier().toString());
       data.put(KEY, tag);
     }
@@ -50,7 +50,7 @@ public class ReturningEffect extends TinkerEffect {
       // no teleporting if you switched dimensions
       // TODO: look into cross dimensional teleport, its doable with entity#teleportTo
       if (dimension != null && dimension.equals(living.level().dimension().identifier())) {
-        NbtUtils.readBlockPos(tag, "pos").ifPresent(pos -> TeleportHelper.tryTeleport(new ReturningTeleportEvent(living, pos.getX(), pos.getY(), pos.getZ())));
+        slimeknights.tconstruct.library.utils.TagUtil.readBlockPos(tag, "pos").ifPresent(pos -> TeleportHelper.tryTeleport(new ReturningTeleportEvent(living, pos.getX(), pos.getY(), pos.getZ())));
       }
     }
     return true;

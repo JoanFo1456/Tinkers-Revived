@@ -243,8 +243,8 @@ public class MultiblockStructureData {
    */
   public CompoundTag writeClientTag(BlockPos controllerPos) {
     CompoundTag nbt = new CompoundTag();
-    nbt.put(TAG_MIN, NbtUtils.writeBlockPos(minPos.subtract(controllerPos)));
-    nbt.put(TAG_MAX, NbtUtils.writeBlockPos(maxPos.subtract(controllerPos)));
+    nbt.put(TAG_MIN, slimeknights.tconstruct.library.utils.TagUtil.writeBlockPos(minPos.subtract(controllerPos)));
+    nbt.put(TAG_MAX, slimeknights.tconstruct.library.utils.TagUtil.writeBlockPos(maxPos.subtract(controllerPos)));
     return nbt;
   }
 
@@ -271,7 +271,7 @@ public class MultiblockStructureData {
     ListTag list = new ListTag();
     for (BlockPos pos : collection) {
       CompoundTag tag = new CompoundTag();
-      tag.put("pos", NbtUtils.writeBlockPos(pos.subtract(basePos)));
+      tag.put("pos", slimeknights.tconstruct.library.utils.TagUtil.writeBlockPos(pos.subtract(basePos)));
       list.add(tag);
     }
     return list;

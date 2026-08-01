@@ -179,7 +179,7 @@ public class MultitankFuelModule extends FuelModule implements ResourceHandler<F
   public void readFromTag(CompoundTag nbt) {
     super.readFromTag(nbt);
     if (nbt.contains(TAG_LAST_FUEL)) {
-      lastPos = NbtUtils.readBlockPos(nbt.getCompound(TAG_LAST_FUEL), "pos").map(pos -> pos.offset(parent.getBlockPos())).orElse(NULL_POS);
+      lastPos = slimeknights.tconstruct.library.utils.TagUtil.readBlockPos(nbt.getCompoundOrEmpty(TAG_LAST_FUEL), "pos").map(pos -> pos.offset(parent.getBlockPos())).orElse(NULL_POS);
     }
   }
 
@@ -188,7 +188,7 @@ public class MultitankFuelModule extends FuelModule implements ResourceHandler<F
     nbt = super.writeToTag(nbt);
     if (lastPos != NULL_POS) {
       CompoundTag posTag = new CompoundTag();
-      posTag.put("pos", NbtUtils.writeBlockPos(lastPos.subtract(parent.getBlockPos())));
+      posTag.put("pos", slimeknights.tconstruct.library.utils.TagUtil.writeBlockPos(lastPos.subtract(parent.getBlockPos())));
       nbt.put(TAG_LAST_FUEL, posTag);
     }
     return nbt;

@@ -630,7 +630,7 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
     }
     // only exists to be sent server to client in update packets
     if (nbt.contains(TAG_ERROR_POS)) {
-      this.errorPos = NbtUtils.readBlockPos(nbt.getCompound(TAG_ERROR_POS), "pos").map(pos -> pos.offset(this.worldPosition)).orElse(null);
+      this.errorPos = slimeknights.tconstruct.library.utils.TagUtil.readBlockPos(nbt.getCompoundOrEmpty(TAG_ERROR_POS), "pos").map(pos -> pos.offset(this.worldPosition)).orElse(null);
     }
     fuelModule.readFromTag(nbt);
     if (nbt.contains(TAG_TEXTURE)) {
@@ -663,7 +663,7 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
     // sync error position, not actually saved in Tag
     if (errorPos != null) {
       CompoundTag posTag = new CompoundTag();
-      posTag.put("pos", NbtUtils.writeBlockPos(errorPos.subtract(this.worldPosition)));
+      posTag.put("pos", slimeknights.tconstruct.library.utils.TagUtil.writeBlockPos(errorPos.subtract(this.worldPosition)));
       nbt.put(TAG_ERROR_POS, posTag);
     }
     return nbt;

@@ -277,7 +277,7 @@ public abstract class HeatingStructureMultiblock<T extends MantleBlockEntity & I
       CompoundTag nbt = super.writeToTag(controllerPos);
       nbt.put(TAG_TANKS, writePosList(tanks, controllerPos));
       if (insideCheck != null) {
-        nbt.put(TAG_INSIDE_CHECK, NbtUtils.writeBlockPos(insideCheck.subtract(controllerPos)));
+        nbt.put(TAG_INSIDE_CHECK, slimeknights.tconstruct.library.utils.TagUtil.writeBlockPos(insideCheck.subtract(controllerPos)));
       }
       return nbt;
     }

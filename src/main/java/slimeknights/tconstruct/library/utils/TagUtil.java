@@ -104,7 +104,18 @@ public final class TagUtil {
    */
   @Nullable
   public static BlockPos readOptionalPos(CompoundTag parent, String key, BlockPos offset) {
-    return NbtUtils.readBlockPos(parent, key).map(pos -> pos.offset(offset)).orElse(null);
+    return readBlockPos(parent, key).map(pos -> pos.offset(offset)).orElse(null);
+  }
+
+  /** Writes a block position as a tag, replacing the removed {@code NbtUtils.writeBlockPos} */
+  public static net.minecraft.nbt.Tag writeBlockPos(BlockPos pos) {
+    return BlockPos.CODEC.encodeStart(net.minecraft.nbt.NbtOps.INSTANCE, pos).getOrThrow();
+  }
+
+  /** Reads a block position from the given key, replacing the removed {@code NbtUtils.readBlockPos} */
+  public static java.util.Optional<BlockPos> readBlockPos(CompoundTag parent, String key) {
+    net.minecraft.nbt.Tag posTag = parent.get(key);
+    return posTag == null ? java.util.Optional.empty() : BlockPos.CODEC.parse(net.minecraft.nbt.NbtOps.INSTANCE, posTag).result();
   }
 
   /**
