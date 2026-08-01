@@ -12,7 +12,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Item.TooltipContext;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ItemLike;
@@ -61,13 +63,8 @@ public class TankItem extends BlockTooltipItem {
   }
 
   @Override
-  public boolean hasCraftingRemainingItem(ItemStack stack) {
-    return isFilled(stack);
-  }
-
-  @Override
-  public ItemStack getCraftingRemainingItem(ItemStack stack) {
-    return isFilled(stack) ? new ItemStack(this) : ItemStack.EMPTY;
+  public @Nullable ItemStackTemplate getCraftingRemainder(ItemInstance stack) {
+    return stack instanceof ItemStack itemStack && isFilled(itemStack) ? new ItemStackTemplate(this) : null;
   }
 
   @Override

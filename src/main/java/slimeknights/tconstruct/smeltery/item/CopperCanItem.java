@@ -10,7 +10,9 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.TooltipContext;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -38,16 +40,11 @@ public class CopperCanItem extends Item {
   }
 
   @Override
-  public boolean hasCraftingRemainingItem(ItemStack stack) {
-    return getFluid(stack) != Fluids.EMPTY;
-  }
-
-  @Override
-  public ItemStack getCraftingRemainingItem(ItemStack stack) {
-    if (hasCraftingRemainingItem(stack)) {
-      return new ItemStack(this);
+  public @Nullable ItemStackTemplate getCraftingRemainder(ItemInstance stack) {
+    if (stack instanceof ItemStack itemStack && getFluid(itemStack) != Fluids.EMPTY) {
+      return new ItemStackTemplate(this);
     }
-    return ItemStack.EMPTY;
+    return null;
   }
 
   @Override

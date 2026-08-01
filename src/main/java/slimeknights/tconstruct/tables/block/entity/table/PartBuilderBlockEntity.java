@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.block.state.BlockState;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
 import slimeknights.tconstruct.compat.neoforged.neoforge.event.ForgeEventFactory;
@@ -263,7 +264,8 @@ public class PartBuilderBlockEntity extends RetexturedTableBlockEntity implement
     }
     ItemStack stack = getItem(slot);
     if (!stack.isEmpty()) {
-      ItemStack container = stack.getCraftingRemainingItem().copy();
+      ItemStackTemplate remainderTemplate = stack.getItem().getCraftingRemainder(stack);
+      ItemStack container = remainderTemplate != null ? remainderTemplate.create() : ItemStack.EMPTY;
       if (amount > 1) {
         container.setCount(container.getCount() * amount);
       }

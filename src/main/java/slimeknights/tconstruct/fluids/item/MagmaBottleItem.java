@@ -11,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
@@ -58,7 +59,8 @@ public class MagmaBottleItem extends Item {
   @Override
   public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity living) {
     living.igniteForSeconds(fireTime);
-    ItemStack container = stack.getCraftingRemainingItem();
+    ItemStackTemplate remainderTemplate = stack.getItem().getCraftingRemainder(stack);
+    ItemStack container = remainderTemplate != null ? remainderTemplate.create() : ItemStack.EMPTY;
     Player player = living instanceof Player p ? p : null;
     if (player == null || !player.getAbilities().instabuild) {
       stack.shrink(1);

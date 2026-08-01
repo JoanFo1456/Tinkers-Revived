@@ -2,6 +2,7 @@ package slimeknights.tconstruct.smeltery.block.entity.inventory;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
@@ -68,7 +69,8 @@ public class DuctItemHandler extends SingleItemHandler<DuctBlockEntity> {
   protected boolean isItemValid(ItemStack stack) {
     // the item or its container must be in the tag
     if (!stack.is(TinkerTags.Items.DUCT_CONTAINERS)) {
-      ItemStack container = stack.getCraftingRemainingItem();
+      ItemStackTemplate remainderTemplate = stack.getItem().getCraftingRemainder(stack);
+      ItemStack container = remainderTemplate != null ? remainderTemplate.create() : ItemStack.EMPTY;
       if (container.isEmpty() || !container.is(TinkerTags.Items.DUCT_CONTAINERS)) {
         return false;
       }
