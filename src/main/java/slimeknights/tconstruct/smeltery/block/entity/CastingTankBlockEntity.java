@@ -300,31 +300,37 @@ public class CastingTankBlockEntity extends TableBlockEntity implements ITankBlo
       tank.setFluid(TankItem.readFluid(nbt));
       TankBlockEntity.updateLight(this, tank);
     } else {
-      tank.readFromNBT(registries, nbt);
+      tank.deserialize(net.minecraft.world.level.storage.TagValueInput.create(net.minecraft.util.ProblemReporter.DISCARDING, registries, nbt));
       TankBlockEntity.updateLight(this, tank);
     }
   }
 
   @Override
-  public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+  public void loadAdditional(net.minecraft.world.level.storage.ValueInput input) {
     tank.setCapacity(getCapacity(getBlockState().getBlock()));
-    updateTank(tag.getCompoundOrEmpty(NBTTags.TANK), registries);
-    lastRedstone = tag.getBooleanOr(TAG_REDSTONE, false);
-    super.loadAdditional(tag, registries);
+    java.util.Optional<net.minecraft.world.level.storage.ValueInput> tankInput = input.child(NBTTags.TANK);
+    if (tankInput.isPresent()) {
+      tank.deserialize(tankInput.get());
+      TankBlockEntity.updateLight(this, tank);
+    } else {
+      tank.setFluid(FluidStack.EMPTY);
+    }
+    lastRedstone = input.getBooleanOr(TAG_REDSTONE, false);
+    super.loadAdditional(input);
   }
 
   @Override
-  public void saveAdditional(CompoundTag tags, HolderLookup.Provider registries) {
-    super.saveAdditional(tags, registries);
-    tags.putBoolean(TAG_REDSTONE, lastRedstone);
+  public void saveAdditional(net.minecraft.world.level.storage.ValueOutput output) {
+    super.saveAdditional(output);
+    output.putBoolean(TAG_REDSTONE, lastRedstone);
   }
 
   @Override
-  public void saveSynced(CompoundTag tag, HolderLookup.Provider registries) {
-    super.saveSynced(tag, registries);
+  public void saveSynced(net.minecraft.world.level.storage.ValueOutput output) {
+    super.saveSynced(output);
     // want tank on the client on world load
     if (!tank.isEmpty()) {
-      tag.put(NBTTags.TANK, tank.writeToNBT(registries, new CompoundTag()));
+      tank.serialize(output.child(NBTTags.TANK));
     }
   }
 

@@ -58,18 +58,19 @@ public class MaterialBlockEntity extends MantleBlockEntity {
   }
 
   @Override
-  protected void saveSynced(CompoundTag tags, HolderLookup.Provider registries) {
-    super.saveSynced(tags, registries);
+  protected void saveSynced(net.minecraft.world.level.storage.ValueOutput output) {
+    super.saveSynced(output);
     if (material != IMaterial.UNKNOWN_ID) {
-      tags.putString(MATERIAL_TAG, material.toString());
+      output.putString(MATERIAL_TAG, material.toString());
     }
   }
 
   @Override
-  protected void loadAdditional(CompoundTag tags, HolderLookup.Provider registries) {
-    super.loadAdditional(tags, registries);
-    if (tags.contains(MATERIAL_TAG)) {
-      material = Objects.requireNonNullElse(MaterialVariantId.tryParse(tags.getStringOr(MATERIAL_TAG, "")), IMaterial.UNKNOWN_ID);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput input) {
+    super.loadAdditional(input);
+    String materialStr = input.getStringOr(MATERIAL_TAG, "");
+    if (!materialStr.isEmpty()) {
+      material = Objects.requireNonNullElse(MaterialVariantId.tryParse(materialStr), IMaterial.UNKNOWN_ID);
       RetexturedHelper.onTextureUpdated(this);
     }
   }

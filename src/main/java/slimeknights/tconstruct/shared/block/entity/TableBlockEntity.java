@@ -54,17 +54,7 @@ public abstract class TableBlockEntity extends InventoryBlockEntity {
     return true;
   }
 
-  @Override
-  public void saveSynced(CompoundTag nbt, HolderLookup.Provider registries) {
-    super.saveSynced(nbt, registries);
-    writeInventoryToNBT(nbt, registries);
-  }
-
-  @Override
-  public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-    CompoundTag nbt = super.getUpdateTag(registries);
-    return nbt;
-  }
+  // saveSynced (inventory sync) and getUpdateTag are handled by the InventoryBlockEntity/MantleBlockEntity base
 
   /**
    * Sends a packet to all players with this container open
