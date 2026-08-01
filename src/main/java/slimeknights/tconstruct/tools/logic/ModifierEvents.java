@@ -460,7 +460,7 @@ public class ModifierEvents {
         }
 
         // calculate damage, bonus on crit
-        int damage = Mth.ceil(Mth.clamp(arrow.getDeltaMovement().length() * arrow.getBaseDamage(), 0.0D, Integer.MAX_VALUE));
+        int damage = Mth.ceil(Mth.clamp(arrow.getDeltaMovement().length() * arrow.baseDamage, 0.0D, Integer.MAX_VALUE));
         if (arrow.isCritArrow()) {
           damage = (int) Math.min(target.getRandom().nextInt(damage / 2 + 2) + (long) damage, Integer.MAX_VALUE);
         }
