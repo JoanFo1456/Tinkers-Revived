@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.tools.modifiers.ability.interaction;
+import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -60,7 +61,7 @@ public class ShearsAbilityModifier extends NoLevelsModifier implements EntityInt
   @Deprecated(forRemoval = true)
   protected void swingTool(Player player, InteractionHand hand) {
     player.swing(hand);
-    player.sweepAttack();
+    ToolAttackUtil.sweepAttack(player);
   }
 
   @Override

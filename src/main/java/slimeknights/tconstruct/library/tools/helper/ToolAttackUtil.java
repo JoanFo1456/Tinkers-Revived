@@ -388,6 +388,18 @@ public class ToolAttackUtil {
   }
 
   /**
+   * Spawns the sweep attack particle in front of the player, replicating the visual portion of the vanilla sweep attack.
+   * Vanilla no longer exposes {@code Player#sweepAttack()}; the sweep damage is handled internally by the tool AOE logic, so this covers just the particle effect.
+   */
+  public static void sweepAttack(Player player) {
+    if (player.level() instanceof ServerLevel server) {
+      double xd = -Mth.sin(player.getYRot() * (float) (Math.PI / 180.0));
+      double zd =  Mth.cos(player.getYRot() * (float) (Math.PI / 180.0));
+      server.sendParticles(ParticleTypes.SWEEP_ATTACK, player.getX() + xd, player.getY(0.5), player.getZ() + zd, 0, xd, 0.0, zd, 0.0D);
+    }
+  }
+
+  /**
    * Disables knockback on the given entity.
    * @return Attribute instance to enable knockback later with {@link #enableKnockback(AttributeInstance)}, or null if no knockback was disabled.
    */

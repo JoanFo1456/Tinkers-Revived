@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.tools.modules.interaction;
+import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -261,7 +262,7 @@ public enum HarvestModule implements ModifierModule, BlockInteractionModifierHoo
         // animations
         if (player != null) {
           if (didHarvest) {
-            player.sweepAttack();
+            ToolAttackUtil.sweepAttack(player);
           }
           if (broken) {
             player.onEquippedItemBroken(stack.getItem(), Player.getSlotForHand(context.getHand()));

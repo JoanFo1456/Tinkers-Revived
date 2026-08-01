@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.tools.modules.interaction;
+import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -125,7 +126,7 @@ public record ShearsModule(float flatBonus, float perLevelBonus, float expandedB
     if (shearEntity(stack, tool, world, player, target, looting)) {
       boolean broken = ToolDamageUtil.damageAnimated(tool, 1, player, slotType, modifier.getId());
       player.swing(hand);
-      player.sweepAttack();
+      ToolAttackUtil.sweepAttack(player);
       runShearHook(tool, player, target, true);
 
       // AOE shearing

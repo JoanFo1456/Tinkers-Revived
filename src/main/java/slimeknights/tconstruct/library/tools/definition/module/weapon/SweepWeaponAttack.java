@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.library.tools.definition.module.weapon;
+import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
 
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
@@ -82,7 +83,7 @@ public record SweepWeaponAttack(LevelingValue range) implements MeleeHitToolHook
 
       level.playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, attacker.getSoundSource(), 1.0F, 1.0F);
       if (attacker instanceof Player player) {
-        player.sweepAttack();
+        ToolAttackUtil.sweepAttack(player);
       }
     }
   }

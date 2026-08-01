@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.library.modifiers.modules.behavior;
+import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -120,7 +121,7 @@ public interface BlockTransformModule extends ModifierModule, BlockInteractionMo
 
         // sweep attack if we transformed any
         if (totalTransformed > 0 && player != null) {
-          player.sweepAttack();
+          ToolAttackUtil.sweepAttack(player);
         }
       }
     }

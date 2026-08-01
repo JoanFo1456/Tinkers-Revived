@@ -15,11 +15,11 @@ public enum MobType implements LivingEntityPredicate {
   @Override
   public boolean matches(LivingEntity entity) {
     return switch (this) {
-      case UNDEAD -> entity.getType().is(EntityTypeTags.UNDEAD);
-      case ARTHROPOD -> entity.getType().is(EntityTypeTags.ARTHROPOD);
-      case ILLAGER -> entity.getType().is(EntityTypeTags.ILLAGER);
-      case WATER -> entity.getType().is(EntityTypeTags.AQUATIC);
-      case UNDEFINED -> !entity.getType().is(EntityTypeTags.UNDEAD) && !entity.getType().is(EntityTypeTags.ARTHROPOD) && !entity.getType().is(EntityTypeTags.ILLAGER) && !entity.getType().is(EntityTypeTags.AQUATIC);
+      case UNDEAD -> entity.getType().builtInRegistryHolder().is(EntityTypeTags.UNDEAD);
+      case ARTHROPOD -> entity.getType().builtInRegistryHolder().is(EntityTypeTags.ARTHROPOD);
+      case ILLAGER -> entity.getType().builtInRegistryHolder().is(EntityTypeTags.ILLAGER);
+      case WATER -> entity.getType().builtInRegistryHolder().is(EntityTypeTags.AQUATIC);
+      case UNDEFINED -> !entity.getType().builtInRegistryHolder().is(EntityTypeTags.UNDEAD) && !entity.getType().builtInRegistryHolder().is(EntityTypeTags.ARTHROPOD) && !entity.getType().builtInRegistryHolder().is(EntityTypeTags.ILLAGER) && !entity.getType().builtInRegistryHolder().is(EntityTypeTags.AQUATIC);
     };
   }
 
