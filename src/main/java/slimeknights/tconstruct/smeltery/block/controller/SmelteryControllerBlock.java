@@ -42,14 +42,6 @@ public class SmelteryControllerBlock extends HeatingControllerBlock {
     BlockEntityHelper.get(SmelteryBlockEntity.class, worldIn, pos).ifPresent(SmelteryBlockEntity::updateStructure);
   }
 
-  @Override
-  @Deprecated
-  public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-    if (!newState.is(this)) {
-      BlockEntityHelper.get(SmelteryBlockEntity.class, worldIn, pos).ifPresent(SmelteryBlockEntity::invalidateStructure);
-    }
-    super.onRemove(state, worldIn, pos, newState, isMoving);
-  }
 
   @Override
   public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {

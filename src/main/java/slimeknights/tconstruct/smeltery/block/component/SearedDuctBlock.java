@@ -54,14 +54,6 @@ public class SearedDuctBlock extends InventoryBlock {
   /* Seared block interaction */
 
   @SuppressWarnings("deprecation")
-  @Override
-  @Deprecated
-  public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-    if (!newState.is(this)) {
-      BlockEntityHelper.get(SmelteryComponentBlockEntity.class, worldIn, pos).ifPresent(te -> te.notifyMasterOfChange(pos, newState));
-    }
-    super.onRemove(state, worldIn, pos, newState, isMoving);
-  }
 
   @Override
   public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag pFlag) {

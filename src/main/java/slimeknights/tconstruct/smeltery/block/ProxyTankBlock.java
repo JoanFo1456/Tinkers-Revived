@@ -111,16 +111,6 @@ public class ProxyTankBlock extends Block implements EntityBlock {
     }
   }
 
-  @Deprecated
-  @Override
-  public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-    if (state.getBlock() != newState.getBlock() && world.getBlockEntity(pos) instanceof ProxyTankBlockEntity tank) {
-      InventoryBlock.dropInventoryItems(world, pos, tank.getItemTank());
-    }
-    super.onRemove(state, world, pos, newState, isMoving);
-  }
-
-
   /* Tank */
 
   @Deprecated

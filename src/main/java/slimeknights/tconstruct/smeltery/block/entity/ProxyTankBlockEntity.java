@@ -16,6 +16,7 @@ import slimeknights.mantle.compat.neoforged.neoforge.capabilities.Capability;
 import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
 import org.jetbrains.annotations.Nullable;
+import slimeknights.mantle.block.InventoryBlock;
 import slimeknights.mantle.block.entity.MantleBlockEntity;
 import slimeknights.mantle.fluid.FluidTransferHelper;
 import slimeknights.tconstruct.library.fluid.IFluidTankUpdater;
@@ -35,6 +36,15 @@ public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTan
   private final LazyOptional<net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource>> fluidCapability = LazyOptional.of(itemTank::getFluidHandler);
   /** Last comparator strength to reduce block updates */
   private int lastStrength = -1;
+  @Override
+  public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+    super.preRemoveSideEffects(pos, state);
+    // drop the stored container item when the block is removed (formerly Block#onRemove). Runs server-side before the block entity is removed
+    if (this.level != null) {
+      InventoryBlock.dropInventoryItems(this.level, pos, itemTank);
+    }
+  }
+
   protected ProxyTankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
     super(type, pos, state);
   }

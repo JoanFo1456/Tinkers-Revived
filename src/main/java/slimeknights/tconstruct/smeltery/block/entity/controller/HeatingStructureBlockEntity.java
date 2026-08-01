@@ -442,6 +442,14 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
   }
 
   @Override
+  public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+    super.preRemoveSideEffects(pos, state);
+    // the controller block is being removed; tear down the multiblock structure. Runs server-side before the block entity is removed
+    // (formerly handled in Block#onRemove, which no longer exists in this form). May need in-game validation for client structure visuals.
+    invalidateStructure();
+  }
+
+  @Override
   public void notifyChange(BlockPos pos, BlockState state) {
     // structure invalid? can ignore this, will automatically check later
     if (structure == null) {
