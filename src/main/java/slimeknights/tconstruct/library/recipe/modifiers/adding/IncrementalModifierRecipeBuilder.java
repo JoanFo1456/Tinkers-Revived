@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 /** Recipe that supports not just adding multiple of an item, but also adding a partial amount */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class IncrementalModifierRecipeBuilder extends AbstractModifierRecipeBuilder<IncrementalModifierRecipeBuilder> {
-  private Ingredient input = Ingredient.EMPTY;
+  @javax.annotation.Nullable private Ingredient input = null;
   private int amountPerItem;
   private int neededPerLevel;
   private ItemOutput leftover = ItemOutput.EMPTY;
@@ -114,7 +114,7 @@ public class IncrementalModifierRecipeBuilder extends AbstractModifierRecipeBuil
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer, Identifier id) {
-    if (input == Ingredient.EMPTY) {
+    if (input == null) {
       throw new IllegalStateException("Must set input");
     }
     Identifier advancementId = buildOptionalAdvancement(id, "modifiers");

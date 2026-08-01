@@ -28,7 +28,7 @@ public abstract class AbstractMultilevelModifierRecipeBuilder<T extends Abstract
   protected final ModifierId result;
   protected final List<LevelEntry> levels = new ArrayList<>();
   protected boolean allowCrystal = true;
-  protected Ingredient tools = Ingredient.EMPTY;
+  @javax.annotation.Nullable protected Ingredient tools = null;
   protected int maxToolSize = ITinkerStationRecipe.DEFAULT_TOOL_STACK_SIZE;
   protected boolean checkTraitLevel = false;
 

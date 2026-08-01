@@ -11,11 +11,12 @@ import slimeknights.mantle.data.loadable.field.LoadableField;
 import slimeknights.mantle.data.loadable.primitive.BooleanLoadable;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /** Shared logic between item and material casting */
 public abstract class AbstractCastingRecipe implements ICastingRecipe {
   /* Common fields */
-  protected static final LoadableField<Ingredient,AbstractCastingRecipe> CAST_FIELD = IngredientLoadable.ALLOW_EMPTY.defaultField("cast", Ingredient.EMPTY, AbstractCastingRecipe::getCast);
+  protected static final LoadableField<Ingredient,AbstractCastingRecipe> CAST_FIELD = IngredientLoadable.ALLOW_EMPTY.nullableField("cast", AbstractCastingRecipe::getCast);
   protected static final LoadableField<Boolean,AbstractCastingRecipe> CAST_CONSUMED_FIELD = BooleanLoadable.INSTANCE.defaultField("cast_consumed", false, false, AbstractCastingRecipe::isConsumed);
   protected static final LoadableField<Boolean,AbstractCastingRecipe> SWITCH_SLOTS_FIELD = BooleanLoadable.INSTANCE.defaultField("switch_slots", false, false, AbstractCastingRecipe::switchSlots);
 
@@ -25,8 +26,8 @@ public abstract class AbstractCastingRecipe implements ICastingRecipe {
   private final Identifier id;
   @Getter
   private final String group;
-  /** 'cast' item for recipe (doesn't have to be an actual 'cast') */
-  @Getter
+  /** 'cast' item for recipe (doesn't have to be an actual 'cast'); null means no cast */
+  @Getter @Nullable
   private final Ingredient cast;
   @Getter
   private final boolean consumed;
@@ -34,7 +35,7 @@ public abstract class AbstractCastingRecipe implements ICastingRecipe {
   private final boolean switchSlots;
 
   @SuppressWarnings("unchecked")
-  protected AbstractCastingRecipe(RecipeType<?> type, Identifier id, String group, Ingredient cast, boolean consumed, boolean switchSlots) {
+  protected AbstractCastingRecipe(RecipeType<?> type, Identifier id, String group, @Nullable Ingredient cast, boolean consumed, boolean switchSlots) {
     this.type = (RecipeType<? extends ICastingRecipe>) type;
     this.id = id;
     this.group = group;
@@ -43,8 +44,12 @@ public abstract class AbstractCastingRecipe implements ICastingRecipe {
     this.switchSlots = switchSlots;
   }
 
-  @Override
+  /** Display ingredients for this recipe; the cast if present */
   public NonNullList<Ingredient> getIngredients() {
-    return NonNullList.of(Ingredient.EMPTY, this.cast);
+    NonNullList<Ingredient> list = NonNullList.create();
+    if (this.cast != null) {
+      list.add(this.cast);
+    }
+    return list;
   }
 }

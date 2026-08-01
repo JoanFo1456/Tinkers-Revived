@@ -35,7 +35,7 @@ public class MaterialCastingRecipeBuilder extends AbstractRecipeBuilder<Material
   @Nullable
   private final IModifiable resultTool;
   private final TypeAwareRecipeSerializer<? extends AbstractMaterialCastingRecipe> recipeSerializer;
-  private Ingredient cast = Ingredient.EMPTY;
+  @javax.annotation.Nullable private Ingredient cast = null;
   @Setter
   private int itemCost = 0;
   private CastPurpose castPurpose = CastPurpose.CATALYST;

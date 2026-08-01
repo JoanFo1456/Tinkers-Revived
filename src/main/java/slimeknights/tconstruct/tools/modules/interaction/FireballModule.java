@@ -99,7 +99,7 @@ public record FireballModule(List<FireballType> options, DamageTypePair damageTy
       ModifierEntry.LOADABLE.list(0).defaultField("ammo_modifiers", List.of(), false, FireballType::ammoModifiers),
       FireballType::new);
     /** Empty instance to make cache easier */
-    public static final FireballType EMPTY = new FireballType(Ingredient.EMPTY, null, 1f, List.of());
+    public static final FireballType EMPTY = new FireballType(null, null, 1f, List.of());
 
     /** Gets the damage type with the given fallback */
     public DamageTypePair damageType(DamageTypePair fallback) {

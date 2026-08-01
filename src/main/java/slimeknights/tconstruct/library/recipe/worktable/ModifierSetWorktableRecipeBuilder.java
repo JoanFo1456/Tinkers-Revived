@@ -65,7 +65,7 @@ public class ModifierSetWorktableRecipeBuilder extends AbstractSizedIngredientRe
     if (inputs.isEmpty()) {
       throw new IllegalStateException("Must have at least one ingredient");
     }
-    if (tools == Ingredient.EMPTY) {
+    if (tools.isEmpty()) {
       throw new IllegalStateException("Tools cannot be empty");
     }
     Identifier advancementId = buildOptionalAdvancement(id, "modifiers");

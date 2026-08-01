@@ -95,9 +95,10 @@ public class MeltingRecipe implements IMeltingRecipe {
     return output.copy();
   }
 
-  @Override
   public NonNullList<Ingredient> getIngredients() {
-    return NonNullList.of(Ingredient.EMPTY, input);
+    NonNullList<Ingredient> list = NonNullList.create();
+    list.add(input);
+    return list;
   }
 
   @Override

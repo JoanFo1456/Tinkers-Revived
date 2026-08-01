@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 public class MaterialRecipe implements ICustomOutputRecipe<ISingleStackContainer>, IMaterialValue {
   /** Empty material instance for the cache */
   @SuppressWarnings("removal")
-  public static final MaterialRecipe EMPTY = new MaterialRecipe(Identifier.parse("missingno"), "", Ingredient.EMPTY, 0, 0, IMaterial.UNKNOWN_ID, ItemOutput.EMPTY);
+  public static final MaterialRecipe EMPTY = new MaterialRecipe(Identifier.parse("missingno"), "", null, 0, 0, IMaterial.UNKNOWN_ID, ItemOutput.EMPTY);
   public static final RecordLoadable<MaterialRecipe> LOADER = RecordLoadable.create(
     ContextKey.ID.requiredField(),
     LoadableRecipeSerializer.RECIPE_GROUP,
@@ -115,9 +115,12 @@ public class MaterialRecipe implements ICustomOutputRecipe<ISingleStackContainer
     return !material.isUnknown() && this.ingredient.test(inv.getStack());
   }
 
-  @Override
   public NonNullList<Ingredient> getIngredients() {
-    return NonNullList.of(Ingredient.EMPTY, ingredient);
+    NonNullList<Ingredient> list = NonNullList.create();
+    if (ingredient != null) {
+      list.add(ingredient);
+    }
+    return list;
   }
 
   /** Cache of the display items list */

@@ -24,7 +24,7 @@ public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
     LoadableRecipeSerializer.TYPED_SERIALIZER.requiredField(),
     ContextKey.ID.requiredField(),
     IngredientLoadable.DISALLOW_EMPTY.requiredField("material", MoldingRecipe::getMaterial),
-    IngredientLoadable.ALLOW_EMPTY.defaultField("pattern", Ingredient.EMPTY, MoldingRecipe::getPattern),
+    IngredientLoadable.ALLOW_EMPTY.nullableField("pattern", MoldingRecipe::getPattern),
     BooleanLoadable.INSTANCE.defaultField("pattern_consumed", false, false, MoldingRecipe::isPatternConsumed),
     ItemOutput.Loadable.REQUIRED_ITEM.requiredField("result", r -> r.recipeOutput),
     MoldingRecipe::new);
@@ -37,20 +37,20 @@ public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
   private final Identifier id;
   @Getter
   private final Ingredient material;
-  @Getter
+  @Getter @javax.annotation.Nullable
   private final Ingredient pattern;
   @Getter
   private final boolean patternConsumed;
   private final ItemOutput recipeOutput;
 
   @SuppressWarnings("unchecked")
-  public MoldingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, Ingredient material, Ingredient pattern, boolean patternConsumed, ItemOutput recipeOutput) {
+  public MoldingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, Ingredient material, @javax.annotation.Nullable Ingredient pattern, boolean patternConsumed, ItemOutput recipeOutput) {
     this.type = (RecipeType<? extends MoldingRecipe>) serializer.getType();
     this.serializer = serializer;
     this.id = id;
     this.material = material;
     this.pattern = pattern;
-    this.patternConsumed = pattern != Ingredient.EMPTY && patternConsumed;
+    this.patternConsumed = pattern != null && patternConsumed;
     this.recipeOutput = recipeOutput;
   }
 
@@ -62,12 +62,16 @@ public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
 
   @Override
   public boolean matches(IMoldingContainer inv, Level worldIn) {
-    return material.test(inv.getMaterial()) && pattern.test(inv.getPattern());
+    return material.test(inv.getMaterial()) && (pattern == null ? inv.getPattern().isEmpty() : pattern.test(inv.getPattern()));
   }
 
-  @Override
   public NonNullList<Ingredient> getIngredients() {
-    return NonNullList.of(Ingredient.EMPTY, material, pattern);
+    NonNullList<Ingredient> list = NonNullList.create();
+    list.add(material);
+    if (pattern != null) {
+      list.add(pattern);
+    }
+    return list;
   }
 
   @Override

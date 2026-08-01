@@ -163,8 +163,9 @@ public class ToolBuildingRecipe implements ITinkerStationRecipe {
     }
     // remaining slots must match extra requirements
     for (; i < maxInputs; i++) {
-      Ingredient ingredient = LogicHelper.getOrDefault(ingredients, i - partSize, Ingredient.EMPTY);
-      if (!ingredient.test(inv.getInput(i))) {
+      Ingredient ingredient = LogicHelper.getOrDefault(ingredients, i - partSize, null);
+      // a null ingredient (beyond the required inputs) means the slot must be empty
+      if (ingredient == null ? !inv.getInput(i).isEmpty() : !ingredient.test(inv.getInput(i))) {
         return false;
       }
     }

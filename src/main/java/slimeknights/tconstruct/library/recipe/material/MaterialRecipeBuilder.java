@@ -23,7 +23,7 @@ import java.util.function.Consumer;
 @Accessors(chain = true)
 public class MaterialRecipeBuilder extends AbstractRecipeBuilder<MaterialRecipeBuilder> {
   private final MaterialVariantId material;
-  private Ingredient ingredient = Ingredient.EMPTY;
+  @javax.annotation.Nullable private Ingredient ingredient = null;
   @Setter
   private int value = 1;
   @Setter
@@ -69,7 +69,7 @@ public class MaterialRecipeBuilder extends AbstractRecipeBuilder<MaterialRecipeB
     if (this.material == null) {
       throw new IllegalStateException("recipe " + id + " has no material associated with it");
     }
-    if (this.ingredient == Ingredient.EMPTY) {
+    if (this.ingredient == null) {
       throw new IllegalStateException("recipe " + id + " must have ingredient set");
     }
     if (this.value <= 0) {

@@ -31,7 +31,7 @@ import static slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe.getT
 public class ItemCastingRecipeBuilder extends AbstractRecipeBuilder<ItemCastingRecipeBuilder> {
   private final ItemOutput result;
   private final TypeAwareRecipeSerializer<? extends ItemCastingRecipe> recipeSerializer;
-  private Ingredient cast = Ingredient.EMPTY;
+  @javax.annotation.Nullable private Ingredient cast = null;
   private FluidIngredient fluid = FluidIngredient.EMPTY;
   @Setter @Accessors(chain = true)
   private int coolingTime = -1;
@@ -263,7 +263,7 @@ public class ItemCastingRecipeBuilder extends AbstractRecipeBuilder<ItemCastingR
     } else {
       // yeah, retextured recipes have their own constructor, does not matter as long as we pass the right serializer in
       // you can use this for your custom recipe extensions too if you don't change the JSON :)
-      consumer.accept(new LoadableFinishedRecipe<>(id, new ItemCastingRecipe(recipeSerializer, id, group, cast, fluid, result, coolingTime, consumed && cast != Ingredient.EMPTY, switchSlots), ItemCastingRecipe.LOADER, advancementId));
+      consumer.accept(new LoadableFinishedRecipe<>(id, new ItemCastingRecipe(recipeSerializer, id, group, cast, fluid, result, coolingTime, consumed && cast != null, switchSlots), ItemCastingRecipe.LOADER, advancementId));
     }
   }
 }

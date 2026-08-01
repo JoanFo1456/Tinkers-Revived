@@ -83,7 +83,7 @@ public class ItemCastingRecipe extends AbstractCastingRecipe implements IDisplay
 
   @Override
   public boolean hasCast() {
-    return getCast() != Ingredient.EMPTY;
+    return getCast() != null;
   }
 
   @Override

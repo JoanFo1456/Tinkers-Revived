@@ -27,7 +27,7 @@ public class MeltingRecipeLookup {
   /** Record holding data from the melting recipe */
   public record MeltingFluid(Ingredient ingredient, FluidOutput result, int temperature) {
     /** Empty instance, used to cache missing results */
-    public static final MeltingFluid EMPTY = new MeltingFluid(Ingredient.EMPTY, FluidOutput.EMPTY, 0);
+    public static final MeltingFluid EMPTY = new MeltingFluid(null, FluidOutput.EMPTY, 0);
 
     /** Checks if this result is present */
     public boolean isEmpty() {

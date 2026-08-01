@@ -32,7 +32,7 @@ public class PotionCastingRecipeBuilder extends AbstractRecipeBuilder<PotionCast
   @Nullable
   private final ModifierId modifier;
   private final TypeAwareRecipeSerializer<? extends PotionCastingRecipe> recipeSerializer;
-  private Ingredient bottle = Ingredient.EMPTY;
+  @javax.annotation.Nullable private Ingredient bottle = null;
   private FluidIngredient fluid = FluidIngredient.EMPTY;
   @Setter @Accessors(chain = true)
   private int coolingTime = 5;

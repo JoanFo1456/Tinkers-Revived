@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 /** Builder for {@link MultilevelIncrementalModifierRecipe} */
 public class MultilevelIncrementalModifierRecipeBuilder extends AbstractMultilevelModifierRecipeBuilder<MultilevelIncrementalModifierRecipeBuilder> {
-  private Ingredient input = Ingredient.EMPTY;
+  @javax.annotation.Nullable private Ingredient input = null;
   private int amountPerItem;
   private int neededPerLevel;
   private ItemOutput leftover = ItemOutput.EMPTY;
@@ -98,7 +98,7 @@ public class MultilevelIncrementalModifierRecipeBuilder extends AbstractMultilev
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer, Identifier id) {
-    if (input == Ingredient.EMPTY) {
+    if (input == null) {
       throw new IllegalStateException("Must set input");
     }
     if (levels.isEmpty()) {

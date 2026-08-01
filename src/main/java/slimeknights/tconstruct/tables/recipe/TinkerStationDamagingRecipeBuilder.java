@@ -28,7 +28,7 @@ public class TinkerStationDamagingRecipeBuilder extends AbstractRecipeBuilder<Ti
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer, Identifier id) {
-    if (ingredient == Ingredient.EMPTY) {
+    if (ingredient.isEmpty()) {
       throw new IllegalStateException("Empty ingredient not allowed");
     }
     Identifier advancementId = buildOptionalAdvancement(id, "tinker_station");

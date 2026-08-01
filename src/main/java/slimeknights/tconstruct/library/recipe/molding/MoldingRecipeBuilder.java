@@ -24,8 +24,8 @@ import java.util.function.Consumer;
 public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBuilder> {
   private final ItemOutput output;
   private final TypeAwareRecipeSerializer<MoldingRecipe> serializer;
-  private Ingredient material = Ingredient.EMPTY;
-  private Ingredient pattern = Ingredient.EMPTY;
+  @javax.annotation.Nullable private Ingredient material = null;
+  @javax.annotation.Nullable private Ingredient pattern = null;
   private boolean patternConsumed = false;
 
   /**
@@ -91,7 +91,7 @@ public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBui
 
   @Override
   public void save(Consumer<FinishedRecipe> consumer, Identifier id) {
-    if (material == Ingredient.EMPTY) {
+    if (material == null) {
       throw new IllegalStateException("Missing material for molding recipe");
     }
     Identifier advancementId = buildOptionalAdvancement(id, "molding");
@@ -106,7 +106,7 @@ public class MoldingRecipeBuilder extends AbstractRecipeBuilder<MoldingRecipeBui
     @Override
     public void serializeRecipeData(JsonObject json) {
       json.add("material", Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, material).getOrThrow(IllegalArgumentException::new));
-      if (pattern != Ingredient.EMPTY) {
+      if (pattern != null) {
         json.add("pattern", Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, pattern).getOrThrow(IllegalArgumentException::new));
         if (patternConsumed) {
           json.addProperty("pattern_consumed", true);

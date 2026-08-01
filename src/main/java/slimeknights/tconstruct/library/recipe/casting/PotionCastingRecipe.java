@@ -138,9 +138,10 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
 
   /* Recipe interface methods */
 
-  @Override
   public NonNullList<Ingredient> getIngredients() {
-    return NonNullList.of(Ingredient.EMPTY, bottle);
+    NonNullList<Ingredient> list = NonNullList.create();
+    list.add(bottle);
+    return list;
   }
 
   /** @deprecated use {@link #assemble(Container, HolderLookup.Provider)} */
