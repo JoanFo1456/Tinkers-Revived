@@ -134,7 +134,7 @@ public class CustomFireball extends Fireball implements ProjectileWithPower {
     // despawn if going too high or low, otherwise projectile may live forever going into the sky
     double y = getY();
     Level level = level();
-    if (y < (level.getMinBuildHeight() - 64) || y > level.getMaxBuildHeight() + 64) {
+    if (y < (level.getMinY() - 64) || y > level.getMaxY() + 1 + 64) {
       onBelowWorld();
     }
   }
