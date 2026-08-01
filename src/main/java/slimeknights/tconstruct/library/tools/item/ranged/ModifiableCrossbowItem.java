@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.library.tools.item.ranged;
+import slimeknights.tconstruct.tools.TinkerToolActions;
 
 import lombok.Getter;
 import net.minecraft.ChatFormatting;
@@ -185,7 +186,7 @@ public class ModifiableCrossbowItem extends ModifiableLauncherItem {
         return InteractionResult.PASS;
       }
       // can block while filled with ammo
-      if (ModifierUtil.canPerformAction(tool, ItemAbilities.SHIELD_BLOCK)) {
+      if (ModifierUtil.canPerformAction(tool, TinkerToolActions.SHIELD_BLOCK)) {
         player.startUsingItem(hand);
         return InteractionResult.CONSUME;
       }

@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.library.tools.helper;
+import slimeknights.tconstruct.tools.TinkerToolActions;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -200,7 +201,7 @@ public final class ModifierUtil {
    * Allows your tool to block while charging up.
    */
   public static ItemUseAnimation blockWhileCharging(IToolStackView tool, ItemUseAnimation fallback) {
-    return canPerformAction(tool, ItemAbilities.SHIELD_BLOCK) ? ItemUseAnimation.BLOCK : fallback;
+    return canPerformAction(tool, TinkerToolActions.SHIELD_BLOCK) ? ItemUseAnimation.BLOCK : fallback;
   }
 
   /** Calculates inaccuracy from the conditional tool stat. */

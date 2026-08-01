@@ -1,4 +1,5 @@
 package slimeknights.tconstruct.tools.modifiers.ability.tool;
+import slimeknights.tconstruct.tools.TinkerToolActions;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionHand;
@@ -74,6 +75,6 @@ public class ParryingModifier extends OffhandAttackModifier implements ToolActio
 
   @Override
   public boolean canPerformAction(IToolStackView tool, ModifierEntry modifier, ItemAbility toolAction) {
-    return toolAction == ItemAbilities.SHIELD_BLOCK;
+    return toolAction == TinkerToolActions.SHIELD_BLOCK;
   }
 }
