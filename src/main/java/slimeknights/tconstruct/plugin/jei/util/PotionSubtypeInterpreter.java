@@ -25,7 +25,7 @@ public interface PotionSubtypeInterpreter<T> extends ISubtypeInterpreter<T> {
       return null;
     }
     Holder<Potion> potionType = PotionUtils.getPotion(tag);
-    String potionTypeString = Potion.getName(Optional.of(potionType), "");
+    String potionTypeString = potionType.value().name();
     StringBuilder stringBuilder = new StringBuilder(potionTypeString);
     List<MobEffectInstance> effects = PotionUtils.getAllEffects(tag);
     for (MobEffectInstance effect : effects) {

@@ -49,7 +49,7 @@ public class PotionBucketItem extends PotionItem {
   @Override
   public String getDescriptionId(ItemStack stack) {
     Holder<Potion> potion = PotionUtils.getPotion(TagUtil.getTag(stack));
-    String bucketKey = Potion.getName(Optional.of(potion), getDescriptionId() + ".effect.");
+    String bucketKey = getDescriptionId() + ".effect." + potion.value().name();
     if (Util.canTranslate(bucketKey)) {
       return bucketKey;
     }
@@ -59,12 +59,12 @@ public class PotionBucketItem extends PotionItem {
   @Override
   public Component getName(ItemStack stack) {
     Holder<Potion> potion = PotionUtils.getPotion(TagUtil.getTag(stack));
-    String bucketKey = Potion.getName(Optional.of(potion), getDescriptionId() + ".effect.");
+    String bucketKey = getDescriptionId() + ".effect." + potion.value().name();
     if (Util.canTranslate(bucketKey)) {
       return Component.translatable(bucketKey);
     }
     // default to filling with the contents
-    return Component.translatable(getDescriptionId() + ".contents", Component.translatable(Potion.getName(Optional.of(potion), "item.minecraft.potion.effect.")));
+    return Component.translatable(getDescriptionId() + ".contents", Component.translatable("item.minecraft.potion.effect." + potion.value().name()));
   }
 
   @Override

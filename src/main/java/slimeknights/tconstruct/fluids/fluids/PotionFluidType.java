@@ -30,7 +30,7 @@ public class PotionFluidType extends FluidType {
 
   @Override
   public String getDescriptionId(FluidStack stack) {
-    return Potion.getName(Optional.of(PotionUtils.getPotion(TagUtil.getTag(stack))), "item.minecraft.potion.effect.");
+    return "item.minecraft.potion.effect." + PotionUtils.getPotion(TagUtil.getTag(stack)).value().name();
   }
 
   @Override
