@@ -112,7 +112,7 @@ public interface BlockTransformModule extends ModifierModule, BlockInteractionMo
             // stop if the tool broke
             if (ToolDamageUtil.damage(tool, 1, player, stack, modifier.getId())) {
               if (player != null) {
-                player.onEquippedItemBroken(stack.getItem(), LivingEntity.getSlotForHand(context.getHand()));
+                player.onEquippedItemBroken(stack.getItem(), context.getHand().asEquipmentSlot());
               }
               break;
             }
