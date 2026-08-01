@@ -68,7 +68,7 @@ public class TankModule implements HookProvider, FluidModifierHook, VolatileData
       return ToolTankHelper.CAPACITY_STAT.formatValue(capacity);
     } else {
       // fluid, display as: Fluid Name: #,### / #,### mb
-      return fluid.getDisplayName().copy()
+      return fluid.getHoverName().copy()
                   .append(": ")
                   .append(ToolTankHelper.CAPACITY_STAT.formatContents(fluid.getAmount(), capacity));
     }

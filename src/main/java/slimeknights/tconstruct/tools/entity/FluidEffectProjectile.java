@@ -136,7 +136,7 @@ public class FluidEffectProjectile extends Projectile implements ProjectileWithK
 
   @Override
   protected Component getTypeName() {
-    return getFluid().getDisplayName();
+    return getFluid().getHoverName();
   }
 
   /** Gets the cannon tank */

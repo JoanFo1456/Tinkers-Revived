@@ -56,7 +56,7 @@ public class CopperCanItem extends Item {
       MutableComponent text;
       if (fluidTag != null) {
         FluidStack displayFluid = TagUtil.createFluidStack(fluid, FluidValues.INGOT, fluidTag);
-        text = displayFluid.getDisplayName().plainCopy();
+        text = displayFluid.getHoverName().plainCopy();
       } else {
         text = Component.translatable(fluid.getFluidType().getDescriptionId());
       }
@@ -140,7 +140,7 @@ public class CopperCanItem extends Item {
   /** Adds filled variants of the copper can to the given consumer */
   @SuppressWarnings("deprecation")
   public static void addFilledVariants(Consumer<ItemStack> output) {
-    BuiltInRegistries.FLUID.holders().filter(holder -> {
+    BuiltInRegistries.FLUID.listElements().filter(holder -> {
       Fluid fluid = holder.value();
       return fluid.isSource(fluid.defaultFluidState()) && !holder.is(TinkerTags.Fluids.HIDE_IN_CREATIVE_TANKS);
     }).forEachOrdered(holder -> {

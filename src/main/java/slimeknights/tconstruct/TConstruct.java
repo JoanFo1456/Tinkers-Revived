@@ -100,7 +100,7 @@ public class TConstruct {
     bus.addListener(EventPriority.NORMAL, false, RegisterPayloadHandlersEvent.class, TinkerNetwork.getInstance()::registerPayloads);
     TinkerTags.init();
     // init client logic
-    if (FMLEnvironment.dist == Dist.CLIENT) {
+    if (FMLEnvironment.getDist() == Dist.CLIENT) {
       TinkerClient.onConstruct();
     }
 

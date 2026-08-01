@@ -82,7 +82,7 @@ public class TankItem extends BlockTooltipItem {
       SimpleFluidResourceTank tank = getTank(stack, 1);
       if (tank.getFluidAmount() > 0) {
         FluidStack fluid = tank.getFluid();
-        tooltip.add(fluid.getDisplayName().plainCopy().withStyle(ChatFormatting.GRAY));
+        tooltip.add(fluid.getHoverName().plainCopy().withStyle(ChatFormatting.GRAY));
         if (flag.isAdvanced()) {
           tooltip.add(Component.translatable(FLUID_ID, Loadables.FLUID.getKey(fluid.getFluid())).withStyle(ChatFormatting.DARK_GRAY));
         }
@@ -330,7 +330,7 @@ public class TankItem extends BlockTooltipItem {
   /** Adds filled variants of all standard tank items to the given consumer */
   @SuppressWarnings("deprecation")
   public static void addFilledVariants(Consumer<ItemStack> output) {
-    BuiltInRegistries.FLUID.holders().filter(holder -> {
+    BuiltInRegistries.FLUID.listElements().filter(holder -> {
       Fluid fluid = holder.value();
       return fluid.isSource(fluid.defaultFluidState()) && !holder.is(TinkerTags.Fluids.HIDE_IN_CREATIVE_TANKS);
     }).forEachOrdered(holder -> {
