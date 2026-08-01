@@ -72,6 +72,10 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
   private static final String TAG_TANK = "tank";
   private static final String TAG_INVENTORY = "inventory";
   private static final String TAG_ERROR_POS = "lastError";
+  /** Wrapper keys nesting the legacy CompoundTag blobs under the ValueIO output */
+  private static final String TAG_SYNCED_DATA = "synced_data";
+  private static final String TAG_ADDITIONAL_DATA = "additional_data";
+  private static final String TAG_UPDATE_DATA = "update_data";
 
   /** Ticker instance for the serverside */
   public static final BlockEntityTicker<HeatingStructureBlockEntity> SERVER_TICKER = (level, pos, state, self) -> self.serverTick(level, pos, state);
@@ -635,22 +639,24 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
     }
   }
 
-  private void saveAdditionalData(CompoundTag compound) {
+  private CompoundTag saveAdditionalData(CompoundTag compound) {
     if (structure != null) {
       compound.put(TAG_STRUCTURE, structure.writeToTag(this.worldPosition));
     }
     fuelModule.writeToTag(compound);
+    return compound;
   }
 
-  private void saveSyncedData(CompoundTag compound) {
+  private CompoundTag saveSyncedData(CompoundTag compound) {
     compound.put(TAG_TANK, tank.write(new CompoundTag()));
     compound.put(TAG_INVENTORY, meltingInventory.writeToTag());
     if (texture != Blocks.AIR) {
       compound.putString(TAG_TEXTURE, getTextureName());
     }
+    return compound;
   }
 
-  private void saveUpdateData(CompoundTag nbt) {
+  private CompoundTag saveUpdateData(CompoundTag nbt) {
     if (structure != null) {
       nbt.put(TAG_STRUCTURE, structure.writeClientTag(this.worldPosition));
     }
@@ -660,6 +666,7 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
       posTag.put("pos", NbtUtils.writeBlockPos(errorPos.subtract(this.worldPosition)));
       nbt.put(TAG_ERROR_POS, posTag);
     }
+    return nbt;
   }
 
   @Override
@@ -668,57 +675,38 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
   }
 
   @Override
-  public void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
-    super.loadAdditional(nbt, registries);
-    loadFromTag(nbt);
+  public void loadAdditional(net.minecraft.world.level.storage.ValueInput input) {
+    super.loadAdditional(input);
+    // merge the disk (synced + additional) and client (update) blobs, then read all in one pass
+    CompoundTag merged = new CompoundTag();
+    input.read(TAG_SYNCED_DATA, CompoundTag.CODEC).ifPresent(merged::merge);
+    input.read(TAG_ADDITIONAL_DATA, CompoundTag.CODEC).ifPresent(merged::merge);
+    input.read(TAG_UPDATE_DATA, CompoundTag.CODEC).ifPresent(merged::merge);
+    loadFromTag(merged);
   }
 
   @Override
-  public void load(CompoundTag nbt) {
-    super.loadAdditional(nbt, BUILTIN_LOOKUP);
-    loadFromTag(nbt);
+  public void saveAdditional(net.minecraft.world.level.storage.ValueOutput output) {
+    // writes to disk; super calls saveSynced which stores TAG_SYNCED_DATA
+    super.saveAdditional(output);
+    output.store(TAG_ADDITIONAL_DATA, CompoundTag.CODEC, saveAdditionalData(new CompoundTag()));
   }
 
   @Override
-  public void saveAdditional(CompoundTag compound, HolderLookup.Provider registries) {
-    super.saveAdditional(compound, registries);
-    saveAdditionalData(compound);
-  }
-
-  @Override
-  public void saveAdditional(CompoundTag compound) {
-    // Tag that just writes to disk
-    super.saveAdditional(compound, BUILTIN_LOOKUP);
-    saveAdditionalData(compound);
-  }
-
-  @Override
-  public void saveSynced(CompoundTag compound, HolderLookup.Provider registries) {
-    // Tag that writes to disk and syncs to client
-    super.saveSynced(compound, registries);
-    saveSyncedData(compound);
-  }
-
-  @Override
-  public void saveSynced(CompoundTag compound) {
-    // Tag that writes to disk and syncs to client
-    super.saveSynced(compound, BUILTIN_LOOKUP);
-    saveSyncedData(compound);
+  public void saveSynced(net.minecraft.world.level.storage.ValueOutput output) {
+    // writes to disk and syncs to client
+    super.saveSynced(output);
+    output.store(TAG_SYNCED_DATA, CompoundTag.CODEC, saveSyncedData(new CompoundTag()));
   }
 
   @Override
   public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-    // Tag that just syncs to client
+    // Tag that syncs to client; super provides the synced data (TAG_SYNCED_DATA)
     CompoundTag nbt = super.getUpdateTag(registries);
-    saveUpdateData(nbt);
-    return nbt;
-  }
-
-  @Override
-  public CompoundTag getUpdateTag() {
-    // Tag that just syncs to client
-    CompoundTag nbt = super.getUpdateTag(BUILTIN_LOOKUP);
-    saveUpdateData(nbt);
+    CompoundTag updateData = saveUpdateData(new CompoundTag());
+    if (!updateData.isEmpty()) {
+      nbt.put(TAG_UPDATE_DATA, updateData);
+    }
     return nbt;
   }
 
