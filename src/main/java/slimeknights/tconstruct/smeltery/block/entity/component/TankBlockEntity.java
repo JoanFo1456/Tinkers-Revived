@@ -182,7 +182,7 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
       tank.setFluid(TankItem.readFluid(nbt));
       updateLight(this, tank);
     } else {
-      tank.readFromNBT(level == null ? HolderLookup.Provider.create(java.util.stream.Stream.empty()) : level.registryAccess(), nbt);
+      tank.deserialize(net.minecraft.world.level.storage.TagValueInput.create(net.minecraft.util.ProblemReporter.DISCARDING, level == null ? HolderLookup.Provider.create(java.util.stream.Stream.empty()) : level.registryAccess(), nbt));
       updateLight(this, tank);
     }
   }

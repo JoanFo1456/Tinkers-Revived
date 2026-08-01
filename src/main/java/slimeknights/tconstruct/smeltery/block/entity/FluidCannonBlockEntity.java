@@ -187,7 +187,7 @@ public class FluidCannonBlockEntity extends TankBlockEntity implements ITankInve
   @Override
   public void loadAdditional(ValueInput input) {
     super.loadAdditional(input);
-    input.read(NBTTags.TANK, CompoundTag.CODEC).ifPresent(t -> tank.readFromNBT(TagUtil.BUILTIN_LOOKUP, t));
+    input.child(NBTTags.TANK).ifPresent(tank::deserialize);
     input.read(TAG_ITEM, CompoundTag.CODEC).ifPresent(itemHandler::readFromNBT);
   }
 

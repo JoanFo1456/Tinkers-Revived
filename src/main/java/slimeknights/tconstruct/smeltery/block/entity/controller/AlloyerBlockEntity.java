@@ -182,7 +182,7 @@ public class AlloyerBlockEntity extends NameableBlockEntity implements ITankBloc
   @Override
   public void saveSynced(ValueOutput output) {
     super.saveSynced(output);
-    output.store(NBTTags.TANK, CompoundTag.CODEC, tank.writeToNBT(TagUtil.BUILTIN_LOOKUP, new CompoundTag()));
+    tank.serialize(output.child(NBTTags.TANK));
   }
 
   @Override
@@ -194,7 +194,7 @@ public class AlloyerBlockEntity extends NameableBlockEntity implements ITankBloc
   @Override
   public void loadAdditional(ValueInput input) {
     super.loadAdditional(input);
-    input.read(NBTTags.TANK, CompoundTag.CODEC).ifPresent(t -> tank.readFromNBT(TagUtil.BUILTIN_LOOKUP, t));
+    input.child(NBTTags.TANK).ifPresent(tank::deserialize);
     input.read(FuelModule.NBT_KEY, CompoundTag.CODEC).ifPresent(fuelModule::readFromTag);
   }
 }
