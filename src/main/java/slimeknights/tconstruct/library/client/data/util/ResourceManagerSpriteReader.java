@@ -22,7 +22,7 @@ public class ResourceManagerSpriteReader extends AbstractSpriteReader {
 
   /** Gets a location with the given extension */
   private Identifier getLocation(Identifier base, String extension) {
-    return new Identifier(base.getNamespace(), folder + "/" + base.getPath() + extension);
+    return Identifier.fromNamespaceAndPath(base.getNamespace(), folder + "/" + base.getPath() + extension);
   }
 
   /** Gets a location for .png */

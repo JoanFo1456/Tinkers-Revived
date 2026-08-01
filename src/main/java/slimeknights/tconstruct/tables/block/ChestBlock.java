@@ -86,7 +86,7 @@ public class ChestBlock extends TabbedTableBlock {
       IItemHandlerModifiable itemHandler = chest.getItemHandler();
       ItemStack rest = ItemHandlerHelper.insertItem(itemHandler, heldItem, false);
       if (rest.isEmpty() || rest.getCount() < heldItem.getCount()) {
-        playerInventory.items.set(playerInventory.selected, rest);
+        playerInventory.setSelectedItem(rest);
         return InteractionResult.SUCCESS;
       }
     }

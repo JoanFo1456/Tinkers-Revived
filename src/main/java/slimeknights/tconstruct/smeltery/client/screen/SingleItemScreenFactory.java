@@ -28,7 +28,7 @@ public class SingleItemScreenFactory implements ScreenConstructor<SingleItemCont
     if (tile != null) {
       Identifier id = BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(tile.getType());
       if (id != null) {
-        return new Identifier(id.getNamespace(), String.format("textures/gui/%s.png", id.getPath()));
+        return Identifier.fromNamespaceAndPath(id.getNamespace(), String.format("textures/gui/%s.png", id.getPath()));
       }
     }
     return DEFAULT;

@@ -325,7 +325,7 @@ public abstract class AbstractPartSpriteProvider {
     /** Helper to add all parts for a size */
     private void addParts(String path) {
       for (Entry<String,MaterialStatsId[]> entry : parts.entrySet()) {
-        addTexture(new Identifier(name.getNamespace(), "item/tool/" + path + "/" + entry.getKey()), entry.getValue())
+        addTexture(Identifier.fromNamespaceAndPath(name.getNamespace(), "item/tool/" + path + "/" + entry.getKey()), entry.getValue())
           .allowAnimated(allowAnimated).skipVariants(skipVariants);
       }
     }

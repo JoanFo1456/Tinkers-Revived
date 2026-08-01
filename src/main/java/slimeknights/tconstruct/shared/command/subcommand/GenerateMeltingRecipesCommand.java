@@ -274,7 +274,7 @@ public class GenerateMeltingRecipesCommand {
           builder.setDamagable(10);
         }
         Identifier id = Loadables.ITEM.getKey(result);
-        builder.save(consumer, new Identifier("tinkers_generated", "melting/" + id.getNamespace() + '/' + id.getPath()));
+        builder.save(consumer, Identifier.fromNamespaceAndPath("tinkers_generated", "melting/" + id.getNamespace() + '/' + id.getPath()));
       }
     }
 
