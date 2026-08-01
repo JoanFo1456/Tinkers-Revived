@@ -33,7 +33,7 @@ public class SingleAlloyingModule implements IAlloyingModule {
     }
     // fetch the first recipe that matches the inputs and fits in the tank
     // means if for some reason two recipes both are vaiud, the tank contents can be used to choose
-    Optional<AlloyRecipe> recipe = world.getRecipeManager()
+    Optional<AlloyRecipe> recipe = world.getServer().getRecipeManager()
                                         .getAllRecipesFor(TinkerRecipeTypes.ALLOYING.get()).stream()
                                         .map(RecipeHolder::value)
                                         .filter(r -> alloyTank.canFit(r.getOutput(), 0) && r.canPerform(alloyTank))

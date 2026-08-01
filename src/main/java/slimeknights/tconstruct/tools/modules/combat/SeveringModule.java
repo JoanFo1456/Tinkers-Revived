@@ -54,7 +54,7 @@ public enum SeveringModule implements ModifierModule, ProcessLootModifierHook {
       if (generatedLoot.stream().noneMatch(stack -> stack.is(TinkerTags.Items.SKULLS) || stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock)) {
         // find proper recipe
         Level world = context.getLevel();
-        List<SeveringRecipe> recipes = SeveringRecipeCache.findRecipe(world.getRecipeManager(), entity.getType());
+        List<SeveringRecipe> recipes = SeveringRecipeCache.findRecipe(world.getServer().getRecipeManager(), entity.getType());
         if (!recipes.isEmpty()) {
           float level = modifier.getEffectiveLevel();
           Integer lootingLevel = context.getOptionalParameter(LootContextParams.ENCHANTMENT_LEVEL);

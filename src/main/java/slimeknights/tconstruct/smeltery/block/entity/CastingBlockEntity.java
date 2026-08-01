@@ -350,7 +350,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     if (this.lastCastingRecipe != null && this.lastCastingRecipe.value().matches(castingInventory, level)) {
       return this.lastCastingRecipe;
     }
-    RecipeHolder<ICastingRecipe> castingRecipe = level.getRecipeManager().getRecipeFor(this.castingType, castingInventory, level).orElse(null);
+    RecipeHolder<ICastingRecipe> castingRecipe = level.getServer().getRecipeManager().getRecipeFor(this.castingType, castingInventory, level).orElse(null);
     if (castingRecipe != null) {
       this.lastCastingRecipe = castingRecipe;
     }
@@ -384,7 +384,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     if (lastMoldingRecipe != null && lastMoldingRecipe.matches(moldingInventory, level)) {
       return lastMoldingRecipe;
     }
-    Optional<RecipeHolder<MoldingRecipe>> newRecipe = level.getRecipeManager().getRecipeFor(moldingType, moldingInventory, level);
+    Optional<RecipeHolder<MoldingRecipe>> newRecipe = level.getServer().getRecipeManager().getRecipeFor(moldingType, moldingInventory, level);
     if (newRecipe.isPresent()) {
       lastMoldingRecipe = newRecipe.get().value();
       return lastMoldingRecipe;
@@ -569,7 +569,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     FluidStack fluid = tank.getFluid();
     if(!fluid.isEmpty()) {
       // fetch recipe by name
-      level.getRecipeManager().byKey(name).filter(recipe -> recipe.value() instanceof ICastingRecipe).map(recipe -> (RecipeHolder<ICastingRecipe>)(RecipeHolder<?>)recipe).ifPresent(recipe -> {
+      level.getServer().getRecipeManager().byKey(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.RECIPE, name)).filter(recipe -> recipe.value() instanceof ICastingRecipe).map(recipe -> (RecipeHolder<ICastingRecipe>)(RecipeHolder<?>)recipe).ifPresent(recipe -> {
         this.currentRecipe = recipe;
         castingInventory.setFluid(fluid);
         tank.setCapacity(recipe.value().getFluidAmount(castingInventory));

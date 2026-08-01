@@ -148,7 +148,7 @@ public class GenerateMeltingRecipesCommand {
 
     // iterate all recipes and try adding a melting recipe
     MeltingCache cache = new MeltingCache();
-    List<RecipeHolder<?>> recipes = (List)level.getRecipeManager().getAllRecipesFor((RecipeType)recipeType.value());
+    List<RecipeHolder<?>> recipes = (List)level.getServer().getRecipeManager().getAllRecipesFor((RecipeType)recipeType.value());
     for (RecipeHolder<?> recipeHolder : recipes) {
       Recipe<?> recipe = recipeHolder.value();
       // skip any recipes that are specifically blacklisted

@@ -131,7 +131,7 @@ public record SmeltingModule(RecipeType<? extends AbstractCookingRecipe> recipeT
         return lastRecipe;
       }
       // if that failed, do a recipe lookup
-      AbstractCookingRecipe recipe = (AbstractCookingRecipe)level.getRecipeManager().getRecipeFor((RecipeType)recipeType, input, level).map(holder -> ((net.minecraft.world.item.crafting.RecipeHolder<?>)holder).value()).orElse(null);
+      AbstractCookingRecipe recipe = (AbstractCookingRecipe)level.getServer().getRecipeManager().getRecipeFor((RecipeType)recipeType, input, level).map(holder -> ((net.minecraft.world.item.crafting.RecipeHolder<?>)holder).value()).orElse(null);
       if (recipe != null) {
         lastRecipe = recipe;
       }
