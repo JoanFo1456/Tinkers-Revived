@@ -9,7 +9,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.neoforged.neoforge.common.util.BlockSnapshot;
@@ -32,14 +31,6 @@ public final class ForgeEventFactory {
 
   public static boolean onProjectileImpact(Projectile projectile, HitResult ray) {
     return EventHooks.onProjectileImpact(projectile, ray);
-  }
-
-  public static boolean onExplosionStart(Level level, Explosion explosion) {
-    return EventHooks.onExplosionStart(level, explosion);
-  }
-
-  public static void onExplosionDetonate(Level level, Explosion explosion, List<Entity> list, double diameter) {
-    EventHooks.onExplosionDetonate(level, explosion, list, diameter);
   }
 
   public static InteractionResult onArrowNock(ItemStack item, Level level, Player player, InteractionHand hand, boolean hasAmmo) {

@@ -150,7 +150,7 @@ public class SlimeGrassBlock extends SpreadingSnowyBlock implements Bonemealable
       return false;
     }
     // fallback to light level check
-    return LightEngine.getLightBlockInto(world, targetState, pos, aboveState, above, Direction.UP, aboveState.getLightBlock(world, above)) < world.getMaxLightLevel();
+    return LightEngine.getLightBlockInto(targetState, aboveState, Direction.UP, aboveState.getLightDampening()) < LightEngine.MAX_LEVEL;
   }
 
   /** Checks if the grass at the given position can spread */
