@@ -47,16 +47,6 @@ public class PotionBucketItem extends PotionItem {
   }
 
   @Override
-  public String getDescriptionId(ItemStack stack) {
-    Holder<Potion> potion = PotionUtils.getPotion(TagUtil.getTag(stack));
-    String bucketKey = getDescriptionId() + ".effect." + potion.value().name();
-    if (Util.canTranslate(bucketKey)) {
-      return bucketKey;
-    }
-    return super.getDescriptionId();
-  }
-
-  @Override
   public Component getName(ItemStack stack) {
     Holder<Potion> potion = PotionUtils.getPotion(TagUtil.getTag(stack));
     String bucketKey = getDescriptionId() + ".effect." + potion.value().name();
@@ -80,10 +70,10 @@ public class PotionBucketItem extends PotionItem {
     }
 
     // effects are 2x duration
-    if (!level.isClientSide()) {
+    if (level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
       for (MobEffectInstance effect : PotionUtils.getMobEffects(stack)) {
         if (effect.getEffect().value().isInstantenous()) {
-          effect.getEffect().value().applyInstantenousEffect(player, player, living, effect.getAmplifier(), 2.5D);
+          effect.getEffect().value().applyInstantenousEffect(serverLevel, player, player, living, effect.getAmplifier(), 2.5D);
         } else {
           MobEffectInstance newEffect = new MobEffectInstance(effect.getEffect(), effect.getDuration() * 5 / 2, effect.getAmplifier(), effect.isAmbient(), effect.isVisible(), effect.showIcon());
           living.addEffect(newEffect);

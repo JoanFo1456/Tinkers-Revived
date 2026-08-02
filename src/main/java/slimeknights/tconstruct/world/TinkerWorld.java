@@ -371,8 +371,8 @@ public final class TinkerWorld extends TinkerModule {
         }
       };
       TinkerWorld.heads.forEach(head -> DispenserBlock.registerBehavior(head, dispenseArmor));
-      // heads in firework stars
-      TinkerWorld.heads.forEach(head -> FireworkStarRecipe.SHAPE_BY_ITEM.put(head.asItem(), FireworkExplosion.Shape.CREEPER));
+      // heads in firework stars: the runtime FireworkStarRecipe.SHAPE_BY_ITEM hook was removed in 26.1;
+      // creeper-shaped firework stars from these heads are now defined via the firework star recipe data
       // inject heads into the tile entity type
       event.enqueueWork(() -> {
         ImmutableSet.Builder<Block> builder = ImmutableSet.builder();
@@ -502,7 +502,7 @@ public final class TinkerWorld extends TinkerModule {
 
   /** Creates a skull wall block for the given head type */
   private static WallSkullBlock makeWallHead(TinkerHeadType type) {
-    BlockBehaviour.Properties props = BlockBehaviour.Properties.of().strength(1.0F).lootFrom(() -> heads.get(type));
+    BlockBehaviour.Properties props = BlockBehaviour.Properties.of().strength(1.0F).overrideLootTable(heads.get(type).getLootTable());
     if (type.isPiglin()) {
       return new PiglinWallHeadBlock(type, props);
     }
@@ -515,7 +515,7 @@ public final class TinkerWorld extends TinkerModule {
     if (type == TinkerHeadType.ENDERMAN) {
       return new EndermanHeadItem(heads.get(type), wallHeads.get(type), properties, Direction.DOWN);
     }
-    return new StandingAndWallBlockItem(heads.get(type), wallHeads.get(type), properties, Direction.DOWN);
+    return new StandingAndWallBlockItem(heads.get(type), wallHeads.get(type), Direction.DOWN, properties);
   }
 
   /** Properties for a cluster of shards. */
