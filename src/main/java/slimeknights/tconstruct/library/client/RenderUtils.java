@@ -1,14 +1,10 @@
 package slimeknights.tconstruct.library.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.resources.Identifier;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import slimeknights.mantle.client.render.FluidCuboid;
@@ -18,36 +14,6 @@ import slimeknights.tconstruct.library.fluid.FluidTankAnimated;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class RenderUtils {
-  /**
-   * Binds a texture for rendering
-   * @param texture  Texture
-   */
-  public static void bindTexture(Identifier texture) {
-    RenderSystem.setShader(GameRenderer::getPositionTexShader);
-    RenderSystem.setShaderTexture(0, texture);
-  }
-
-  /**
-   * Sets up the shader for rendering
-   * @param texture  Texture
-   * @param red      Red tint
-   * @param green    Green tint
-   * @param blue     Blue tint
-   * @param alpha    Alpha tint
-   */
-  public static void setup(Identifier texture, float red, float green, float blue, float alpha) {
-    bindTexture(texture);
-    RenderSystem.setShaderColor(red, green, blue, alpha);
-  }
-
-  /**
-   * Sets up the shader for rendering.
-   * @param texture  Texture
-   */
-  public static void setup(Identifier texture) {
-    setup(texture, 1.0f, 1.0f, 1.0f, 1.0f);
-  }
-
   /**
    * Adds a fluid cuboid with transparency
    * @param matrices  Matrix stack instance
@@ -63,15 +29,16 @@ public final class RenderUtils {
       return;
     }
 
-    IClientFluidTypeExtensions attributes = IClientFluidTypeExtensions.of(fluid.getFluid());
-    TextureAtlasSprite still = FluidRenderer.getBlockSprite(attributes.getStillTexture(fluid));
-    TextureAtlasSprite flowing = FluidRenderer.getBlockSprite(attributes.getFlowingTexture(fluid));
+    // fetch sprites and tint color from the 26.1 fluid model system (removed client-extension texture accessors)
+    FluidRenderer.FluidTextures textures = FluidRenderer.getFluidTextures(fluid);
+    TextureAtlasSprite still = textures.still();
+    TextureAtlasSprite flowing = textures.flowing();
     FluidType fluidType = fluid.getFluid().getFluidType();
     boolean isGas = fluidType.isLighterThanAir();
     light = FluidRenderer.withBlockLight(light, fluidType.getLightLevel(fluid));
 
     // add in fluid opacity if given
-    int color = attributes.getTintColor(fluid);
+    int color = textures.color();
     if (opacity < 0xFF) {
       // alpha is top 8 bits, multiply by opacity and divide out remainder
       int alpha = ((color >> 24) & 0xFF) * opacity / 0xFF;
@@ -111,29 +78,5 @@ public final class RenderUtils {
       // clear render offet if no liquid
       tank.setRenderOffset(0);
     }
-  }
-
-  public static void setColorRGBA(int color) {
-    float a = alpha(color) / 255.0F;
-    float r = red(color) / 255.0F;
-    float g = green(color) / 255.0F;
-    float b = blue(color) / 255.0F;
-    RenderSystem.setShaderColor(r, g, b, a);
-  }
-
-  public static int alpha(int c) {
-    return (c >> 24) & 0xFF;
-  }
-
-  public static int red(int c) {
-    return (c >> 16) & 0xFF;
-  }
-
-  public static int green(int c) {
-    return (c >> 8) & 0xFF;
-  }
-
-  public static int blue(int c) {
-    return (c) & 0xFF;
   }
 }

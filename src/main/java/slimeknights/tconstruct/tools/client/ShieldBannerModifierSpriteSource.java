@@ -5,17 +5,14 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import lombok.RequiredArgsConstructor;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.texture.SpriteContents;
 import net.minecraft.client.renderer.texture.atlas.SpriteSource;
 import net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader;
 import net.minecraft.client.renderer.texture.atlas.sources.LazyLoadedImage;
 import net.minecraft.client.resources.metadata.animation.FrameSize;
-import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.Resource;
-import net.minecraft.server.packs.resources.ResourceMetadata;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.block.entity.BannerPattern;
@@ -99,14 +96,15 @@ public record ShieldBannerModifierSpriteSource(int cropX, int cropY, int cropWid
   @Override
   public void run(ResourceManager manager, Output output) {
     VANILLA_PATTERNS.forEach(pattern -> {
-      Material material = new Material(Sheets.SHIELD_SHEET, pattern.location().withPrefix("entity/shield/"));
-      Identifier input = TEXTURE_ID_CONVERTER.idToFile(material.texture());
+      // 26.1: sprite Material no longer wraps (atlas, texture); the shield texture identifier is used directly
+      Identifier texture = pattern.identifier().withPrefix("entity/shield/");
+      Identifier input = TEXTURE_ID_CONVERTER.idToFile(texture);
       Optional<Resource> resource = manager.getResource(input);
       if (resource.isEmpty()) {
         TConstruct.LOG.warn("Unable to find shield texture {} to create modifier sprite", input);
       } else {
         LazyLoadedImage image = new LazyLoadedImage(input, resource.get(), 1);
-        Identifier destination = destinationPrefix.withSuffix(MaterialRenderInfo.getSuffix(pattern.location()));
+        Identifier destination = destinationPrefix.withSuffix(MaterialRenderInfo.getSuffix(pattern.identifier()));
         output.add(destination, new BannerModifierSpriteSupplier(image, input, destination));
       }
     });
@@ -136,7 +134,7 @@ public record ShieldBannerModifierSpriteSource(int cropX, int cropY, int cropWid
         } else {
           NativeImage generated = new NativeImage(outSize * scale, outSize * scale, true);
           original.copyRect(generated, cropX * scale, cropY * scale, offsetX * scale, offsetY * scale, cropWidth * scale, cropHeight * scale, false, false);
-          return new SpriteContents(this.output, new FrameSize(generated.getWidth(), generated.getHeight()), generated, ResourceMetadata.EMPTY);
+          return new SpriteContents(this.output, new FrameSize(generated.getWidth(), generated.getHeight()), generated);
         }
       } catch (IllegalArgumentException | IOException ex) {
         TConstruct.LOG.warn("Unable to crop {} to produce {}", this.input, this.output, ex);

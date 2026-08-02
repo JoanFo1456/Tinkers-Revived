@@ -20,7 +20,6 @@ import net.neoforged.bus.api.IEventBus;
 import slimeknights.mantle.data.listener.IEarlySafeManagerReloadListener;
 import slimeknights.mantle.util.JsonHelper;
 import slimeknights.tconstruct.TConstruct;
-import slimeknights.tconstruct.library.client.RenderUtils;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 
@@ -129,9 +128,8 @@ public class ModifierIconManager implements IEarlySafeManagerReloadListener {
       }
     } else {
       graphics.blitSprite(RenderPipelines.GUI_TEXTURED, atlas.getSprite(DEFAULT_PAGES), x, y, size, size);
-      RenderUtils.setColorRGBA(0xFF000000 | modifier.getColor());
-      graphics.blitSprite(RenderPipelines.GUI_TEXTURED, atlas.getSprite(DEFAULT_COVER), x, y, size, size);
-      RenderUtils.setColorRGBA(-1);
+      // 26.1: setShaderColor was removed; the cover-layer tint is now passed as the blitSprite color argument
+      graphics.blitSprite(RenderPipelines.GUI_TEXTURED, atlas.getSprite(DEFAULT_COVER), x, y, size, size, 0xFF000000 | modifier.getColor());
     }
   }
 }
