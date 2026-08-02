@@ -14,6 +14,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
+import net.minecraft.world.item.consume_effects.ConsumeEffect;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 
@@ -37,19 +40,20 @@ public class ContainerFoodItem extends Item {
   }
 
   /** Adds effects to the tooltip */
-  public static void addEffectTooltip(FoodProperties food, List<Component> tooltip) {
+  public static void addEffectTooltip(Consumable consumable, List<Component> tooltip) {
     // add effects to the tooltip, code based on potion items
-    for (FoodProperties.PossibleEffect possibleEffect : food.effects()) {
-      MobEffectInstance effect = possibleEffect.effect();
-      if (effect != null) {
-        MutableComponent mutable = Component.translatable(effect.getDescriptionId());
-        if (effect.getAmplifier() > 0) {
-          mutable = Component.translatable("potion.withAmplifier", mutable, Component.translatable("potion.potency." + effect.getAmplifier()));
+    for (ConsumeEffect consumeEffect : consumable.onConsumeEffects()) {
+      if (consumeEffect instanceof ApplyStatusEffectsConsumeEffect apply) {
+        for (MobEffectInstance effect : apply.effects()) {
+          MutableComponent mutable = Component.translatable(effect.getDescriptionId());
+          if (effect.getAmplifier() > 0) {
+            mutable = Component.translatable("potion.withAmplifier", mutable, Component.translatable("potion.potency." + effect.getAmplifier()));
+          }
+          if (effect.getDuration() > 20) {
+            mutable = Component.translatable("potion.withDuration", mutable, MobEffectUtil.formatDuration(effect, 1.0f, 20.0f));
+          }
+          tooltip.add(mutable.withStyle(effect.getEffect().value().getCategory().getTooltipFormatting()));
         }
-        if (effect.getDuration() > 20) {
-          mutable = Component.translatable("potion.withDuration", mutable, MobEffectUtil.formatDuration(effect, 1.0f, 20.0f));
-        }
-        tooltip.add(mutable.withStyle(effect.getEffect().value().getCategory().getTooltipFormatting()));
       }
     }
   }
@@ -57,11 +61,11 @@ public class ContainerFoodItem extends Item {
   @Override
   public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flagIn) {
     List<Component> tooltip = new java.util.ArrayList<>();
-    FoodProperties food = stack.getFoodProperties(null);
-    if (food != null) {
-      addEffectTooltip(food, tooltip);
+    Consumable consumable = stack.get(net.minecraft.core.component.DataComponents.CONSUMABLE);
+    if (consumable != null) {
+      addEffectTooltip(consumable, tooltip);
     }
-  
+
     tooltip.forEach(tooltipConsumer);
   }
 
