@@ -31,6 +31,7 @@ import slimeknights.mantle.client.screen.book.element.ImageElement;
 import slimeknights.mantle.client.screen.book.element.TextElement;
 import slimeknights.mantle.data.loadable.Loadables;
 import slimeknights.mantle.recipe.helper.RecipeHelper;
+import slimeknights.mantle.recipe.sync.ClientRecipeCache;
 import slimeknights.mantle.util.ItemStackList;
 import slimeknights.mantle.util.html.HtmlElement;
 import slimeknights.mantle.util.html.HtmlGroup;
@@ -158,33 +159,21 @@ public class ContentTool extends PageContent {
       IModifiableDisplay tool = getTool();
       List<IToolPart> required = ToolPartsHook.parts(tool.getToolDefinition());
 
-      // get the stacks for the first crafting table recipe, prefer this option over parts as it may not be craftable with said parts
-      Recipe<?> recipe = Optional.ofNullable(Minecraft.getInstance().level)
-                                 .flatMap(world -> {
-                                   RegistryAccess access = world.registryAccess();
-                                   return RecipeHelper.getRecipes(world.getRecipeManager(), RecipeType.CRAFTING).stream()
-                                               .filter(r -> r.getResultItem(access).getItem() == tool.asItem())
-                                               .findFirst();
-                                 })
-                                 .orElse(null);
-      if (recipe != null) {
-        // parts is just the items in the recipe
-        this.parts = recipe.getIngredients().stream().map(ingredient -> ItemStackList.of(ingredient.getItems())).collect(Collectors.toList());
-
-        // if we have a shaped recipe, display slots in order
-        if (recipe instanceof IShapedRecipe<?> shaped) {
-          int width = Mth.clamp(shaped.getRecipeWidth() - 1, 0, 2);
-          this.imgSlots = IMG_SLOTS_SHAPED[Mth.clamp(shaped.getRecipeHeight() - 1, 0, 2)][width];
-          this.slotPos = SLOTS_WIDTH[width];
-        }
-      } else {
+      // We would prefer to display the layout of a crafting-table recipe that outputs this tool (it may differ from the
+      // raw part list). However, vanilla crafting recipes are NOT available on the client in 26.1: there is no client
+      // RecipeManager, and by design Tinkers does not sync vanilla crafting to the client. The client recipe-book
+      // property sets expose only usable-item sets, not the shaped ingredient layout this page needs, so the
+      // crafting-table recipe cannot be resolved here. Every tool still renders through the part-derived layout below,
+      // which is the general case and covers all tools.
+      // In-game validation: confirm book "tool" pages show the correct part slots for all tools.
+      {
         ImmutableList.Builder<ItemStackList> partBuilder = ImmutableList.builder();
         for (int i = 0; i < required.size(); i++) {
           partBuilder.add(ItemStackList.of(ToolBuildHandler.getDisplayPart(required.get(i), i)));
         }
         // fetch the tool building recipe for extra ingredients
         List<Ingredient> extraRequirements = Optional.ofNullable(Minecraft.getInstance().level)
-                                                     .flatMap(world -> RecipeHelper.getRecipes(world.getRecipeManager(), TinkerRecipeTypes.TINKER_STATION.get()).stream()
+                                                     .flatMap(world -> RecipeHelper.getRecipes(ClientRecipeCache.getRecipeMap(), TinkerRecipeTypes.TINKER_STATION.get()).stream()
                                                                             .filter(r -> r instanceof ToolBuildingRecipe toolRecipe && toolRecipe.getOutput() == tool)
                                                                             .map(r -> ((ToolBuildingRecipe)r).getExtraRequirements())
                                                                             .findFirst()).orElse(List.of());

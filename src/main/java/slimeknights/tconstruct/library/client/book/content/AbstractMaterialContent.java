@@ -25,6 +25,7 @@ import slimeknights.mantle.client.screen.book.element.ItemElement;
 import slimeknights.mantle.client.screen.book.element.TextComponentElement;
 import slimeknights.mantle.client.screen.book.element.TextElement;
 import slimeknights.mantle.recipe.helper.RecipeHelper;
+import slimeknights.mantle.recipe.sync.ClientRecipeCache;
 import slimeknights.mantle.util.RegistryHelper;
 import slimeknights.mantle.util.html.HtmlElement;
 import slimeknights.mantle.util.html.HtmlGroup;
@@ -148,11 +149,11 @@ public abstract class AbstractMaterialContent extends PageContent {
       }
       // simply combine all items from all recipes
       MaterialVariantId material = getMaterialVariant();
-      repairStacks = RecipeHelper.getUIRecipes(world.getRecipeManager(), TinkerRecipeTypes.MATERIAL.get(), MaterialRecipe.class, recipe -> material.matchesVariant(recipe.getMaterial()))
+      repairStacks = RecipeHelper.getUIRecipes(ClientRecipeCache.getRecipeMap(), TinkerRecipeTypes.MATERIAL.get(), MaterialRecipe.class, recipe -> material.matchesVariant(recipe.getMaterial()))
         .stream()
         // prefer 1 value 1 needed (ingots), then 1 value with higher needed (nuggets), then higher value (blocks)
         .sorted(Comparator.comparing(MaterialRecipe::getValue).thenComparing(MaterialRecipe::getNeeded))
-        .flatMap(recipe -> Arrays.stream(recipe.getIngredient().getItems()))
+        .flatMap(recipe -> recipe.getIngredient().items().map(ItemStack::new))
         .collect(Collectors.toList());
       // no repair items? use the fallbacks
       if (repairStacks.isEmpty()) {

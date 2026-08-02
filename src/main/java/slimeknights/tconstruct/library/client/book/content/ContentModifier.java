@@ -22,6 +22,7 @@ import slimeknights.mantle.client.screen.book.element.BookElement;
 import slimeknights.mantle.client.screen.book.element.ImageElement;
 import slimeknights.mantle.client.screen.book.element.TextElement;
 import slimeknights.mantle.recipe.helper.RecipeHelper;
+import slimeknights.mantle.recipe.sync.ClientRecipeCache;
 import slimeknights.mantle.util.ItemStackList;
 import slimeknights.mantle.util.html.HtmlElement;
 import slimeknights.mantle.util.html.HtmlGroup;
@@ -136,7 +137,7 @@ public class ContentModifier extends PageContent {
         assert level != null;
         TagKey<Item> filter = getToolFilterTag();
         // TODO: feel we can speed this up by not fetching the whole recipes list for every page
-        this.recipes = RecipeHelper.getJEIRecipes(level.registryAccess(), level.getRecipeManager(), TinkerRecipeTypes.TINKER_STATION.get(), IDisplayModifierRecipe.class).stream()
+        this.recipes = RecipeHelper.getJEIRecipes(level.registryAccess(), ClientRecipeCache.getRecipeMap(), TinkerRecipeTypes.TINKER_STATION.get(), IDisplayModifierRecipe.class).stream()
           // must output this modifier, and must have at least 1 tool that matches the filter
           .filter(recipe -> recipe.getDisplayResult().matches(modifier) && (filter == null || recipe.getToolWithoutModifier().stream().anyMatch(tool -> tool.is(filter))))
           .toList();
