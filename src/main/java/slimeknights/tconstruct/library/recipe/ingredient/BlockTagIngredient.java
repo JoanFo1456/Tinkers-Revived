@@ -43,7 +43,7 @@ public class BlockTagIngredient implements ICustomIngredient {
   @Nullable
   private Set<Item> matchingItems;
   @Nullable
-  private ItemStack[] items;
+  private java.util.List<net.minecraft.core.Holder<Item>> items;
 
   public static Ingredient of(TagKey<Block> tag) {
     return new BlockTagIngredient(tag).toVanilla();
@@ -71,16 +71,15 @@ public class BlockTagIngredient implements ICustomIngredient {
   }
 
   @Override
-  public Stream<ItemStack> getItems() {
+  public Stream<net.minecraft.core.Holder<Item>> items() {
     if (items == null) {
-      items = getMatchingItems().stream().map(ItemStack::new).toArray(ItemStack[]::new);
-      if (items.length == 0) {
-        ItemStack barrier = new ItemStack(Blocks.BARRIER);
-        barrier.set(DataComponents.CUSTOM_NAME, Component.literal("Empty Tag: " + tag.location()));
-        items = new ItemStack[] { barrier };
+      items = getMatchingItems().stream().map(Item::builtInRegistryHolder).collect(java.util.stream.Collectors.toList());
+      // 26.1.2 items() returns item holders; empty tags fall back to a plain barrier holder placeholder
+      if (items.isEmpty()) {
+        items = java.util.List.of(Items.BARRIER.builtInRegistryHolder());
       }
     }
-    return Stream.of(items);
+    return items.stream();
   }
 
   @Override

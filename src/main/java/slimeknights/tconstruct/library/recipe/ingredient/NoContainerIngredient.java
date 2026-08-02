@@ -149,7 +149,8 @@ public class NoContainerIngredient extends NestedIngredient {
 
   /** Creates an instance from the given stacks */
   public static Ingredient of(ItemStack... stacks) {
-    return of(Ingredient.of(stacks));
+    // 26.1.2 Ingredient.of no longer accepts ItemStacks (ingredients are item-based); use the stacks' items
+    return of(Ingredient.of(java.util.Arrays.stream(stacks).map(ItemStack::getItem).toArray(Item[]::new)));
   }
 
   /** Creates an instance from the given tag */

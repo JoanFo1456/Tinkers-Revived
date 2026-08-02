@@ -42,7 +42,7 @@ public class ToolHookIngredient implements ICustomIngredient {
   private final TagKey<Item> tag;
   private final ModuleHook<?> hook;
   @Nullable
-  private ItemStack[] items;
+  private List<Holder<Item>> items;
 
   protected ToolHookIngredient(TagKey<Item> tag, ModuleHook<?> hook) {
     this.tag = tag;
@@ -68,22 +68,22 @@ public class ToolHookIngredient implements ICustomIngredient {
   }
 
   @Override
-  public Stream<ItemStack> getItems() {
+  public Stream<Holder<Item>> items() {
     if (items == null) {
-      List<ItemStack> list = new ArrayList<>();
+      List<Holder<Item>> list = new ArrayList<>();
       for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(tag)) {
         if (holder.value() instanceof IModifiable modifiable && modifiable.getToolDefinition().getData().getHooks().hasHook(hook)) {
-          list.add(new ItemStack(modifiable));
+          list.add(holder);
         }
       }
+      // 26.1.2 ICustomIngredient#items() returns item holders (display stacks are built by the framework),
+      // so the former named-barrier placeholder for empty tags becomes a plain barrier holder.
       if (list.isEmpty()) {
-        ItemStack barrier = new ItemStack(Blocks.BARRIER);
-        barrier.set(DataComponents.CUSTOM_NAME, Component.literal("Empty Tag: " + tag.location()));
-        list.add(barrier);
+        list.add(net.minecraft.world.item.Items.BARRIER.builtInRegistryHolder());
       }
-      items = list.toArray(ItemStack[]::new);
+      items = list;
     }
-    return Stream.of(items);
+    return items.stream();
   }
 
   @Override

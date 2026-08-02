@@ -112,7 +112,7 @@ public class PiggyBackPackItem extends TooltipItem {
     // can only ride one entity each
     if (!toRide.isVehicle() && count < MAX_ENTITY_STACK) {
       // todo: possibly throw off all passengers of the target
-      if (target.startRiding(toRide, true)) {
+      if (target.startRiding(toRide, true, true)) {
         if (player instanceof ServerPlayer) {
           TinkerNetwork.getInstance().sendVanillaPacket(player, new ClientboundSetPassengersPacket(player));
         }
@@ -170,7 +170,7 @@ public class PiggyBackPackItem extends TooltipItem {
     }
 
     @Override
-    public boolean applyEffectTick(@Nonnull LivingEntity livingEntityIn, int p_76394_2_) {
+    public boolean applyEffectTick(net.minecraft.server.level.ServerLevel serverLevel, @Nonnull LivingEntity livingEntityIn, int p_76394_2_) {
       ItemStack chestArmor = livingEntityIn.getItemBySlot(EquipmentSlot.CHEST);
       if (chestArmor.isEmpty() || chestArmor.getItem() != TinkerGadgets.piggyBackpack.get()) {
         TinkerGadgets.piggyBackpack.get().matchCarriedEntitiesToCount(livingEntityIn, 0);

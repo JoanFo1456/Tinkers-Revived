@@ -158,21 +158,10 @@ public class MaterialIngredient extends NestedIngredient {
   }
 
   @Override
-  public Stream<ItemStack> getItems() {
-    if (materialStacks == null) {
-      if (!MaterialRegistry.isFullyLoaded()) {
-        return Arrays.stream(nested.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
-      }
-      // no material? apply all materials for variants
-      Stream<ItemStack> items = Arrays.stream(nested.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
-      // find all materials matching the filter; note this only shows craftable material variants
-      items = items.flatMap(stack -> MaterialRecipeCache.getAllVariants().stream()
-        .filter(material::matches)
-        .map(mat -> IMaterialItem.withMaterial(stack, mat))
-        .filter(TagUtil::hasTag));
-      materialStacks = items.distinct().toArray(ItemStack[]::new);
-    }
-    return Arrays.stream(materialStacks);
+  public Stream<net.minecraft.core.Holder<net.minecraft.world.item.Item>> items() {
+    // 26.1.2 ICustomIngredient#items() returns item holders (no NBT/components), so material-variant expansion
+    // can no longer live here; JEI's material crafting extensions build the per-material display separately.
+    return nested.items();
   }
 
   public JsonElement toJson() {

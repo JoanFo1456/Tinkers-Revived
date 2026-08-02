@@ -10,10 +10,12 @@ import com.mojang.serialization.MapLike;
 import com.mojang.serialization.RecordBuilder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.crafting.ICustomIngredient;
@@ -43,7 +45,7 @@ public class MaterialValueIngredient implements ICustomIngredient {
   private final IJsonPredicate<MaterialVariantId> material;
   private final float minValue;
   private final float maxValue;
-  private ItemStack[] items;
+  private java.util.List<Holder<Item>> items;
 
   /** Creates an ingredient matching a range of values */
   public static Ingredient of(IJsonPredicate<MaterialVariantId> materials, float minValue, float maxValue) {
@@ -71,14 +73,14 @@ public class MaterialValueIngredient implements ICustomIngredient {
   }
 
   @Override
-  public Stream<ItemStack> getItems() {
+  public Stream<Holder<Item>> items() {
     if (items == null) {
       items = MaterialRecipeCache.getAllRecipes().stream()
         .filter(this::test)
-        .flatMap(material -> Arrays.stream(material.getIngredient().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)))
-        .toArray(ItemStack[]::new);
+        .flatMap(material -> material.getIngredient().items())
+        .toList();
     }
-    return Arrays.stream(items);
+    return items.stream();
   }
 
   @Override

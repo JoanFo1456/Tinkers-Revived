@@ -49,9 +49,9 @@ public record PotionFluidEffect(float scale, TagPredicate predicate) implements 
           if (effect.value().isInstantenous()) {
             // instant effects just apply full value always
             used = level.value();
-            if (action.execute()) {
+            if (action.execute() && target.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
               target.invulnerableTime = 0;
-              effect.value().applyInstantenousEffect(directSource, attacker, target, instance.getAmplifier(), used * scale);
+              effect.value().applyInstantenousEffect(serverLevel, directSource, attacker, target, instance.getAmplifier(), used * scale);
             }
           } else {
             // if the potion already exists, we scale up the existing time

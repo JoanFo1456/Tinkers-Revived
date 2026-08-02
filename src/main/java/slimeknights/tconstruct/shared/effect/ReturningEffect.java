@@ -42,7 +42,7 @@ public class ReturningEffect extends TinkerEffect {
   }
 
   @Override
-  public boolean applyEffectTick(LivingEntity living, int amplifier) {
+  public boolean applyEffectTick(net.minecraft.server.level.ServerLevel serverLevel, LivingEntity living, int amplifier) {
     ModDataNBT data = PersistentDataCapability.getOrWarn(living);
     if (data.contains(KEY)) {
       CompoundTag tag = data.getCompound(KEY);
