@@ -2,14 +2,14 @@ package slimeknights.tconstruct.library.recipe.material;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.CraftingInput;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
@@ -35,20 +35,14 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
   private final Identifier id;
   private MaterialValueIngredient material;
   private final List<MaterialVariantId> extraMaterials;
-  public ShapedMaterialRecipe(Identifier id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack result, boolean showNotification, List<MaterialVariantId> extraMaterials) {
-    super(group, category, new ShapedRecipePattern(width, height, ingredients, Optional.empty()), result, showNotification);
+  public ShapedMaterialRecipe(Identifier id, Recipe.CommonInfo commonInfo, CraftingRecipe.CraftingBookInfo bookInfo, ShapedRecipePattern pattern, ItemStackTemplate result, List<MaterialVariantId> extraMaterials) {
+    super(commonInfo, bookInfo, pattern, result);
     this.id = id;
     this.extraMaterials = extraMaterials;
   }
 
   public ShapedMaterialRecipe(ShapedRecipe recipe, List<MaterialVariantId> extraMaterials) {
-    this(LoggingRecipeSerializer.UNKNOWN_ID, recipe.getGroup(), recipe.category(), recipe.getWidth(), recipe.getHeight(), recipe.getIngredients(), recipe.getResultItem(null), recipe.showNotification(), extraMaterials);
-  }
-
-  /** @deprecated use {@link #ShapedMaterialRecipe(Identifier,String,CraftingBookCategory,int,int,NonNullList,ItemStack,boolean,List)} */
-  @Deprecated(forRemoval = true)
-  public ShapedMaterialRecipe(Identifier id, String group, CraftingBookCategory category, int width, int height, NonNullList<Ingredient> ingredients, ItemStack result, boolean showNotification) {
-    this(id, group, category, width, height, ingredients, result, showNotification, List.of());
+    this(LoggingRecipeSerializer.UNKNOWN_ID, new Recipe.CommonInfo(recipe.showNotification()), new CraftingRecipe.CraftingBookInfo(recipe.category(), recipe.group()), recipe.pattern, recipe.result, extraMaterials);
   }
 
   /** @deprecated use {@link #ShapedMaterialRecipe(ShapedRecipe,List)} */
@@ -66,9 +60,9 @@ public class ShapedMaterialRecipe extends ShapedRecipe {
   public MaterialValueIngredient getMaterial() {
     if (material == null) {
       // assume all material ingredients match the same stat type
-      for (Ingredient ingredient : getIngredients()) {
+      for (Optional<Ingredient> optional : getIngredients()) {
         // collect all ingredients that match
-        if (ingredient.getCustomIngredient() instanceof MaterialValueIngredient materialValue) {
+        if (optional.isPresent() && optional.get().getCustomIngredient() instanceof MaterialValueIngredient materialValue) {
           if (material == null) {
             material = materialValue;
           } else {
