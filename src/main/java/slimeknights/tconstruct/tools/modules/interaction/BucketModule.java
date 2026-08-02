@@ -125,7 +125,7 @@ public record BucketModule(IJsonPredicate<Fluid> fluids) implements ModifierModu
       fluidType.onVaporize(player, world, target, fluidStack);
       placed = true;
       // next, try vanilla vaporizing
-    } else if (world.dimensionType().ultraWarm() && fluid.is(FluidTags.WATER)) {
+    } else if (world.environmentAttributes().getValue(net.minecraft.world.attribute.EnvironmentAttributes.WATER_EVAPORATES, target) && fluid.is(FluidTags.WATER)) {
       world.playSound(player, target, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.8F);
       for(int l = 0; l < 8; ++l) {
         world.addParticle(ParticleTypes.LARGE_SMOKE, target.getX() + Math.random(), target.getY() + Math.random(), target.getZ() + Math.random(), 0.0D, 0.0D, 0.0D);

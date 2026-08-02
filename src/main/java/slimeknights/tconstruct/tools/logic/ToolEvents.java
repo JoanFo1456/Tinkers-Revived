@@ -201,7 +201,7 @@ public class ToolEvents {
     }
     // I cannot think of a reason to run when invulnerable
     DamageSource source = event.getSource();
-    if (entity.isInvulnerableTo(source)) {
+    if (entity.isInvulnerableTo((net.minecraft.server.level.ServerLevel) entity.level(), source)) {
       return;
     }
 

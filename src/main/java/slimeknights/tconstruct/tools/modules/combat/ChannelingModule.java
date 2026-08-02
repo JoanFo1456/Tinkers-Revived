@@ -67,7 +67,7 @@ public record ChannelingModule(float clearChance, float rainChance, float thunde
       if (chance >= 1 || level.getRandom().nextFloat() < chance) {
         LightningBolt lightning = EntityType.LIGHTNING_BOLT.create(level, EntitySpawnReason.TRIGGERED);
         if (lightning != null) {
-          lightning.moveTo(Vec3.atBottomCenterOf(target));
+          lightning.snapTo(Vec3.atBottomCenterOf(target));
           if (attacker instanceof ServerPlayer player) {
             lightning.setCause(player);
           }

@@ -86,7 +86,7 @@ public class OlympicModifier extends Modifier implements ProjectileLaunchModifie
         Item nugget = getNugget(targetEntity.distanceToSqr(startCompound.getDoubleOr("X", 0.0), startCompound.getDoubleOr("Y", 0.0), startCompound.getDoubleOr("Z", 0.0)));
         if (nugget != Items.AIR) {
           // spawn and play sound
-          targetEntity.spawnAtLocation(nugget);
+          targetEntity.spawnAtLocation((net.minecraft.server.level.ServerLevel) level, nugget);
           if (attacker != null) {
             level.playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0f, 1.0f);
           }

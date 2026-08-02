@@ -115,8 +115,10 @@ public enum BrushModule implements ModifierModule, GeneralInteractionModifierHoo
     }
 
     // brush the block
-    if (!level.isClientSide()) {
-      return level.getBlockEntity(blockHit.getBlockPos()) instanceof BrushableBlockEntity brushable && brushable.brush(level.getGameTime(), player, blockHit.getDirection());
+    if (level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+      // 26.1.2 brush() now takes the ServerLevel and the brushing item stack (the tool in the acting hand)
+      net.minecraft.world.item.ItemStack brushStack = player.getItemInHand(arm == net.minecraft.world.entity.HumanoidArm.RIGHT ? net.minecraft.world.InteractionHand.MAIN_HAND : net.minecraft.world.InteractionHand.OFF_HAND);
+      return level.getBlockEntity(blockHit.getBlockPos()) instanceof BrushableBlockEntity brushable && brushable.brush(level.getGameTime(), serverLevel, player, blockHit.getDirection(), brushStack);
     }
     return false;
   }

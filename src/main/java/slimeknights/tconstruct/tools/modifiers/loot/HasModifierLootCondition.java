@@ -16,7 +16,7 @@ import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 @RequiredArgsConstructor
 public class HasModifierLootCondition implements LootItemCondition {
   public static final MapCodec<HasModifierLootCondition> CODEC = RecordCodecBuilder.mapCodec(
-    instance -> instance.group(Identifier.CODEC.xmap(ModifierId::new, id -> id).fieldOf("modifier").forGetter(condition -> condition.modifier))
+    instance -> instance.group(Identifier.CODEC.xmap(ModifierId::new, ModifierId::getIdentifier).fieldOf("modifier").forGetter(condition -> condition.modifier))
                         .apply(instance, HasModifierLootCondition::new)
   );
   private final ModifierId modifier;

@@ -53,14 +53,11 @@ public class RepairKitItem extends MaterialItem implements IRepairKitItem {
 
   @Override
   public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
-    List<Component> tooltip = new java.util.ArrayList<>();
-    super.appendHoverText(stack, context, tooltip, flag);
+    super.appendHoverText(stack, context, tooltipDisplay, tooltipConsumer, flag);
     // tooltip is about inventory repair
     if (canRepairInCraftingTable()) {
-      tooltip.add(Component.translatable(TOOLTIP_KEY, TranslationHelper.COMMA_FORMAT.format(getRepairAmount())).withStyle(ChatFormatting.GRAY));
+      tooltipConsumer.accept(Component.translatable(TOOLTIP_KEY, TranslationHelper.COMMA_FORMAT.format(getRepairAmount())).withStyle(ChatFormatting.GRAY));
     }
-  
-    tooltip.forEach(tooltipConsumer);
   }
 
   @Override

@@ -504,7 +504,8 @@ public class ModifierEvents {
             arrow.piercedAndKilledEntities.add(target);
           }
 
-          if (!level.isClientSide() && arrow.shotFromCrossbow() && owner instanceof ServerPlayer player) {
+          // 26.1.2 dropped AbstractArrow#shotFromCrossbow(); vanilla now fires the trigger for any arrow kill
+          if (!level.isClientSide() && owner instanceof ServerPlayer player) {
             if (arrow.piercedAndKilledEntities != null) {
               CriteriaTriggers.KILLED_BY_ARROW.trigger(player, arrow.piercedAndKilledEntities, arrow.getWeaponItem());
             } else if (!target.isAlive()) {

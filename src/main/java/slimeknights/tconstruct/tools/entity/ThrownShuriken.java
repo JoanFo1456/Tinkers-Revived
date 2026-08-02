@@ -179,8 +179,8 @@ public class ThrownShuriken extends Projectile implements ToolProjectile, Projec
       }
     }
 
-    // update position
-    this.checkInsideBlocks();
+    // update position (26.1.2 renamed checkInsideBlocks to applyEffectsFromBlocks)
+    this.applyEffectsFromBlocks();
     Vec3 movement = this.getDeltaMovement();
     double x = this.getX() + movement.x;
     double y = this.getY() + movement.y;

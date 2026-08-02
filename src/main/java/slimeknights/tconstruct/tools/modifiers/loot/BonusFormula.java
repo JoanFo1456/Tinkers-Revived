@@ -57,7 +57,7 @@ public interface BonusFormula {
   }
 
   record OreDrops() implements BonusFormula {
-    public static final Codec<OreDrops> CODEC = Codec.unit(new OreDrops());
+    public static final Codec<OreDrops> CODEC = MapCodec.unitCodec(new OreDrops());
     public static final Type TYPE = new Type(Identifier.withDefaultNamespace("ore_drops"), CODEC);
 
     @Override

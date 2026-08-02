@@ -141,7 +141,7 @@ public class EnchantmentConvertingRecipe extends AbstractWorktableRecipe {
       }
       // call the method directly on item as the method on itemstack conisiders if its current enchanted
       // we want to match even unenchanted items, better error
-    } else if (!tool.getItem().isEnchantable(tool)) {
+    } else if (!tool.isEnchantable()) {
       return false;
     }
     return ModifierRecipe.checkMatch(inv, inputs);
