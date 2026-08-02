@@ -4,6 +4,8 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -43,13 +45,15 @@ public class WorldEvents {
     DamageSource source = event.getSource();
     if (source != null) {
       Entity entity = source.getEntity();
-      if (entity instanceof Creeper creeper) {
-        if (creeper.canDropMobsSkull()) {
-          LivingEntity dying = event.getEntity();
-          TinkerHeadType headType = TinkerHeadType.fromEntityType(dying.getType());
-          if (headType != null && Config.COMMON.headDrops.get(headType).get()) {
-            creeper.increaseDroppedSkulls();
-            event.getDrops().add(dying.spawnAtLocation(TinkerWorld.heads.get(headType)));
+      // 26.1: canDropMobsSkull()/increaseDroppedSkulls() were removed; replicate with isPowered() + the droppedSkulls flag
+      if (entity instanceof Creeper creeper && creeper.isPowered() && !creeper.droppedSkulls) {
+        LivingEntity dying = event.getEntity();
+        TinkerHeadType headType = TinkerHeadType.fromEntityType(dying.getType());
+        if (headType != null && Config.COMMON.headDrops.get(headType).get() && dying.level() instanceof ServerLevel serverLevel) {
+          creeper.droppedSkulls = true;
+          ItemEntity drop = dying.spawnAtLocation(serverLevel, TinkerWorld.heads.get(headType));
+          if (drop != null) {
+            event.getDrops().add(drop);
           }
         }
       }
