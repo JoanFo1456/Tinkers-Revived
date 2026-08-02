@@ -16,6 +16,9 @@ import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapab
 import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.item.ItemResource;
 import slimeknights.tconstruct.compat.neoforged.neoforge.network.NetworkHooks;
 import slimeknights.mantle.inventory.EmptyItemHandler;
 import slimeknights.tconstruct.TConstruct;
@@ -123,7 +126,7 @@ public class ToolInventoryCapability extends InventoryModifierHookIterator<Modif
 
   /** If true, the given stack is blacklisted from being stored in a tool */
   public static boolean isBlacklisted(ItemStack stack) {
-    return !stack.getItem().canFitInsideContainerItems() || stack.is(TinkerTags.Items.TOOL_INVENTORY_BLACKLIST) || stack.getCapability(Capabilities.ItemHandler.ITEM) != null;
+    return !stack.getItem().canFitInsideContainerItems() || stack.is(TinkerTags.Items.TOOL_INVENTORY_BLACKLIST) || ItemAccess.forStack(stack).getCapability(Capabilities.Item.ITEM) != null;
   }
 
   @Override
@@ -537,8 +540,8 @@ public class ToolInventoryCapability extends InventoryModifierHookIterator<Modif
 
   /** Opens the tool inventory container if an inventory is present on the given tool */
   public static InteractionResult tryOpenContainer(ItemStack stack, @Nullable IToolStackView tool, ToolDefinition definition, Player player, int slotIndex) {
-    IItemHandler capability = stack.getCapability(Capabilities.ItemHandler.ITEM);
-    IItemHandler handler = capability instanceof IItemHandlerModifiable ? capability : EmptyItemHandler.INSTANCE;
+    ResourceHandler<ItemResource> capability = ItemAccess.forStack(stack).getCapability(Capabilities.Item.ITEM);
+    IItemHandler handler = capability == null ? EmptyItemHandler.INSTANCE : IItemHandler.of(capability);
     // open if we have any slots or we have a crafting table
     if (handler.getSlots() > 0 || ModifierUtil.checkVolatileFlag(stack, CRAFTING_TABLE) || ModifierUtil.checkVolatileFlag(stack, INVENTORY_CRAFTING)) {
       if (player instanceof ServerPlayer serverPlayer) {

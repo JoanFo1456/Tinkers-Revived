@@ -26,6 +26,9 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.item.ItemResource;
 import slimeknights.mantle.fluid.FluidTransferHelper;
 import slimeknights.mantle.fluid.transfer.IFluidContainerTransfer.TransferDirection;
 import slimeknights.mantle.fluid.transfer.IFluidContainerTransfer.TransferResult;
@@ -126,8 +129,8 @@ public class ToolContainerMenu extends AbstractContainerMenu {
     // if the stack looks like it could be our tool, fetch the handler from it
     IItemHandler handler;
     if (TagUtil.hasTag(stack) && stack.is(TinkerTags.Items.MODIFIABLE)) {
-      IItemHandler capability = stack.getCapability(Capabilities.ItemHandler.ITEM);
-      handler = capability instanceof IItemHandlerModifiable ? capability : EmptyItemHandler.INSTANCE;
+      ResourceHandler<ItemResource> capability = ItemAccess.forStack(stack).getCapability(Capabilities.Item.ITEM);
+      handler = capability == null ? EmptyItemHandler.INSTANCE : IItemHandler.of(capability);
       // wrong number of slots means something went wrong, use a dummy
       if (handler.getSlots() != size) {
         handler = new ItemStackHandler(size);

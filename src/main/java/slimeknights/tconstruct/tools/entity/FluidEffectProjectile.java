@@ -16,6 +16,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,8 +33,9 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.modifiers.entity.ProjectileWithKnockback;
 import slimeknights.tconstruct.library.modifiers.entity.ProjectileWithPower;
@@ -139,16 +141,13 @@ public class FluidEffectProjectile extends Projectile implements ProjectileWithK
     return getFluid().getHoverName();
   }
 
-  /** Gets the cannon tank */
+  /** Gets the cannon item handler as a resource handler */
   @Nullable
-  private IItemHandlerModifiable getCannonInventory() {
+  private ResourceHandler<ItemResource> getCannonInventory() {
     Level level = level();
     if (this.cannon != null && level.isLoaded(this.cannon)) {
       BlockEntity cannonBE = level.getBlockEntity(this.cannon);
-      IItemHandler handler = level.getCapability(Capabilities.ItemHandler.BLOCK, this.cannon, cannonBE == null ? null : cannonBE.getBlockState(), cannonBE, null);
-      if (handler instanceof IItemHandlerModifiable modifiable) {
-        return modifiable;
-      }
+      return level.getCapability(Capabilities.Item.BLOCK, this.cannon, cannonBE == null ? null : cannonBE.getBlockState(), cannonBE, null);
     }
     return null;
   }
@@ -162,9 +161,9 @@ public class FluidEffectProjectile extends Projectile implements ProjectileWithK
       builder.user(owner);
     }
     if (this.cannon != null) {
-      IItemHandler handler = getCannonInventory();
-      if (handler != null) {
-        builder.stack(handler.getStackInSlot(0).copy());
+      ResourceHandler<ItemResource> handler = getCannonInventory();
+      if (handler != null && handler.size() > 0) {
+        builder.stack(handler.getResource(0).toStack(Math.max(1, handler.getAmountAsInt(0))));
       }
     }
     return builder;
@@ -173,9 +172,21 @@ public class FluidEffectProjectile extends Projectile implements ProjectileWithK
   /** Updates the stack for the fluid cannon */
   private void updateCannonStack(FluidEffectContext context) {
     if (cannon != null) {
-      IItemHandlerModifiable handler = getCannonInventory();
-      if (handler != null) {
-        handler.setStackInSlot(0, context.getStack());
+      ResourceHandler<ItemResource> handler = getCannonInventory();
+      if (handler != null && handler.size() > 0) {
+        // replace the single cannon slot with the updated container item within one transaction
+        ItemStack stack = context.getStack();
+        try (Transaction tx = Transaction.openRoot()) {
+          ItemResource existing = handler.getResource(0);
+          int existingAmount = handler.getAmountAsInt(0);
+          if (!existing.isEmpty() && existingAmount > 0) {
+            handler.extract(0, existing, existingAmount, tx);
+          }
+          if (!stack.isEmpty()) {
+            handler.insert(0, ItemResource.of(stack), stack.getCount(), tx);
+          }
+          tx.commit();
+        }
       }
     }
   }

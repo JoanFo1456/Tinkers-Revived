@@ -145,7 +145,7 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
       ListTag list = tool.getPersistentData().get(key, GET_COMPOUND_LIST);
       for (int i = 0; i < list.size(); i++) {
         CompoundTag compound = list.getCompoundOrEmpty(i);
-        if (compound.getInt(TAG_SLOT) == slot) {
+        if (compound.getIntOr(TAG_SLOT, -1) == slot) {
           return TagUtil.readItem(compound);
         }
       }
@@ -222,11 +222,14 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
           BitSet freeSlots = new BitSet(maxSlots);
           freeSlots.set(0, maxSlots, true);
           for (int i = 0; i < listNBT.size(); i++) {
-            freeSlots.set(listNBT.getCompound(i).getInt(TAG_SLOT), false);
+            int usedSlot = listNBT.getCompoundOrEmpty(i).getIntOr(TAG_SLOT, -1);
+            if (usedSlot >= 0 && usedSlot < maxSlots) {
+              freeSlots.set(usedSlot, false);
+            }
           }
           for (int i = 0; i < listNBT.size(); i++) {
             CompoundTag compoundNBT = listNBT.getCompoundOrEmpty(i);
-            if (compoundNBT.getInt(TAG_SLOT) >= maxSlots) {
+            if (compoundNBT.getIntOr(TAG_SLOT, -1) >= maxSlots) {
               int free = freeSlots.stream().findFirst().orElse(-1);
               if (free == -1) {
                 return HAS_ITEMS;
