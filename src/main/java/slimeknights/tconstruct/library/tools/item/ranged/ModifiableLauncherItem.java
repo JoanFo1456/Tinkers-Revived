@@ -27,6 +27,7 @@ import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.TooltipContext;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.Rarity;
@@ -68,7 +69,6 @@ import slimeknights.tconstruct.library.tools.item.ModifiableItem;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
-import slimeknights.tconstruct.tools.TinkerToolActions;
 import slimeknights.tconstruct.library.utils.TagUtil;
 
 import javax.annotation.Nullable;
@@ -111,28 +111,13 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
   /* Enchanting */
 
   @Override
-  public boolean isEnchantable(ItemStack stack) {
-    return false;
-  }
-
-  @Override
-  public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-    return false;
-  }
-
-  @Override
   public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
     return enchantment.is(EnchantmentTags.CURSE) && super.supportsEnchantment(stack, enchantment);
   }
 
   @Override
-  public int getEnchantmentValue() {
-    return 0;
-  }
-
-  @Override
-  public int getEnchantmentLevel(ItemStack stack, Holder<Enchantment> enchantment) {
-    return EnchantmentModifierHook.getEnchantmentLevel(stack, enchantment);
+  public int getEnchantmentLevel(ItemInstance stack, Holder<Enchantment> enchantment) {
+    return stack instanceof ItemStack itemStack ? EnchantmentModifierHook.getEnchantmentLevel(itemStack, enchantment) : 0;
   }
 
   @Override
@@ -153,7 +138,7 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
   }
 
   @Override
-  public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
+  public void onCraftedBy(ItemStack stack, Player playerIn) {
     ToolStack.ensureInitialized(stack, getToolDefinition());
   }
 
@@ -189,8 +174,8 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
   /* Damage/Durability */
 
   @Override
-  public boolean isRepairable(ItemStack stack) {
-    // handle in the tinker station
+  public boolean isCombineRepairable(ItemStack stack) {
+    // handle in the tinker station, not the anvil or grindstone
     return false;
   }
 
@@ -274,8 +259,8 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
   }
 
   @Override
-  public boolean canPerformAction(ItemStack stack, ItemAbility toolAction) {
-    return ModifierUtil.canPerformAction(ToolStack.from(stack), toolAction);
+  public boolean canPerformAction(ItemInstance stack, ItemAbility toolAction) {
+    return stack instanceof ItemStack itemStack && ModifierUtil.canPerformAction(ToolStack.from(itemStack), toolAction);
   }
 
   @Override
@@ -290,11 +275,8 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
     return getAttributeModifiers(ToolStack.from(stack), slot);
   }
 
-  @Override
-  public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker) {
-    return canPerformAction(stack, TinkerToolActions.SHIELD_DISABLE);
-  }
-
+  // Note: NeoForge's canDisableShield hook was removed in 26.1; shield disabling is now driven by the
+  // weapon data component (disable_blocking_for_seconds).
 
   /* Arrow logic */
 

@@ -21,13 +21,13 @@ import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
@@ -118,14 +118,12 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
     return armorType == ArmorType.BOOTS && ModifierUtil.checkVolatileFlag(stack, SNOW_BOOTS);
   }
 
-  @Override
-  public boolean isEnderMask(ItemStack stack, Player player, EnderMan endermanEntity) {
-    return armorType == ArmorType.HELMET && ModifierUtil.checkVolatileFlag(stack, ENDERMASK);
-  }
+  // Note: NeoForge's isEnderMask hook was removed in 26.1; endermen aggro suppression is now driven by the
+  // equippable data component (allowed_entities / camera_overlay). The ENDERMASK modifier flag applies that component.
 
   @Override
-  public boolean canPerformAction(ItemStack stack, ItemAbility toolAction) {
-    return ModifierUtil.canPerformAction(ToolStack.from(stack), toolAction);
+  public boolean canPerformAction(ItemInstance stack, ItemAbility toolAction) {
+    return stack instanceof ItemStack itemStack && ModifierUtil.canPerformAction(ToolStack.from(itemStack), toolAction);
   }
 
   @Override
@@ -137,23 +135,13 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /* Enchantments */
 
   @Override
-  public boolean isEnchantable(ItemStack stack) {
-    return false;
-  }
-
-  @Override
-  public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
-    return false;
-  }
-
-  @Override
   public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
     return enchantment.is(EnchantmentTags.CURSE) && super.supportsEnchantment(stack, enchantment);
   }
 
   @Override
-  public int getEnchantmentLevel(ItemStack stack, Holder<Enchantment> enchantment) {
-    return EnchantmentModifierHook.getEnchantmentLevel(stack, enchantment);
+  public int getEnchantmentLevel(ItemInstance stack, Holder<Enchantment> enchantment) {
+    return stack instanceof ItemStack itemStack ? EnchantmentModifierHook.getEnchantmentLevel(itemStack, enchantment) : 0;
   }
 
   @Override
@@ -174,7 +162,7 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   }
 
   @Override
-  public void onCraftedBy(ItemStack stack, Level levelIn, Player playerIn) {
+  public void onCraftedBy(ItemStack stack, Player playerIn) {
     ToolStack.ensureInitialized(stack, getToolDefinition());
   }
 
@@ -222,8 +210,8 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /* Damage/Durability */
 
   @Override
-  public boolean isRepairable(ItemStack stack) {
-    // handle in the tinker station
+  public boolean isCombineRepairable(ItemStack stack) {
+    // handle in the tinker station, not the anvil or grindstone
     return false;
   }
 
@@ -289,12 +277,6 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /* Armor properties */
 
   @Override
-  public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
-    return false;
-  }
-
-
-  @Override
   public Multimap<Attribute,AttributeModifier> getAttributeModifiers(IToolStackView tool, EquipmentSlot slot) {
     if (slot != getEquipmentSlot()) {
       return ImmutableMultimap.of();
@@ -344,31 +326,10 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
 
   /* Elytra */
 
-  @Override
-  public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-    return armorType == ArmorType.CHESTPLATE && !ToolDamageUtil.isBroken(stack) && ModifierUtil.checkVolatileFlag(stack, ELYTRA);
-  }
-
-  @Override
-  public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
-    if (getEquipmentSlot() == EquipmentSlot.CHEST) {
-      ToolStack tool = ToolStack.from(stack);
-      if (!tool.isBroken()) {
-        // if any modifier says stop flying, stop flying
-        for (ModifierEntry entry : tool.getModifierList()) {
-          if (entry.getHook(ModifierHooks.ELYTRA_FLIGHT).elytraFlightTick(tool, entry, entity, flightTicks)) {
-            return false;
-          }
-        }
-        // damage the tool and keep flying
-        if (!entity.level().isClientSide() && (flightTicks + 1) % 20 == 0) {
-          ToolDamageUtil.damageAnimated(tool, 1, entity, EquipmentSlot.CHEST);
-        }
-        return true;
-      }
-    }
-    return false;
-  }
+  // Note: NeoForge's canElytraFly / elytraFlightTick item hooks were removed in 26.1; gliding is now driven by the
+  // glider data component (DataComponents.GLIDER) applied by the ELYTRA modifier, with equipment asset controlling wings.
+  // The per-tick durability drain and ELYTRA_FLIGHT modifier hook handling needs reattaching to the glider tick pipeline;
+  // deferred to the armor/equipment component pass and flagged for in-game validation.
 
 
   /* Ticking */
