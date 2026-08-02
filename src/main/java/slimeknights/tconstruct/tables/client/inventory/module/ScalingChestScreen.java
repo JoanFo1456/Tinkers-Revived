@@ -5,25 +5,24 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import slimeknights.tconstruct.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.items.IItemHandler;
 import slimeknights.mantle.client.screen.MultiModuleScreen;
 import slimeknights.mantle.inventory.BaseContainerMenu;
-import slimeknights.mantle.inventory.EmptyItemHandler;
+import slimeknights.tconstruct.tables.block.entity.chest.AbstractChestBlockEntity;
+import slimeknights.tconstruct.tables.block.entity.inventory.IChestItemHandler;
 import slimeknights.tconstruct.tables.block.entity.inventory.IScalingContainer;
-
-import java.util.Optional;
 
 public class ScalingChestScreen<T extends BlockEntity> extends DynamicContainerScreen<MultiModuleScreen<?>,BaseContainerMenu<T>> {
   private final IScalingContainer scaling;
   public ScalingChestScreen(MultiModuleScreen<?> parent, BaseContainerMenu<T> container, Inventory playerInventory, Component title) {
     super(parent, container, playerInventory, title);
     BlockEntity tile = container.getTile();
-    IItemHandler handler = Optional.ofNullable(tile)
-                                   .map(t -> t.getLevel() == null ? null : t.getLevel().getCapability(Capabilities.ItemHandler.BLOCK, t.getBlockPos(), t.getBlockState(), t, null))
-                                   .orElse(EmptyItemHandler.INSTANCE);
-    this.scaling = handler instanceof IScalingContainer ? (IScalingContainer) handler : handler::getSlots;
+    // the chest's own item handler is an IScalingContainer, so read it directly off the block entity to preserve the visual size logic
+    if (tile instanceof AbstractChestBlockEntity chest) {
+      IChestItemHandler handler = chest.getItemHandler();
+      this.scaling = handler;
+    } else {
+      this.scaling = () -> 0;
+    }
     this.slotCount = scaling.getVisualSize();
     this.sliderActive = true;
   }

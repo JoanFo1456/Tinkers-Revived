@@ -9,6 +9,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.Containers;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.ProblemReporter;
@@ -23,6 +24,7 @@ import slimeknights.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.IItemHandler;
 import slimeknights.mantle.block.entity.NameableBlockEntity;
 import slimeknights.tconstruct.library.utils.TagUtil;
+import slimeknights.tconstruct.tables.block.ChestBlock;
 import slimeknights.tconstruct.tables.block.entity.inventory.IChestItemHandler;
 import slimeknights.tconstruct.tables.menu.TinkerChestContainerMenu;
 
@@ -91,5 +93,19 @@ public abstract class AbstractChestBlockEntity extends NameableBlockEntity {
   public void loadAdditional(ValueInput input) {
     super.loadAdditional(input);
     itemHandler.deserialize(input);
+  }
+
+  @Override
+  public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+    super.preRemoveSideEffects(pos, state);
+    // chests flagged to drop items scatter their contents when broken; the rest preserve them in the dropped block item via loot
+    if (level != null && state.getBlock() instanceof ChestBlock chest && chest.dropsItems()) {
+      for (int i = 0; i < itemHandler.getSlots(); i++) {
+        ItemStack stack = itemHandler.getStackInSlot(i);
+        if (!stack.isEmpty()) {
+          Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
+        }
+      }
+    }
   }
 }

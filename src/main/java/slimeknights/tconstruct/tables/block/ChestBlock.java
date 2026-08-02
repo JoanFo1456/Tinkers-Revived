@@ -19,7 +19,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import slimeknights.tconstruct.library.utils.TagUtil;
@@ -46,6 +45,11 @@ public class ChestBlock extends TabbedTableBlock {
     super(builder);
     this.blockEntity = blockEntity;
     this.dropsItems = dropsItems;
+  }
+
+  /** If true, the chest drops its contents as loose items when broken (as opposed to copying them into the dropped block item via loot) */
+  public boolean dropsItems() {
+    return dropsItems;
   }
 
   @Nullable
@@ -80,7 +84,7 @@ public class ChestBlock extends TabbedTableBlock {
   protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
     BlockEntity te = worldIn.getBlockEntity(pos);
     Inventory playerInventory = player.getInventory();
-    ItemStack heldItem = playerInventory.getSelected();
+    ItemStack heldItem = playerInventory.getSelectedItem();
 
     if (!heldItem.isEmpty() && te instanceof AbstractChestBlockEntity chest && chest.canInsert(player, heldItem)) {
       IItemHandlerModifiable itemHandler = chest.getItemHandler();
@@ -92,12 +96,5 @@ public class ChestBlock extends TabbedTableBlock {
     }
 
     return InteractionResult.PASS;
-  }
-
-  @Override
-  protected void dropInventoryItems(BlockState state, Level worldIn, BlockPos pos, IItemHandler inventory) {
-    if (dropsItems) {
-      dropInventoryItems(worldIn, pos, inventory);
-    }
   }
 }
