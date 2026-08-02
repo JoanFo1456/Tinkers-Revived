@@ -7,6 +7,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.input.InputQuirks;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -418,12 +420,12 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
 
     super.extractBackground(graphics, mouseX, mouseY, partialTicks);
 
-    this.buttonsScreen.render(graphics, mouseX, mouseY, partialTicks);
+    this.buttonsScreen.extractRenderState(graphics, mouseX, mouseY, partialTicks);
 
     // text field
     if (textField != null && textField.visible) {
       TEXT_BOX.draw(graphics, this.cornerX + 79, this.cornerY + 5);
-      this.textField.render(graphics, mouseX, mouseY, partialTicks);
+      this.textField.extractRenderState(graphics, mouseX, mouseY, partialTicks);
     }
 
     renderArmorStand(graphics);
@@ -463,6 +465,8 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
     return super.mouseDragged(event, timeSinceLastClick, unkowwn);
   }
 
+  // NOTE(26.1 port): this 3-arg mouseScrolled overrides Mantle's MultiModuleScreen helper, not vanilla's 4-arg entry point.
+  // Info-panel scroll flows through Mantle's 4-arg override; validate direct mouse-wheel scroll in-game.
   @Override
   public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
     if (this.tinkerInfo.handleMouseScrolled(mouseX, mouseY, delta)) {
@@ -499,34 +503,34 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
     if (keyCode == GLFW.GLFW_KEY_LEFT_SHIFT || keyCode == GLFW.GLFW_KEY_RIGHT_SHIFT) {
       return true;
     }
-    if (Minecraft.ON_OSX) {
+    if (InputQuirks.ON_OSX) {
       return keyCode == GLFW.GLFW_KEY_LEFT_SUPER || keyCode == GLFW.GLFW_KEY_RIGHT_SUPER;
     }
     return keyCode == GLFW.GLFW_KEY_LEFT_CONTROL || keyCode == GLFW.GLFW_KEY_RIGHT_CONTROL;
   }
 
   @Override
-  public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-    if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
+  public boolean keyPressed(KeyEvent event) {
+    if (event.key() == GLFW.GLFW_KEY_ESCAPE) {
       this.onClose();
       return true;
     }
-    if (needsDisplayUpdate(keyCode)) {
+    if (needsDisplayUpdate(event.key())) {
       updateDisplay();
     }
     if (textField.canConsumeInput()) {
-      textField.keyPressed(keyCode, scanCode, modifiers);
+      textField.keyPressed(event);
       return true;
     }
-    return super.keyPressed(keyCode, scanCode, modifiers);
+    return super.keyPressed(event);
   }
 
   @Override
-  public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
-    if (needsDisplayUpdate(keyCode)) {
+  public boolean keyReleased(KeyEvent event) {
+    if (needsDisplayUpdate(event.key())) {
       updateDisplay();
     }
-    return super.keyReleased(keyCode, scanCode, modifiers);
+    return super.keyReleased(event);
   }
 
   @Override
@@ -633,9 +637,9 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
   }
 
   @Override
-  public void resize(Minecraft pMinecraft, int pWidth, int pHeight) {
+  public void resize(int pWidth, int pHeight) {
     String s = this.textField.getValue();
-    super.resize(pMinecraft, pWidth, pHeight);
+    super.resize(pWidth, pHeight);
     this.textField.setValue(s);
   }
 
