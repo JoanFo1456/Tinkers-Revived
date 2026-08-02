@@ -212,7 +212,7 @@ public class MeltingModule implements IMeltingContainer, ContainerData {
   public CompoundTag writeToTag() {
     CompoundTag nbt = new CompoundTag();
     if (!stack.isEmpty()) {
-      nbt = (CompoundTag) stack.save(TagUtil.BUILTIN_LOOKUP, nbt);
+      nbt = TagUtil.saveItem(stack, nbt);
       nbt.putInt(TAG_CURRENT_TIME, currentTime);
       nbt.putInt(TAG_REQUIRED_TIME, requiredTime);
       nbt.putInt(TAG_REQUIRED_TEMP, requiredTemp);
@@ -225,7 +225,7 @@ public class MeltingModule implements IMeltingContainer, ContainerData {
    * @param nbt  NBT
    */
   public void readFromTag(CompoundTag nbt) {
-    stack = ItemStack.parseOptional(TagUtil.BUILTIN_LOOKUP, nbt);
+    stack = TagUtil.readItem(nbt);
     if (!stack.isEmpty()) {
       currentTime = nbt.getIntOr(TAG_CURRENT_TIME, 0);
       requiredTime = nbt.getIntOr(TAG_REQUIRED_TIME, 0);

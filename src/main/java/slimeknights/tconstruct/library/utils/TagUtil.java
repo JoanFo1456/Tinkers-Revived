@@ -80,12 +80,19 @@ public final class TagUtil {
 
   /** Reads an item stack using the built-in registry lookup. */
   public static ItemStack readItem(CompoundTag tag) {
-    return ItemStack.parseOptional(BUILTIN_LOOKUP, tag);
+    return ItemStack.CODEC.parse(BUILTIN_LOOKUP.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE), tag).result().orElse(ItemStack.EMPTY);
   }
 
-  /** Saves an item stack using the built-in registry lookup. */
+  /** Saves an item stack using the built-in registry lookup. Merges the encoded stack into the passed tag. */
   public static CompoundTag saveItem(ItemStack stack, CompoundTag tag) {
-    return (CompoundTag)stack.save(BUILTIN_LOOKUP, tag);
+    if (stack.isEmpty()) {
+      return tag;
+    }
+    net.minecraft.nbt.Tag encoded = ItemStack.CODEC.encodeStart(BUILTIN_LOOKUP.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE), stack).getOrThrow();
+    if (encoded instanceof CompoundTag compound) {
+      tag.merge(compound);
+    }
+    return tag;
   }
 
   /** Creates a fluid stack and applies the custom data tag if present. */

@@ -147,8 +147,8 @@ public record MeltingModule(LevelingInt temperature, LevelingInt nuggetsPerMetal
     // allow tools to decide that we *must* melt the drops
     // for harvestable blocsk though, ignore that flag if the block was not effective (so we don't delete
     boolean forceMelt = tool.getVolatileData().getBoolean(FORCE_MELTING);
-    if (forceMelt && context.hasParam(LootContextParams.BLOCK_STATE)) {
-      BlockState state = context.getParam(LootContextParams.BLOCK_STATE);
+    if (forceMelt && context.hasParameter(LootContextParams.BLOCK_STATE)) {
+      BlockState state = context.getParameter(LootContextParams.BLOCK_STATE);
       forceMelt = tool.getHook(ToolHooks.IS_EFFECTIVE).isToolEffective(tool, state);
     }
 

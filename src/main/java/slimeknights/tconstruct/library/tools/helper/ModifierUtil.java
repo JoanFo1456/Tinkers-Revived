@@ -135,7 +135,7 @@ public final class ModifierUtil {
   public static boolean checkVolatileFlag(ItemStack stack, Identifier flag) {
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA)) {
-      return nbt.getCompound(ToolStack.TAG_VOLATILE_MOD_DATA).getBoolean(flag.toString());
+      return nbt.getCompoundOrEmpty(ToolStack.TAG_VOLATILE_MOD_DATA).getBooleanOr(flag.toString(), false);
     }
     return false;
   }
@@ -144,7 +144,7 @@ public final class ModifierUtil {
   public static boolean checkPersistentPresent(ItemStack stack, Identifier key) {
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA)) {
-      return nbt.getCompound(ToolStack.TAG_VOLATILE_MOD_DATA).contains(key.toString());
+      return nbt.getCompoundOrEmpty(ToolStack.TAG_VOLATILE_MOD_DATA).contains(key.toString());
     }
     return false;
   }
@@ -153,7 +153,7 @@ public final class ModifierUtil {
   public static int getVolatileInt(ItemStack stack, Identifier flag) {
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null && nbt.contains(ToolStack.TAG_VOLATILE_MOD_DATA)) {
-      return nbt.getCompound(ToolStack.TAG_VOLATILE_MOD_DATA).getInt(flag.toString());
+      return nbt.getCompoundOrEmpty(ToolStack.TAG_VOLATILE_MOD_DATA).getIntOr(flag.toString(), 0);
     }
     return 0;
   }
@@ -175,7 +175,7 @@ public final class ModifierUtil {
   public static String getPersistentString(ItemStack stack, Identifier flag) {
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null && nbt.contains(ToolStack.TAG_PERSISTENT_MOD_DATA)) {
-      return nbt.getCompound(ToolStack.TAG_PERSISTENT_MOD_DATA).getString(flag.toString());
+      return nbt.getCompoundOrEmpty(ToolStack.TAG_PERSISTENT_MOD_DATA).getStringOr(flag.toString(), "");
     }
     return "";
   }
