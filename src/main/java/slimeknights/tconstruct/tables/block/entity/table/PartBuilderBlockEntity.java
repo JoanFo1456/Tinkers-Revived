@@ -82,9 +82,9 @@ public class PartBuilderBlockEntity extends RetexturedTableBlockEntity implement
       } else {
         record PatternRecipe(Pattern pattern, IPartBuilderRecipe recipe) {}
         // fetch all recipes that can match these inputs, the map ensures the patterns are unique
-        recipes = level.getServer().getRecipeManager().getAllRecipesFor(TinkerRecipeTypes.PART_BUILDER.get()).stream()
+        recipes = level.getServer().getRecipeManager().recipeMap().byType(TinkerRecipeTypes.PART_BUILDER.get()).stream()
                        .filter(holder -> holder.value().partialMatch(inventoryWrapper))
-                       .sorted(Comparator.comparing(holder -> holder.id()))
+                       .sorted(Comparator.comparing(holder -> holder.id().identifier()))
                        .flatMap(holder -> holder.value().getPatterns(inventoryWrapper).map(p -> new PatternRecipe(p, holder.value())))
                        .collect(Collectors.toMap(PatternRecipe::pattern, PatternRecipe::recipe, (a, b) -> a));
         sortedButtons = recipes.entrySet()

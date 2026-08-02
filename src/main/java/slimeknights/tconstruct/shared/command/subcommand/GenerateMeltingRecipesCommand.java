@@ -28,6 +28,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.display.RecipeDisplay;
+import net.minecraft.world.item.crafting.display.SlotDisplayContext;
+import net.minecraft.util.context.ContextMap;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -150,14 +153,20 @@ public class GenerateMeltingRecipesCommand {
 
     // iterate all recipes and try adding a melting recipe
     MeltingCache cache = new MeltingCache();
-    List<RecipeHolder<?>> recipes = (List)level.getServer().getRecipeManager().getAllRecipesFor((RecipeType)recipeType.value());
+    ContextMap slotContext = SlotDisplayContext.fromLevel(level);
+    List<RecipeHolder<?>> recipes = (List)level.getServer().getRecipeManager().recipeMap().byType((RecipeType)recipeType.value());
     for (RecipeHolder<?> recipeHolder : recipes) {
       Recipe<?> recipe = recipeHolder.value();
       // skip any recipes that are specifically blacklisted
-      if (skipRecipes.contains(recipeHolder.id())) {
+      if (skipRecipes.contains(recipeHolder.id().identifier())) {
         continue;
       }
-      ItemStack resultStack = recipe.getResultItem(access);
+      // resolve the recipe's display result to a representative output stack
+      List<RecipeDisplay> displays = recipe.display();
+      if (displays.isEmpty()) {
+        continue;
+      }
+      ItemStack resultStack = displays.getFirst().result().resolveForFirstStack(slotContext);
       // don't bother with results that have NBT unless its a damagable item, in which case we ignore NBT and hope for the best
       // also skip anything already meltable
       Item result = resultStack.getItem();
@@ -168,7 +177,7 @@ public class GenerateMeltingRecipesCommand {
 
       // in order to melt the result, we need to find what it's made of. Iterate all ingredients and turn them into a single result object
       ingredientSearch: {
-        for (Ingredient ingredient : recipe.getIngredients()) {
+        for (Ingredient ingredient : recipe.placementInfo().ingredients()) {
           // skip empty ingredients, just saves some steps really
           if (ingredient.isEmpty()) {
             continue;

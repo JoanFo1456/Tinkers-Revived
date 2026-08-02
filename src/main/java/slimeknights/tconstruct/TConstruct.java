@@ -26,7 +26,9 @@ import slimeknights.tconstruct.common.network.TinkerNetwork;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.gadgets.TinkerGadgets;
 import slimeknights.tconstruct.library.TinkerItemDisplays;
+import slimeknights.mantle.recipe.sync.SyncableRecipes;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
+import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability.ComputableDataKey;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability.TinkerDataKey;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinitionLoader;
@@ -115,6 +117,23 @@ public class TConstruct {
   static void commonSetup(final FMLCommonSetupEvent event) {
     ToolDefinitionLoader.init();
     StationSlotLayoutLoader.init();
+    // opt into Mantle's client recipe sync for every custom recipe type that JEI or the book need client-side.
+    // must run before any world join, as the syncable set freezes on first sync. Vanilla crafting is not synced here.
+    event.enqueueWork(() -> {
+      SyncableRecipes.register(TinkerRecipeTypes.PART_BUILDER.get());
+      SyncableRecipes.register(TinkerRecipeTypes.MATERIAL.get());
+      SyncableRecipes.register(TinkerRecipeTypes.TINKER_STATION.get());
+      SyncableRecipes.register(TinkerRecipeTypes.MODIFIER_WORKTABLE.get());
+      SyncableRecipes.register(TinkerRecipeTypes.CASTING_BASIN.get());
+      SyncableRecipes.register(TinkerRecipeTypes.CASTING_TABLE.get());
+      SyncableRecipes.register(TinkerRecipeTypes.MOLDING_TABLE.get());
+      SyncableRecipes.register(TinkerRecipeTypes.MOLDING_BASIN.get());
+      SyncableRecipes.register(TinkerRecipeTypes.MELTING.get());
+      SyncableRecipes.register(TinkerRecipeTypes.ENTITY_MELTING.get());
+      SyncableRecipes.register(TinkerRecipeTypes.FUEL.get());
+      SyncableRecipes.register(TinkerRecipeTypes.ALLOYING.get());
+      SyncableRecipes.register(TinkerRecipeTypes.SEVERING.get());
+    });
   }
 
   /* Utils */
