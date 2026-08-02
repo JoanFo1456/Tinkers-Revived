@@ -155,17 +155,17 @@ public class SideButtonsWidgetPaged<T extends Button> extends SideButtonsWidget<
     }
 
     @Override
-    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         int button_num = this.buttons.size();
         if (button_num > columns * MAX_ROWS) {
-            this.previousPageButton.render(graphics, mouseX, mouseY, partialTicks);
-            this.nextPageButton.render(graphics, mouseX, mouseY, partialTicks);
+            this.previousPageButton.extractRenderState(graphics, mouseX, mouseY, partialTicks);
+            this.nextPageButton.extractRenderState(graphics, mouseX, mouseY, partialTicks);
         }
         int startIndex = page * columns * MAX_ROWS;
         int endIndex = Math.min(startIndex + columns * MAX_ROWS, button_num);
         for (int i = startIndex; i < endIndex; i++) { //only render buttons in the current page
             T button = this.buttons.get(i);
-            button.render(graphics, mouseX, mouseY, partialTicks);
+            button.extractRenderState(graphics, mouseX, mouseY, partialTicks);
         }
     }
 }
