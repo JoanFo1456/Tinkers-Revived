@@ -33,7 +33,7 @@ import java.util.function.Supplier;
  */
 @RequiredArgsConstructor
 public class EntityMeltingModule {
-  // TODO: migrate to whatever mojang is doing
+  // Note: revisit alignment with vanilla damage handling
   private final MantleBlockEntity parent;
   private final IFluidHandler tank;
   /** Supplier that returns true if the tank has space */
@@ -98,7 +98,7 @@ public class EntityMeltingModule {
    * @return  Default fluid
    */
   public static FluidStack getDefaultFluid() {
-    // TODO: consider a way to put this in a recipe
+    // Note: could be made recipe-driven
     return new FluidStack(TinkerFluids.liquidSoul.get(), FluidValues.GLASS_PANE / 5);
   }
 
@@ -109,7 +109,7 @@ public class EntityMeltingModule {
    */
   private boolean canMeltEntity(LivingEntity entity) {
     // fire based mobs are absorbed instead of damaged
-    return !entity.isInvulnerableTo(entity.fireImmune() ? smelteryMagic() : smelteryHeat())
+    return !entity.isInvulnerableTo((net.minecraft.server.level.ServerLevel) entity.level(), entity.fireImmune() ? smelteryMagic() : smelteryHeat())
            // have to special case players because for some dumb reason creative players do not return true to invulnerable to
            && !(entity instanceof Player && ((Player)entity).getAbilities().invulnerable)
            // also have to special case fire resistance, so a blaze with fire resistance is immune to the smeltery
