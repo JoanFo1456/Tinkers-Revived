@@ -25,6 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import slimeknights.tconstruct.compat.neoforged.neoforge.entity.IEntityAdditionalSpawnData;
 import slimeknights.tconstruct.compat.neoforged.neoforge.network.NetworkHooks;
 import slimeknights.tconstruct.common.Sounds;
@@ -61,8 +62,9 @@ public class FancyItemFrameEntity extends ItemFrame implements IEntityAdditional
   }
 
   @Override
-  public InteractionResult interact(Player player, InteractionHand hand) {
+  public InteractionResult interact(Player player, InteractionHand hand, Vec3 location) {
     if (!player.isShiftKeyDown() && getFrameId() == FrameType.CLEAR.getId() && !getItem().isEmpty()) {
+      Direction direction = getDirection();
       BlockPos behind = blockPosition().relative(direction.getOpposite());
       Level level = level();
       BlockState state = level.getBlockState(behind);
@@ -70,7 +72,7 @@ public class FancyItemFrameEntity extends ItemFrame implements IEntityAdditional
         var hit = Util.createTraceResult(behind, direction, false);
         InteractionResult itemResult = state.useItemOn(player.getItemInHand(hand), level, player, hand, hit);
         if (itemResult.consumesAction()) {
-          return itemResult.result();
+          return itemResult;
         }
         InteractionResult result = state.useWithoutItem(level, player, hit);
         if (result.consumesAction()) {
@@ -78,7 +80,7 @@ public class FancyItemFrameEntity extends ItemFrame implements IEntityAdditional
         }
       }
     }
-    return super.interact(player, hand);
+    return super.interact(player, hand, location);
   }
 
   @Override
@@ -263,7 +265,7 @@ public class FancyItemFrameEntity extends ItemFrame implements IEntityAdditional
   public void writeSpawnData(FriendlyByteBuf buffer) {
     buffer.writeVarInt(this.getFrameId());
     buffer.writeBlockPos(this.pos);
-    buffer.writeVarInt(this.direction.get3DDataValue());
+    buffer.writeVarInt(this.getDirection().get3DDataValue());
   }
 
   @Override

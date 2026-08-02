@@ -53,24 +53,16 @@ public class SearedDuctBlock extends InventoryBlock {
 
   /* Seared block interaction */
 
-  @SuppressWarnings("deprecation")
-
-  @Override
-  public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag pFlag) {
-    List<Component> tooltip = new java.util.ArrayList<>();
-    RetexturedHelper.addTooltip(stack, tooltip);
-  
-    tooltip.forEach(tooltipConsumer);
-  }
+  // Block-level tooltips were removed in 26.1; retextured tooltip is now supplied by the block item
 
   @Override
   public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
     SmelteryComponentBlockEntity.updateNeighbors(world, pos, state);
     RetexturedBlock.updateTextureBlock(world, pos, stack);
   }
-  
+
   @Override
-  public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+  protected ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
     return RetexturedBlock.getPickBlock(world, pos, state);
   }
 
@@ -85,7 +77,7 @@ public class SearedDuctBlock extends InventoryBlock {
   @Nullable
   @Override
   public PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-    return state.getValue(IN_STRUCTURE) ? PathType.DAMAGE_FIRE : PathType.OPEN;
+    return state.getValue(IN_STRUCTURE) ? PathType.FIRE : PathType.OPEN;
   }
 
   @Nullable

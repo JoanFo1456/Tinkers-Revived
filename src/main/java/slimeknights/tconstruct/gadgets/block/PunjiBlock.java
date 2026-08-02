@@ -4,9 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.Direction.AxisDirection;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -54,15 +57,13 @@ public class PunjiBlock extends Block {
   @Nullable
   @Override
   public PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-    return PathType.DAMAGE_OTHER;
+    return PathType.DAMAGING;
   }
 
-  @SuppressWarnings("deprecation")
-  @Deprecated
   @Override
-  public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos pos, BlockPos facingPos) {
+  protected BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess ticks, BlockPos pos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random) {
     if (state.getValue(WATERLOGGED)) {
-      world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+      ticks.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
     }
 
     // break if now invalid
@@ -173,10 +174,8 @@ public class PunjiBlock extends Block {
     return world.getBlockState(target).isFaceSturdy(world, target, direction.getOpposite());
   }
 
-  @SuppressWarnings("deprecation")
   @Override
-  @Deprecated
-  public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+  protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
     if (entityIn instanceof LivingEntity) {
       Direction side = state.getValue(FACING);
       Axis axis = side.getAxis();
