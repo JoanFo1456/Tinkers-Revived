@@ -2,6 +2,8 @@ package slimeknights.tconstruct.gadgets.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.vehicle.minecart.AbstractMinecart;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -12,8 +14,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import slimeknights.mantle.inventory.EmptyItemHandler;
 
+/**
+ * Rail that drops items from a passing hopper minecart into the inventory below it.
+ * The NeoForge onMinecartPass rail hook was removed in 26.1, so this reacts via {@link #entityInside}.
+ * The item movement below still uses the legacy IItemHandler capability accessors; the item/fluid
+ * capabilities were replaced by the new ResourceHandler transfer API in 26.1 (Capabilities.Item returns
+ * ResourceHandler&lt;ItemResource&gt;). Migrating this transfer logic is deferred to the capability pass.
+ */
 public class DropperRailBlock extends RailBlock {
 
   public DropperRailBlock(Properties properties) {
@@ -21,23 +29,23 @@ public class DropperRailBlock extends RailBlock {
   }
 
   @Override
-  public void onMinecartPass(BlockState state, Level world, BlockPos pos, AbstractMinecart cart) {
-    if (cart.getCapability(Capabilities.ItemHandler.ENTITY_AUTOMATION, Direction.DOWN) == null || !(cart instanceof Hopper)) {
+  protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
+    if (!(entity instanceof AbstractMinecart cart) || !(entity instanceof Hopper)) {
       return;
     }
-    BlockEntity tileEntity = world.getBlockEntity(pos.below());
-    if (tileEntity == null || world.getCapability(Capabilities.ItemHandler.BLOCK, pos.below(), Direction.DOWN) == null) {
-      return;
-    }
-
-    // todo: fix this optional usage
-    IItemHandler itemHandlerCart = cart.getCapability(Capabilities.ItemHandler.ENTITY_AUTOMATION, Direction.UP);
+    // pull the item handler off the minecart
+    IItemHandler itemHandlerCart = Capabilities.ItemHandler.ENTITY_AUTOMATION.getCapability(cart, Direction.UP);
     if (itemHandlerCart == null) {
-      itemHandlerCart = EmptyItemHandler.INSTANCE;
+      return;
     }
-    IItemHandler itemHandlerTE = world.getCapability(Capabilities.ItemHandler.BLOCK, pos.below(), Direction.UP);
+    // find the inventory directly below the rail
+    BlockEntity below = world.getBlockEntity(pos.below());
+    if (below == null) {
+      return;
+    }
+    IItemHandler itemHandlerTE = world.getCapability(Capabilities.ItemHandler.BLOCK, pos.below(), below.getBlockState(), below, Direction.UP);
     if (itemHandlerTE == null) {
-      itemHandlerTE = EmptyItemHandler.INSTANCE;
+      return;
     }
 
     for (int i = 0; i < itemHandlerCart.getSlots(); i++) {
