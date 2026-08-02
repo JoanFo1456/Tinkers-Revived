@@ -6,9 +6,9 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.Ingredient;
-import slimeknights.mantle.client.SafeClientAccess;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
 import slimeknights.tconstruct.library.recipe.ingredient.MaterialValueIngredient;
 import slimeknights.tconstruct.library.recipe.material.MaterialRecipeCache;
 import slimeknights.tconstruct.library.recipe.material.ShapedMaterialRecipe;
@@ -16,7 +16,6 @@ import slimeknights.tconstruct.plugin.jei.material.MaterialsCraftingExtension;
 import slimeknights.tconstruct.plugin.jei.material.ShapedMaterialsExtension;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -25,8 +24,16 @@ import java.util.stream.IntStream;
  * @deprecated use {@link ShapedMaterialsExtension}
  */
 @Deprecated
-public class ShapedMaterialExtension implements ICraftingCategoryExtension<ShapedMaterialRecipe> {
+public class ShapedMaterialExtension {
+  /** Holder-based singleton extension */
   public static final ICraftingCategoryExtension<ShapedMaterialRecipe> INSTANCE = new ICraftingCategoryExtension<>() {
+    @Override
+    public List<SlotDisplay> getIngredients(RecipeHolder<ShapedMaterialRecipe> holder) {
+      return holder.value().getIngredients().stream()
+        .<SlotDisplay>map(opt -> opt.map(MaterialsCraftingExtension::ingredientDisplay).orElseGet(() -> new SlotDisplay.Composite(List.of())))
+        .toList();
+    }
+
     @Override
     public void setRecipe(RecipeHolder<ShapedMaterialRecipe> holder, IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focuses) {
       new ShapedMaterialExtension(holder.value()).setRecipe(builder, craftingGridHelper, focuses);
@@ -34,7 +41,7 @@ public class ShapedMaterialExtension implements ICraftingCategoryExtension<Shape
 
     @Override
     public Optional<Identifier> getRegistryName(RecipeHolder<ShapedMaterialRecipe> holder) {
-      return Optional.of(holder.id());
+      return Optional.of(holder.id().identifier());
     }
 
     @Override
@@ -55,7 +62,7 @@ public class ShapedMaterialExtension implements ICraftingCategoryExtension<Shape
   public ShapedMaterialExtension(ShapedMaterialRecipe recipe) {
     this.recipe = recipe;
     MaterialValueIngredient materials = recipe.getMaterial();
-    plainResult = recipe.getResultItem(Objects.requireNonNull(SafeClientAccess.getRegistryAccess()));
+    plainResult = MaterialsCraftingExtension.getResult(recipe);
     if (materials != null) {
       this.result = MaterialRecipeCache.getAllRecipes().stream().filter(materials::test).flatMap(mat -> {
         ItemStack stack = plainResult.copy();
@@ -66,27 +73,18 @@ public class ShapedMaterialExtension implements ICraftingCategoryExtension<Shape
     } else {
       this.result = List.of(plainResult);
     }
-    List<Ingredient> inputs = recipe.getIngredients();
-    this.materialSlots = IntStream.range(0, inputs.size()).filter(i -> inputs.get(i).getCustomIngredient() instanceof MaterialValueIngredient).toArray();
+    List<Optional<Ingredient>> inputs = recipe.getIngredients();
+    this.materialSlots = IntStream.range(0, inputs.size()).filter(i -> inputs.get(i).map(Ingredient::getCustomIngredient).orElse(null) instanceof MaterialValueIngredient).toArray();
   }
 
-  @Override
-  public int getWidth() {
-    return recipe.getWidth();
+  /** Gets the positional input stacks for the grid */
+  private List<List<ItemStack>> getInputStacks() {
+    return recipe.getIngredients().stream()
+      .map(opt -> opt.map(MaterialsCraftingExtension::ingredientStacks).orElseGet(List::of))
+      .toList();
   }
 
-  @Override
-  public int getHeight() {
-    return recipe.getHeight();
-  }
-
-  @Override
-  public Identifier getRegistryName() {
-    return recipe.getId();
-  }
-
-  @Override
   public void setRecipe(IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focusGroup) {
-    MaterialsCraftingExtension.setRecipe(this, builder, craftingGridHelper, recipe, result, plainResult, materialSlots);
+    MaterialsCraftingExtension.setRecipe(builder, craftingGridHelper, getInputStacks(), recipe.getWidth(), recipe.getHeight(), recipe, result, plainResult, materialSlots);
   }
 }

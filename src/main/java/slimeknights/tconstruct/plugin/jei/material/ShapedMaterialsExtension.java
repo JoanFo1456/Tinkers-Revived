@@ -5,8 +5,10 @@ import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
 import slimeknights.tconstruct.library.recipe.material.ShapedMaterialsRecipe;
 
 import javax.annotation.Nullable;
@@ -16,18 +18,13 @@ import java.util.stream.IntStream;
 
 /** Logic to show {@link ShapedMaterialsRecipe} in JEI */
 public class ShapedMaterialsExtension extends MaterialsCraftingExtension<ShapedMaterialsRecipe> {
+  /** Holder-based singleton extension */
   public static final ICraftingCategoryExtension<ShapedMaterialsRecipe> INSTANCE = new ICraftingCategoryExtension<>() {
     @Override
-    public void setRecipe(RecipeHolder<ShapedMaterialsRecipe> holder, IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focuses) {
-      ShapedMaterialsExtension extension = ShapedMaterialsExtension.create(holder.value());
-      if (extension != null) {
-        extension.setRecipe(builder, craftingGridHelper, focuses);
-      }
-    }
-
-    @Override
-    public Optional<Identifier> getRegistryName(RecipeHolder<ShapedMaterialsRecipe> holder) {
-      return Optional.of(holder.id());
+    public List<SlotDisplay> getIngredients(RecipeHolder<ShapedMaterialsRecipe> holder) {
+      return holder.value().getIngredients().stream()
+        .<SlotDisplay>map(opt -> opt.map(MaterialsCraftingExtension::ingredientDisplay).orElseGet(() -> new SlotDisplay.Composite(List.of())))
+        .toList();
     }
 
     @Override
@@ -38,6 +35,19 @@ public class ShapedMaterialsExtension extends MaterialsCraftingExtension<ShapedM
     @Override
     public int getHeight(RecipeHolder<ShapedMaterialsRecipe> holder) {
       return holder.value().getHeight();
+    }
+
+    @Override
+    public void setRecipe(RecipeHolder<ShapedMaterialsRecipe> holder, IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focuses) {
+      ShapedMaterialsExtension extension = ShapedMaterialsExtension.create(holder.value());
+      if (extension != null) {
+        extension.setRecipe(builder, craftingGridHelper, focuses);
+      }
+    }
+
+    @Override
+    public Optional<Identifier> getRegistryName(RecipeHolder<ShapedMaterialsRecipe> holder) {
+      return Optional.of(holder.id().identifier());
     }
   };
 
@@ -58,17 +68,24 @@ public class ShapedMaterialsExtension extends MaterialsCraftingExtension<ShapedM
 
   @Override
   protected int[] getMaterialSlots(ShapedMaterialsRecipe recipe, Ingredient firstPart) {
-    List<Ingredient> inputs = recipe.getIngredients();
-    return IntStream.range(0, inputs.size()).filter(i -> inputs.get(i) == firstPart).toArray();
+    List<Optional<Ingredient>> inputs = recipe.getIngredients();
+    return IntStream.range(0, inputs.size()).filter(i -> inputs.get(i).orElse(null) == firstPart).toArray();
   }
 
   @Override
-  public int getWidth() {
+  protected List<List<ItemStack>> getInputStacks() {
+    return recipe.getIngredients().stream()
+      .map(opt -> opt.map(MaterialsCraftingExtension::ingredientStacks).orElseGet(List::of))
+      .toList();
+  }
+
+  @Override
+  protected int getGridWidth() {
     return recipe.getWidth();
   }
 
   @Override
-  public int getHeight() {
+  protected int getGridHeight() {
     return recipe.getHeight();
   }
 }
