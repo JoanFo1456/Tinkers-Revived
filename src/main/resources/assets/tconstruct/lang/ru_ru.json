@@ -1776,7 +1776,7 @@
   "material.tconstruct.fiery.encyclopedia": "Инструмент автоматически переплавляет все выпавшие предметы. Более высокие уровни имеют 25% шанс получить доп. переплавленные предметы.",
   "material.tconstruct.fiery.ranged": "Стрелы автоматически переплавляют все выпавшие предметы. Более высокие уровни имеют 25% шанс получить доп. переплавленные предметы.",
   "material.tconstruct.fiery.armor": "Увеличивает защиту на 5% за уровень от атакующих, находящихся в огне.",
-  "key.categories.tconstruct": "Литейное дело",
+  "key.category.tconstruct.tconstruct": "Литейное дело",
   "key.tconstruct.helmet_interact": "Взаимодействовать со шлемом",
   "key.tconstruct.leggings_interact": "Взаимодействовать с поножами",
   "modifier.tconstruct.empty": "Недопустимый модификатор",

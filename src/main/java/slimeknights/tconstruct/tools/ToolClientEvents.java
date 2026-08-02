@@ -93,10 +93,12 @@ import static slimeknights.tconstruct.TConstruct.getResource;
 @SuppressWarnings("unused")
 @EventBusSubscriber(modid = TConstruct.MOD_ID, value = Dist.CLIENT)
 public class ToolClientEvents extends ClientEventBase {
+  /** Keybinding category for all Tinkers' Construct key mappings; label key resolves to key.category.tconstruct.tconstruct */
+  private static final KeyMapping.Category TCONSTRUCT_CATEGORY = new KeyMapping.Category(TConstruct.getResource("tconstruct"));
   /** Keybinding for interacting using a helmet */
-  private static final KeyMapping HELMET_INTERACT = new KeyMapping(TConstruct.makeTranslationKey("key", "helmet_interact"), KeyConflictContext.IN_GAME, InputConstants.getKey("key.keyboard.z"), "key.categories.tconstruct");
+  private static final KeyMapping HELMET_INTERACT = new KeyMapping(TConstruct.makeTranslationKey("key", "helmet_interact"), KeyConflictContext.IN_GAME, InputConstants.getKey("key.keyboard.z"), TCONSTRUCT_CATEGORY);
   /** Keybinding for interacting using leggings */
-  private static final KeyMapping LEGGINGS_INTERACT = new KeyMapping(TConstruct.makeTranslationKey("key", "leggings_interact"), KeyConflictContext.IN_GAME, InputConstants.getKey("key.keyboard.i"), "key.categories.tconstruct");
+  private static final KeyMapping LEGGINGS_INTERACT = new KeyMapping(TConstruct.makeTranslationKey("key", "leggings_interact"), KeyConflictContext.IN_GAME, InputConstants.getKey("key.keyboard.i"), TCONSTRUCT_CATEGORY);
 
   /** Listener to clear modifier cache */
   private static final ISafeManagerReloadListener MODIFIER_RELOAD_LISTENER = manager -> {
@@ -197,6 +199,7 @@ public class ToolClientEvents extends ClientEventBase {
 
   @SubscribeEvent
   static void registerKeyBinding(RegisterKeyMappingsEvent event) {
+    event.registerCategory(TCONSTRUCT_CATEGORY);
     event.register(HELMET_INTERACT);
     event.register(LEGGINGS_INTERACT);
   }
