@@ -1,14 +1,11 @@
 package slimeknights.tconstruct.shared.client;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SingleQuadParticle;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.world.inventory.InventoryMenu;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.minecraft.util.RandomSource;
 import net.neoforged.neoforge.fluids.FluidStack;
 import slimeknights.mantle.client.render.FluidRenderer;
 import slimeknights.tconstruct.shared.particle.FluidParticleData;
@@ -21,16 +18,14 @@ public class FluidParticle extends SingleQuadParticle {
 
   /** Resolves the fluid still sprite, needed up-front as SingleQuadParticle takes the sprite in its constructor */
   private static TextureAtlasSprite stillSprite(FluidStack fluid) {
-    IClientFluidTypeExtensions attributes = IClientFluidTypeExtensions.of(fluid.getFluid());
-    return Minecraft.getInstance().getModelManager().getAtlas(TextureAtlas.LOCATION_BLOCKS).getSprite(attributes.getStillTexture(fluid));
+    return FluidRenderer.getFluidTextures(fluid).still();
   }
 
   protected FluidParticle(ClientLevel world, double x, double y, double z, double motionX, double motionY, double motionZ, FluidStack fluid) {
     super(world, x, y, z, motionX, motionY, motionZ, stillSprite(fluid));
     this.fluid = fluid;
-    IClientFluidTypeExtensions attributes = IClientFluidTypeExtensions.of(fluid.getFluid());
     this.gravity = 1.0F;
-    int color = attributes.getTintColor(fluid);
+    int color = FluidRenderer.getFluidTextures(fluid).color();
     this.alpha = ((color >> 24) & 0xFF) / 255f;
     this.rCol   = ((color >> 16) & 0xFF) / 255f;
     this.gCol = ((color >>  8) & 0xFF) / 255f;
@@ -74,7 +69,7 @@ public class FluidParticle extends SingleQuadParticle {
   /** Factory to create a fluid particle */
   public static class Factory implements ParticleProvider<FluidParticleData> {
     @Override
-    public Particle createParticle(FluidParticleData data, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+    public Particle createParticle(FluidParticleData data, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource random) {
       FluidStack fluid = data.getFluid();
       return !fluid.isEmpty() ? new FluidParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, fluid) : null;
     }

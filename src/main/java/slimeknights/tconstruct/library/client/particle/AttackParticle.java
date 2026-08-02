@@ -6,6 +6,7 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
 
 /** Simple particle used on attack */
 public class AttackParticle extends SingleQuadParticle {
@@ -58,7 +59,7 @@ public class AttackParticle extends SingleQuadParticle {
     }
 
     @Override
-    public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+    public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource random) {
       return new AttackParticle(worldIn, x, y, z, xSpeed, this.spriteSet);
     }
   }
