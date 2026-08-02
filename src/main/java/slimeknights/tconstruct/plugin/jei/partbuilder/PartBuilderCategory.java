@@ -55,7 +55,19 @@ public class PartBuilderCategory implements IRecipeCategory<IDisplayPartBuilderR
   }
 
   @Override
+  public int getWidth() {
+    return 121;
+  }
+
+  @Override
+  public int getHeight() {
+    return 46;
+  }
+
+  @Override
   public void draw(IDisplayPartBuilderRecipe recipe, IRecipeSlotsView slots, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
+    // getBackground() was removed in JEI 27.x; draw our background ourselves
+    background.draw(graphics, 0, 0);
     MaterialVariant variant = recipe.getMaterial();
     if (!variant.isEmpty()) {
       Font fontRenderer = Minecraft.getInstance().font;

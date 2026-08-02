@@ -71,7 +71,19 @@ public class EntityMeltingRecipeCategory implements IRecipeCategory<EntityMeltin
   }
 
   @Override
+  public int getWidth() {
+    return 150;
+  }
+
+  @Override
+  public int getHeight() {
+    return 62;
+  }
+
+  @Override
   public void draw(EntityMeltingRecipe recipe, IRecipeSlotsView slot, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
+    // getBackground() was removed in JEI 27.x; draw our background ourselves
+    background.draw(graphics, 0, 0);
     arrow.draw(graphics, 71, 21);
 
     // draw damage string next to the heart icon
@@ -99,7 +111,7 @@ public class EntityMeltingRecipeCategory implements IRecipeCategory<EntityMeltin
            .addIngredient(NeoForgeTypes.FLUID_STACK, recipe.getOutput());
 
     // show fuels that are valid for this recipe
-    builder.addSlot(RecipeIngredientRole.CATALYST, 75, 43)
+    builder.addSlot(RecipeIngredientRole.CRAFTING_STATION, 75, 43)
            .setFluidRenderer(1, false, 16, 16)
            .setOverlay(tank, 0, 0)
            .addRichTooltipCallback(FluidTooltipCallback.NO_AMOUNT)

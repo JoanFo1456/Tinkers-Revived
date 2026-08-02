@@ -5,6 +5,7 @@ import lombok.Getter;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocus;
@@ -96,7 +97,19 @@ public class ModifierRecipeCategory implements IRecipeCategory<IDisplayModifierR
   }
 
   @Override
+  public int getWidth() {
+    return 128;
+  }
+
+  @Override
+  public int getHeight() {
+    return 77;
+  }
+
+  @Override
   public void draw(IDisplayModifierRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
+    // getBackground() was removed in JEI 27.x; draw our background ourselves
+    background.draw(graphics, 0, 0);
     drawSlot(graphics, recipe, 0,  2, 32);
     drawSlot(graphics, recipe, 1, 24, 14);
     drawSlot(graphics, recipe, 2, 46, 32);
@@ -152,25 +165,23 @@ public class ModifierRecipeCategory implements IRecipeCategory<IDisplayModifierR
   }
 
   @Override
-  public List<Component> getTooltipStrings(IDisplayModifierRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+  public void getTooltip(ITooltipBuilder tooltip, IDisplayModifierRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
     int checkX = (int) mouseX;
     int checkY = (int) mouseY;
     ModifierEntry result = recipe.getDisplayResult();
     if (GuiUtil.isHovered(checkX, checkY, 66, 58, 16, 16)) {
       Component requirements = result.getHook(ModifierHooks.REQUIREMENTS).requirementsError(result);
       if (requirements != null) {
-        return Collections.singletonList(requirements);
+        tooltip.add(requirements);
       }
     }
     if (recipe.isIncremental() && GuiUtil.isHovered(checkX, checkY, 83, 59, 16, 16)) {
-      return TEXT_INCREMENTAL;
+      tooltip.addAll(TEXT_INCREMENTAL);
     }
     SlotCount slots = recipe.getSlots();
     if (slots == null && GuiUtil.isHovered(checkX, checkY, 102, 58, 24, 16)) {
-      return SlotIngredientRenderer.INPUT.getTooltip(null, TooltipFlag.NORMAL);
+      tooltip.addAll(SlotIngredientRenderer.INPUT.getTooltip(null, TooltipFlag.NORMAL));
     }
-    
-    return Collections.emptyList();
   }
 
   @Override
@@ -194,14 +205,14 @@ public class ModifierRecipeCategory implements IRecipeCategory<IDisplayModifierR
     // hack: if a single part tool is in the recipe, add variants of it as invisible ingredients
     for (ItemStack stack : toolWithoutModifier) {
       if (stack.is(TinkerTags.Items.SINGLEPART_TOOL) && stack.getItem() instanceof IModifiable modifiable) {
-        builder.addInvisibleIngredients(RecipeIngredientRole.CATALYST).addItemStacks(getLookupTools(modifiable));
+        builder.addInvisibleIngredients(RecipeIngredientRole.CRAFTING_STATION).addItemStacks(getLookupTools(modifiable));
       }
     }
 
     // JEI is currently being dumb and using ingredient subtypes within recipe focuses
     // we use a more strict subtype for tools in ingredients so they all show in JEI, but do not care in recipes
     // thus, manually handle the focuses
-    IFocus<ItemStack> focus = focuses.getFocuses(VanillaTypes.ITEM_STACK).filter(f -> f.getRole() == RecipeIngredientRole.CATALYST).findFirst().orElse(null);
+    IFocus<ItemStack> focus = focuses.getFocuses(VanillaTypes.ITEM_STACK).filter(f -> f.getRole() == RecipeIngredientRole.CRAFTING_STATION).findFirst().orElse(null);
     if (focus != null) {
       Item item = focus.getTypedValue().getIngredient().getItem();
       for (ItemStack stack : toolWithoutModifier) {
@@ -217,8 +228,8 @@ public class ModifierRecipeCategory implements IRecipeCategory<IDisplayModifierR
         }
       }
     }
-    builder.addSlot(RecipeIngredientRole.CATALYST,  25, 38).addItemStacks(toolWithoutModifier);
-    builder.addSlot(RecipeIngredientRole.CATALYST, 105, 34).addItemStacks(toolWithModifier);
+    builder.addSlot(RecipeIngredientRole.CRAFTING_STATION,  25, 38).addItemStacks(toolWithoutModifier);
+    builder.addSlot(RecipeIngredientRole.CRAFTING_STATION, 105, 34).addItemStacks(toolWithModifier);
 
     // modifier slots
     SlotCount slots = recipe.getSlots();

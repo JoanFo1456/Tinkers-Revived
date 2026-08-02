@@ -5,8 +5,10 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IIngredientAcceptor;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -44,6 +46,22 @@ public class SeveringCategory implements IRecipeCategory<SeveringRecipe> {
   @Override
   public Component getTitle() {
     return TITLE;
+  }
+
+  @Override
+  public int getWidth() {
+    return 100;
+  }
+
+  @Override
+  public int getHeight() {
+    return 38;
+  }
+
+  @Override
+  public void draw(SeveringRecipe recipe, IRecipeSlotsView slots, GuiGraphicsExtractor graphics, double mouseX, double mouseY) {
+    // getBackground() was removed in JEI 27.x; draw our background ourselves
+    background.draw(graphics, 0, 0);
   }
 
   @Override
