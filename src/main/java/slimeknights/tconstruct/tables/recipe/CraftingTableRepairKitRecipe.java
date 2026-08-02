@@ -31,8 +31,12 @@ public class CraftingTableRepairKitRecipe extends CustomRecipe {
   private final Identifier id;
 
   public CraftingTableRepairKitRecipe(Identifier id) {
-    super(CraftingBookCategory.EQUIPMENT);
     this.id = id;
+  }
+
+  @Override
+  public CraftingBookCategory category() {
+    return CraftingBookCategory.EQUIPMENT;
   }
 
   public Identifier getId() {
@@ -111,7 +115,7 @@ public class CraftingTableRepairKitRecipe extends CustomRecipe {
   }
 
   @Override
-  public ItemStack assemble(CraftingInput inv, HolderLookup.Provider access) {
+  public ItemStack assemble(CraftingInput inv) {
     ToolRepair inputs = getRelevantInputs(inv);
     if (inputs == null) {
       TConstruct.LOG.error("Recipe repair on {} failed to find items after matching", getId());
@@ -143,11 +147,6 @@ public class CraftingTableRepairKitRecipe extends CustomRecipe {
     ToolDamageUtil.repair(tool, (int)repairAmount);
     // return final stack
     return tool.copyStack(inputs.tool);
-  }
-
-  @Override
-  public boolean canCraftInDimensions(int width, int height) {
-    return width * height >= 2;
   }
 
   @Override

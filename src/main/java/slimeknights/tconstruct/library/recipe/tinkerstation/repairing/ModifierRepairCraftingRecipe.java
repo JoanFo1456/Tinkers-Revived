@@ -40,7 +40,6 @@ public class ModifierRepairCraftingRecipe extends CustomRecipe implements IModif
   private final Identifier id;
 
   public ModifierRepairCraftingRecipe(Identifier idIn, ModifierId modifier, Ingredient ingredient, int repairAmount) {
-    super(CraftingBookCategory.EQUIPMENT);
     this.id = idIn;
     this.modifier = modifier;
     this.ingredient = ingredient;
@@ -63,7 +62,7 @@ public class ModifierRepairCraftingRecipe extends CustomRecipe implements IModif
   }
 
   @Override
-  public ItemStack assemble(CraftingInput inv, HolderLookup.Provider access) {
+  public ItemStack assemble(CraftingInput inv) {
     ToolFound inputs = OverslimeCraftingTableRecipe.findTool(inv, TOOLS, ingredient);
     if (inputs == null) {
       TConstruct.LOG.error("Recipe repair on {} failed to find items after matching", getId());
@@ -114,8 +113,8 @@ public class ModifierRepairCraftingRecipe extends CustomRecipe implements IModif
   }
 
   @Override
-  public boolean canCraftInDimensions(int width, int height) {
-    return (width * height) >= 2;
+  public CraftingBookCategory category() {
+    return CraftingBookCategory.EQUIPMENT;
   }
 
   @Override

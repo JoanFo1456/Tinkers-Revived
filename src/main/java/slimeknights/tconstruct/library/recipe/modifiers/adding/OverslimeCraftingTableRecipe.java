@@ -40,11 +40,15 @@ public class OverslimeCraftingTableRecipe extends CustomRecipe {
   private final Identifier id;
 
   public OverslimeCraftingTableRecipe(Identifier id, Ingredient tools, Ingredient ingredient, int restoreAmount) {
-    super(CraftingBookCategory.EQUIPMENT);
     this.id = id;
     this.tools = tools;
     this.ingredient = ingredient;
     this.restoreAmount = restoreAmount;
+  }
+
+  @Override
+  public CraftingBookCategory category() {
+    return CraftingBookCategory.EQUIPMENT;
   }
 
   public Identifier getId() {
@@ -105,7 +109,7 @@ public class OverslimeCraftingTableRecipe extends CustomRecipe {
   }
 
   @Override
-  public ItemStack assemble(CraftingInput inv, HolderLookup.Provider registryAccess) {
+  public ItemStack assemble(CraftingInput inv) {
     ToolFound match = findTool(inv, tools, ingredient);
     if (match == null) {
       TConstruct.LOG.error("Overslime crafting table recipe {} failed to find tool after matching", getId());
@@ -151,11 +155,6 @@ public class OverslimeCraftingTableRecipe extends CustomRecipe {
 
     // step 2: consume as many items as are needed to do the repair
     return getRemainingItems(inv, ingredient, repairNeeded, repairPerItem);
-  }
-
-  @Override
-  public boolean canCraftInDimensions(int width, int height) {
-    return width * height >= 2;
   }
 
   @Override
