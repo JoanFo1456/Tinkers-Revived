@@ -50,12 +50,12 @@ public class IslandPiece extends TemplateStructurePiece {
   public IslandPiece(StructurePieceSerializationContext context, CompoundTag nbt) {
     super(TinkerStructures.islandPiece.get(), nbt, context.structureTemplateManager(), id -> makeSettings(Rotation.valueOf(nbt.getStringOr("Rot", "NONE")), Mirror.valueOf(nbt.getStringOr("Mi", "NONE"))));
     RegistryAccess access = context.registryAccess();
-    if (find(access.lookupOrThrow(Registries.STRUCTURE), nbt.getString("Structure")) instanceof IslandStructure island) {
+    if (find(access.lookupOrThrow(Registries.STRUCTURE), nbt.getStringOr("Structure", "")) instanceof IslandStructure island) {
       this.structure = island;
     } else  {
       this.structure = null;
     }
-    this.tree = find(access.lookupOrThrow(Registries.CONFIGURED_FEATURE), nbt.getString("Tree"));
+    this.tree = find(access.lookupOrThrow(Registries.CONFIGURED_FEATURE), nbt.getStringOr("Tree", ""));
     this.numberOfTreesPlaced = nbt.getIntOr("NumberOfTreesPlaced", 0);
   }
 
@@ -100,7 +100,7 @@ public class IslandPiece extends TemplateStructurePiece {
       }
       case "tconstruct:slime_tall_grass" -> {
         if (rand.nextBoolean()) {
-          Optional<Block> plant = this.structure.getGrasses().getRandomValue(rand);
+          Optional<Block> plant = this.structure.getGrasses().getRandom(rand);
           if (plant.isPresent()) {
             Block block = plant.get();
             BlockState state = block.defaultBlockState();
@@ -149,7 +149,7 @@ public class IslandPiece extends TemplateStructurePiece {
 
   /** Gets a registry, or falls back to builtin */
   private static <T> Registry<T> getRegistry(ResourceKey<? extends Registry<T>> registryKey, Registry<T> builtIn, StructurePieceSerializationContext context) {
-    Optional<? extends Registry<T>> registry = context.registryAccess().registry(registryKey);
+    Optional<? extends Registry<T>> registry = context.registryAccess().lookup(registryKey);
     if (registry.isPresent()) {
       return registry.get();
     } else {
