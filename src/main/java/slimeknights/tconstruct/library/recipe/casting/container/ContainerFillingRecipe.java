@@ -16,7 +16,10 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
+import slimeknights.mantle.fluid.FluidTransferHelper;
 import slimeknights.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
 import slimeknights.mantle.data.loadable.Loadables;
 import slimeknights.mantle.data.loadable.field.ContextKey;
@@ -68,8 +71,8 @@ public class ContainerFillingRecipe implements ICastingRecipe, IMultiRecipe<Disp
   @Override
   public int getFluidAmount(ICastingContainer inv) {
     Fluid fluid = inv.getFluid();
-    IFluidHandlerItem handler = inv.getStack().getCapability(Capabilities.FluidHandler.ITEM);
-    return handler == null ? 0 : handler.fill(new FluidStack(fluid, this.fluidAmount), FluidAction.SIMULATE);
+    ResourceHandler<FluidResource> handler = ItemAccess.forStack(inv.getStack().copyWithCount(1)).getCapability(Capabilities.Fluid.ITEM);
+    return handler == null ? 0 : FluidTransferHelper.fill(handler, new FluidStack(fluid, this.fluidAmount), false);
   }
 
   @Override
@@ -91,10 +94,10 @@ public class ContainerFillingRecipe implements ICastingRecipe, IMultiRecipe<Disp
   public boolean matches(ICastingContainer inv, Level worldIn) {
     ItemStack stack = inv.getStack();
     Fluid fluid = inv.getFluid();
-    IFluidHandlerItem handler = stack.getCapability(Capabilities.FluidHandler.ITEM);
+    ResourceHandler<FluidResource> handler = ItemAccess.forStack(stack.copyWithCount(1)).getCapability(Capabilities.Fluid.ITEM);
     return stack.getItem() == this.container.asItem()
            && handler != null
-           && handler.fill(new FluidStack(fluid, this.fluidAmount), FluidAction.SIMULATE) > 0;
+           && FluidTransferHelper.fill(handler, new FluidStack(fluid, this.fluidAmount), false) > 0;
   }
 
   /** @deprecated use {@link ICastingRecipe#assemble(Container, HolderLookup.Provider)} */
@@ -107,10 +110,11 @@ public class ContainerFillingRecipe implements ICastingRecipe, IMultiRecipe<Disp
   @Override
   public ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access) {
     ItemStack stack = inv.getStack().copy();
-    IFluidHandlerItem handler = stack.getCapability(Capabilities.FluidHandler.ITEM);
+    ItemAccess itemAccess = ItemAccess.forStack(stack.copyWithCount(1));
+    ResourceHandler<FluidResource> handler = itemAccess.getCapability(Capabilities.Fluid.ITEM);
     if (handler != null) {
-      handler.fill(TagUtil.createFluidStack(inv.getFluid(), this.fluidAmount, inv.getFluidTag()), FluidAction.EXECUTE);
-      return handler.getContainer();
+      FluidTransferHelper.fill(handler, TagUtil.createFluidStack(inv.getFluid(), this.fluidAmount, inv.getFluidTag()), true);
+      return itemAccess.getResource().toStack(1);
     }
     return stack;
   }

@@ -33,7 +33,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
-import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import slimeknights.tconstruct.library.fluid.SimpleFluidResourceTank;
 import org.apache.commons.lang3.mutable.MutableInt;
 import slimeknights.mantle.command.GeneratePackHelper;
@@ -440,9 +442,9 @@ public class GenerateMeltingRecipesCommand {
       }
       // fluid capability check
       try {
-        IFluidHandlerItem capability = stack.getCapability(Capabilities.FluidHandler.ITEM);
-        if (capability != null) {
-          FluidStack contained = capability.getFluidInTank(0);
+        ResourceHandler<FluidResource> capability = ItemAccess.forStack(stack.copyWithCount(1)).getCapability(Capabilities.Fluid.ITEM);
+        if (capability != null && capability.size() > 0) {
+          FluidStack contained = capability.getResource(0).toStack(capability.getAmountAsInt(0));
           if (!contained.isEmpty()) {
             return MeltingResult.from(contained);
           }

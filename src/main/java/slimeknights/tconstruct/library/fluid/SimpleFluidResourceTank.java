@@ -8,6 +8,8 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.function.Predicate;
 
 /**
  * Standalone single-fluid tank backed by the 26.1 {@link net.neoforged.neoforge.transfer.ResourceHandler} API, exposing
@@ -15,8 +17,25 @@ import javax.annotation.Nonnull;
  * has no owning block entity, so it is suitable for item tanks and temporary transfer buffers.
  */
 public class SimpleFluidResourceTank extends FluidStacksResourceHandler implements IFluidHandler, IFluidTank {
+  /** Optional predicate restricting which fluids may be inserted */
+  @Nullable
+  private Predicate<FluidStack> validator;
+
   public SimpleFluidResourceTank(int capacity) {
     super(1, capacity);
+  }
+
+  /** Sets a predicate restricting which fluids may be filled into this tank */
+  public void setValidator(@Nullable Predicate<FluidStack> validator) {
+    this.validator = validator;
+  }
+
+  @Override
+  public boolean isValid(int index, FluidResource resource) {
+    if (validator != null && !resource.isEmpty() && !validator.test(resource.toStack(1))) {
+      return false;
+    }
+    return super.isValid(index, resource);
   }
 
   @Nonnull

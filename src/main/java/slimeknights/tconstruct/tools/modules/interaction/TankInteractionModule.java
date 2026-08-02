@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.mantle.fluid.FluidTransferHelper;
@@ -61,10 +63,12 @@ public record TankInteractionModule(@Nullable InteractionSource source) implemen
       return InteractionResult.PASS;
     }
     Direction face = context.getClickedFace();
-    IFluidHandler cap = world.getCapability(Capabilities.FluidHandler.BLOCK, target, world.getBlockState(target), te, face);
-    if (cap == null) {
+    ResourceHandler<FluidResource> capHandler = world.getCapability(Capabilities.Fluid.BLOCK, target, world.getBlockState(target), te, face);
+    if (capHandler == null) {
       return InteractionResult.PASS;
     }
+    // adapt to the legacy fill/drain interface so the existing transfer flow below is preserved
+    IFluidHandler cap = IFluidHandler.of(capHandler);
 
     // only the server needs to deal with actually handling stuff
     if (!world.isClientSide()) {
