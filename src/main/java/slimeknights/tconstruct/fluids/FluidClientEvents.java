@@ -37,6 +37,20 @@ public class FluidClientEvents extends ClientEventBase {
     event.register(FluidContainerModel.ID, FluidContainerModel.Unbaked.MAP_CODEC);
   }
 
+  @SubscribeEvent
+  static void registerFluidModels(net.neoforged.neoforge.client.event.RegisterFluidModelsEvent event) {
+    // The potion fluid needs a per-stack (NBT) tint, which the data-driven fluid_texture color cannot express, so we
+    // register its fluid model explicitly with PotionFluidTintSource. The still/flowing sprites come from the same
+    // mantle/fluid_texture data used by every other Tinkers fluid.
+    // PLAIN NOTE (validate in-game): this reads FluidTextureManager, which is a resource-reload listener; if it is not
+    // yet populated when fluid models bake, swap these lookups for the literal sprite ids
+    // tconstruct:fluid/potion/still and tconstruct:fluid/potion/flowing.
+    net.neoforged.neoforge.fluids.FluidType type = TinkerFluids.potion.getType();
+    net.minecraft.client.resources.model.sprite.Material still = new net.minecraft.client.resources.model.sprite.Material(slimeknights.mantle.fluid.texture.FluidTextureManager.getStillTexture(type));
+    net.minecraft.client.resources.model.sprite.Material flowing = new net.minecraft.client.resources.model.sprite.Material(slimeknights.mantle.fluid.texture.FluidTextureManager.getFlowingTexture(type));
+    event.register(new net.minecraft.client.renderer.block.FluidModel.Unbaked(still, flowing, null, slimeknights.tconstruct.fluids.fluids.PotionFluidTintSource.INSTANCE), TinkerFluids.potion.get());
+  }
+
   private static void setTranslucent(FlowingFluidObject<?> fluid) {
     // 26.1: ItemBlockRenderTypes.setRenderLayer was removed; fluid/block render layers are data-driven now
     // (block render_type in the blockstate/model). Kept as a no-op so the setup call sites still compile;

@@ -3,25 +3,20 @@ package slimeknights.tconstruct.fluids.fluids;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import slimeknights.tconstruct.compat.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
-import slimeknights.mantle.fluid.texture.ClientTextureFluidType;
 import slimeknights.mantle.recipe.helper.FluidOutput;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.utils.TagUtil;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Consumer;
 
 public class PotionFluidType extends FluidType {
   public PotionFluidType(Properties properties) {
@@ -40,27 +35,9 @@ public class PotionFluidType extends FluidType {
     return itemStack;
   }
 
-  // initializeClient removed from Item/MobEffect/FluidType in 26.1; registered via RegisterClientExtensionsEvent
-  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-    consumer.accept(new ClientTextureFluidType(this) {
-      /**
-       * Gets the color, based on {@link PotionUtils#getColor(ItemStack)}
-       * @param stack  Fluid stack instance
-       * @return  Color for the fluid
-       */
-      @Override
-      public int getTintColor(FluidStack stack) {
-        CompoundTag tag = TagUtil.getTag(stack);
-        if (tag != null && tag.contains("CustomPotionColor")) {
-          return tag.getInt("CustomPotionColor") | 0xFF000000;
-        }
-        if (PotionUtils.getPotion(tag).is(Potions.WATER)) {
-          return getTintColor();
-        }
-        return PotionUtils.getColor(PotionUtils.getAllEffects(tag)) | 0xFF000000;
-      }
-    });
-  }
+  // 26.1: FluidType#initializeClient and the IClientFluidTypeExtensions#getTintColor(FluidStack) overload were both
+  // removed. The per-stack potion tint now lives in PotionFluidTintSource (a FluidTintSource), wired to the potion
+  // fluid model in FluidClientEvents#registerFluidModels.
 
   /** Creates the potion tag */
   private static CompoundTag potionTag(Identifier location) {
