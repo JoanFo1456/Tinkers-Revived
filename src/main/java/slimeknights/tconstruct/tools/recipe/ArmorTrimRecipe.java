@@ -1,18 +1,20 @@
 package slimeknights.tconstruct.tools.recipe;
 
 import lombok.Getter;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
-import net.minecraft.world.item.equipment.trim.TrimMaterials;
 import net.minecraft.world.item.equipment.trim.TrimPattern;
-import net.minecraft.world.item.equipment.trim.TrimPatterns;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import slimeknights.mantle.recipe.IMultiRecipe;
@@ -62,14 +64,16 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
     for (int i = 0; i < inv.getInputCount(); i++) {
       ItemStack stack = inv.getInput(i);
       if (!stack.isEmpty()) {
-        // find the two matching tags, but ensure no duplicates
-        if (stack.is(ItemTags.TRIM_TEMPLATES)) {
+        // find the two inputs, but ensure no duplicates
+        // 26.1 removed ItemTags.TRIM_TEMPLATES; templates are SmithingTemplateItem instances
+        if (stack.getItem() instanceof SmithingTemplateItem) {
           if (!template.isEmpty()) {
             return null;
           }
           template = stack;
         }
-        if (stack.is(ItemTags.TRIM_MATERIALS)) {
+        // 26.1 identifies trim materials by the PROVIDES_TRIM_MATERIAL data component
+        if (stack.has(DataComponents.PROVIDES_TRIM_MATERIAL)) {
           if (!material.isEmpty()) {
             return null;
           }
@@ -82,6 +86,23 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
       return new TrimItems(template, material);
     }
     return null;
+  }
+
+  /**
+   * Finds the trim pattern for the given template item.
+   * 26.1 removed the runtime template->pattern lookup (TrimPattern no longer stores its template item, and the
+   * mapping now lives in smithing trim recipe data). This reconstructs it from the trim pattern registry using the
+   * vanilla "&lt;pattern&gt;_armor_trim_smithing_template" item naming convention.
+   */
+  @Nullable
+  private static Holder<TrimPattern> findPattern(RegistryAccess access, ItemStack template) {
+    Identifier templateId = BuiltInRegistries.ITEM.getKey(template.getItem());
+    String templatePath = templateId.getPath();
+    return access.lookupOrThrow(Registries.TRIM_PATTERN).listElements()
+                 .filter(ref -> templatePath.equals(ref.key().identifier().getPath() + "_armor_trim_smithing_template")
+                             || templatePath.equals(ref.key().identifier().getPath()))
+                 .map(ref -> (Holder<TrimPattern>) ref)
+                 .findFirst().orElse(null);
   }
 
   @Override
@@ -102,15 +123,15 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
     if (trimItems == null) {
       return RecipeResult.pass();
     }
-    // validate the material nad pattern items
-    Reference<TrimMaterial> material = TrimMaterials.getFromIngredient(access, trimItems.material).orElse(null);
-    if (material == null) {
+    // validate the material and pattern items
+    Holder<TrimMaterial> material = trimItems.material.get(DataComponents.PROVIDES_TRIM_MATERIAL);
+    if (material == null || material.unwrapKey().isEmpty()) {
       return RecipeResult.failure(KEY_INVALID_MATERIAL, trimItems.material.getDisplayName());
     }
     ToolStack original = inv.getTinkerable();
-    Reference<TrimPattern> pattern = null;
+    Holder<TrimPattern> pattern = null;
     if (!original.hasTag(TinkerTags.Items.TRIM_NO_PATTERN)) {
-      pattern = TrimPatterns.getFromTemplate(access, trimItems.template).orElse(null);
+      pattern = findPattern(access, trimItems.template);
       if (pattern == null) {
         return RecipeResult.failure(KEY_INVALID_PATTERN, trimItems.template.getDisplayName());
       }
@@ -120,9 +141,9 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
     ToolStack tool = inv.getTinkerable().copy();
     ModDataNBT persistentData = tool.getPersistentData();
     ModifierId modifier = TinkerModifiers.trim.getId();
-    persistentData.putString(TrimModule.materialKey(modifier), material.key().identifier().toString());
+    persistentData.putString(TrimModule.materialKey(modifier), material.unwrapKey().orElseThrow().identifier().toString());
     if (pattern != null) {
-      persistentData.putString(TrimModule.patternKey(modifier), pattern.key().identifier().toString());
+      persistentData.putString(TrimModule.patternKey(modifier), pattern.unwrapKey().orElseThrow().identifier().toString());
     }
 
     // add the modifier if missing
@@ -146,8 +167,10 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
   @Override
   public List<IDisplayModifierRecipe> getRecipes(RegistryAccess access) {
     if (displayRecipes == null) {
-      List<ItemStack> trims = RegistryHelper.getTagValueStream(BuiltInRegistries.ITEM, ItemTags.TRIM_TEMPLATES)
-                                            .map(ItemStack::new).toList();
+      // 26.1 removed ItemTags.TRIM_TEMPLATES; trim templates are armor-trim SmithingTemplateItem instances
+      List<ItemStack> trims = BuiltInRegistries.ITEM.entrySet().stream()
+                                            .filter(e -> e.getValue() instanceof SmithingTemplateItem && e.getKey().identifier().getPath().endsWith("_armor_trim_smithing_template"))
+                                            .map(e -> new ItemStack(e.getValue())).toList();
       List<ItemStack> toolInputs = RegistryHelper.getTagValueStream(BuiltInRegistries.ITEM, TinkerTags.Items.TRIM)
                                                  .map(IModifiableDisplay::getDisplayStack).toList();
       if (!trims.isEmpty() && !toolInputs.isEmpty()) {
@@ -182,7 +205,15 @@ public class ArmorTrimRecipe implements ITinkerStationRecipe, IMultiRecipe<IDisp
       TrimMaterial material = holder.value();
       toolWithoutModifier = tools;
       this.trim = trim;
-      this.material = List.of(new ItemStack(material.ingredient().value()));
+      // 26.1 TrimMaterial no longer carries an ingredient item; gather example items from the trim material tag that provide this material
+      ResourceKey<TrimMaterial> materialKey = holder.key();
+      this.material = RegistryHelper.getTagValueStream(BuiltInRegistries.ITEM, ItemTags.TRIM_MATERIALS)
+                                    .map(ItemStack::new)
+                                    .filter(stack -> {
+                                      Holder<TrimMaterial> provided = stack.get(DataComponents.PROVIDES_TRIM_MATERIAL);
+                                      return provided != null && provided.is(materialKey);
+                                    })
+                                    .toList();
       this.variant = material.description().plainCopy();
 
       String materialName = holder.key().identifier().toString();
