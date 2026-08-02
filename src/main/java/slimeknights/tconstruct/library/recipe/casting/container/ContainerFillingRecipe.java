@@ -101,14 +101,12 @@ public class ContainerFillingRecipe implements ICastingRecipe, IMultiRecipe<Disp
   }
 
   /** @deprecated use {@link ICastingRecipe#assemble(Container, HolderLookup.Provider)} */
-  @Override
-  @Deprecated
+    @Deprecated
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return new ItemStack(this.container);
   }
 
-  @Override
-  public ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access) {
+    public ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access) {
     ItemStack stack = inv.getStack().copy();
     ItemAccess itemAccess = ItemAccess.forStack(stack.copyWithCount(1));
     ResourceHandler<FluidResource> handler = itemAccess.getCapability(Capabilities.Fluid.ITEM);

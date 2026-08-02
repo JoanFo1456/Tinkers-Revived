@@ -50,8 +50,7 @@ public interface IMeltingRecipe extends ICustomOutputRecipe<IMeltingContainer> {
     return TinkerRecipeTypes.MELTING.get();
   }
 
-  @Override
-  default ItemStack getToastSymbol() {
+    default ItemStack getToastSymbol() {
     return new ItemStack(TinkerSmeltery.searedMelter);
   }
 

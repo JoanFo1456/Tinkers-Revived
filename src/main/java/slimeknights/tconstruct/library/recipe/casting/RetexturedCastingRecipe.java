@@ -25,7 +25,6 @@ public class RetexturedCastingRecipe extends ItemCastingRecipe {
     super(serializer, id, group, cast, fluid, result, coolingTime, consumed, switchSlots);
   }
 
-  @Override
   public ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access) {
     ItemStack result = getResultItem(access).copy();
     if (inv.getStack().getItem() instanceof BlockItem blockItem ) {

@@ -104,12 +104,10 @@ public class ItemPartRecipe implements IDisplayPartBuilderRecipe {
     return IDisplayPartBuilderRecipe.super.getItemsUsed(inv);
   }
 
-  @Override
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return result.get();
   }
 
-  @Override
   public ItemStack assemble(IPartBuilderContainer inv, HolderLookup.Provider access) {
     ItemStack result = getResultItem(access).copy();
     IMaterialValue materialRecipe = inv.getMaterial();

@@ -74,7 +74,6 @@ public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
     return list;
   }
 
-  @Override
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return recipeOutput.get();
   }

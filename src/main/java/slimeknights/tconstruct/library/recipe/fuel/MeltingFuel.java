@@ -108,8 +108,7 @@ public class MeltingFuel implements ICustomOutputRecipe<IFluidContainer> {
     return TinkerSmeltery.fuelSerializer.get();
   }
 
-  @Override
-  public ItemStack getToastSymbol() {
+    public ItemStack getToastSymbol() {
     return new ItemStack(TinkerSmeltery.searedTank.get(TankType.FUEL_TANK));
   }
 }

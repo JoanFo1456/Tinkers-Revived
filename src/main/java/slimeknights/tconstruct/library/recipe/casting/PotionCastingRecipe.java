@@ -106,7 +106,6 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
     return coolingTime;
   }
 
-  @Override
   public ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access) {
     ItemStack result = new ItemStack(this.result);
     PotionUtils.setPotion(result, PotionUtils.getPotion(inv.getFluidTag()));
@@ -146,7 +145,6 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
 
   /** @deprecated use {@link #assemble(Container, HolderLookup.Provider)} */
   @Deprecated
-  @Override
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return new ItemStack(this.result);
   }

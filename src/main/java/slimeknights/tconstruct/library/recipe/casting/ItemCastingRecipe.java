@@ -62,7 +62,6 @@ public class ItemCastingRecipe extends AbstractCastingRecipe implements IDisplay
     return getCast().test(inv.getStack()) && fluid.test(inv.getFluid());
   }
 
-  @Override
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return this.result.get();
   }

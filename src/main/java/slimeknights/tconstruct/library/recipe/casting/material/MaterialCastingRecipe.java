@@ -65,12 +65,10 @@ public class MaterialCastingRecipe extends AbstractMaterialCastingRecipe impleme
     return fluid != MaterialFluidRecipe.EMPTY && result.canUseMaterial(fluid.getOutput().getId());
   }
 
-  @Override
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return new ItemStack(result);
   }
 
-  @Override
   public ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access) {
     return result.withMaterial(getFluidRecipe(inv).getOutput().getVariant());
   }

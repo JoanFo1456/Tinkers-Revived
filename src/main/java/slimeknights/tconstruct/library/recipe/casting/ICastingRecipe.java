@@ -13,7 +13,6 @@ import static slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe.getT
  * Base interface for all casting recipes
  */
 public interface ICastingRecipe extends ICommonRecipe<ICastingContainer> {
-  @Override
   default ItemStack getToastSymbol() {
     return new ItemStack(getType() == TinkerRecipeTypes.CASTING_TABLE.get() ? TinkerSmeltery.searedTable : TinkerSmeltery.searedBasin);
   }

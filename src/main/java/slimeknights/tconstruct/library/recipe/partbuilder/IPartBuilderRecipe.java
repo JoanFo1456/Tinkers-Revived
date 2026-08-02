@@ -80,8 +80,7 @@ public interface IPartBuilderRecipe extends ICommonRecipe<IPartBuilderContainer>
     return TinkerRecipeTypes.PART_BUILDER.get();
   }
 
-  @Override
-  default ItemStack getToastSymbol() {
+    default ItemStack getToastSymbol() {
     return new ItemStack(TinkerTables.partBuilder);
   }
 

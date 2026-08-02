@@ -152,12 +152,10 @@ public class PartSwapCastingRecipe extends AbstractMaterialCastingRecipe impleme
     return getCast().test(inv.getStack()) && canPartSwap(inv);
   }
 
-  @Override
   public ItemStack getResultItem(HolderLookup.Provider registryAccess) {
     return getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new)[0].copy();
   }
 
-  @Override
   public ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access) {
     MaterialFluidRecipe fluidRecipe = getFluidRecipe(inv);
     MaterialVariant material = fluidRecipe.getOutput();

@@ -126,7 +126,6 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
 
   /** @deprecated use {@link #getRecipeOutput(MaterialVariantId)} */
   @Deprecated
-  @Override
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return new ItemStack(output);
   }
@@ -149,7 +148,6 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
     return getRecipeOutput(material, outputCount);
   }
 
-  @Override
   public ItemStack assemble(IPartBuilderContainer inv, HolderLookup.Provider access) {
     MaterialVariant material = MaterialVariant.UNKNOWN;
     int count = outputCount;

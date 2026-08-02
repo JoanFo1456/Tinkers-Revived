@@ -69,21 +69,18 @@ public interface ITinkerStationRecipe extends ICommonRecipe<ITinkerStationContai
 
   /** @deprecated use {@link #getValidatedResult(ITinkerStationContainer, RegistryAccess)}*/
   @Deprecated
-  @Override
-  default ItemStack getResultItem(HolderLookup.Provider pRegistryAccess) {
+    default ItemStack getResultItem(HolderLookup.Provider pRegistryAccess) {
     return ItemStack.EMPTY;
   }
 
   /** @deprecated use {@link #getValidatedResult(ITinkerStationContainer, RegistryAccess)}*/
   @Deprecated
-  @Override
-  default ItemStack assemble(ITinkerStationContainer inv, HolderLookup.Provider access) {
+    default ItemStack assemble(ITinkerStationContainer inv, HolderLookup.Provider access) {
     return getResultItem(access).copy();
   }
 
   /** @deprecated use {@link #updateInputs(LazyToolStack, IMutableTinkerStationContainer, boolean)} */
-  @Override
-  @Deprecated
+    @Deprecated
   default NonNullList<ItemStack> getRemainingItems(ITinkerStationContainer inv) {
     return NonNullList.of(ItemStack.EMPTY);
   }
