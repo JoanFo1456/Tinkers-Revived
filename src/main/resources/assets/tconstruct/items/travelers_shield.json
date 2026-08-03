@@ -1,0 +1,25 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/travelers_shield",
+    "parts": [
+      {
+        "name": "wood",
+        "index": 0
+      },
+      {
+        "name": "cuirass",
+        "index": 1
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:travelers/shield"
+    ],
+    "first_modifiers": [
+      "tconstruct:dyed"
+    ],
+    "small_modifier_roots": [
+      "tconstruct:item/tool/armor/travelers/shield/modifiers/"
+    ]
+  }
+}

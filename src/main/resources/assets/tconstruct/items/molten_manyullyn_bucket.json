@@ -1,0 +1,7 @@
+{
+  "model": {
+    "type": "tconstruct:fluid_container",
+    "base_model": "tconstruct:item/molten_manyullyn_bucket",
+    "flip_gas": false
+  }
+}

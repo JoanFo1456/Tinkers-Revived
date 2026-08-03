@@ -1,0 +1,18 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/slime_wings",
+    "parts": [
+      {
+        "name": "slime",
+        "index": 0
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:slime/wings"
+    ],
+    "first_modifiers": [
+      "tconstruct:trim"
+    ]
+  }
+}

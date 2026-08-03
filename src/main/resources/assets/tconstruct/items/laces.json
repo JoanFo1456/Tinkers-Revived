@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "tconstruct:material",
+    "base_model": "tconstruct:item/laces",
+    "offset": [
+      0,
+      1
+    ]
+  }
+}

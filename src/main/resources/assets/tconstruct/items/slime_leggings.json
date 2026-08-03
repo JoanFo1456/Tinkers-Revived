@@ -1,0 +1,22 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/slime_leggings",
+    "parts": [
+      {
+        "name": "slime",
+        "index": 1
+      },
+      {
+        "name": "shell",
+        "index": 0
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:slime/leggings"
+    ],
+    "first_modifiers": [
+      "tconstruct:trim"
+    ]
+  }
+}

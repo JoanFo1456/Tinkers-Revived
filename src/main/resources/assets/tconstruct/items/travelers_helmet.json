@@ -1,0 +1,25 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/travelers_helmet",
+    "parts": [
+      {
+        "name": "base"
+      },
+      {
+        "name": "cuirass",
+        "index": 1
+      },
+      {
+        "name": "metal",
+        "index": 0
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:travelers/goggles"
+    ],
+    "first_modifiers": [
+      "tconstruct:dyed"
+    ]
+  }
+}

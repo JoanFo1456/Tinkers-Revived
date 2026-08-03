@@ -1,0 +1,23 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/travelers_chestplate",
+    "parts": [
+      {
+        "name": "cuirass",
+        "index": 1
+      },
+      {
+        "name": "metal",
+        "index": 0
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:travelers/vest"
+    ],
+    "first_modifiers": [
+      "tconstruct:dyed",
+      "tconstruct:trim"
+    ]
+  }
+}

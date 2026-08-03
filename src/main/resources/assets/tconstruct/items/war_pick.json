@@ -1,0 +1,26 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/war_pick",
+    "parts": [
+      {
+        "name": "body",
+        "index": 1
+      },
+      {
+        "name": "bowstring",
+        "index": 2
+      },
+      {
+        "name": "limb",
+        "index": 0
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:war_pick"
+    ],
+    "small_modifier_roots": [
+      "tconstruct:item/tool/war_pick/modifiers/"
+    ]
+  }
+}

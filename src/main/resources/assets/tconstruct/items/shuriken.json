@@ -1,0 +1,19 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/shuriken",
+    "parts": [
+      {
+        "name": "bottom",
+        "index": 1
+      },
+      {
+        "name": "top",
+        "index": 0
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:shuriken"
+    ]
+  }
+}

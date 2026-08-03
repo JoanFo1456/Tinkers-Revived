@@ -1,0 +1,22 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/battlesign",
+    "parts": [
+      {
+        "name": "head",
+        "index": 0
+      },
+      {
+        "name": "handle",
+        "index": 1
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:battlesign"
+    ],
+    "small_modifier_roots": [
+      "tconstruct:item/tool/battlesign/modifiers/"
+    ]
+  }
+}

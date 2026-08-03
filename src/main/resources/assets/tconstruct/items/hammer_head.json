@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "tconstruct:material",
+    "base_model": "tconstruct:item/hammer_head",
+    "offset": [
+      -3,
+      3
+    ]
+  }
+}

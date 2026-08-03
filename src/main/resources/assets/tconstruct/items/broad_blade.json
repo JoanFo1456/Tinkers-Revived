@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "tconstruct:material",
+    "base_model": "tconstruct:item/broad_blade",
+    "offset": [
+      -1,
+      1
+    ]
+  }
+}

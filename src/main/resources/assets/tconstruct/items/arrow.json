@@ -1,0 +1,26 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/arrow",
+    "parts": [
+      {
+        "name": "shaft",
+        "index": 1
+      },
+      {
+        "name": "head",
+        "index": 0
+      },
+      {
+        "name": "feather",
+        "index": 2
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:arrow"
+    ],
+    "first_modifiers": [
+      "tconstruct:dyed"
+    ]
+  }
+}

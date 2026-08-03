@@ -1,0 +1,23 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/plate_boots",
+    "parts": [
+      {
+        "name": "plating",
+        "index": 0
+      },
+      {
+        "name": "maille",
+        "index": 1
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:plate/boots"
+    ],
+    "first_modifiers": [
+      "tconstruct:dyed",
+      "tconstruct:trim"
+    ]
+  }
+}

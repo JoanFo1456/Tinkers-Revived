@@ -1,0 +1,26 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/sword",
+    "parts": [
+      {
+        "name": "handle",
+        "index": 1
+      },
+      {
+        "name": "head",
+        "index": 0
+      },
+      {
+        "name": "guard",
+        "index": 2
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:sword"
+    ],
+    "small_modifier_roots": [
+      "tconstruct:item/tool/sword/modifiers/"
+    ]
+  }
+}

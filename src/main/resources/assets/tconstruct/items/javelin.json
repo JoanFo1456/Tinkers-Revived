@@ -1,0 +1,40 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/javelin",
+    "parts": [
+      {
+        "name": "handle",
+        "index": 1
+      },
+      {
+        "name": "grip",
+        "index": 3
+      },
+      {
+        "name": "head",
+        "index": 0
+      },
+      {
+        "name": "guard",
+        "index": 2
+      }
+    ],
+    "large": true,
+    "large_offset": [
+      -2,
+      2
+    ],
+    "modifier_maps": [
+      "tconstruct:javelin"
+    ],
+    "small_modifier_roots": {
+      "small": [
+        "tconstruct:item/tool/javelin/modifiers/"
+      ],
+      "large": [
+        "tconstruct:item/tool/javelin/large/modifiers/"
+      ]
+    }
+  }
+}

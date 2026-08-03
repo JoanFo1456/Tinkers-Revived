@@ -1,0 +1,40 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/broad_axe",
+    "parts": [
+      {
+        "name": "handle",
+        "index": 1
+      },
+      {
+        "name": "head",
+        "index": 0
+      },
+      {
+        "name": "back",
+        "index": 2
+      },
+      {
+        "name": "binding",
+        "index": 3
+      }
+    ],
+    "large": true,
+    "large_offset": [
+      -2,
+      2
+    ],
+    "modifier_maps": [
+      "tconstruct:broad_axe"
+    ],
+    "small_modifier_roots": {
+      "small": [
+        "tconstruct:item/tool/broad_axe/modifiers/"
+      ],
+      "large": [
+        "tconstruct:item/tool/broad_axe/large/modifiers/"
+      ]
+    }
+  }
+}

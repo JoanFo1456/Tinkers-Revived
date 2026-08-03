@@ -1,0 +1,7 @@
+{
+  "model": {
+    "type": "tconstruct:fluid_container",
+    "base_model": "tconstruct:item/fiery_liquid_bucket",
+    "flip_gas": false
+  }
+}

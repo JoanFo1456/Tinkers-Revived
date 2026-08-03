@@ -1,0 +1,26 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/mattock",
+    "parts": [
+      {
+        "name": "handle",
+        "index": 1
+      },
+      {
+        "name": "axe",
+        "index": 0
+      },
+      {
+        "name": "pick",
+        "index": 2
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:mattock"
+    ],
+    "small_modifier_roots": [
+      "tconstruct:item/tool/mattock/modifiers/"
+    ]
+  }
+}

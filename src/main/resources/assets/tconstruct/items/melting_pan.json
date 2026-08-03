@@ -1,0 +1,22 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "base_model": "tconstruct:item/melting_pan",
+    "parts": [
+      {
+        "name": "handle",
+        "index": 1
+      },
+      {
+        "name": "head",
+        "index": 0
+      }
+    ],
+    "modifier_maps": [
+      "tconstruct:melting_pan"
+    ],
+    "small_modifier_roots": [
+      "tconstruct:item/tool/melting_pan/modifiers/"
+    ]
+  }
+}
