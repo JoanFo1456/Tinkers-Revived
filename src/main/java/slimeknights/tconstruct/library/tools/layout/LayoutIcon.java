@@ -169,7 +169,7 @@ public abstract class LayoutIcon {
         ItemStack stack = new ItemStack(item);
         if (object.has("nbt")) {
           try {
-            TagUtil.setTag(stack, TagParser.parseTag(GsonHelper.getAsString(object, "nbt")));
+            TagUtil.setTag(stack, TagParser.parseCompoundFully(GsonHelper.getAsString(object, "nbt")));
           } catch (Exception e) {
             throw new JsonSyntaxException("Invalid item NBT", e);
           }

@@ -159,7 +159,7 @@ public class GuiSmelteryTank implements IScreenWithFluidTank {
       int hovered = tank.getContained() == 0 ? -1 : getFluidFromMouse(calcLiquidHeights(false), checkY);
       List<Component> tooltip;
       if (hovered == -1) {
-        BiConsumer<Integer, List<Component>> formatter = Screen.hasShiftDown() ? FluidTooltipHandler.BUCKET_FORMATTER : this.formatter;
+        BiConsumer<Integer, List<Component>> formatter = slimeknights.tconstruct.library.client.ScreenUtil.hasShiftDown() ? FluidTooltipHandler.BUCKET_FORMATTER : this.formatter;
 
         tooltip = new ArrayList<>();
         tooltip.add(TOOLTIP_CAPACITY);

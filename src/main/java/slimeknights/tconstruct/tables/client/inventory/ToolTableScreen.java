@@ -98,6 +98,7 @@ public abstract class ToolTableScreen<T extends BlockEntity, C extends TabbedCon
   protected void renderArmorStand(GuiGraphicsExtractor graphics) {
     if (this.armorStandPreview != null) {
       Quaternionf pose = new Quaternionf().rotationXYZ(0.43633232F, 0.0F, (float)Math.PI).rotateY(this.armorStandAngle);
+      // DEFERRED to the armor render pass: InventoryScreen.renderEntityInInventory signature changed in 26.1.2 (entity-render pipeline)
       InventoryScreen.renderEntityInInventory(graphics, this.armorStandX, this.armorStandY, this.armorStandScale, new Vector3f(), pose, null, this.armorStandPreview);
 
       graphics.blit(RenderPipelines.GUI_TEXTURED, ICON_TEXTURE, armorStandX - 16, armorStandY - 16, 0f, 184f, 32, 32, 256, 256);
@@ -161,7 +162,7 @@ public abstract class ToolTableScreen<T extends BlockEntity, C extends TabbedCon
     List<Component> modifierTooltip = new ArrayList<>();
     Component title;
     // control displays just traits, bit trickier to do
-    if (hasControlDown()) {
+    if (slimeknights.tconstruct.library.client.ScreenUtil.hasControlDown()) {
       title = TRAITS_TEXT;
       Map<Modifier,Integer> upgrades = tool.getUpgrades().getModifiers().stream()
                                            .collect(Collectors.toMap(ModifierEntry::getModifier, ModifierEntry::getLevel, Integer::sum));
@@ -179,7 +180,7 @@ public abstract class ToolTableScreen<T extends BlockEntity, C extends TabbedCon
     } else {
       // shift is just upgrades/abilities, otherwise all
       List<ModifierEntry> modifiers;
-      if (hasShiftDown()) {
+      if (slimeknights.tconstruct.library.client.ScreenUtil.hasShiftDown()) {
         modifiers = tool.getUpgrades().getModifiers();
         title = UPGRADES_TEXT;
       } else {

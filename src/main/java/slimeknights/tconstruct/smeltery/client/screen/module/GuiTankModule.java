@@ -156,7 +156,7 @@ public class GuiTankModule implements IScreenWithFluidTank, ClickableTankModule 
         tooltip = FluidTooltipHandler.getFluidTooltip(fluid);
       } else {
         // function to call for amounts
-        BiConsumer<Integer, List<Component>> formatter = Screen.hasShiftDown()
+        BiConsumer<Integer, List<Component>> formatter = slimeknights.tconstruct.library.client.ScreenUtil.hasShiftDown()
                                                               ? FluidTooltipHandler.BUCKET_FORMATTER
                                                               : this.formatter;
 

@@ -36,7 +36,7 @@ public record MaterialRenderInfo(MaterialVariantId id, @Nullable Identifier text
    */
   @Nullable
   private TextureAtlasSprite trySprite(Material base, String suffix, Function<Material,TextureAtlasSprite> spriteGetter) {
-    Material materialTexture = getMaterial(base.texture(), suffix);
+    Material materialTexture = getMaterial(base.sprite(), suffix);
     TextureAtlasSprite sprite = spriteGetter.apply(materialTexture);
     if (!MissingTextureAtlasSprite.getLocation().equals(sprite.contents().name())) {
       return sprite;
@@ -88,7 +88,7 @@ public record MaterialRenderInfo(MaterialVariantId id, @Nullable Identifier text
    * @return  Material instance
    */
   private static Material getMaterial(Identifier texture, String suffix) {
-    return new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, Identifier.fromNamespaceAndPath(texture.getNamespace(), texture.getPath() + "_" + suffix));
+    return new Material(Identifier.fromNamespaceAndPath(texture.getNamespace(), texture.getPath() + "_" + suffix));
   }
 
   /**

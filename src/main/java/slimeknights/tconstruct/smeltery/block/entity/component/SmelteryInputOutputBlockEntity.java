@@ -91,7 +91,7 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
     super.setMaster(master, block);
     // notify neighbors of the change (state change skips the notify flag)
     if (masterChanged) {
-      level.blockUpdated(worldPosition, getBlockState().getBlock());
+      level.updateNeighborsAt(worldPosition, getBlockState().getBlock());
     }
   }
 

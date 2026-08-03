@@ -89,7 +89,7 @@ public sealed interface BreakSpeedContext {
 
   /** Checks for aqua affinity on the entity helmet. */
   private static boolean hasAquaAffinity(LivingEntity entity) {
-    Holder<Enchantment> aquaAffinity = entity.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.AQUA_AFFINITY);
+    Holder<Enchantment> aquaAffinity = entity.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.AQUA_AFFINITY);
     return entity.getItemBySlot(EquipmentSlot.HEAD).getEnchantmentLevel(aquaAffinity) > 0;
   }
 

@@ -77,7 +77,7 @@ public class ModifierCrystalItem extends Item {
 
   @Nullable
   @Override
-  public String getCreatorModId(ItemStack stack) {
+  public String getCreatorModId(net.minecraft.core.HolderLookup.Provider registries, ItemStack stack) {
     ModifierId modifier = getModifier(stack);
     if (modifier != null) {
       return modifier.getNamespace();
@@ -126,7 +126,7 @@ public class ModifierCrystalItem extends Item {
     // see also - modifier removal command
 
     // must be op or in creative, right-clicking onto a modifiable slot with a tool
-    if (action == ClickAction.SECONDARY && slot.allowModification(player) && !toolItem.isEmpty() && toolItem.is(TinkerTags.Items.MODIFIABLE) && (player.isCreative() || player.hasPermissions(MantleCommand.PERMISSION_GAME_COMMANDS))) {
+    if (action == ClickAction.SECONDARY && slot.allowModification(player) && !toolItem.isEmpty() && toolItem.is(TinkerTags.Items.MODIFIABLE) && (player.isCreative() || MantleCommand.PERMISSION_GAME_COMMANDS.check(player.permissions()))) {
       // NBT must be valid
       ModifierId modifier = getModifier(stack);
       if (modifier != null) {
