@@ -39,7 +39,9 @@
       "type": "mantle:inverted",
       "condition": {
         "type": "mantle:contains_item",
-        "ingredient": "#c:ores/copper"
+        "ingredient": {
+          "tag": "c:ores/copper"
+        }
       }
     }
   ]

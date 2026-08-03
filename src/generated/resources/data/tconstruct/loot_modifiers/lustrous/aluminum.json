@@ -43,7 +43,9 @@
       "type": "mantle:inverted",
       "condition": {
         "type": "mantle:contains_item",
-        "ingredient": "#c:ores/aluminum"
+        "ingredient": {
+          "tag": "c:ores/aluminum"
+        }
       }
     }
   ]

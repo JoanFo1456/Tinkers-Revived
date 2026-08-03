@@ -43,7 +43,9 @@
       "type": "mantle:inverted",
       "condition": {
         "type": "mantle:contains_item",
-        "ingredient": "#c:ores/silver"
+        "ingredient": {
+          "tag": "c:ores/silver"
+        }
       }
     }
   ]

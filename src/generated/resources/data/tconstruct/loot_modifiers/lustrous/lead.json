@@ -43,7 +43,9 @@
       "type": "mantle:inverted",
       "condition": {
         "type": "mantle:contains_item",
-        "ingredient": "#c:ores/lead"
+        "ingredient": {
+          "tag": "c:ores/lead"
+        }
       }
     }
   ]
