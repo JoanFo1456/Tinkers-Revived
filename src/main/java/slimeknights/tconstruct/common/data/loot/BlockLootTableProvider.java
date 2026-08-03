@@ -60,8 +60,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class BlockLootTableProvider extends BlockLootSubProvider {
-  protected BlockLootTableProvider() {
-    super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+  protected BlockLootTableProvider(net.minecraft.core.HolderLookup.Provider registries) {
+    super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
   }
 
   @SuppressWarnings("deprecation")  // the vanilla registry is perfectly fine for our uses, will make migration away from forge registries easier

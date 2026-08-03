@@ -36,8 +36,8 @@ import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 public class EntityLootTableProvider extends EntityLootSubProvider {
-  protected EntityLootTableProvider() {
-    super(FeatureFlags.REGISTRY.allFlags());
+  protected EntityLootTableProvider(net.minecraft.core.HolderLookup.Provider registries) {
+    super(FeatureFlags.REGISTRY.allFlags(), registries);
   }
 
   @Override
