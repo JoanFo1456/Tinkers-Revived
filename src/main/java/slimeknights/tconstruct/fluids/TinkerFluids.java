@@ -2,6 +2,7 @@ package slimeknights.tconstruct.fluids;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.cauldron.CauldronInteractions;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
@@ -256,10 +257,13 @@ public final class TinkerFluids extends TinkerModule {
     event.enqueueWork(() -> {
       CauldronInteractions.WATER.put(splashBottle.get(), new FillBottle(Items.SPLASH_POTION));
       CauldronInteractions.WATER.put(lingeringBottle.get(), new FillBottle(Items.LINGERING_POTION));
-      CauldronInteractions.WATER.put(Items.SPLASH_POTION,    new EmptyBottleIntoWater(splashBottle,    CauldronInteractions.WATER.get(new ItemStack(Items.SPLASH_POTION))));
-      CauldronInteractions.WATER.put(Items.LINGERING_POTION, new EmptyBottleIntoWater(lingeringBottle, CauldronInteractions.WATER.get(new ItemStack(Items.LINGERING_POTION))));
-      CauldronInteractions.EMPTY.put(Items.SPLASH_POTION,    new EmptyBottleIntoEmpty(splashBottle,    CauldronInteractions.EMPTY.get(new ItemStack(Items.SPLASH_POTION))));
-      CauldronInteractions.EMPTY.put(Items.LINGERING_POTION, new EmptyBottleIntoEmpty(lingeringBottle, CauldronInteractions.EMPTY.get(new ItemStack(Items.LINGERING_POTION))));
+      // Vanilla registers no cauldron interaction for splash/lingering potions, so the existing fallback is
+      // CauldronInteraction.DEFAULT. Reference it directly rather than resolving via new ItemStack(...), which
+      // cannot be constructed during setup in 26.1 (item data components are not bound until after common setup).
+      CauldronInteractions.WATER.put(Items.SPLASH_POTION,    new EmptyBottleIntoWater(splashBottle,    CauldronInteraction.DEFAULT));
+      CauldronInteractions.WATER.put(Items.LINGERING_POTION, new EmptyBottleIntoWater(lingeringBottle, CauldronInteraction.DEFAULT));
+      CauldronInteractions.EMPTY.put(Items.SPLASH_POTION,    new EmptyBottleIntoEmpty(splashBottle,    CauldronInteraction.DEFAULT));
+      CauldronInteractions.EMPTY.put(Items.LINGERING_POTION, new EmptyBottleIntoEmpty(lingeringBottle, CauldronInteraction.DEFAULT));
     });
 
     // dispense buckets
