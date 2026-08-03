@@ -1,8 +1,5 @@
 {
   "values": [
-    "#c:books/guide",
-    "minecraft:book",
-    "minecraft:writable_book",
-    "minecraft:written_book"
+    "#c:books/guide"
   ]
 }

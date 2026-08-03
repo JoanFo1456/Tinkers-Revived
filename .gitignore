@@ -56,3 +56,4 @@ options.txt
 /ops.json
 /whitelist.json
 src/generated/resources/.cache/*
+.claude/worktrees/

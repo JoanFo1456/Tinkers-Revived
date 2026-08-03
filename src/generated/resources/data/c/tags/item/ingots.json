@@ -16,10 +16,6 @@
     "#c:ingots/hepatizon",
     "#c:ingots/soulsteel",
     "#c:ingots/knightmetal",
-    "#c:ingots/knightslime",
-    "#c:ingots/iron",
-    "#c:ingots/gold",
-    "#c:ingots/copper",
-    "#c:ingots/netherite"
+    "#c:ingots/knightslime"
   ]
 }
