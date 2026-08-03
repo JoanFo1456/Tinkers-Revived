@@ -59,7 +59,7 @@ public class CastingRecipeLookup {
       registerCastable(tag);
     // item name output fails here, but that only happens at datagen so just ignore that
     } else if (!output.isEmpty() && output.getClass() != ItemNameOutput.class) {
-      registerCastable(output.get().getItem());
+      registerCastable(output.getItem());
     }
   }
 
