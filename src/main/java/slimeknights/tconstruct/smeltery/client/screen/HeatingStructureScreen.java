@@ -149,7 +149,7 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
 
     // add the hover text giving info on the button
     if (bucketButtonHovered(mouseX - leftPos, mouseY - topPos)) {
-      graphics.setTooltipForNextFrame(font, switch (menu.getTransferDirection()) {
+      graphics.setComponentTooltipForNextFrame(font, switch (menu.getTransferDirection()) {
         default -> TOOLTIP_AUTO;
         case EMPTY_ITEM -> TOOLTIP_EMPTY;
         case FILL_ITEM -> TOOLTIP_FILL;

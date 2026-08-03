@@ -28,8 +28,12 @@ import java.util.concurrent.CompletableFuture;
 public class GeneratorPartTextureJsonGenerator extends GenericDataProvider {
   /** GSON adapter for material info deserializing */
   public static final Gson GSON = (new GsonBuilder())
-    .registerTypeAdapter(Identifier.class, new Identifier.Serializer())
-    .registerTypeAdapter(MaterialStatsId.class, new ResourceLocationSerializer<>(MaterialStatsId::new, TConstruct.MOD_ID))
+    .registerTypeAdapter(Identifier.class, ResourceLocationSerializer.resourceLocation(TConstruct.MOD_ID))
+    .registerTypeAdapter(MaterialStatsId.class, (com.google.gson.JsonDeserializer<MaterialStatsId>) (element, type, ctx) -> {
+      String loc = net.minecraft.util.GsonHelper.convertToString(element, "location");
+      if (!loc.contains(":")) { loc = TConstruct.MOD_ID + ":" + loc; }
+      return new MaterialStatsId(loc);
+    })
     .setPrettyPrinting()
     .disableHtmlEscaping()
     .create();

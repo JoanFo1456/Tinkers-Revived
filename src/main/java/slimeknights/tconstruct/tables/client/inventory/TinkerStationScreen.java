@@ -616,8 +616,8 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
   }
 
   @Override
-  protected boolean hasClickedOutside(double mouseX, double mouseY, int guiLeft, int guiTop, int mouseButton) {
-    return super.hasClickedOutside(mouseX, mouseY, guiLeft, guiTop, mouseButton)
+  protected boolean hasClickedOutside(double mouseX, double mouseY, int guiLeft, int guiTop) {
+    return super.hasClickedOutside(mouseX, mouseY, guiLeft, guiTop)
       && !this.buttonsScreen.isMouseOver(mouseX, mouseY);
   }
 

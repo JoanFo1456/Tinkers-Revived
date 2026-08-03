@@ -146,7 +146,9 @@ public class HeatingStructureBlockEntityRenderer implements BlockEntityRenderer<
   }
 
   @Override
-  public boolean shouldRenderOffScreen(HeatingStructureBlockEntity tile) {
-    return tile.getBlockState().getValue(ControllerBlock.IN_STRUCTURE) && tile.getStructure() != null;
+  public boolean shouldRenderOffScreen() {
+    // 26.1.2 made shouldRenderOffScreen no-arg (per-renderer, not per-instance); always allow off-screen rendering
+    // since the smeltery/foundry fluid may be visible from outside the structure. Formerly gated on IN_STRUCTURE + valid structure.
+    return true;
   }
 }
