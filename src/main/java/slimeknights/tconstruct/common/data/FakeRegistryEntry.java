@@ -51,6 +51,6 @@ public class FakeRegistryEntry {
     return getOrCreate(ForgeRegistries.ENTITY_TYPES, id, () ->
       EntityType.Builder.of((type, level) -> {
         throw new UnsupportedOperationException("Cannot create instance of fake entity");
-      }, MobCategory.MISC).build(id.toString()));
+      }, MobCategory.MISC).build(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, id)));
   }
 }
