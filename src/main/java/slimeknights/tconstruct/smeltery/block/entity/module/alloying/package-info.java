@@ -2,6 +2,6 @@
 @MethodsReturnNonnullByDefault
 package slimeknights.tconstruct.smeltery.block.entity.module.alloying;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
+import slimeknights.tconstruct.compat.minecraft.MethodsReturnNonnullByDefault;
 
 import javax.annotation.ParametersAreNonnullByDefault;

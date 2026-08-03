@@ -2,6 +2,6 @@
 @MethodsReturnNonnullByDefault
 package slimeknights.tconstruct.library.recipe.tinkerstation.building;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
+import slimeknights.tconstruct.compat.minecraft.MethodsReturnNonnullByDefault;
 
 import javax.annotation.ParametersAreNonnullByDefault;

@@ -2,6 +2,6 @@
 @MethodsReturnNonnullByDefault
 package slimeknights.tconstruct.library.tools.definition.module;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
+import slimeknights.tconstruct.compat.minecraft.MethodsReturnNonnullByDefault;
 
 import javax.annotation.ParametersAreNonnullByDefault;

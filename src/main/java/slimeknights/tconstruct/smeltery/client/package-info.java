@@ -2,6 +2,6 @@
 @MethodsReturnNonnullByDefault
 package slimeknights.tconstruct.smeltery.client;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
+import slimeknights.tconstruct.compat.minecraft.MethodsReturnNonnullByDefault;
 
 import javax.annotation.ParametersAreNonnullByDefault;

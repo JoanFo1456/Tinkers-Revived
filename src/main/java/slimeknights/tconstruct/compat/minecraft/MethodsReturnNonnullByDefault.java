@@ -1,4 +1,4 @@
-package net.minecraft;
+package slimeknights.tconstruct.compat.minecraft;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
