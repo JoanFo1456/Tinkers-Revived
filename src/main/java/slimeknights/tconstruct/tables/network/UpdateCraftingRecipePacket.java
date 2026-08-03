@@ -20,7 +20,7 @@ public class UpdateCraftingRecipePacket implements IThreadsafePacket {
   private final Identifier recipe;
   public UpdateCraftingRecipePacket(BlockPos pos, RecipeHolder<CraftingRecipe> recipe) {
     this.pos = pos;
-    this.recipe = recipe.id();
+    this.recipe = recipe.id().identifier();
   }
 
   public UpdateCraftingRecipePacket(FriendlyByteBuf buffer) {

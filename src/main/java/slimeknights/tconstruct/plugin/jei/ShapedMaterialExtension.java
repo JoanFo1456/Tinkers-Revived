@@ -39,10 +39,7 @@ public class ShapedMaterialExtension {
       new ShapedMaterialExtension(holder.value()).setRecipe(builder, craftingGridHelper, focuses);
     }
 
-    @Override
-    public Optional<Identifier> getRegistryName(RecipeHolder<ShapedMaterialRecipe> holder) {
-      return Optional.of(holder.id().identifier());
-    }
+    // 26.1.2/JEI: getRegistryName was removed from ICraftingCategoryExtension; JEI derives it from the RecipeHolder
 
     @Override
     public int getWidth(RecipeHolder<ShapedMaterialRecipe> holder) {

@@ -45,10 +45,7 @@ public class ShapedMaterialsExtension extends MaterialsCraftingExtension<ShapedM
       }
     }
 
-    @Override
-    public Optional<Identifier> getRegistryName(RecipeHolder<ShapedMaterialsRecipe> holder) {
-      return Optional.of(holder.id().identifier());
-    }
+    // 26.1.2/JEI: getRegistryName was removed from ICraftingCategoryExtension; JEI derives it from the RecipeHolder
   };
 
   private ShapedMaterialsExtension(ShapedMaterialsRecipe recipe) {

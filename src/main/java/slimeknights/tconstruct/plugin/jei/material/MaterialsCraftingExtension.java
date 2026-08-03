@@ -56,10 +56,7 @@ public class MaterialsCraftingExtension<T extends CraftingRecipe & MaterialsCraf
       }
     }
 
-    @Override
-    public Optional<Identifier> getRegistryName(RecipeHolder<ShapelessMaterialsRecipe> holder) {
-      return Optional.of(holder.id().identifier());
-    }
+    // 26.1.2/JEI: getRegistryName was removed from ICraftingCategoryExtension; JEI derives it from the RecipeHolder
   };
 
   protected final T recipe;

@@ -31,6 +31,9 @@ public interface IDisplayPartBuilderRecipe extends IPartBuilderRecipe {
     return MaterialRecipeCache.getItems(material.getVariant());
   }
 
+  /** Gets the recipe result for display (26.1.2 removed vanilla Recipe#getResultItem, so declared here for JEI). */
+  ItemStack getResultItem(net.minecraft.core.HolderLookup.Provider access);
+
   /** Gets a list of results. Should either be size 1, or size matching {@link #getMaterialItems()} */
   default List<ItemStack> getResultItems() {
     RegistryAccess access = SafeClientAccess.getRegistryAccess();

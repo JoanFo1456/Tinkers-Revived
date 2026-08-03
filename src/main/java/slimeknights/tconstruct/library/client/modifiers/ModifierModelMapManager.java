@@ -52,8 +52,10 @@ public class ModifierModelMapManager extends MergingJsonDataLoader<Builder> {
   }
 
   @Override
-  public CompletableFuture<Void> reload(PreparationBarrier stage, ResourceManager resourceManager, ProfilerFiller preparationsProfiler, ProfilerFiller reloadProfiler, Executor backgroundExecutor, Executor gameExecutor) {
+  public CompletableFuture<Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener.SharedState currentReload, Executor backgroundExecutor, net.minecraft.server.packs.resources.PreparableReloadListener.PreparationBarrier stage, Executor gameExecutor) {
+    // 26.1.2 reworked PreparableReloadListener#reload; the resource manager now comes from the SharedState
     // run in the first stage instead of the second stage
+    ResourceManager resourceManager = currentReload.resourceManager();
     return CompletableFuture.runAsync(() -> {
       if (!ModLoader.hasErrors()) {
         this.onResourceManagerReload(resourceManager);

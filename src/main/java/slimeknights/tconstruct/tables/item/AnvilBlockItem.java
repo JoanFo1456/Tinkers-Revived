@@ -60,7 +60,8 @@ public class AnvilBlockItem extends MaterialBlockItem {
   public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
     List<Component> tooltip = new java.util.ArrayList<>();
     // ditch the super call advanced tooltip material ID, we will handle it ourselves later
-    this.getBlock().appendHoverText(stack, context, tooltip, flag);
+    // 26.1.2 removed block-level appendHoverText; add the retextured tooltip directly (formerly via the block)
+    slimeknights.mantle.util.RetexturedHelper.addTooltip(stack, tooltip, flag);
     MaterialVariantId material = getMaterial(stack);
     if (!IMaterial.UNKNOWN_ID.equals(material)) {
       // put tool material in tooltip. Its technically below texture but the two should never coexist.

@@ -207,7 +207,6 @@ public class PartBuilderToolRecycle implements IPartBuilderRecipe, IMultiRecipe<
 
   /** @deprecated use {@link IPartBuilderRecipe#assemble(IPartBuilderContainer, HolderLookup.Provider, Pattern)} */
   @Deprecated
-  @Override
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return ItemStack.EMPTY;
   }
