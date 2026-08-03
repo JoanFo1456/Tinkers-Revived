@@ -9,14 +9,13 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import slimeknights.mantle.registration.object.EnumObject;
 import slimeknights.mantle.registration.object.FluidObject;
 import slimeknights.mantle.registration.object.IdAwareObject;
@@ -129,8 +128,8 @@ public class ItemTagProvider extends ItemTagsProvider {
   private static final TagKey<Item> BANNED_UNCRAFTABLE = ItemTags.create(Identifier.fromNamespaceAndPath("twilightforest", "banned_uncraftables"));
   private final Function<Identifier,IntrinsicTagAppender<Item>> MAKE_TAG = tag -> tag(ItemTags.create(tag));
 
-  public ItemTagProvider(PackOutput output, CompletableFuture<Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
-    super(output, lookupProvider, blockTagProvider, TConstruct.MOD_ID, existingFileHelper);
+  public ItemTagProvider(PackOutput output, CompletableFuture<Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider) {
+    super(output, lookupProvider, blockTagProvider, TConstruct.MOD_ID);
   }
 
   @Override
@@ -374,7 +373,7 @@ public class ItemTagProvider extends ItemTagsProvider {
     addArmorTags(TinkerTools.plateArmor,    MULTIPART_TOOL, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM);
     addArmorTags(TinkerTools.slimesuit,     DURABILITY, BONUS_SLOTS, TRIM, SINGLEPART_TOOL, UNRECYCLABLE);
     addToolTags(TinkerTools.slimeWings, DURABILITY, BONUS_SLOTS, TRIM, SINGLEPART_TOOL, CHESTPLATES, Tags.Items.ARMORS_CHESTPLATES);
-    addToolTags(TinkerTools.slimesuit.get(ArmorItem.Type.HELMET), SWAPPABLE_SKULLS);
+    addToolTags(TinkerTools.slimesuit.get(ArmorType.HELMET), SWAPPABLE_SKULLS);
 
     // shields
     addToolTags(TinkerTools.travelersShield, DURABILITY, BONUS_SLOTS, SHIELDS, INTERACTABLE_LEFT, Tags.Items.TOOLS_SHIELDS, SINGLEPART_TOOL, UNRECYCLABLE, DYEABLE);
@@ -383,18 +382,18 @@ public class ItemTagProvider extends ItemTagsProvider {
     // care about order for armor in the book
     tag(BASIC_ARMOR);
     IntrinsicTagAppender<Item> bookArmor = tag(PUNY_ARMOR);
-    for (ArmorItem.Type slotType : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
+    for (ArmorType slotType : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
       bookArmor.add(TinkerTools.travelersGear.get(slotType));
     }
     bookArmor.add(TinkerTools.travelersShield.get());
-    for (ArmorItem.Type slotType : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
+    for (ArmorType slotType : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
       bookArmor.add(TinkerTools.plateArmor.get(slotType));
     }
     bookArmor.add(TinkerTools.plateShield.get());
     tag(MIGHTY_ARMOR);
     tag(FANTASTIC_ARMOR);
     bookArmor = tag(GADGETRY_ARMOR);
-    for (ArmorItem.Type slotType : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
+    for (ArmorType slotType : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
       bookArmor.add(TinkerTools.slimesuit.get(slotType));
     }
     bookArmor.add(TinkerTools.slimeWings.asItem());
@@ -767,7 +766,7 @@ public class ItemTagProvider extends ItemTagsProvider {
     }
   }
 
-  private TagKey<Item> getArmorTag(ArmorItem.Type slotType) {
+  private TagKey<Item> getArmorTag(ArmorType slotType) {
     return switch (slotType) {
       case BOOTS -> BOOTS;
       case LEGGINGS -> LEGGINGS;
@@ -776,7 +775,7 @@ public class ItemTagProvider extends ItemTagsProvider {
     };
   }
 
-  private TagKey<Item> getForgeArmorTag(ArmorItem.Type slotType) {
+  private TagKey<Item> getForgeArmorTag(ArmorType slotType) {
     return switch (slotType) {
       case BOOTS -> Tags.Items.ARMORS_BOOTS;
       case LEGGINGS -> Tags.Items.ARMORS_LEGGINGS;
@@ -786,7 +785,7 @@ public class ItemTagProvider extends ItemTagsProvider {
   }
 
   @SafeVarargs
-  private void addArmorTags(EnumObject<ArmorItem.Type,? extends Item> armor, TagKey<Item>... tags) {
+  private void addArmorTags(EnumObject<ArmorType,? extends Item> armor, TagKey<Item>... tags) {
     armor.forEach((type, item) -> {
       for (TagKey<Item> tag : tags) {
         this.tag(tag).add(item);

@@ -9,7 +9,6 @@ import net.minecraft.tags.TagBuilder;
 import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagFile;
 import net.minecraft.tags.TagKey;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import slimeknights.mantle.data.GenericDataProvider;
 
 import java.util.List;
@@ -32,20 +31,14 @@ public abstract class AbstractTagProvider<T> extends GenericDataProvider {
   private final Predicate<Identifier> staticValuePredicate;
   /** Function to get a key from a value */
   private final Function<T,Identifier> keyGetter;
-  /** Checks for tags in other datapacks */
-  protected final ExistingFileHelper existingFileHelper;
-  /** Resource type for the existing file helper */
-  private final ExistingFileHelper.IResourceType resourceType;
 
   protected final Map<Identifier, TagBuilder> builders = Maps.newLinkedHashMap();
 
-  protected AbstractTagProvider(PackOutput packOutput, String modId, String folder, Function<T,Identifier> keyGetter, Predicate<Identifier> staticValuePredicate, ExistingFileHelper existingFileHelper) {
+  protected AbstractTagProvider(PackOutput packOutput, String modId, String folder, Function<T,Identifier> keyGetter, Predicate<Identifier> staticValuePredicate) {
     super(packOutput, Target.DATA_PACK, folder);
     this.modId = modId;
     this.keyGetter = keyGetter;
     this.staticValuePredicate = staticValuePredicate;
-    this.existingFileHelper = existingFileHelper;
-    this.resourceType = new ExistingFileHelper.ResourceType(net.minecraft.server.packs.PackType.SERVER_DATA, ".json", folder);
   }
 
   /** Creates all tag instances */
@@ -72,10 +65,8 @@ public abstract class AbstractTagProvider<T> extends GenericDataProvider {
 
   /** Checks if a given reference exists in another data pack */
   private boolean missing(TagEntry reference) {
-    if (reference.isRequired()) {
-      // forge has a separate element resource type here to allow generating tags to non-static values. We don't currently handle non-static tag value validation but its worth considering
-      return existingFileHelper == null || !existingFileHelper.exists(reference.getId(), resourceType);
-    }
+    // 26.1 removed ExistingFileHelper, so we can no longer validate that required references exist in other data packs.
+    // Non-static (datapack-only) references should be added as optional; anything else is assumed present.
     return false;
   }
 
@@ -89,10 +80,7 @@ public abstract class AbstractTagProvider<T> extends GenericDataProvider {
 
   /** Raw method to make a builder */
   protected TagBuilder getOrCreateRawBuilder(TagKey<T> pTag) {
-    return this.builders.computeIfAbsent(pTag.location(), location -> {
-      existingFileHelper.trackGenerated(location, resourceType);
-      return TagBuilder.create();
-    });
+    return this.builders.computeIfAbsent(pTag.location(), location -> TagBuilder.create());
   }
 
   /** Vanillas tag appender does not let us easily replace the key getter, so replace it */

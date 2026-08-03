@@ -10,7 +10,7 @@ import net.minecraft.data.CachedOutput;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.PackOutput.Target;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.Item;
 import slimeknights.mantle.data.GenericDataProvider;
 import slimeknights.mantle.data.loadable.Loadables;
@@ -288,7 +288,7 @@ public abstract class AbstractModifierModelMapProvider extends GenericDataProvid
     /* Cosmetic */
 
     /** Adds the trim model to the tool */
-    public Builder trim(ArmorItem.Type type) {
+    public Builder trim(ArmorType type) {
       return modifier(TinkerModifiers.trim.getId(), TrimModifierModel.Armor.values()[type.ordinal()]);
     }
 

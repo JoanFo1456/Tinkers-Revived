@@ -10,7 +10,7 @@ import net.minecraft.data.PackOutput.Target;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.Vec2;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -251,19 +251,19 @@ public abstract class AbstractToolItemModelProvider extends GenericDataProvider 
   }
 
   /** Adds broken and blocking models for the armor item */
-  protected void armor(String name, EnumObject<ArmorItem.Type,? extends Item> armor, ArmorItem.Type slot, String... textures) throws IOException {
+  protected void armor(String name, EnumObject<ArmorType,? extends Item> armor, ArmorType slot, String... textures) throws IOException {
     armor(name + '/' + slot.getName(), Loadables.ITEM.getKey(armor.get(slot)), textures);
   }
 
   /** Adds broken and blocking models for the armor set */
-  protected void armor(String name, EnumObject<ArmorItem.Type,? extends Item> armor, ArmorItem.Type[] types, String... textures) throws IOException {
-    for (ArmorItem.Type slot : types) {
+  protected void armor(String name, EnumObject<ArmorType,? extends Item> armor, ArmorType[] types, String... textures) throws IOException {
+    for (ArmorType slot : types) {
       armor(name, armor, slot, textures);
     }
   }
 
   /** Adds broken and blocking models for the armor set */
-  protected void armor(String name, EnumObject<ArmorItem.Type,? extends Item> armor, String... textures) throws IOException {
+  protected void armor(String name, EnumObject<ArmorType,? extends Item> armor, String... textures) throws IOException {
     armor(name, armor, slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES, textures);
   }
 

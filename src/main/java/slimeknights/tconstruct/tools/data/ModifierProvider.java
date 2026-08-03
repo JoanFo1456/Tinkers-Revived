@@ -14,7 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import slimeknights.tconstruct.compat.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -1616,7 +1616,7 @@ public class ModifierProvider extends AbstractModifierProvider implements ICondi
       .addModule(ModifierSlotModule.slot(SlotType.UPGRADE).toolContext(notSlimelytra).flat(1))
       .addModule(ModifierSlotModule.slot(SlotType.ABILITY).toolContext(notSlimelytra).flat(-1))
       // slimeshell gets +3 slots
-      .addModule(new ModifierTraitModule(ModifierIds.pocket, 1, true, ToolContextPredicate.set(TinkerTools.slimesuit.get(ArmorItem.Type.LEGGINGS))));
+      .addModule(new ModifierTraitModule(ModifierIds.pocket, 1, true, ToolContextPredicate.set(TinkerTools.slimesuit.get(ArmorType.LEGGINGS))));
 
     // mob disguise
     buildModifier(ModifierIds.creeperDisguise        ).levelDisplay(ModifierLevelDisplay.SINGLE_LEVEL).addModule(new MobDisguiseModule(EntityType.CREEPER));

@@ -5,29 +5,28 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import slimeknights.mantle.datagen.MantleTags;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 
-import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("removal")
 public class BlockEntityTypeTagProvider extends IntrinsicHolderTagsProvider<BlockEntityType<?>> {
   @SuppressWarnings("deprecation")
-  public BlockEntityTypeTagProvider(PackOutput packOutput, CompletableFuture<Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+  public BlockEntityTypeTagProvider(PackOutput packOutput, CompletableFuture<Provider> lookupProvider) {
     super(packOutput, Registries.BLOCK_ENTITY_TYPE, lookupProvider,
           // not sure why fetching the resource key from the object is such a pain
           type -> BuiltInRegistries.BLOCK_ENTITY_TYPE.getHolder(BuiltInRegistries.BLOCK_ENTITY_TYPE.getId(type)).orElseThrow().key(),
-          TConstruct.MOD_ID, existingFileHelper);
+          TConstruct.MOD_ID);
   }
 
   /** Creates a RL for iron chests */
-  private static void ironchest(IntrinsicTagAppender<BlockEntityType<?>> appender, String name) {
+  private static void ironchest(TagAppender<BlockEntityType<?>, BlockEntityType<?>> appender, String name) {
     Identifier chest = Identifier.fromNamespaceAndPath("ironchest", name + "_chest");
     appender.addOptional(chest).addOptional(chest.withPrefix("trapped_"));
     if (!"dirt".equals(name)) {
@@ -37,7 +36,7 @@ public class BlockEntityTypeTagProvider extends IntrinsicHolderTagsProvider<Bloc
 
   @Override
   protected void addTags(Provider provider) {
-    IntrinsicTagAppender<BlockEntityType<?>> sideInventories = tag(TinkerTags.TileEntityTypes.SIDE_INVENTORIES);
+    TagAppender<BlockEntityType<?>, BlockEntityType<?>> sideInventories = tag(TinkerTags.TileEntityTypes.SIDE_INVENTORIES);
     sideInventories.add(
       BlockEntityType.CHEST, BlockEntityType.TRAPPED_CHEST, BlockEntityType.BARREL, BlockEntityType.SHULKER_BOX,
       BlockEntityType.DISPENSER, BlockEntityType.DROPPER, BlockEntityType.HOPPER);
