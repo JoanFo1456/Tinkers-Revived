@@ -365,7 +365,7 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> im
   public CompoundTag write(CompoundTag nbt) {
     ListTag list = new ListTag();
     for (FluidStack liquid : fluids) {
-      list.add(liquid.save(TagUtil.BUILTIN_LOOKUP));
+      list.add(TagUtil.writeFluid(liquid));
     }
     nbt.put(TAG_FLUIDS, list);
     nbt.putInt(TAG_CAPACITY, capacity);
@@ -379,7 +379,7 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> im
     contained = 0;
     for (int i = 0; i < list.size(); i++) {
       CompoundTag fluidTag = list.getCompoundOrEmpty(i);
-      FluidStack fluid = fluidTag.contains("FluidName") ? TankItem.readFluid(fluidTag) : FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, fluidTag);
+      FluidStack fluid = fluidTag.contains("FluidName") ? TankItem.readFluid(fluidTag) : TagUtil.readFluid(fluidTag);
       if (!fluid.isEmpty()) {
         fluids.add(fluid);
         contained += fluid.getAmount();

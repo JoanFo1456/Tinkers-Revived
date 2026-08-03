@@ -83,6 +83,16 @@ public final class TagUtil {
     return ItemStack.CODEC.parse(BUILTIN_LOOKUP.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE), tag).result().orElse(ItemStack.EMPTY);
   }
 
+  /** Reads a fluid stack using the built-in registry lookup (26.1.2 replacement for FluidStack.parseOptional). */
+  public static net.neoforged.neoforge.fluids.FluidStack readFluid(net.minecraft.nbt.Tag tag) {
+    return net.neoforged.neoforge.fluids.FluidStack.CODEC.parse(BUILTIN_LOOKUP.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE), tag).result().orElse(net.neoforged.neoforge.fluids.FluidStack.EMPTY);
+  }
+
+  /** Saves a fluid stack using the built-in registry lookup (26.1.2 replacement for FluidStack.saveOptional). */
+  public static net.minecraft.nbt.Tag writeFluid(net.neoforged.neoforge.fluids.FluidStack fluid) {
+    return net.neoforged.neoforge.fluids.FluidStack.CODEC.encodeStart(BUILTIN_LOOKUP.createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE), fluid).getOrThrow();
+  }
+
   /** Saves an item stack using the built-in registry lookup. Merges the encoded stack into the passed tag. */
   public static CompoundTag saveItem(ItemStack stack, CompoundTag tag) {
     if (stack.isEmpty()) {

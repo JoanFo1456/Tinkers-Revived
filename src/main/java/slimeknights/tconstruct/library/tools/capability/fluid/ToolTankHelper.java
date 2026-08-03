@@ -28,7 +28,7 @@ import java.util.function.BiFunction;
 public class ToolTankHelper {
   /** Helper function to parse a fluid from NBT */
   public static final RegistryAccess.Frozen STATIC_REGISTRIES = RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY);
-  public static final BiFunction<CompoundTag, String, FluidStack> PARSE_FLUID = (nbt, key) -> FluidStack.parseOptional(STATIC_REGISTRIES, nbt.getCompound(key));
+  public static final BiFunction<CompoundTag, String, FluidStack> PARSE_FLUID = (nbt, key) -> slimeknights.tconstruct.library.utils.TagUtil.readFluid(nbt.getCompoundOrEmpty(key));
 
   /** Format key for the stat */
   public static final String MB_FORMAT = Mantle.makeDescriptionId("gui", "fluid.millibucket");
@@ -72,7 +72,7 @@ public class ToolTankHelper {
     if (fluid.getAmount() > capacity) {
       fluid.setAmount(capacity);
     }
-    Tag tag = fluid.saveOptional(STATIC_REGISTRIES);
+    Tag tag = slimeknights.tconstruct.library.utils.TagUtil.writeFluid(fluid);
     if (tag instanceof CompoundTag compound) {
       tool.getPersistentData().put(fluidKey, compound);
     }

@@ -28,6 +28,9 @@ public class IndestructibleItemEntity extends ItemEntity {
     // using setUnlimitedLifetime() makes the item no longer spin, dumb design
     // since age is a short, this value should never be reachable so the item will never despawn
     this.lifespan = Integer.MAX_VALUE;
+    // 26.1.2 made ItemEntity#hurtServer final and removed the overridable isInvulnerableTo(DamageSource);
+    // the invulnerable flag makes isInvulnerableToBase block all non-BYPASSES_INVULNERABILITY damage, matching the old behavior
+    this.setInvulnerable(true);
   }
 
   public IndestructibleItemEntity(Level worldIn, double x, double y, double z, ItemStack stack) {
@@ -58,12 +61,6 @@ public class IndestructibleItemEntity extends ItemEntity {
   @Override
   public boolean fireImmune() {
     return true;
-  }
-
-  @Override
-  public boolean isInvulnerableTo(DamageSource pSource) {
-    // prevent any damage besides out of world
-    return !pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
   }
 
   /** Checks if the given stack has a custom entity */

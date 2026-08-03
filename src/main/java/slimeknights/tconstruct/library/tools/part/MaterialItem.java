@@ -138,7 +138,7 @@ public class MaterialItem extends Item implements IMaterialItem {
 
   @Nullable
   @Override
-  public String getCreatorModId(ItemStack stack) {
+  public String getCreatorModId(net.minecraft.core.HolderLookup.Provider registries, ItemStack stack) {
     return getCreatorModId(this, stack);
   }
 

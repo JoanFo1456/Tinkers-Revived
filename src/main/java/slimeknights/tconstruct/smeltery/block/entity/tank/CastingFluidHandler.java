@@ -275,7 +275,7 @@ public class CastingFluidHandler implements ResourceHandler<FluidResource>, IFlu
     capacity = nbt.getIntOr(TAG_CAPACITY, 0);
     if (nbt.contains(TAG_FLUID)) {
       CompoundTag fluidTag = nbt.getCompoundOrEmpty(TAG_FLUID);
-      setFluid(fluidTag.contains("FluidName") ? TankItem.readFluid(fluidTag) : FluidStack.parseOptional(TagUtil.BUILTIN_LOOKUP, fluidTag));
+      setFluid(fluidTag.contains("FluidName") ? TankItem.readFluid(fluidTag) : TagUtil.readFluid(fluidTag));
     }
     if (nbt.contains(TAG_FILTER)) {
       Identifier id = Identifier.tryParse(nbt.getStringOr(TAG_FILTER, ""));
@@ -291,7 +291,7 @@ public class CastingFluidHandler implements ResourceHandler<FluidResource>, IFlu
   public CompoundTag writeToTag(CompoundTag nbt) {
     nbt.putInt(TAG_CAPACITY, capacity);
     if (!fluid.isEmpty()) {
-      nbt.put(TAG_FLUID, fluid.save(TagUtil.BUILTIN_LOOKUP));
+      nbt.put(TAG_FLUID, TagUtil.writeFluid(fluid));
     }
     if (filter != Fluids.EMPTY) {
       nbt.putString(TAG_FILTER, BuiltInRegistries.FLUID.getKey(filter).toString());
