@@ -19,6 +19,6 @@ public interface DyeableLeatherItem {
   }
 
   default void setColor(ItemStack stack, int color) {
-    stack.set(DataComponents.DYED_COLOR, new DyedItemColor(color, true));
+    stack.set(DataComponents.DYED_COLOR, new DyedItemColor(color));
   }
 }
