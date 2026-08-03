@@ -2,8 +2,9 @@
   "type": "mantle:empty_item",
   "conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "twilightforest:fiery_tears"
+      "type": "neoforge:registered",
+      "registry": "minecraft:item",
+      "value": "twilightforest:fiery_tears"
     }
   ],
   "fluid": {
