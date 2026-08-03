@@ -17,7 +17,15 @@ import slimeknights.tconstruct.common.data.tags.MaterialTagProvider;
 import slimeknights.tconstruct.common.data.tags.MenuTypeTagProvider;
 import slimeknights.tconstruct.common.data.tags.ModifierTagProvider;
 import slimeknights.tconstruct.common.data.tags.PotionTagProvider;
+import slimeknights.tconstruct.gadgets.data.GadgetRecipeProvider;
+import slimeknights.tconstruct.shared.data.CommonRecipeProvider;
+import slimeknights.tconstruct.smeltery.data.SmelteryRecipeProvider;
+import slimeknights.tconstruct.tables.data.TableRecipeProvider;
+import slimeknights.tconstruct.tools.data.ModifierRecipeProvider;
 import slimeknights.tconstruct.tools.data.StationSlotLayoutProvider;
+import slimeknights.tconstruct.tools.data.ToolsRecipeProvider;
+import slimeknights.tconstruct.tools.data.material.MaterialRecipeProvider;
+import slimeknights.tconstruct.world.data.WorldRecipeProvider;
 import slimeknights.tconstruct.tools.data.material.MaterialDataProvider;
 import slimeknights.tconstruct.tools.data.material.MaterialStatsDataProvider;
 import slimeknights.tconstruct.tools.data.material.MaterialTraitsDataProvider;
@@ -69,5 +77,15 @@ public final class TinkerServerData {
 
     // advancements
     generator.addProvider(true, new AdvancementsProvider(packOutput));
+
+    // recipes (each former module's recipe provider)
+    generator.addProvider(true, new CommonRecipeProvider(packOutput));
+    generator.addProvider(true, new TableRecipeProvider(packOutput));
+    generator.addProvider(true, new GadgetRecipeProvider(packOutput));
+    generator.addProvider(true, new WorldRecipeProvider(packOutput));
+    generator.addProvider(true, new ToolsRecipeProvider(packOutput));
+    generator.addProvider(true, new MaterialRecipeProvider(packOutput));
+    generator.addProvider(true, new ModifierRecipeProvider(packOutput));
+    generator.addProvider(true, new SmelteryRecipeProvider(packOutput));
   }
 }
