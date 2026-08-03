@@ -17,6 +17,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+import slimeknights.tconstruct.common.data.TinkerServerData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import slimeknights.tconstruct.common.TinkerModule;
@@ -100,6 +102,8 @@ public class TConstruct {
     TinkerModule.initRegisters(bus);
     TinkerNetwork.setup();
     bus.addListener(EventPriority.NORMAL, false, RegisterPayloadHandlersEvent.class, TinkerNetwork.getInstance()::registerPayloads);
+    // 26.1 datagen: register the server data providers on the mod bus (fired by the runServerData run)
+    bus.addListener(GatherDataEvent.Server.class, TinkerServerData::gatherData);
     TinkerTags.init();
     // init client logic
     if (FMLEnvironment.getDist() == Dist.CLIENT) {
