@@ -151,7 +151,6 @@ sourceSets {
             exclude 'slimeknights/tconstruct/common/data/loot/LootTableInjectionProvider.java'
             // Client sprite/texture + material render-info datagen ported to 26.1 ResourceManager (EFH removed).
             // The item/block MODEL providers (vanilla item-model format rewrite) remain excluded above.
-            exclude 'slimeknights/tconstruct/library/client/data/material/MaterialPaletteDebugGenerator.java'
         }
         resources {
             srcDirs "src/generated/resources"
