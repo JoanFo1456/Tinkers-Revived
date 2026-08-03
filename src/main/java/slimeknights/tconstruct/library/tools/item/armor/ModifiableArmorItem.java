@@ -25,8 +25,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -87,9 +89,25 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /** Cache of the tool built for rendering */
   private ItemStack toolForRendering = null;
   public ModifiableArmorItem(ArmorMaterial materialIn, ArmorType type, Properties builderIn, ToolDefinition toolDefinition) {
-    super(builderIn.humanoidArmor(materialIn, type));
+    super(armorProperties(builderIn, materialIn, type));
     this.armorType = type;
     this.toolDefinition = toolDefinition;
+  }
+
+  /**
+   * Applies the humanoid armor properties. Mirrors {@link Properties#humanoidArmor(ArmorMaterial, ArmorType)} but skips
+   * the enchantable component when the material's enchantment value is zero: Tinkers armor is enchanted through its own
+   * modifier system, and 26.1's {@code Enchantable} rejects a non-positive value (which would crash registration).
+   */
+  private static Properties armorProperties(Properties props, ArmorMaterial material, ArmorType type) {
+    props.durability(type.getDurability(material.durability()))
+         .attributes(material.createAttributes(type))
+         .component(DataComponents.EQUIPPABLE, Equippable.builder(type.getSlot()).setEquipSound(material.equipSound()).setAsset(material.assetId()).build())
+         .repairable(material.repairIngredient());
+    if (material.enchantmentValue() > 0) {
+      props.enchantable(material.enchantmentValue());
+    }
+    return props;
   }
 
   public ModifiableArmorItem(ModifiableArmorMaterial material, ArmorType type, Properties properties) {
