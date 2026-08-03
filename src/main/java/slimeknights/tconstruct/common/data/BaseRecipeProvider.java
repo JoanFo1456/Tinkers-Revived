@@ -29,7 +29,7 @@ public abstract class BaseRecipeProvider extends GenericDataProvider implements 
    * 26.1 added a {@code HolderGetter<Item>} as the first argument to the vanilla recipe builders
    * (shaped/shapeless). During datagen the built-in item registry lookup is sufficient.
    */
-  protected static final net.minecraft.core.HolderGetter<Item> ITEM_LOOKUP = net.minecraft.core.registries.BuiltInRegistries.ITEM.asLookup();
+  protected static final net.minecraft.core.HolderGetter<Item> ITEM_LOOKUP = net.minecraft.core.registries.BuiltInRegistries.ITEM;
 
   public BaseRecipeProvider(PackOutput generator) {
     super(generator, Target.DATA_PACK, "recipes");
