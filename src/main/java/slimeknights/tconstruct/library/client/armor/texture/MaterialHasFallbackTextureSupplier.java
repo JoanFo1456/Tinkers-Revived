@@ -62,7 +62,7 @@ public class MaterialHasFallbackTextureSupplier implements ArmorTextureSupplier,
   public ArmorTexture getArmorTexture(ItemStack stack, TextureType type, RegistryAccess access) {
     CompoundTag tag = TagUtil.getTag(stack);
     if (tag != null && tag.contains(ToolStack.TAG_MATERIALS)) {
-      String material = tag.getListOrEmpty(ToolStack.TAG_MATERIALS).getString(index);
+      String material = tag.getListOrEmpty(ToolStack.TAG_MATERIALS).getString(index).orElse("");
       if (!material.isEmpty() && cache.computeIfAbsent(material, this)) {
         return apply.getArmorTexture(stack, type, access);
       }

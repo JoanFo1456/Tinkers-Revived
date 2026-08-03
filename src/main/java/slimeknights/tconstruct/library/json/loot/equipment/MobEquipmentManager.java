@@ -40,7 +40,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /** Loads the list of mob equipment replacements from JSON */
-public class MobEquipmentManager extends SimpleJsonResourceReloadListener {
+public class MobEquipmentManager extends SimpleJsonResourceReloadListener<JsonElement> {
   public static final String FOLDER = "tinkering/mob_equipment";
   /** Singleton instance of the manager */
   private static final MobEquipmentManager INSTANCE = new MobEquipmentManager();
@@ -53,7 +53,7 @@ public class MobEquipmentManager extends SimpleJsonResourceReloadListener {
   private RegistryAccess registryAccess = RegistryAccess.EMPTY;
 
   private MobEquipmentManager() {
-    super(JsonHelper.DEFAULT_GSON, FOLDER);
+    super(net.minecraft.util.ExtraCodecs.JSON, net.minecraft.resources.FileToIdConverter.json(FOLDER));
   }
 
   /** @apiNote no need for addons to call this */

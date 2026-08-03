@@ -3,19 +3,18 @@ package slimeknights.tconstruct.library.client.armor;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.Model;
+import net.minecraft.client.resources.model.EquipmentClientInfo;
+import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
-import slimeknights.mantle.util.JsonHelper;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier;
 import slimeknights.tconstruct.tools.client.material.CombatFishingHookRenderer;
@@ -29,7 +28,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class ArmorModelManager extends SimpleJsonResourceReloadListener {
+public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElement> {
   /** Folder containing the logic */
   public static final String FOLDER = "tinkering/armor_models";
 
@@ -57,7 +56,7 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener {
   }
 
   private ArmorModelManager() {
-    super(JsonHelper.DEFAULT_GSON, FOLDER);
+    super(ExtraCodecs.JSON, FileToIdConverter.json(FOLDER));
   }
 
   @Override
@@ -129,8 +128,12 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener {
 
     @Nonnull
     @Override
-    public Model getGenericArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel<?> original) {
-      return MultilayerArmorModel.INSTANCE.setup(living, stack, slot, original, getModel(stack));
+    public Model getGenericArmorModel(ItemStack stack, EquipmentClientInfo.LayerType layerType, Model original) {
+      // DEFERRED RENDER: pre-26.1 substituted MultilayerArmorModel here to draw custom material layers; the 26.1 sig no longer
+      // supplies the living entity/slot needed to set that model up, and custom layer submission moved to the equipment-layer
+      // renderer. We still prime the per-item model cache, then fall back to the vanilla model; custom layers validated in-game.
+      getModel(stack);
+      return original;
     }
   }
 }

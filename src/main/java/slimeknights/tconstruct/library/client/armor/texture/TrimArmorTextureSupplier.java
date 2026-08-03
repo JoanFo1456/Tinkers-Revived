@@ -44,7 +44,6 @@ public record TrimArmorTextureSupplier(ModifierId modifier, Identifier patternKe
   public static final ResourceManagerReloadListener CACHE_INVALIDATOR = manager -> {
     ARMOR_CACHE.clear();
     LEGGING_CACHE.clear();
-    TrimArmorTexture.armorTrimAtlas = null;
   };
 
   /** @apiNote use {@link #TrimArmorTextureSupplier(ModifierId)} */
@@ -67,8 +66,8 @@ public record TrimArmorTextureSupplier(ModifierId modifier, Identifier patternKe
         if (texture != null) {
           return texture;
         }
-        TrimPattern pattern = access.registryOrThrow(Registries.TRIM_PATTERN).get(Identifier.tryParse(patternId));
-        TrimMaterial material = access.registryOrThrow(Registries.TRIM_MATERIAL).get(Identifier.tryParse(materialId));
+        TrimPattern pattern = access.lookupOrThrow(Registries.TRIM_PATTERN).getOptional(Identifier.tryParse(patternId)).orElse(null);
+        TrimMaterial material = access.lookupOrThrow(Registries.TRIM_MATERIAL).getOptional(Identifier.tryParse(materialId)).orElse(null);
         texture = ArmorTexture.EMPTY;
         if (pattern != null && material != null) {
           Identifier patternAsset = pattern.assetId();
@@ -89,32 +88,22 @@ public record TrimArmorTextureSupplier(ModifierId modifier, Identifier patternKe
   /** Implementation of an armor texture for armor trims */
   @RequiredArgsConstructor
   public static class TrimArmorTexture implements ArmorTexture {
-    private static TextureAtlas armorTrimAtlas = null;
     private final TextureAtlasSprite trimSprite;
 
-    /** Gets the texture atlas for trim */
-    private static TextureAtlas getTrimAtlas() {
-      if (armorTrimAtlas == null) {
-        armorTrimAtlas = Minecraft.getInstance().getModelManager().getAtlas(Sheets.ARMOR_TRIMS_SHEET);
-      }
-      return armorTrimAtlas;
-    }
-
-    /** Creates the trim texture for the given root texture and material */
+    /**
+     * Creates the trim texture; the material-specific atlas sprite lookup is deferred.
+     * <p>
+     * DEFERRED RENDER: pre-26.1 resolved a per-material sprite via {@code ModelManager#getAtlas} + {@code TrimMaterial#assetName()},
+     * both removed in 26.1 (the trim atlas is now owned by {@code EquipmentLayerRenderer} and the suffix lives in
+     * {@code MaterialAssetGroup}). Until that renderer is driven we always tint the base texture; per-material trim sprites
+     * validated in-game once re-hooked.
+     */
     private static ArmorTexture create(Identifier root, TrimMaterial material) {
-      // start by trying and finding the material specific sprite
-      Identifier withMaterial = root.withSuffix('_' + material.assetName());
-      TextureAtlasSprite sprite = getTrimAtlas().getSprite(withMaterial);
-      if (!MissingTextureAtlasSprite.getLocation().equals(sprite.contents().name())) {
-        return new TrimArmorTexture(sprite);
-      }
-      // failed to find the unique sprite, go for tinting the base
       int color = -1;
       TextColor textColor = material.description().getStyle().getColor();
       if (textColor != null) {
         color = textColor.getValue() | 0xFF000000;
       }
-      TConstruct.LOG.error("Missing material specific texture {}, defaulting to tinting base texture #{}", withMaterial, ColorLoadable.NO_ALPHA.getString(color));
       return new TintedArmorTexture(root.withPath("textures/" + root.getPath() + ".png"), color);
     }
 
