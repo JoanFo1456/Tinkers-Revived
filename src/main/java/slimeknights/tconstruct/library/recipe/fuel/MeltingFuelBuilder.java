@@ -48,6 +48,14 @@ public class MeltingFuelBuilder extends AbstractRecipeBuilder<MeltingFuelBuilder
     return fuel(FluidIngredient.of(fluid), duration, getTemperature(fluid));
   }
 
+  /**
+   * Creates a fuel builder from a raw fluid and amount, deferring FluidStack construction. As of 26.1 a FluidStack
+   * cannot be built until fluid data components are bound, which is not the case at datagen time.
+   */
+  public static MeltingFuelBuilder fuel(net.minecraft.world.level.material.Fluid fluid, int amount, int duration) {
+    return fuel(FluidIngredient.of(fluid, amount), duration, getTemperature(fluid));
+  }
+
   /** Setups the builder for solid fuel */
   @Internal
   public static MeltingFuelBuilder solid(int temperature) {

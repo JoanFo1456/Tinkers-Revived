@@ -39,6 +39,17 @@ public final class PotionUtils {
     return setPotion(stack, BuiltInRegistries.POTION.wrapAsHolder(potion));
   }
 
+  /**
+   * Builds a deferred item output for a potion item without constructing an ItemStack (components are not bound at
+   * datagen time). Serializes the same {@code custom_data} {@link #TAG_POTION} that the item stack loadable would write
+   * for a stack produced by {@link #setPotion(ItemStack, Holder)}, so the loaded output is identical at runtime.
+   */
+  public static slimeknights.mantle.recipe.helper.ItemOutput potionOutput(net.minecraft.world.level.ItemLike item, Holder<Potion> potion) {
+    CompoundTag tag = new CompoundTag();
+    tag.putString(TAG_POTION, potion.unwrapKey().map(key -> key.identifier().toString()).orElse("minecraft:water"));
+    return slimeknights.mantle.recipe.helper.ItemOutput.fromItem(item, 1, tag);
+  }
+
   public static List<MobEffectInstance> getMobEffects(ItemStack stack) {
     PotionContents contents = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
     List<MobEffectInstance> effects = new ArrayList<>();

@@ -27,12 +27,31 @@ import java.util.function.Consumer;
 public abstract class BaseRecipeProvider extends GenericDataProvider implements IRecipeHelper {
   /**
    * 26.1 added a {@code HolderGetter<Item>} as the first argument to the vanilla recipe builders
-   * (shaped/shapeless). During datagen the built-in item registry lookup is sufficient.
+   * (shaped/shapeless) and to {@code ItemPredicate.Builder.of}. Those resolve tag ingredients eagerly via
+   * {@link net.minecraft.core.HolderGetter#getOrThrow(net.minecraft.tags.TagKey)}, but item tags are NOT bound
+   * during datagen, so a plain registry lookup throws {@code "Missing tag ..."}. This wrapper returns an empty
+   * {@link net.minecraft.core.HolderSet.Named} for any not-yet-bound tag, which serializes as a tag reference
+   * (e.g. {@code {"tag":"c:ingots/gold"}}) without resolving its contents.
    */
-  protected static final net.minecraft.core.HolderGetter<Item> ITEM_LOOKUP = net.minecraft.core.registries.BuiltInRegistries.ITEM;
+  protected static final net.minecraft.core.HolderGetter<Item> ITEM_LOOKUP = new net.minecraft.core.HolderGetter<>() {
+    private final net.minecraft.core.HolderGetter<Item> base = net.minecraft.core.registries.BuiltInRegistries.ITEM;
+
+    @Override
+    public java.util.Optional<net.minecraft.core.Holder.Reference<Item>> get(net.minecraft.resources.ResourceKey<Item> id) {
+      return base.get(id);
+    }
+
+    @Override
+    public java.util.Optional<net.minecraft.core.HolderSet.Named<Item>> get(net.minecraft.tags.TagKey<Item> tag) {
+      return java.util.Optional.of(base.get(tag).orElseGet(() -> net.minecraft.core.HolderSet.emptyNamed(net.minecraft.core.registries.BuiltInRegistries.ITEM, tag)));
+    }
+  };
 
   public BaseRecipeProvider(PackOutput generator) {
-    super(generator, Target.DATA_PACK, "recipes");
+    // "recipe" (singular): 1.21's datapack flattening renamed the recipes/ directory to recipe/. The game's
+    // RecipeManager only reads data/<ns>/recipe/, so generating into the old plural directory would leave every recipe
+    // unloaded.
+    super(generator, Target.DATA_PACK, "recipe");
     TConstruct.sealTinkersClass(this, "BaseRecipeProvider", "BaseRecipeProvider is trivial to recreate and directly extending can lead to addon recipes polluting our namespace.");
   }
 

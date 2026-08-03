@@ -192,6 +192,18 @@ public class ItemCastingRecipeBuilder extends AbstractRecipeBuilder<ItemCastingR
     return this;
   }
 
+  /**
+   * Sets the fluid and cooling time from a raw fluid and amount, deferring FluidStack construction. As of 26.1 a
+   * FluidStack cannot be built until fluid data components are bound, which is not the case at datagen time.
+   * @param fluid   Fluid instance
+   * @param amount  Amount of fluid
+   */
+  public ItemCastingRecipeBuilder setFluidAndTime(net.minecraft.world.level.material.Fluid fluid, int amount) {
+    setFluid(FluidIngredient.of(fluid, amount));
+    setCoolingTime(getTemperature(fluid), amount);
+    return this;
+  }
+
   /* Cast */
 
   /**

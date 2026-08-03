@@ -382,7 +382,7 @@ public class SmelteryRecipeBuilder {
   }
 
   /** Recipe to cast the block */
-  public SmelteryRecipeBuilder blockCasting(int factor, Ingredient cast, boolean forceOptional) {
+  public SmelteryRecipeBuilder blockCasting(int factor, @javax.annotation.Nullable Ingredient cast, boolean forceOptional) {
     String tagName = "storage_blocks/" + this.name.getPath();
     Consumer<FinishedRecipe> wrapped = optional || forceOptional ? withCondition(tagCondition(tagName)) : consumer;
     ItemCastingRecipeBuilder.basinRecipe(ItemOutput.fromTag(itemTag(tagName)))
@@ -535,7 +535,7 @@ public class SmelteryRecipeBuilder {
     baseUnit = FluidValues.INGOT;
     damageUnit = FluidValues.NUGGET;
     melting(9, "block", "storage_blocks", 3.0f, false, false);
-    blockCasting(9, Ingredient.of(), false);
+    blockCasting(9, null, false); // no cast for block basin casting; null = no cast (Ingredient.of() empty is illegal in 26.1)
     meltingCasting(1,      TinkerSmeltery.ingotCast,  1.0f, false);
     meltingCasting(1 / 9f, TinkerSmeltery.nuggetCast, 1 / 3f, false);
     // if we set byproducts, we are an ore
@@ -554,7 +554,7 @@ public class SmelteryRecipeBuilder {
     baseUnit = FluidValues.GEM;
     damageUnit = FluidValues.GEM_SHARD;
     melting(storageSize, "block", "storage_blocks", (float)Math.sqrt(storageSize), false, false);
-    blockCasting(storageSize, Ingredient.of(), false);
+    blockCasting(storageSize, null, false); // no cast; null = no cast (empty ingredient illegal in 26.1)
     meltingCasting(1, TinkerSmeltery.gemCast, 1.0f, false);
     // if we set byproducts, we are an ore
     if (hasOre) {

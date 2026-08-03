@@ -45,8 +45,21 @@ public class NoContainerIngredient extends NestedIngredient {
     return false;
   }
 
+  /**
+   * Registry-aware JSON ops, built lazily. Serializing a tag {@link Ingredient} needs a {@link net.minecraft.resources.RegistryOps}
+   * so {@code HolderSetCodec} writes the tag by name (via {@code unwrapKey}); plain {@link JsonOps} instead iterates the holder
+   * set contents ({@code encodeWithoutRegistry}), which throws "Missing tag" at datagen time (tags are not bound then).
+   */
+  private static DynamicOps<JsonElement> jsonOps;
+  private static DynamicOps<JsonElement> jsonOps() {
+    if (jsonOps == null) {
+      jsonOps = net.minecraft.resources.RegistryOps.create(JsonOps.INSTANCE, net.minecraft.core.RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY));
+    }
+    return jsonOps;
+  }
+
   public JsonElement toJson() {
-    JsonElement nestedElement = Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, nested).getOrThrow(IllegalArgumentException::new);
+    JsonElement nestedElement = Ingredient.CODEC.encodeStart(jsonOps(), nested).getOrThrow(IllegalArgumentException::new);
     // if we are a vanilla ingredient, and not an array ingredient, serialize into the ingredient directly
     if (!nested.isCustom() && nestedElement.isJsonObject()) {
       JsonObject nestedObject = nestedElement.getAsJsonObject();

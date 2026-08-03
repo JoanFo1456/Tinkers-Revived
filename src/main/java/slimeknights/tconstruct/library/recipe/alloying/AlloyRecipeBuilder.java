@@ -53,7 +53,8 @@ public class AlloyRecipeBuilder extends AbstractRecipeBuilder<AlloyRecipeBuilder
    * @return  Builder instance
    */
   public static AlloyRecipeBuilder alloy(Fluid fluid, int amount) {
-    return alloy(new FluidStack(fluid, amount));
+    // build a FluidOutput directly, deferring FluidStack construction (components not bound at datagen)
+    return alloy(FluidOutput.fromFluid(fluid, amount), getTemperature(fluid));
   }
 
 
@@ -95,7 +96,8 @@ public class AlloyRecipeBuilder extends AbstractRecipeBuilder<AlloyRecipeBuilder
    * @return  Builder instance
    */
   public AlloyRecipeBuilder addInput(Fluid fluid, int amount) {
-    return addInput(FluidIngredient.of(new FluidStack(fluid, amount)));
+    // FluidIngredient.of(fluid, amount) defers FluidStack construction (components not bound at datagen)
+    return addInput(FluidIngredient.of(fluid, amount));
   }
 
   /**

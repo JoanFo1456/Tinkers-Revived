@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import slimeknights.mantle.data.predicate.IJsonPredicate;
+import slimeknights.mantle.recipe.helper.ItemOutput;
 import slimeknights.mantle.recipe.ingredient.SizedIngredient;
 import slimeknights.tconstruct.library.json.predicate.modifier.ModifierPredicate;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
@@ -24,8 +25,8 @@ import java.util.function.Consumer;
 /** Builder for {@link ModifierRemovalRecipe} and {@link ExtractModifierRecipe} */
 @RequiredArgsConstructor(staticName = "removal")
 public class ModifierRemovalRecipeBuilder extends AbstractSizedIngredientRecipeBuilder<ModifierRemovalRecipeBuilder> {
-  private final Function6<Identifier,String,SizedIngredient,List<SizedIngredient>,List<ItemStack>,IJsonPredicate<ModifierId>,ModifierRemovalRecipe> constructor;
-  private final List<ItemStack> leftovers = new ArrayList<>();
+  private final Function6<Identifier,String,SizedIngredient,List<SizedIngredient>,List<ItemOutput>,IJsonPredicate<ModifierId>,ModifierRemovalRecipe> constructor;
+  private final List<ItemOutput> leftovers = new ArrayList<>();
   @Accessors(chain = true)
   @Setter
   private String name = "modifiers";
@@ -66,7 +67,7 @@ public class ModifierRemovalRecipeBuilder extends AbstractSizedIngredientRecipeB
    * Adds a leftover stack to the recipe
    */
   public ModifierRemovalRecipeBuilder addLeftover(ItemStack stack) {
-    leftovers.add(stack);
+    leftovers.add(ItemOutput.fromStack(stack));
     return this;
   }
 
@@ -74,7 +75,9 @@ public class ModifierRemovalRecipeBuilder extends AbstractSizedIngredientRecipeB
    * Adds a leftover stack to the recipe
    */
   public ModifierRemovalRecipeBuilder addLeftover(ItemLike item) {
-    return addLeftover(new ItemStack(item));
+    // ItemOutput.fromItem defers stack construction: an ItemStack cannot be built until components are bound (not so at datagen)
+    leftovers.add(ItemOutput.fromItem(item));
+    return this;
   }
 
   @Override

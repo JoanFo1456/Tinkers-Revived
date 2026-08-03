@@ -65,9 +65,8 @@ public class ModifierSetWorktableRecipeBuilder extends AbstractSizedIngredientRe
     if (inputs.isEmpty()) {
       throw new IllegalStateException("Must have at least one ingredient");
     }
-    if (tools.isEmpty()) {
-      throw new IllegalStateException("Tools cannot be empty");
-    }
+    // no tools.isEmpty() check: an Ingredient can never be empty in 26.1 (its constructor forbids it), and calling
+    // isEmpty() resolves a lazy tag ingredient's contents, throwing "Missing tag" at datagen time (tags not yet bound).
     Identifier advancementId = buildOptionalAdvancement(id, "modifiers");
     consumer.accept(new LoadableFinishedRecipe<>(id, new ModifierSetWorktableRecipe(id, dataKey, inputs, tools, modifierPredicate, addToSet, allowTraits), ModifierSetWorktableRecipe.LOADER, advancementId));
   }

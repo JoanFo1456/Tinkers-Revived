@@ -1188,25 +1188,25 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     this.ingotCasting(consumer, TinkerFluids.moltenDebris, Items.NETHERITE_SCRAP, metalFolder + "netherite/scrap");
     this.tagCasting(consumer, TinkerFluids.moltenDebris, FluidValues.NUGGET, TinkerSmeltery.nuggetCast, TinkerTags.Items.NUGGETS_NETHERITE_SCRAP.location().getPath(), metalFolder + "netherite/debris_nugget", false);
     // ancient is not castable, outside of repair kits
-    this.castingWithCast(consumer, TinkerFluids.moltenDebris, FluidValues.INGOT * 2, TinkerSmeltery.repairKitCast, ItemOutput.fromStack(TinkerToolParts.repairKit.get().withMaterialForDisplay(MaterialIds.ancient)), metalFolder + "netherite/ancient_repair_kit");
+    this.castingWithCast(consumer, TinkerFluids.moltenDebris, FluidValues.INGOT * 2, TinkerSmeltery.repairKitCast, TinkerToolParts.repairKit.get().withMaterialForDisplayOutput(MaterialIds.ancient), metalFolder + "netherite/ancient_repair_kit");
 
     // water
     String waterFolder = folder + "water/";
     ItemCastingRecipeBuilder.basinRecipe(Blocks.MUD)
-                            .setFluidAndTime(new FluidStack(Fluids.WATER, FluidValues.BOTTLE))
+                            .setFluidAndTime(Fluids.WATER, FluidValues.BOTTLE)
                             .setCast(BlockTagIngredient.of(BlockTags.CONVERTABLE_TO_MUD), true)
                             .save(consumer, location(waterFolder + "mud"));
-    ItemCastingRecipeBuilder.tableRecipe(ItemOutput.fromStack(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER)))
+    ItemCastingRecipeBuilder.tableRecipe(PotionUtils.potionOutput(Items.POTION, Potions.WATER))
                             .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE * 2)
                             .setCoolingTime(1)
                             .setCast(Items.GLASS_BOTTLE, true)
                             .save(consumer, location(waterFolder + "bottle"));
-    ItemCastingRecipeBuilder.tableRecipe(ItemOutput.fromStack(PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), Potions.WATER)))
+    ItemCastingRecipeBuilder.tableRecipe(PotionUtils.potionOutput(Items.SPLASH_POTION, Potions.WATER))
                             .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE * 2)
                             .setCoolingTime(1)
                             .setCast(TinkerTags.Items.SPLASH_BOTTLE, true)
                             .save(consumer, location(waterFolder + "splash"));
-    ItemCastingRecipeBuilder.tableRecipe(ItemOutput.fromStack(PotionUtils.setPotion(new ItemStack(Items.LINGERING_POTION), Potions.WATER)))
+    ItemCastingRecipeBuilder.tableRecipe(PotionUtils.potionOutput(Items.LINGERING_POTION, Potions.WATER))
                             .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE * 2)
                             .setCoolingTime(1)
                             .setCast(TinkerTags.Items.LINGERING_BOTTLE, true)
@@ -1220,7 +1220,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     // casting concrete
     BiConsumer<Block,Block> concreteCasting = (powder, block) ->
       ItemCastingRecipeBuilder.basinRecipe(block)
-                              .setFluidAndTime(new FluidStack(Fluids.WATER, FluidType.BUCKET_VOLUME / 10))
+                              .setFluidAndTime(Fluids.WATER, FluidType.BUCKET_VOLUME / 10)
                               .setCast(powder, true)
                               .save(consumer, prefix(id(block), waterFolder));
     concreteCasting.accept(Blocks.WHITE_CONCRETE_POWDER,      Blocks.WHITE_CONCRETE);
@@ -1857,9 +1857,9 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     // fuels
     MeltingFuelBuilder.solid(800)
                       .save(consumer, location(folder + "fuel/solid"));
-    MeltingFuelBuilder.fuel(new FluidStack(Fluids.LAVA, 50), 100)
+    MeltingFuelBuilder.fuel(Fluids.LAVA, 50, 100)
                       .save(consumer, location(folder + "fuel/lava"));
-    MeltingFuelBuilder.fuel(new FluidStack(TinkerFluids.blazingBlood.get(), 50), 150)
+    MeltingFuelBuilder.fuel(TinkerFluids.blazingBlood.get(), 50, 150)
                       .save(consumer, location(folder + "fuel/blaze"));
   }
 
@@ -2167,7 +2167,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
 
     // melt skeletons to get the milk out
     EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityIngredient.of(EntityTypeTags.SKELETONS), EntityIngredient.of(EntityType.SKELETON_HORSE)),
-                                       new FluidStack(NeoForgeMod.MILK.get(), FluidType.BUCKET_VOLUME / 10))
+                                       NeoForgeMod.MILK.get(), FluidType.BUCKET_VOLUME / 10)
                               .save(consumer, location(folder + "skeletons"));
     MeltingRecipeBuilder.melting(Ingredient.of(Items.SKELETON_SKULL, Items.WITHER_SKELETON_SKULL, TinkerWorld.heads.get(TinkerHeadType.STRAY)), NeoForgeMod.MILK.get(), FluidType.BUCKET_VOLUME / 4)
                         .save(consumer, location(headFolder + "skeleton"));
@@ -2190,7 +2190,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     // 4 * 9 gives 36, which is larger
     EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.IRON_GOLEM), TinkerFluids.moltenIron.result(FluidValues.NUGGET), 4)
                               .save(consumer, location(folder + "iron_golem"));
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.SNOW_GOLEM), new FluidStack(Fluids.WATER, FluidType.BUCKET_VOLUME / 10))
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.SNOW_GOLEM), Fluids.WATER, FluidType.BUCKET_VOLUME / 10)
                               .save(consumer, location(folder + "snow_golem"));
 
     // "melt" blazes to get fuel
@@ -2452,12 +2452,12 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
 
     // lava bricks, lava byproduct
     MeltingRecipeBuilder.melting(ceramicsItem.apply("lava_bricks_slab"), TinkerFluids.moltenClay, FluidValues.BRICK * 2, 1.33f)
-      .addByproduct(new FluidStack(Fluids.LAVA, lavaPerBlock / 2))
+      .addByproduct(Fluids.LAVA, lavaPerBlock / 2)
       .save(ceramicsConsumer, location(clayFolder + "lava_bricks_slab"));
     MeltingRecipeBuilder.melting(ItemNameIngredient.from(
       ceramicsId.apply("lava_bricks"), ceramicsId.apply("lava_bricks_stairs"), ceramicsId.apply("lava_bricks_wall")
     ), TinkerFluids.moltenClay, FluidValues.BRICK_BLOCK, 2f)
-      .addByproduct(new FluidStack(Fluids.LAVA, lavaPerBlock))
+      .addByproduct(Fluids.LAVA, lavaPerBlock)
       .save(ceramicsConsumer, location(clayFolder + "lava_bricks_block"));
 
     // gauge, partially glass
@@ -2541,19 +2541,19 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     // lava bricks
     ItemCastingRecipeBuilder.basinRecipe(ceramicsOutput.apply("lava_bricks"))
       .setCast(Blocks.BRICKS, true)
-      .setFluidAndTime(new FluidStack(Fluids.LAVA, lavaPerBlock))
+      .setFluidAndTime(Fluids.LAVA, lavaPerBlock)
       .save(ceramicsConsumer, location(castingFolder + "lava_bricks"));
     ItemCastingRecipeBuilder.basinRecipe(ceramicsOutput.apply("lava_bricks_slab"))
       .setCast(Blocks.BRICK_SLAB, true)
-      .setFluidAndTime(new FluidStack(Fluids.LAVA, lavaPerBlock / 2))
+      .setFluidAndTime(Fluids.LAVA, lavaPerBlock / 2)
       .save(ceramicsConsumer, location(castingFolder + "lava_bricks_slab"));
     ItemCastingRecipeBuilder.basinRecipe(ceramicsOutput.apply("lava_bricks_stairs"))
       .setCast(Blocks.BRICK_STAIRS, true)
-      .setFluidAndTime(new FluidStack(Fluids.LAVA, lavaPerBlock))
+      .setFluidAndTime(Fluids.LAVA, lavaPerBlock)
       .save(ceramicsConsumer, location(castingFolder + "lava_bricks_stairs"));
     ItemCastingRecipeBuilder.basinRecipe(ceramicsOutput.apply("lava_bricks_wall"))
       .setCast(Blocks.BRICK_WALL, true)
-      .setFluidAndTime(new FluidStack(Fluids.LAVA, lavaPerBlock))
+      .setFluidAndTime(Fluids.LAVA, lavaPerBlock)
       .save(ceramicsConsumer, location(castingFolder + "lava_bricks_wall"));
 
     // golden bricks

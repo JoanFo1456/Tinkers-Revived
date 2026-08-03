@@ -108,7 +108,10 @@ public class MeltingRecipeBuilder extends AbstractRecipeBuilder<MeltingRecipeBui
    * @return  Builder instance
    */
   public static MeltingRecipeBuilder melting(Ingredient input, Fluid fluid, int amount, float timeFactor) {
-    return melting(input, new FluidStack(fluid, amount), timeFactor);
+    // build a FluidOutput directly rather than a FluidStack: as of 26.1 a FluidStack cannot be constructed until fluid
+    // data components are bound, which is not the case at datagen time. FluidOutput.fromFluid defers construction.
+    int temperature = getTemperature(fluid);
+    return melting(input, FluidOutput.fromFluid(fluid, amount), temperature, timeFactor);
   }
 
   /**
@@ -170,6 +173,11 @@ public class MeltingRecipeBuilder extends AbstractRecipeBuilder<MeltingRecipeBui
    * @param fluid  Byproduct to add
    * @return  Builder instance
    */
+  /** Adds a byproduct from a raw fluid and amount, deferring FluidStack construction (components not bound at datagen) */
+  public MeltingRecipeBuilder addByproduct(Fluid fluid, int amount) {
+    return addByproduct(FluidOutput.fromFluid(fluid, amount));
+  }
+
   public MeltingRecipeBuilder addByproduct(FluidStack fluid) {
     return addByproduct(FluidOutput.fromStack(fluid));
   }

@@ -209,7 +209,12 @@ neoForge {
             programArguments.addAll(
                 '--mod', 'tconstruct',
                 '--all',
-                '--output', project.file('src/generated/resources').absolutePath,
+                // Output goes to a temporary directory rather than src/generated/resources while the datagen port is
+                // incomplete: --all makes the run prune any file under the output root that no registered provider
+                // regenerated, which would delete the still-deferred data (advancements, loot, damage types, worldgen,
+                // trims, client models). Generated data is copied from here into src/generated/resources by hand until
+                // every provider is ported, at which point this can point straight at src/generated/resources.
+                '--output', project.file('build/tmpServerData').absolutePath,
                 '--existing', project.file('src/main/resources').absolutePath
             )
         }
@@ -218,7 +223,12 @@ neoForge {
             programArguments.addAll(
                 '--mod', 'tconstruct',
                 '--all',
-                '--output', project.file('src/generated/resources').absolutePath,
+                // Output goes to a temporary directory rather than src/generated/resources while the datagen port is
+                // incomplete: --all makes the run prune any file under the output root that no registered provider
+                // regenerated, which would delete the still-deferred data (advancements, loot, damage types, worldgen,
+                // trims, client models). Generated data is copied from here into src/generated/resources by hand until
+                // every provider is ported, at which point this can point straight at src/generated/resources.
+                '--output', project.file('build/tmpServerData').absolutePath,
                 '--existing', project.file('src/main/resources').absolutePath
             )
         }

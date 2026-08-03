@@ -61,7 +61,10 @@ public final class TinkerServerData {
     generator.addProvider(true, new EnchantmentTagProvider(packOutput, lookupProvider));
     generator.addProvider(true, new MenuTypeTagProvider(packOutput, lookupProvider));
     generator.addProvider(true, new PotionTagProvider(packOutput, lookupProvider));
-    generator.addProvider(true, new DamageTypeTagProvider(packOutput, lookupProvider));
+    // TEMP-REGEN: DamageTypeTagProvider references TC damage types registered by the still-deferred DamageTypeProvider
+    // registry-set; skip it for the partial recipe/tag regen so vanilla tag validation does not fail. Re-enable once
+    // the registry-set providers are wired.
+    // generator.addProvider(true, new DamageTypeTagProvider(packOutput, lookupProvider));
     generator.addProvider(true, new MaterialTagProvider(packOutput));
     generator.addProvider(true, new ModifierTagProvider(packOutput));
 
@@ -72,11 +75,15 @@ public final class TinkerServerData {
     generator.addProvider(true, new MaterialTraitsDataProvider(packOutput, materials));
 
     // station layouts + mob spawn equipment
-    generator.addProvider(true, new StationSlotLayoutProvider(packOutput));
-    generator.addProvider(true, new MobEquipmentProvider(packOutput));
+    // TEMP-REGEN: these build fully-materialed render tool ItemStacks (needs bound item components, unavailable at
+    // server datagen) — skipped for the partial recipe/tag/advancement regen.
+    // generator.addProvider(true, new StationSlotLayoutProvider(packOutput));
+    // generator.addProvider(true, new MobEquipmentProvider(packOutput));
 
     // advancements
-    generator.addProvider(true, new AdvancementsProvider(packOutput));
+    // TEMP-REGEN: AdvancementsProvider builds display-icon ItemStacks eagerly (needs bound item components,
+    // unavailable at server datagen) — skipped for the partial recipe/tag regen.
+    // generator.addProvider(true, new AdvancementsProvider(packOutput));
 
     // recipes (each former module's recipe provider)
     generator.addProvider(true, new CommonRecipeProvider(packOutput));
