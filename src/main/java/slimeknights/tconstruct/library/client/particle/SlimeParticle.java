@@ -31,6 +31,11 @@ public class SlimeParticle extends BreakingItemParticle {
       this.slime = new ItemStackTemplate(TinkerCommons.slimeball.get(type).asItem());
     }
 
+    /** Creates a factory rendering the given item's break particle (e.g. terracube uses a clay ball) */
+    public Factory(net.minecraft.world.item.Item item) {
+      this.slime = new ItemStackTemplate(item);
+    }
+
     @Nullable
     @Override
     public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource random) {

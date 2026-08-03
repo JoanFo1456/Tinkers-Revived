@@ -161,12 +161,8 @@ public class ToolClientEvents extends ClientEventBase {
         charging.initializeClient(ext -> event.registerMobEffect(ext, effect));
       }
     }
-    // fluid type extensions
-    for (net.neoforged.neoforge.fluids.FluidType type : net.neoforged.neoforge.registries.NeoForgeRegistries.FLUID_TYPES) {
-      if (type instanceof slimeknights.tconstruct.fluids.fluids.PotionFluidType potion) {
-        potion.initializeClient(ext -> event.registerFluidType(ext, type));
-      }
-    }
+    // 26.1.2 removed FluidType#initializeClient; the potion fluid's per-stack tint now lives in PotionFluidTintSource
+    // wired via FluidClientEvents#registerFluidModels, so no client fluid-type extension needs registering here.
   }
 
   @SubscribeEvent

@@ -27,7 +27,7 @@ import slimeknights.tconstruct.tables.client.inventory.TinkerStationScreen;
 public class TableClientEvents extends ClientEventBase {
   @SubscribeEvent
   static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-    BlockEntityRendererProvider<TableBlockEntity> tableRenderer = InventoryBlockEntityRenderer::new;
+    BlockEntityRendererProvider<TableBlockEntity, net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState> tableRenderer = InventoryBlockEntityRenderer::new;
     event.registerBlockEntityRenderer(TinkerTables.craftingStationTile.get(), tableRenderer);
     event.registerBlockEntityRenderer(TinkerTables.tinkerStationTile.get(), tableRenderer);
     event.registerBlockEntityRenderer(TinkerTables.modifierWorktableTile.get(), tableRenderer);

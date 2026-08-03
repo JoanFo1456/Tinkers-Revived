@@ -152,8 +152,9 @@ public class MaterialTraits {
       // also suppress the map if no stat types were defined
       Map<Identifier,List<ModifierEntry>> newMap = null;
       if (!traitsPerStats.isEmpty()) {
-        newMap = new HashMap<>(traitsPerStats.size());
-        traitsPerStats.forEach((k, v) -> newMap.put(k.getIdentifier(), v));
+        Map<Identifier,List<ModifierEntry>> map = new HashMap<>(traitsPerStats.size());
+        traitsPerStats.forEach((k, v) -> map.put(k.getIdentifier(), v));
+        newMap = map;
       }
       return new MaterialTraitsJson(defaultTraits, newMap);
     }

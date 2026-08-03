@@ -61,7 +61,8 @@ public enum InteractionSource {
    */
   public static InteractionSource fromEquipmentSlot(EquipmentSlot slot) {
     return switch (slot.getType()) {
-      case HUMANOID_ARMOR, ANIMAL_ARMOR -> ARMOR;
+      // 26.1.2 added the SADDLE equipment type; treat it like armor since it is an equipped (non-hand) slot
+      case HUMANOID_ARMOR, ANIMAL_ARMOR, SADDLE -> ARMOR;
       case HAND -> RIGHT_CLICK;
     };
   }

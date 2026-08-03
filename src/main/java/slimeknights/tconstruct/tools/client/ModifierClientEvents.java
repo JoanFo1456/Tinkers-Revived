@@ -101,6 +101,8 @@ public class ModifierClientEvents {
       if (!player.isInvisible() && player.getMainHandItem().getItem() != Items.FILLED_MAP && ArmorLevelModule.getLevel(player, TinkerDataKeys.SHOW_EMPTY_OFFHAND) > 0) {
         PoseStack matrices = event.getPoseStack();
         matrices.pushPose();
+        // DEFERRED to the render pass: 26.1.2 RenderArmEvent switched to the submit-node pipeline (getSubmitNodeCollector),
+        // dropping getMultiBufferSource/getEquipProgress/getSwingProgress; renderPlayerArm must be rebuilt to submit nodes.
         renderPlayerArm(matrices, event.getMultiBufferSource(), event.getPackedLight(), event.getEquipProgress(), event.getSwingProgress(), player.getMainArm().getOpposite());
         matrices.popPose();
         event.setCanceled(true);
