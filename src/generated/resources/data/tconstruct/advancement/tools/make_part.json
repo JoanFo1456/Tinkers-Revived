@@ -20,7 +20,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:pick_head",
+      "id": "tconstruct:pick_head",
       "nbt": "{Material:\"tconstruct:wood\"}"
     },
     "show_toast": true,

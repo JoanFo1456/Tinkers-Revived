@@ -22,7 +22,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:materials_and_you"
+      "id": "tconstruct:materials_and_you"
     },
     "show_toast": true,
     "title": {

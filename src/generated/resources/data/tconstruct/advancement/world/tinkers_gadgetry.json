@@ -22,7 +22,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:tinkers_gadgetry"
+      "id": "tconstruct:tinkers_gadgetry"
     },
     "show_toast": true,
     "title": {

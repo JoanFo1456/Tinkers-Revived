@@ -1036,7 +1036,7 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:silky_cloth"
+      "id": "tconstruct:silky_cloth"
     },
     "show_toast": true,
     "title": {

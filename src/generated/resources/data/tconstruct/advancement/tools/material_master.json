@@ -542,7 +542,7 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:manyullyn_ingot"
+      "id": "tconstruct:manyullyn_ingot"
     },
     "show_toast": true,
     "title": {

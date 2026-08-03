@@ -58,7 +58,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:slimy_chestplate",
+      "id": "tconstruct:slimy_chestplate",
       "nbt": "{Damage:0,tic_broken:0b,tic_materials:[\"tconstruct:bone\",\"tconstruct:skyslime\"]}"
     },
     "show_toast": true,

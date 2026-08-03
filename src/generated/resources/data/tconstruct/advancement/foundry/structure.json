@@ -16,7 +16,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:foundry_controller"
+      "id": "tconstruct:foundry_controller"
     },
     "show_toast": true,
     "title": {

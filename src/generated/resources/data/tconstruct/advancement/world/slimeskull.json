@@ -478,7 +478,7 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:slime_helmet",
+      "id": "tconstruct:slime_helmet",
       "nbt": "{Damage:0,tic_broken:0b,tic_materials:[\"tconstruct:glass\",\"tconstruct:enderslime\"]}"
     },
     "show_toast": true,

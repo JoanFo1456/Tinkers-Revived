@@ -26,7 +26,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:ender_slime_sapling"
+      "id": "tconstruct:ender_slime_sapling"
     },
     "show_toast": true,
     "title": {

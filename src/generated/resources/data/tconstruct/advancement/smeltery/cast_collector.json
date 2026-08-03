@@ -298,7 +298,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:hammer_head_cast"
+      "id": "tconstruct:hammer_head_cast"
     },
     "show_toast": true,
     "title": {

@@ -42,7 +42,7 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:scorched_lantern",
+      "id": "tconstruct:scorched_lantern",
       "nbt": "{tank:{Amount:50,FluidName:\"tconstruct:molten_manyullyn\"}}"
     },
     "show_toast": true,

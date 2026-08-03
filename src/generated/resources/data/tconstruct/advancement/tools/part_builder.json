@@ -22,7 +22,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:part_builder"
+      "id": "tconstruct:part_builder"
     },
     "show_toast": true,
     "title": {

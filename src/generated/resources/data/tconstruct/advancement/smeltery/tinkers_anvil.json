@@ -34,7 +34,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:tinkers_anvil"
+      "id": "tconstruct:tinkers_anvil"
     },
     "show_toast": true,
     "title": {

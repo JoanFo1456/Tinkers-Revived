@@ -35,7 +35,7 @@
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "minecraft:target"
+      "id": "minecraft:target"
     },
     "show_toast": true,
     "title": {

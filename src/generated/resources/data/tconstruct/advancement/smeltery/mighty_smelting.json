@@ -22,7 +22,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:mighty_smelting"
+      "id": "tconstruct:mighty_smelting"
     },
     "show_toast": true,
     "title": {

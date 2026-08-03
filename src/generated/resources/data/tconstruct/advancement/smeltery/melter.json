@@ -109,7 +109,7 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "tconstruct:seared_melter"
+      "id": "tconstruct:seared_melter"
     },
     "show_toast": true,
     "title": {
