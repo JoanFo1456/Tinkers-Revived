@@ -167,7 +167,30 @@ neoForge {
             server()
             programArgument '--nogui'
         }
-        // NeoForge 26.1.x split datagen into clientData/serverData; re-add once compiling.
+        // NeoForge 26.1.x split datagen into two runs, each firing its own GatherDataEvent subclass
+        // (DataClient -> GatherDataEvent.Client, DataServer -> GatherDataEvent.Server). MDG does not
+        // auto-inject the datagen arguments, so they are provided explicitly here. Invoke via
+        // `./gradlew runClientData` and `./gradlew runServerData` (or both).
+        clientData {
+            clientData()
+            sourceSet sourceSets.main
+            programArguments.addAll(
+                '--mod', 'tconstruct',
+                '--all',
+                '--output', project.file('src/generated/resources').absolutePath,
+                '--existing', project.file('src/main/resources').absolutePath
+            )
+        }
+        serverData {
+            serverData()
+            sourceSet sourceSets.main
+            programArguments.addAll(
+                '--mod', 'tconstruct',
+                '--all',
+                '--output', project.file('src/generated/resources').absolutePath,
+                '--existing', project.file('src/main/resources').absolutePath
+            )
+        }
     }
 
     mods {
