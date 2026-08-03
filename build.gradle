@@ -173,7 +173,6 @@ neoForge {
         // `./gradlew runClientData` and `./gradlew runServerData` (or both).
         clientData {
             clientData()
-            sourceSet sourceSets.main
             programArguments.addAll(
                 '--mod', 'tconstruct',
                 '--all',
@@ -183,7 +182,6 @@ neoForge {
         }
         serverData {
             serverData()
-            sourceSet sourceSets.main
             programArguments.addAll(
                 '--mod', 'tconstruct',
                 '--all',
