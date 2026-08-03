@@ -44,7 +44,7 @@ public class ToolDamageUtil {
    */
   public static boolean isBroken(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    return nbt != null && nbt.getBoolean(ToolStack.TAG_BROKEN);
+    return nbt != null && nbt.getBooleanOr(ToolStack.TAG_BROKEN, false);
   }
 
   /**

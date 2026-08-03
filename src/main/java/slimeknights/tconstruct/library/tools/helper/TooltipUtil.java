@@ -98,7 +98,7 @@ public class TooltipUtil {
    */
   public static boolean isDisplay(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
-    return nbt != null && nbt.getBoolean(KEY_DISPLAY);
+    return nbt != null && nbt.getBooleanOr(KEY_DISPLAY, false);
   }
 
   /** Sets the tool name in a way that will not be italic */

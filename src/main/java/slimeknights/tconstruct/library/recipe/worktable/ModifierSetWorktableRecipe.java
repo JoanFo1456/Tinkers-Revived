@@ -162,7 +162,7 @@ public class ModifierSetWorktableRecipe extends AbstractWorktableRecipe {
     String modifierStr = modifier.toString();
     Iterator<Tag> iterator = list.iterator();
     while (iterator.hasNext()) {
-      if (modifierStr.equals(iterator.next().getAsString())) {
+      if (modifierStr.equals(iterator.next().asString().orElse(""))) {
         if (remove) {
           iterator.remove();
         }

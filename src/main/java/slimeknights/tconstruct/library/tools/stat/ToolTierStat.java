@@ -65,7 +65,7 @@ public class ToolTierStat implements IToolStat<ToolMaterial> {
   @Override
   public ToolMaterial read(Tag tag) {
     if (tag.getId() == Tag.TAG_STRING) {
-      Identifier tierId = Identifier.tryParse(tag.getAsString());
+      Identifier tierId = Identifier.tryParse(tag.asString().orElse(""));
       if (tierId != null) {
         return TierSortingRegistry.byName(tierId);
       }
@@ -114,7 +114,7 @@ public class ToolTierStat implements IToolStat<ToolMaterial> {
 
   @Override
   public Component formatValue(ToolMaterial value) {
-    return Component.translatable(Util.makeTranslationKey("tool_stat", getName())).append(HarvestTiers.getName(value));
+    return Component.translatable(Util.makeTranslationKey("tool_stat", getName().getIdentifier())).append(HarvestTiers.getName(value));
   }
 
   @Override
