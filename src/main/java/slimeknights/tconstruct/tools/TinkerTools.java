@@ -282,7 +282,12 @@ public final class TinkerTools extends TinkerModule {
       DispenserBlock.registerBehavior(TinkerTools.throwingAxe.get(), ModifiableShurikenDispenserBehavior.INSTANCE);
       ModifierUtil.registerShieldDisabler(entity -> {
         if (entity instanceof Player player && player.isBlocking()) {
-          player.disableShield();
+          // 26.1.2 removed Player#disableShield(); mimic it by stopping the block and putting the shield on cooldown
+          net.minecraft.world.item.ItemStack useItem = player.getUseItem();
+          player.stopUsingItem();
+          if (!useItem.isEmpty()) {
+            player.getCooldowns().addCooldown(useItem, 100);
+          }
         }
       }, EntityType.PLAYER);
     });

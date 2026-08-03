@@ -108,10 +108,10 @@ public class SmelteryTankRenderer {
     if(yMin >= yMax || fluid.isEmpty()) {
       return;
     }
-    // fluid attributes
-    IClientFluidTypeExtensions attributes = IClientFluidTypeExtensions.of(fluid.getFluid());
-    TextureAtlasSprite still = FluidRenderer.getBlockSprite(attributes.getStillTexture(fluid));
-    int color = attributes.getTintColor(fluid);
+    // fluid attributes (26.1.2 removed IClientFluidTypeExtensions#getStillTexture/getTintColor; use Mantle's FluidTextures)
+    FluidRenderer.FluidTextures textures = FluidRenderer.getFluidTextures(fluid);
+    TextureAtlasSprite still = textures.still();
+    int color = textures.color();
     FluidType fluidType = fluid.getFluid().getFluidType();
     brightness = FluidRenderer.withBlockLight(brightness, fluidType.getLightLevel(fluid));
     boolean upsideDown = fluidType.isLighterThanAir();

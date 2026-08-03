@@ -66,8 +66,26 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
   /** Tool tank rendering logic */
   @Nullable
   private final GuiTankModule tank;
+  /** 26.1.2: AbstractContainerScreen#imageHeight is now final, so compute it before super instead of assigning after. */
+  private static int computeImageHeight(ToolContainerMenu menu) {
+    int slots = menu.getItemHandler().getSlots();
+    if (menu.isShowOffhand()) {
+      slots++;
+    }
+    int inventoryRows = slots / 9;
+    if (slots % 9 != 0) {
+      inventoryRows++;
+    }
+    int craftingHeight = menu.getCraftingHeight() * SLOT_SIZE;
+    int height = UI_START + TITLE_SIZE + PLAYER_INVENTORY_HEIGHT + inventoryRows * SLOT_SIZE + craftingHeight;
+    if (menu.getTank().getCapacity() > 0) {
+      height += FLUID_TANK.h;
+    }
+    return height;
+  }
+
   public ToolContainerScreen(ToolContainerMenu menu, Inventory inv, Component title) {
-    super(menu, inv, title);
+    super(menu, inv, title, 176, computeImageHeight(menu));
     int slots = menu.getItemHandler().getSlots();
     if (menu.isShowOffhand()) {
       slots++;
@@ -83,10 +101,8 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
     this.inventoryRows = inventoryRows;
     this.slotsInLastRow = slotsInLastRow;
     int craftingHeight = menu.getCraftingHeight() * SLOT_SIZE;
-    this.imageHeight = UI_START + TITLE_SIZE + PLAYER_INVENTORY_HEIGHT + this.inventoryRows * SLOT_SIZE + craftingHeight;
     SimpleFluidTank tank = menu.getTank();
     if (tank.getCapacity() > 0) {
-      this.imageHeight += FLUID_TANK.h;
       this.tank = new GuiTankModule(this, tank, 8, this.imageHeight - PLAYER_INVENTORY_HEIGHT - 9, 160, 8, true, null);
     } else {
       this.tank = null;

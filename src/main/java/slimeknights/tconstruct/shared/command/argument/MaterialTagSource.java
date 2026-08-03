@@ -77,6 +77,6 @@ public record MaterialTagSource(MaterialManager manager) implements TagSource<IM
 
   @Override
   public Stream<Identifier> valueKeys() {
-    return manager.getAllMaterials().stream().map(IMaterial::getIdentifier);
+    return manager.getAllMaterials().stream().map(m -> m.getIdentifier().getIdentifier());
   }
 }
