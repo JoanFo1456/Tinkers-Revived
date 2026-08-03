@@ -127,21 +127,25 @@ sourceSets {
             // stays green; being re-enabled + finished cluster by cluster (tags -> loot -> advancements ->
             // material/modifier/tool JSON). Do not treat as done.
             // ---------------------------------------------------------------------------------------------
-            exclude 'slimeknights/tconstruct/common/data/loot/AdvancementLootTableProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/BlockLootTableProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/EntityLootTableProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/GlobalLootModifiersProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/TConstructLootTableProvider.java'
             exclude 'slimeknights/tconstruct/library/data/tinkering/AbstractEnchantmentToModifierProvider.java'
             exclude 'slimeknights/tconstruct/library/data/tinkering/AbstractFluidEffectProvider.java'
             exclude 'slimeknights/tconstruct/world/data/WorldgenProvider.java'
             // concrete providers whose abstract bases are in the in-progress set above
-            exclude 'slimeknights/tconstruct/common/data/loot/LootTableInjectionProvider.java'
             // ModifierProvider + ToolDefinitionDataProvider: in progress, temporarily excluded (being fixed next).
             exclude 'slimeknights/tconstruct/tools/data/ModifierProvider.java'
             exclude 'slimeknights/tconstruct/tools/data/ToolDefinitionDataProvider.java'
             // TrimMaterialProvider needs the 26.1 MaterialAssetGroup trim-asset rewrite; it feeds the deferred registry-set. Deferred.
             exclude 'slimeknights/tconstruct/tools/data/material/TrimMaterialProvider.java'
+            // Loot cluster: structural port done (ResourceKey<LootTable> keys, HolderLookup sub-providers),
+            // but BlockLootTableProvider needs the 26.1 block-entity component migration (ContextNbtProvider.BLOCK_ENTITY
+            // removed -> CopyComponentsFunction) plus enchantment-Holder loot functions. Deferred; TConstructLootTableProvider
+            // aggregates Block+Entity so the whole cluster stays excluded together.
+            exclude 'slimeknights/tconstruct/common/data/loot/AdvancementLootTableProvider.java'
+            exclude 'slimeknights/tconstruct/common/data/loot/BlockLootTableProvider.java'
+            exclude 'slimeknights/tconstruct/common/data/loot/EntityLootTableProvider.java'
+            exclude 'slimeknights/tconstruct/common/data/loot/GlobalLootModifiersProvider.java'
+            exclude 'slimeknights/tconstruct/common/data/loot/TConstructLootTableProvider.java'
+            exclude 'slimeknights/tconstruct/common/data/loot/LootTableInjectionProvider.java'
             // client sprite/texture generators (ExistingFileHelper / sprite pipeline rewrite pending)
             exclude 'slimeknights/tconstruct/library/client/data/GenericTextureGenerator.java'
             exclude 'slimeknights/tconstruct/library/client/data/material/AbstractMaterialRenderInfoProvider.java'
