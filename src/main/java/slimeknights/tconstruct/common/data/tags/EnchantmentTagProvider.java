@@ -1,5 +1,8 @@
 package slimeknights.tconstruct.common.data.tags;
 
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagEntry;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -52,10 +55,15 @@ public class EnchantmentTagProvider extends TagsProvider<Enchantment> {
   /** Creates a builder for a tag for the given modifier */
   @SuppressWarnings("removal")
   private void modifierTag(ModifierId modifier, String... ids) {
-    TagsProvider.TagAppender<Enchantment> appender = tag(TagKey.create(Registries.ENCHANTMENT, TConstruct.getResource("modifier_like/" + modifier.getPath())));
+    TagAppender<ResourceKey<Enchantment>, Enchantment> appender = tag(TagKey.create(Registries.ENCHANTMENT, TConstruct.getResource("modifier_like/" + modifier.getPath())));
     for (String id : ids) {
-      appender.addOptional(Identifier.parse(id));
+      appender.add(TagEntry.optionalElement(Identifier.parse(id)));
     }
+  }
+
+  /** 26.1 dropped tag() from the base TagsProvider for non-intrinsic registries; wrap the raw builder ourselves. */
+  private TagAppender<ResourceKey<Enchantment>, Enchantment> tag(TagKey<Enchantment> key) {
+    return TagAppender.forBuilder(this.getOrCreateRawBuilder(key));
   }
 
   @Override

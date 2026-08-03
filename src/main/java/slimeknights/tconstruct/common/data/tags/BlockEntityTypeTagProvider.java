@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.common.data.tags;
 
+import net.minecraft.tags.TagEntry;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -21,16 +22,16 @@ public class BlockEntityTypeTagProvider extends IntrinsicHolderTagsProvider<Bloc
   public BlockEntityTypeTagProvider(PackOutput packOutput, CompletableFuture<Provider> lookupProvider) {
     super(packOutput, Registries.BLOCK_ENTITY_TYPE, lookupProvider,
           // not sure why fetching the resource key from the object is such a pain
-          type -> BuiltInRegistries.BLOCK_ENTITY_TYPE.getHolder(BuiltInRegistries.BLOCK_ENTITY_TYPE.getId(type)).orElseThrow().key(),
+          type -> BuiltInRegistries.BLOCK_ENTITY_TYPE.getResourceKey(type).orElseThrow(),
           TConstruct.MOD_ID);
   }
 
   /** Creates a RL for iron chests */
   private static void ironchest(TagAppender<BlockEntityType<?>, BlockEntityType<?>> appender, String name) {
     Identifier chest = Identifier.fromNamespaceAndPath("ironchest", name + "_chest");
-    appender.addOptional(chest).addOptional(chest.withPrefix("trapped_"));
+    appender.add(TagEntry.optionalElement(chest)).add(TagEntry.optionalElement(chest.withPrefix("trapped_")));
     if (!"dirt".equals(name)) {
-      appender.addOptional(Identifier.fromNamespaceAndPath("ironshulkerbox", name + "_shulker_box"));
+      appender.add(TagEntry.optionalElement(Identifier.fromNamespaceAndPath("ironshulkerbox", name + "_shulker_box")));
     }
   }
 
@@ -41,7 +42,7 @@ public class BlockEntityTypeTagProvider extends IntrinsicHolderTagsProvider<Bloc
       BlockEntityType.CHEST, BlockEntityType.TRAPPED_CHEST, BlockEntityType.BARREL, BlockEntityType.SHULKER_BOX,
       BlockEntityType.DISPENSER, BlockEntityType.DROPPER, BlockEntityType.HOPPER);
     // TODO 1.21: verify if BlockEntityType.CHISELED_BOOKSHELF has fixed the bug where setItem(ItemStack.EMPTY) doesn't work so it can be whitelisted.
-    sideInventories.addOptional(Identifier.fromNamespaceAndPath("immersiveengineering", "woodencrate"));
+    sideInventories.add(TagEntry.optionalElement(Identifier.fromNamespaceAndPath("immersiveengineering", "woodencrate")));
     ironchest(sideInventories, "iron");
     ironchest(sideInventories, "gold");
     ironchest(sideInventories, "diamond");

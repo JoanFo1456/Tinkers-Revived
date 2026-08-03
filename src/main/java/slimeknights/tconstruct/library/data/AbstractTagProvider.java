@@ -58,7 +58,7 @@ public abstract class AbstractTagProvider<T> extends GenericDataProvider {
       if (!invalidEntries.isEmpty()) {
         return CompletableFuture.failedFuture(new IllegalArgumentException(String.format("Couldn't define tag %s as it is missing following references: %s", id, invalidEntries.stream().map(Objects::toString).collect(Collectors.joining(",")))));
       } else {
-        return saveJson(cache, id, TagFile.CODEC, new TagFile(tagEntries, entry.getValue().isReplace()));
+        return saveJson(cache, id, TagFile.CODEC, new TagFile(tagEntries, entry.getValue().shouldReplace()));
       }
     }));
   }
@@ -115,6 +115,22 @@ public abstract class AbstractTagProvider<T> extends GenericDataProvider {
       return this;
     }
 
+    /** Adds ID wrappers (e.g. MaterialId/ModifierId) to the tag. 26.1 made Identifier final so these no longer ARE Identifiers. */
+    public TagAppender<T> add(slimeknights.tconstruct.library.utils.ResourceId... ids) {
+      for (slimeknights.tconstruct.library.utils.ResourceId id : ids) {
+        this.internalBuilder.addElement(id.getIdentifier());
+      }
+      return this;
+    }
+
+    /** Adds optional ID wrappers (e.g. MaterialId/ModifierId) to the tag */
+    public TagAppender<T> addOptional(slimeknights.tconstruct.library.utils.ResourceId... ids) {
+      for (slimeknights.tconstruct.library.utils.ResourceId id : ids) {
+        this.internalBuilder.addOptionalElement(id.getIdentifier());
+      }
+      return this;
+    }
+
     /** Adds an tag to the tag */
     @SafeVarargs
     public final TagAppender<T> addTag(TagKey<T>... tags) {
@@ -142,7 +158,7 @@ public abstract class AbstractTagProvider<T> extends GenericDataProvider {
 
     /** Sets the tag to replace */
     public TagAppender<T> replace(boolean value) {
-      internalBuilder.replace(value);
+      internalBuilder.setReplace(value);
       return this;
     }
 
@@ -175,7 +191,7 @@ public abstract class AbstractTagProvider<T> extends GenericDataProvider {
      * @return The builder for chaining
      */
     public TagAppender<T> remove(Identifier location) {
-      internalBuilder.removeElement(location, modID);
+      internalBuilder.removeElement(location);
       return this;
     }
 
@@ -198,7 +214,7 @@ public abstract class AbstractTagProvider<T> extends GenericDataProvider {
      * @return The builder for chaining
      */
     public TagAppender<T> remove(TagKey<T> tag) {
-      internalBuilder.removeTag(tag.location(), modID);
+      internalBuilder.removeTag(tag.location());
       return this;
     }
 

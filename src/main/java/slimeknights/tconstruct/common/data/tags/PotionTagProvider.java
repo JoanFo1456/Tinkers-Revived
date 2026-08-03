@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.common.data.tags;
 
+import net.minecraft.tags.TagEntry;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -18,7 +19,7 @@ public class PotionTagProvider extends BuiltinRegistryTagProvider<Potion> {
 
   @Override
   protected void addTags(Provider provider) {
-    tag(TinkerTags.Potions.HIDDEN_FLUID).addOptional(TinkerTags.HIDDEN_FROM_RECIPE_VIEWERS);
+    tag(TinkerTags.Potions.HIDDEN_FLUID).add(TagEntry.optionalTag(TinkerTags.HIDDEN_FROM_RECIPE_VIEWERS));
   }
 
   @Override

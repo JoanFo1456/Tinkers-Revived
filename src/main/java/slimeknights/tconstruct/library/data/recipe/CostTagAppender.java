@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.data.recipe;
 
+import net.minecraft.tags.TagEntry;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.errorprone.annotations.CheckReturnValue;
 import lombok.RequiredArgsConstructor;
@@ -61,15 +62,15 @@ public class CostTagAppender {
     TagAppender<Item, Item> tag = tag(cost);
     if (optional) {
       if (suffixes.length == 0) {
-        tag.addOptional(prefix);
+        tag.add(TagEntry.optionalElement(prefix));
       } else for (String path : suffixes) {
-        tag.addOptional(prefix.withSuffix('_' + path));
+        tag.add(TagEntry.optionalElement(prefix.withSuffix('_' + path)));
       }
     } else {
       if (suffixes.length == 0) {
-        tag.add(ResourceKey.create(Registries.ITEM, prefix));
+        tag.add(TagEntry.element(prefix));
       } else for (String path : suffixes) {
-        tag.add(ResourceKey.create(Registries.ITEM, prefix.withSuffix('_' + path)));
+        tag.add(TagEntry.element(prefix.withSuffix('_' + path)));
       }
     }
     return this;
@@ -84,7 +85,7 @@ public class CostTagAppender {
   public CostTagAppender metalTag(int cost, String prefix, String... names) {
     TagAppender<Item, Item> tag = tag(cost);
     for (String name : names) {
-      tag.addOptionalTag(Identifier.fromNamespaceAndPath(Mantle.COMMON, prefix + name + '/' + metal));
+      tag.add(TagEntry.optionalTag(Identifier.fromNamespaceAndPath(Mantle.COMMON, prefix + name + '/' + metal)));
     }
     return this;
   }
