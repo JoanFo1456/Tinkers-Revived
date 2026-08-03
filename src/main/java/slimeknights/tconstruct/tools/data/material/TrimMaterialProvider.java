@@ -1,6 +1,6 @@
 package slimeknights.tconstruct.tools.data.material;
 
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;

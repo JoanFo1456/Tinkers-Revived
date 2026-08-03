@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.data.recipe;
 
+import slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.errorprone.annotations.CheckReturnValue;
 import lombok.AccessLevel;
@@ -20,8 +21,7 @@ import slimeknights.tconstruct.compat.neoforged.neoforge.common.crafting.Conditi
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import net.neoforged.neoforge.common.crafting.IntersectionIngredient;
 import net.neoforged.neoforge.common.conditions.ICondition;
-import net.neoforged.neoforge.common.conditions.ItemExistsCondition;
-import net.neoforged.neoforge.common.conditions.TrueCondition;
+import net.neoforged.neoforge.common.conditions.NeoForgeConditions;
 import org.jetbrains.annotations.ApiStatus.Internal;
 import slimeknights.mantle.recipe.condition.TagCombinationCondition;
 import slimeknights.mantle.recipe.condition.TagFilledCondition;
@@ -263,7 +263,7 @@ public class SmelteryRecipeBuilder {
     for (IByproduct byproduct : unitByproducts) {
       builder.addByproduct(byproduct.getFluid(scale));
     }
-    builder.save(withCondition(new ItemExistsCondition(itemName)), location(meltingFolder, output));
+    builder.save(withCondition(NeoForgeConditions.itemRegistered(itemName)), location(meltingFolder, output));
   }
 
   /** Adds a recipe for melting an item from a tag */
@@ -274,7 +274,7 @@ public class SmelteryRecipeBuilder {
   /** Adds a recipe for melting an item from a tag */
   private void tagMelting(float scale, String output, float factor, Identifier tagName, boolean damagable, boolean forceOptional) {
     Consumer<FinishedRecipe> wrapped = optional || forceOptional ? withCondition(tagCondition(tagName)) : consumer;
-    MeltingRecipeBuilder builder = MeltingRecipeBuilder.melting(Ingredient.of(ItemTags.create(tagName)), result((int) (baseUnit * scale)), temperature, factor);
+    MeltingRecipeBuilder builder = MeltingRecipeBuilder.melting(LazyTagIngredient.of(ItemTags.create(tagName)), result((int) (baseUnit * scale)), temperature, factor);
     if (damagable) {
       builder.setDamagable(damageUnits());
     }
@@ -294,7 +294,7 @@ public class SmelteryRecipeBuilder {
     Ingredient ingredient;
     // not everyone sets size, so treat singular as the fallback, means we want anything in the tag that is not sparse or dense
     if (size == Tags.Items.ORE_RATES_SINGULAR) {
-      ingredient = DifferenceIngredient.of(baseIngredient, Ingredient.of(TinkerTags.Items.NON_SINGULAR_ORE_RATES));
+      ingredient = DifferenceIngredient.of(baseIngredient, LazyTagIngredient.of(TinkerTags.Items.NON_SINGULAR_ORE_RATES));
       wrapped = withCondition(TagCombinationCondition.difference(itemTag(tagName), TinkerTags.Items.NON_SINGULAR_ORE_RATES));
       // size tag means we want an intersection between the tag and that size
     } else if (size != null) {
@@ -325,7 +325,7 @@ public class SmelteryRecipeBuilder {
         // found an always present byproduct? no need to tag and we are done
         alwaysPresent = byproduct.isAlwaysPresent();
         if (alwaysPresent) {
-          builder.addCondition(TrueCondition.INSTANCE);
+          builder.addCondition(NeoForgeConditions.always());
         } else {
           builder.addCondition(tagCondition("ingots/" + byproduct.getName()));
         }
@@ -337,7 +337,7 @@ public class SmelteryRecipeBuilder {
       }
       // not always present? add a recipe with no byproducts as a final fallback
       if (!alwaysPresent) {
-        builder.addCondition(TrueCondition.INSTANCE);
+        builder.addCondition(NeoForgeConditions.always());
         builder.addRecipe(supplier.get()::save);
       }
       builder.build(wrapped, location);

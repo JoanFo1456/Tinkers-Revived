@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.tools.data;
 
+import slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.PackOutput;
 import net.minecraft.sounds.SoundEvents;
@@ -30,7 +31,7 @@ import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.ItemAbilities;
-import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+import static net.neoforged.neoforge.common.conditions.NeoForgeConditions.modLoaded;
 import net.neoforged.neoforge.fluids.FluidType;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.mantle.data.predicate.IJsonPredicate;
@@ -275,7 +276,7 @@ import static slimeknights.tconstruct.library.json.math.ModifierFormula.VALUE;
 import static slimeknights.tconstruct.library.modifiers.modules.behavior.RepairModule.FACTOR;
 import static slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_SLOTS;
 
-public class ModifierProvider extends AbstractModifierProvider implements IConditionBuilder {
+public class ModifierProvider extends AbstractModifierProvider {
   public ModifierProvider(PackOutput packOutput) {
     super(packOutput);
   }
@@ -1039,7 +1040,7 @@ public class ModifierProvider extends AbstractModifierProvider implements ICondi
       .priority(175) // higher than overslime, to ensure this is removed first
       .addModule(new CapacityBarModule(LevelingInt.eachLevel(100), ToolStats.DURABILITY))
       .addModule(new DurabilityShieldModule(0x7F7F7F))
-      .addModule(LootToCapacityModule.consume(Ingredient.of(TinkerTags.Items.STONESHIELDS)).amount(3).eachLevel(0.2f));
+      .addModule(LootToCapacityModule.consume(LazyTagIngredient.of(TinkerTags.Items.STONESHIELDS)).amount(3).eachLevel(0.2f));
     buildModifier(ModifierIds.barkskin)
       .levelDisplay(ModifierLevelDisplay.NO_LEVELS)
       .priority(200) // higher than all other forms of durability shields

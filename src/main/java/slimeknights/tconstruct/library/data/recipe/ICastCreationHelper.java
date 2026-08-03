@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.data.recipe;
 
+import slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient;
 import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
@@ -61,16 +62,16 @@ public interface ICastCreationHelper extends IRecipeHelper {
     // make sand casts in the part builder
     Identifier pattern = cast.getName();
     ItemPartRecipeBuilder.item(pattern, ItemOutput.fromItem(cast.getSand()))
-                         .setPatternItem(Ingredient.of(TinkerTags.Items.SAND_CASTS))
+                         .setPatternItem(LazyTagIngredient.of(TinkerTags.Items.SAND_CASTS))
                          .save(consumer, location(folder + "sand/builder_cast/" + name));
     ItemPartRecipeBuilder.item(pattern, ItemOutput.fromItem(cast.getRedSand()))
-                         .setPatternItem(Ingredient.of(TinkerTags.Items.RED_SAND_CASTS))
+                         .setPatternItem(LazyTagIngredient.of(TinkerTags.Items.RED_SAND_CASTS))
                          .save(consumer, location(folder + "red_sand/builder_cast/" + name));
     ItemPartRecipeBuilder.item(pattern, ItemOutput.fromItem(cast.getSand(), 4))
-                         .setPatternItem(Ingredient.of(Tags.Items.SAND_COLORLESS))
+                         .setPatternItem(LazyTagIngredient.of(Tags.Items.SAND_COLORLESS))
                          .save(consumer, location(folder + "sand/builder_block/" + name));
     ItemPartRecipeBuilder.item(pattern, ItemOutput.fromItem(cast.getRedSand(), 4))
-                         .setPatternItem(Ingredient.of(Tags.Items.SAND_RED))
+                         .setPatternItem(LazyTagIngredient.of(Tags.Items.SAND_RED))
                          .save(consumer, location(folder + "red_sand/builder_block/" + name));
   }
 }

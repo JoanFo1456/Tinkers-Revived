@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.data.recipe;
 
+import slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient;
 import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -113,7 +114,7 @@ public interface IToolRecipeHelper extends ICastCreationHelper {
     Identifier id = id(part);
     PartRecipeBuilder.partRecipe(part)
                      .setPattern(id)
-                     .setPatternItem(Ingredient.of(TinkerTags.Items.DEFAULT_PATTERNS))
+                     .setPatternItem(LazyTagIngredient.of(TinkerTags.Items.DEFAULT_PATTERNS))
                      .setCost(cost)
                      .save(consumer, location(partFolder + "builder/" + id.getPath()));
     CompositeCastingRecipeBuilder.table(part, cost)
@@ -139,7 +140,7 @@ public interface IToolRecipeHelper extends ICastCreationHelper {
     // dummy part builder recipe
     ItemPartRecipeBuilder.item(cast.getName(), ItemOutput.fromItem(dummyPart))
                          .material(MaterialIds.rock, cost)
-                         .setPatternItem(CompoundIngredient.of(Ingredient.of(TinkerTags.Items.DEFAULT_PATTERNS), Ingredient.of(cast.get())))
+                         .setPatternItem(CompoundIngredient.of(LazyTagIngredient.of(TinkerTags.Items.DEFAULT_PATTERNS), Ingredient.of(cast.get())))
                          .save(consumer, location(partFolder + "builder/" + cast.getName().getPath()));
   }
 
@@ -156,7 +157,7 @@ public interface IToolRecipeHelper extends ICastCreationHelper {
     // Part Builder
     PartRecipeBuilder.partRecipe(part)
                      .setPattern(id)
-                     .setPatternItem(CompoundIngredient.of(Ingredient.of(TinkerTags.Items.DEFAULT_PATTERNS), Ingredient.of(cast.get())))
+                     .setPatternItem(CompoundIngredient.of(LazyTagIngredient.of(TinkerTags.Items.DEFAULT_PATTERNS), Ingredient.of(cast.get())))
                      .setCost(cost)
                      .save(consumer, location(partFolder + "builder/" + id.getPath()));
     // casting

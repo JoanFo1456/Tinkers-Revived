@@ -36,7 +36,7 @@ public class WorldRecipeProvider extends BaseRecipeProvider implements ICommonRe
   protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
     // Add recipe for all slimeball <-> congealed and slimeblock <-> slimeball
     // only earth slime recipe we need here slime
-    ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TinkerWorld.congealedSlime.get(SlimeType.EARTH))
+    ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerWorld.congealedSlime.get(SlimeType.EARTH))
                        .define('#', SlimeType.EARTH.getSlimeballTag())
                        .pattern("##")
                        .pattern("##")
@@ -47,7 +47,7 @@ public class WorldRecipeProvider extends BaseRecipeProvider implements ICommonRe
     // does not need green as its the fallback
     for (SlimeType slimeType : SlimeType.TINKER) {
       Identifier name = location("common/slime/" + slimeType.getSerializedName() + "/congealed");
-      ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, TinkerWorld.congealedSlime.get(slimeType))
+      ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerWorld.congealedSlime.get(slimeType))
                          .define('#', slimeType.getSlimeballTag())
                          .pattern("##")
                          .pattern("##")
@@ -55,7 +55,7 @@ public class WorldRecipeProvider extends BaseRecipeProvider implements ICommonRe
                          .group("tconstruct:congealed_slime")
                          .save(consumer, name);
       Identifier blockName = location("common/slime/" + slimeType.getSerializedName() + "/slimeblock");
-      ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, TinkerWorld.slime.get(slimeType))
+      ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerWorld.slime.get(slimeType))
                          .define('#', slimeType.getSlimeballTag())
                          .pattern("###")
                          .pattern("###")
@@ -64,7 +64,7 @@ public class WorldRecipeProvider extends BaseRecipeProvider implements ICommonRe
                          .group("slime_blocks")
                          .save(consumer, blockName);
       // green already can craft into slime balls
-      ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TinkerCommons.slimeball.get(slimeType), 9)
+      ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, TinkerCommons.slimeball.get(slimeType), 9)
                             .requires(TinkerWorld.slime.get(slimeType))
                             .unlockedBy("has_item", has(TinkerWorld.slime.get(slimeType)))
                             .group("tconstruct:slime_balls")
@@ -72,7 +72,7 @@ public class WorldRecipeProvider extends BaseRecipeProvider implements ICommonRe
     }
     // all types of congealed need a recipe to a block
     for (SlimeType slimeType : SlimeType.values()) {
-      ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, TinkerCommons.slimeball.get(slimeType), 4)
+      ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, TinkerCommons.slimeball.get(slimeType), 4)
                             .requires(TinkerWorld.congealedSlime.get(slimeType))
                             .unlockedBy("has_item", has(TinkerWorld.congealedSlime.get(slimeType)))
                             .group("tconstruct:slime_balls")
@@ -81,14 +81,14 @@ public class WorldRecipeProvider extends BaseRecipeProvider implements ICommonRe
 
     // craft other slime based items, forge does not automatically add recipes using the tag anymore
     Consumer<FinishedRecipe> slimeConsumer = withCondition(consumer, ConfigEnabledCondition.SLIME_RECIPE_FIX);
-    ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.STICKY_PISTON)
+    ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, Blocks.STICKY_PISTON)
                        .pattern("#")
                        .pattern("P")
                        .define('#', Tags.Items.SLIMEBALLS)
                        .define('P', Blocks.PISTON)
                        .unlockedBy("has_slime_ball", has(Tags.Items.SLIMEBALLS))
                        .save(slimeConsumer, location("common/slime/sticky_piston"));
-    ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Items.LEAD, 2)
+    ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.TOOLS, Items.LEAD, 2)
                        .define('~', Items.STRING)
                        .define('O', Tags.Items.SLIMEBALLS)
                        .pattern("~~ ")
@@ -112,7 +112,7 @@ public class WorldRecipeProvider extends BaseRecipeProvider implements ICommonRe
   }
 
   private void geodeRecipes(Consumer<FinishedRecipe> consumer, GeodeItemObject geode, SlimeType slime, String folder) {
-    ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, geode.getBlock())
+    ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, geode.getBlock())
                        .define('#', geode.asItem())
                        .pattern("##")
                        .pattern("##")

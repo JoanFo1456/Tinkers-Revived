@@ -2,7 +2,7 @@ package slimeknights.tconstruct.library.data;
 
 import com.google.common.hash.Hashing;
 import lombok.RequiredArgsConstructor;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;

@@ -7,7 +7,8 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.data.tags.TagAppender;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
@@ -445,19 +446,14 @@ public class BlockTagProvider extends BlockTagsProvider {
     // slime
     tagBlocks(MINEABLE_WITH_SHOVEL, TinkerWorld.congealedSlime, TinkerWorld.slimeDirt, TinkerWorld.vanillaSlimeGrass, TinkerWorld.earthSlimeGrass, TinkerWorld.skySlimeGrass, TinkerWorld.enderSlimeGrass, TinkerWorld.ichorSlimeGrass);
     // harvest tiers on shovel blocks
-    TinkerWorld.slimeDirt.forEach((type, block) -> this.tag(Objects.requireNonNull(type.getHarvestTier().getTag())).add(block));
+    TinkerWorld.slimeDirt.forEach((type, block) -> this.tag(Objects.requireNonNull(harvestTag(type.getHarvestTier()))).add(block));
     for (DirtType dirt : DirtType.values()) {
       for (FoliageType grass : FoliageType.values()) {
-        Tiers dirtTier = dirt.getHarvestTier();
-        Tiers grassTier = grass.getHarvestTier();
-        // cannot use tier sorting registry as it's not init during datagen, stuck comparing levels and falling back to ordinal for gold
-        Tiers tier;
-        if (dirtTier.getLevel() == grassTier.getLevel()) {
-          tier = dirtTier.ordinal() > grassTier.ordinal() ? dirtTier : grassTier;
-        } else {
-          tier = dirtTier.getLevel() > grassTier.getLevel() ? dirtTier : grassTier;
-        }
-        this.tag(Objects.requireNonNull(tier.getTag())).add(TinkerWorld.slimeGrass.get(dirt).get(grass));
+        ToolMaterial dirtTier = dirt.getHarvestTier();
+        ToolMaterial grassTier = grass.getHarvestTier();
+        // 26.1 removed Tiers/TierSortingRegistry, so compare via our own harvest rank (which places gold just above wood, matching the old ordinal tie-break)
+        ToolMaterial tier = harvestRank(dirtTier) >= harvestRank(grassTier) ? dirtTier : grassTier;
+        this.tag(Objects.requireNonNull(harvestTag(tier))).add(TinkerWorld.slimeGrass.get(dirt).get(grass));
       }
     }
 
@@ -644,6 +640,32 @@ public class BlockTagProvider extends BlockTagsProvider {
       this.tag(BlockTags.BEACON_BASE_BLOCKS).addTag(metal.getBlockTag());
     }
     this.tag(Tags.Blocks.STORAGE_BLOCKS).addTag(metal.getBlockTag());
+  }
+
+  /**
+   * Gets the "needs tool" block tag for a harvest tier. 26.1 removed {@code Tiers.getTag()}, so this maps the
+   * vanilla tool materials to the matching harvest tags (gold/wood use the NeoForge added tags).
+   */
+  private static TagKey<Block> harvestTag(ToolMaterial tier) {
+    if (tier == ToolMaterial.STONE) return NEEDS_STONE_TOOL;
+    if (tier == ToolMaterial.GOLD) return NEEDS_GOLD_TOOL;
+    if (tier == ToolMaterial.IRON) return NEEDS_IRON_TOOL;
+    if (tier == ToolMaterial.DIAMOND) return NEEDS_DIAMOND_TOOL;
+    if (tier == ToolMaterial.NETHERITE) return NEEDS_NETHERITE_TOOL;
+    return net.neoforged.neoforge.common.Tags.Blocks.NEEDS_WOOD_TOOL;
+  }
+
+  /**
+   * Ranks a harvest tier for comparison. 26.1 removed {@code Tiers}, so we replicate the old behaviour of comparing
+   * mining level and falling back to enum ordinal (which placed gold just above wood).
+   */
+  private static int harvestRank(ToolMaterial tier) {
+    if (tier == ToolMaterial.NETHERITE) return 5;
+    if (tier == ToolMaterial.DIAMOND) return 4;
+    if (tier == ToolMaterial.IRON) return 3;
+    if (tier == ToolMaterial.STONE) return 2;
+    if (tier == ToolMaterial.GOLD) return 1;
+    return 0; // wood
   }
 
   /** Adds tags for a glass item object */
