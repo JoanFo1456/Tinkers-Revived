@@ -16,6 +16,11 @@ import slimeknights.tconstruct.common.data.tags.MaterialTagProvider;
 import slimeknights.tconstruct.common.data.tags.MenuTypeTagProvider;
 import slimeknights.tconstruct.common.data.tags.ModifierTagProvider;
 import slimeknights.tconstruct.common.data.tags.PotionTagProvider;
+import slimeknights.tconstruct.tools.data.StationSlotLayoutProvider;
+import slimeknights.tconstruct.tools.data.material.MaterialDataProvider;
+import slimeknights.tconstruct.tools.data.material.MaterialStatsDataProvider;
+import slimeknights.tconstruct.tools.data.material.MaterialTraitsDataProvider;
+import slimeknights.tconstruct.world.data.MobEquipmentProvider;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -50,5 +55,15 @@ public final class TinkerServerData {
     generator.addProvider(true, new DamageTypeTagProvider(packOutput, lookupProvider));
     generator.addProvider(true, new MaterialTagProvider(packOutput));
     generator.addProvider(true, new ModifierTagProvider(packOutput));
+
+    // material JSON: stats/traits providers consume the material list from the data provider
+    MaterialDataProvider materials = new MaterialDataProvider(packOutput);
+    generator.addProvider(true, materials);
+    generator.addProvider(true, new MaterialStatsDataProvider(packOutput, materials));
+    generator.addProvider(true, new MaterialTraitsDataProvider(packOutput, materials));
+
+    // station layouts + mob spawn equipment
+    generator.addProvider(true, new StationSlotLayoutProvider(packOutput));
+    generator.addProvider(true, new MobEquipmentProvider(packOutput));
   }
 }
