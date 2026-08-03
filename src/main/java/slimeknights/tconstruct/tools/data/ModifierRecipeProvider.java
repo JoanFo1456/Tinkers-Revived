@@ -508,7 +508,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                                     .save(consumer, wrap(ModifierIds.sharpness, upgradeFolder, "_from_shard"));
     IncrementalModifierRecipeBuilder.modifier(ModifierIds.sharpness)
                                     .setTools(TinkerTags.Items.MELEE)
-                                    .setInput(Tags.Items.STORAGE_BLOCKS_QUARTZ, 4, 36)
+                                    .setInput(Ingredient.of(Items.QUARTZ_BLOCK), 4, 36)
                                     .setLeftover(new ItemStack(Items.QUARTZ))
                                     .setMaxLevel(5)
                                     .disallowCrystal()
@@ -516,7 +516,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                                     .save(consumer, wrap(ModifierIds.sharpness, upgradeFolder, "_from_block"));
     IncrementalModifierRecipeBuilder.modifier(ModifierIds.sweeping)
                                     .setTools(TinkerTags.Items.SWORD)
-                                    .setInput(Blocks.CHAIN, 1, 5) // 5% per chain, costing 55 nuggets, or just above 6 ingots
+                                    .setInput(Blocks.IRON_CHAIN, 1, 5) // 5% per chain, costing 55 nuggets, or just above 6 ingots
                                     .setMaxLevel(3) // goes 25%, 50%, 75%
                                     .setSlots(SlotType.UPGRADE, 1)
                                     .saveSalvage(consumer, prefix(ModifierIds.sweeping, upgradeSalvage))
@@ -632,7 +632,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
       .save(consumer, prefix(ModifierIds.sliver, abilityFolder));
     ModifierRecipeBuilder.modifier(ModifierIds.ballista)
       .addInput(TinkerMaterials.hepatizon.getIngotTag())
-      .addInput(Items.CHAIN)
+      .addInput(Items.IRON_CHAIN)
       .addInput(TinkerMaterials.hepatizon.getIngotTag())
       .setSlots(SlotType.ABILITY, 1)
       .setMaxLevel(1).checkTraitLevel()
@@ -718,8 +718,8 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
       .save(consumer, prefix(ModifierIds.lure, upgradeFolder));
     ModifierRecipeBuilder.modifier(ModifierIds.grapple)
       .setTools(TinkerTags.Items.FISHING_RODS)
-      .addInput(Items.CHAIN)
-      .addInput(Items.CHAIN)
+      .addInput(Items.IRON_CHAIN)
+      .addInput(Items.IRON_CHAIN)
       .addInput(TinkerMaterials.slimesteel.getIngotTag())
       .setSlots(SlotType.ABILITY, 1)
       .setMaxLevel(1).checkTraitLevel()
@@ -899,7 +899,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
     ModifierRecipeBuilder.modifier(ModifierIds.respiration)
                          .setTools(TinkerTags.Items.HELMETS)
                          .addInput(ItemTags.FISHES)
-                         .addInput(Tags.Items.GLASS_COLORLESS)
+                         .addInput(Tags.Items.GLASS_BLOCKS_COLORLESS)
                          .addInput(ItemTags.FISHES)
                          .addInput(Items.KELP)
                          .addInput(Items.KELP)
@@ -911,14 +911,14 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setTools(TinkerTags.Items.HELMETS)
                          .addInput(Ingredient.of(Arrays.stream(FrameType.values())
                                                                .filter(type -> type != FrameType.CLEAR)
-                                                               .map(type -> new ItemStack(TinkerGadgets.itemFrame.get(type)))))
+                                                               .map(type -> TinkerGadgets.itemFrame.get(type))))
                          .setSlots(SlotType.UPGRADE, 1)
                          .saveSalvage(consumer, prefix(TinkerModifiers.itemFrame, upgradeSalvage))
                          .save(consumer, prefix(TinkerModifiers.itemFrame, upgradeFolder));
     ModifierRecipeBuilder.modifier(ModifierIds.minimap)
       .setTools(TinkerTags.Items.HELMETS)
       .addInput(Items.COMPASS)
-      .addInput(Tags.Items.SLIMEBALLS)
+      .addInput(Tags.Items.SLIME_BALLS)
       .addInput(Items.PAPER)
       .setSlots(SlotType.UPGRADE, 1)
       .saveSalvage(consumer, prefix(ModifierIds.minimap, upgradeSalvage))
@@ -1622,7 +1622,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setMaxLevel(1)
                          .save(consumer, prefix(ModifierIds.harmonious, slotlessFolder));
     Ingredient bonusNoSkull = DifferenceIngredient.of(LazyTagIngredient.of(TinkerTags.Items.BONUS_SLOTS), LazyTagIngredient.of(TinkerTags.Items.SKULLS));
-    SizedIngredient standardSkulls = SizedIngredient.of(DifferenceIngredient.of(LazyTagIngredient.of(Tags.Items.HEADS), Ingredient.of(Items.DRAGON_HEAD)));
+    SizedIngredient standardSkulls = SizedIngredient.of(DifferenceIngredient.of(LazyTagIngredient.of(ItemTags.SKULLS), Ingredient.of(Items.DRAGON_HEAD)));
     ModifierRecipeBuilder.modifier(ModifierIds.recapitated)
       .setTools(bonusNoSkull)
       .addInput(standardSkulls)
@@ -1631,7 +1631,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
     Ingredient bonusSkulls = IntersectionIngredient.of(LazyTagIngredient.of(TinkerTags.Items.BONUS_SLOTS), LazyTagIngredient.of(TinkerTags.Items.SKULLS));
     ModifierRecipeBuilder.modifier(ModifierIds.recapitated)
       .setTools(bonusSkulls)
-      .addInput(standardSkulls).addInput(Tags.Items.SLIMEBALLS)
+      .addInput(standardSkulls).addInput(Tags.Items.SLIME_BALLS)
       .setMaxLevel(1)
       .save(consumer, wrap(ModifierIds.recapitated, slotlessFolder, "_for_skull"));
     ModifierRecipeBuilder.modifier(ModifierIds.forecast)
@@ -1651,7 +1651,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
       .save(consumer, wrap(ModifierIds.draconic, slotlessFolder, "_from_head"));
     ModifierRecipeBuilder.modifier(ModifierIds.draconic)
       .setTools(bonusSkulls)
-      .addInput(Items.DRAGON_HEAD).addInput(Tags.Items.SLIMEBALLS)
+      .addInput(Items.DRAGON_HEAD).addInput(Tags.Items.SLIME_BALLS)
       .setMaxLevel(1)
       .save(consumer, wrap(ModifierIds.draconic, slotlessFolder, "_for_skull"));
     ModifierRecipeBuilder.modifier(ModifierIds.draconic)
@@ -2097,7 +2097,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
   private static Ingredient ingredientFromTags(TagKey<Item>... tags) {
     Ingredient[] tagIngredients = new Ingredient[tags.length];
     for (int i = 0; i < tags.length; i++) {
-      tagIngredients[i] = Ingredient.of(tags[i]);
+      tagIngredients[i] = LazyTagIngredient.of(tags[i]);
     }
     return CompoundIngredient.of(tagIngredients);
   }

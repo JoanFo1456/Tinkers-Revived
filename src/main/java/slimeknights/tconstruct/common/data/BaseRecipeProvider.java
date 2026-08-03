@@ -49,11 +49,11 @@ public abstract class BaseRecipeProvider extends GenericDataProvider implements 
   }
 
   protected static Criterion<?> has(ItemLike item) {
-    return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(item).build());
+    return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ITEM_LOOKUP, item).build());
   }
 
   protected static Criterion<?> has(TagKey<Item> tag) {
-    return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(tag).build());
+    return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ITEM_LOOKUP, tag).build());
   }
 
   @Override
@@ -77,5 +77,18 @@ public abstract class BaseRecipeProvider extends GenericDataProvider implements 
   /** Gets a resource location for the mod wrapping the given ID's path */
   protected Identifier wrap(ResourceId location, String prefix, String suffix) {
     return wrap(location.getIdentifier(), prefix, suffix);
+  }
+
+  /* Recipe key helpers: 26.1 RecipeBuilder.save takes a ResourceKey<Recipe<?>>, and vanilla builders are bridged
+     to Mantle's Consumer<FinishedRecipe> framework via VanillaFinishedRecipe.output(...). */
+
+  /** Wraps a recipe id into the registry key vanilla builders now require */
+  protected static net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> recipeId(Identifier id) {
+    return net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.RECIPE, id);
+  }
+
+  /** Wraps a recipe id string into the registry key vanilla builders now require */
+  protected static net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> recipeId(String id) {
+    return recipeId(Identifier.parse(id));
   }
 }

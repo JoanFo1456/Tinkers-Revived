@@ -120,30 +120,13 @@ sourceSets {
             // excluded so the tag/loot/advancement/material server data can regenerate. FluidEffect and the
             // enchantment->modifier provider are grouped here as they share the Holder-effect migration.
             // ---------------------------------------------------------------------------------------------
-            exclude 'slimeknights/tconstruct/shared/data/CommonRecipeProvider.java'
-            exclude 'slimeknights/tconstruct/tables/data/TableRecipeProvider.java'
-            exclude 'slimeknights/tconstruct/gadgets/data/GadgetRecipeProvider.java'
-            exclude 'slimeknights/tconstruct/world/data/WorldRecipeProvider.java'
-            exclude 'slimeknights/tconstruct/tools/data/ToolsRecipeProvider.java'
-            exclude 'slimeknights/tconstruct/tools/data/ModifierRecipeProvider.java'
             exclude 'slimeknights/tconstruct/tools/data/FluidEffectProvider.java'
             exclude 'slimeknights/tconstruct/tools/data/EnchantmentToModifierProvider.java'
-            exclude 'slimeknights/tconstruct/tools/data/material/MaterialRecipeProvider.java'
-            exclude 'slimeknights/tconstruct/smeltery/data/SmelteryRecipeProvider.java'
-            exclude 'slimeknights/tconstruct/smeltery/data/Byproduct.java'
-            exclude 'slimeknights/tconstruct/library/data/recipe/IToolRecipeHelper.java'
-            exclude 'slimeknights/tconstruct/library/data/recipe/IMaterialRecipeHelper.java'
-            exclude 'slimeknights/tconstruct/library/data/recipe/ISmelteryRecipeHelper.java'
-            exclude 'slimeknights/tconstruct/library/data/recipe/ICastCreationHelper.java'
-            exclude 'slimeknights/tconstruct/library/data/recipe/SmelteryRecipeBuilder.java'
-            exclude 'slimeknights/tconstruct/library/data/recipe/IByproduct.java'
-            exclude 'slimeknights/tconstruct/library/data/recipe/CraftingNBTWrapper.java'
             // ---------------------------------------------------------------------------------------------
             // IN-PROGRESS server datagen: symbol-ported toward 26.1 but not yet GREEN. Excluded so the build
             // stays green; being re-enabled + finished cluster by cluster (tags -> loot -> advancements ->
             // material/modifier/tool JSON). Do not treat as done.
             // ---------------------------------------------------------------------------------------------
-            exclude 'slimeknights/tconstruct/common/data/BaseRecipeProvider.java'
             exclude 'slimeknights/tconstruct/common/data/loot/AdvancementLootTableProvider.java'
             exclude 'slimeknights/tconstruct/common/data/loot/BlockLootTableProvider.java'
             exclude 'slimeknights/tconstruct/common/data/loot/EntityLootTableProvider.java'

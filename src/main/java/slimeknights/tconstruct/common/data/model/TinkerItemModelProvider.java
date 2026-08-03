@@ -144,7 +144,7 @@ public class TinkerItemModelProvider extends ItemModelProvider {
   /** Generated item with a texture */
   @SuppressWarnings("removal")
   private ItemModelBuilder generated(Identifier item, String texture) {
-    return generated(item, new Identifier(item.getNamespace(), texture));
+    return generated(item, Identifier.fromNamespaceAndPath(item.getNamespace(), texture));
   }
 
   /** Generated item with a texture */

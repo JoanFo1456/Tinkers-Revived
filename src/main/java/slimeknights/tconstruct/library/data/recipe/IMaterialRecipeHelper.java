@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.library.data.recipe;
 
+import slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient;
+import net.neoforged.neoforge.common.conditions.NeoForgeConditions;
 import slimeknights.mantle.recipe.data.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -70,13 +72,13 @@ public interface IMaterialRecipeHelper extends IRecipeHelper {
     String matName = material.getLocation('/').getPath();
     // ingot
     TagKey<Item> ingotTag = getItemTag(COMMON, "ingots/" + name);
-    materialRecipe(wrapped, material, Ingredient.of(ingotTag), 1, 1, folder + matName + "/ingot");
+    materialRecipe(wrapped, material, LazyTagIngredient.of(ingotTag), 1, 1, folder + matName + "/ingot");
     // nugget
     wrapped = optional ? withCondition(consumer, tagCondition("nuggets/" + name)) : consumer;
-    materialRecipe(wrapped, material, Ingredient.of(getItemTag(COMMON, "nuggets/" + name)), 1, 9, folder + matName + "/nugget");
+    materialRecipe(wrapped, material, LazyTagIngredient.of(getItemTag(COMMON, "nuggets/" + name)), 1, 9, folder + matName + "/nugget");
     // block
     wrapped = optional ? withCondition(consumer, tagCondition("storage_blocks/" + name)) : consumer;
-    materialRecipe(wrapped, material, Ingredient.of(getItemTag(COMMON, "storage_blocks/" + name)), 9, 1, ItemOutput.fromTag(ingotTag), folder + matName + "/block");
+    materialRecipe(wrapped, material, LazyTagIngredient.of(getItemTag(COMMON, "storage_blocks/" + name)), 9, 1, ItemOutput.fromTag(ingotTag), folder + matName + "/block");
   }
 
   /** Adds recipes to melt a material */
@@ -107,7 +109,7 @@ public interface IMaterialRecipeHelper extends IRecipeHelper {
 
   /** Adds recipes to melt and cast a compat material of ingot size with a second tag allowed to make the material exist */
   default void compatMeltingCasting(Consumer<FinishedRecipe> consumer, MaterialId material, FluidObject<?> fluid, String altTag, String folder) {
-    materialMeltingCasting(withCondition(consumer, new OrCondition(tagCondition("ingots/" + material.getPath()), tagCondition("ingots/" + altTag))), material, fluid, folder);
+    materialMeltingCasting(withCondition(consumer, NeoForgeConditions.or(tagCondition("ingots/" + material.getPath()), tagCondition("ingots/" + altTag))), material, fluid, folder);
   }
 
   /** Adds recipes to melt and cast a material of ingot size */

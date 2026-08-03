@@ -71,18 +71,18 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern("ps")
       .pattern("sp")
       .unlockedBy("has_item", has(Tags.Items.RODS_WOODEN))
-      .save(consumer, prefix(TinkerTables.pattern, folder));
+      .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.pattern, folder)));
 
     // book from patterns and slime
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, Items.BOOK)
                           .requires(Items.PAPER)
                           .requires(Items.PAPER)
                           .requires(Items.PAPER)
-                          .requires(Tags.Items.SLIMEBALLS)
+                          .requires(Tags.Items.SLIME_BALLS)
                           .requires(TinkerTables.pattern)
                           .requires(TinkerTables.pattern)
                           .unlockedBy("has_item", has(TinkerTables.pattern))
-                          .save(consumer, location(folder + "book_substitute"));
+                          .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "book_substitute")));
 
     // crafting station -> crafting table upgrade
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.craftingStation)
@@ -91,7 +91,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern("p")
       .pattern("w")
       .unlockedBy("has_item", has(TinkerTables.pattern))
-      .save(consumer, prefix(TinkerTables.craftingStation, folder));
+      .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.craftingStation, folder)));
     // station with log texture
     ShapedRetexturedRecipeBuilder.fromShaped(
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.craftingStation)
@@ -147,7 +147,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
                        .pattern("sCs")
                        .pattern("sws")
                        .unlockedBy("has_item", has(TinkerTables.pattern))
-                       .save(consumer, prefix(TinkerTables.partChest, folder));
+                       .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.partChest, folder)));
     // modifier chest
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.tinkersChest)
                        .define('p', TinkerTables.pattern)
@@ -158,7 +158,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
                        .pattern("lCl")
                        .pattern("lwl")
                        .unlockedBy("has_item", has(TinkerTables.pattern))
-                       .save(consumer, prefix(TinkerTables.tinkersChest, folder));
+                       .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.tinkersChest, folder)));
     // cast chest
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.castChest)
                        .define('c', TinkerTags.Items.GOLD_CASTS)
@@ -169,7 +169,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
                        .pattern("bCb")
                        .pattern("bBb")
                        .unlockedBy("has_item", has(TinkerTags.Items.GOLD_CASTS))
-                       .save(consumer, prefix(TinkerTables.castChest, folder));
+                       .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.castChest, folder)));
 
     // modifier worktable
     ShapedRetexturedRecipeBuilder.fromShaped(
@@ -252,7 +252,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern(" s ")
       .pattern("sss")
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(materialConsumer, wrap(TinkerTables.tinkersAnvil, folder, "_material"));
+      .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(wrap(TinkerTables.tinkersAnvil, folder, "_material")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.MISC, TinkerTables.scorchedAnvil)
       .define('m', fakeStorageBlock)
       .define('s', TinkerTags.Items.SCORCHED_BLOCKS)
@@ -260,7 +260,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern(" s ")
       .pattern("sss")
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(materialConsumer, wrap(TinkerTables.scorchedAnvil, folder, "_material"));
+      .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(wrap(TinkerTables.scorchedAnvil, folder, "_material")));
     materialConsumer = MaterialsConsumerBuilder.shaped("m").build(toolForge);
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.tinkersAnvil)
       .define('m', fakeStorageBlock)
@@ -270,7 +270,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern("mtm")
       .pattern("m m")
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(materialConsumer, location(folder + "seared_forge_material"));
+      .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(location(folder + "seared_forge_material")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.scorchedAnvil)
       .define('m', fakeStorageBlock)
       .define('s', TinkerTags.Items.SCORCHED_BLOCKS)
@@ -279,7 +279,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern("mtm")
       .pattern("m m")
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(materialConsumer, location(folder + "scorched_forge_material"));
+      .save(slimeknights.mantle.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(location(folder + "scorched_forge_material")));
 
     // part swapping
     TinkerStationPartSwappingBuilder.tools(DifferenceIngredient.of(LazyTagIngredient.of(TinkerTags.Items.MULTIPART_TOOL), LazyTagIngredient.of(TinkerTags.Items.UNSWAPPABLE_PARTS)))

@@ -245,7 +245,7 @@ public class SmelteryRecipeBuilder {
   /** Adds a recipe for melting a list of items. Never optional */
   @SuppressWarnings("removal")
   private void minecraftArmorMelting(int cost, String prefix, String name) {
-    Item item = BuiltInRegistries.ITEM.get(Identifier.parse(prefix + '_' + name));
+    Item item = BuiltInRegistries.ITEM.getValue(Identifier.parse(prefix + '_' + name));
     if (item == Items.AIR) {
       throw new IllegalArgumentException("Unknown item name minecraft:" + name);
     }
@@ -290,7 +290,7 @@ public class SmelteryRecipeBuilder {
     assert baseUnit != 0;
     String tagName = tagPrefix + this.name.getPath();
     Consumer<FinishedRecipe> wrapped;
-    Ingredient baseIngredient = Ingredient.of(itemTag(tagName));
+    Ingredient baseIngredient = LazyTagIngredient.of(itemTag(tagName));
     Ingredient ingredient;
     // not everyone sets size, so treat singular as the fallback, means we want anything in the tag that is not sparse or dense
     if (size == Tags.Items.ORE_RATES_SINGULAR) {
@@ -298,7 +298,7 @@ public class SmelteryRecipeBuilder {
       wrapped = withCondition(TagCombinationCondition.difference(itemTag(tagName), TinkerTags.Items.NON_SINGULAR_ORE_RATES));
       // size tag means we want an intersection between the tag and that size
     } else if (size != null) {
-      ingredient = IntersectionIngredient.of(baseIngredient, Ingredient.of(size));
+      ingredient = IntersectionIngredient.of(baseIngredient, LazyTagIngredient.of(size));
       wrapped = withCondition(TagCombinationCondition.intersection(itemTag(tagName), size));
       // default only need it to be in the tag
     } else {
@@ -424,7 +424,7 @@ public class SmelteryRecipeBuilder {
 
   /** Adds melting and casting recipes for the given object */
   public SmelteryRecipeBuilder meltingCasting(float scale, String tagPrefix, String castMaterial, float factor, boolean forceOptional) {
-    return meltingCasting(scale, tagPrefix, Ingredient.of(itemTag(tagPrefix + "s/" + castMaterial)), factor, forceOptional);
+    return meltingCasting(scale, tagPrefix, LazyTagIngredient.of(itemTag(tagPrefix + "s/" + castMaterial)), factor, forceOptional);
   }
 
 
@@ -440,7 +440,7 @@ public class SmelteryRecipeBuilder {
   /** Adds a recipe for melting an metal item with the metal prefix in the name */
   @SuppressWarnings("removal")
   public SmelteryRecipeBuilder metalMelting(float scale, String domain, String path, boolean damagable) {
-    itemMelting(scale, domain + '_' + path, (float)Math.sqrt(scale), new Identifier(domain, name.getPath() + '_' + path), damagable);
+    itemMelting(scale, domain + '_' + path, (float)Math.sqrt(scale), Identifier.fromNamespaceAndPath(domain, name.getPath() + '_' + path), damagable);
     return this;
   }
 
@@ -535,7 +535,7 @@ public class SmelteryRecipeBuilder {
     baseUnit = FluidValues.INGOT;
     damageUnit = FluidValues.NUGGET;
     melting(9, "block", "storage_blocks", 3.0f, false, false);
-    blockCasting(9, Ingredient.EMPTY, false);
+    blockCasting(9, Ingredient.of(), false);
     meltingCasting(1,      TinkerSmeltery.ingotCast,  1.0f, false);
     meltingCasting(1 / 9f, TinkerSmeltery.nuggetCast, 1 / 3f, false);
     // if we set byproducts, we are an ore
@@ -554,7 +554,7 @@ public class SmelteryRecipeBuilder {
     baseUnit = FluidValues.GEM;
     damageUnit = FluidValues.GEM_SHARD;
     melting(storageSize, "block", "storage_blocks", (float)Math.sqrt(storageSize), false, false);
-    blockCasting(storageSize, Ingredient.EMPTY, false);
+    blockCasting(storageSize, Ingredient.of(), false);
     meltingCasting(1, TinkerSmeltery.gemCast, 1.0f, false);
     // if we set byproducts, we are an ore
     if (hasOre) {
@@ -594,7 +594,7 @@ public class SmelteryRecipeBuilder {
   @SuppressWarnings("removal")
   public SmelteryRecipeBuilder oreberry() {
     assert baseUnit == FluidValues.INGOT;
-    itemMelting(1/9f, "oreberry", 1 / 3f, new Identifier("oreberriesreplanted", name.getPath() + "_oreberry"), false);
+    itemMelting(1/9f, "oreberry", 1 / 3f, Identifier.fromNamespaceAndPath("oreberriesreplanted", name.getPath() + "_oreberry"), false);
     return this;
   }
 
