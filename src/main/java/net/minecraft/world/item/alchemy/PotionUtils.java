@@ -80,7 +80,7 @@ public final class PotionUtils {
     if (tag != null && tag.contains(TAG_POTION)) {
       Identifier id = Identifier.tryParse(tag.getStringOr(TAG_POTION, ""));
       if (id != null) {
-        return BuiltInRegistries.POTION.getHolder(id).<Holder<Potion>>map(holder -> holder).orElse(Potions.WATER);
+        return BuiltInRegistries.POTION.get(id).<Holder<Potion>>map(holder -> holder).orElse(Potions.WATER);
       }
     }
     return Potions.WATER;

@@ -103,7 +103,7 @@ public record BreakBlockFluidEffect(float hardness, Map<Enchantment,Integer> enc
         Player player = context.getPlayer();
         boolean removed;
         if (player != null) {
-          removed = state.onDestroyedByPlayer(world, pos, player, true, world.getFluidState(pos));
+          removed = state.onDestroyedByPlayer(world, pos, player, player.getMainHandItem(), true, world.getFluidState(pos));
           if (removed) {
             player.awardStat(Stats.BLOCK_MINED.get(block));
           }

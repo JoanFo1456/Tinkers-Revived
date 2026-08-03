@@ -85,7 +85,7 @@ public class TeleportHelper {
 
       // this logic only runs serverside, so need to use the server controller logic to move the player
       if (entity instanceof ServerPlayer playerMP) {
-        playerMP.connection.teleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), playerMP.getYRot(), playerMP.getXRot(), PACKET_FLAGS);
+        playerMP.connection.teleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), playerMP.getYRot(), playerMP.getXRot());
       } else {
         entity.setPos(event.getTargetX(), event.getTargetY(), event.getTargetZ());
       }

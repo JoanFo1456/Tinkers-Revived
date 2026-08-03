@@ -229,7 +229,7 @@ public class MaterialManager extends SimpleJsonResourceReloadListener<JsonElemen
 
 
     // load modifier tags
-    TagLoader<IMaterial> tagLoader = new TagLoader<IMaterial>((id, required) -> Optional.of(getMaterial(new MaterialId(id))), TAG_FOLDER);
+    TagLoader<IMaterial> tagLoader = new TagLoader<IMaterial>((id, required) -> getMaterial(new MaterialId(id)), TAG_FOLDER);
     this.tags = GenericTagUtil.mapLoaderResults(REGISTRY_KEY, tagLoader.build(tagLoader.load(resourceManagerIn)));
     this.reverseTags = GenericTagUtil.reverseTags(IMaterial::getIdentifier, tags);
     log.info("Loaded {} material tags for {} materials in {} ms", tags.size(), reverseTags.size(), (System.nanoTime() - timeStep) / 1000000f);

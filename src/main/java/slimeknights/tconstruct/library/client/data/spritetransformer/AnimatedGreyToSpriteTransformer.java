@@ -40,7 +40,7 @@ public class AnimatedGreyToSpriteTransformer extends GreyToSpriteTransformer {
   public int getNewColor(int color, int x, int y, int frame) {
     // if fully transparent, just return fully transparent
     // we do not do 0 alpha RGB values to save effort
-    if (ABGR.alpha(color) == 0) {
+    if (ARGB.alpha(color) == 0) {
       return 0x00000000;
     }
     int grey = GreyToColorMapping.getGrey(color);
