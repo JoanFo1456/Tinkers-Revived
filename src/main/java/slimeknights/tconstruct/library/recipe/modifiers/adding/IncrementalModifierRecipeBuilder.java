@@ -87,7 +87,7 @@ public class IncrementalModifierRecipeBuilder extends AbstractModifierRecipeBuil
    * @return  Builder instance
    */
   public IncrementalModifierRecipeBuilder setInput(TagKey<Item> tag, int amountPerItem, int neededPerLevel) {
-    return setInput(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)), amountPerItem, neededPerLevel);
+    return setInput(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tag), amountPerItem, neededPerLevel);
   }
 
 

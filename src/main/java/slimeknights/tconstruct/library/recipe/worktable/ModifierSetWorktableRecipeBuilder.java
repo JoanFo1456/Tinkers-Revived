@@ -46,7 +46,7 @@ public class ModifierSetWorktableRecipeBuilder extends AbstractSizedIngredientRe
 
   /** Sets the tool requirement for this recipe */
   public ModifierSetWorktableRecipeBuilder setTools(TagKey<Item> tag) {
-    return this.setTools(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
+    return this.setTools(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tag));
   }
 
   /** Sets the recipe to allow traits */

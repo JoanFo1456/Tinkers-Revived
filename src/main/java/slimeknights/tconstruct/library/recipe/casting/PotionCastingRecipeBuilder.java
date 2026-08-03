@@ -138,7 +138,7 @@ public class PotionCastingRecipeBuilder extends AbstractRecipeBuilder<PotionCast
    * @return  Builder instance
    */
   public PotionCastingRecipeBuilder setBottle(TagKey<Item> tagIn) {
-    return this.setBottle(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tagIn)));
+    return this.setBottle(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tagIn));
   }
 
   /**

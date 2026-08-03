@@ -132,7 +132,7 @@ public class MaterialIngredient extends NestedIngredient {
    * @return  Material with tag
    */
   public static Ingredient of(TagKey<Item> tag, MaterialVariantId material) {
-    return of(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)), material);
+    return of(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tag), material);
   }
 
   /**
@@ -141,7 +141,7 @@ public class MaterialIngredient extends NestedIngredient {
    * @return  Material with tag
    */
   public static Ingredient of(TagKey<Item> tag) {
-    return of(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
+    return of(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tag));
   }
 
   @Override

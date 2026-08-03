@@ -362,7 +362,7 @@ public final class TinkerFluids extends TinkerModule {
   /** Registers custom brewing recipes. */
   void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
     event.getBuilder().addRecipe(new BottleBrewingRecipe(Ingredient.of(Items.GLASS_BOTTLE), Items.POTION, Items.SPLASH_POTION, new ItemStack(splashBottle)));
-    event.getBuilder().addRecipe(new BottleBrewingRecipe(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(TinkerTags.Items.SPLASH_BOTTLE)), Items.SPLASH_POTION, Items.LINGERING_POTION, new ItemStack(lingeringBottle)));
+    event.getBuilder().addRecipe(new BottleBrewingRecipe(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(TinkerTags.Items.SPLASH_BOTTLE), Items.SPLASH_POTION, Items.LINGERING_POTION, new ItemStack(lingeringBottle)));
     for (SlimeType slime : SlimeType.values()) {
       event.getBuilder().addRecipe(new BrewingRecipe(Ingredient.of(Items.GLASS_BOTTLE), Ingredient.of(TinkerWorld.congealedSlime.get(slime)), new ItemStack(TinkerFluids.slimeBottle.get(slime))));
     }

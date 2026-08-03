@@ -201,7 +201,7 @@ public class ItemCastingRecipeBuilder extends AbstractRecipeBuilder<ItemCastingR
    * @return  Builder instance
    */
   public ItemCastingRecipeBuilder setCast(TagKey<Item> tagIn, boolean consumed) {
-    return this.setCast(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tagIn)), consumed);
+    return this.setCast(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tagIn), consumed);
   }
 
   /**

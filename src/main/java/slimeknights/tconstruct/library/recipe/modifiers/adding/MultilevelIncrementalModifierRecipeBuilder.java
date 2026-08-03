@@ -71,7 +71,7 @@ public class MultilevelIncrementalModifierRecipeBuilder extends AbstractMultilev
    * @return  Builder instance
    */
   public MultilevelIncrementalModifierRecipeBuilder setInput(TagKey<Item> tag, int amountPerItem, int neededPerLevel) {
-    return setInput(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)), amountPerItem, neededPerLevel);
+    return setInput(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tag), amountPerItem, neededPerLevel);
   }
 
 

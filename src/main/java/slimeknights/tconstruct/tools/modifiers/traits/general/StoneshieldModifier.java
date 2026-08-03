@@ -19,7 +19,7 @@ public class StoneshieldModifier extends Modifier {
     super.registerHooks(hookBuilder);
     hookBuilder.addModule(new CapacityBarModule(LevelingInt.eachLevel(100), ToolStats.DURABILITY));
     hookBuilder.addModule(new DurabilityShieldModule(0x7F7F7F));
-    hookBuilder.addModule(LootToCapacityModule.consume(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(TinkerTags.Items.STONESHIELDS))).amount(3).eachLevel(0.2f));
+    hookBuilder.addModule(LootToCapacityModule.consume(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(TinkerTags.Items.STONESHIELDS)).amount(3).eachLevel(0.2f));
   }
 
   @Override

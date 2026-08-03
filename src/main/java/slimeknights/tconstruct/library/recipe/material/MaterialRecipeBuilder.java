@@ -37,7 +37,7 @@ public class MaterialRecipeBuilder extends AbstractRecipeBuilder<MaterialRecipeB
    * @return  Builder instance
    */
   public MaterialRecipeBuilder setIngredient(TagKey<Item> tag) {
-    return this.setIngredient(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
+    return this.setIngredient(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tag));
   }
 
   /**

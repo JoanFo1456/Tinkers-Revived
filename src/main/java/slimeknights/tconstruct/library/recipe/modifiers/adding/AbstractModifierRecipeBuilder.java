@@ -29,7 +29,7 @@ import static slimeknights.tconstruct.library.modifiers.ModifierEntry.VALID_LEVE
 public abstract class AbstractModifierRecipeBuilder<T extends AbstractModifierRecipeBuilder<T>> extends AbstractRecipeBuilder<T> {
   // shared
   protected final ModifierId result;
-  protected Ingredient tools = Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(TinkerTags.Items.MODIFIABLE));
+  protected Ingredient tools = slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(TinkerTags.Items.MODIFIABLE);
   protected int maxToolSize = ITinkerStationRecipe.DEFAULT_TOOL_STACK_SIZE;
   @Nullable
   protected SlotCount slots;
@@ -67,7 +67,7 @@ public abstract class AbstractModifierRecipeBuilder<T extends AbstractModifierRe
    * @return  Builder instance
    */
   public T setTools(TagKey<Item> tag) {
-    return this.setTools(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(tag)));
+    return this.setTools(slimeknights.tconstruct.library.recipe.ingredient.LazyTagIngredient.of(tag));
   }
 
   /**
