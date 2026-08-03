@@ -25,13 +25,7 @@ public abstract class RetexturedTableBlock extends TabbedTableBlock {
     super(builder);
   }
 
-  @Override
-  public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag flag) {
-    List<Component> tooltip = new java.util.ArrayList<>();
-    RetexturedHelper.addTooltip(stack, tooltip, flag);
-  
-    tooltip.forEach(tooltipConsumer);
-  }
+  // 26.1.2 removed block-level appendHoverText; the retextured tooltip is now shown by RetexturedBlockItem at item level.
 
   @Override
   public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
@@ -40,7 +34,7 @@ public abstract class RetexturedTableBlock extends TabbedTableBlock {
   }
 
   @Override
-  public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader world, BlockPos pos, Player player) {
+  public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
     return RetexturedBlock.getPickBlock(world, pos, state);
   }
 }

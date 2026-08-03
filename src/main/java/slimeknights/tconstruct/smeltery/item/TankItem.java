@@ -90,9 +90,9 @@ public class TankItem extends BlockTooltipItem {
       }
     }
     else {
-      super.appendHoverText(stack, context, tooltip, flag);
+      super.appendHoverText(stack, context, tooltipDisplay, tooltip::add, flag);
     }
-  
+
     tooltip.forEach(tooltipConsumer);
   }
 
@@ -322,7 +322,7 @@ public class TankItem extends BlockTooltipItem {
   public static String getSubtype(ItemStack stack) {
     CompoundTag nbt = TagUtil.getTag(stack);
     if (nbt != null && nbt.contains(NBTTags.TANK)) {
-      return nbt.getCompound(NBTTags.TANK).getString("FluidName");
+      return nbt.getCompoundOrEmpty(NBTTags.TANK).getStringOr("FluidName", "");
     }
     return "";
   }
@@ -343,7 +343,7 @@ public class TankItem extends BlockTooltipItem {
         tank = TankType.FUEL_TANK;
         gauge = TankType.FUEL_GAUGE;
       }
-      Identifier fluidName = holder.key().location();
+      Identifier fluidName = holder.key().identifier();
       output.accept(setTank(TinkerSmeltery.searedLantern, fluidName, FluidValues.LANTERN_CAPACITY));
       output.accept(fillTank(TinkerSmeltery.searedTank, tank, fluidName));
       output.accept(fillTank(TinkerSmeltery.searedTank, gauge, fluidName));

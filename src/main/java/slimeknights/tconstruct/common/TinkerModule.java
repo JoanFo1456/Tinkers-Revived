@@ -102,6 +102,7 @@ public abstract class TinkerModule {
   protected static final Item.Properties UNSTACKABLE_PROPS = new Item.Properties().stacksTo(1);
   protected static final Function<Block,? extends BlockItem> BLOCK_ITEM = (b) -> new BlockItem(b, ITEM_PROPS);
   protected static final Function<Block,? extends BlockItem> TOOLTIP_BLOCK_ITEM = (b) -> new BlockTooltipItem(b, ITEM_PROPS);
+  protected static final Function<Block,? extends BlockItem> RETEXTURED_BLOCK_ITEM = (b) -> new slimeknights.tconstruct.shared.item.RetexturedBlockItem(b, ITEM_PROPS);
   protected static final Function<Block,? extends BlockItem> UNSTACKABLE_BLOCK_ITEM = (b) -> new BlockTooltipItem(b, UNSTACKABLE_PROPS);
   protected static final Supplier<Item> TOOLTIP_ITEM = () -> new TooltipItem(ITEM_PROPS);
 

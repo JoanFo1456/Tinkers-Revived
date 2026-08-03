@@ -87,13 +87,7 @@ public abstract class HeatingControllerBlock extends ControllerBlock {
     return true;
   }
 
-  @Override
-  public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipConsumer, TooltipFlag pFlag) {
-    List<Component> tooltip = new java.util.ArrayList<>();
-    RetexturedHelper.addTooltip(stack, tooltip);
-  
-    tooltip.forEach(tooltipConsumer);
-  }
+  // 26.1.2 removed block-level appendHoverText; the retextured tooltip is now shown by RetexturedBlockItem at item level.
 
   @Override
   public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
@@ -102,7 +96,7 @@ public abstract class HeatingControllerBlock extends ControllerBlock {
   }
 
   @Override
-  public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+  public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
     return RetexturedBlock.getPickBlock(world, pos, state);
   }
 }

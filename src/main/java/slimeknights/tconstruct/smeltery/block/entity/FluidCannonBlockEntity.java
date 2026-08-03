@@ -72,6 +72,15 @@ public class FluidCannonBlockEntity extends TankBlockEntity implements ITankInve
     this.block = block;
   }
 
+  @Override
+  public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+    super.preRemoveSideEffects(pos, state);
+    // 26.1.2 removed Block#onRemove; drop the held item when the cannon is removed (formerly in FluidCannonBlock#onRemove)
+    if (this.level != null) {
+      slimeknights.mantle.block.InventoryBlock.dropInventoryItems(this.level, pos, itemHandler);
+    }
+  }
+
   /** Called when a player interacts with the fluid cannon */
   public void interact(Player player, InteractionHand hand, boolean clickedTank) {
     // skip client side, and skip if the recipe already started

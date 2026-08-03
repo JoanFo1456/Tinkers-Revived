@@ -117,10 +117,12 @@ public class FaucetBlock extends Block implements EntityBlock {
 
   @SuppressWarnings("deprecation")
   @Override
-  public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+  public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, @org.jetbrains.annotations.Nullable net.minecraft.world.level.redstone.Orientation orientation, boolean isMoving) {
     if (worldIn.isClientSide()) {
       return;
     }
+    // 26.1.2 replaced fromPos with an Orientation; reconstruct the neighbor position from the update direction
+    BlockPos fromPos = orientation != null ? pos.relative(orientation.getFront()) : pos;
     getFaucet(worldIn, pos).ifPresent(faucet -> {
       faucet.neighborChanged(fromPos);
       faucet.handleRedstone(worldIn.hasNeighborSignal(pos));
@@ -145,7 +147,8 @@ public class FaucetBlock extends Block implements EntityBlock {
 
   /* Display */
 
-  private static final Vector3f RED = new Vector3f(1.0F, 0.0F, 0.0F);
+  // 26.1.2 DustParticleOptions now takes a packed RGB int instead of a Vector3f
+  private static final int RED = 0xFF0000;
 
   /**
    * Adds particles to the faucet

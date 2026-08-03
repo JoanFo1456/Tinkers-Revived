@@ -75,14 +75,8 @@ public class FluidCannonBlock extends SearedTankBlock implements IFluidCannon {
     return InteractionResult.SUCCESS;
   }
 
-  @Deprecated
-  @Override
-  public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-    if (state.getBlock() != newState.getBlock() && world.getBlockEntity(pos) instanceof FluidCannonBlockEntity cannon) {
-      InventoryBlock.dropInventoryItems(world, pos, cannon.getItemHandler());
-    }
-    super.onRemove(state, world, pos, newState, isMoving);
-  }
+  // Formerly overrode Block#onRemove to drop the held item; in 26.1.2 that lives in
+  // FluidCannonBlockEntity#preRemoveSideEffects, so no block-level override is needed.
 
 
   /* Facing */
@@ -114,7 +108,7 @@ public class FluidCannonBlock extends SearedTankBlock implements IFluidCannon {
   @SuppressWarnings("deprecation")
   @Deprecated
   @Override
-  public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+  public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, @org.jetbrains.annotations.Nullable net.minecraft.world.level.redstone.Orientation orientation, boolean isMoving) {
     boolean hasSignal = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.above());
     boolean wasTriggered = state.getValue(TRIGGERED);
     if (hasSignal && !wasTriggered) {

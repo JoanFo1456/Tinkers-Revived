@@ -127,7 +127,7 @@ public class ProxyTankBlock extends Block implements EntityBlock {
 
   @Deprecated
   @Override
-  public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
+  public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos, net.minecraft.core.Direction direction) {
     if (world.getBlockEntity(pos) instanceof ProxyTankBlockEntity tank) {
       return tank.getComparatorStrength();
     }

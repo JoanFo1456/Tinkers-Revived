@@ -36,10 +36,13 @@ public class AlloyerBlock extends TinyMultiblockControllerBlock {
   }
 
   @Override
-  public void neighborChanged(BlockState state, Level world, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
-    Direction direction = Util.directionFromOffset(pos, fromPos);
-    if (direction != Direction.DOWN) {
-      BlockEntityHelper.get(AlloyerBlockEntity.class, world, pos).ifPresent(te -> te.neighborChanged(direction));
+  public void neighborChanged(BlockState state, Level world, BlockPos pos, Block blockIn, @org.jetbrains.annotations.Nullable net.minecraft.world.level.redstone.Orientation orientation, boolean isMoving) {
+    // 26.1.2 replaced fromPos with an Orientation; getFront() is the direction the update came from
+    if (orientation != null) {
+      Direction direction = orientation.getFront();
+      if (direction != Direction.DOWN) {
+        BlockEntityHelper.get(AlloyerBlockEntity.class, world, pos).ifPresent(te -> te.neighborChanged(direction));
+      }
     }
   }
 
@@ -54,7 +57,7 @@ public class AlloyerBlock extends TinyMultiblockControllerBlock {
   }
 
   @Override
-  public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+  protected boolean propagatesSkylightDown(BlockState state) {
     return true;
   }
 
