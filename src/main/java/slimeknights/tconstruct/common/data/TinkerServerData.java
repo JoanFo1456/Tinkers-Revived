@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import slimeknights.tconstruct.common.data.AdvancementsProvider;
 import slimeknights.tconstruct.common.data.tags.BiomeTagProvider;
 import slimeknights.tconstruct.common.data.tags.BlockEntityTypeTagProvider;
 import slimeknights.tconstruct.common.data.tags.BlockTagProvider;
@@ -65,5 +66,8 @@ public final class TinkerServerData {
     // station layouts + mob spawn equipment
     generator.addProvider(true, new StationSlotLayoutProvider(packOutput));
     generator.addProvider(true, new MobEquipmentProvider(packOutput));
+
+    // advancements
+    generator.addProvider(true, new AdvancementsProvider(packOutput));
   }
 }

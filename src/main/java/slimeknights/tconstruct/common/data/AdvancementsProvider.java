@@ -95,6 +95,9 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class AdvancementsProvider extends GenericDataProvider {
+  /** 26.1: ItemPredicate/EntityPredicate builders and recipe builders now require a HolderGetter; the built-in registry lookup suffices during datagen. */
+  private static final net.minecraft.core.HolderGetter<net.minecraft.world.item.Item> ITEMS = net.minecraft.core.registries.BuiltInRegistries.ITEM;
+  private static final net.minecraft.core.HolderGetter<net.minecraft.world.entity.EntityType<?>> ENTITIES = net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE;
 
   /** Advancment consumer instance */
   protected Consumer<AdvancementHolder> advancementConsumer;
@@ -416,7 +419,7 @@ public class AdvancementsProvider extends GenericDataProvider {
       builder.addCriterion("magma_cream", hasItem(Items.MAGMA_CREAM));
     });
     builder(TinkerGadgets.piggyBackpack, resource("world/piggybackpack"), tinkersGadgetry, AdvancementType.GOAL, builder ->
-      builder.addCriterion("used_pack", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(ItemPredicate.Builder.item().of(TinkerGadgets.piggyBackpack), EntityPredicate.wrap(EntityPredicate.Builder.entity().of(EntityType.PIG).build()))));
+      builder.addCriterion("used_pack", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(ItemPredicate.Builder.item().of(ITEMS, TinkerGadgets.piggyBackpack), java.util.Optional.of(EntityPredicate.wrap(EntityPredicate.Builder.entity().of(ENTITIES, EntityType.PIG).build())))));
     AdvancementHolder slimesuit = builder(new MaterialIdNBT(List.of(MaterialIds.bone, MaterialIds.skyslime)).updateStack(new ItemStack(TinkerTools.slimesuit.get(ArmorType.CHESTPLATE))), resource("world/slimesuit"), skyslimeIsland, AdvancementType.GOAL, builder ->
       TinkerTools.slimesuit.forEach((type, armor) -> builder.addCriterion("crafted_" + type.getName(), hasItem(armor))));
     builder(new MaterialIdNBT(List.of(MaterialIds.glass, MaterialIds.enderslime)).updateStack(new ItemStack(TinkerTools.slimesuit.get(ArmorType.HELMET))),
@@ -475,14 +478,14 @@ public class AdvancementsProvider extends GenericDataProvider {
    * Creates an item predicate for a tag
    */
   private Criterion<?> hasTag(TagKey<Item> tag) {
-    return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(tag).build());
+    return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ITEMS, tag).build());
   }
 
   /**
    * Creates an item predicate for an item
    */
   private Criterion<?> hasItem(ItemLike item) {
-    return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(item).build());
+    return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ITEMS, item).build());
   }
 
   @Override
@@ -574,7 +577,7 @@ public class AdvancementsProvider extends GenericDataProvider {
    */
   protected AdvancementHolder builder(ItemStack display, Identifier name, @Nullable Identifier background, AdvancementType frame, Consumer<Advancement.Builder> consumer) {
     Advancement.Builder builder = Advancement.Builder
-      .advancement().display(display,
+      .advancement().display(new net.minecraft.world.item.ItemStackTemplate(display.typeHolder(), display.getCount(), display.getComponentsPatch()),
                              Component.translatable(makeTranslationKey(name) + ".title"),
                              Component.translatable(makeTranslationKey(name) + ".description"),
                              background, frame, true, frame != AdvancementType.TASK, false);

@@ -143,7 +143,6 @@ sourceSets {
             // stays green; being re-enabled + finished cluster by cluster (tags -> loot -> advancements ->
             // material/modifier/tool JSON). Do not treat as done.
             // ---------------------------------------------------------------------------------------------
-            exclude 'slimeknights/tconstruct/common/data/AdvancementsProvider.java'
             exclude 'slimeknights/tconstruct/common/data/BaseRecipeProvider.java'
             exclude 'slimeknights/tconstruct/common/data/loot/AdvancementLootTableProvider.java'
             exclude 'slimeknights/tconstruct/common/data/loot/BlockLootTableProvider.java'
