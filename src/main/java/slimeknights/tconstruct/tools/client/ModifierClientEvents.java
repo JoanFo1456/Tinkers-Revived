@@ -7,7 +7,7 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
 import net.minecraft.core.component.DataComponents;
@@ -101,9 +101,9 @@ public class ModifierClientEvents {
       if (!player.isInvisible() && player.getMainHandItem().getItem() != Items.FILLED_MAP && ArmorLevelModule.getLevel(player, TinkerDataKeys.SHOW_EMPTY_OFFHAND) > 0) {
         PoseStack matrices = event.getPoseStack();
         matrices.pushPose();
-        // DEFERRED to the render pass: 26.1.2 RenderArmEvent switched to the submit-node pipeline (getSubmitNodeCollector),
-        // dropping getMultiBufferSource/getEquipProgress/getSwingProgress; renderPlayerArm must be rebuilt to submit nodes.
-        renderPlayerArm(matrices, event.getMultiBufferSource(), event.getPackedLight(), event.getEquipProgress(), event.getSwingProgress(), player.getMainArm().getOpposite());
+        // 26.1.2 RenderHandEvent replaced getMultiBufferSource() with getSubmitNodeCollector() (submit-node pipeline);
+        // getPackedLight/getEquipProgress/getSwingProgress are retained. renderPlayerArm now takes the collector.
+        renderPlayerArm(matrices, event.getSubmitNodeCollector(), event.getPackedLight(), event.getEquipProgress(), event.getSwingProgress(), player.getMainArm().getOpposite());
         matrices.popPose();
         event.setCanceled(true);
       }
@@ -252,7 +252,7 @@ public class ModifierClientEvents {
   }
 
   /** Renders an empty first person arm for the offhand slot overlay. */
-  private static void renderPlayerArm(PoseStack matrices, MultiBufferSource buffer, int light, float equipProgress, float swingProgress, HumanoidArm arm) {
+  private static void renderPlayerArm(PoseStack matrices, SubmitNodeCollector submitNodeCollector, int light, float equipProgress, float swingProgress, HumanoidArm arm) {
     Minecraft mc = Minecraft.getInstance();
     if (!(mc.player instanceof AbstractClientPlayer player)) {
       return;

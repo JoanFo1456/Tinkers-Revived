@@ -3,7 +3,7 @@ package slimeknights.tconstruct.tables.client.inventory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -98,8 +98,17 @@ public abstract class ToolTableScreen<T extends BlockEntity, C extends TabbedCon
   protected void renderArmorStand(GuiGraphicsExtractor graphics) {
     if (this.armorStandPreview != null) {
       Quaternionf pose = new Quaternionf().rotationXYZ(0.43633232F, 0.0F, (float)Math.PI).rotateY(this.armorStandAngle);
-      // DEFERRED to the armor render pass: InventoryScreen.renderEntityInInventory signature changed in 26.1.2 (entity-render pipeline)
-      InventoryScreen.renderEntityInInventory(graphics, this.armorStandX, this.armorStandY, this.armorStandScale, new Vector3f(), pose, null, this.armorStandPreview);
+      // 26.1.2 removed InventoryScreen.renderEntityInInventory(center, scale, pose) in favor of the entity-render-state pipeline.
+      // Inline the render-state build (mirrors InventoryScreen#renderEntityInInventoryFollowsAngle) so we keep the exact custom
+      // tilt pose above (which the FollowsAngle overload would overwrite from mouse-derived angles). Bbox derived from the old
+      // center (armorStandX, armorStandY) + scale; positioning/scale is an in-game-validation flag.
+      EntityRenderState renderState = Minecraft.getInstance().getEntityRenderDispatcher()
+        .getRenderer(this.armorStandPreview).createRenderState(this.armorStandPreview, 1.0F);
+      renderState.shadowPieces.clear();
+      renderState.outlineColor = 0;
+      int s = this.armorStandScale;
+      graphics.entity(renderState, this.armorStandScale, new Vector3f(), pose, null,
+        this.armorStandX - s, this.armorStandY - 2 * s, this.armorStandX + s, this.armorStandY + s);
 
       graphics.blit(RenderPipelines.GUI_TEXTURED, ICON_TEXTURE, armorStandX - 16, armorStandY - 16, 0f, 184f, 32, 32, 256, 256);
     }
