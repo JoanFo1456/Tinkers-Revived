@@ -1,15 +1,13 @@
 {
   "type": "tconstruct:ore_melting",
-  "id": "tconstruct:smeltery/melting/metal/gold/nether_gold_ore",
   "byproducts": [
     {
       "amount": 90,
       "tag": "c:molten_copper"
     }
   ],
-  "ingredient": {
-    "item": "minecraft:nether_gold_ore"
-  },
+  "id": "tconstruct:smeltery/melting/metal/gold/nether_gold_ore",
+  "ingredient": "minecraft:nether_gold_ore",
   "rate": "metal",
   "result": {
     "amount": 90,

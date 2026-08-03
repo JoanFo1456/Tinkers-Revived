@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/melting/glass/block",
-  "ingredient": {
-    "tag": "c:glass/silica"
-  },
+  "ingredient": "#c:glass_blocks/cheap",
   "result": {
     "amount": 1000,
     "fluid": "tconstruct:molten_glass"

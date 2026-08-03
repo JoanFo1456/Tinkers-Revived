@@ -1,22 +1,22 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/ability/trick_quiver",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/ability/trick_quiver",
   "inputs": [
     {
-      "item": "tconstruct:silky_cloth"
+      "ingredient": "tconstruct:silky_cloth"
     },
     {
-      "item": "tconstruct:sky_slime_vine"
+      "ingredient": "tconstruct:sky_slime_vine"
     },
     {
-      "item": "tconstruct:silky_cloth"
+      "ingredient": "tconstruct:silky_cloth"
     },
     {
-      "item": "tconstruct:sky_slime_vine"
+      "ingredient": "tconstruct:sky_slime_vine"
     },
     {
-      "item": "tconstruct:sky_slime_vine"
+      "ingredient": "tconstruct:sky_slime_vine"
     }
   ],
   "result": "tconstruct:trick_quiver",
@@ -24,14 +24,10 @@
     "abilities": 1
   },
   "tools": {
-    "type": "neoforge:intersection",
+    "neoforge:ingredient_type": "neoforge:intersection",
     "children": [
-      {
-        "tag": "tconstruct:modifiable/ranged/bows"
-      },
-      {
-        "tag": "tconstruct:modifiable/interactable"
-      }
+      "#tconstruct:modifiable/ranged/bows",
+      "#tconstruct:modifiable/interactable"
     ]
   }
 }

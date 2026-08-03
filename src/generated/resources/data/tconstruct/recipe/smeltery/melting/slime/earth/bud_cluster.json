@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:ore_melting",
   "id": "tconstruct:smeltery/melting/slime/earth/bud_cluster",
-  "ingredient": {
-    "item": "tconstruct:earth_slime_crystal_cluster"
-  },
+  "ingredient": "tconstruct:earth_slime_crystal_cluster",
   "rate": "gem",
   "result": {
     "amount": 1000,

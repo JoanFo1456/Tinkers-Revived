@@ -1,17 +1,13 @@
 {
-  "type": "tconstruct:molding_table",
-  "id": "tconstruct:smeltery/casts/red_sand/molding/wires",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:wires"
     }
   ],
-  "material": {
-    "tag": "tconstruct:casts/red_sand"
-  },
-  "pattern": {
-    "tag": "c:wires"
-  },
+  "type": "tconstruct:molding_table",
+  "id": "tconstruct:smeltery/casts/red_sand/molding/wires",
+  "material": "#tconstruct:casts/red_sand",
+  "pattern": "#c:wires",
   "result": "tconstruct:wire_red_sand_cast"
 }

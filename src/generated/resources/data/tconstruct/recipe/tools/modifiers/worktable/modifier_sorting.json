@@ -2,6 +2,6 @@
   "type": "tconstruct:modifier_sorting",
   "id": "tconstruct:tools/modifiers/worktable/modifier_sorting",
   "inputs": {
-    "item": "minecraft:compass"
+    "ingredient": "minecraft:compass"
   }
 }

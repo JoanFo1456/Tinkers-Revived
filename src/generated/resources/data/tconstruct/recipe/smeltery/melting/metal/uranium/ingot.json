@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/uranium/ingot",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/uranium"
     }
   ],
-  "ingredient": {
-    "tag": "c:ingots/uranium"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/uranium/ingot",
+  "ingredient": "#c:ingots/uranium",
   "result": {
     "amount": 90,
     "tag": "c:molten_uranium"

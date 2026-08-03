@@ -1,20 +1,18 @@
 {
-  "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casting/metal/silver/coin_gold_cast",
-  "cast": {
-    "tag": "tconstruct:casts/multi_use/coin"
-  },
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:coins/silver"
     }
   ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/coin",
   "cooling_time": 35,
   "fluid": {
     "amount": 30,
     "tag": "c:molten_silver"
   },
+  "id": "tconstruct:smeltery/casting/metal/silver/coin_gold_cast",
   "result": {
     "tag": "c:coins/silver"
   }

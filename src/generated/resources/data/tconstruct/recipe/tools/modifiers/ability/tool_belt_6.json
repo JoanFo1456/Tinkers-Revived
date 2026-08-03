@@ -1,21 +1,19 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/ability/tool_belt_6",
   "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/ability/tool_belt_6",
   "inputs": [
     {
-      "item": "minecraft:leather"
+      "ingredient": "minecraft:leather"
     },
     {
-      "tag": "c:ingots/manyullyn"
+      "ingredient": "#c:ingots/manyullyn"
     },
     {
-      "item": "minecraft:leather"
+      "ingredient": "minecraft:leather"
     }
   ],
   "level": 6,
   "result": "tconstruct:tool_belt",
-  "tools": {
-    "tag": "tconstruct:modifiable/armor/leggings"
-  }
+  "tools": "#tconstruct:modifiable/armor/leggings"
 }

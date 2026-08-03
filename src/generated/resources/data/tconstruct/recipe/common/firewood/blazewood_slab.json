@@ -3,9 +3,7 @@
   "category": "building",
   "group": "tconstruct:blazewood_slab",
   "key": {
-    "B": {
-      "item": "tconstruct:blazewood"
-    }
+    "B": "tconstruct:blazewood"
   },
   "pattern": [
     "BBB"
@@ -13,6 +11,5 @@
   "result": {
     "count": 6,
     "id": "tconstruct:blazewood_slab"
-  },
-  "show_notification": true
+  }
 }

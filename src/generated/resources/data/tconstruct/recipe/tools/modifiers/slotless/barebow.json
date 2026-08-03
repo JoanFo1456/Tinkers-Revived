@@ -1,21 +1,19 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/slotless/barebow",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/slotless/barebow",
   "inputs": [
     {
-      "tag": "c:strings"
+      "ingredient": "#c:strings"
     },
     {
-      "tag": "c:rods/wooden"
+      "ingredient": "#c:rods/wooden"
     },
     {
-      "tag": "c:strings"
+      "ingredient": "#c:strings"
     }
   ],
   "level": 1,
   "result": "tconstruct:barebow",
-  "tools": {
-    "tag": "tconstruct:modifiable/ranged/bows"
-  }
+  "tools": "#tconstruct:modifiable/ranged/bows"
 }

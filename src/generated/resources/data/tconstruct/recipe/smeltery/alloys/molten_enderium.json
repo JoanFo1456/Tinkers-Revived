@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:alloy",
-  "id": "tconstruct:smeltery/alloys/molten_enderium",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -11,6 +9,8 @@
       "tag": "c:ingots/lead"
     }
   ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_enderium",
   "inputs": [
     {
       "amount": 270,

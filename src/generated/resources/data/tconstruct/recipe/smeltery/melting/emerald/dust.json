@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/emerald/dust",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:dusts/emerald"
     }
   ],
-  "ingredient": {
-    "tag": "c:dusts/emerald"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/emerald/dust",
+  "ingredient": "#c:dusts/emerald",
   "result": {
     "amount": 100,
     "fluid": "tconstruct:molten_emerald"

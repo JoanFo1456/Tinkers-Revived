@@ -1,11 +1,7 @@
 {
   "type": "tconstruct:overslime_modifier",
   "id": "tconstruct:tools/modifiers/slotless/overslime/sky_congealed",
-  "ingredient": {
-    "item": "tconstruct:sky_congealed_slime"
-  },
+  "ingredient": "tconstruct:sky_congealed_slime",
   "restore_amount": 200,
-  "tools": {
-    "tag": "tconstruct:modifiable/durability"
-  }
+  "tools": "#tconstruct:modifiable/durability"
 }

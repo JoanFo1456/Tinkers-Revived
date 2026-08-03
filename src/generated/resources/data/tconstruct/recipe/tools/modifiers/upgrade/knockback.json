@@ -1,13 +1,13 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/knockback",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/knockback",
   "inputs": [
     {
-      "item": "minecraft:piston"
+      "ingredient": "minecraft:piston"
     },
     {
-      "item": "minecraft:slime_block"
+      "ingredient": "minecraft:slime_block"
     }
   ],
   "level": {
@@ -18,11 +18,7 @@
     "upgrades": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/melee"
-    },
-    {
-      "tag": "tconstruct:modifiable/armor/chestplate"
-    }
+    "#tconstruct:modifiable/melee",
+    "#tconstruct:modifiable/armor/chestplate"
   ]
 }

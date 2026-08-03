@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:alloy",
-  "id": "tconstruct:smeltery/alloys/molten_lumium",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -20,6 +18,8 @@
       "tag": "c:glowstone"
     }
   ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_lumium",
   "inputs": [
     {
       "amount": 270,

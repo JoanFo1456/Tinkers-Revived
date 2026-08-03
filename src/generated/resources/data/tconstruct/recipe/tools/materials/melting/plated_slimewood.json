@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:material_melting",
-  "id": "tconstruct:tools/materials/melting/plated_slimewood",
   "neoforge:conditions": [
     {
       "type": "neoforge:or",
@@ -16,6 +14,8 @@
       ]
     }
   ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/plated_slimewood",
   "input": "tconstruct:plated_slimewood",
   "result": {
     "amount": 90,

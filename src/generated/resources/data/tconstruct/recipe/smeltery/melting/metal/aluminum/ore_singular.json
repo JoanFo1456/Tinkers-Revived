@@ -1,13 +1,4 @@
 {
-  "type": "tconstruct:ore_melting",
-  "id": "tconstruct:smeltery/melting/metal/aluminum/ore_singular",
-  "byproducts": [
-    {
-      "amount": 180,
-      "rate": "metal",
-      "tag": "c:molten_iron"
-    }
-  ],
   "neoforge:conditions": [
     {
       "type": "mantle:tag_combination_filled",
@@ -15,14 +6,19 @@
       "match": "c:ores/aluminum"
     }
   ],
-  "ingredient": {
-    "type": "neoforge:difference",
-    "base": {
-      "tag": "c:ores/aluminum"
-    },
-    "subtracted": {
-      "tag": "tconstruct:non_singular_ore_rates"
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 180,
+      "rate": "metal",
+      "tag": "c:molten_iron"
     }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/aluminum/ore_singular",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#c:ores/aluminum",
+    "subtracted": "#tconstruct:non_singular_ore_rates"
   },
   "rate": "metal",
   "result": {

@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/melting/metal/iron/reinforcement",
-  "ingredient": {
-    "item": "tconstruct:iron_reinforcement"
-  },
+  "ingredient": "tconstruct:iron_reinforcement",
   "result": {
     "amount": 90,
     "tag": "c:molten_iron"

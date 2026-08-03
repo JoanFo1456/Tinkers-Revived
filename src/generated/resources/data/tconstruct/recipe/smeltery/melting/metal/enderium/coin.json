@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/enderium/coin",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:coins/enderium"
     }
   ],
-  "ingredient": {
-    "tag": "c:coins/enderium"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/enderium/coin",
+  "ingredient": "#c:coins/enderium",
   "result": {
     "amount": 30,
     "tag": "c:molten_enderium"

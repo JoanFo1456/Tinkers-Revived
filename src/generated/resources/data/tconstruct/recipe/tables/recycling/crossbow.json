@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:part_builder_recycling",
   "id": "tconstruct:tables/recycling/crossbow",
-  "pattern": {
-    "item": "tconstruct:venom_bottle"
-  },
+  "pattern": "tconstruct:venom_bottle",
   "results": {
     "tconstruct:bowstring": {
       "count": 2,
@@ -18,7 +16,5 @@
       "item": "minecraft:stick"
     }
   },
-  "tool": {
-    "item": "minecraft:crossbow"
-  }
+  "tool": "minecraft:crossbow"
 }

@@ -3,7 +3,5 @@
   "id": "tconstruct:tools/armor/travelers/boots_leather",
   "index": 1,
   "item_cost": 2,
-  "tools": {
-    "item": "tconstruct:travelers_boots"
-  }
+  "tools": "tconstruct:travelers_boots"
 }

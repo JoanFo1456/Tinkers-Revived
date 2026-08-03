@@ -2,15 +2,9 @@
   "type": "mantle:crafting_shaped_retextured",
   "category": "misc",
   "key": {
-    "m": {
-      "tag": "tconstruct:anvil_metal"
-    },
-    "s": {
-      "tag": "tconstruct:seared_blocks"
-    },
-    "t": {
-      "item": "tconstruct:tinker_station"
-    }
+    "m": "#tconstruct:anvil_metal",
+    "s": "#tconstruct:seared_blocks",
+    "t": "tconstruct:tinker_station"
   },
   "match_all": true,
   "pattern": [
@@ -19,13 +13,12 @@
     "m m"
   ],
   "result": {
+    "id": "tconstruct:tinkers_anvil",
     "nbt": {
       "display": {
         "Name": "{\"translate\":\"block.tconstruct.tool_forge\"}"
       }
-    },
-    "id": "tconstruct:tinkers_anvil"
+    }
   },
-  "show_notification": true,
   "texture": "m"
 }

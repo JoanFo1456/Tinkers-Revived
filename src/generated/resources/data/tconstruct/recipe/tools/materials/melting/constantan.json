@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:material_melting",
-  "id": "tconstruct:tools/materials/melting/constantan",
   "neoforge:conditions": [
     {
       "type": "neoforge:or",
@@ -16,6 +14,8 @@
       ]
     }
   ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/constantan",
   "input": "tconstruct:constantan",
   "result": {
     "amount": 90,

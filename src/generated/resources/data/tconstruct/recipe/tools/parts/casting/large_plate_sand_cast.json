@@ -1,10 +1,8 @@
 {
   "type": "tconstruct:table_casting_material",
-  "id": "tconstruct:tools/parts/casting/large_plate_sand_cast",
-  "cast": {
-    "tag": "tconstruct:casts/single_use/large_plate"
-  },
+  "cast": "#tconstruct:casts/single_use/large_plate",
   "cast_consumed": true,
+  "id": "tconstruct:tools/parts/casting/large_plate_sand_cast",
   "item_cost": 4,
   "result": "tconstruct:large_plate"
 }

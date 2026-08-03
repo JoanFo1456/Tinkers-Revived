@@ -1,15 +1,15 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/slotless/redirected",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/slotless/redirected",
   "inputs": [
     {
-      "item": "minecraft:dragon_breath"
+      "ingredient": "minecraft:dragon_breath"
     }
   ],
   "result": "tconstruct:redirected",
   "tools": {
-    "type": "tconstruct:tool_hook",
+    "neoforge:ingredient_type": "tconstruct:tool_hook",
     "hook": "tconstruct:rebalanced_trait",
     "tag": "tconstruct:modifiable/ammo"
   }

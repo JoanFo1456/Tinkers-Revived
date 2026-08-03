@@ -1,15 +1,13 @@
 {
   "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/seared/glass_soul",
   "byproducts": [
     {
       "amount": 1000,
       "fluid": "tconstruct:liquid_soul"
     }
   ],
-  "ingredient": {
-    "item": "tconstruct:seared_soul_glass"
-  },
+  "id": "tconstruct:smeltery/melting/seared/glass_soul",
+  "ingredient": "tconstruct:seared_soul_glass",
   "result": {
     "amount": 1000,
     "fluid": "tconstruct:seared_stone"

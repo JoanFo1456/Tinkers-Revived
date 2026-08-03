@@ -1,11 +1,9 @@
 {
   "type": "tconstruct:incremental_modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/sharpness_from_block",
   "allow_crystal": false,
   "amount_per_item": 4,
-  "input": {
-    "tag": "c:storage_blocks/quartz"
-  },
+  "id": "tconstruct:tools/modifiers/upgrade/sharpness_from_block",
+  "input": "minecraft:quartz_block",
   "leftover": "minecraft:quartz",
   "level": {
     "max": 5
@@ -15,7 +13,5 @@
   "slots": {
     "upgrades": 1
   },
-  "tools": {
-    "tag": "tconstruct:modifiable/melee"
-  }
+  "tools": "#tconstruct:modifiable/melee"
 }

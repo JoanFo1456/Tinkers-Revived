@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/dawnstone/nugget",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -12,9 +10,9 @@
       "tag": "c:molten_dawnstone"
     }
   ],
-  "ingredient": {
-    "tag": "c:nuggets/dawnstone"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/dawnstone/nugget",
+  "ingredient": "#c:nuggets/dawnstone",
   "result": {
     "amount": 10,
     "tag": "c:molten_dawnstone"

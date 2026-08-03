@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/silver/sheetmetal",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:sheetmetals/silver"
     }
   ],
-  "ingredient": {
-    "tag": "c:sheetmetals/silver"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/silver/sheetmetal",
+  "ingredient": "#c:sheetmetals/silver",
   "result": {
     "amount": 90,
     "tag": "c:molten_silver"

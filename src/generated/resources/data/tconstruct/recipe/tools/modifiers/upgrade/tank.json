@@ -1,11 +1,11 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/tank",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/tank",
   "inputs": [
     {
-      "type": "tconstruct:no_container",
-      "tag": "tconstruct:tanks"
+      "neoforge:ingredient_type": "tconstruct:no_container",
+      "match": "#tconstruct:tanks"
     }
   ],
   "result": "tconstruct:tank",
@@ -13,11 +13,7 @@
     "upgrades": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/held"
-    },
-    {
-      "tag": "tconstruct:modifiable/armor"
-    }
+    "#tconstruct:modifiable/held",
+    "#tconstruct:modifiable/armor"
   ]
 }

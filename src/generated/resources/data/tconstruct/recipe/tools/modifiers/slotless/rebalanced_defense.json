@@ -1,22 +1,22 @@
 {
   "type": "tconstruct:swappable_modifier",
-  "id": "tconstruct:tools/modifiers/slotless/rebalanced_defense",
   "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/rebalanced_defense",
   "inputs": [
     {
-      "tag": "c:nuggets/cobalt"
+      "ingredient": "#c:nuggets/cobalt"
     },
     {
-      "item": "minecraft:end_crystal"
+      "ingredient": "minecraft:end_crystal"
     },
     {
-      "tag": "c:nuggets/cobalt"
+      "ingredient": "#c:nuggets/cobalt"
     },
     {
-      "item": "tconstruct:earth_slime_crystal_block"
+      "ingredient": "tconstruct:earth_slime_crystal_block"
     },
     {
-      "item": "tconstruct:earth_slime_crystal_block"
+      "ingredient": "tconstruct:earth_slime_crystal_block"
     }
   ],
   "result": {
@@ -24,19 +24,16 @@
     "value": "defense"
   },
   "tools": {
-    "type": "neoforge:intersection",
+    "neoforge:ingredient_type": "neoforge:intersection",
     "children": [
-      [
-        {
-          "tag": "tconstruct:modifiable/armor"
-        },
-        {
-          "tag": "tconstruct:modifiable/held"
-        }
-      ],
       {
-        "tag": "tconstruct:modifiable/bonus_slots"
-      }
+        "neoforge:ingredient_type": "neoforge:compound",
+        "children": [
+          "#tconstruct:modifiable/armor",
+          "#tconstruct:modifiable/held"
+        ]
+      },
+      "#tconstruct:modifiable/bonus_slots"
     ]
   }
 }

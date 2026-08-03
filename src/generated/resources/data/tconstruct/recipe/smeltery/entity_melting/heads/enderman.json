@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/entity_melting/heads/enderman",
-  "ingredient": {
-    "item": "tconstruct:enderman_head"
-  },
+  "ingredient": "tconstruct:enderman_head",
   "result": {
     "amount": 500,
     "tag": "c:ender"

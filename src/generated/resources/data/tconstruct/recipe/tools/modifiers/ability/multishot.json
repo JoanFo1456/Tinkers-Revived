@@ -1,29 +1,27 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/ability/multishot",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/ability/multishot",
   "inputs": [
     {
-      "item": "minecraft:piston"
+      "ingredient": "minecraft:piston"
     },
     {
-      "tag": "c:ingots/steel"
+      "ingredient": "#c:ingots/steel"
     },
     {
-      "item": "minecraft:piston"
+      "ingredient": "minecraft:piston"
     },
     {
-      "tag": "c:slimeball/ichor"
+      "ingredient": "#c:slimeball/ichor"
     },
     {
-      "tag": "c:slimeball/ichor"
+      "ingredient": "#c:slimeball/ichor"
     }
   ],
   "result": "tconstruct:multishot",
   "slots": {
     "abilities": 1
   },
-  "tools": {
-    "tag": "tconstruct:modifiable/ranged/crossbows"
-  }
+  "tools": "#tconstruct:modifiable/ranged/crossbows"
 }

@@ -1,10 +1,8 @@
 {
   "type": "tconstruct:basin_tool_casting",
-  "id": "tconstruct:tools/building/slimeshell",
-  "cast": {
-    "item": "tconstruct:shell"
-  },
+  "cast": "tconstruct:shell",
   "cast_purpose": "first_material",
+  "id": "tconstruct:tools/building/slimeshell",
   "item_cost": 7,
   "result": "tconstruct:slime_leggings"
 }

@@ -1,22 +1,22 @@
 {
   "type": "tconstruct:swappable_modifier",
-  "id": "tconstruct:tools/modifiers/slotless/rebalanced_traits",
   "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/rebalanced_traits",
   "inputs": [
     {
-      "tag": "c:nuggets/manyullyn"
+      "ingredient": "#c:nuggets/manyullyn"
     },
     {
-      "item": "minecraft:end_crystal"
+      "ingredient": "minecraft:end_crystal"
     },
     {
-      "tag": "c:nuggets/manyullyn"
+      "ingredient": "#c:nuggets/manyullyn"
     },
     {
-      "item": "tconstruct:ender_slime_crystal_block"
+      "ingredient": "tconstruct:ender_slime_crystal_block"
     },
     {
-      "item": "tconstruct:ender_slime_crystal_block"
+      "ingredient": "tconstruct:ender_slime_crystal_block"
     }
   ],
   "result": {
@@ -24,7 +24,7 @@
     "value": "traits"
   },
   "tools": {
-    "type": "tconstruct:tool_hook",
+    "neoforge:ingredient_type": "tconstruct:tool_hook",
     "hook": "tconstruct:rebalanced_trait",
     "tag": "tconstruct:modifiable/bonus_slots"
   }

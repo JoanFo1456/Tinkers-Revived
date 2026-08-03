@@ -1,13 +1,4 @@
 {
-  "type": "tconstruct:ore_melting",
-  "id": "tconstruct:smeltery/melting/metal/copper/ore_sparse",
-  "byproducts": [
-    {
-      "amount": 30,
-      "rate": "metal",
-      "tag": "c:molten_gold"
-    }
-  ],
   "neoforge:conditions": [
     {
       "type": "mantle:tag_combination_filled",
@@ -17,15 +8,20 @@
       ]
     }
   ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 30,
+      "rate": "metal",
+      "tag": "c:molten_gold"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/copper/ore_sparse",
   "ingredient": {
-    "type": "neoforge:intersection",
+    "neoforge:ingredient_type": "neoforge:intersection",
     "children": [
-      {
-        "tag": "c:ores/copper"
-      },
-      {
-        "tag": "c:ore_rates/sparse"
-      }
+      "#c:ores/copper",
+      "#c:ore_rates/sparse"
     ]
   },
   "rate": "metal",

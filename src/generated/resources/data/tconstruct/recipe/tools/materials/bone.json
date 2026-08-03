@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:material",
   "id": "tconstruct:tools/materials/bone",
-  "ingredient": {
-    "tag": "tconstruct:bones"
-  },
+  "ingredient": "#tconstruct:bones",
   "material": "tconstruct:bone",
   "needed": 1,
   "value": 1

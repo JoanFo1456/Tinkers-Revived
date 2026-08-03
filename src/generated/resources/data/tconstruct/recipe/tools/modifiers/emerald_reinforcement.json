@@ -1,14 +1,12 @@
 {
   "type": "tconstruct:casting_table",
-  "id": "tconstruct:tools/modifiers/emerald_reinforcement",
-  "cast": {
-    "item": "tconstruct:obsidian_pane"
-  },
+  "cast": "tconstruct:obsidian_pane",
   "cast_consumed": true,
   "cooling_time": 34,
   "fluid": {
     "amount": 25,
     "tag": "tconstruct:molten_emerald"
   },
+  "id": "tconstruct:tools/modifiers/emerald_reinforcement",
   "result": "tconstruct:emerald_reinforcement"
 }

@@ -1,14 +1,12 @@
 {
   "type": "tconstruct:casting_basin",
-  "id": "tconstruct:smeltery/casting/slime/sky/block",
-  "cast": {
-    "item": "tconstruct:sky_congealed_slime"
-  },
+  "cast": "tconstruct:sky_congealed_slime",
   "cast_consumed": true,
   "cooling_time": 107,
   "fluid": {
     "amount": 1250,
     "tag": "tconstruct:sky_slime"
   },
+  "id": "tconstruct:smeltery/casting/slime/sky/block",
   "result": "tconstruct:sky_slime"
 }

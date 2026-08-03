@@ -1,12 +1,12 @@
 {
-  "type": "tconstruct:damagable_melting",
-  "id": "tconstruct:smeltery/melting/metal/knightmetal/twilightforest_helmet",
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "twilightforest:knightmetal_helmet"
+      "type": "neoforge:registered",
+      "value": "twilightforest:knightmetal_helmet"
     }
   ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/knightmetal/twilightforest_helmet",
   "ingredient": {
     "item": "twilightforest:knightmetal_helmet"
   },

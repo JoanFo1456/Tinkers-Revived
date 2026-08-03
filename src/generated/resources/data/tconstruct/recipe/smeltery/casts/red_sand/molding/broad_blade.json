@@ -1,12 +1,10 @@
 {
   "type": "tconstruct:molding_table",
   "id": "tconstruct:smeltery/casts/red_sand/molding/broad_blade",
-  "material": {
-    "tag": "tconstruct:casts/red_sand"
-  },
+  "material": "#tconstruct:casts/red_sand",
   "pattern": {
-    "type": "tconstruct:material",
-    "item": "tconstruct:broad_blade"
+    "neoforge:ingredient_type": "tconstruct:material",
+    "match": "tconstruct:broad_blade"
   },
   "result": "tconstruct:broad_blade_red_sand_cast"
 }

@@ -3,7 +3,5 @@
   "id": "tconstruct:tools/armor/plate/boots_swapping",
   "index": 0,
   "item_cost": 2,
-  "tools": {
-    "item": "tconstruct:plate_boots"
-  }
+  "tools": "tconstruct:plate_boots"
 }

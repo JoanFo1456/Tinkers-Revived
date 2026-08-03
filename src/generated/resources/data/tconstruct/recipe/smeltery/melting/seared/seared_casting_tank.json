@@ -1,6 +1,5 @@
 {
   "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/seared/seared_casting_tank",
   "byproducts": [
     {
       "amount": 1000,
@@ -11,9 +10,10 @@
       "fluid": "tconstruct:molten_glass"
     }
   ],
+  "id": "tconstruct:smeltery/melting/seared/seared_casting_tank",
   "ingredient": {
-    "type": "tconstruct:no_container",
-    "item": "tconstruct:seared_casting_tank"
+    "neoforge:ingredient_type": "tconstruct:no_container",
+    "match": "tconstruct:seared_casting_tank"
   },
   "result": {
     "amount": 180,

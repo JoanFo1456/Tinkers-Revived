@@ -1,11 +1,8 @@
 {
   "type": "tconstruct:part_builder",
-  "id": "tconstruct:tools/parts/builder/ribcage",
   "cost": 2,
+  "id": "tconstruct:tools/parts/builder/ribcage",
   "pattern": "tconstruct:ribcage",
-  "pattern_item": {
-    "tag": "tconstruct:patterns/default"
-  },
   "result": {
     "item": "tconstruct:ribcage"
   }

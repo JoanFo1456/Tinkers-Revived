@@ -1,10 +1,10 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/magnetic",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/magnetic",
   "inputs": [
     {
-      "item": "minecraft:compass"
+      "ingredient": "minecraft:compass"
     }
   ],
   "level": {
@@ -15,11 +15,7 @@
     "upgrades": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/melee/weapon"
-    },
-    {
-      "tag": "tconstruct:modifiable/harvest"
-    }
+    "#tconstruct:modifiable/melee/weapon",
+    "#tconstruct:modifiable/harvest"
   ]
 }

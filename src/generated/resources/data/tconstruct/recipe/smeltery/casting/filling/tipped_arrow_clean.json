@@ -1,8 +1,7 @@
 {
   "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casting/filling/tipped_arrow_clean",
   "cast": {
-    "type": "mantle:potion_display",
+    "neoforge:ingredient_type": "mantle:potion_display",
     "item": "minecraft:tipped_arrow"
   },
   "cast_consumed": true,
@@ -11,5 +10,6 @@
     "amount": 50,
     "tag": "mantle:water"
   },
+  "id": "tconstruct:smeltery/casting/filling/tipped_arrow_clean",
   "result": "minecraft:arrow"
 }

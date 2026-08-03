@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:material",
-  "id": "tconstruct:tools/materials/invar/block",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:storage_blocks/invar"
     }
   ],
-  "ingredient": {
-    "tag": "c:storage_blocks/invar"
-  },
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/invar/block",
+  "ingredient": "#c:storage_blocks/invar",
   "leftover": {
     "count": 1,
     "tag": "c:ingots/invar"

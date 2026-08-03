@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:material",
-  "id": "tconstruct:tools/materials/constantan/block",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:storage_blocks/constantan"
     }
   ],
-  "ingredient": {
-    "tag": "c:storage_blocks/constantan"
-  },
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/constantan/block",
+  "ingredient": "#c:storage_blocks/constantan",
   "leftover": {
     "count": 1,
     "tag": "c:ingots/constantan"

@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/osmium/ingot",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/osmium"
     }
   ],
-  "ingredient": {
-    "tag": "c:ingots/osmium"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/osmium/ingot",
+  "ingredient": "#c:ingots/osmium",
   "result": {
     "amount": 90,
     "tag": "c:molten_osmium"

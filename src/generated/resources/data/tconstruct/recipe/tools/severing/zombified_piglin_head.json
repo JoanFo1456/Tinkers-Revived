@@ -1,9 +1,9 @@
 {
   "type": "tconstruct:severing",
-  "id": "tconstruct:tools/severing/zombified_piglin_head",
   "entity": {
     "type": "minecraft:zombified_piglin"
   },
+  "id": "tconstruct:tools/severing/zombified_piglin_head",
   "looting_bonus": 0.01,
   "per_level_chance": 0.05,
   "result": "tconstruct:zombified_piglin_head"

@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:damagable_melting",
   "id": "tconstruct:smeltery/melting/metal/iron/helmet",
-  "ingredient": {
-    "item": "minecraft:iron_helmet"
-  },
+  "ingredient": "minecraft:iron_helmet",
   "result": {
     "amount": 450,
     "tag": "c:molten_iron",

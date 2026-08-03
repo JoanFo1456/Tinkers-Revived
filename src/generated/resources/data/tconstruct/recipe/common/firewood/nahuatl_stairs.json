@@ -3,9 +3,7 @@
   "category": "building",
   "group": "tconstruct:nahuatl_stairs",
   "key": {
-    "B": {
-      "item": "tconstruct:nahuatl"
-    }
+    "B": "tconstruct:nahuatl"
   },
   "pattern": [
     "B  ",
@@ -15,6 +13,5 @@
   "result": {
     "count": 4,
     "id": "tconstruct:nahuatl_stairs"
-  },
-  "show_notification": true
+  }
 }

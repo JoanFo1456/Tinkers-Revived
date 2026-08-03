@@ -1,12 +1,12 @@
 {
-  "type": "tconstruct:material_melting",
-  "id": "tconstruct:tools/materials/melting/steeleaf",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/steeleaf"
     }
   ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/steeleaf",
   "input": "tconstruct:steeleaf",
   "result": {
     "amount": 90,

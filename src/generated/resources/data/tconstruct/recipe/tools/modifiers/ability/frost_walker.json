@@ -1,22 +1,22 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/ability/frost_walker",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/ability/frost_walker",
   "inputs": [
     {
-      "item": "minecraft:blue_ice"
+      "ingredient": "minecraft:blue_ice"
     },
     {
-      "item": "tconstruct:stray_head"
+      "ingredient": "tconstruct:stray_head"
     },
     {
-      "item": "minecraft:blue_ice"
+      "ingredient": "minecraft:blue_ice"
     },
     {
-      "item": "minecraft:blue_ice"
+      "ingredient": "minecraft:blue_ice"
     },
     {
-      "item": "minecraft:blue_ice"
+      "ingredient": "minecraft:blue_ice"
     }
   ],
   "level": 1,
@@ -24,7 +24,5 @@
   "slots": {
     "abilities": 1
   },
-  "tools": {
-    "tag": "tconstruct:modifiable/armor/boots"
-  }
+  "tools": "#tconstruct:modifiable/armor/boots"
 }

@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/melting/metal/gold/ingot",
-  "ingredient": {
-    "tag": "c:ingots/gold"
-  },
+  "ingredient": "#c:ingots/gold",
   "result": {
     "amount": 90,
     "tag": "c:molten_gold"

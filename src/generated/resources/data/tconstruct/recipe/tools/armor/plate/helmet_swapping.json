@@ -3,7 +3,5 @@
   "id": "tconstruct:tools/armor/plate/helmet_swapping",
   "index": 0,
   "item_cost": 3,
-  "tools": {
-    "item": "tconstruct:plate_helmet"
-  }
+  "tools": "tconstruct:plate_helmet"
 }

@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/gold/geore/shard",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:geore_shards/gold"
     }
   ],
-  "ingredient": {
-    "tag": "c:geore_shards/gold"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/gold/geore/shard",
+  "ingredient": "#c:geore_shards/gold",
   "result": {
     "amount": 90,
     "tag": "c:molten_gold"

@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/signalum/nugget",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:nuggets/signalum"
     }
   ],
-  "ingredient": {
-    "tag": "c:nuggets/signalum"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/signalum/nugget",
+  "ingredient": "#c:nuggets/signalum",
   "result": {
     "amount": 10,
     "tag": "c:molten_signalum"

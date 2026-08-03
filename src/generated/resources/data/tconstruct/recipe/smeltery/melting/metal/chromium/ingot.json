@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/chromium/ingot",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/chromium"
     }
   ],
-  "ingredient": {
-    "tag": "c:ingots/chromium"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/chromium/ingot",
+  "ingredient": "#c:ingots/chromium",
   "result": {
     "amount": 90,
     "tag": "c:molten_chromium"

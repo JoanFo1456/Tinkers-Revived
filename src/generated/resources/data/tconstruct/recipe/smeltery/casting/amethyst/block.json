@@ -1,11 +1,11 @@
 {
   "type": "tconstruct:casting_basin",
-  "id": "tconstruct:smeltery/casting/amethyst/block",
   "cooling_time": 137,
   "fluid": {
     "amount": 400,
     "tag": "tconstruct:molten_amethyst"
   },
+  "id": "tconstruct:smeltery/casting/amethyst/block",
   "result": {
     "tag": "c:storage_blocks/amethyst"
   }

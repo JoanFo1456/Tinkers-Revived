@@ -1,11 +1,9 @@
 {
   "type": "tconstruct:incremental_modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/quick_charge",
   "allow_crystal": true,
   "amount_per_item": 1,
-  "input": {
-    "item": "minecraft:magma_cream"
-  },
+  "id": "tconstruct:tools/modifiers/upgrade/quick_charge",
+  "input": "minecraft:magma_cream",
   "level": {
     "max": 4
   },
@@ -14,7 +12,5 @@
   "slots": {
     "upgrades": 1
   },
-  "tools": {
-    "tag": "tconstruct:modifiable/ranged/quick_charge"
-  }
+  "tools": "#tconstruct:modifiable/ranged/quick_charge"
 }

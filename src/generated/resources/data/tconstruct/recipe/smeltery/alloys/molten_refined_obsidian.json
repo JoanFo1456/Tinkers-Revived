@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:alloy",
-  "id": "tconstruct:smeltery/alloys/molten_refined_obsidian",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -11,6 +9,8 @@
       "tag": "c:ingots/osmium"
     }
   ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_refined_obsidian",
   "inputs": [
     {
       "amount": 250,

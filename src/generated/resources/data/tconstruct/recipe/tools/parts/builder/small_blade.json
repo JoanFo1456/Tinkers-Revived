@@ -1,15 +1,11 @@
 {
   "type": "tconstruct:part_builder",
-  "id": "tconstruct:tools/parts/builder/small_blade",
   "cost": 2,
+  "id": "tconstruct:tools/parts/builder/small_blade",
   "pattern": "tconstruct:small_blade",
   "pattern_item": [
-    {
-      "tag": "tconstruct:patterns/default"
-    },
-    {
-      "item": "tconstruct:small_blade_cast"
-    }
+    "#tconstruct:patterns/default",
+    "tconstruct:small_blade_cast"
   ],
   "result": {
     "item": "tconstruct:small_blade"

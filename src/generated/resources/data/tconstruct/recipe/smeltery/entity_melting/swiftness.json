@@ -1,6 +1,5 @@
 {
   "type": "tconstruct:entity_melting",
-  "id": "tconstruct:smeltery/entity_melting/swiftness",
   "damage": 2,
   "entity": {
     "types": [
@@ -14,6 +13,7 @@
       "minecraft:ocelot"
     ]
   },
+  "id": "tconstruct:smeltery/entity_melting/swiftness",
   "result": {
     "amount": 50,
     "nbt": {

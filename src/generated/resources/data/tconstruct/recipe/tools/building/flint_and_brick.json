@@ -2,16 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
   "ingredients": [
-    {
-      "item": "minecraft:flint"
-    },
+    "minecraft:flint",
     [
-      {
-        "item": "tconstruct:seared_brick"
-      },
-      {
-        "item": "tconstruct:scorched_brick"
-      }
+      "tconstruct:seared_brick",
+      "tconstruct:scorched_brick"
     ]
   ],
   "result": {

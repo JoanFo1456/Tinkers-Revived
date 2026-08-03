@@ -1,14 +1,12 @@
 {
   "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casting/metal/netherite/ancient_repair_kit_gold_cast",
-  "cast": {
-    "tag": "tconstruct:casts/multi_use/repair_kit"
-  },
+  "cast": "#tconstruct:casts/multi_use/repair_kit",
   "cooling_time": 101,
   "fluid": {
     "amount": 180,
     "tag": "tconstruct:molten_debris"
   },
+  "id": "tconstruct:smeltery/casting/metal/netherite/ancient_repair_kit_gold_cast",
   "result": {
     "item": "tconstruct:repair_kit",
     "nbt": {

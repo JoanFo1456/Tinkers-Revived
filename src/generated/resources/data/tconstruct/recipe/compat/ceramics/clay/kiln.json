@@ -1,12 +1,12 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:compat/ceramics/clay/kiln",
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
       "modid": "ceramics"
     }
   ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:compat/ceramics/clay/kiln",
   "ingredient": {
     "item": "ceramics:kiln"
   },

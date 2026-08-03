@@ -1,16 +1,12 @@
 {
   "type": "tconstruct:item_part_builder",
-  "id": "tconstruct:tools/parts/builder/boots_plating",
   "cost": 2,
+  "id": "tconstruct:tools/parts/builder/boots_plating",
   "material": "tconstruct:rock",
   "pattern": "tconstruct:boots_plating",
   "pattern_item": [
-    {
-      "tag": "tconstruct:patterns/default"
-    },
-    {
-      "item": "tconstruct:boots_plating_cast"
-    }
+    "#tconstruct:patterns/default",
+    "tconstruct:boots_plating_cast"
   ],
   "result": "tconstruct:boots_plating_dummy"
 }

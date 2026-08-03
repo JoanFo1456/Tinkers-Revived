@@ -3,7 +3,5 @@
   "id": "tconstruct:tools/armor/travelers/shield_leather",
   "index": 1,
   "item_cost": 2,
-  "tools": {
-    "item": "tconstruct:travelers_shield"
-  }
+  "tools": "tconstruct:travelers_shield"
 }

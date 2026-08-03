@@ -6,11 +6,7 @@
     "upgrades": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/held"
-    },
-    {
-      "tag": "tconstruct:modifiable/armor"
-    }
+    "#tconstruct:modifiable/held",
+    "#tconstruct:modifiable/armor"
   ]
 }

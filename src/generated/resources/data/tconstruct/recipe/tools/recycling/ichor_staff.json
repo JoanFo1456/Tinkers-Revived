@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:part_builder_recycling",
   "id": "tconstruct:tools/recycling/ichor_staff",
-  "pattern": {
-    "item": "tconstruct:venom_bottle"
-  },
+  "pattern": "tconstruct:venom_bottle",
   "results": {
     "tconstruct:block": {
       "count": 2,
@@ -18,7 +16,5 @@
       "tag": "c:ingots/queens_slime"
     }
   },
-  "tool": {
-    "item": "tconstruct:ichor_staff"
-  }
+  "tool": "tconstruct:ichor_staff"
 }

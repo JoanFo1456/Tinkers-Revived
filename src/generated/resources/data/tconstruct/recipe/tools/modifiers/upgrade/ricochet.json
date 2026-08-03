@@ -1,13 +1,13 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/ricochet",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/ricochet",
   "inputs": [
     {
-      "item": "minecraft:piston"
+      "ingredient": "minecraft:piston"
     },
     {
-      "item": "tconstruct:sky_slime"
+      "ingredient": "tconstruct:sky_slime"
     }
   ],
   "level": {
@@ -18,11 +18,7 @@
     "upgrades": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/armor/worn"
-    },
-    {
-      "tag": "tconstruct:modifiable/shields"
-    }
+    "#tconstruct:modifiable/armor/worn",
+    "#tconstruct:modifiable/shields"
   ]
 }

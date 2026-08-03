@@ -1,16 +1,14 @@
 {
   "type": "tconstruct:tool_building",
-  "id": "tconstruct:tools/building/arrow_from_vanilla",
   "extra_materials": [
     "tconstruct:flint",
     "tconstruct:wood",
     "tconstruct:feather"
   ],
   "extra_requirements": [
-    {
-      "item": "minecraft:arrow"
-    }
+    "minecraft:arrow"
   ],
+  "id": "tconstruct:tools/building/arrow_from_vanilla",
   "parts_override": [],
   "result": "tconstruct:arrow",
   "result_count": 1,

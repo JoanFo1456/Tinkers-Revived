@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:alloy",
-  "id": "tconstruct:smeltery/alloys/molten_brass",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -20,6 +18,8 @@
       ]
     }
   ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_brass",
   "inputs": [
     {
       "amount": 90,

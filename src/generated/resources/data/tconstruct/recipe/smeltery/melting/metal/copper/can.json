@@ -2,8 +2,8 @@
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/melting/metal/copper/can",
   "ingredient": {
-    "type": "tconstruct:no_container",
-    "item": "tconstruct:copper_can"
+    "neoforge:ingredient_type": "tconstruct:no_container",
+    "match": "tconstruct:copper_can"
   },
   "result": {
     "amount": 90,

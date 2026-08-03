@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:material",
   "id": "tconstruct:tools/materials/glowstone/dust",
-  "ingredient": {
-    "tag": "c:dusts/glowstone"
-  },
+  "ingredient": "#c:dusts/glowstone",
   "material": "tconstruct:glowstone",
   "needed": 4,
   "value": 1

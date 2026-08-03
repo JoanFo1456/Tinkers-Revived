@@ -1,11 +1,9 @@
 {
   "type": "tconstruct:incremental_modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/power",
   "allow_crystal": true,
   "amount_per_item": 1,
-  "input": {
-    "item": "tconstruct:ichor_slime_crystal"
-  },
+  "id": "tconstruct:tools/modifiers/upgrade/power",
+  "input": "tconstruct:ichor_slime_crystal",
   "level": {
     "max": 5
   },
@@ -14,7 +12,5 @@
   "slots": {
     "upgrades": 1
   },
-  "tools": {
-    "tag": "tconstruct:modifiable/ranged/power"
-  }
+  "tools": "#tconstruct:modifiable/ranged/power"
 }

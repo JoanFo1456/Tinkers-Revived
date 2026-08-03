@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "tconstruct:scorched_brick"
-    },
-    "G": {
-      "item": "tconstruct:gold_bars"
-    }
+    "#": "tconstruct:scorched_brick",
+    "G": "tconstruct:gold_bars"
   },
   "pattern": [
     "###",
@@ -16,6 +12,5 @@
   ],
   "result": {
     "id": "tconstruct:scorched_table"
-  },
-  "show_notification": true
+  }
 }

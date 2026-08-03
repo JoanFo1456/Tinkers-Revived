@@ -3,10 +3,10 @@
   "id": "tconstruct:tools/modifiers/worktable/extract/upgrade_dagger",
   "inputs": [
     {
-      "item": "tconstruct:sky_slime_crystal"
+      "ingredient": "tconstruct:sky_slime_crystal"
     },
     {
-      "item": "minecraft:wet_sponge"
+      "ingredient": "minecraft:wet_sponge"
     }
   ],
   "leftovers": [
@@ -29,6 +29,6 @@
   "name": "upgrades",
   "tools": {
     "amount_needed": 2,
-    "item": "tconstruct:dagger"
+    "ingredient": "tconstruct:dagger"
   }
 }

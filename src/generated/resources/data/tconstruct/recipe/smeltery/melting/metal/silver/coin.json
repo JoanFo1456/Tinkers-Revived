@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/silver/coin",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:coins/silver"
     }
   ],
-  "ingredient": {
-    "tag": "c:coins/silver"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/silver/coin",
+  "ingredient": "#c:coins/silver",
   "result": {
     "amount": 30,
     "tag": "c:molten_silver"

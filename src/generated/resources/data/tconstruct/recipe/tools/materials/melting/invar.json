@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:material_melting",
-  "id": "tconstruct:tools/materials/melting/invar",
   "neoforge:conditions": [
     {
       "type": "neoforge:or",
@@ -16,6 +14,8 @@
       ]
     }
   ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/invar",
   "input": "tconstruct:invar",
   "result": {
     "amount": 90,

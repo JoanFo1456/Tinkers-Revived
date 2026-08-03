@@ -1,15 +1,13 @@
 {
   "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/slimesteel/reinforcement",
   "byproducts": [
     {
       "amount": 250,
       "fluid": "tconstruct:molten_obsidian"
     }
   ],
-  "ingredient": {
-    "item": "tconstruct:slimesteel_reinforcement"
-  },
+  "id": "tconstruct:smeltery/melting/metal/slimesteel/reinforcement",
+  "ingredient": "tconstruct:slimesteel_reinforcement",
   "result": {
     "amount": 30,
     "fluid": "tconstruct:molten_slimesteel"

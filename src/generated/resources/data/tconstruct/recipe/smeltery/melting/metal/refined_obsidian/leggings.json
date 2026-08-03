@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:damagable_melting",
-  "id": "tconstruct:smeltery/melting/metal/refined_obsidian/leggings",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "tconstruct:melting/refined_obsidian/tools_costing_7"
     }
   ],
-  "ingredient": {
-    "tag": "tconstruct:melting/refined_obsidian/tools_costing_7"
-  },
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/refined_obsidian/leggings",
+  "ingredient": "#tconstruct:melting/refined_obsidian/tools_costing_7",
   "result": {
     "amount": 630,
     "tag": "c:molten_refined_obsidian",

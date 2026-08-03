@@ -1,17 +1,17 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/zoom",
   "allow_crystal": true,
   "check_trait_level": true,
+  "id": "tconstruct:tools/modifiers/upgrade/zoom",
   "inputs": [
     {
-      "tag": "c:strings"
+      "ingredient": "#c:strings"
     },
     {
-      "item": "minecraft:spyglass"
+      "ingredient": "minecraft:spyglass"
     },
     {
-      "tag": "c:strings"
+      "ingredient": "#c:strings"
     }
   ],
   "level": 1,
@@ -20,11 +20,7 @@
     "upgrades": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/armor/helmets"
-    },
-    {
-      "tag": "tconstruct:modifiable/interactable/charge"
-    }
+    "#tconstruct:modifiable/armor/helmets",
+    "#tconstruct:modifiable/interactable/charge"
   ]
 }

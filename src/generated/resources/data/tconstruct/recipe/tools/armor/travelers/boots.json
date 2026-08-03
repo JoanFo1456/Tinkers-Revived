@@ -1,44 +1,44 @@
 {
   "type": "tconstruct:crafting_shaped_materials",
-  "id": "tconstruct:tools/armor/travelers/boots",
   "category": "equipment",
   "extra_materials": [
     "tconstruct:leather"
   ],
   "key": {
-    "c": [
-      {
-        "type": "tconstruct:material_value",
-        "material": {
-          "type": "mantle:and",
-          "predicates": [
-            {
-              "type": "mantle:or",
-              "predicates": [
-                "tconstruct:castable",
-                "tconstruct:composite"
-              ]
-            },
-            {
-              "type": "tconstruct:stat_type",
-              "stat_type": "tconstruct:plating_boots"
-            }
-          ]
+    "c": {
+      "neoforge:ingredient_type": "neoforge:compound",
+      "children": [
+        {
+          "neoforge:ingredient_type": "tconstruct:material_value",
+          "material": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:or",
+                "predicates": [
+                  "tconstruct:castable",
+                  "tconstruct:composite"
+                ]
+              },
+              {
+                "type": "tconstruct:stat_type",
+                "stat_type": "tconstruct:plating_boots"
+              }
+            ]
+          },
+          "value": 1
         },
-        "value": 1
-      },
-      {
-        "type": "tconstruct:material",
-        "item": "tconstruct:fake_ingot",
-        "material": {
-          "type": "tconstruct:stat_type",
-          "stat_type": "tconstruct:plating_boots"
+        {
+          "neoforge:ingredient_type": "tconstruct:material",
+          "match": "tconstruct:fake_ingot",
+          "material": {
+            "type": "tconstruct:stat_type",
+            "stat_type": "tconstruct:plating_boots"
+          }
         }
-      }
-    ],
-    "l": {
-      "tag": "c:leather"
-    }
+      ]
+    },
+    "l": "#c:leathers"
   },
   "parts": "c",
   "pattern": [
@@ -46,7 +46,6 @@
     "l l"
   ],
   "result": {
-    "item": "tconstruct:travelers_boots"
-  },
-  "show_notification": true
+    "id": "tconstruct:travelers_boots"
+  }
 }

@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/dawnstone/plate",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -12,9 +10,9 @@
       "tag": "c:molten_dawnstone"
     }
   ],
-  "ingredient": {
-    "tag": "c:plates/dawnstone"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/dawnstone/plate",
+  "ingredient": "#c:plates/dawnstone",
   "result": {
     "amount": 90,
     "tag": "c:molten_dawnstone"

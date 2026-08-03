@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:material_melting",
-  "id": "tconstruct:tools/materials/melting/nicrosil",
   "neoforge:conditions": [
     {
       "type": "neoforge:or",
@@ -24,6 +22,8 @@
       ]
     }
   ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/nicrosil",
   "input": "tconstruct:nicrosil",
   "result": {
     "amount": 90,

@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/enderium/ingot",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/enderium"
     }
   ],
-  "ingredient": {
-    "tag": "c:ingots/enderium"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/enderium/ingot",
+  "ingredient": "#c:ingots/enderium",
   "result": {
     "amount": 90,
     "tag": "c:molten_enderium"

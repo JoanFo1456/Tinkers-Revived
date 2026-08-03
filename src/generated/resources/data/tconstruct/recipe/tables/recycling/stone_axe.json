@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:part_builder_recycling",
   "id": "tconstruct:tables/recycling/stone_axe",
-  "pattern": {
-    "item": "tconstruct:venom_bottle"
-  },
+  "pattern": "tconstruct:venom_bottle",
   "results": {
     "tconstruct:block": {
       "count": 3,
@@ -11,11 +9,7 @@
     }
   },
   "tool": [
-    {
-      "item": "minecraft:stone_pickaxe"
-    },
-    {
-      "item": "minecraft:stone_axe"
-    }
+    "minecraft:stone_pickaxe",
+    "minecraft:stone_axe"
   ]
 }

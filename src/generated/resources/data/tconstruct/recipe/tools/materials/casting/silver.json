@@ -1,16 +1,16 @@
 {
-  "type": "tconstruct:material_fluid",
-  "id": "tconstruct:tools/materials/casting/silver",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/silver"
     }
   ],
+  "type": "tconstruct:material_fluid",
   "fluid": {
     "amount": 90,
     "tag": "c:molten_silver"
   },
+  "id": "tconstruct:tools/materials/casting/silver",
   "output": "tconstruct:silver",
   "temperature": 790
 }

@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:material",
   "id": "tconstruct:tools/materials/seared_stone/block",
-  "ingredient": {
-    "tag": "tconstruct:seared_blocks"
-  },
+  "ingredient": "#tconstruct:seared_blocks",
   "leftover": "tconstruct:seared_brick",
   "material": "tconstruct:seared_stone",
   "needed": 1,

@@ -1,23 +1,21 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/shield_strap",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/shield_strap",
   "inputs": [
     {
-      "item": "tconstruct:sky_slime_vine"
+      "ingredient": "tconstruct:sky_slime_vine"
     },
     {
-      "tag": "c:ingots/slimesteel"
+      "ingredient": "#c:ingots/slimesteel"
     },
     {
-      "item": "tconstruct:sky_slime_vine"
+      "ingredient": "tconstruct:sky_slime_vine"
     }
   ],
   "result": "tconstruct:shield_strap",
   "slots": {
     "upgrades": 1
   },
-  "tools": {
-    "tag": "tconstruct:modifiable/armor/leggings"
-  }
+  "tools": "#tconstruct:modifiable/armor/leggings"
 }

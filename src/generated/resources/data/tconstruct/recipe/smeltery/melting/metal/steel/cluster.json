@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/melting/metal/steel/cluster",
-  "ingredient": {
-    "item": "tconstruct:steel_cluster"
-  },
+  "ingredient": "tconstruct:steel_cluster",
   "result": {
     "amount": 40,
     "tag": "c:molten_steel"

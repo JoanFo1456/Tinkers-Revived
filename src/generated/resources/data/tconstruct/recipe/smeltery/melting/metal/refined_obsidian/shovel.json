@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:damagable_melting",
-  "id": "tconstruct:smeltery/melting/metal/refined_obsidian/shovel",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:tools/shovels/refined_obsidian"
     }
   ],
-  "ingredient": {
-    "tag": "c:tools/shovels/refined_obsidian"
-  },
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/refined_obsidian/shovel",
+  "ingredient": "#c:tools/shovels/refined_obsidian",
   "result": {
     "amount": 90,
     "tag": "c:molten_refined_obsidian",

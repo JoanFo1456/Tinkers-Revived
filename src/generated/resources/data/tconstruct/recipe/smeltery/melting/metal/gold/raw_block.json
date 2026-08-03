@@ -1,6 +1,5 @@
 {
   "type": "tconstruct:ore_melting",
-  "id": "tconstruct:smeltery/melting/metal/gold/raw_block",
   "byproducts": [
     {
       "amount": 810,
@@ -8,9 +7,8 @@
       "tag": "c:molten_cobalt"
     }
   ],
-  "ingredient": {
-    "tag": "c:storage_blocks/raw_gold"
-  },
+  "id": "tconstruct:smeltery/melting/metal/gold/raw_block",
+  "ingredient": "#c:storage_blocks/raw_gold",
   "rate": "metal",
   "result": {
     "amount": 810,

@@ -1,11 +1,9 @@
 {
   "type": "tconstruct:incremental_modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/pierce",
   "allow_crystal": true,
   "amount_per_item": 1,
-  "input": {
-    "item": "tconstruct:punji"
-  },
+  "id": "tconstruct:tools/modifiers/upgrade/pierce",
+  "input": "tconstruct:punji",
   "level": {
     "max": 3
   },
@@ -15,11 +13,7 @@
     "upgrades": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/melee"
-    },
-    {
-      "tag": "tconstruct:modifiable/ranged/launcher"
-    }
+    "#tconstruct:modifiable/melee",
+    "#tconstruct:modifiable/ranged/launcher"
   ]
 }

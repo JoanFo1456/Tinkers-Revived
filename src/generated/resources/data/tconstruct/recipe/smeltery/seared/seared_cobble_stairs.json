@@ -3,9 +3,7 @@
   "category": "building",
   "group": "tconstruct:seared_cobble_stairs",
   "key": {
-    "B": {
-      "item": "tconstruct:seared_cobble"
-    }
+    "B": "tconstruct:seared_cobble"
   },
   "pattern": [
     "B  ",
@@ -15,6 +13,5 @@
   "result": {
     "count": 4,
     "id": "tconstruct:seared_cobble_stairs"
-  },
-  "show_notification": true
+  }
 }

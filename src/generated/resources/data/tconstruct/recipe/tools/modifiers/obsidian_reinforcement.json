@@ -1,14 +1,12 @@
 {
   "type": "tconstruct:casting_table",
-  "id": "tconstruct:tools/modifiers/obsidian_reinforcement",
-  "cast": {
-    "item": "tconstruct:pattern"
-  },
+  "cast": "tconstruct:pattern",
   "cast_consumed": true,
   "cooling_time": 221,
   "fluid": {
     "amount": 1000,
     "tag": "tconstruct:molten_obsidian"
   },
+  "id": "tconstruct:tools/modifiers/obsidian_reinforcement",
   "result": "tconstruct:obsidian_reinforcement"
 }

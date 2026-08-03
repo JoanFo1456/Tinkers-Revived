@@ -1,10 +1,4 @@
 {
-  "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casting/metal/dawnstone/nugget_sand_cast",
-  "cast": {
-    "tag": "tconstruct:casts/single_use/nugget"
-  },
-  "cast_consumed": true,
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -16,11 +10,15 @@
       "tag": "c:molten_dawnstone"
     }
   ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/single_use/nugget",
+  "cast_consumed": true,
   "cooling_time": 21,
   "fluid": {
     "amount": 10,
     "tag": "c:molten_dawnstone"
   },
+  "id": "tconstruct:smeltery/casting/metal/dawnstone/nugget_sand_cast",
   "result": {
     "tag": "c:nuggets/dawnstone"
   }

@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:alloy",
-  "id": "tconstruct:smeltery/alloys/molten_bendalloy",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -19,6 +17,8 @@
       "tag": "c:ingots/cadmium"
     }
   ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_bendalloy",
   "inputs": [
     {
       "amount": 180,

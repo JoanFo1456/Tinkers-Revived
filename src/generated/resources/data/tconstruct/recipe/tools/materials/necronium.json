@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:material",
-  "id": "tconstruct:tools/materials/necronium",
   "neoforge:conditions": [
     {
       "type": "neoforge:or",
@@ -16,9 +14,9 @@
       ]
     }
   ],
-  "ingredient": {
-    "item": "tconstruct:necronium_bone"
-  },
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/necronium",
+  "ingredient": "tconstruct:necronium_bone",
   "material": "tconstruct:necronium",
   "needed": 1,
   "value": 1

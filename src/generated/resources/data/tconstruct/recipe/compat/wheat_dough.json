@@ -1,20 +1,18 @@
 {
-  "type": "tconstruct:casting_table",
-  "id": "tconstruct:compat/wheat_dough",
-  "cast": {
-    "item": "minecraft:wheat"
-  },
-  "cast_consumed": true,
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "farmersdelight:wheat_dough"
+      "type": "neoforge:registered",
+      "value": "farmersdelight:wheat_dough"
     }
   ],
+  "type": "tconstruct:casting_table",
+  "cast": "minecraft:wheat",
+  "cast_consumed": true,
   "cooling_time": 50,
   "fluid": {
     "amount": 250,
     "tag": "mantle:water"
   },
+  "id": "tconstruct:compat/wheat_dough",
   "result": "farmersdelight:wheat_dough"
 }

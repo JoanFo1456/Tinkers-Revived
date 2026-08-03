@@ -1,10 +1,10 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/soulbound",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/soulbound",
   "inputs": [
     {
-      "item": "minecraft:echo_shard"
+      "ingredient": "minecraft:echo_shard"
     }
   ],
   "level": 1,
@@ -13,12 +13,8 @@
     "upgrades": 1
   },
   "tools": {
-    "type": "neoforge:difference",
-    "base": {
-      "tag": "tconstruct:modifiable"
-    },
-    "subtracted": {
-      "tag": "tconstruct:modifiable/single_use"
-    }
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#tconstruct:modifiable",
+    "subtracted": "#tconstruct:modifiable/single_use"
   }
 }

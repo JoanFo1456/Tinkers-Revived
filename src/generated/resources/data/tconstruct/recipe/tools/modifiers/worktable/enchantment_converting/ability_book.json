@@ -3,10 +3,10 @@
   "id": "tconstruct:tools/modifiers/worktable/enchantment_converting/ability_book",
   "inputs": [
     {
-      "item": "tconstruct:ichor_slime_crystal"
+      "ingredient": "tconstruct:ichor_slime_crystal"
     },
     {
-      "tag": "c:gems/diamond"
+      "ingredient": "#c:gems/diamond"
     }
   ],
   "match_book": true,

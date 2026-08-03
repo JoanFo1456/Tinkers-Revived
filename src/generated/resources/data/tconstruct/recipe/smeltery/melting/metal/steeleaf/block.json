@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/steeleaf/block",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:storage_blocks/steeleaf"
     }
   ],
-  "ingredient": {
-    "tag": "c:storage_blocks/steeleaf"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/steeleaf/block",
+  "ingredient": "#c:storage_blocks/steeleaf",
   "result": {
     "amount": 810,
     "fluid": "tconstruct:molten_steeleaf"

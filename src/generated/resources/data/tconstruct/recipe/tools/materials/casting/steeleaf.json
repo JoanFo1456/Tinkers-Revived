@@ -1,16 +1,16 @@
 {
-  "type": "tconstruct:material_fluid",
-  "id": "tconstruct:tools/materials/casting/steeleaf",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/steeleaf"
     }
   ],
+  "type": "tconstruct:material_fluid",
   "fluid": {
     "amount": 90,
     "tag": "tconstruct:molten_steeleaf"
   },
+  "id": "tconstruct:tools/materials/casting/steeleaf",
   "output": "tconstruct:steeleaf",
   "temperature": 934
 }

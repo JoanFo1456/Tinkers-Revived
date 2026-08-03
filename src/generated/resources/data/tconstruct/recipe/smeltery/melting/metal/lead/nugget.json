@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/lead/nugget",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:nuggets/lead"
     }
   ],
-  "ingredient": {
-    "tag": "c:nuggets/lead"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/lead/nugget",
+  "ingredient": "#c:nuggets/lead",
   "result": {
     "amount": 10,
     "tag": "c:molten_lead"

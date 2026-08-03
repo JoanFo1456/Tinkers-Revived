@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:material",
-  "id": "tconstruct:tools/materials/silver/ingot",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/silver"
     }
   ],
-  "ingredient": {
-    "tag": "c:ingots/silver"
-  },
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/silver/ingot",
+  "ingredient": "#c:ingots/silver",
   "material": "tconstruct:silver",
   "needed": 1,
   "value": 1

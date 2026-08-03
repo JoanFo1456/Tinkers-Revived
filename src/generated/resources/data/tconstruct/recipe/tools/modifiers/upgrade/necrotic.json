@@ -1,16 +1,16 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/necrotic",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/necrotic",
   "inputs": [
     {
-      "item": "tconstruct:necrotic_bone"
+      "ingredient": "tconstruct:necrotic_bone"
     },
     {
-      "item": "tconstruct:ichor_congealed_slime"
+      "ingredient": "tconstruct:ichor_congealed_slime"
     },
     {
-      "item": "minecraft:ghast_tear"
+      "ingredient": "minecraft:ghast_tear"
     }
   ],
   "level": {
@@ -21,14 +21,8 @@
     "upgrades": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/melee"
-    },
-    {
-      "tag": "tconstruct:modifiable/ranged/bows"
-    },
-    {
-      "tag": "tconstruct:modifiable/fishing_rods"
-    }
+    "#tconstruct:modifiable/melee",
+    "#tconstruct:modifiable/ranged/bows",
+    "#tconstruct:modifiable/fishing_rods"
   ]
 }

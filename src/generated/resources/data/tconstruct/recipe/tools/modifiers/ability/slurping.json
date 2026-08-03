@@ -1,23 +1,23 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/ability/slurping",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/ability/slurping",
   "inputs": [
     {
-      "item": "minecraft:glass_bottle"
+      "ingredient": "minecraft:glass_bottle"
     },
     {
-      "type": "tconstruct:no_container",
-      "tag": "tconstruct:tanks"
+      "neoforge:ingredient_type": "tconstruct:no_container",
+      "match": "#tconstruct:tanks"
     },
     {
-      "item": "minecraft:glass_bottle"
+      "ingredient": "minecraft:glass_bottle"
     },
     {
-      "tag": "c:ingots/copper"
+      "ingredient": "#c:ingots/copper"
     },
     {
-      "tag": "c:ingots/copper"
+      "ingredient": "#c:ingots/copper"
     }
   ],
   "result": "tconstruct:slurping",
@@ -25,11 +25,7 @@
     "abilities": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/armor/helmets"
-    },
-    {
-      "tag": "tconstruct:modifiable/interactable/charge"
-    }
+    "#tconstruct:modifiable/armor/helmets",
+    "#tconstruct:modifiable/interactable/charge"
   ]
 }

@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:material_fluid",
-  "id": "tconstruct:tools/materials/casting/nicrosil",
   "neoforge:conditions": [
     {
       "type": "neoforge:or",
@@ -24,10 +22,12 @@
       ]
     }
   ],
+  "type": "tconstruct:material_fluid",
   "fluid": {
     "amount": 90,
     "tag": "c:molten_nicrosil"
   },
+  "id": "tconstruct:tools/materials/casting/nicrosil",
   "output": "tconstruct:nicrosil",
   "temperature": 1100
 }

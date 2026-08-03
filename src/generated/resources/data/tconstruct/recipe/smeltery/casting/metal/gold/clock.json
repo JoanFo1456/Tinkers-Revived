@@ -1,14 +1,12 @@
 {
   "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casting/metal/gold/clock",
-  "cast": {
-    "item": "minecraft:redstone"
-  },
+  "cast": "minecraft:redstone",
   "cast_consumed": true,
   "cooling_time": 114,
   "fluid": {
     "amount": 360,
     "tag": "c:molten_gold"
   },
+  "id": "tconstruct:smeltery/casting/metal/gold/clock",
   "result": "minecraft:clock"
 }

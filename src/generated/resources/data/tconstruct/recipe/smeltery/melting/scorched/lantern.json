@@ -1,6 +1,5 @@
 {
   "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/scorched/lantern",
   "byproducts": [
     {
       "amount": 25,
@@ -11,9 +10,10 @@
       "tag": "c:molten_iron"
     }
   ],
+  "id": "tconstruct:smeltery/melting/scorched/lantern",
   "ingredient": {
-    "type": "tconstruct:no_container",
-    "item": "tconstruct:scorched_lantern"
+    "neoforge:ingredient_type": "tconstruct:no_container",
+    "match": "tconstruct:scorched_lantern"
   },
   "result": {
     "amount": 500,

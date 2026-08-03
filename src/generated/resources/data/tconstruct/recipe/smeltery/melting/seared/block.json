@@ -2,33 +2,17 @@
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/melting/seared/block",
   "ingredient": [
-    {
-      "tag": "tconstruct:seared_blocks"
-    },
-    {
-      "item": "tconstruct:seared_ladder"
-    },
-    {
-      "item": "tconstruct:seared_lamp"
-    },
-    {
-      "item": "tconstruct:seared_cobble_wall"
-    },
-    {
-      "item": "tconstruct:seared_bricks_wall"
-    },
-    {
-      "item": "tconstruct:seared_cobble_stairs"
-    },
-    {
-      "item": "tconstruct:seared_stone_stairs"
-    },
-    {
-      "item": "tconstruct:seared_bricks_stairs"
-    },
-    {
-      "item": "tconstruct:seared_paver_stairs"
-    }
+    "#tconstruct:seared_blocks",
+    [
+      "tconstruct:seared_ladder",
+      "tconstruct:seared_lamp",
+      "tconstruct:seared_cobble_wall",
+      "tconstruct:seared_bricks_wall",
+      "tconstruct:seared_cobble_stairs",
+      "tconstruct:seared_stone_stairs",
+      "tconstruct:seared_bricks_stairs",
+      "tconstruct:seared_paver_stairs"
+    ]
   ],
   "result": {
     "amount": 1000,

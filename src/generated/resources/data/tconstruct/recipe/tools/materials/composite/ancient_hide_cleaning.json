@@ -1,10 +1,10 @@
 {
   "type": "tconstruct:material_fluid",
-  "id": "tconstruct:tools/materials/composite/ancient_hide_cleaning",
   "fluid": {
     "amount": 50,
     "tag": "tconstruct:venom"
   },
+  "id": "tconstruct:tools/materials/composite/ancient_hide_cleaning",
   "input": "tconstruct:ancient_hide",
   "output": "tconstruct:leather",
   "temperature": 10

@@ -2,12 +2,8 @@
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/melting/metal/iron/ingot_4",
   "ingredient": [
-    {
-      "item": "minecraft:compass"
-    },
-    {
-      "item": "minecraft:iron_trapdoor"
-    }
+    "minecraft:compass",
+    "minecraft:iron_trapdoor"
   ],
   "result": {
     "amount": 360,

@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:material",
-  "id": "tconstruct:tools/materials/bronze/block",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:storage_blocks/bronze"
     }
   ],
-  "ingredient": {
-    "tag": "c:storage_blocks/bronze"
-  },
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/bronze/block",
+  "ingredient": "#c:storage_blocks/bronze",
   "leftover": {
     "count": 1,
     "tag": "c:ingots/bronze"

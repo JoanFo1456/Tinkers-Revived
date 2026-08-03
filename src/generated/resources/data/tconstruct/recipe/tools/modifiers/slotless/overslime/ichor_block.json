@@ -1,11 +1,7 @@
 {
   "type": "tconstruct:overslime_modifier",
   "id": "tconstruct:tools/modifiers/slotless/overslime/ichor_block",
-  "ingredient": {
-    "item": "tconstruct:ichor_slime"
-  },
+  "ingredient": "tconstruct:ichor_slime",
   "restore_amount": 900,
-  "tools": {
-    "tag": "tconstruct:modifiable/durability"
-  }
+  "tools": "#tconstruct:modifiable/durability"
 }

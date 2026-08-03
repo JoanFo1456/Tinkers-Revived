@@ -1,20 +1,18 @@
 {
-  "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casting/metal/pewter/nugget_gold_cast",
-  "cast": {
-    "tag": "tconstruct:casts/multi_use/nugget"
-  },
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:nuggets/pewter"
     }
   ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/nugget",
   "cooling_time": 15,
   "fluid": {
     "amount": 10,
     "tag": "c:molten_pewter"
   },
+  "id": "tconstruct:smeltery/casting/metal/pewter/nugget_gold_cast",
   "result": {
     "tag": "c:nuggets/pewter"
   }

@@ -1,6 +1,5 @@
 {
   "type": "tconstruct:damagable_melting",
-  "id": "tconstruct:smeltery/melting/metal/netherite/shovel",
   "byproducts": [
     {
       "amount": 100,
@@ -8,9 +7,8 @@
       "unit_size": 25
     }
   ],
-  "ingredient": {
-    "tag": "tconstruct:melting/netherite/tools_costing_1"
-  },
+  "id": "tconstruct:smeltery/melting/metal/netherite/shovel",
+  "ingredient": "#tconstruct:melting/netherite/tools_costing_1",
   "result": {
     "amount": 90,
     "tag": "c:molten_netherite",

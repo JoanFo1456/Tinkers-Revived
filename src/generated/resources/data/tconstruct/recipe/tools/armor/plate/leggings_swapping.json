@@ -3,7 +3,5 @@
   "id": "tconstruct:tools/armor/plate/leggings_swapping",
   "index": 0,
   "item_cost": 5,
-  "tools": {
-    "item": "tconstruct:plate_leggings"
-  }
+  "tools": "tconstruct:plate_leggings"
 }

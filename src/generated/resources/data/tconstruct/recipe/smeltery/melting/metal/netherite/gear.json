@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/netherite/gear",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:gears/netherite"
     }
   ],
-  "ingredient": {
-    "tag": "c:gears/netherite"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/netherite/gear",
+  "ingredient": "#c:gears/netherite",
   "result": {
     "amount": 360,
     "tag": "c:molten_netherite"

@@ -1,19 +1,15 @@
 {
   "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/obsidian/foundry_io",
   "byproducts": [
     {
       "amount": 1000,
       "fluid": "tconstruct:scorched_stone"
     }
   ],
+  "id": "tconstruct:smeltery/melting/obsidian/foundry_io",
   "ingredient": [
-    {
-      "item": "tconstruct:scorched_drain"
-    },
-    {
-      "item": "tconstruct:scorched_chute"
-    }
+    "tconstruct:scorched_drain",
+    "tconstruct:scorched_chute"
   ],
   "result": {
     "amount": 500,

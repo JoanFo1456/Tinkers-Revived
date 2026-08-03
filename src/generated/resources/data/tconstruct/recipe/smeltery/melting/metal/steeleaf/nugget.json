@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/steeleaf/nugget",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:nuggets/steeleaf"
     }
   ],
-  "ingredient": {
-    "tag": "c:nuggets/steeleaf"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/steeleaf/nugget",
+  "ingredient": "#c:nuggets/steeleaf",
   "result": {
     "amount": 10,
     "fluid": "tconstruct:molten_steeleaf"

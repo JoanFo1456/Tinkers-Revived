@@ -1,11 +1,9 @@
 {
   "type": "tconstruct:incremental_modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/blockade",
   "allow_crystal": true,
   "amount_per_item": 1,
-  "input": {
-    "item": "tconstruct:obsidian_pane"
-  },
+  "id": "tconstruct:tools/modifiers/upgrade/blockade",
+  "input": "tconstruct:obsidian_pane",
   "level": {
     "max": 3
   },
@@ -15,14 +13,10 @@
     "upgrades": 1
   },
   "tools": {
-    "type": "neoforge:intersection",
+    "neoforge:ingredient_type": "neoforge:intersection",
     "children": [
-      {
-        "tag": "tconstruct:modifiable/interactable/charge"
-      },
-      {
-        "tag": "tconstruct:modifiable/durability"
-      }
+      "#tconstruct:modifiable/interactable/charge",
+      "#tconstruct:modifiable/durability"
     ]
   }
 }

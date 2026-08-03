@@ -1,6 +1,11 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "tconstruct:melting/ironwood/tools_costing_2"
+    }
+  ],
   "type": "tconstruct:damagable_melting",
-  "id": "tconstruct:smeltery/melting/ironwood/sword",
   "byproducts": [
     {
       "amount": 20,
@@ -8,15 +13,8 @@
       "unit_size": 10
     }
   ],
-  "neoforge:conditions": [
-    {
-      "type": "mantle:tag_filled",
-      "tag": "tconstruct:melting/ironwood/tools_costing_2"
-    }
-  ],
-  "ingredient": {
-    "tag": "tconstruct:melting/ironwood/tools_costing_2"
-  },
+  "id": "tconstruct:smeltery/melting/ironwood/sword",
+  "ingredient": "#tconstruct:melting/ironwood/tools_costing_2",
   "result": {
     "amount": 180,
     "tag": "c:molten_iron",

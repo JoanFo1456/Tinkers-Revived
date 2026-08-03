@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:material",
-  "id": "tconstruct:tools/materials/nicrosil/block",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:storage_blocks/nicrosil"
     }
   ],
-  "ingredient": {
-    "tag": "c:storage_blocks/nicrosil"
-  },
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/nicrosil/block",
+  "ingredient": "#c:storage_blocks/nicrosil",
   "leftover": {
     "count": 1,
     "tag": "c:ingots/nicrosil"

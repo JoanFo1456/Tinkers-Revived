@@ -1,15 +1,13 @@
 {
   "type": "tconstruct:ore_melting",
-  "id": "tconstruct:smeltery/melting/slime/ichor/bud_small",
   "byproducts": [
     {
       "amount": 200,
       "fluid": "tconstruct:ichor"
     }
   ],
-  "ingredient": {
-    "item": "tconstruct:small_ichor_slime_crystal_bud"
-  },
+  "id": "tconstruct:smeltery/melting/slime/ichor/bud_small",
+  "ingredient": "tconstruct:small_ichor_slime_crystal_bud",
   "rate": "gem",
   "result": {
     "amount": 10,

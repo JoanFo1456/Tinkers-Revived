@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "#": {
-      "item": "tconstruct:scorched_brick"
-    }
+    "#": "tconstruct:scorched_brick"
   },
   "pattern": [
     "# #",
@@ -13,6 +11,5 @@
   "result": {
     "count": 3,
     "id": "tconstruct:scorched_faucet"
-  },
-  "show_notification": true
+  }
 }

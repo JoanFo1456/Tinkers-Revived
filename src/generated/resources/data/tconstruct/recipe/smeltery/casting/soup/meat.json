@@ -1,14 +1,12 @@
 {
   "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casting/soup/meat",
-  "cast": {
-    "item": "minecraft:bowl"
-  },
+  "cast": "minecraft:bowl",
   "cast_consumed": true,
   "cooling_time": 1,
   "fluid": {
     "amount": 250,
     "tag": "tconstruct:meat_soup"
   },
+  "id": "tconstruct:smeltery/casting/soup/meat",
   "result": "tconstruct:meat_soup"
 }

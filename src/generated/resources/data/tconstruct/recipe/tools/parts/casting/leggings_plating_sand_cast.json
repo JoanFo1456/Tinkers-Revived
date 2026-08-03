@@ -1,10 +1,8 @@
 {
   "type": "tconstruct:table_casting_material",
-  "id": "tconstruct:tools/parts/casting/leggings_plating_sand_cast",
-  "cast": {
-    "tag": "tconstruct:casts/single_use/leggings_plating"
-  },
+  "cast": "#tconstruct:casts/single_use/leggings_plating",
   "cast_consumed": true,
+  "id": "tconstruct:tools/parts/casting/leggings_plating_sand_cast",
   "item_cost": 5,
   "result": "tconstruct:leggings_plating"
 }

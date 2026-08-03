@@ -1,13 +1,4 @@
 {
-  "type": "tconstruct:ore_melting",
-  "id": "tconstruct:smeltery/melting/metal/platinum/ore_singular",
-  "byproducts": [
-    {
-      "amount": 180,
-      "rate": "metal",
-      "tag": "c:molten_gold"
-    }
-  ],
   "neoforge:conditions": [
     {
       "type": "mantle:tag_combination_filled",
@@ -15,14 +6,19 @@
       "match": "c:ores/platinum"
     }
   ],
-  "ingredient": {
-    "type": "neoforge:difference",
-    "base": {
-      "tag": "c:ores/platinum"
-    },
-    "subtracted": {
-      "tag": "tconstruct:non_singular_ore_rates"
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 180,
+      "rate": "metal",
+      "tag": "c:molten_gold"
     }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/platinum/ore_singular",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#c:ores/platinum",
+    "subtracted": "#tconstruct:non_singular_ore_rates"
   },
   "rate": "metal",
   "result": {

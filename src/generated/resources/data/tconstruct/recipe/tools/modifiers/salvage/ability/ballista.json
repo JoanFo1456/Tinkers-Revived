@@ -5,7 +5,5 @@
   "slots": {
     "abilities": 1
   },
-  "tools": {
-    "tag": "tconstruct:modifiable/ranged/ballistas"
-  }
+  "tools": "#tconstruct:modifiable/ranged/ballistas"
 }

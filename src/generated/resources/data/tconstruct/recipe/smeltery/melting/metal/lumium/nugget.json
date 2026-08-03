@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/lumium/nugget",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:nuggets/lumium"
     }
   ],
-  "ingredient": {
-    "tag": "c:nuggets/lumium"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/lumium/nugget",
+  "ingredient": "#c:nuggets/lumium",
   "result": {
     "amount": 10,
     "tag": "c:molten_lumium"

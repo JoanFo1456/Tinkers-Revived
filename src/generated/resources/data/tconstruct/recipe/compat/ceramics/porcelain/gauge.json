@@ -1,18 +1,18 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:compat/ceramics/porcelain/gauge",
-  "byproducts": [
-    {
-      "amount": 50,
-      "fluid": "tconstruct:molten_glass"
-    }
-  ],
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
       "modid": "ceramics"
     }
   ],
+  "type": "tconstruct:melting",
+  "byproducts": [
+    {
+      "amount": 50,
+      "fluid": "tconstruct:molten_glass"
+    }
+  ],
+  "id": "tconstruct:compat/ceramics/porcelain/gauge",
   "ingredient": {
     "item": "ceramics:porcelain_gauge"
   },

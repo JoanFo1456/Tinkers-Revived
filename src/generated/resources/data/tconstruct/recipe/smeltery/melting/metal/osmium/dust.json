@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/osmium/dust",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:dusts/osmium"
     }
   ],
-  "ingredient": {
-    "tag": "c:dusts/osmium"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/osmium/dust",
+  "ingredient": "#c:dusts/osmium",
   "result": {
     "amount": 90,
     "tag": "c:molten_osmium"

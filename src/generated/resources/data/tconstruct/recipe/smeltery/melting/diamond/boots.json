@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:damagable_melting",
   "id": "tconstruct:smeltery/melting/diamond/boots",
-  "ingredient": {
-    "tag": "tconstruct:melting/diamond/tools_costing_4"
-  },
+  "ingredient": "#tconstruct:melting/diamond/tools_costing_4",
   "result": {
     "amount": 400,
     "fluid": "tconstruct:molten_diamond",

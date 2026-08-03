@@ -1,10 +1,8 @@
 {
   "type": "tconstruct:table_casting_material",
-  "id": "tconstruct:tools/parts/casting/tough_handle_sand_cast",
-  "cast": {
-    "tag": "tconstruct:casts/single_use/tough_handle"
-  },
+  "cast": "#tconstruct:casts/single_use/tough_handle",
   "cast_consumed": true,
+  "id": "tconstruct:tools/parts/casting/tough_handle_sand_cast",
   "item_cost": 3,
   "result": "tconstruct:tough_handle"
 }

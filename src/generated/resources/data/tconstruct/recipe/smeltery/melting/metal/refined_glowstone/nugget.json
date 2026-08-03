@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/refined_glowstone/nugget",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:nuggets/refined_glowstone"
     }
   ],
-  "ingredient": {
-    "tag": "c:nuggets/refined_glowstone"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/refined_glowstone/nugget",
+  "ingredient": "#c:nuggets/refined_glowstone",
   "result": {
     "amount": 10,
     "tag": "c:molten_refined_glowstone"

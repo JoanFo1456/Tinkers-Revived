@@ -1,15 +1,13 @@
 {
   "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casting/water/lingering",
-  "cast": {
-    "tag": "c:bottles/lingering"
-  },
+  "cast": "#c:bottles/lingering",
   "cast_consumed": true,
   "cooling_time": 1,
   "fluid": {
     "amount": 500,
     "tag": "mantle:water"
   },
+  "id": "tconstruct:smeltery/casting/water/lingering",
   "result": {
     "item": "minecraft:lingering_potion",
     "nbt": {

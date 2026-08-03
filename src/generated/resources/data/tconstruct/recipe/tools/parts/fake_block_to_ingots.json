@@ -1,11 +1,10 @@
 {
   "type": "tconstruct:crafting_shapeless_materials",
-  "id": "tconstruct:tools/parts/fake_block_to_ingots",
   "category": "misc",
   "ingredients": [
     {
-      "type": "tconstruct:material",
-      "item": "tconstruct:fake_storage_block",
+      "neoforge:ingredient_type": "tconstruct:material",
+      "match": "tconstruct:fake_storage_block",
       "material": {
         "type": "tconstruct:has_part",
         "part": "tconstruct:fake_ingot"
@@ -15,6 +14,6 @@
   "parts": 1,
   "result": {
     "count": 9,
-    "item": "tconstruct:fake_ingot"
+    "id": "tconstruct:fake_ingot"
   }
 }

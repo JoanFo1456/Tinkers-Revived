@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:material_fluid",
-  "id": "tconstruct:tools/materials/composite/plated_slimewood",
   "neoforge:conditions": [
     {
       "type": "neoforge:or",
@@ -16,10 +14,12 @@
       ]
     }
   ],
+  "type": "tconstruct:material_fluid",
   "fluid": {
     "amount": 90,
     "tag": "c:molten_brass"
   },
+  "id": "tconstruct:tools/materials/composite/plated_slimewood",
   "input": "tconstruct:slimewood",
   "output": "tconstruct:plated_slimewood",
   "temperature": 605

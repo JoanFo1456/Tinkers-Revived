@@ -2,12 +2,8 @@
   "type": "tconstruct:melting",
   "id": "tconstruct:smeltery/melting/glass/sand_cast",
   "ingredient": [
-    {
-      "item": "tconstruct:blank_sand_cast"
-    },
-    {
-      "item": "tconstruct:blank_red_sand_cast"
-    }
+    "tconstruct:blank_sand_cast",
+    "tconstruct:blank_red_sand_cast"
   ],
   "result": {
     "amount": 250,

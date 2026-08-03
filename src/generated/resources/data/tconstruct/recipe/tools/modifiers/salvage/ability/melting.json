@@ -6,11 +6,7 @@
     "abilities": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/melee"
-    },
-    {
-      "tag": "tconstruct:modifiable/harvest"
-    }
+    "#tconstruct:modifiable/melee",
+    "#tconstruct:modifiable/harvest"
   ]
 }

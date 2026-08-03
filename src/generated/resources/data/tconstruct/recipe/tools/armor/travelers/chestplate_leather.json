@@ -3,7 +3,5 @@
   "id": "tconstruct:tools/armor/travelers/chestplate_leather",
   "index": 1,
   "item_cost": 6,
-  "tools": {
-    "item": "tconstruct:travelers_chestplate"
-  }
+  "tools": "tconstruct:travelers_chestplate"
 }

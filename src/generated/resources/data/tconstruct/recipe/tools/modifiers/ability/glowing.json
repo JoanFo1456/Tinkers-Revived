@@ -1,17 +1,17 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/ability/glowing",
   "allow_crystal": true,
   "check_trait_level": true,
+  "id": "tconstruct:tools/modifiers/ability/glowing",
   "inputs": [
     {
-      "item": "minecraft:glowstone"
+      "ingredient": "minecraft:glowstone"
     },
     {
-      "item": "minecraft:daylight_detector"
+      "ingredient": "minecraft:daylight_detector"
     },
     {
-      "item": "minecraft:shroomlight"
+      "ingredient": "minecraft:shroomlight"
     }
   ],
   "level": 1,
@@ -20,19 +20,16 @@
     "abilities": 1
   },
   "tools": {
-    "type": "neoforge:intersection",
+    "neoforge:ingredient_type": "neoforge:intersection",
     "children": [
+      "#tconstruct:modifiable/durability",
       {
-        "tag": "tconstruct:modifiable/durability"
-      },
-      [
-        {
-          "tag": "tconstruct:modifiable/interactable"
-        },
-        {
-          "tag": "tconstruct:modifiable/armor/boots"
-        }
-      ]
+        "neoforge:ingredient_type": "neoforge:compound",
+        "children": [
+          "#tconstruct:modifiable/interactable",
+          "#tconstruct:modifiable/armor/boots"
+        ]
+      }
     ]
   }
 }

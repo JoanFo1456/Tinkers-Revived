@@ -1,9 +1,8 @@
 {
   "type": "tconstruct:casting_table",
-  "id": "tconstruct:smeltery/casts/gold/maille",
   "cast": {
-    "type": "tconstruct:material",
-    "item": "tconstruct:maille"
+    "neoforge:ingredient_type": "tconstruct:material",
+    "match": "tconstruct:maille"
   },
   "cast_consumed": true,
   "cooling_time": 57,
@@ -11,6 +10,7 @@
     "amount": 90,
     "tag": "c:molten_gold"
   },
+  "id": "tconstruct:smeltery/casts/gold/maille",
   "result": "tconstruct:maille_cast",
   "switch_slots": true
 }

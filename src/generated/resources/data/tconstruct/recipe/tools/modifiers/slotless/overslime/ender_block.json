@@ -1,11 +1,7 @@
 {
   "type": "tconstruct:overslime_modifier",
   "id": "tconstruct:tools/modifiers/slotless/overslime/ender_block",
-  "ingredient": {
-    "item": "tconstruct:ender_slime"
-  },
+  "ingredient": "tconstruct:ender_slime",
   "restore_amount": 720,
-  "tools": {
-    "tag": "tconstruct:modifiable/durability"
-  }
+  "tools": "#tconstruct:modifiable/durability"
 }

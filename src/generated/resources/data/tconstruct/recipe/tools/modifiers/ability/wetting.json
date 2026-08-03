@@ -1,23 +1,23 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/ability/wetting",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/ability/wetting",
   "inputs": [
     {
-      "tag": "c:dusts/redstone"
+      "ingredient": "#c:dusts/redstone"
     },
     {
-      "type": "tconstruct:no_container",
-      "tag": "tconstruct:tanks"
+      "neoforge:ingredient_type": "tconstruct:no_container",
+      "match": "#tconstruct:tanks"
     },
     {
-      "tag": "c:dusts/redstone"
+      "ingredient": "#c:dusts/redstone"
     },
     {
-      "tag": "c:ingots/copper"
+      "ingredient": "#c:ingots/copper"
     },
     {
-      "tag": "c:ingots/copper"
+      "ingredient": "#c:ingots/copper"
     }
   ],
   "result": "tconstruct:wetting",
@@ -25,11 +25,7 @@
     "abilities": 1
   },
   "tools": [
-    {
-      "tag": "tconstruct:modifiable/armor/leggings"
-    },
-    {
-      "tag": "tconstruct:modifiable/shields"
-    }
+    "#tconstruct:modifiable/armor/leggings",
+    "#tconstruct:modifiable/shields"
   ]
 }

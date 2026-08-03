@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/zinc/ingot",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/zinc"
     }
   ],
-  "ingredient": {
-    "tag": "c:ingots/zinc"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/zinc/ingot",
+  "ingredient": "#c:ingots/zinc",
   "result": {
     "amount": 90,
     "tag": "c:molten_zinc"

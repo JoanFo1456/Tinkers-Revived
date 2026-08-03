@@ -3,7 +3,7 @@
   "id": "tconstruct:tools/modifiers/worktable/enchantment_converting/slotless_book",
   "inputs": [
     {
-      "item": "minecraft:amethyst_shard"
+      "ingredient": "minecraft:amethyst_shard"
     }
   ],
   "match_book": true,

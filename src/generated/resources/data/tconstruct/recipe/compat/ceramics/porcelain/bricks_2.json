@@ -1,12 +1,12 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:compat/ceramics/porcelain/bricks_2",
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
       "modid": "ceramics"
     }
   ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:compat/ceramics/porcelain/bricks_2",
   "ingredient": [
     {
       "item": "ceramics:porcelain_bricks_slab"

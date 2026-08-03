@@ -1,10 +1,10 @@
 {
   "type": "tconstruct:material_fluid",
-  "id": "tconstruct:tools/materials/composite/jeweled_hide",
   "fluid": {
     "amount": 100,
     "tag": "tconstruct:molten_diamond"
   },
+  "id": "tconstruct:tools/materials/composite/jeweled_hide",
   "input": "tconstruct:leather",
   "output": "tconstruct:jeweled_hide",
   "temperature": 1450

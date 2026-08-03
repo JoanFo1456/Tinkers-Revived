@@ -1,6 +1,4 @@
 {
-  "type": "tconstruct:alloy",
-  "id": "tconstruct:smeltery/alloys/molten_signalum",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
@@ -20,6 +18,8 @@
       "tag": "c:redstone"
     }
   ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_signalum",
   "inputs": [
     {
       "amount": 270,

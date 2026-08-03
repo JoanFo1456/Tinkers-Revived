@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "tconstruct:seared_brick"
-    }
+    "#": "tconstruct:seared_brick"
   },
   "pattern": [
     "###",
@@ -13,6 +11,5 @@
   ],
   "result": {
     "id": "tconstruct:seared_table"
-  },
-  "show_notification": true
+  }
 }

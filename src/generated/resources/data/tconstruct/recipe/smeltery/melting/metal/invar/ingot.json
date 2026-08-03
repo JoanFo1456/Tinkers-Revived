@@ -1,15 +1,13 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/invar/ingot",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:ingots/invar"
     }
   ],
-  "ingredient": {
-    "tag": "c:ingots/invar"
-  },
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/invar/ingot",
+  "ingredient": "#c:ingots/invar",
   "result": {
     "amount": 90,
     "tag": "c:molten_invar"

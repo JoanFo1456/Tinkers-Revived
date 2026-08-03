@@ -1,15 +1,11 @@
 {
   "type": "tconstruct:part_builder",
-  "id": "tconstruct:tools/parts/builder/maille",
   "cost": 2,
+  "id": "tconstruct:tools/parts/builder/maille",
   "pattern": "tconstruct:maille",
   "pattern_item": [
-    {
-      "tag": "tconstruct:patterns/default"
-    },
-    {
-      "item": "tconstruct:maille_cast"
-    }
+    "#tconstruct:patterns/default",
+    "tconstruct:maille_cast"
   ],
   "result": {
     "item": "tconstruct:maille"

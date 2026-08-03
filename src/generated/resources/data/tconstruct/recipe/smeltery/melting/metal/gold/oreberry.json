@@ -1,12 +1,12 @@
 {
-  "type": "tconstruct:melting",
-  "id": "tconstruct:smeltery/melting/metal/gold/oreberry",
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "oreberriesreplanted:gold_oreberry"
+      "type": "neoforge:registered",
+      "value": "oreberriesreplanted:gold_oreberry"
     }
   ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/gold/oreberry",
   "ingredient": {
     "item": "oreberriesreplanted:gold_oreberry"
   },

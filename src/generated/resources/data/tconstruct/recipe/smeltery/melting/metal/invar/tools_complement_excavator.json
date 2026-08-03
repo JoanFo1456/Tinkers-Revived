@@ -1,12 +1,12 @@
 {
-  "type": "tconstruct:damagable_melting",
-  "id": "tconstruct:smeltery/melting/metal/invar/tools_complement_excavator",
   "neoforge:conditions": [
     {
-      "type": "neoforge:item_exists",
-      "item": "tools_complement:invar_excavator"
+      "type": "neoforge:registered",
+      "value": "tools_complement:invar_excavator"
     }
   ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/invar/tools_complement_excavator",
   "ingredient": {
     "item": "tools_complement:invar_excavator"
   },

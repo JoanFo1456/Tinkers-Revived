@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "#": {
-      "item": "tconstruct:scorched_brick"
-    },
-    "C": {
-      "item": "tconstruct:obsidian_pane"
-    }
+    "#": "tconstruct:scorched_brick",
+    "C": "tconstruct:obsidian_pane"
   },
   "pattern": [
     "# #",
@@ -16,6 +12,5 @@
   ],
   "result": {
     "id": "tconstruct:scorched_drain"
-  },
-  "show_notification": true
+  }
 }

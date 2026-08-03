@@ -1,9 +1,7 @@
 {
   "type": "tconstruct:ore_melting",
   "id": "tconstruct:smeltery/melting/slime/sky/bud_small",
-  "ingredient": {
-    "item": "tconstruct:small_sky_slime_crystal_bud"
-  },
+  "ingredient": "tconstruct:small_sky_slime_crystal_bud",
   "rate": "gem",
   "result": {
     "amount": 250,

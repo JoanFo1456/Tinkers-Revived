@@ -3,7 +3,5 @@
   "id": "tconstruct:tools/armor/travelers/goggles_leather",
   "index": 1,
   "item_cost": 3,
-  "tools": {
-    "item": "tconstruct:travelers_helmet"
-  }
+  "tools": "tconstruct:travelers_helmet"
 }

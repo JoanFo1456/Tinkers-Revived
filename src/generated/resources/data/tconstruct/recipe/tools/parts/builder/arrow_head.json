@@ -1,16 +1,12 @@
 {
   "type": "tconstruct:part_builder",
-  "id": "tconstruct:tools/parts/builder/arrow_head",
   "allow_uncraftable": true,
   "cost": 1,
+  "id": "tconstruct:tools/parts/builder/arrow_head",
   "pattern": "tconstruct:arrow_head",
   "pattern_item": [
-    {
-      "tag": "tconstruct:patterns/default"
-    },
-    {
-      "item": "tconstruct:arrow_cast"
-    }
+    "#tconstruct:patterns/default",
+    "tconstruct:arrow_cast"
   ],
   "result": {
     "item": "tconstruct:arrow_head"

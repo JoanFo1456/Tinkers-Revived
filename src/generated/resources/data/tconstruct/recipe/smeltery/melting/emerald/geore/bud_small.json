@@ -1,6 +1,11 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:geore_small_buds/emerald"
+    }
+  ],
   "type": "tconstruct:ore_melting",
-  "id": "tconstruct:smeltery/melting/emerald/geore/bud_small",
   "byproducts": [
     {
       "amount": 100,
@@ -8,15 +13,8 @@
       "rate": "gem"
     }
   ],
-  "neoforge:conditions": [
-    {
-      "type": "mantle:tag_filled",
-      "tag": "c:geore_small_buds/emerald"
-    }
-  ],
-  "ingredient": {
-    "tag": "c:geore_small_buds/emerald"
-  },
+  "id": "tconstruct:smeltery/melting/emerald/geore/bud_small",
+  "ingredient": "#c:geore_small_buds/emerald",
   "rate": "gem",
   "result": {
     "amount": 100,

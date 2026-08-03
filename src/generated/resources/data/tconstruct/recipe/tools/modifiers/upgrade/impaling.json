@@ -1,16 +1,16 @@
 {
   "type": "tconstruct:modifier",
-  "id": "tconstruct:tools/modifiers/upgrade/impaling",
   "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/impaling",
   "inputs": [
     {
-      "item": "minecraft:pointed_dripstone"
+      "ingredient": "minecraft:pointed_dripstone"
     },
     {
-      "item": "minecraft:pointed_dripstone"
+      "ingredient": "minecraft:pointed_dripstone"
     },
     {
-      "item": "minecraft:pointed_dripstone"
+      "ingredient": "minecraft:pointed_dripstone"
     }
   ],
   "level": {
@@ -20,7 +20,5 @@
   "slots": {
     "upgrades": 1
   },
-  "tools": {
-    "tag": "tconstruct:modifiable/ranged/crossbows"
-  }
+  "tools": "#tconstruct:modifiable/ranged/crossbows"
 }

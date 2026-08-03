@@ -1,16 +1,12 @@
 {
   "type": "tconstruct:molding_table",
   "id": "tconstruct:smeltery/casts/sand/molding/leggings_plating",
-  "material": {
-    "tag": "tconstruct:casts/sand"
-  },
+  "material": "#tconstruct:casts/sand",
   "pattern": [
+    "tconstruct:leggings_plating_dummy",
     {
-      "type": "tconstruct:material",
-      "item": "tconstruct:leggings_plating"
-    },
-    {
-      "item": "tconstruct:leggings_plating_dummy"
+      "neoforge:ingredient_type": "tconstruct:material",
+      "match": "tconstruct:leggings_plating"
     }
   ],
   "result": "tconstruct:leggings_plating_sand_cast"

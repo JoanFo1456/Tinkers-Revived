@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "wooden_fence_gate",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "tconstruct:bloodshroom_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "tconstruct:bloodshroom_planks"
   },
   "pattern": [
     "#W#",
@@ -16,6 +12,5 @@
   ],
   "result": {
     "id": "tconstruct:bloodshroom_fence_gate"
-  },
-  "show_notification": true
+  }
 }

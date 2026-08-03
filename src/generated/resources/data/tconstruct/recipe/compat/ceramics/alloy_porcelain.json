@@ -1,12 +1,12 @@
 {
-  "type": "tconstruct:alloy",
-  "id": "tconstruct:compat/ceramics/alloy_porcelain",
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
       "modid": "ceramics"
     }
   ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:compat/ceramics/alloy_porcelain",
   "inputs": [
     {
       "amount": 750,

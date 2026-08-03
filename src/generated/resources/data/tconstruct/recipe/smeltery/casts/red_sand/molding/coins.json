@@ -1,17 +1,13 @@
 {
-  "type": "tconstruct:molding_table",
-  "id": "tconstruct:smeltery/casts/red_sand/molding/coins",
   "neoforge:conditions": [
     {
       "type": "mantle:tag_filled",
       "tag": "c:coins"
     }
   ],
-  "material": {
-    "tag": "tconstruct:casts/red_sand"
-  },
-  "pattern": {
-    "tag": "c:coins"
-  },
+  "type": "tconstruct:molding_table",
+  "id": "tconstruct:smeltery/casts/red_sand/molding/coins",
+  "material": "#tconstruct:casts/red_sand",
+  "pattern": "#c:coins",
   "result": "tconstruct:coin_red_sand_cast"
 }

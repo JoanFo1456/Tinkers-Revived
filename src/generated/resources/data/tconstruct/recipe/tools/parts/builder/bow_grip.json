@@ -1,15 +1,11 @@
 {
   "type": "tconstruct:part_builder",
-  "id": "tconstruct:tools/parts/builder/bow_grip",
   "cost": 2,
+  "id": "tconstruct:tools/parts/builder/bow_grip",
   "pattern": "tconstruct:bow_grip",
   "pattern_item": [
-    {
-      "tag": "tconstruct:patterns/default"
-    },
-    {
-      "item": "tconstruct:bow_grip_cast"
-    }
+    "#tconstruct:patterns/default",
+    "tconstruct:bow_grip_cast"
   ],
   "result": {
     "item": "tconstruct:bow_grip"
