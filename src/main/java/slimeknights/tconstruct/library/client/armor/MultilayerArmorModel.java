@@ -37,8 +37,9 @@ public class MultilayerArmorModel extends AbstractArmorModel {
     return this;
   }
 
-  @Override
-  public void renderToBuffer(PoseStack matrices, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
+  // renderToBuffer is final in 26.1 (renders the model's own root); custom layer draw renamed to renderLayers. Reads the
+  // static AbstractArmorModel.buffer (null until the equipment-layer re-hook), so this is dead until re-wired; validated in-game.
+  public void renderLayers(PoseStack matrices, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
     if (this.base != null && buffer != null) {
       float red = ARGB.red(color) / 255.0f;
       float green = ARGB.green(color) / 255.0f;

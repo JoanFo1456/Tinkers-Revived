@@ -115,7 +115,7 @@ public class SlimeskullArmorModel extends MultilayerArmorModel {
 
   /** Registers a skull model using an item as the model */
   public static void registerBlockModel(MaterialId materialId, ItemStack stack) {
-    registerHeadModel(materialId, modelSet -> new BlockModelSkullRenderer(Minecraft.getInstance().getItemRenderer(), stack), net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
+    registerHeadModel(materialId, modelSet -> new BlockModelSkullRenderer(Minecraft.getInstance().getItemModelResolver(), stack), net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
   }
 
   /** Registers a head model and texture, using a custom skull model */
