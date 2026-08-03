@@ -107,7 +107,6 @@ sourceSets {
             exclude 'slimeknights/tconstruct/tools/data/ArmorModelProvider.java'
             exclude 'slimeknights/tconstruct/tools/data/ToolItemModelProvider.java'
             exclude 'slimeknights/tconstruct/tools/data/client/**'
-            exclude 'slimeknights/tconstruct/tools/data/material/MaterialRenderInfoProvider.java'
             // StructureRepalleter reads committed structure NBTs at datagen time via the removed
             // ExistingFileHelper; the structure NBT format is stable across 1.21.1->26.1 so the already
             // generated structures load fine. Regenerating them needs a rewrite of the resource reader; deferred.
@@ -150,13 +149,9 @@ sourceSets {
             exclude 'slimeknights/tconstruct/common/data/loot/GlobalLootModifiersProvider.java'
             exclude 'slimeknights/tconstruct/common/data/loot/TConstructLootTableProvider.java'
             exclude 'slimeknights/tconstruct/common/data/loot/LootTableInjectionProvider.java'
-            // client sprite/texture generators (ExistingFileHelper / sprite pipeline rewrite pending)
-            exclude 'slimeknights/tconstruct/library/client/data/GenericTextureGenerator.java'
-            exclude 'slimeknights/tconstruct/library/client/data/material/AbstractMaterialRenderInfoProvider.java'
+            // Client sprite/texture + material render-info datagen ported to 26.1 ResourceManager (EFH removed).
+            // The item/block MODEL providers (vanilla item-model format rewrite) remain excluded above.
             exclude 'slimeknights/tconstruct/library/client/data/material/MaterialPaletteDebugGenerator.java'
-            exclude 'slimeknights/tconstruct/library/client/data/material/TrimMaterialPaletteGenerator.java'
-            exclude 'slimeknights/tconstruct/library/client/data/util/DataGenSpriteReader.java'
-            exclude 'slimeknights/tconstruct/tools/data/sprite/TinkerTrimMaterialPaletteGenerator.java'
         }
         resources {
             srcDirs "src/generated/resources"
