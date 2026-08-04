@@ -93,10 +93,14 @@ public class ContainerFillingRecipe implements ICastingRecipe, IMultiRecipe<Disp
   @Override
   public boolean matches(ICastingContainer inv, Level worldIn) {
     ItemStack stack = inv.getStack();
+    // guard empty/wrong item before touching the capability: ItemAccess.forStack throws on an empty stack, and this
+    // matches() is called for every faucet pour (including into an empty basin, where the cast slot stack is empty)
+    if (stack.isEmpty() || stack.getItem() != this.container.asItem()) {
+      return false;
+    }
     Fluid fluid = inv.getFluid();
     ResourceHandler<FluidResource> handler = ItemAccess.forStack(stack.copyWithCount(1)).getCapability(Capabilities.Fluid.ITEM);
-    return stack.getItem() == this.container.asItem()
-           && handler != null
+    return handler != null
            && FluidTransferHelper.fill(handler, new FluidStack(fluid, this.fluidAmount), false) > 0;
   }
 
