@@ -193,6 +193,12 @@ public class StationSlotLayout {
       return this;
     }
 
+    /** Sets the icon of this layout to a prebuilt icon */
+    public Builder icon(LayoutIcon icon) {
+      this.icon = icon;
+      return this;
+    }
+
     /** Sets the icon of this layout to a pattern */
     public Builder icon(Pattern pattern) {
       icon = LayoutIcon.ofPattern(pattern);

@@ -20,6 +20,8 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.crafting.Ingredient;
+import slimeknights.mantle.data.loadable.common.IngredientLoadable;
+import slimeknights.mantle.util.typed.TypedMap;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.conditions.ICondition.IContext;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
@@ -159,12 +161,16 @@ public class StationSlotLayoutLoader extends SimpleJsonResourceReloadListener<co
   private static class IngredientSerializer implements JsonSerializer<Ingredient>, JsonDeserializer<Ingredient> {
     @Override
     public Ingredient deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-      return Ingredient.CODEC.parse(JsonOps.INSTANCE, json).getOrThrow(JsonParseException::new);
+      // route through Mantle's IngredientLoadable so tag ingredients (#tag / {"tag": id}) resolve lazily instead of
+      // eagerly (vanilla Ingredient.CODEC with plain JsonOps rejects "#tag" and resolves tags before the reload binds them)
+      return IngredientLoadable.ALLOW_EMPTY.convert(json, "filter", TypedMap.empty());
     }
 
     @Override
     public JsonElement serialize(Ingredient ingredient, Type typeOfSrc, JsonSerializationContext context) {
-      return Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, ingredient).getOrThrow(JsonParseException::new);
+      // IngredientLoadable serializes a tag ingredient by name via registry-aware ops; vanilla Ingredient.CODEC with
+      // plain JsonOps instead streams the holder set and throws "Missing tag" at datagen (tags not bound then)
+      return IngredientLoadable.ALLOW_EMPTY.serialize(ingredient);
     }
   }
 }

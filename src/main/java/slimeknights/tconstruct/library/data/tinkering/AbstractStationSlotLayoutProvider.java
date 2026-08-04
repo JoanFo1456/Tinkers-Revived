@@ -11,7 +11,9 @@ import com.mojang.serialization.JsonOps;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import slimeknights.mantle.data.GenericDataProvider;
 import slimeknights.tconstruct.library.recipe.partbuilder.Pattern;
+import slimeknights.tconstruct.library.tools.helper.ToolBuildHandler;
 import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
+import slimeknights.tconstruct.library.tools.layout.LayoutIcon;
 import slimeknights.tconstruct.library.tools.layout.StationSlotLayout;
 import slimeknights.tconstruct.library.tools.layout.StationSlotLayoutLoader;
 
@@ -76,9 +78,11 @@ public abstract class AbstractStationSlotLayoutProvider extends GenericDataProvi
 
   /** Defines the given ID as a tool layout, sets icon and name */
   protected StationSlotLayout.Builder defineModifiable(IModifiableDisplay item) {
+    // build the render-tool icon directly from raw data: item.getRenderTool() constructs an ItemStack, which reads item
+    // DataComponents that are not yet bound during datagen ("Components not bound yet"). The JSON is identical.
     return define(BuiltInRegistries.ITEM.getKey(item.asItem()))
       .translationKey(item.asItem().getDescriptionId())
-      .icon(item.getRenderTool());
+      .icon(LayoutIcon.ofRawItem(item.asItem(), ToolBuildHandler.buildRenderToolNbt(item.getToolDefinition())));
   }
 
   /** Defines the given ID as a tool layout, sets icon and name */

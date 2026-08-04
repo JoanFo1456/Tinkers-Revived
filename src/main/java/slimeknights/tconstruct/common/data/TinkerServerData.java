@@ -79,10 +79,11 @@ public final class TinkerServerData {
     // — without it every tool shows "Missing tool data" and cannot render its parts.
     generator.addProvider(true, new ToolDefinitionDataProvider(packOutput));
 
-    // station layouts + mob spawn equipment
-    // TEMP-REGEN: these build fully-materialed render tool ItemStacks (needs bound item components, unavailable at
+    // station layouts (drive the tinker station / anvil / crafting-station GUIs — without them the menus fail to open)
+    generator.addProvider(true, new StationSlotLayoutProvider(packOutput));
+    // mob spawn equipment
+    // TEMP-REGEN: builds fully-materialed render tool ItemStacks (needs bound item components, unavailable at
     // server datagen) — skipped for the partial recipe/tag/advancement regen.
-    // generator.addProvider(true, new StationSlotLayoutProvider(packOutput));
     // generator.addProvider(true, new MobEquipmentProvider(packOutput));
 
     // advancements
