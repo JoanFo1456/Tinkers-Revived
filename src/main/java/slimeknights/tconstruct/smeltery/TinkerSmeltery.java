@@ -486,9 +486,12 @@ public final class TinkerSmeltery extends TinkerModule {
     registerItem(event, chute.get());
     registerItem(event, duct.get());
     registerItem(event, heater.get());
-    event.registerBlockEntity(Capabilities.Item.BLOCK, basin.get(), (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.item.ItemResource>)(Object) be.getItemHandler());
-    event.registerBlockEntity(Capabilities.Item.BLOCK, table.get(), (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.item.ItemResource>)(Object) be.getItemHandler());
-    event.registerBlockEntity(Capabilities.Item.BLOCK, castingTank.get(), (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.item.ItemResource>)(Object) be.getItemHandler());
+    // item automation capability deferred: these inventories are legacy IItemHandlers and casting them straight to a
+    // ResourceHandler throws a ClassCastException when queried (crashing on menu open / adjacent hoppers). The menus read
+    // the inventory directly (see the *ContainerMenu classes), so return null here until the transfer-API port is done.
+    event.registerBlockEntity(Capabilities.Item.BLOCK, basin.get(), (be, side) -> null);
+    event.registerBlockEntity(Capabilities.Item.BLOCK, table.get(), (be, side) -> null);
+    event.registerBlockEntity(Capabilities.Item.BLOCK, castingTank.get(), (be, side) -> null);
     registerItem(event, fluidCannon.get());
     registerItem(event, proxyTank.get());
     registerItem(event, melter.get());
@@ -511,7 +514,10 @@ public final class TinkerSmeltery extends TinkerModule {
   }
 
   private static <BE extends MantleBlockEntity & slimeknights.tconstruct.smeltery.block.entity.ILegacyCapabilityBlockEntity> void registerItem(RegisterCapabilitiesEvent event, BlockEntityType<BE> type) {
-    event.registerBlockEntity(Capabilities.Item.BLOCK, type, (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.item.ItemResource>)(Object) be.getCapability(ForgeCapabilities.ITEM_HANDLER, side).orElse(null));
+    // item automation capability deferred: the block entity exposes a legacy IItemHandler which cannot be force-cast to a
+    // ResourceHandler (ClassCastException when queried — crashes on menu open / adjacent automation). Menus read the
+    // inventory via the legacy ForgeCapabilities.ITEM_HANDLER directly, so return null here until the transfer-API port.
+    event.registerBlockEntity(Capabilities.Item.BLOCK, type, (be, side) -> null);
   }
 
   private static void registerTankItem(RegisterCapabilitiesEvent event, ItemLike item) {
