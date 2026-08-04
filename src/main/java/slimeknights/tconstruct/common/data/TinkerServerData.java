@@ -22,6 +22,7 @@ import slimeknights.tconstruct.shared.data.CommonRecipeProvider;
 import slimeknights.tconstruct.smeltery.data.SmelteryRecipeProvider;
 import slimeknights.tconstruct.tables.data.TableRecipeProvider;
 import slimeknights.tconstruct.tools.data.ModifierRecipeProvider;
+import slimeknights.tconstruct.tools.data.ToolDefinitionDataProvider;
 import slimeknights.tconstruct.tools.data.StationSlotLayoutProvider;
 import slimeknights.tconstruct.tools.data.ToolsRecipeProvider;
 import slimeknights.tconstruct.tools.data.material.MaterialRecipeProvider;
@@ -73,6 +74,10 @@ public final class TinkerServerData {
     generator.addProvider(true, materials);
     generator.addProvider(true, new MaterialStatsDataProvider(packOutput, materials));
     generator.addProvider(true, new MaterialTraitsDataProvider(packOutput, materials));
+
+    // tool definition data (per-tool modules: parts, stats, traits, harvest, slots). Drives ToolDefinition.isDataLoaded()
+    // — without it every tool shows "Missing tool data" and cannot render its parts.
+    generator.addProvider(true, new ToolDefinitionDataProvider(packOutput));
 
     // station layouts + mob spawn equipment
     // TEMP-REGEN: these build fully-materialed render tool ItemStacks (needs bound item components, unavailable at

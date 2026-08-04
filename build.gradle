@@ -130,8 +130,8 @@ sourceSets {
             exclude 'slimeknights/tconstruct/library/data/tinkering/AbstractFluidEffectProvider.java'
             exclude 'slimeknights/tconstruct/world/data/WorldgenProvider.java'
             // concrete providers whose abstract bases are in the in-progress set above
-            // ModifierProvider + ToolDefinitionDataProvider: in progress, temporarily excluded (being fixed next).
-            exclude 'slimeknights/tconstruct/tools/data/ToolDefinitionDataProvider.java'
+            // ModifierProvider + ToolDefinitionDataProvider: in progress, being fixed next.
+            //exclude 'slimeknights/tconstruct/tools/data/ToolDefinitionDataProvider.java'
             // ModifierProvider: EnchantmentModule.builder(Enchantment) needs raw Enchantment values, but 26.1 makes
             // enchantments datapack-only (Enchantments.X is ResourceKey<Enchantment>); also EffectImmunity/Attribute/
             // MobEffect modules now revolve around Holders. Needs a main-code module refactor to ResourceKey-based
