@@ -96,6 +96,11 @@ public final class MaterialModel {
   /** Gets quads for the given material variant of the texture */
   public static List<BakedQuad> getQuadsForMaterial(Function<Material,TextureAtlasSprite> spriteGetter, Material texture, MaterialVariantId material, int tintIndex, Transformation transformation, @Nullable ItemLayerPixels pixels) {
     TintedSprite sprite = getMaterialSprite(spriteGetter, texture, material);
+    // guard against an unstitched/absent sprite: the 26.1 quad baker throws "No sprite set" on a null sprite, which
+    // would crash rendering. Skip the layer (render nothing) rather than crash if the atlas has no sprite for it.
+    if (sprite.sprite() == null) {
+      return List.of();
+    }
     // wrap the atlas sprite as a baked material for the 26.1 quad generator
     return MantleItemLayerModel.getQuadsForSprite(sprite.color(), tintIndex, new Material.Baked(sprite.sprite(), false), transformation, sprite.emissivity(), pixels);
   }

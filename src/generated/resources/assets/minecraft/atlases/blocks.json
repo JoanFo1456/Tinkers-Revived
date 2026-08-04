@@ -2,6 +2,16 @@
   "sources": [
     {
       "type": "minecraft:directory",
+      "prefix": "item/tool/",
+      "source": "item/tool"
+    },
+    {
+      "type": "minecraft:directory",
+      "prefix": "item/materials/",
+      "source": "item/materials"
+    },
+    {
+      "type": "minecraft:directory",
       "prefix": "fluid/",
       "source": "fluid"
     },
