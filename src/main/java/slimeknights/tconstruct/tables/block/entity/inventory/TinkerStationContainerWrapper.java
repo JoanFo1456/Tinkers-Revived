@@ -62,10 +62,10 @@ public class TinkerStationContainerWrapper implements IMutableTinkerStationConta
     if (lastMaterialRecipe != null && lastMaterialRecipe.matches(inv, world)) {
       return lastMaterialRecipe;
     }
-    // try to find a new recipe
-    Optional<MaterialRecipe> newRecipe = world.getServer().getRecipeManager().getRecipeFor(TinkerRecipeTypes.MATERIAL.get(), inv, world).map(RecipeHolder::value);
-    if (newRecipe.isPresent()) {
-      lastMaterialRecipe = newRecipe.get();
+    // try to find a new recipe (side-aware: server RecipeManager, or the synced client recipe cache on the client)
+    MaterialRecipe newRecipe = MaterialRecipe.getRecipe(inv, world);
+    if (newRecipe != null) {
+      lastMaterialRecipe = newRecipe;
       return lastMaterialRecipe;
     }
     // if none found, return null

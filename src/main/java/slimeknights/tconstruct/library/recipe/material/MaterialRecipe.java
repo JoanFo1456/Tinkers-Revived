@@ -114,6 +114,25 @@ public class MaterialRecipe implements ICustomOutputRecipe<ISingleStackContainer
     return !material.isUnknown() && this.ingredient.test(inv.getStack());
   }
 
+  /**
+   * Finds the material recipe matching the given inventory, reading from the correct recipe source per side. 26.1 removed
+   * {@code Level#getRecipeManager}: the server uses {@code getServer().getRecipeManager()} (null on the client, so calling
+   * it client-side NPEs), while the client reads the synced {@link slimeknights.mantle.recipe.sync.ClientRecipeCache}
+   * (MATERIAL is registered syncable). Used by the tinker station / part builder which resolve materials on both sides.
+   */
+  @javax.annotation.Nullable
+  public static MaterialRecipe getRecipe(ISingleStackContainer inv, Level world) {
+    if (world.isClientSide()) {
+      for (MaterialRecipe recipe : slimeknights.mantle.recipe.helper.RecipeHelper.getRecipes(slimeknights.mantle.recipe.sync.ClientRecipeCache.getRecipeMap(), TinkerRecipeTypes.MATERIAL.get(), MaterialRecipe.class)) {
+        if (recipe.matches(inv, world)) {
+          return recipe;
+        }
+      }
+      return null;
+    }
+    return world.getServer().getRecipeManager().getRecipeFor(TinkerRecipeTypes.MATERIAL.get(), inv, world).map(net.minecraft.world.item.crafting.RecipeHolder::value).orElse(null);
+  }
+
   public NonNullList<Ingredient> getIngredients() {
     NonNullList<Ingredient> list = NonNullList.create();
     if (ingredient != null) {
