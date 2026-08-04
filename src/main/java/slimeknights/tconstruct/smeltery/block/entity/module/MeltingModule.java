@@ -95,7 +95,10 @@ public class MeltingModule implements IMeltingContainer, ContainerData {
     this.stack = newStack;
     int newTime = 0;
     int newTemp = 0;
-    if(!stack.isEmpty()) {
+    // only look up the recipe server-side: 26.1 removed Level#getRecipeManager, so findRecipe goes through
+    // world.getServer().getRecipeManager(), which is null on the client (getServer() == null) and would NPE on every
+    // slot interaction. The client receives requiredTime/requiredTemp via the menu's synced ContainerData instead.
+    if (!stack.isEmpty() && world != null && !world.isClientSide()) {
       IMeltingRecipe recipe = findRecipe();
       if (recipe != null) {
         newTime = recipe.getTime(this) * 10;

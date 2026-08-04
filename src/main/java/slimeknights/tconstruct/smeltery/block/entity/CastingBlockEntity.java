@@ -346,7 +346,8 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
 
   @Nullable
   private RecipeHolder<ICastingRecipe> findCastingRecipe() {
-    if (level == null) return null;
+    // recipe lookup is server-only: 26.1 routes it through level.getServer().getRecipeManager(), null on the client
+    if (level == null || level.isClientSide()) return null;
     if (this.lastCastingRecipe != null && this.lastCastingRecipe.value().matches(castingInventory, level)) {
       return this.lastCastingRecipe;
     }
@@ -380,7 +381,8 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
    */
   @Nullable
   private MoldingRecipe findMoldingRecipe() {
-    if (level == null) return null;
+    // recipe lookup is server-only: 26.1 routes it through level.getServer().getRecipeManager(), null on the client
+    if (level == null || level.isClientSide()) return null;
     if (lastMoldingRecipe != null && lastMoldingRecipe.matches(moldingInventory, level)) {
       return lastMoldingRecipe;
     }
