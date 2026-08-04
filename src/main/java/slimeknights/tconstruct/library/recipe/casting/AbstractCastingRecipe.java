@@ -44,6 +44,15 @@ public abstract class AbstractCastingRecipe implements ICastingRecipe {
     this.switchSlots = switchSlots;
   }
 
+  /**
+   * Tests whether the given cast-slot stack matches this recipe's cast. The cast is nullable ({@code null} = no cast); a
+   * recipe with no cast is cast directly into an empty slot, so a null cast matches only an empty stack. Callers must use
+   * this instead of {@code getCast().test(stack)}, which NPEs on a no-cast recipe.
+   */
+  protected boolean testCast(net.minecraft.world.item.ItemStack stack) {
+    return cast == null ? stack.isEmpty() : cast.test(stack);
+  }
+
   /** Display ingredients for this recipe; the cast if present */
   public NonNullList<Ingredient> getIngredients() {
     NonNullList<Ingredient> list = NonNullList.create();

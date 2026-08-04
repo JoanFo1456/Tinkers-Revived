@@ -149,7 +149,7 @@ public class PartSwapCastingRecipe extends AbstractMaterialCastingRecipe impleme
 
   @Override
   public boolean matches(ICastingContainer inv, Level level) {
-    return getCast().test(inv.getStack()) && canPartSwap(inv);
+    return testCast(inv.getStack()) && canPartSwap(inv);
   }
 
   public ItemStack getResultItem(HolderLookup.Provider registryAccess) {

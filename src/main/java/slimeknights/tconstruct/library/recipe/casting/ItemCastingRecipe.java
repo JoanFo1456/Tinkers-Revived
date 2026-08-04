@@ -59,7 +59,8 @@ public class ItemCastingRecipe extends AbstractCastingRecipe implements IDisplay
 
   @Override
   public boolean matches(ICastingContainer inv, Level worldIn) {
-    return getCast().test(inv.getStack()) && fluid.test(inv.getFluid());
+    // testCast handles the nullable cast (null = no cast -> empty slot); getCast().test NPEs on a no-cast recipe
+    return testCast(inv.getStack()) && fluid.test(inv.getFluid());
   }
 
   public ItemStack getResultItem(HolderLookup.Provider access) {
