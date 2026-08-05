@@ -38,6 +38,9 @@ public class CastingBlockEntityRenderer implements BlockEntityRenderer<CastingBl
     BlockState blockState = world.getBlockState(state.blockPos);
     List<FluidCuboid> fluids = FluidCuboid.REGISTRY.get(blockState, List.of());
     List<RenderItem> renderItems = RenderItem.STATE_REGISTRY.get(blockState, List.of());
+    if (world.getGameTime() % 40 == 0) {
+      slimeknights.tconstruct.TConstruct.LOG.info("[cast-diag] BER pos={} renderItems={} input={} output={}", state.blockPos, renderItems.size(), casting.getItem(0), casting.getItem(1));
+    }
     if (fluids.isEmpty() && renderItems.isEmpty()) {
       return;
     }
