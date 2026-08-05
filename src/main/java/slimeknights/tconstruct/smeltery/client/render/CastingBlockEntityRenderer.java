@@ -30,80 +30,35 @@ public class CastingBlockEntityRenderer implements BlockEntityRenderer<CastingBl
 
   @Override
   public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
-    // 26.1 BER rewrite: immediate-mode render replaced by extractRenderState + submit. The block-entity geometry
-    // (dynamic fluid/items) must be captured into a render state and re-expressed against SubmitNodeCollector;
-    // exact fluid levels/positions are validated in-game. Original immediate-mode logic preserved for re-wiring:
-    /*
-    BlockState state = casting.getBlockState();
-    List<FluidCuboid> fluids = FluidCuboid.REGISTRY.get(state, List.of());
-    List<RenderItem> renderItems = RenderItem.STATE_REGISTRY.get(state, List.of());
-
-    // rotate the matrix
-    if (!fluids.isEmpty() || !renderItems.isEmpty()) {
-      boolean isRotated = RenderingHelper.applyRotation(matrices, state);
-
-      // if the recipe is in progress, start fading the item away
-      int timer = casting.getTimer();
-      int totalTime = casting.getCoolingTime();
-      int itemOpacity = 0;
-      int fluidOpacity = 0xFF;
-      if (timer > 0 && totalTime > 0) {
-        int opacity = (4 * 0xFF) * timer / totalTime;
-        // fade item in
-        itemOpacity = opacity / 4;
-
-        // fade fluid and temperature out during last 10%
-        if (opacity > 3 * 0xFF) {
-          fluidOpacity = (4 * 0xFF) - opacity;
-        }
-      }
-
-      // render fluids
-      if (!fluids.isEmpty()) {
-        CastingFluidHandler tank = casting.getTank();
-        FluidStack fluidStack = tank.getFluid();
-        int capacity = tank.getCapacity();
-        // if full, start rendering with opacity for progress
-        if (fluidStack.getAmount() == capacity) {
-          for (FluidCuboid fluid : fluids) {
-            RenderUtils.renderTransparentCuboid(matrices, buffer, fluid, fluidStack, fluidOpacity, light);
-          }
-        } else {
-          // not strictly useful to scale the fluids down, but who knows what the modeler does
-          for (FluidCuboid fluid : fluids) {
-            FluidRenderer.renderScaledCuboid(matrices, buffer, fluid, fluidStack, 0, capacity, light, false);
-          }
-        }
-      }
-
-      // render renderItems
-      if (!renderItems.isEmpty()) {
-        // render renderItems
-        // input is normal
-        RenderingHelper.renderItem(matrices, buffer, casting.getItem(0), renderItems.get(0), light);
-
-        // output may be the recipe output instead of the current item
-        if (renderItems.size() >= 2) {
-          RenderItem outputModel = renderItems.get(1);
-          if (!outputModel.isHidden()) {
-            // get output stack
-            ItemStack output = casting.getItem(1);
-            MultiBufferSource outputBuffer = buffer;
-            if (itemOpacity > 0 && output.isEmpty()) {
-              output = casting.getRecipeOutput();
-              // apply a buffer wrapper to tint and add opacity
-              outputBuffer = new CastingItemRenderTypeBuffer(buffer, itemOpacity, fluidOpacity);
-            }
-            RenderingHelper.renderItem(matrices, outputBuffer, output, outputModel, light);
-          }
-        }
-      }
-
-      // pop back rotation
-      if (isRotated) {
-        matrices.popPose();
-      }
+    // 26.1: render the casting fluid from the live block entity via the submit-node pipeline. The cast/output ITEMS are
+    // not yet drawn — RenderingHelper.renderItem still needs porting to the 26.1 item submit path.
+    net.minecraft.world.level.Level world = net.minecraft.client.Minecraft.getInstance().level;
+    if (world == null || !(world.getBlockEntity(state.blockPos) instanceof CastingBlockEntity casting)) {
+      return;
     }
-  */
+    BlockState blockState = world.getBlockState(state.blockPos);
+    List<FluidCuboid> fluids = FluidCuboid.REGISTRY.get(blockState, List.of());
+    if (fluids.isEmpty()) {
+      return;
+    }
+    CastingFluidHandler tank = casting.getTank();
+    FluidStack fluidStack = tank.getFluid();
+    if (fluidStack.isEmpty() || tank.getCapacity() <= 0) {
+      return;
+    }
+    int capacity = tank.getCapacity();
+    int light = state.lightCoords;
+    boolean isRotated = RenderingHelper.applyRotation(poseStack, blockState);
+    collector.submitCustomGeometry(poseStack, slimeknights.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {
+      PoseStack local = new PoseStack();
+      local.last().pose().set(pose.pose());
+      for (FluidCuboid cube : fluids) {
+        FluidRenderer.renderScaledCuboid(local, buffer, cube, fluidStack, 0, capacity, light, false);
+      }
+    });
+    if (isRotated) {
+      poseStack.popPose();
+    }
   }
+
 }
