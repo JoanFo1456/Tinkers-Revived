@@ -288,6 +288,9 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     FluidStack currentFluid = tank.getFluid();
     if (coolingTime >= 0) {
       timer++;
+      if (timer % 40 == 0) {
+        TConstruct.LOG.info("[cast-diag] serverTick timer={}/{} recipe={}", timer, coolingTime, currentRecipe.id());
+      }
       if (timer >= coolingTime) {
         if (!currentRecipe.value().matches(castingInventory, level)) {
           // if lost our recipe or the recipe needs more fluid then we have, we are done
@@ -473,6 +476,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     } else {
       coolingTime = -1;
     }
+    TConstruct.LOG.info("[cast-diag] onContentsChanged fluid={}/{} recipe={} coolingTime={}", fluidStack.getAmount(), tank.getCapacity(), currentRecipe == null ? "null" : currentRecipe.id(), coolingTime);
     setChangedFast();
     // update comparators
     updateAnalogSignal();

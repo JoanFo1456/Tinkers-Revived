@@ -53,6 +53,7 @@ public class CastingFluidHandler implements ResourceHandler<FluidResource>, IFlu
 
     @Override
     protected void onRootCommit(Snapshot original) {
+      slimeknights.tconstruct.TConstruct.LOG.info("[cast-diag] onRootCommit fluid={}mb filter {}->{} cap={}", fluid.getAmount(), original.filter(), filter, capacity);
       if (fluid.isEmpty() && !original.fluid().isEmpty()) {
         // drained to empty: reset the casting recipe (also clears this tank via tile.reset -> tank.reset)
         tile.reset();
