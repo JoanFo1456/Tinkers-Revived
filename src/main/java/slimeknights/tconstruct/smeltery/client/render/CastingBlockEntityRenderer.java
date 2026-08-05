@@ -30,32 +30,54 @@ public class CastingBlockEntityRenderer implements BlockEntityRenderer<CastingBl
 
   @Override
   public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
-    // 26.1: render the casting fluid from the live block entity via the submit-node pipeline. The cast/output ITEMS are
-    // not yet drawn — RenderingHelper.renderItem still needs porting to the 26.1 item submit path.
+    // 26.1: render the casting fluid and the cast/output items from the live block entity via the submit-node pipeline.
     net.minecraft.world.level.Level world = net.minecraft.client.Minecraft.getInstance().level;
     if (world == null || !(world.getBlockEntity(state.blockPos) instanceof CastingBlockEntity casting)) {
       return;
     }
     BlockState blockState = world.getBlockState(state.blockPos);
     List<FluidCuboid> fluids = FluidCuboid.REGISTRY.get(blockState, List.of());
-    if (fluids.isEmpty()) {
+    List<RenderItem> renderItems = RenderItem.STATE_REGISTRY.get(blockState, List.of());
+    if (fluids.isEmpty() && renderItems.isEmpty()) {
       return;
     }
-    CastingFluidHandler tank = casting.getTank();
-    FluidStack fluidStack = tank.getFluid();
-    if (fluidStack.isEmpty() || tank.getCapacity() <= 0) {
-      return;
-    }
-    int capacity = tank.getCapacity();
     int light = state.lightCoords;
     boolean isRotated = RenderingHelper.applyRotation(poseStack, blockState);
-    collector.submitCustomGeometry(poseStack, slimeknights.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {
-      PoseStack local = new PoseStack();
-      local.last().pose().set(pose.pose());
-      for (FluidCuboid cube : fluids) {
-        FluidRenderer.renderScaledCuboid(local, buffer, cube, fluidStack, 0, capacity, light, false);
+
+    // render fluids
+    if (!fluids.isEmpty()) {
+      CastingFluidHandler tank = casting.getTank();
+      FluidStack fluidStack = tank.getFluid();
+      int capacity = tank.getCapacity();
+      if (!fluidStack.isEmpty() && capacity > 0) {
+        collector.submitCustomGeometry(poseStack, slimeknights.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {
+          PoseStack local = new PoseStack();
+          local.last().pose().set(pose.pose());
+          for (FluidCuboid cube : fluids) {
+            FluidRenderer.renderScaledCuboid(local, buffer, cube, fluidStack, 0, capacity, light, false);
+          }
+        });
       }
-    });
+    }
+
+    // render items (input cast + output). Opacity fading from the pre-26.1 renderer is dropped; the item submit path
+    // resolves the item model directly without a tint/opacity buffer wrapper.
+    if (!renderItems.isEmpty()) {
+      // input cast is drawn as-is
+      RenderingHelper.renderItem(poseStack, collector, casting.getItem(0), renderItems.get(0), light);
+      // output may be the recipe output instead of the current item
+      if (renderItems.size() >= 2) {
+        RenderItem outputModel = renderItems.get(1);
+        if (!outputModel.isHidden()) {
+          ItemStack output = casting.getItem(1);
+          if (output.isEmpty()) {
+            output = casting.getRecipeOutput();
+          }
+          RenderingHelper.renderItem(poseStack, collector, output, outputModel, light);
+        }
+      }
+    }
+
     if (isRotated) {
       poseStack.popPose();
     }

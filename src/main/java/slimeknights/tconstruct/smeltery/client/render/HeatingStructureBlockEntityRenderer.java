@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -63,6 +64,49 @@ public class HeatingStructureBlockEntityRenderer implements BlockEntityRenderer<
       local.last().pose().set(pose.pose());
       SmelteryTankRenderer.renderFluids(local, buffer, smeltery.getTank(), minPos, maxPos, light);
     });
+
+    // render the melting items floating in the smeltery
+    int max = Config.CLIENT.maxSmelteryItemQuads.get();
+    if (max != 0) {
+      int xd = 1 + maxPos.getX() - minPos.getX();
+      int zd = 1 + maxPos.getZ() - minPos.getZ();
+      int layer = xd * zd;
+      Direction facing = blockState.getValue(ControllerBlock.FACING);
+      Quaternionf itemRotation = Axis.YP.rotationDegrees(-90.0F * (float) facing.get2DDataValue());
+      MeltingModuleInventory inventory = smeltery.getMeltingInventory();
+      Minecraft mc = Minecraft.getInstance();
+      // 26.1: ItemRenderer#getModel/#render and per-quad counting were removed with the item model rewrite. Approximate the
+      // old quad budget with a flat per-item estimate so a huge smeltery still stops drawing items past the configured cap.
+      int itemsRendered = 0;
+      for (int i = 0; i < inventory.getSlots(); i++) {
+        ItemStack stack = inventory.getStackInSlot(i);
+        if (!stack.isEmpty()) {
+          int height = i / layer;
+          int layerIndex = i % layer;
+          int offsetX = layerIndex % xd;
+          int offsetZ = layerIndex / xd;
+          // 26.1: per-block LevelRenderer#getLightColor changed shape; reuse the controller's packed light for the whole
+          // structure (matches the fluid's lighting) rather than sampling each slot position.
+          int itemLight = light;
+
+          poseStack.pushPose();
+          poseStack.translate(offsetX + 0.5f, height + 0.5f, offsetZ + 0.5f);
+          poseStack.mulPose(itemRotation);
+          poseStack.scale(ITEM_SCALE, ITEM_SCALE, ITEM_SCALE);
+          ItemStackRenderState renderState = new ItemStackRenderState();
+          mc.getItemModelResolver().updateForTopItem(renderState, stack, TinkerItemDisplays.MELTER, world, null, 0);
+          renderState.submit(poseStack, collector, itemLight, OverlayTexture.NO_OVERLAY, 0);
+          poseStack.popPose();
+
+          if (max != -1) {
+            itemsRendered += 50;
+            if (itemsRendered > max) {
+              break;
+            }
+          }
+        }
+      }
+    }
     poseStack.popPose();
   }
 
