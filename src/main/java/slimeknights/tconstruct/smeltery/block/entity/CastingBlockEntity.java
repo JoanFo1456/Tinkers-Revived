@@ -144,7 +144,9 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     // first try interacting with the table as a tank. If that fails, run normal item swap logic
     // normal item swap logic should only run if we lack a fluid though
     ItemStack held = player.getItemInHand(hand);
-    if (FluidTransferHelper.interactWithContainer(level, worldPosition, tank, player, hand).didTransfer() || !tank.isEmpty()) {
+    boolean transferred = FluidTransferHelper.interactWithContainer(level, worldPosition, tank, player, hand).didTransfer();
+    TConstruct.LOG.info("[cast-diag] interact held={} transferred={} tankEmpty={} input={} output={}", held, transferred, tank.isEmpty(), getItem(INPUT), getItem(OUTPUT));
+    if (transferred || !tank.isEmpty()) {
       return;
     }
 
@@ -221,7 +223,9 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
   @Override
   public void setItem(int slot, ItemStack stack) {
     ItemStack original = getItem(slot);
+    TConstruct.LOG.info("[cast-diag] setItem slot={} stack={} (side={}) afterGet={}", slot, stack, level != null && level.isClientSide() ? "client" : "server", getItem(slot));
     super.setItem(slot, stack);
+    TConstruct.LOG.info("[cast-diag] setItem DONE slot={} getItem={} (side={})", slot, getItem(slot), level != null && level.isClientSide() ? "client" : "server");
     // if the stack changed emptiness, update
     if (original.isEmpty() != stack.isEmpty()) {
       updateAnalogSignal();
