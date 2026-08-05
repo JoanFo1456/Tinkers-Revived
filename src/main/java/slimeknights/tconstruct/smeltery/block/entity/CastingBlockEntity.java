@@ -313,6 +313,13 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
         ICastingRecipe recipe = currentRecipe.value();
         boolean consumed = recipe.isConsumed(castingInventory);
         ItemStack output = recipe.assemble(castingInventory);
+        if (output.isEmpty()) {
+          net.minecraft.tags.TagKey<net.minecraft.world.item.Item> ironTag = net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.ITEM, net.minecraft.resources.Identifier.parse("c:storage_blocks/iron"));
+          long viaRegistry = level.registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.ITEM).get(ironTag).map(h -> h.stream().count()).orElse(-1L);
+          TConstruct.LOG.info("[cast-diag] assemble EMPTY! recipe={} | tag c:storage_blocks/iron: builtinStream={} levelRegistryStream={}",
+            currentRecipe.id(),
+            slimeknights.mantle.util.RegistryHelper.getTagValueStream(net.minecraft.core.registries.BuiltInRegistries.ITEM, ironTag).count(), viaRegistry);
+        }
         if (recipe.switchSlots() != lastRedstone) {
           if (!consumed) {
             setItem(OUTPUT, getItem(INPUT));
@@ -619,6 +626,11 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
   @Override
   public void saveSynced(ValueOutput output) {
     super.saveSynced(output);
+    // 26.1: the cast/output items must ride along in the synced tag. setItem toggles HAS_ITEM via setBlockAndUpdate, which
+    // (since shouldSyncOnUpdate is true) resends this update tag to the client; without the items here that resync would
+    // wipe the cast the InventorySlotSyncPacket just delivered, leaving the table's TER with nothing to render. Syncing them
+    // also makes the cast survive a chunk reload.
+    writeInventoryToNBT(output);
     output.store(TAG_TANK, CompoundTag.CODEC, tank.writeToTag(new CompoundTag()));
     if (currentRecipe != null || recipeName != null) {
       output.putInt(TAG_TIMER, timer);
