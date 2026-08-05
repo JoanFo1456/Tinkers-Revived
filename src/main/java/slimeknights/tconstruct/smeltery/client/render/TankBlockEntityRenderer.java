@@ -25,21 +25,29 @@ public class TankBlockEntityRenderer<T extends BlockEntity & ITankBlockEntity> i
 
   @Override
   public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
-    // 26.1 BER rewrite: immediate-mode render replaced by extractRenderState + submit. The block-entity geometry
-    // (dynamic fluid/items) must be captured into a render state and re-expressed against SubmitNodeCollector;
-    // exact fluid levels/positions are validated in-game. Original immediate-mode logic preserved for re-wiring:
-    /*
-    if (Config.CLIENT.tankFluidModel.get()) {
+    // 26.1: read the live fluid from the block entity (via the render state position) and submit the fluid cuboids as
+    // custom geometry against the SubmitNodeCollector (immediate-mode rendering was removed).
+    net.minecraft.world.level.Level level = net.minecraft.client.Minecraft.getInstance().level;
+    if (level == null || Config.CLIENT.tankFluidModel.get()) {
       return;
     }
-    // render the fluid
-    List<FluidCuboid> fluids = FluidCuboid.REGISTRY.get(tile.getBlockState(), List.of());
-    if (!fluids.isEmpty()) {
-      FluidTankAnimated tank = tile.getTank();
-      for (FluidCuboid fluid : fluids) {
-        RenderUtils.renderFluidTank(matrixStack, buffer, fluid, tank, combinedLightIn, partialTicks, true);
-      }
+    net.minecraft.world.level.block.state.BlockState blockState = level.getBlockState(state.blockPos);
+    List<FluidCuboid> fluids = FluidCuboid.REGISTRY.get(blockState, List.of());
+    if (fluids.isEmpty() || !(level.getBlockEntity(state.blockPos) instanceof ITankBlockEntity tankBE)) {
+      return;
     }
-  */
+    FluidTankAnimated tank = tankBE.getTank();
+    if (tank.getFluid().isEmpty() || tank.getCapacity() <= 0) {
+      return;
+    }
+    int light = state.lightCoords;
+    float offset = tank.getRenderOffset();
+    collector.submitCustomGeometry(poseStack, slimeknights.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {
+      PoseStack local = new PoseStack();
+      local.last().pose().set(pose.pose());
+      for (FluidCuboid cube : fluids) {
+        slimeknights.mantle.client.render.FluidRenderer.renderScaledCuboid(local, buffer, cube, tank.getFluid(), offset, tank.getCapacity(), light, true);
+      }
+    });
   }
 }
