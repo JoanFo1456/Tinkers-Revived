@@ -61,6 +61,12 @@ public class SmelteryTankRenderer {
    */
   public static void renderFluids(PoseStack matrices, MultiBufferSource buffer, SmelteryTank<?> tank,
                                   BlockPos tankMinPos, BlockPos tankMaxPos, int brightness) {
+    renderFluids(matrices, buffer.getBuffer(TinkerRenderTypes.SMELTERY_FLUID), tank, tankMinPos, tankMaxPos, brightness);
+  }
+
+  /** Renders the smeltery's fluids to a single {@link VertexConsumer}, for the 26.1 BER submit path (SubmitNodeCollector). */
+  public static void renderFluids(PoseStack matrices, VertexConsumer builder, SmelteryTank<?> tank,
+                                  BlockPos tankMinPos, BlockPos tankMaxPos, int brightness) {
     List<FluidStack> fluids = tank.getFluids();
     // empty smeltery :(
     if(!fluids.isEmpty()) {
@@ -80,7 +86,6 @@ public class SmelteryTankRenderer {
       int[] heights = GuiSmelteryTank.calcLiquidHeights(fluids, tank.getCapacity(), yd * 1000 - HEIGHT_OFFSET, 100);
 
       // rendering time
-      VertexConsumer builder = buffer.getBuffer(TinkerRenderTypes.SMELTERY_FLUID);
       float curY = FLUID_OFFSET;
       for (int i = 0; i < fluids.size(); i++) {
         float h = (float) heights[i] / 1000f;
