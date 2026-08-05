@@ -325,6 +325,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
           level.playSound(null, getBlockPos(), Sounds.CASTING_CLICKS.getSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
         }
         level.playSound(null, pos, Sounds.CASTING_COOLS.getSound(), SoundSource.BLOCKS, 0.5f, 4f);
+        TConstruct.LOG.info("[cast-diag] PRODUCED output={} consumed={}", output, consumed);
         reset();
       } else {
         updateAnalogSignal();
@@ -334,7 +335,9 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
 
   /** Handles animating the recipe */
   private void clientTick(Level level, BlockPos pos) {
-    if (currentRecipe == null) {
+    // 26.1: currentRecipe is always null on the client (recipe lookup is server-only), so gate the cooling animation on the
+    // tank being full instead. The server empties the tank (syncing an empty fluid) once the recipe finishes, stopping this.
+    if (tank.isEmpty()) {
       return;
     }
     // fully filled
@@ -476,7 +479,9 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     } else {
       coolingTime = -1;
     }
-    TConstruct.LOG.info("[cast-diag] onContentsChanged fluid={}/{} recipe={} coolingTime={}", fluidStack.getAmount(), tank.getCapacity(), currentRecipe == null ? "null" : currentRecipe.id(), coolingTime);
+    if (coolingTime >= 0) {
+      TConstruct.LOG.info("[cast-diag] FULL fluid={}/{} recipe={} coolingTime={} (side={})", fluidStack.getAmount(), tank.getCapacity(), currentRecipe == null ? "null" : currentRecipe.id(), coolingTime, level != null && level.isClientSide() ? "client" : "server");
+    }
     setChangedFast();
     // update comparators
     updateAnalogSignal();
@@ -484,19 +489,24 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     Level world = getLevel();
     if (world != null && !world.isClientSide()) {
       BlockPos pos = getBlockPos();
-      TinkerNetwork.getInstance().sendToClientsAround(new FluidUpdatePacket(pos, fluidStack), world, pos);
+      TinkerNetwork.getInstance().sendToClientsAround(new FluidUpdatePacket(pos, fluidStack, tank.getCapacity()), world, pos);
     }
   }
 
   @Override
   public void updateFluidTo(FluidStack fluid) {
+    updateFluidTo(fluid, FluidUpdatePacket.NO_CAPACITY);
+  }
+
+  @Override
+  public void updateFluidTo(FluidStack fluid, int capacity) {
     if (fluid.isEmpty()) {
       reset();
-    } else {
-      int capacity = initNewCasting(fluid, FluidAction.EXECUTE);
-      if (capacity > 0) {
-        tank.setCapacity(capacity);
-      }
+    } else if (capacity > 0) {
+      // 26.1: the client cannot look up the casting recipe (recipe lookup is server-only), so it can no longer recompute
+      // the tank capacity via initNewCasting. Trust the capacity synced from the server instead, so the fluid renders at
+      // the correct fill level (and fills up gradually) rather than always appearing full.
+      tank.setCapacity(capacity);
     }
     tank.setFluid(fluid);
     onContentsChanged();
