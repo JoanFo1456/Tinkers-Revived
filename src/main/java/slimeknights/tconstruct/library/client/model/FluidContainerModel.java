@@ -132,36 +132,18 @@ public final class FluidContainerModel {
         builder.addUnculledFace(quad);
       }
 
-      // fluid layer from the fluid model set, tinted and lit from the fluid attributes
-      // NOTE: gas flipping (flipGas) and the container window mask are visual details to validate in-game
+      // fluid layer: the fluid's still sprite clipped to the container's fluid window (base model "fluid" slot, e.g.
+      // neoforge:item/mask/bucket_fluid_drip) so the fluid sits inside the bucket instead of filling the whole item square
+      // and hiding it. Confirmed via bucket-diag that base/fluid slots resolve; the masked helper maps the fluid by its
+      // atlas bounds so animated molten stills render. NOTE: gas flipping (flipGas) still to validate in-game.
       if (!fluid.isEmpty()) {
+        Material.Baked fluidMask = baker.materials().resolveSlot(slots, "fluid", resolved);
         FluidState state = fluid.getFluid().defaultFluidState();
         FluidModel fluidModel = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(state);
         int color = fluidModel.tintSource() instanceof FluidTintSource tint ? tint.colorAsStack(fluid) : -1;
         int light = fluid.getFluid().getFluidType().getLightLevel(fluid);
-        for (BakedQuad quad : MantleItemLayerModel.getQuadsForSprite(color, -1, fluidModel.stillMaterial(), FLUID_TRANSFORM, light)) {
+        for (BakedQuad quad : MantleItemLayerModel.getMaskedQuadsForSprite(color, -1, fluidModel.stillMaterial(), fluidMask, FLUID_TRANSFORM, light)) {
           builder.addUnculledFace(quad);
-        }
-      }
-
-      // TEMP [bucket-diag]: report whether the container's base/fluid texture slots resolve and how large the fluid
-      // window mask is, to pinpoint why the masked fluid render came up empty (missing slot vs stitching vs geometry).
-      if (!fluid.isEmpty()) {
-        try {
-          Material.Baked baseCheck = baker.materials().resolveSlot(slots, "base", resolved);
-          Material.Baked fluidCheck = baker.materials().resolveSlot(slots, "fluid", resolved);
-          net.minecraft.client.renderer.texture.TextureAtlasSprite ms = fluidCheck.sprite();
-          net.minecraft.client.renderer.texture.SpriteContents c = ms.contents();
-          int op = 0;
-          for (int y = 0; y < c.height(); y++) {
-            for (int x = 0; x < c.width(); x++) {
-              if ((ms.getPixelRGBA(0, x, y) >>> 24) > 25) op++;
-            }
-          }
-          slimeknights.tconstruct.TConstruct.LOG.info("[bucket-diag] fluid={} baseSprite={} fluidMask={} {}x{} maskOpaquePx={}",
-            fluid.getFluid(), baseCheck.sprite().contents().name(), c.name(), c.width(), c.height(), op);
-        } catch (Throwable t) {
-          slimeknights.tconstruct.TConstruct.LOG.info("[bucket-diag] fluid={} slot resolve failed: {}", fluid.getFluid(), t.toString());
         }
       }
 

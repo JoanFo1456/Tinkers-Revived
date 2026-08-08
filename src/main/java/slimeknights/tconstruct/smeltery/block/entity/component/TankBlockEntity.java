@@ -30,11 +30,12 @@ import slimeknights.tconstruct.smeltery.block.component.SearedTankBlock;
 import slimeknights.tconstruct.smeltery.block.component.SearedTankBlock.TankType;
 import slimeknights.tconstruct.smeltery.block.entity.ITankBlockEntity;
 import slimeknights.tconstruct.smeltery.item.TankItem;
+import slimeknights.tconstruct.smeltery.network.FluidUpdatePacket;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITankBlockEntity, ILegacyCapabilityBlockEntity {
+public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITankBlockEntity, ILegacyCapabilityBlockEntity, FluidUpdatePacket.IFluidPacketReceiver {
   /** Max capacity for the tank */
   public static final int DEFAULT_CAPACITY = FluidType.BUCKET_VOLUME * 4;
 
@@ -146,6 +147,17 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
       updateLight(this, tank);
       this.requestModelDataUpdate();
     }
+  }
+
+  /**
+   * Client-side handler for {@link FluidUpdatePacket}. Without this the tank only received its fluid via saved NBT on
+   * chunk load, so a live fill/drain would not render until the world was reloaded. Applies the synced fluid and refreshes
+   * the model data so the fluid appears immediately.
+   */
+  @Override
+  public void updateFluidTo(FluidStack fluid) {
+    tank.setFluid(fluid);
+    onTankContentsChanged();
   }
 
   @Override
