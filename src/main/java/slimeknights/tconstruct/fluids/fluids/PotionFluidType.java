@@ -89,6 +89,9 @@ public class PotionFluidType extends FluidType {
     ItemStack stack = new ItemStack(TinkerFluids.potion);
     if (!potion.identifier().equals(Potions.WATER.unwrapKey().orElseThrow().identifier())) {
       TagUtil.setTag(stack, potionTag(potion.identifier()));
+      // also bind the vanilla potion component so the item model's minecraft:potion tint colors the bucket per-potion
+      BuiltInRegistries.POTION.get(potion).ifPresent(holder ->
+        stack.set(net.minecraft.core.component.DataComponents.POTION_CONTENTS, new net.minecraft.world.item.alchemy.PotionContents(holder)));
     }
     return stack;
   }
@@ -100,6 +103,8 @@ public class PotionFluidType extends FluidType {
     Holder<Potion> holder = BuiltInRegistries.POTION.wrapAsHolder(potion);
     if (!holder.is(Potions.WATER)) {
       TagUtil.setTag(stack, potionTag(BuiltInRegistries.POTION.getKey(potion)));
+      // also bind the vanilla potion component so the item model's minecraft:potion tint colors the bucket per-potion
+      stack.set(net.minecraft.core.component.DataComponents.POTION_CONTENTS, new net.minecraft.world.item.alchemy.PotionContents(holder));
     }
     return stack;
   }
