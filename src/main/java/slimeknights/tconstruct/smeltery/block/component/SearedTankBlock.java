@@ -85,7 +85,13 @@ public class SearedTankBlock extends SearedBlock implements ITankBlock, EntityBl
   @Deprecated
   @Override
   protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-    if (FluidTransferHelper.interactWithTank(world, pos, player, hand, hit)) {
+    boolean transferred = FluidTransferHelper.interactWithTank(world, pos, player, hand, hit);
+    // TEMP [tank-diag]: verify the fuel-tank fill path (held item / whether transfer ran / whether the fluid cap is present)
+    if (!world.isClientSide()) {
+      boolean hasCap = world.getCapability(net.neoforged.neoforge.capabilities.Capabilities.Fluid.BLOCK, pos, hit.getDirection()) != null;
+      slimeknights.tconstruct.TConstruct.LOG.info("[tank-diag] useItemOn held={} transferred={} fluidCap={}", stack, transferred, hasCap);
+    }
+    if (transferred) {
       return InteractionResult.SUCCESS;
     }
     return super.useItemOn(stack, state, world, pos, player, hand, hit);
