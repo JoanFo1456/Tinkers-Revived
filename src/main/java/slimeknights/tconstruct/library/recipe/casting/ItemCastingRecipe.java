@@ -68,6 +68,12 @@ public class ItemCastingRecipe extends AbstractCastingRecipe implements IDisplay
   }
 
   @Override
+  public ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access) {
+    // copy so the cooled output placed into the table slot never aliases the recipe's cached result stack
+    return this.result.get().copy();
+  }
+
+  @Override
   public int getCoolingTime(ICastingContainer inv) {
     return this.coolingTime;
   }

@@ -145,7 +145,6 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     // normal item swap logic should only run if we lack a fluid though
     ItemStack held = player.getItemInHand(hand);
     boolean transferred = FluidTransferHelper.interactWithContainer(level, worldPosition, tank, player, hand).didTransfer();
-    TConstruct.LOG.info("[cast-diag] interact held={} transferred={} tankEmpty={} input={} output={}", held, transferred, tank.isEmpty(), getItem(INPUT), getItem(OUTPUT));
     if (transferred || !tank.isEmpty()) {
       return;
     }
@@ -223,9 +222,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
   @Override
   public void setItem(int slot, ItemStack stack) {
     ItemStack original = getItem(slot);
-    TConstruct.LOG.info("[cast-diag] setItem slot={} stack={} (side={}) afterGet={}", slot, stack, level != null && level.isClientSide() ? "client" : "server", getItem(slot));
     super.setItem(slot, stack);
-    TConstruct.LOG.info("[cast-diag] setItem DONE slot={} getItem={} (side={})", slot, getItem(slot), level != null && level.isClientSide() ? "client" : "server");
     // if the stack changed emptiness, update
     if (original.isEmpty() != stack.isEmpty()) {
       updateAnalogSignal();
@@ -292,9 +289,6 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     FluidStack currentFluid = tank.getFluid();
     if (coolingTime >= 0) {
       timer++;
-      if (timer % 40 == 0) {
-        TConstruct.LOG.info("[cast-diag] serverTick timer={}/{} recipe={}", timer, coolingTime, currentRecipe.id());
-      }
       if (timer >= coolingTime) {
         if (!currentRecipe.value().matches(castingInventory, level)) {
           // if lost our recipe or the recipe needs more fluid then we have, we are done
@@ -312,14 +306,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
         // actual recipe result
         ICastingRecipe recipe = currentRecipe.value();
         boolean consumed = recipe.isConsumed(castingInventory);
-        ItemStack output = recipe.assemble(castingInventory);
-        if (output.isEmpty()) {
-          net.minecraft.tags.TagKey<net.minecraft.world.item.Item> ironTag = net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.ITEM, net.minecraft.resources.Identifier.parse("c:storage_blocks/iron"));
-          long viaRegistry = level.registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.ITEM).get(ironTag).map(h -> h.stream().count()).orElse(-1L);
-          TConstruct.LOG.info("[cast-diag] assemble EMPTY! recipe={} | tag c:storage_blocks/iron: builtinStream={} levelRegistryStream={}",
-            currentRecipe.id(),
-            slimeknights.mantle.util.RegistryHelper.getTagValueStream(net.minecraft.core.registries.BuiltInRegistries.ITEM, ironTag).count(), viaRegistry);
-        }
+        ItemStack output = recipe.assemble(castingInventory, level.registryAccess());
         if (recipe.switchSlots() != lastRedstone) {
           if (!consumed) {
             setItem(OUTPUT, getItem(INPUT));
@@ -336,7 +323,6 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
           level.playSound(null, getBlockPos(), Sounds.CASTING_CLICKS.getSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
         }
         level.playSound(null, pos, Sounds.CASTING_COOLS.getSound(), SoundSource.BLOCKS, 0.5f, 4f);
-        TConstruct.LOG.info("[cast-diag] PRODUCED output={} consumed={}", output, consumed);
         reset();
       } else {
         updateAnalogSignal();
@@ -490,9 +476,6 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
     } else {
       coolingTime = -1;
     }
-    if (coolingTime >= 0) {
-      TConstruct.LOG.info("[cast-diag] FULL fluid={}/{} recipe={} coolingTime={} (side={})", fluidStack.getAmount(), tank.getCapacity(), currentRecipe == null ? "null" : currentRecipe.id(), coolingTime, level != null && level.isClientSide() ? "client" : "server");
-    }
     setChangedFast();
     // update comparators
     updateAnalogSignal();
@@ -543,7 +526,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
         return ItemStack.EMPTY;
       }
       castingInventory.setFluid(tank.getFluid());
-      lastOutput = currentRecipe.value().assemble(castingInventory);
+      lastOutput = currentRecipe.value().assemble(castingInventory, level.registryAccess());
     }
     return lastOutput;
   }

@@ -77,4 +77,10 @@ public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
   public ItemStack getResultItem(HolderLookup.Provider access) {
     return recipeOutput.get();
   }
+
+  @Override
+  public ItemStack assemble(IMoldingContainer inv) {
+    // Mantle's ICommonRecipe#assemble defaults to empty; molding must return the actual output so the table produces the item
+    return recipeOutput.get().copy();
+  }
 }

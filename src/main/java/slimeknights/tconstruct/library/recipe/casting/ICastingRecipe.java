@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.recipe.casting;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 import slimeknights.mantle.recipe.ICommonRecipe;
@@ -23,6 +24,16 @@ public interface ICastingRecipe extends ICommonRecipe<ICastingContainer> {
    * @return Fluid amount when using the fluid in the inventory
    */
   int getFluidAmount(ICastingContainer inv);
+
+  /**
+   * Builds the output stack for this casting recipe. This is TConstruct's canonical assemble carrying registry access;
+   * Mantle's vanilla-facing single-arg {@link slimeknights.mantle.recipe.ICommonRecipe#assemble} defaults to empty, so
+   * casting logic must call this two-arg variant (see {@code CastingBlockEntity}).
+   * @param inv     Casting container
+   * @param access  Registry access, needed by recipes that resolve components (retextured, tipped, potions)
+   * @return  Output stack
+   */
+  ItemStack assemble(ICastingContainer inv, HolderLookup.Provider access);
 
   /**
    * TODO 1.21: move this method to {@link IDisplayableCastingRecipe}.
