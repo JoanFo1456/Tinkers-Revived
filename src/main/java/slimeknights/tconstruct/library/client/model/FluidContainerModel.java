@@ -144,6 +144,27 @@ public final class FluidContainerModel {
         }
       }
 
+      // TEMP [bucket-diag]: report whether the container's base/fluid texture slots resolve and how large the fluid
+      // window mask is, to pinpoint why the masked fluid render came up empty (missing slot vs stitching vs geometry).
+      if (!fluid.isEmpty()) {
+        try {
+          Material.Baked baseCheck = baker.materials().resolveSlot(slots, "base", resolved);
+          Material.Baked fluidCheck = baker.materials().resolveSlot(slots, "fluid", resolved);
+          net.minecraft.client.renderer.texture.TextureAtlasSprite ms = fluidCheck.sprite();
+          net.minecraft.client.renderer.texture.SpriteContents c = ms.contents();
+          int op = 0;
+          for (int y = 0; y < c.height(); y++) {
+            for (int x = 0; x < c.width(); x++) {
+              if ((ms.getPixelRGBA(0, x, y) >>> 24) > 25) op++;
+            }
+          }
+          slimeknights.tconstruct.TConstruct.LOG.info("[bucket-diag] fluid={} baseSprite={} fluidMask={} {}x{} maskOpaquePx={}",
+            fluid.getFluid(), baseCheck.sprite().contents().name(), c.name(), c.width(), c.height(), op);
+        } catch (Throwable t) {
+          slimeknights.tconstruct.TConstruct.LOG.info("[bucket-diag] fluid={} slot resolve failed: {}", fluid.getFluid(), t.toString());
+        }
+      }
+
       QuadCollection quads = builder.build();
       ModelRenderProperties properties = ModelRenderProperties.fromResolvedModel(baker, resolved, slots);
       return new CuboidItemModelWrapper(List.of(), quads, properties, transform);
