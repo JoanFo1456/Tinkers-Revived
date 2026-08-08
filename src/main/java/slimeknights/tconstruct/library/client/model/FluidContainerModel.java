@@ -132,17 +132,14 @@ public final class FluidContainerModel {
         builder.addUnculledFace(quad);
       }
 
-      // fluid layer: the fluid's still sprite clipped to the container's fluid window (base model "fluid" slot, e.g.
-      // neoforge:item/mask/bucket_fluid_drip). Without the mask the solid fluid sprite fills the whole item square and
-      // hides the container ("fluid with no bucket"); the mask shapes it to the window while keeping the fluid texture.
-      // NOTE: gas flipping (flipGas) remains a visual detail to validate in-game.
+      // fluid layer from the fluid model set, tinted and lit from the fluid attributes
+      // NOTE: gas flipping (flipGas) and the container window mask are visual details to validate in-game
       if (!fluid.isEmpty()) {
-        Material.Baked fluidMask = baker.materials().resolveSlot(slots, "fluid", resolved);
         FluidState state = fluid.getFluid().defaultFluidState();
         FluidModel fluidModel = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(state);
         int color = fluidModel.tintSource() instanceof FluidTintSource tint ? tint.colorAsStack(fluid) : -1;
         int light = fluid.getFluid().getFluidType().getLightLevel(fluid);
-        for (BakedQuad quad : MantleItemLayerModel.getMaskedQuadsForSprite(color, -1, fluidModel.stillMaterial(), fluidMask, FLUID_TRANSFORM, light)) {
+        for (BakedQuad quad : MantleItemLayerModel.getQuadsForSprite(color, -1, fluidModel.stillMaterial(), FLUID_TRANSFORM, light)) {
           builder.addUnculledFace(quad);
         }
       }
