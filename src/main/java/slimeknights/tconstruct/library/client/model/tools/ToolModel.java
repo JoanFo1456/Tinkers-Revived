@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.library.client.model.tools;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.datafixers.util.Either;
 import com.mojang.math.Transformation;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
@@ -267,8 +268,26 @@ public final class ToolModel {
    * @param ammo               Optional ammo display config
    * @param showTraits         If true, traits are displayed on the tool model
    */
+  /**
+   * Small/large modifier texture roots. Authored as either a flat array (non-large tools, where the same roots serve
+   * every context) or an object {@code {"small":[...],"large":[...]}} (large tools, whose in-hand render uses a distinct
+   * double-resolution root). The single {@code small_modifier_roots} JSON key carries both forms, matching the authored
+   * item models; a bare array maps small == large.
+   */
+  private record ModifierRoots(List<Identifier> small, List<Identifier> large) {
+    static final ModifierRoots EMPTY = new ModifierRoots(List.of(), List.of());
+    private static final Codec<List<Identifier>> LIST = Identifier.CODEC.listOf();
+    private static final Codec<ModifierRoots> OBJECT = RecordCodecBuilder.create(inst -> inst.group(
+      LIST.optionalFieldOf("small", List.of()).forGetter(ModifierRoots::small),
+      LIST.optionalFieldOf("large", List.of()).forGetter(ModifierRoots::large)
+    ).apply(inst, ModifierRoots::new));
+    static final Codec<ModifierRoots> CODEC = Codec.either(LIST, OBJECT).xmap(
+      either -> either.map(list -> new ModifierRoots(list, list), Function.identity()),
+      roots -> roots.small().equals(roots.large()) ? Either.left(roots.small()) : Either.right(roots));
+  }
+
   public record Unbaked(Identifier baseModel, List<ToolPart> parts, boolean isLarge, Vec2 largeOffset,
-                        List<Identifier> modifierModels, List<Identifier> smallModifierRoots, List<Identifier> largeModifierRoots,
+                        List<Identifier> modifierModels, ModifierRoots modifierRoots,
                         List<FirstModifier> firstModifiers, Optional<AmmoConfig> ammo, boolean showTraits) implements ItemModel.Unbaked {
     public static final MapCodec<Unbaked> MAP_CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
       Identifier.CODEC.fieldOf("base_model").forGetter(Unbaked::baseModel),
@@ -276,12 +295,21 @@ public final class ToolModel {
       Codec.BOOL.optionalFieldOf("large", false).forGetter(Unbaked::isLarge),
       OFFSET_CODEC.optionalFieldOf("large_offset", Vec2.ZERO).forGetter(Unbaked::largeOffset),
       Identifier.CODEC.listOf().optionalFieldOf("modifier_maps", List.of()).forGetter(Unbaked::modifierModels),
-      Identifier.CODEC.listOf().optionalFieldOf("small_modifier_roots", List.of()).forGetter(Unbaked::smallModifierRoots),
-      Identifier.CODEC.listOf().optionalFieldOf("large_modifier_roots", List.of()).forGetter(Unbaked::largeModifierRoots),
+      ModifierRoots.CODEC.optionalFieldOf("small_modifier_roots", ModifierRoots.EMPTY).forGetter(Unbaked::modifierRoots),
       FirstModifier.CODEC.listOf().optionalFieldOf("first_modifiers", List.of()).forGetter(Unbaked::firstModifiers),
       AmmoConfig.CODEC.optionalFieldOf("ammo").forGetter(Unbaked::ammo),
       Codec.BOOL.optionalFieldOf("show_traits", false).forGetter(Unbaked::showTraits)
     ).apply(inst, Unbaked::new));
+
+    /** Small-context modifier texture roots (see {@link ModifierRoots}). */
+    public List<Identifier> smallModifierRoots() {
+      return modifierRoots.small();
+    }
+
+    /** Large-context (in-hand double-resolution) modifier texture roots (see {@link ModifierRoots}). */
+    public List<Identifier> largeModifierRoots() {
+      return modifierRoots.large();
+    }
 
     @Override
     public MapCodec<? extends ItemModel.Unbaked> type() {
@@ -296,7 +324,7 @@ public final class ToolModel {
     @Override
     public ItemModel bake(ItemModel.BakingContext context, Matrix4fc transformation) {
       List<ToolPart> toolParts = parts.isEmpty() ? ToolPart.DEFAULT_PARTS : parts;
-      return new Baked(context, transformation, baseModel, toolParts, isLarge, modifierModels, smallModifierRoots, largeModifierRoots, firstModifiers, showTraits);
+      return new Baked(context, transformation, baseModel, toolParts, isLarge, modifierModels, smallModifierRoots(), largeModifierRoots(), firstModifiers, showTraits);
     }
   }
 
