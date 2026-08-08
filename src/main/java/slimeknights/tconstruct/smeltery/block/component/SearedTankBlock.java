@@ -95,9 +95,19 @@ public class SearedTankBlock extends SearedBlock implements ITankBlock, EntityBl
       }
       slimeknights.tconstruct.library.recipe.fuel.MeltingFuel fuel =
         tankFluid.isEmpty() ? null : slimeknights.tconstruct.library.recipe.fuel.MeltingFuelLookup.findFuel(tankFluid.getFluid());
-      slimeknights.tconstruct.TConstruct.LOG.info("[tank-diag] held={} transferred={} tankFluid={} amount={} recognizedFuel={} temp={}",
+      // probe: simulate inserting a bucket of lava straight into the tank's own ResourceHandler. This isolates
+      // whether tank.insert works from whether the bucket->tank interaction glue works.
+      int probeInsert = -1;
+      net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource> cap =
+        world.getCapability(net.neoforged.neoforge.capabilities.Capabilities.Fluid.BLOCK, pos, hit.getDirection());
+      if (cap != null) {
+        try (net.neoforged.neoforge.transfer.transaction.Transaction tx = net.neoforged.neoforge.transfer.transaction.Transaction.openRoot()) {
+          probeInsert = cap.insert(net.neoforged.neoforge.transfer.fluid.FluidResource.of(new FluidStack(net.minecraft.world.level.material.Fluids.LAVA, 1000)), 1000, tx);
+        }
+      }
+      slimeknights.tconstruct.TConstruct.LOG.info("[tank-diag] held={} transferred={} tankFluid={} amount={} recognizedFuel={} temp={} probeInsert={}",
         stack, transferred, tankFluid.isEmpty() ? "EMPTY" : tankFluid.getFluid(), tankFluid.getAmount(),
-        fuel != null, fuel != null ? fuel.getTemperature() : 0);
+        fuel != null, fuel != null ? fuel.getTemperature() : 0, probeInsert);
     }
     if (transferred) {
       return InteractionResult.SUCCESS;
