@@ -1,21 +1,15 @@
 package slimeknights.tconstruct.smeltery.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context;
 import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import slimeknights.mantle.client.render.FluidCuboid;
@@ -26,7 +20,6 @@ import slimeknights.tconstruct.smeltery.block.FaucetBlock;
 import slimeknights.tconstruct.smeltery.block.entity.FaucetBlockEntity;
 
 import java.util.List;
-import java.util.function.Function;
 
 public class FaucetBlockEntityRenderer implements BlockEntityRenderer<FaucetBlockEntity, BlockEntityRenderState> {
   public FaucetBlockEntityRenderer(Context context) {}
@@ -38,52 +31,43 @@ public class FaucetBlockEntityRenderer implements BlockEntityRenderer<FaucetBloc
 
   @Override
   public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState camera) {
-    // 26.1 BER rewrite: immediate-mode render replaced by extractRenderState + submit. The pouring-faucet fluid
-    // geometry must be captured into a render state and re-expressed against SubmitNodeCollector; exact fluid
-    // position/pour is validated in-game. Original immediate-mode logic preserved below for re-wiring:
-    /*
-    FluidStack renderFluid = tileEntity.getRenderFluid();
-    if (!tileEntity.isPouring() || renderFluid.isEmpty()) {
+    // 26.1: the pouring-faucet fluid stream is submitted through the SubmitNodeCollector custom-geometry path (same
+    // approach as the casting table renderer) rather than the old immediate-mode MultiBufferSource.
+    Level world = Minecraft.getInstance().level;
+    if (world == null || !(world.getBlockEntity(state.blockPos) instanceof FaucetBlockEntity faucet)) {
       return;
     }
-
-    // safety
-    Level world = tileEntity.getLevel();
-    if (world == null) {
+    FluidStack renderFluid = faucet.getRenderFluid();
+    if (!faucet.isPouring() || renderFluid.isEmpty()) {
       return;
     }
 
     // fetch faucet model to determine where to render fluids
-    BlockState state = tileEntity.getBlockState();
-    List<FluidCuboid> fluids = FluidCuboid.REGISTRY.get(state, List.of());
-    if (!fluids.isEmpty()) {
-      // if side, rotate fluid model
-      Direction direction = state.getValue(FaucetBlock.FACING);
-      boolean isRotated = RenderingHelper.applyRotation(matrices, direction);
-
-      // fluid props
-      IClientFluidTypeExtensions attributes = IClientFluidTypeExtensions.of(renderFluid.getFluid());
-      int color = attributes.getTintColor(renderFluid);
-      Function<Identifier, TextureAtlasSprite> spriteGetter = Minecraft.getInstance().getTextureAtlas(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS);
-      TextureAtlasSprite still = spriteGetter.apply(attributes.getStillTexture(renderFluid));
-      TextureAtlasSprite flowing = spriteGetter.apply(attributes.getFlowingTexture(renderFluid));
-      FluidType fluidType = renderFluid.getFluid().getFluidType();
-      combinedLightIn = FluidRenderer.withBlockLight(combinedLightIn, fluidType.getLightLevel(renderFluid));
-
-      // render all cubes in the model
-      VertexConsumer buffer = bufferIn.getBuffer(MantleRenderTypes.FLUID);
-      for (FluidCuboid cube : fluids) {
-        FluidRenderer.renderCuboid(matrices, buffer, cube, 0, still, flowing, color, combinedLightIn, false);
-      }
-
-      // render into the block(s) below
-      RenderingHelper.renderFaucetFluids(world, tileEntity.getBlockPos(), direction, matrices, buffer, still, flowing, color, combinedLightIn);
-
-      // if rotated, pop back rotation
-      if(isRotated) {
-        matrices.popPose();
-      }
+    BlockState blockState = world.getBlockState(state.blockPos);
+    List<FluidCuboid> fluids = FluidCuboid.REGISTRY.get(blockState, List.of());
+    if (fluids.isEmpty()) {
+      return;
     }
-    */
+    Direction direction = blockState.getValue(FaucetBlock.FACING);
+    int light = state.lightCoords;
+
+    // fluid textures, fetched once for both the faucet cuboids and the stream into the blocks below
+    FluidRenderer.FluidTextures textures = FluidRenderer.getFluidTextures(renderFluid);
+    FluidType fluidType = renderFluid.getFluid().getFluidType();
+    int fluidLight = FluidRenderer.withBlockLight(light, fluidType.getLightLevel(renderFluid));
+
+    // if on the side of a block, rotate the fluid model to match the faucet
+    boolean isRotated = RenderingHelper.applyRotation(poseStack, direction);
+    collector.submitCustomGeometry(poseStack, MantleRenderTypes.FLUID, (pose, buffer) -> {
+      PoseStack local = new PoseStack();
+      local.last().pose().set(pose.pose());
+      // fluid inside the faucet itself (color/gas resolved from the stack)
+      FluidRenderer.renderCuboids(local, buffer, fluids, renderFluid, light);
+      // fluid falling into the block(s) below the faucet
+      RenderingHelper.renderFaucetFluids(world, state.blockPos, direction, local, buffer, textures.still(), textures.flowing(), textures.color(), fluidLight);
+    });
+    if (isRotated) {
+      poseStack.popPose();
+    }
   }
 }
