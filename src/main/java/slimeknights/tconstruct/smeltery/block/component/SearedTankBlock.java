@@ -86,10 +86,18 @@ public class SearedTankBlock extends SearedBlock implements ITankBlock, EntityBl
   @Override
   protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
     boolean transferred = FluidTransferHelper.interactWithTank(world, pos, player, hand, hit);
-    // TEMP [tank-diag]: verify the fuel-tank fill path (held item / whether transfer ran / whether the fluid cap is present)
+    // TEMP [tank-diag]: after transfer, log what actually ended up in the tank and whether that fluid is a recognized melting fuel.
+    // This disambiguates "fill did not persist" from "fluid is not registered as fuel" (which is what a dark/no-heat smeltery menu means).
     if (!world.isClientSide()) {
-      boolean hasCap = world.getCapability(net.neoforged.neoforge.capabilities.Capabilities.Fluid.BLOCK, pos, hit.getDirection()) != null;
-      slimeknights.tconstruct.TConstruct.LOG.info("[tank-diag] useItemOn held={} transferred={} fluidCap={}", stack, transferred, hasCap);
+      FluidStack tankFluid = FluidStack.EMPTY;
+      if (world.getBlockEntity(pos) instanceof slimeknights.tconstruct.smeltery.block.entity.component.TankBlockEntity tankBe) {
+        tankFluid = tankBe.getTank().getFluid();
+      }
+      slimeknights.tconstruct.library.recipe.fuel.MeltingFuel fuel =
+        tankFluid.isEmpty() ? null : slimeknights.tconstruct.library.recipe.fuel.MeltingFuelLookup.findFuel(tankFluid.getFluid());
+      slimeknights.tconstruct.TConstruct.LOG.info("[tank-diag] held={} transferred={} tankFluid={} amount={} recognizedFuel={} temp={}",
+        stack, transferred, tankFluid.isEmpty() ? "EMPTY" : tankFluid.getFluid(), tankFluid.getAmount(),
+        fuel != null, fuel != null ? fuel.getTemperature() : 0);
     }
     if (transferred) {
       return InteractionResult.SUCCESS;
