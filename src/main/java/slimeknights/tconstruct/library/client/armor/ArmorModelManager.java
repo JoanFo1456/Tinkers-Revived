@@ -3,6 +3,7 @@ package slimeknights.tconstruct.library.client.armor;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.nbt.CompoundTag;
@@ -20,12 +21,14 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.materials.MaterialRenderInfo;
 import slimeknights.tconstruct.library.client.materials.MaterialRenderInfoLoader;
+import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.tools.client.material.CombatFishingHookRenderer;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -142,6 +145,18 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
       return original;
     }
 
+    @Nullable
+    @Override
+    public Identifier getArmorTexture(ItemStack stack, EquipmentClientInfo.LayerType type, EquipmentClientInfo.Layer layer, Identifier defaultTexture) {
+      // if a per-material texture exists (e.g. the palette-recolored slime gradients), use it directly instead of the
+      // grayscale base; getArmorLayerTintColor then returns -1 for it so it is not double-tinted. Null keeps the default.
+      int materialIndex = layerMaterialIndex(layer.textureId());
+      if (materialIndex >= 0) {
+        return dedicatedTexture(layer.textureId(), type, stack, materialIndex);
+      }
+      return null;
+    }
+
     @Override
     public int getArmorLayerTintColor(ItemStack stack, EquipmentClientInfo.Layer layer, int layerIdx, int fallbackColor) {
       // tint each equipment layer by its material's color so the grayscale layer textures show the crafted material.
@@ -149,9 +164,39 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
       // "base" only exists on the body). Never return 0 (that hides the layer); -1 renders the layer untinted.
       int materialIndex = layerMaterialIndex(layer.textureId());
       if (materialIndex >= 0) {
+        // a per-material texture is already colored, so render it untinted; otherwise tint the grayscale base
+        if (dedicatedTexture(layer.textureId(), inferLayerType(layer.textureId()), stack, materialIndex) != null) {
+          return -1;
+        }
         return getMaterialColor(stack, materialIndex);
       }
       return -1;
+    }
+
+    /** Builds the resolved path of a per-material armor texture and returns it if the resource exists, else null. */
+    @Nullable
+    private static Identifier dedicatedTexture(Identifier layerTextureId, EquipmentClientInfo.LayerType type, ItemStack stack, int materialIndex) {
+      MaterialVariantId material = getMaterial(stack, materialIndex);
+      if (material == null) {
+        return null;
+      }
+      MaterialId id = material.getId();
+      Identifier texture = Identifier.fromNamespaceAndPath(layerTextureId.getNamespace(),
+        "textures/entity/equipment/" + type.getSerializedName() + "/" + layerTextureId.getPath()
+          + "_" + id.getNamespace() + "_" + id.getPath() + ".png");
+      return Minecraft.getInstance().getResourceManager().getResource(texture).isPresent() ? texture : null;
+    }
+
+    /** Infers the equipment layer type from a layer texture's leaf name, for the tint hook (which lacks the layer type). */
+    private static EquipmentClientInfo.LayerType inferLayerType(Identifier textureId) {
+      String path = textureId.getPath();
+      if (path.contains("leggings")) {
+        return EquipmentClientInfo.LayerType.HUMANOID_LEGGINGS;
+      }
+      if (path.contains("wings")) {
+        return EquipmentClientInfo.LayerType.WINGS;
+      }
+      return EquipmentClientInfo.LayerType.HUMANOID;
     }
 
     /**
@@ -172,15 +217,21 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
       };
     }
 
-    /** Gets the render color of the tool material at the given index on the stack, or -1 (untinted) if absent. */
-    private static int getMaterialColor(ItemStack stack, int index) {
+    /** Gets the tool material at the given index on the stack, or null if absent. */
+    @Nullable
+    private static MaterialVariantId getMaterial(ItemStack stack, int index) {
       CompoundTag tag = TagUtil.getTag(stack);
       if (tag != null && tag.contains(ToolStack.TAG_MATERIALS)) {
-        String material = tag.getListOrEmpty(ToolStack.TAG_MATERIALS).getString(index).orElse("");
-        MaterialVariantId id = MaterialVariantId.tryParse(material);
-        if (id != null) {
-          return MaterialRenderInfoLoader.INSTANCE.getRenderInfo(id).map(MaterialRenderInfo::vertexColor).orElse(-1);
-        }
+        return MaterialVariantId.tryParse(tag.getListOrEmpty(ToolStack.TAG_MATERIALS).getString(index).orElse(""));
+      }
+      return null;
+    }
+
+    /** Gets the render color of the tool material at the given index on the stack, or -1 (untinted) if absent. */
+    private static int getMaterialColor(ItemStack stack, int index) {
+      MaterialVariantId id = getMaterial(stack, index);
+      if (id != null) {
+        return MaterialRenderInfoLoader.INSTANCE.getRenderInfo(id).map(MaterialRenderInfo::vertexColor).orElse(-1);
       }
       return -1;
     }
