@@ -138,15 +138,21 @@ public class ModifierWorktableBlockEntity extends RetexturedTableBlockEntity imp
       if (lastRecipe != null && lastRecipe.matches(inventoryWrapper, level)) {
         return updateRecipe(lastRecipe);
       }
-      // look for a new recipe, if it matches cache it
-      Optional<IModifierWorktableRecipe> recipe = level.getServer().getRecipeManager().getRecipeFor(TinkerRecipeTypes.MODIFIER_WORKTABLE.get(), inventoryWrapper, level).map(holder -> holder.value());
-      if (recipe.isPresent()) {
-        return updateRecipe(recipe.get());
+      // 26.1: recipe matching needs the server-side RecipeManager, which the client no longer has (level.getServer() is
+      // null on the client). Guarding this prevents an NPE crash when the worktable screen renders; recipe resolution
+      // stays server-side and the client relies on synced state.
+      net.minecraft.server.MinecraftServer server = level.getServer();
+      if (server != null) {
+        // look for a new recipe, if it matches cache it
+        Optional<IModifierWorktableRecipe> recipe = server.getRecipeManager().getRecipeFor(TinkerRecipeTypes.MODIFIER_WORKTABLE.get(), inventoryWrapper, level).map(holder -> holder.value());
+        if (recipe.isPresent()) {
+          return updateRecipe(recipe.get());
+        }
+        recipeValid = false;
+        currentMessage = Component.empty();
+        buttons = Collections.emptyList();
+        selectModifier(-1);
       }
-      recipeValid = false;
-      currentMessage = Component.empty();
-      buttons = Collections.emptyList();
-      selectModifier(-1);
     }
     // level null or no recipe found
     return null;

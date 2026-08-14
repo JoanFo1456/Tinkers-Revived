@@ -79,6 +79,11 @@ public class PartBuilderBlockEntity extends RetexturedTableBlockEntity implement
       if (getItem(PATTERN_SLOT).isEmpty()) {
         recipes = Collections.emptyMap();
         sortedButtons = Collections.emptyList();
+      } else if (level.getServer() == null) {
+        // 26.1: recipe matching needs the server-side RecipeManager, which the client no longer has (level.getServer() is
+        // null on the client). Without this guard the part builder screen NPE-crashed on render. Client shows no buttons.
+        recipes = Collections.emptyMap();
+        sortedButtons = Collections.emptyList();
       } else {
         record PatternRecipe(Pattern pattern, IPartBuilderRecipe recipe) {}
         // fetch all recipes that can match these inputs, the map ensures the patterns are unique
