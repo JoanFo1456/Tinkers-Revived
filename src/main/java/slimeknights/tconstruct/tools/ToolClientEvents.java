@@ -140,6 +140,12 @@ public class ToolClientEvents extends ClientEventBase {
     event.register(ToolModel.ID, ToolModel.Unbaked.MAP_CODEC);
   }
 
+  @SubscribeEvent
+  static void registerItemTintSources(net.neoforged.neoforge.client.event.RegisterColorHandlersEvent.ItemTintSources event) {
+    // restores the per-modifier color of modifier crystals, lost with the removed ItemColors system
+    event.register(slimeknights.tconstruct.tools.client.ModifierCrystalTintSource.ID, slimeknights.tconstruct.tools.client.ModifierCrystalTintSource.MAP_CODEC);
+  }
+
   /** Registers the item client extensions, replacing the removed Item#initializeClient in 26.1 */
   @SubscribeEvent
   static void registerClientItemExtensions(net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent event) {
