@@ -1,6 +1,7 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "tconstruct:item/tinker_station"
+    "type": "mantle:retextured",
+    "model": "tconstruct:item/tinker_station",
+    "retextured": ["leg", "legBottom"]
   }
 }

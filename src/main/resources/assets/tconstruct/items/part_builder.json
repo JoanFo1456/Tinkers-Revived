@@ -1,6 +1,7 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "tconstruct:item/part_builder"
+    "type": "mantle:retextured",
+    "model": "tconstruct:item/part_builder",
+    "retextured": ["leg", "legBottom"]
   }
 }
