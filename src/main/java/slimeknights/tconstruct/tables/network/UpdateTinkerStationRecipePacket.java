@@ -47,21 +47,15 @@ public class UpdateTinkerStationRecipePacket implements IThreadsafePacket {
     private static void handle(UpdateTinkerStationRecipePacket packet) {
       Level world = Minecraft.getInstance().level;
       if (world != null) {
-        Optional<ITinkerStationRecipe> recipe = RecipeHelper.getRecipe(world.getServer().getRecipeManager(), packet.recipe, ITinkerStationRecipe.class);
-
-        // if the screen is open, use that to get the TE and update the screen
-        boolean handled = false;
+        // 26.1: the full RecipeManager is no longer synced to the client (only a limited RecipeAccess), so the recipe
+        // cannot be resolved here as it was pre-26.1 (the old world.getServer().getRecipeManager() NPE'd on the client).
+        // The result is now synced straight into the result slot via the container (LazyResultContainer.setItem); this
+        // packet just refreshes the open station screen so it re-reads that synced result.
         if (Minecraft.getInstance().screen instanceof TinkerStationScreen stationScreen) {
           TinkerStationBlockEntity te = stationScreen.getTileEntity();
           if (te.getBlockPos().equals(packet.pos)) {
-            recipe.ifPresent(te::updateRecipe);
             stationScreen.updateDisplay();
-            handled = true;
           }
-        }
-        // if the wrong screen is open or no screen, use the tile directly
-        if (!handled) {
-          recipe.ifPresent(r -> BlockEntityHelper.get(TinkerStationBlockEntity.class, world, packet.pos).ifPresent(te -> te.updateRecipe(r)));
         }
       }
     }

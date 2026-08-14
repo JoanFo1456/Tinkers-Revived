@@ -44,8 +44,9 @@ public class UpdateCraftingRecipePacket implements IThreadsafePacket {
     private static void handle(UpdateCraftingRecipePacket packet) {
       Level world = Minecraft.getInstance().level;
       if (world != null) {
-        BlockEntityHelper.get(CraftingStationBlockEntity.class, world, packet.pos).ifPresent(te ->
-          world.getServer().getRecipeManager().byKey(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.RECIPE, packet.recipe)).filter(recipe -> recipe.value() instanceof CraftingRecipe).map(recipe -> (RecipeHolder<CraftingRecipe>)(RecipeHolder<?>)recipe).ifPresent(te::updateRecipe));
+        // 26.1: the full RecipeManager is no longer synced to the client, so the recipe cannot be resolved by key here
+        // (the old world.getServer().getRecipeManager() NPE'd on the client). The crafting station's visible result comes
+        // from its real synced ResultContainer, so nothing further is needed here for the result to display.
       }
     }
   }
