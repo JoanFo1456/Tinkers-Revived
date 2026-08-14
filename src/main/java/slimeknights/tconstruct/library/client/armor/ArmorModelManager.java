@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -17,6 +18,11 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier;
+import slimeknights.tconstruct.library.client.materials.MaterialRenderInfo;
+import slimeknights.tconstruct.library.client.materials.MaterialRenderInfoLoader;
+import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.tools.client.material.CombatFishingHookRenderer;
 
 import javax.annotation.Nonnull;
@@ -129,11 +135,46 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
     @Nonnull
     @Override
     public Model getGenericArmorModel(ItemStack stack, EquipmentClientInfo.LayerType layerType, Model original) {
-      // DEFERRED RENDER: pre-26.1 substituted MultilayerArmorModel here to draw custom material layers; the 26.1 sig no longer
-      // supplies the living entity/slot needed to set that model up, and custom layer submission moved to the equipment-layer
-      // renderer. We still prime the per-item model cache, then fall back to the vanilla model; custom layers validated in-game.
+      // 26.1: worn armor is drawn by the vanilla EquipmentLayerRenderer from the equipment asset (assets/tconstruct/equipment/
+      // <set>.json), which submits the vanilla humanoid armor model per layer. We keep the vanilla model and supply the
+      // per-material tint via getArmorLayerTintColor below; the layer textures are grayscale masks tinted by that color.
       getModel(stack);
       return original;
+    }
+
+    /**
+     * Maps a rendered equipment layer index to the tool material index whose color tints it, or -1 to render the layer
+     * untinted (e.g. a fixed base or trim layer). Defaults to identity, which matches sets whose layer order equals their
+     * material order (e.g. plate: plating=material 0, maille=material 1). Override per set when the orders differ.
+     * @param layerIdx  Index of the layer within the equipment asset's layer list
+     * @return  Material index to tint with, or -1 for no material tint
+     */
+    protected int layerMaterialIndex(int layerIdx) {
+      return layerIdx;
+    }
+
+    @Override
+    public int getArmorLayerTintColor(ItemStack stack, EquipmentClientInfo.Layer layer, int layerIdx, int fallbackColor) {
+      // tint each equipment layer by its material's color so the grayscale layer textures show the crafted material.
+      // Never return 0 (that hides the layer); -1 renders the layer untinted.
+      int materialIndex = layerMaterialIndex(layerIdx);
+      if (materialIndex >= 0) {
+        return getMaterialColor(stack, materialIndex);
+      }
+      return -1;
+    }
+
+    /** Gets the render color of the tool material at the given index on the stack, or -1 (untinted) if absent. */
+    private static int getMaterialColor(ItemStack stack, int index) {
+      CompoundTag tag = TagUtil.getTag(stack);
+      if (tag != null && tag.contains(ToolStack.TAG_MATERIALS)) {
+        String material = tag.getListOrEmpty(ToolStack.TAG_MATERIALS).getString(index).orElse("");
+        MaterialVariantId id = MaterialVariantId.tryParse(material);
+        if (id != null) {
+          return MaterialRenderInfoLoader.INSTANCE.getRenderInfo(id).map(MaterialRenderInfo::vertexColor).orElse(-1);
+        }
+      }
+      return -1;
     }
   }
 }

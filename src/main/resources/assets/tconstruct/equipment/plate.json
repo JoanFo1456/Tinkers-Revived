@@ -1,0 +1,12 @@
+{
+  "layers": {
+    "humanoid": [
+      { "texture": "tconstruct:plate/plating" },
+      { "texture": "tconstruct:plate/maille" }
+    ],
+    "humanoid_leggings": [
+      { "texture": "tconstruct:plate/plating" },
+      { "texture": "tconstruct:plate/maille" }
+    ]
+  }
+}
