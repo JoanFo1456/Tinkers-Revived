@@ -142,26 +142,34 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
       return original;
     }
 
-    /**
-     * Maps a rendered equipment layer index to the tool material index whose color tints it, or -1 to render the layer
-     * untinted (e.g. a fixed base or trim layer). Defaults to identity, which matches sets whose layer order equals their
-     * material order (e.g. plate: plating=material 0, maille=material 1). Override per set when the orders differ.
-     * @param layerIdx  Index of the layer within the equipment asset's layer list
-     * @return  Material index to tint with, or -1 for no material tint
-     */
-    protected int layerMaterialIndex(int layerIdx) {
-      return layerIdx;
-    }
-
     @Override
     public int getArmorLayerTintColor(ItemStack stack, EquipmentClientInfo.Layer layer, int layerIdx, int fallbackColor) {
       // tint each equipment layer by its material's color so the grayscale layer textures show the crafted material.
-      // Never return 0 (that hides the layer); -1 renders the layer untinted.
-      int materialIndex = layerMaterialIndex(layerIdx);
+      // Keyed off the layer texture's leaf name (not its index) since body and leggings layer lists differ (e.g. travelers'
+      // "base" only exists on the body). Never return 0 (that hides the layer); -1 renders the layer untinted.
+      int materialIndex = layerMaterialIndex(layer.textureId());
       if (materialIndex >= 0) {
         return getMaterialColor(stack, materialIndex);
       }
       return -1;
+    }
+
+    /**
+     * Maps an equipment layer texture to the tool material index whose color tints it, or -1 for an untinted layer (a
+     * fixed base). Keyed by the texture's leaf name, matching the layer naming used by the Tinkers equipment assets:
+     * {@code plating}/{@code metal} are the outer material (index 0), {@code maille}/{@code cuirass} the inner (index 1),
+     * {@code base} is fixed, and single-material sets (slime) default to index 1.
+     */
+    protected int layerMaterialIndex(Identifier textureId) {
+      String path = textureId.getPath();
+      int slash = path.lastIndexOf('/');
+      String leaf = slash >= 0 ? path.substring(slash + 1) : path;
+      return switch (leaf) {
+        case "base" -> -1;
+        case "plating", "metal" -> 0;
+        case "maille", "cuirass" -> 1;
+        default -> 1;
+      };
     }
 
     /** Gets the render color of the tool material at the given index on the stack, or -1 (untinted) if absent. */

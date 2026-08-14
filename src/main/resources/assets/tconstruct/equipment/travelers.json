@@ -1,0 +1,13 @@
+{
+  "layers": {
+    "humanoid": [
+      { "texture": "tconstruct:travelers/base" },
+      { "texture": "tconstruct:travelers/cuirass" },
+      { "texture": "tconstruct:travelers/metal" }
+    ],
+    "humanoid_leggings": [
+      { "texture": "tconstruct:travelers/cuirass" },
+      { "texture": "tconstruct:travelers/metal" }
+    ]
+  }
+}
