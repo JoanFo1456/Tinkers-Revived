@@ -41,7 +41,9 @@ public class TankBlockEntityRenderer<T extends BlockEntity & ITankBlockEntity> i
       return;
     }
     int light = state.lightCoords;
-    float offset = tank.getRenderOffset();
+    // decay the render offset toward 0 each frame so a fill/drain animates smoothly (quick, but not instant) instead of
+    // snapping to the new level. Mirrors the pre-26.1 RenderUtils.renderFluidTank decay.
+    final float offset = RenderUtils.decayRenderOffset(tank);
     collector.submitCustomGeometry(poseStack, slimeknights.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {
       PoseStack local = new PoseStack();
       local.last().pose().set(pose.pose());

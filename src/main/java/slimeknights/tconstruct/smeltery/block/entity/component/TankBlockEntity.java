@@ -156,7 +156,10 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
    */
   @Override
   public void updateFluidTo(FluidStack fluid) {
-    tank.setFluid(fluid);
+    // ITankBlockEntity's default applies the fluid AND seeds the render offset (the delta that drives the fill/drain
+    // animation) plus refreshes the fluid-in-model data. We then fire onTankContentsChanged so the live sync renders
+    // immediately without a world reload.
+    ITankBlockEntity.super.updateFluidTo(fluid);
     onTankContentsChanged();
   }
 

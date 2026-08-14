@@ -48,7 +48,8 @@ public class TankInventoryBlockEntityRenderer<T extends BlockEntity & ITankInven
       return;
     }
     int light = state.lightCoords;
-    float offset = tank.getRenderOffset();
+    // decay the render offset toward 0 each frame so a fill/drain animates smoothly instead of snapping to the new level
+    final float offset = RenderUtils.decayRenderOffset(tank);
     // rotate to face the block's direction, matching the pre-26.1 renderer
     boolean isRotated = RenderingHelper.applyRotation(poseStack, blockState.getValue(directionProperty));
     collector.submitCustomGeometry(poseStack, slimeknights.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {

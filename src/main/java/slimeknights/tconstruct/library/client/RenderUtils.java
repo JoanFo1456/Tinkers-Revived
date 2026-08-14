@@ -49,6 +49,27 @@ public final class RenderUtils {
   }
 
   /**
+   * Decays a tank's render offset toward zero, returning the offset to render with this frame. This drives the fill/drain
+   * animation: {@code updateFluidTo} seeds the offset with the fluid delta, and each rendered frame eases it back to 0 so
+   * the fluid level animates smoothly (quick, but not instant) instead of snapping. Extracted from
+   * {@link #renderFluidTank} for the 26.1 submit-based block-entity renderers, which lack a passed-in partial-tick.
+   * @param tank  Animated tank whose offset is decayed in place
+   * @return  Render offset to use this frame
+   */
+  public static float decayRenderOffset(FluidTankAnimated tank) {
+    float offset = tank.getRenderOffset();
+    if (offset > 1.2f || offset < -1.2f) {
+      float partialTicks = net.minecraft.client.Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+      offset = offset - ((offset / 12f + 0.1f) * partialTicks);
+      tank.setRenderOffset(offset);
+    } else {
+      offset = 0;
+      tank.setRenderOffset(0);
+    }
+    return offset;
+  }
+
+  /**
    * Add textured quads for a fluid tank
    * @param matrices      Matrix stack instance
    * @param buffer        Render type buffer instance
