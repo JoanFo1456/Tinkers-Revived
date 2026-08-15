@@ -4,12 +4,12 @@
     "base_model": "tconstruct:item/travelers_shield",
     "parts": [
       {
-        "name": "wood",
-        "index": 0
-      },
-      {
         "name": "cuirass",
         "index": 1
+      },
+      {
+        "name": "wood",
+        "index": 0
       }
     ],
     "modifier_maps": [
