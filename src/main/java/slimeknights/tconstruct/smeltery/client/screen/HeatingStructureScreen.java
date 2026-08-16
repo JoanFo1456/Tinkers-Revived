@@ -79,6 +79,9 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
     }
   }
 
+  /** This opaque panel must not be darkened by the in-world screen overlay. */
+  @Override
+  public void extractTransparentBackground(GuiGraphicsExtractor graphics) {}
 
   @Override
   protected void containerTick() {
