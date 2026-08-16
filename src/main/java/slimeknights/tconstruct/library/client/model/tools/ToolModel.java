@@ -18,6 +18,7 @@ import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.resources.model.geometry.QuadCollection;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.client.resources.model.sprite.TextureSlots;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -255,13 +256,21 @@ public final class ToolModel {
 
   /* Item model */
 
-  /** Adds an item-layer quad from both winding directions without changing its thin layer depth. */
+  /**
+   * Adds an item-layer quad. The extruded side walls (X/Z-plane faces, i.e. non-Z-axis normals) are emitted from both
+   * winding directions so the item shows thickness from any angle. The front/back fill faces (Z-axis normals) are left
+   * single-sided: a coplanar reverse-wound copy sits at the same z as the original and, drawn later, wins the equal-z
+   * depth test; facing away from the light it renders the fill near-black, leaving the tool looking like a hollow shell
+   * with no interior fill. Keeping the fill single-sided draws it lit and solid.
+   */
   private static void addToolQuad(QuadCollection.Builder builder, BakedQuad quad) {
     builder.addUnculledFace(quad);
-    builder.addUnculledFace(new BakedQuad(
-      quad.position0(), quad.position3(), quad.position2(), quad.position1(),
-      quad.packedUV0(), quad.packedUV3(), quad.packedUV2(), quad.packedUV1(),
-      quad.direction().getOpposite(), quad.materialInfo()));
+    if (quad.direction().getAxis() != Direction.Axis.Z) {
+      builder.addUnculledFace(new BakedQuad(
+        quad.position0(), quad.position3(), quad.position2(), quad.position1(),
+        quad.packedUV0(), quad.packedUV3(), quad.packedUV2(), quad.packedUV1(),
+        quad.direction().getOpposite(), quad.materialInfo()));
+    }
   }
 
   /**
