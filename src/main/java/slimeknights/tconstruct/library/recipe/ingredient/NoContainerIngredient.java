@@ -93,13 +93,15 @@ public class NoContainerIngredient extends NestedIngredient {
     /** Parses the ingredient from the legacy JSON format (supports both the inline vanilla form and the "match" wrapper) */
     private static NoContainerIngredient parseJson(JsonObject json) {
       // if we have match, parse as a nested object. Without match, just parse the object as vanilla
+      // route through IngredientLoadable.convert, which accepts a bare item/tag string, the legacy {"item"}/{"tag"}
+      // object forms, arrays, and custom ingredients -- the raw Ingredient.CODEC (HolderSet-based) rejects a bare item id
       Ingredient ingredient;
       if (json.has("match")) {
-        ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, json.get("match")).getOrThrow(IllegalArgumentException::new);
+        ingredient = slimeknights.mantle.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(json.get("match"), "match", slimeknights.mantle.util.typed.TypedMap.empty());
       } else {
         JsonObject copy = json.deepCopy();
         copy.remove("type");
-        ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, copy).getOrThrow(IllegalArgumentException::new);
+        ingredient = slimeknights.mantle.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(copy, "match", slimeknights.mantle.util.typed.TypedMap.empty());
       }
       return new NoContainerIngredient(ingredient);
     }

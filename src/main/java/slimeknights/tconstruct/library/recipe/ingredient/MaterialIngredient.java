@@ -164,8 +164,21 @@ public class MaterialIngredient extends NestedIngredient {
     return nested.items();
   }
 
+  /**
+   * Registry-aware JSON ops, built lazily. Serializing a tag {@link Ingredient} needs a {@link net.minecraft.resources.RegistryOps}
+   * so {@code HolderSetCodec} writes the tag by name; plain {@link JsonOps} instead iterates the holder set contents,
+   * which throws "Missing tag" at datagen time (tags are not bound then).
+   */
+  private static com.mojang.serialization.DynamicOps<JsonElement> jsonOps;
+  private static com.mojang.serialization.DynamicOps<JsonElement> jsonOps() {
+    if (jsonOps == null) {
+      jsonOps = net.minecraft.resources.RegistryOps.create(JsonOps.INSTANCE, net.minecraft.core.RegistryAccess.fromRegistryOfRegistries(BuiltInRegistries.REGISTRY));
+    }
+    return jsonOps;
+  }
+
   public JsonElement toJson() {
-    JsonElement parent = Ingredient.CODEC.encodeStart(JsonOps.INSTANCE, nested).getOrThrow(IllegalArgumentException::new);
+    JsonElement parent = Ingredient.CODEC.encodeStart(jsonOps(), nested).getOrThrow(IllegalArgumentException::new);
     JsonObject result;
     if (!nested.isCustom() && parent.isJsonObject()) {
       result = parent.getAsJsonObject();
@@ -207,13 +220,15 @@ public class MaterialIngredient extends NestedIngredient {
     /** Parses the ingredient from the legacy JSON format (supports both the inline vanilla form and the "match" wrapper) */
     private static MaterialIngredient parseJson(JsonObject json) {
       // if we have match, parse as a nested object. Without match, just parse the object as vanilla
+      // route through IngredientLoadable.convert, which accepts a bare item/tag string, the legacy {"item"}/{"tag"}
+      // object forms, arrays, and custom ingredients -- the raw Ingredient.CODEC (HolderSet-based) rejects a bare item id
       Ingredient ingredient;
       if (json.has("match")) {
-        ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, json.get("match")).getOrThrow(IllegalArgumentException::new);
+        ingredient = slimeknights.mantle.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(json.get("match"), "match", slimeknights.mantle.util.typed.TypedMap.empty());
       } else {
         JsonObject copy = json.deepCopy();
         copy.remove("type");
-        ingredient = Ingredient.CODEC.parse(JsonOps.INSTANCE, copy).getOrThrow(IllegalArgumentException::new);
+        ingredient = slimeknights.mantle.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(copy, "match", slimeknights.mantle.util.typed.TypedMap.empty());
       }
       IJsonPredicate<MaterialVariantId> material = MATERIAL_FIELD.get(json);
       // deprecated tag field

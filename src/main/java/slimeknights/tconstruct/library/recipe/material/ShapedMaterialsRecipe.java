@@ -186,7 +186,9 @@ public class ShapedMaterialsRecipe extends ShapedRecipe implements MaterialsCraf
     @Override
     public ShapedMaterialsRecipe fromJson(Identifier recipeId, JsonObject json) {
       ShapedRecipe vanilla = SHAPED_RECIPE.fromJson(recipeId, json);
-      ShapedRecipePattern.Data data = ShapedRecipePattern.Data.MAP_CODEC.codec().parse(JsonOps.INSTANCE, json).getOrThrow(JsonSyntaxException::new);
+      // registry-aware ops: the key map's ingredient tags ("#c:leathers") decode through a registry-backed HolderSetCodec
+      // that needs a HolderGetter; plain JsonOps makes tag ingredients fail structurally ("Not a json array/object").
+      ShapedRecipePattern.Data data = ShapedRecipePattern.Data.MAP_CODEC.codec().parse(LoggingRecipeSerializer.registryJsonOps(), json).getOrThrow(JsonSyntaxException::new);
       Map<Character, Ingredient> key = data.key();
 
       // specific to shaped part recipe, map from a pattern string to the ingredients for each character

@@ -281,6 +281,50 @@
         "MOD_CLASSES": "TConstruct%%C:\\Users\\Joan\\Desktop\\Nadien\\Tinkers-Revived\\bin\\main"
       },
       "shortenCommandLine": "argfile"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - TConstruct",
+        "order": 0
+      },
+      "projectName": "TConstruct",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\Joan\\Desktop\\Nadien\\Tinkers-Revived\\build\\moddev\\clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\Joan\\Desktop\\Nadien\\Tinkers-Revived\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dtconstruct%%C:\\Users\\Joan\\Desktop\\Nadien\\Tinkers-Revived\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - TConstruct",
+        "order": 1
+      },
+      "projectName": "TConstruct",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\Joan\\Desktop\\Nadien\\Tinkers-Revived\\build\\moddev\\serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\Joan\\Desktop\\Nadien\\Tinkers-Revived\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dtconstruct%%C:\\Users\\Joan\\Desktop\\Nadien\\Tinkers-Revived\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
     }
   ]
 }
