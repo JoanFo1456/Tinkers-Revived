@@ -9,9 +9,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
+import net.minecraft.client.color.block.BlockTintSource;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import slimeknights.tconstruct.world.client.SlimeFoliageTintSource;
+
+import java.util.List;
 import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -51,6 +56,27 @@ public class WorldClientEvents extends ClientEventBase {
     event.registerSpecial(TinkerWorld.skySlimeParticle.get(), new SlimeParticle.Factory(SlimeType.SKY));
     event.registerSpecial(TinkerWorld.enderSlimeParticle.get(), new SlimeParticle.Factory(SlimeType.ENDER));
     event.registerSpecial(TinkerWorld.terracubeParticle.get(), new SlimeParticle.Factory(Items.CLAY_BALL));
+  }
+
+  @SubscribeEvent
+  static void registerBlockTintSources(RegisterColorHandlersEvent.BlockTintSources event) {
+    // slime foliage tint index 0 is colored by world position (SlimeColorizer). The pre-26.1 BlockColors position
+    // handler was removed, so register a BlockTintSource instance per foliage type instead.
+    for (FoliageType type : FoliageType.values()) {
+      // grass blocks (every dirt variant) and short plants sample at their own position
+      event.register(List.<BlockTintSource>of(new SlimeFoliageTintSource(type, null)),
+        TinkerWorld.vanillaSlimeGrass.get(type), TinkerWorld.earthSlimeGrass.get(type), TinkerWorld.skySlimeGrass.get(type),
+        TinkerWorld.enderSlimeGrass.get(type), TinkerWorld.ichorSlimeGrass.get(type),
+        TinkerWorld.slimeFern.get(type), TinkerWorld.slimeTallGrass.get(type));
+      // leaves sample with the loop offset so they differ from the grass below
+      event.register(List.<BlockTintSource>of(new SlimeFoliageTintSource(type, SlimeColorizer.LOOP_OFFSET)),
+        TinkerWorld.slimeLeaves.get(type));
+    }
+    // vines are keyed by slime type; color them to match their foliage with the loop offset
+    event.register(List.<BlockTintSource>of(new SlimeFoliageTintSource(FoliageType.SKY, SlimeColorizer.LOOP_OFFSET)),
+      TinkerWorld.skySlimeVine.get());
+    event.register(List.<BlockTintSource>of(new SlimeFoliageTintSource(FoliageType.ENDER, SlimeColorizer.LOOP_OFFSET)),
+      TinkerWorld.enderSlimeVine.get());
   }
 
   @SubscribeEvent
