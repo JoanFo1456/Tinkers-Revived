@@ -255,15 +255,6 @@ public final class ToolModel {
 
   /* Item model */
 
-  /** Adds an item-layer quad from both winding directions without changing its thin layer depth. */
-  private static void addToolQuad(QuadCollection.Builder builder, BakedQuad quad) {
-    builder.addUnculledFace(quad);
-    builder.addUnculledFace(new BakedQuad(
-      quad.position0(), quad.position3(), quad.position2(), quad.position1(),
-      quad.packedUV0(), quad.packedUV3(), quad.packedUV2(), quad.packedUV1(),
-      quad.direction().getOpposite(), quad.materialInfo()));
-  }
-
   /**
    * Unbaked tool item model.
    * @param baseModel          Model providing the texture slots (part textures) and transforms
@@ -487,7 +478,7 @@ public final class ToolModel {
 
       // add modifier quads first so the pixel mask is populated before the parts beneath
       if (tool != null && !models.isEmpty()) {
-        addModifierQuads(sprites, models, firstModifiers, showTraits, tool, quads -> quads.forEach(quad -> addToolQuad(builder, quad)), pixels, transforms, false);
+        addModifierQuads(sprites, models, firstModifiers, showTraits, tool, quads -> quads.forEach(builder::addUnculledFace), pixels, transforms, false);
       }
 
       // add quads for all parts, in reverse so earlier parts render on top
@@ -505,12 +496,12 @@ public final class ToolModel {
             MaterialModel.validateMaterialTextures(textureSlots, sprites, name, material);
           }
           for (BakedQuad quad : MaterialModel.getQuadsForMaterial(sprites, texture, material, -1, transforms, pixels)) {
-            addToolQuad(builder, quad);
+            builder.addUnculledFace(quad);
           }
         } else {
           Material.Baked sprite = baker.materials().resolveSlot(textureSlots, name, resolvedModel);
           for (BakedQuad quad : MantleItemLayerModel.getQuadsForSprite(-1, -1, sprite, transforms, 0, pixels)) {
-            addToolQuad(builder, quad);
+            builder.addUnculledFace(quad);
           }
         }
       }
