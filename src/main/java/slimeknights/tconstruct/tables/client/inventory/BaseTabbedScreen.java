@@ -39,6 +39,10 @@ public class BaseTabbedScreen<TILE extends BlockEntity, CONTAINER extends Tabbed
     this.tile = container.getTile();
   }
 
+  /** Tinkers panels are opaque; do not darken them with the in-world screen overlay. */
+  @Override
+  public void extractTransparentBackground(GuiGraphicsExtractor graphics) {}
+
   @Override
   protected void init() {
     super.init();

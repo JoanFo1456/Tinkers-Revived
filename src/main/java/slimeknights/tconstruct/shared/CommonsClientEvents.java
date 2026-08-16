@@ -2,9 +2,17 @@ package slimeknights.tconstruct.shared;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.locale.Language;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
+import net.neoforged.neoforge.client.resources.VanillaClientListeners;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -18,9 +26,24 @@ import slimeknights.tconstruct.shared.client.FluidParticle;
 
 @EventBusSubscriber(modid = TConstruct.MOD_ID, value = Dist.CLIENT)
 public class CommonsClientEvents extends ClientEventBase {
+  private static final Identifier BLOCK_ITEM_LANGUAGE = TConstruct.getResource("block_item_language");
+  private static final SimplePreparableReloadListener<Void> BLOCK_ITEM_LANGUAGE_LISTENER = new SimplePreparableReloadListener<>() {
+    @Override
+    protected Void prepare(ResourceManager resourceManager, ProfilerFiller profiler) {
+      return null;
+    }
+
+    @Override
+    protected void apply(Void ignored, ResourceManager resourceManager, ProfilerFiller profiler) {
+      Language.inject(new BlockItemLanguage(Language.getInstance()));
+    }
+  };
+
   @SubscribeEvent
   static void addResourceListeners(AddClientReloadListenersEvent event) {
     DomainDisplayName.addResourceListener(event);
+    event.addListener(BLOCK_ITEM_LANGUAGE, BLOCK_ITEM_LANGUAGE_LISTENER);
+    event.addDependency(VanillaClientListeners.LANGUAGE, BLOCK_ITEM_LANGUAGE);
   }
 
   @SubscribeEvent
@@ -52,5 +75,42 @@ public class CommonsClientEvents extends ClientEventBase {
       unicodeRenderer = Minecraft.getInstance().font;
 
     return unicodeRenderer;
+  }
+
+  /** Minecraft 26.1 no longer makes BlockItem names use the block translation key. */
+  private static final class BlockItemLanguage extends Language {
+    private static final String ITEM_PREFIX = "item.tconstruct.";
+    private static final String BLOCK_PREFIX = "block.tconstruct.";
+    private final Language delegate;
+
+    private BlockItemLanguage(Language delegate) {
+      this.delegate = delegate instanceof BlockItemLanguage wrapped ? wrapped.delegate : delegate;
+    }
+
+    @Override
+    public String getOrDefault(String key, String defaultValue) {
+      if (!delegate.has(key) && key.startsWith(ITEM_PREFIX)) {
+        String blockKey = BLOCK_PREFIX + key.substring(ITEM_PREFIX.length());
+        if (delegate.has(blockKey)) {
+          return delegate.getOrDefault(blockKey, defaultValue);
+        }
+      }
+      return delegate.getOrDefault(key, defaultValue);
+    }
+
+    @Override
+    public boolean has(String key) {
+      return delegate.has(key) || key.startsWith(ITEM_PREFIX) && delegate.has(BLOCK_PREFIX + key.substring(ITEM_PREFIX.length()));
+    }
+
+    @Override
+    public boolean isDefaultRightToLeft() {
+      return delegate.isDefaultRightToLeft();
+    }
+
+    @Override
+    public FormattedCharSequence getVisualOrder(FormattedText text) {
+      return delegate.getVisualOrder(text);
+    }
   }
 }

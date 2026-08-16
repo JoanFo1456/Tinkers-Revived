@@ -7,9 +7,10 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import slimeknights.mantle.client.ResourceColorManager;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
-import slimeknights.tconstruct.library.modifiers.ModifierManager;
+import slimeknights.tconstruct.library.utils.Util;
 import slimeknights.tconstruct.tools.item.ModifierCrystalItem;
 
 import javax.annotation.Nullable;
@@ -31,8 +32,8 @@ public record ModifierCrystalTintSource() implements ItemTintSource {
   @Override
   public int calculate(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity owner) {
     ModifierId modifier = ModifierCrystalItem.getModifier(stack);
-    if (modifier != null && ModifierManager.INSTANCE.contains(modifier)) {
-      return ARGB.opaque(ModifierManager.INSTANCE.get(modifier).getColor());
+    if (modifier != null) {
+      return ARGB.opaque(ResourceColorManager.getColor(Util.makeTranslationKey("modifier", modifier.getIdentifier())));
     }
     return -1;
   }
