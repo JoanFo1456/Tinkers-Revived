@@ -106,8 +106,10 @@ public class BlockTagProvider extends BlockTagsProvider {
       Blocks.GRAY_STAINED_GLASS_PANE, Blocks.GREEN_STAINED_GLASS_PANE, Blocks.LIGHT_BLUE_STAINED_GLASS_PANE, Blocks.LIGHT_GRAY_STAINED_GLASS_PANE,
       Blocks.LIME_STAINED_GLASS_PANE, Blocks.MAGENTA_STAINED_GLASS_PANE, Blocks.ORANGE_STAINED_GLASS_PANE, Blocks.PINK_STAINED_GLASS_PANE,
       Blocks.PURPLE_STAINED_GLASS_PANE, Blocks.RED_STAINED_GLASS_PANE, Blocks.WHITE_STAINED_GLASS_PANE, Blocks.YELLOW_STAINED_GLASS_PANE);
-    this.tag(Tags.Blocks.GLASS_BLOCKS_COLORLESS).add(TinkerCommons.clearGlass.get());
-    this.tag(Tags.Blocks.GLASS_PANES_COLORLESS).add(TinkerCommons.clearGlassPane.get());
+    // include vanilla glass so the "colorless" glass tags aren't smeltery-gated (clear glass needs a melter to make);
+    // recipes like the seared fuel gauge/tank use these tags and must be craftable before a smeltery exists
+    this.tag(Tags.Blocks.GLASS_BLOCKS_COLORLESS).add(TinkerCommons.clearGlass.get(), Blocks.GLASS);
+    this.tag(Tags.Blocks.GLASS_PANES_COLORLESS).add(TinkerCommons.clearGlassPane.get(), Blocks.GLASS_PANE);
     addGlass(TinkerCommons.clearStainedGlass, "glass/", tag(Tags.Blocks.GLASS_BLOCKS));
     addGlass(TinkerCommons.clearStainedGlassPane, "glass_panes/", tag(Tags.Blocks.GLASS_PANES));
     TinkerCommons.clearStainedGlassPane.forEach(pane -> silicaPanes.add(pane));

@@ -1,5 +1,6 @@
 {
   "values": [
-    "modernfoundry:clear_glass_pane"
+    "modernfoundry:clear_glass_pane",
+    "minecraft:glass_pane"
   ]
 }
