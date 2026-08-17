@@ -37,9 +37,9 @@ repositories {
     }
 }
 
-group = 'slimeknights.tconstruct'
+group = 'modernmods.modernfoundry'
 base {
-    archivesName = 'TinkersRevived'
+    archivesName = 'ModernFoundry'
 }
 
 // MC 26.1.2 ships as Java 25 bytecode, so the toolchain must be JDK 25. ModDevGradle uses a standard
@@ -86,11 +86,11 @@ sourceSets {
     main {
         java {
             // Mod-compat plugins excluded pending their dependency mods' 26.1 ports (unrelated to datagen).
-            exclude 'slimeknights/tconstruct/plugin/craftingtweaks/**'
-            exclude 'slimeknights/tconstruct/plugin/jsonthings/**'
-            exclude 'slimeknights/tconstruct/plugin/DietPlugin.java'
-            exclude 'slimeknights/tconstruct/plugin/DummmmmmyPlugin.java'
-            exclude 'slimeknights/tconstruct/plugin/ImmersiveEngineeringPlugin.java'
+            exclude 'modernmods/modernfoundry/plugin/craftingtweaks/**'
+            exclude 'modernmods/modernfoundry/plugin/jsonthings/**'
+            exclude 'modernmods/modernfoundry/plugin/DietPlugin.java'
+            exclude 'modernmods/modernfoundry/plugin/DummmmmmyPlugin.java'
+            exclude 'modernmods/modernfoundry/plugin/ImmersiveEngineeringPlugin.java'
             // ---------------------------------------------------------------------------------------------
             // SERVER datagen (recipes, loot, advancements, tags, material/modifier/tool JSON, worldgen,
             // damage types, trim materials) is ENABLED and wired into GatherDataEvent.Server.
@@ -98,20 +98,20 @@ sourceSets {
             // net.minecraft.client.data.models.ModelProvider (removed BlockStateProvider/ItemModelProvider/
             // ExistingFileHelper). These only affect textures/models and do NOT block world load.
             // ---------------------------------------------------------------------------------------------
-            exclude 'slimeknights/tconstruct/common/data/model/**'
-            exclude 'slimeknights/tconstruct/common/data/render/**'
-            exclude 'slimeknights/tconstruct/common/data/StructureUpdater.java'
-            exclude 'slimeknights/tconstruct/fluids/data/**'
-            exclude 'slimeknights/tconstruct/library/data/AbstractModifierModelMapProvider.java'
-            exclude 'slimeknights/tconstruct/library/data/AbstractToolItemModelProvider.java'
-            exclude 'slimeknights/tconstruct/tools/data/ArmorModelProvider.java'
-            exclude 'slimeknights/tconstruct/tools/data/ToolItemModelProvider.java'
-            exclude 'slimeknights/tconstruct/tools/data/client/**'
+            exclude 'modernmods/modernfoundry/common/data/model/**'
+            exclude 'modernmods/modernfoundry/common/data/render/**'
+            exclude 'modernmods/modernfoundry/common/data/StructureUpdater.java'
+            exclude 'modernmods/modernfoundry/fluids/data/**'
+            exclude 'modernmods/modernfoundry/library/data/AbstractModifierModelMapProvider.java'
+            exclude 'modernmods/modernfoundry/library/data/AbstractToolItemModelProvider.java'
+            exclude 'modernmods/modernfoundry/tools/data/ArmorModelProvider.java'
+            exclude 'modernmods/modernfoundry/tools/data/ToolItemModelProvider.java'
+            exclude 'modernmods/modernfoundry/tools/data/client/**'
             // StructureRepalleter reads committed structure NBTs at datagen time via the removed
             // ExistingFileHelper; the structure NBT format is stable across 1.21.1->26.1 so the already
             // generated structures load fine. Regenerating them needs a rewrite of the resource reader; deferred.
-            exclude 'slimeknights/tconstruct/library/data/AbstractStructureRepalleter.java'
-            exclude 'slimeknights/tconstruct/world/data/StructureRepalleter.java'
+            exclude 'modernmods/modernfoundry/library/data/AbstractStructureRepalleter.java'
+            exclude 'modernmods/modernfoundry/world/data/StructureRepalleter.java'
             // ---------------------------------------------------------------------------------------------
             // RECIPE datagen cluster: needs the full 26.1 vanilla recipe rewrite (RecipeBuilder now takes a
             // HolderGetter, Holder-based MobEffect/Potion/Enchantment, ItemStackTemplate results, cooking
@@ -119,36 +119,36 @@ sourceSets {
             // excluded so the tag/loot/advancement/material server data can regenerate. FluidEffect and the
             // enchantment->modifier provider are grouped here as they share the Holder-effect migration.
             // ---------------------------------------------------------------------------------------------
-            exclude 'slimeknights/tconstruct/tools/data/FluidEffectProvider.java'
-            exclude 'slimeknights/tconstruct/tools/data/EnchantmentToModifierProvider.java'
+            exclude 'modernmods/modernfoundry/tools/data/FluidEffectProvider.java'
+            exclude 'modernmods/modernfoundry/tools/data/EnchantmentToModifierProvider.java'
             // ---------------------------------------------------------------------------------------------
             // IN-PROGRESS server datagen: symbol-ported toward 26.1 but not yet GREEN. Excluded so the build
             // stays green; being re-enabled + finished cluster by cluster (tags -> loot -> advancements ->
             // material/modifier/tool JSON). Do not treat as done.
             // ---------------------------------------------------------------------------------------------
-            exclude 'slimeknights/tconstruct/library/data/tinkering/AbstractEnchantmentToModifierProvider.java'
-            exclude 'slimeknights/tconstruct/library/data/tinkering/AbstractFluidEffectProvider.java'
-            exclude 'slimeknights/tconstruct/world/data/WorldgenProvider.java'
+            exclude 'modernmods/modernfoundry/library/data/tinkering/AbstractEnchantmentToModifierProvider.java'
+            exclude 'modernmods/modernfoundry/library/data/tinkering/AbstractFluidEffectProvider.java'
+            exclude 'modernmods/modernfoundry/world/data/WorldgenProvider.java'
             // concrete providers whose abstract bases are in the in-progress set above
             // ModifierProvider + ToolDefinitionDataProvider: in progress, being fixed next.
-            //exclude 'slimeknights/tconstruct/tools/data/ToolDefinitionDataProvider.java'
+            //exclude 'modernmods/modernfoundry/tools/data/ToolDefinitionDataProvider.java'
             // ModifierProvider: EnchantmentModule.builder(Enchantment) needs raw Enchantment values, but 26.1 makes
             // enchantments datapack-only (Enchantments.X is ResourceKey<Enchantment>); also EffectImmunity/Attribute/
             // MobEffect modules now revolve around Holders. Needs a main-code module refactor to ResourceKey-based
             // enchantments; deferred.
-            exclude 'slimeknights/tconstruct/tools/data/ModifierProvider.java'
+            exclude 'modernmods/modernfoundry/tools/data/ModifierProvider.java'
             // TrimMaterialProvider needs the 26.1 MaterialAssetGroup trim-asset rewrite; it feeds the deferred registry-set. Deferred.
-            exclude 'slimeknights/tconstruct/tools/data/material/TrimMaterialProvider.java'
+            exclude 'modernmods/modernfoundry/tools/data/material/TrimMaterialProvider.java'
             // Loot cluster: structural port done (ResourceKey<LootTable> keys, HolderLookup sub-providers),
             // but BlockLootTableProvider needs the 26.1 block-entity component migration (ContextNbtProvider.BLOCK_ENTITY
             // removed -> CopyComponentsFunction) plus enchantment-Holder loot functions. Deferred; TConstructLootTableProvider
             // aggregates Block+Entity so the whole cluster stays excluded together.
-            exclude 'slimeknights/tconstruct/common/data/loot/AdvancementLootTableProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/BlockLootTableProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/EntityLootTableProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/GlobalLootModifiersProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/TConstructLootTableProvider.java'
-            exclude 'slimeknights/tconstruct/common/data/loot/LootTableInjectionProvider.java'
+            exclude 'modernmods/modernfoundry/common/data/loot/AdvancementLootTableProvider.java'
+            exclude 'modernmods/modernfoundry/common/data/loot/BlockLootTableProvider.java'
+            exclude 'modernmods/modernfoundry/common/data/loot/EntityLootTableProvider.java'
+            exclude 'modernmods/modernfoundry/common/data/loot/GlobalLootModifiersProvider.java'
+            exclude 'modernmods/modernfoundry/common/data/loot/TConstructLootTableProvider.java'
+            exclude 'modernmods/modernfoundry/common/data/loot/LootTableInjectionProvider.java'
             // Client sprite/texture + material render-info datagen ported to 26.1 ResourceManager (EFH removed).
             // The item/block MODEL providers (vanilla item-model format rewrite) remain excluded above.
         }

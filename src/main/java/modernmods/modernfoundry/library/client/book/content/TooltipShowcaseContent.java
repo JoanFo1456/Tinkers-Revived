@@ -1,0 +1,42 @@
+package modernmods.modernfoundry.library.client.book.content;
+
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import modernmods.mantle.client.book.data.BookData;
+import modernmods.mantle.client.book.data.content.ContentShowcase;
+import modernmods.mantle.client.screen.book.BookScreen;
+import modernmods.mantle.client.screen.book.element.BookElement;
+import modernmods.mantle.client.screen.book.element.ItemElement;
+import modernmods.mantle.client.screen.book.element.TextElement;
+import modernmods.modernfoundry.TConstruct;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TooltipShowcaseContent extends ContentShowcase {
+  public static final transient Identifier ID = TConstruct.getResource("showcase");
+
+  public List<Component> tooltip = null;
+
+  @Override
+  public void build(BookData book, ArrayList<BookElement> list, boolean rightSide) {
+    int y = getTitleHeight();
+
+    if (this.title == null || this.title.isEmpty()) {
+      y = 0;
+    } else {
+      this.addTitle(list, this.title);
+    }
+
+    if (this.item != null && !this.item.getItems().isEmpty()) {
+      ItemElement element = new ItemElement(BookScreen.PAGE_WIDTH / 2 - 15, y, 2.5f, this.item.getItems(), this.item.action);
+      element.tooltip = tooltip;
+      list.add(element);
+      y += element.height;
+    }
+
+    if (this.text != null && this.text.length > 0) {
+      list.add(new TextElement(0, y, BookScreen.PAGE_WIDTH, BookScreen.PAGE_HEIGHT - y, this.text));
+    }
+  }
+}
