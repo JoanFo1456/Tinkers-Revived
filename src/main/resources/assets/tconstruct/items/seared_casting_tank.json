@@ -1,6 +1,6 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "tconstruct:item/seared_casting_tank"
+    "type": "tconstruct:tank",
+    "base": "tconstruct:item/seared_casting_tank"
   }
 }

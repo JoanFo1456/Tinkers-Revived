@@ -40,6 +40,11 @@ public class SmelteryClientEvents extends ClientEventBase {
   }
 
   @SubscribeEvent
+  static void registerItemModels(net.neoforged.neoforge.client.event.RegisterItemModelsEvent event) {
+    event.register(slimeknights.tconstruct.smeltery.client.model.TankItemModel.ID, slimeknights.tconstruct.smeltery.client.model.TankItemModel.Unbaked.MAP_CODEC);
+  }
+
+  @SubscribeEvent
   static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
     event.registerBlockEntityRenderer(TinkerSmeltery.tank.get(), TankBlockEntityRenderer::new);
     event.registerBlockEntityRenderer(TinkerSmeltery.fluidCannon.get(), context -> new TankInventoryBlockEntityRenderer<>(BlockStateProperties.FACING));
