@@ -1,0 +1,13 @@
+{
+  "parent": "modernfoundry:item/base/tall",
+  "textures": {
+    "head": "modernfoundry:item/tool/javelin/head",
+    "guard": "modernfoundry:item/tool/javelin/guard",
+    "handle": "modernfoundry:item/tool/javelin/handle",
+    "grip": "modernfoundry:item/tool/javelin/grip",
+    "large_head": "modernfoundry:item/tool/javelin/large/head",
+    "large_guard": "modernfoundry:item/tool/javelin/large/guard",
+    "large_handle": "modernfoundry:item/tool/javelin/large/handle",
+    "large_grip": "modernfoundry:item/tool/javelin/large/grip"
+  }
+}

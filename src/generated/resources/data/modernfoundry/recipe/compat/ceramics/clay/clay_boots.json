@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ceramics"
+    }
+  ],
+  "type": "modernfoundry:damagable_melting",
+  "id": "modernfoundry:compat/ceramics/clay/clay_boots",
+  "ingredient": {
+    "item": "ceramics:clay_boots"
+  },
+  "result": {
+    "amount": 1000,
+    "fluid": "modernfoundry:molten_clay",
+    "unit_size": 50
+  },
+  "temperature": 450,
+  "time": 96
+}

@@ -1,6 +1,0 @@
-{
-  "model": {
-    "type": "tconstruct:tank",
-    "base": "tconstruct:item/scorched_ingot_tank"
-  }
-}

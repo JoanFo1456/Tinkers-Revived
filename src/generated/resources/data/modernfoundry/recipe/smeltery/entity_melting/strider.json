@@ -1,0 +1,15 @@
+{
+  "type": "modernfoundry:entity_melting",
+  "damage": 4,
+  "entity": {
+    "type": "minecraft:strider"
+  },
+  "id": "modernfoundry:smeltery/entity_melting/strider",
+  "result": {
+    "amount": 50,
+    "nbt": {
+      "Potion": "minecraft:fire_resistance"
+    },
+    "tag": "c:potion"
+  }
+}

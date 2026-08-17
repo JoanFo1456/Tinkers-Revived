@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:magma_fluid",
-    "tconstruct:blazing_blood_fluid"
+    "modernfoundry:magma_fluid",
+    "modernfoundry:blazing_blood_fluid"
   ]
 }

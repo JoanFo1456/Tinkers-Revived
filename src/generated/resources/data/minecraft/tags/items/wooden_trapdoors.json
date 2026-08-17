@@ -1,8 +1,8 @@
 {
   "values": [
-    "tconstruct:greenheart_trapdoor",
-    "tconstruct:skyroot_trapdoor",
-    "tconstruct:bloodshroom_trapdoor",
-    "tconstruct:enderbark_trapdoor"
+    "modernfoundry:greenheart_trapdoor",
+    "modernfoundry:skyroot_trapdoor",
+    "modernfoundry:bloodshroom_trapdoor",
+    "modernfoundry:enderbark_trapdoor"
   ]
 }

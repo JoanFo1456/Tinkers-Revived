@@ -1,0 +1,7 @@
+{
+  "parent": "modernfoundry:item/base/battlesign",
+  "textures": {
+    "head": "modernfoundry:item/tool/battlesign/head",
+    "handle": "modernfoundry:item/tool/battlesign/handle"
+  }
+}

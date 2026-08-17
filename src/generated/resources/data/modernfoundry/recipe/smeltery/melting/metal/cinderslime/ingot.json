@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/cinderslime/ingot",
+  "ingredient": "#c:ingots/cinderslime",
+  "result": {
+    "amount": 90,
+    "fluid": "modernfoundry:molten_cinderslime"
+  },
+  "temperature": 1050,
+  "time": 68
+}

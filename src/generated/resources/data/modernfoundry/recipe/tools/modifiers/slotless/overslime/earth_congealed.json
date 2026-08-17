@@ -1,0 +1,7 @@
+{
+  "type": "modernfoundry:overslime_modifier",
+  "id": "modernfoundry:tools/modifiers/slotless/overslime/earth_congealed",
+  "ingredient": "modernfoundry:earth_congealed_slime",
+  "restore_amount": 80,
+  "tools": "#modernfoundry:modifiable/durability"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "neoforge:item/default",
+  "textures": {
+    "plating": "modernfoundry:item/tool/armor/plate/leggings/plating",
+    "maille": "modernfoundry:item/tool/armor/plate/leggings/maille"
+  }
+}

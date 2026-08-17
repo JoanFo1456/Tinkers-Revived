@@ -1,0 +1,7 @@
+{
+  "parent": "modernfoundry:item/base/staff",
+  "textures": {
+    "tool": "modernfoundry:item/tool/staff/ender",
+    "large_tool": "modernfoundry:item/tool/staff/ender_large"
+  }
+}

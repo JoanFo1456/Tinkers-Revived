@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
+    }
+  ],
+  "type": "modernfoundry:part_builder_recycling",
+  "id": "modernfoundry:tables/recycling/twilightforest/arctic_helmet",
+  "pattern": "modernfoundry:venom_bottle",
+  "results": {
+    "modernfoundry:maille": {
+      "count": 5,
+      "item": "twilightforest:arctic_fur"
+    }
+  },
+  "tool": {
+    "item": "twilightforest:arctic_helmet"
+  }
+}

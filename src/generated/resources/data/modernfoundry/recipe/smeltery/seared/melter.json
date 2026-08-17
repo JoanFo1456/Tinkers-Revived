@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "modernfoundry:seared_brick",
+    "G": {
+      "neoforge:ingredient_type": "modernfoundry:no_container",
+      "match": [
+        "modernfoundry:seared_fuel_gauge",
+        "modernfoundry:seared_ingot_gauge"
+      ]
+    }
+  },
+  "pattern": [
+    "BGB",
+    "BBB"
+  ],
+  "result": {
+    "id": "modernfoundry:seared_melter"
+  }
+}

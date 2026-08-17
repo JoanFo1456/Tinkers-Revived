@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": "#modernfoundry:casts/multi_use/gem",
+  "cooling_time": 58,
+  "fluid": {
+    "amount": 100,
+    "tag": "modernfoundry:molten_quartz"
+  },
+  "id": "modernfoundry:smeltery/casting/quartz/gem_gold_cast",
+  "result": {
+    "tag": "c:gems/quartz"
+  }
+}

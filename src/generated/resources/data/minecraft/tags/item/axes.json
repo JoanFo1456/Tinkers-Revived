@@ -1,10 +1,10 @@
 {
   "values": [
-    "tconstruct:mattock",
-    "tconstruct:hand_axe",
-    "tconstruct:broad_axe",
+    "modernfoundry:mattock",
+    "modernfoundry:hand_axe",
+    "modernfoundry:broad_axe",
     {
-      "id": "tconstruct:minotaur_axe",
+      "id": "modernfoundry:minotaur_axe",
       "required": false
     }
   ]

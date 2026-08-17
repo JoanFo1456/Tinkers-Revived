@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "modernfoundry:blazewood_slab",
+  "key": {
+    "B": "modernfoundry:blazewood"
+  },
+  "pattern": [
+    "BBB"
+  ],
+  "result": {
+    "count": 6,
+    "id": "modernfoundry:blazewood_slab"
+  }
+}

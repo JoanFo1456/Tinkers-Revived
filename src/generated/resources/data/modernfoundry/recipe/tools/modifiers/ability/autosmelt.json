@@ -1,0 +1,31 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/autosmelt",
+  "inputs": [
+    {
+      "ingredient": "#c:raw_materials"
+    },
+    {
+      "ingredient": "minecraft:blast_furnace"
+    },
+    {
+      "ingredient": "#c:ingots"
+    },
+    {
+      "ingredient": "#c:storage_blocks/coal"
+    },
+    {
+      "ingredient": "#c:storage_blocks/coal"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:autosmelt",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/harvest",
+    "#modernfoundry:modifiable/fishing_rods"
+  ]
+}

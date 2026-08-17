@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:casting_basin",
+  "cast": "minecraft:stone_brick_slab",
+  "cast_consumed": true,
+  "cooling_time": 80,
+  "fluid": {
+    "amount": 250,
+    "tag": "modernfoundry:molten_clay"
+  },
+  "id": "modernfoundry:smeltery/casting/seared/bricks/slab",
+  "result": "modernfoundry:seared_bricks_slab"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "modernfoundry:scorched_brick",
+    "G": "modernfoundry:gold_platform"
+  },
+  "pattern": [
+    "# #",
+    "#G#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:scorched_basin"
+  }
+}

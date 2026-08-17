@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/cinderslime/nugget",
+  "ingredient": "#c:nuggets/cinderslime",
+  "result": {
+    "amount": 10,
+    "fluid": "modernfoundry:molten_cinderslime"
+  },
+  "temperature": 1050,
+  "time": 23
+}

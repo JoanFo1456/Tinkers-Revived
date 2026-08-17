@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "modernfoundry:scorched_road",
+  "result": {
+    "id": "modernfoundry:scorched_road_stairs"
+  }
+}

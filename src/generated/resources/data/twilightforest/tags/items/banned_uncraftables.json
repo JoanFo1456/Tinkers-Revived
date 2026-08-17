@@ -1,9 +1,9 @@
 {
   "values": [
-    "#tconstruct:modifiable",
-    "#tconstruct:parts",
-    "tconstruct:tinkers_anvil",
-    "tconstruct:scorched_anvil",
-    "tconstruct:modifier_worktable"
+    "#modernfoundry:modifiable",
+    "#modernfoundry:parts",
+    "modernfoundry:tinkers_anvil",
+    "modernfoundry:scorched_anvil",
+    "modernfoundry:modifier_worktable"
   ]
 }

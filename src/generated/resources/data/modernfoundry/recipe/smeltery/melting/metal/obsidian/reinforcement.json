@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/obsidian/reinforcement",
+  "ingredient": "modernfoundry:obsidian_reinforcement",
+  "result": {
+    "amount": 1000,
+    "fluid": "modernfoundry:molten_obsidian"
+  },
+  "temperature": 1000,
+  "time": 221
+}

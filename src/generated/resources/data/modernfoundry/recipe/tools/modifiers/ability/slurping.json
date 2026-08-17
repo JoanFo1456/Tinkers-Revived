@@ -1,0 +1,31 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/slurping",
+  "inputs": [
+    {
+      "ingredient": "minecraft:glass_bottle"
+    },
+    {
+      "neoforge:ingredient_type": "modernfoundry:no_container",
+      "match": "#modernfoundry:tanks"
+    },
+    {
+      "ingredient": "minecraft:glass_bottle"
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    }
+  ],
+  "result": "modernfoundry:slurping",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/armor/helmets",
+    "#modernfoundry:modifiable/interactable/charge"
+  ]
+}

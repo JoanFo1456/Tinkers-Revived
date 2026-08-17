@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_copper"
+  },
+  "id": "modernfoundry:tools/materials/casting/copper",
+  "output": "modernfoundry:copper",
+  "temperature": 500
+}

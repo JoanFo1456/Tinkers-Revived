@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": "minecraft:egg",
+    "M": "modernfoundry:ender_slime_bucket",
+    "S": "#c:dusts/redstone",
+    "W": "modernfoundry:ender_slime_tall_grass"
+  },
+  "pattern": [
+    "MMM",
+    "SES",
+    "WWW"
+  ],
+  "result": {
+    "id": "modernfoundry:ender_cake"
+  }
+}

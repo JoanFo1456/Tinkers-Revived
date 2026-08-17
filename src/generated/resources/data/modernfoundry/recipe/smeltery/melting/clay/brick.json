@@ -1,0 +1,14 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/clay/brick",
+  "ingredient": [
+    "minecraft:brick",
+    "#minecraft:decorated_pot_sherds"
+  ],
+  "result": {
+    "amount": 250,
+    "fluid": "modernfoundry:molten_clay"
+  },
+  "temperature": 450,
+  "time": 48
+}

@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:molding_table",
+  "id": "modernfoundry:smeltery/casts/sand/molding/pick_head",
+  "material": "#modernfoundry:casts/sand",
+  "pattern": {
+    "neoforge:ingredient_type": "modernfoundry:material",
+    "match": "modernfoundry:pick_head"
+  },
+  "result": "modernfoundry:pick_head_sand_cast"
+}

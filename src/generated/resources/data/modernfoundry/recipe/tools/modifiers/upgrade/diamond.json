@@ -1,0 +1,16 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/diamond",
+  "inputs": [
+    {
+      "ingredient": "#c:gems/diamond"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:diamond",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/durability"
+}

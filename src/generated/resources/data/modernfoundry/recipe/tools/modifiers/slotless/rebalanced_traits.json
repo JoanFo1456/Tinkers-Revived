@@ -1,0 +1,31 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/slotless/rebalanced_traits",
+  "inputs": [
+    {
+      "ingredient": "#c:nuggets/manyullyn"
+    },
+    {
+      "ingredient": "minecraft:end_crystal"
+    },
+    {
+      "ingredient": "#c:nuggets/manyullyn"
+    },
+    {
+      "ingredient": "modernfoundry:ender_slime_crystal_block"
+    },
+    {
+      "ingredient": "modernfoundry:ender_slime_crystal_block"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:rebalanced",
+    "value": "traits"
+  },
+  "tools": {
+    "neoforge:ingredient_type": "modernfoundry:tool_hook",
+    "hook": "modernfoundry:rebalanced_trait",
+    "tag": "modernfoundry:modifiable/bonus_slots"
+  }
+}

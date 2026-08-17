@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": "#c:bones",
+  "cast_consumed": true,
+  "cooling_time": 48,
+  "fluid": {
+    "amount": 250,
+    "tag": "modernfoundry:venom"
+  },
+  "id": "modernfoundry:smeltery/casting/slime/venom/bone",
+  "result": "modernfoundry:venombone"
+}

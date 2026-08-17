@@ -1,0 +1,33 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "check_trait_level": true,
+  "id": "modernfoundry:tools/modifiers/ability/spitting",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "modernfoundry:material",
+      "match": "modernfoundry:bow_limb"
+    },
+    {
+      "ingredient": "modernfoundry:seared_fluid_cannon"
+    },
+    {
+      "neoforge:ingredient_type": "modernfoundry:material",
+      "match": "modernfoundry:bow_limb"
+    }
+  ],
+  "level": {
+    "max": 3
+  },
+  "result": "modernfoundry:spitting",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/durability",
+      "#modernfoundry:modifiable/interactable/charge/modifier"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "modernfoundry:item/base/tall_axe",
+  "textures": {
+    "head": "modernfoundry:item/tool/broad_axe/blade",
+    "handle": "modernfoundry:item/tool/broad_axe/handle",
+    "back": "modernfoundry:item/tool/broad_axe/back",
+    "binding": "modernfoundry:item/tool/broad_axe/binding",
+    "large_head": "modernfoundry:item/tool/broad_axe/large/blade",
+    "large_handle": "modernfoundry:item/tool/broad_axe/large/handle",
+    "large_back": "modernfoundry:item/tool/broad_axe/large/back",
+    "large_binding": "modernfoundry:item/tool/broad_axe/large/binding"
+  }
+}

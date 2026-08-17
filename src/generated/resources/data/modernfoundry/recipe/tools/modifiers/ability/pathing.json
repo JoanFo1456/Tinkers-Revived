@@ -1,0 +1,37 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "check_trait_level": true,
+  "id": "modernfoundry:tools/modifiers/ability/pathing",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "modernfoundry:material",
+      "match": "modernfoundry:adze_head"
+    },
+    {
+      "ingredient": "#c:ingots/steel"
+    },
+    {
+      "neoforge:ingredient_type": "modernfoundry:material",
+      "match": "modernfoundry:tool_binding"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:pathing",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/durability",
+      {
+        "neoforge:ingredient_type": "neoforge:compound",
+        "children": [
+          "#modernfoundry:modifiable/interactable",
+          "#modernfoundry:modifiable/armor/boots"
+        ]
+      }
+    ]
+  }
+}

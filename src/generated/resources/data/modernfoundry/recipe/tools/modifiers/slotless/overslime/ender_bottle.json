@@ -1,0 +1,7 @@
+{
+  "type": "modernfoundry:overslime_modifier",
+  "id": "modernfoundry:tools/modifiers/slotless/overslime/ender_bottle",
+  "ingredient": "modernfoundry:ender_slime_bottle",
+  "restore_amount": 80,
+  "tools": "#modernfoundry:modifiable/durability"
+}

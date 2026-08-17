@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:bleeding",
-    "tconstruct:shock"
+    "modernfoundry:bleeding",
+    "modernfoundry:shock"
   ]
 }

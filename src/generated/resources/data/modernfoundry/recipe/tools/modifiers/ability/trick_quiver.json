@@ -1,0 +1,33 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/trick_quiver",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:silky_cloth"
+    },
+    {
+      "ingredient": "modernfoundry:sky_slime_vine"
+    },
+    {
+      "ingredient": "modernfoundry:silky_cloth"
+    },
+    {
+      "ingredient": "modernfoundry:sky_slime_vine"
+    },
+    {
+      "ingredient": "modernfoundry:sky_slime_vine"
+    }
+  ],
+  "result": "modernfoundry:trick_quiver",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/ranged/bows",
+      "#modernfoundry:modifiable/interactable"
+    ]
+  }
+}

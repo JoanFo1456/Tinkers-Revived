@@ -1,7 +1,0 @@
-{
-  "model": {
-    "type": "mantle:retextured",
-    "model": "tconstruct:item/crafting_station",
-    "retextured": ["leg", "legBottom"]
-  }
-}

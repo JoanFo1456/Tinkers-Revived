@@ -1,8 +1,8 @@
 {
   "values": [
     "minecraft:slime",
-    "tconstruct:sky_slime",
-    "tconstruct:ender_slime",
-    "tconstruct:terracube"
+    "modernfoundry:sky_slime",
+    "modernfoundry:ender_slime",
+    "modernfoundry:terracube"
   ]
 }

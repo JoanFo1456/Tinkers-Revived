@@ -1,8 +1,0 @@
-{
-  "type": "tconstruct:material",
-  "id": "tconstruct:tools/materials/steel/nugget",
-  "ingredient": "#c:nuggets/steel",
-  "material": "tconstruct:steel",
-  "needed": 9,
-  "value": 1
-}

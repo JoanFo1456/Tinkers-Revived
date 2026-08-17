@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "": {
+      "type": "mantle:connected",
+      "model": "modernfoundry:block/clear_glass/brown/block",
+      "connection": {
+        "textures": {
+          "all": "cornerless_full"
+        }
+      },
+      "color": -10073037
+    }
+  }
+}

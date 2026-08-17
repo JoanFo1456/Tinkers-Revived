@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:part_builder_tool_recycling",
+  "id": "modernfoundry:tools/recycling/dagger",
+  "pattern": "modernfoundry:venom_bottle",
+  "tools": {
+    "amount_needed": 2,
+    "ingredient": "modernfoundry:dagger"
+  }
+}

@@ -29,30 +29,30 @@
       "type": "minecraft:paletted_permutations",
       "palette_key": "minecraft:trims/color_palettes/trim_palette",
       "permutations": {
-        "tconstruct_amethyst_bronze": "tconstruct:trims/color_palettes/amethyst_bronze",
-        "tconstruct_cinderslime": "tconstruct:trims/color_palettes/cinderslime",
-        "tconstruct_cobalt": "tconstruct:trims/color_palettes/cobalt",
-        "tconstruct_earthslime": "tconstruct:trims/color_palettes/earthslime",
-        "tconstruct_enderslime": "tconstruct:trims/color_palettes/enderslime",
-        "tconstruct_hepatizon": "tconstruct:trims/color_palettes/hepatizon",
-        "tconstruct_ichor": "tconstruct:trims/color_palettes/ichor",
-        "tconstruct_knightmetal": "tconstruct:trims/color_palettes/knightmetal",
-        "tconstruct_knightslime": "tconstruct:trims/color_palettes/knightslime",
-        "tconstruct_manyullyn": "tconstruct:trims/color_palettes/manyullyn",
-        "tconstruct_pig_iron": "tconstruct:trims/color_palettes/pig_iron",
-        "tconstruct_queens_slime": "tconstruct:trims/color_palettes/queens_slime",
-        "tconstruct_rose_gold": "tconstruct:trims/color_palettes/rose_gold",
-        "tconstruct_skyslime": "tconstruct:trims/color_palettes/skyslime",
-        "tconstruct_slimesteel": "tconstruct:trims/color_palettes/slimesteel",
-        "tconstruct_steel": "tconstruct:trims/color_palettes/steel"
+        "modernfoundry_amethyst_bronze": "modernfoundry:trims/color_palettes/amethyst_bronze",
+        "modernfoundry_cinderslime": "modernfoundry:trims/color_palettes/cinderslime",
+        "modernfoundry_cobalt": "modernfoundry:trims/color_palettes/cobalt",
+        "modernfoundry_earthslime": "modernfoundry:trims/color_palettes/earthslime",
+        "modernfoundry_enderslime": "modernfoundry:trims/color_palettes/enderslime",
+        "modernfoundry_hepatizon": "modernfoundry:trims/color_palettes/hepatizon",
+        "modernfoundry_ichor": "modernfoundry:trims/color_palettes/ichor",
+        "modernfoundry_knightmetal": "modernfoundry:trims/color_palettes/knightmetal",
+        "modernfoundry_knightslime": "modernfoundry:trims/color_palettes/knightslime",
+        "modernfoundry_manyullyn": "modernfoundry:trims/color_palettes/manyullyn",
+        "modernfoundry_pig_iron": "modernfoundry:trims/color_palettes/pig_iron",
+        "modernfoundry_queens_slime": "modernfoundry:trims/color_palettes/queens_slime",
+        "modernfoundry_rose_gold": "modernfoundry:trims/color_palettes/rose_gold",
+        "modernfoundry_skyslime": "modernfoundry:trims/color_palettes/skyslime",
+        "modernfoundry_slimesteel": "modernfoundry:trims/color_palettes/slimesteel",
+        "modernfoundry_steel": "modernfoundry:trims/color_palettes/steel"
       },
       "textures": [
         "minecraft:trims/items/helmet_trim",
         "minecraft:trims/items/chestplate_trim",
         "minecraft:trims/items/leggings_trim",
         "minecraft:trims/items/boots_trim",
-        "tconstruct:item/tool/armor/travelers/goggles/trim",
-        "tconstruct:item/tool/armor/slime/wings/trim"
+        "modernfoundry:item/tool/armor/travelers/goggles/trim",
+        "modernfoundry:item/tool/armor/slime/wings/trim"
       ]
     },
     {
@@ -71,17 +71,17 @@
         "redstone": "minecraft:trims/color_palettes/redstone"
       },
       "textures": [
-        "tconstruct:item/tool/armor/travelers/goggles/trim",
-        "tconstruct:item/tool/armor/slime/wings/trim"
+        "modernfoundry:item/tool/armor/travelers/goggles/trim",
+        "modernfoundry:item/tool/armor/slime/wings/trim"
       ]
     },
     {
-      "type": "tconstruct:shield_banner_to_modifier",
+      "type": "modernfoundry:shield_banner_to_modifier",
       "crop_height": 20,
       "crop_width": 10,
       "crop_x": 2,
       "crop_y": 2,
-      "destination_prefix": "tconstruct:item/tool/armor/plate/shield/banner_large/",
+      "destination_prefix": "modernfoundry:item/tool/armor/plate/shield/banner_large/",
       "offset_x": 11,
       "offset_y": 8,
       "output_size": 32

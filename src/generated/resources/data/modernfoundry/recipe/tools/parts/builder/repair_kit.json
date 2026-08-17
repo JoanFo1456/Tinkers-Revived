@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 2,
+  "id": "modernfoundry:tools/parts/builder/repair_kit",
+  "pattern": "modernfoundry:repair_kit",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:repair_kit_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:repair_kit"
+  }
+}

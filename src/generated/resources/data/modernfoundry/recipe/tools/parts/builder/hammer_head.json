@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 8,
+  "id": "modernfoundry:tools/parts/builder/hammer_head",
+  "pattern": "modernfoundry:hammer_head",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:hammer_head_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:hammer_head"
+  }
+}

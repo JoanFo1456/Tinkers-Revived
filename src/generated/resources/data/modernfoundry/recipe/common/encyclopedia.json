@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": "minecraft:book",
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_gold"
+  },
+  "id": "modernfoundry:common/encyclopedia",
+  "result": "modernfoundry:encyclopedia"
+}

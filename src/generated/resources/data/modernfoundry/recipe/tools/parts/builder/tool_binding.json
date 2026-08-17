@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 1,
+  "id": "modernfoundry:tools/parts/builder/tool_binding",
+  "pattern": "modernfoundry:tool_binding",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:tool_binding_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:tool_binding"
+  }
+}

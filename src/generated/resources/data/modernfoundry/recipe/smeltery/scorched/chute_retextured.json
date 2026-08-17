@@ -1,0 +1,18 @@
+{
+  "type": "mantle:crafting_shaped_retextured",
+  "category": "redstone",
+  "key": {
+    "#": "#modernfoundry:foundry_bricks",
+    "C": "modernfoundry:obsidian_pane"
+  },
+  "match_all": false,
+  "pattern": [
+    "C",
+    "#",
+    "C"
+  ],
+  "result": {
+    "id": "modernfoundry:scorched_chute"
+  },
+  "texture": "#"
+}

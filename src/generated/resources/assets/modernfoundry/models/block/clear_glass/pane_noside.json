@@ -1,0 +1,6 @@
+{
+  "parent": "modernfoundry:block/template/pane/noside",
+  "textures": {
+    "pane": "modernfoundry:block/clear_glass"
+  }
+}

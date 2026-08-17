@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:table_tool_casting",
+  "cast": {
+    "neoforge:ingredient_type": "modernfoundry:material",
+    "match": "modernfoundry:shield_core"
+  },
+  "cast_purpose": "first_material",
+  "id": "modernfoundry:tools/armor/plate/plate_shield",
+  "item_cost": 3,
+  "result": "modernfoundry:plate_shield"
+}

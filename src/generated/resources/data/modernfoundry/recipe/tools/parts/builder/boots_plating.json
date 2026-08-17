@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:item_part_builder",
+  "cost": 2,
+  "id": "modernfoundry:tools/parts/builder/boots_plating",
+  "material": "modernfoundry:rock",
+  "pattern": "modernfoundry:boots_plating",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:boots_plating_cast"
+  ],
+  "result": "modernfoundry:boots_plating_dummy"
+}

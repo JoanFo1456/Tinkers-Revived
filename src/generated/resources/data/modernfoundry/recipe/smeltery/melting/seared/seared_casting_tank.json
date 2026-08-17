@@ -1,0 +1,24 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 1000,
+      "fluid": "modernfoundry:seared_stone"
+    },
+    {
+      "amount": 3000,
+      "fluid": "modernfoundry:molten_glass"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/seared/seared_casting_tank",
+  "ingredient": {
+    "neoforge:ingredient_type": "modernfoundry:no_container",
+    "match": "modernfoundry:seared_casting_tank"
+  },
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_copper"
+  },
+  "temperature": 500,
+  "time": 125
+}

@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:battlesign",
-    "tconstruct:travelers_shield",
-    "tconstruct:plate_shield"
+    "modernfoundry:battlesign",
+    "modernfoundry:travelers_shield",
+    "modernfoundry:plate_shield"
   ]
 }

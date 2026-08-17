@@ -1,0 +1,39 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/crystalshot_random",
+  "inputs": [
+    {
+      "ingredient": [
+        "modernfoundry:earth_slime_crystal_cluster",
+        "modernfoundry:sky_slime_crystal_cluster"
+      ]
+    },
+    {
+      "ingredient": [
+        "minecraft:amethyst_cluster",
+        "minecraft:nether_quartz_ore"
+      ]
+    },
+    {
+      "ingredient": [
+        "modernfoundry:ichor_slime_crystal_cluster",
+        "modernfoundry:ender_slime_crystal_cluster"
+      ]
+    },
+    {
+      "ingredient": "#c:ingots/manyullyn"
+    },
+    {
+      "ingredient": "#c:ingots/manyullyn"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:crystalshot",
+    "value": "random"
+  },
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#modernfoundry:modifiable/ranged/bows"
+}

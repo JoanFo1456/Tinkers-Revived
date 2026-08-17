@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/electrum"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/electrum/ingot",
+  "ingredient": "#c:ingots/electrum",
+  "material": "modernfoundry:electrum",
+  "needed": 1,
+  "value": 1
+}

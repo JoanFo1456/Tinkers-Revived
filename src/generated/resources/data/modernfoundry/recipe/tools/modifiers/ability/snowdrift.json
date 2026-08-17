@@ -1,0 +1,28 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/snowdrift",
+  "inputs": [
+    {
+      "ingredient": "minecraft:snow_block"
+    },
+    {
+      "ingredient": "minecraft:carved_pumpkin"
+    },
+    {
+      "ingredient": "minecraft:snow_block"
+    },
+    {
+      "ingredient": "minecraft:snow_block"
+    },
+    {
+      "ingredient": "minecraft:snow_block"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:snowdrift",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#modernfoundry:modifiable/armor/boots"
+}

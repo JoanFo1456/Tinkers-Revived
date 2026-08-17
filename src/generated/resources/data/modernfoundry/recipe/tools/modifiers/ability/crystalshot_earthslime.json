@@ -1,0 +1,30 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/ability/crystalshot_earthslime",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:earth_slime_crystal_cluster"
+    },
+    {
+      "ingredient": "minecraft:blaze_rod"
+    },
+    {
+      "ingredient": "modernfoundry:earth_slime_crystal_cluster"
+    },
+    {
+      "ingredient": "#c:ingots/manyullyn"
+    },
+    {
+      "ingredient": "#c:ingots/manyullyn"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:crystalshot",
+    "value": "earthslime"
+  },
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#modernfoundry:modifiable/ranged/bows"
+}

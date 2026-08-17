@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/glass",
+  "ingredient": "#c:glass_blocks",
+  "material": "modernfoundry:glass",
+  "needed": 1,
+  "value": 4
+}

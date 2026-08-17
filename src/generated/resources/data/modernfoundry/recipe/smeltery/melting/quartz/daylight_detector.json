@@ -1,0 +1,17 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 3000,
+      "fluid": "modernfoundry:molten_glass"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/quartz/daylight_detector",
+  "ingredient": "minecraft:daylight_detector",
+  "result": {
+    "amount": 300,
+    "fluid": "modernfoundry:molten_quartz"
+  },
+  "temperature": 637,
+  "time": 100
+}

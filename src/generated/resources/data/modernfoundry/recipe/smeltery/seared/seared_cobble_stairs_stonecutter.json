@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "modernfoundry:seared_cobble",
+  "result": {
+    "id": "modernfoundry:seared_cobble_stairs"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "modernfoundry:incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "id": "modernfoundry:tools/modifiers/upgrade/bane_of_sssss",
+  "input": "minecraft:fermented_spider_eye",
+  "level": {
+    "max": 5
+  },
+  "needed_per_level": 15,
+  "result": "modernfoundry:bane_of_sssss",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/melee"
+}

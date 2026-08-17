@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:registered",
+      "value": "oreberriesreplanted:nickel_oreberry"
+    }
+  ],
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/nickel/oreberry",
+  "ingredient": {
+    "item": "oreberriesreplanted:nickel_oreberry"
+  },
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_nickel"
+  },
+  "temperature": 950,
+  "time": 22
+}

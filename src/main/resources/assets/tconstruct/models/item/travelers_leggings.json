@@ -1,7 +1,0 @@
-{
-  "parent": "neoforge:item/default",
-  "textures": {
-    "cuirass": "tconstruct:item/tool/armor/travelers/pants/cuirass",
-    "metal": "tconstruct:item/tool/armor/travelers/pants/metal"
-  }
-}

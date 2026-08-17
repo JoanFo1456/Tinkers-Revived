@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "": {
+      "type": "mantle:connected",
+      "model": "modernfoundry:block/clear_glass/cyan/block",
+      "connection": {
+        "textures": {
+          "all": "cornerless_full"
+        }
+      },
+      "color": -11763815
+    }
+  }
+}

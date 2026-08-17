@@ -1,0 +1,35 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/luck_level_1",
+  "inputs": [
+    {
+      "ingredient": "#c:ingots/copper"
+    },
+    {
+      "ingredient": [
+        "minecraft:cornflower",
+        "minecraft:blue_orchid"
+      ]
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    },
+    {
+      "ingredient": "#c:storage_blocks/lapis"
+    },
+    {
+      "ingredient": "#c:storage_blocks/lapis"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:luck",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/melee/weapon",
+    "#modernfoundry:modifiable/harvest",
+    "#modernfoundry:modifiable/ranged/launcher"
+  ]
+}

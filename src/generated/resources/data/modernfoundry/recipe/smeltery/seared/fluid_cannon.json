@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": "#c:ingots/copper",
+    "R": "#c:dusts/redstone",
+    "T": {
+      "neoforge:ingredient_type": "modernfoundry:no_container",
+      "match": [
+        "modernfoundry:seared_fuel_gauge",
+        "modernfoundry:seared_ingot_gauge"
+      ]
+    }
+  },
+  "pattern": [
+    " R ",
+    "CTC",
+    "CCC"
+  ],
+  "result": {
+    "id": "modernfoundry:seared_fluid_cannon"
+  }
+}

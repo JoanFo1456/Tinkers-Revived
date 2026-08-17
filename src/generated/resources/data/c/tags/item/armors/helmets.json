@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:travelers_helmet",
-    "tconstruct:plate_helmet",
-    "tconstruct:slime_helmet"
+    "modernfoundry:travelers_helmet",
+    "modernfoundry:plate_helmet",
+    "modernfoundry:slime_helmet"
   ]
 }

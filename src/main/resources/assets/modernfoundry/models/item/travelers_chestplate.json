@@ -1,0 +1,7 @@
+{
+  "parent": "neoforge:item/default",
+  "textures": {
+    "cuirass": "modernfoundry:item/tool/armor/travelers/vest/cuirass",
+    "metal": "modernfoundry:item/tool/armor/travelers/vest/metal"
+  }
+}

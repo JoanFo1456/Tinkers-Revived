@@ -1,0 +1,23 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 500,
+      "fluid": "modernfoundry:molten_quartz"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/scorched/gauge",
+  "ingredient": {
+    "neoforge:ingredient_type": "modernfoundry:no_container",
+    "match": [
+      "modernfoundry:scorched_fuel_gauge",
+      "modernfoundry:scorched_ingot_gauge"
+    ]
+  },
+  "result": {
+    "amount": 1000,
+    "fluid": "modernfoundry:scorched_stone"
+  },
+  "temperature": 500,
+  "time": 100
+}

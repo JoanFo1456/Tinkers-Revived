@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "modernfoundry:seared_cobble_stairs",
+  "key": {
+    "B": "modernfoundry:seared_cobble"
+  },
+  "pattern": [
+    "B  ",
+    "BB ",
+    "BBB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "modernfoundry:seared_cobble_stairs"
+  }
+}

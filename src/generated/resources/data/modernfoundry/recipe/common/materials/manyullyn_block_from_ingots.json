@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:manyullyn_block",
+  "key": {
+    "#": "#c:ingots/manyullyn",
+    "*": "modernfoundry:manyullyn_ingot"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:manyullyn_block"
+  }
+}

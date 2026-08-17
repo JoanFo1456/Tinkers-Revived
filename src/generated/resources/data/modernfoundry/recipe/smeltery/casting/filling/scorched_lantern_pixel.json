@@ -1,0 +1,5 @@
+{
+  "type": "modernfoundry:table_filling",
+  "container": "modernfoundry:scorched_lantern",
+  "fluid_amount": 10
+}

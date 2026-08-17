@@ -1,0 +1,5 @@
+{
+  "type": "modernfoundry:table_filling",
+  "container": "minecraft:bucket",
+  "fluid_amount": 1000
+}

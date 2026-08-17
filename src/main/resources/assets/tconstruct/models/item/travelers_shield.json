@@ -1,7 +1,0 @@
-{
-  "parent": "tconstruct:item/base/shield",
-  "textures": {
-    "cuirass": "tconstruct:item/tool/armor/travelers/shield/cuirass",
-    "wood": "tconstruct:item/tool/armor/travelers/shield/wood"
-  }
-}

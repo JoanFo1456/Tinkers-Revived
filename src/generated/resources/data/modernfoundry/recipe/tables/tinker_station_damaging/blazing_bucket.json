@@ -1,0 +1,6 @@
+{
+  "type": "modernfoundry:tinker_station_damaging",
+  "damage_amount": 2500,
+  "id": "modernfoundry:tables/tinker_station_damaging/blazing_bucket",
+  "ingredient": "modernfoundry:blazing_blood_bucket"
+}

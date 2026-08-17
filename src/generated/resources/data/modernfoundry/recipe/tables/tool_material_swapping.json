@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:tool_material_swapping",
+  "id": "modernfoundry:tables/tool_material_swapping",
+  "max_stack_size": 16,
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#modernfoundry:modifiable/multipart",
+    "subtracted": "#modernfoundry:modifiable/unswappable/tools"
+  }
+}

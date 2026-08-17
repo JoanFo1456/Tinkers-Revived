@@ -1,0 +1,8 @@
+{
+  "parent": "modernfoundry:item/tool/war_pick/display",
+  "textures": {
+    "limb": "modernfoundry:item/tool/war_pick/limb",
+    "body": "modernfoundry:item/tool/war_pick/body",
+    "bowstring": "modernfoundry:item/tool/war_pick/bowstring"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "#modernfoundry:seared_bricks",
+    "b": "modernfoundry:seared_brick"
+  },
+  "pattern": [
+    "b b",
+    "b b",
+    "BBB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "modernfoundry:seared_ladder"
+  }
+}

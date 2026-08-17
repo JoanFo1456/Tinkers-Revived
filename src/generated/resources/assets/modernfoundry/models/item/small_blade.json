@@ -1,0 +1,6 @@
+{
+  "parent": "neoforge:item/default",
+  "textures": {
+    "texture": "modernfoundry:item/tool/parts/small_blade"
+  }
+}

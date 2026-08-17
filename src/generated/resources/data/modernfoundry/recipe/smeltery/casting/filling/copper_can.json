@@ -1,0 +1,5 @@
+{
+  "type": "modernfoundry:table_filling",
+  "container": "modernfoundry:copper_can",
+  "fluid_amount": 90
+}

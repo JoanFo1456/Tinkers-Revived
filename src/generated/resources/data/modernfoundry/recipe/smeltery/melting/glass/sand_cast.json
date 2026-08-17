@@ -1,0 +1,14 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/glass/sand_cast",
+  "ingredient": [
+    "modernfoundry:blank_sand_cast",
+    "modernfoundry:blank_red_sand_cast"
+  ],
+  "result": {
+    "amount": 250,
+    "fluid": "modernfoundry:molten_glass"
+  },
+  "temperature": 750,
+  "time": 44
+}

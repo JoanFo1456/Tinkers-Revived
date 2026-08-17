@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "modernfoundry:scorched_brick",
+    "B": "#c:gems/quartz"
+  },
+  "pattern": [
+    "#B#",
+    "#B#",
+    "#B#"
+  ],
+  "result": {
+    "id": "modernfoundry:scorched_ingot_tank"
+  }
+}

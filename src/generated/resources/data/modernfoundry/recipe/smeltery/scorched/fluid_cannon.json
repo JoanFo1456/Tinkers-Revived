@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": "#c:ingots/cobalt",
+    "R": "#c:dusts/redstone",
+    "T": {
+      "neoforge:ingredient_type": "modernfoundry:no_container",
+      "match": [
+        "modernfoundry:scorched_ingot_gauge",
+        "modernfoundry:scorched_fuel_gauge"
+      ]
+    }
+  },
+  "pattern": [
+    " R ",
+    "CTC",
+    "CCC"
+  ],
+  "result": {
+    "id": "modernfoundry:scorched_fluid_cannon"
+  }
+}

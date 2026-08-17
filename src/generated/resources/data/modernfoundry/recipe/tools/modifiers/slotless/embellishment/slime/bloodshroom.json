@@ -1,0 +1,22 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/slotless/embellishment/slime/bloodshroom",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:bloodshroom_planks"
+    },
+    {
+      "ingredient": "modernfoundry:blood_slime_sapling"
+    },
+    {
+      "ingredient": "modernfoundry:bloodshroom_planks"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:embellishment",
+    "value": "modernfoundry:blood"
+  },
+  "tools": "#modernfoundry:modifiable/embellishment/slime",
+  "variant_formatter": "modernfoundry:material"
+}

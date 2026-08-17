@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/wood/logs/warped",
+  "ingredient": "#minecraft:warped_stems",
+  "leftover": "minecraft:warped_planks",
+  "material": "modernfoundry:wood#warped",
+  "needed": 1,
+  "value": 4
+}

@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 8,
+  "id": "modernfoundry:tools/parts/builder/broad_blade",
+  "pattern": "modernfoundry:broad_blade",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:broad_blade_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:broad_blade"
+  }
+}

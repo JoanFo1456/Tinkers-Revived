@@ -1,9 +1,0 @@
-{
-  "parent": "tconstruct:item/tool/swasher/display",
-  "textures": {
-    "blade": "tconstruct:item/tool/swasher/blade",
-    "barrel": "tconstruct:item/tool/swasher/barrel",
-    "handle": "tconstruct:item/tool/swasher/handle",
-    "tank": "tconstruct:item/tool/swasher/tank"
-  }
-}

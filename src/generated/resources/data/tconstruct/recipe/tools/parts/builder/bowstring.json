@@ -1,9 +1,0 @@
-{
-  "type": "tconstruct:part_builder",
-  "cost": 1,
-  "id": "tconstruct:tools/parts/builder/bowstring",
-  "pattern": "tconstruct:bowstring",
-  "result": {
-    "item": "tconstruct:bowstring"
-  }
-}

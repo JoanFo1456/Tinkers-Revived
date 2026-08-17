@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/steeleaf"
+    }
+  ],
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/steeleaf/ingot",
+  "ingredient": "#c:ingots/steeleaf",
+  "result": {
+    "amount": 90,
+    "fluid": "modernfoundry:molten_steeleaf"
+  },
+  "temperature": 934,
+  "time": 64
+}

@@ -1,0 +1,18 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": "modernfoundry:pattern",
+  "cast_consumed": true,
+  "cooling_time": 89,
+  "fluid": [
+    {
+      "amount": 250,
+      "tag": "modernfoundry:seared_stone"
+    },
+    {
+      "amount": 250,
+      "tag": "modernfoundry:scorched_stone"
+    }
+  ],
+  "id": "modernfoundry:tools/modifiers/seared_reinforcement",
+  "result": "modernfoundry:seared_reinforcement"
+}

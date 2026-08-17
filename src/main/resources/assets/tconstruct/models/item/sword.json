@@ -1,8 +1,0 @@
-{
-  "parent": "neoforge:item/default-tool",
-  "textures": {
-    "head": "tconstruct:item/tool/sword/blade",
-    "handle": "tconstruct:item/tool/sword/handle",
-    "guard": "tconstruct:item/tool/sword/guard"
-  }
-}

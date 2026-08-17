@@ -1,0 +1,8 @@
+{
+  "parent": "modernfoundry:item/base/axe",
+  "textures": {
+    "front": "modernfoundry:item/tool/minotaur_axe/front",
+    "back": "modernfoundry:item/tool/minotaur_axe/back",
+    "handle": "modernfoundry:item/tool/pickaxe/handle"
+  }
+}

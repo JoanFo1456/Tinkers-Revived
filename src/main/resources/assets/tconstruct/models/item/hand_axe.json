@@ -1,8 +1,0 @@
-{
-  "parent": "tconstruct:item/base/axe",
-  "textures": {
-    "head": "tconstruct:item/tool/hand_axe/head",
-    "handle": "tconstruct:item/tool/pickaxe/handle",
-    "binding": "tconstruct:item/tool/hand_axe/binding"
-  }
-}

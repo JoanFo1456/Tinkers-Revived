@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:fluid_cold_melee",
-    "tconstruct:fluid_cold_ranged"
+    "modernfoundry:fluid_cold_melee",
+    "modernfoundry:fluid_cold_ranged"
   ]
 }

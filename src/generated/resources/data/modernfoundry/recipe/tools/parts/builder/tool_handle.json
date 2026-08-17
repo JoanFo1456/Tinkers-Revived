@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 1,
+  "id": "modernfoundry:tools/parts/builder/tool_handle",
+  "pattern": "modernfoundry:tool_handle",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:tool_handle_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:tool_handle"
+  }
+}

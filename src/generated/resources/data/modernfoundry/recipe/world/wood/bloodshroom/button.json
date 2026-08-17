@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    "modernfoundry:bloodshroom_planks"
+  ],
+  "result": {
+    "id": "modernfoundry:bloodshroom_button"
+  }
+}

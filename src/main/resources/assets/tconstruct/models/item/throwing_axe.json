@@ -1,7 +1,0 @@
-{
-  "parent": "neoforge:item/default-tool",
-  "textures": {
-    "head": "tconstruct:item/tool/ammo/axe_head",
-    "shaft": "tconstruct:item/tool/ammo/arrow_shaft"
-  }
-}

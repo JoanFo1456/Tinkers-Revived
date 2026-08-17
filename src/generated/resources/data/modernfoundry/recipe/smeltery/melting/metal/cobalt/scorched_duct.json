@@ -1,0 +1,17 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 1000,
+      "fluid": "modernfoundry:scorched_stone"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/metal/cobalt/scorched_duct",
+  "ingredient": "modernfoundry:scorched_duct",
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_gold"
+  },
+  "temperature": 700,
+  "time": 142
+}

@@ -1,8 +1,8 @@
 {
   "values": [
-    "tconstruct:greenheart_fence",
-    "tconstruct:skyroot_fence",
-    "tconstruct:bloodshroom_fence",
-    "tconstruct:enderbark_fence"
+    "modernfoundry:greenheart_fence",
+    "modernfoundry:skyroot_fence",
+    "modernfoundry:bloodshroom_fence",
+    "modernfoundry:enderbark_fence"
   ]
 }

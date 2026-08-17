@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:modifier_salvage",
+  "id": "modernfoundry:tools/modifiers/salvage/upgrade/necrotic",
+  "modifier": "modernfoundry:necrotic",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/melee",
+    "#modernfoundry:modifiable/ranged/bows",
+    "#modernfoundry:modifiable/fishing_rods"
+  ]
+}

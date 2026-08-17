@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/copper/nugget",
+  "ingredient": "#c:nuggets/copper",
+  "material": "modernfoundry:copper",
+  "needed": 9,
+  "value": 1
+}

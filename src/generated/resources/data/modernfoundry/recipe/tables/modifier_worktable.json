@@ -1,0 +1,18 @@
+{
+  "type": "mantle:crafting_shaped_retextured",
+  "category": "misc",
+  "key": {
+    "r": "#modernfoundry:workstation_rock",
+    "s": "#modernfoundry:seared_blocks"
+  },
+  "match_all": true,
+  "pattern": [
+    "sss",
+    "r r",
+    "r r"
+  ],
+  "result": {
+    "id": "modernfoundry:modifier_worktable"
+  },
+  "texture": "r"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "modernfoundry:part_builder_recycling",
+  "id": "modernfoundry:tables/recycling/stone_axe",
+  "pattern": "modernfoundry:venom_bottle",
+  "results": {
+    "modernfoundry:block": {
+      "count": 3,
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "tool": [
+    "minecraft:stone_pickaxe",
+    "minecraft:stone_axe"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/seared_stone/block",
+  "ingredient": "#modernfoundry:seared_blocks",
+  "leftover": "modernfoundry:seared_brick",
+  "material": "modernfoundry:seared_stone",
+  "needed": 1,
+  "value": 4
+}

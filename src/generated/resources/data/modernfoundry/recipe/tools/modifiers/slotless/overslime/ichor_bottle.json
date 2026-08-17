@@ -1,0 +1,7 @@
+{
+  "type": "modernfoundry:overslime_modifier",
+  "id": "modernfoundry:tools/modifiers/slotless/overslime/ichor_bottle",
+  "ingredient": "modernfoundry:ichor_slime_bottle",
+  "restore_amount": 100,
+  "tools": "#modernfoundry:modifiable/durability"
+}

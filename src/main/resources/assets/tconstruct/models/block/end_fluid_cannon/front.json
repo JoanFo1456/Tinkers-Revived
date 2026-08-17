@@ -1,6 +1,0 @@
-{
-  "parent": "tconstruct:block/end_fluid_cannon/base",
-  "textures": {
-    "front": "tconstruct:block/end_fluid_cannon/front"
-  }
-}

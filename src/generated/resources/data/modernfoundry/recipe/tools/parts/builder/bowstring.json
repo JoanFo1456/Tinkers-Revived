@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 1,
+  "id": "modernfoundry:tools/parts/builder/bowstring",
+  "pattern": "modernfoundry:bowstring",
+  "result": {
+    "item": "modernfoundry:bowstring"
+  }
+}

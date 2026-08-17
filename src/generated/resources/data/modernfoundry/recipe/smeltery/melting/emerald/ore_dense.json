@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_combination_filled",
+      "match": [
+        "c:ores/emerald",
+        "c:ore_rates/dense"
+      ]
+    }
+  ],
+  "type": "modernfoundry:ore_melting",
+  "byproducts": [
+    {
+      "amount": 300,
+      "fluid": "modernfoundry:molten_diamond",
+      "rate": "gem"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/emerald/ore_dense",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#c:ores/emerald",
+      "#c:ore_rates/dense"
+    ]
+  },
+  "rate": "gem",
+  "result": {
+    "amount": 300,
+    "fluid": "modernfoundry:molten_emerald"
+  },
+  "temperature": 934,
+  "time": 289
+}

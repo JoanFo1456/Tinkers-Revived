@@ -1,7 +1,0 @@
-{
-  "parent": "tconstruct:item/base/staff",
-  "textures": {
-    "tool": "tconstruct:item/tool/staff/sky",
-    "large_tool": "tconstruct:item/tool/staff/sky_large"
-  }
-}

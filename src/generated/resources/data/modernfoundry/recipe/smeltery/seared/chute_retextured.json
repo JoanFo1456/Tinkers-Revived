@@ -1,0 +1,18 @@
+{
+  "type": "mantle:crafting_shaped_retextured",
+  "category": "redstone",
+  "key": {
+    "#": "#modernfoundry:smeltery_bricks",
+    "C": "#c:ingots/copper"
+  },
+  "match_all": false,
+  "pattern": [
+    "C",
+    "#",
+    "C"
+  ],
+  "result": {
+    "id": "modernfoundry:seared_chute"
+  },
+  "texture": "#"
+}

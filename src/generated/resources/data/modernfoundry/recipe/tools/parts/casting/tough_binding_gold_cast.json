@@ -1,0 +1,7 @@
+{
+  "type": "modernfoundry:table_casting_material",
+  "cast": "#modernfoundry:casts/multi_use/tough_binding",
+  "id": "modernfoundry:tools/parts/casting/tough_binding_gold_cast",
+  "item_cost": 3,
+  "result": "modernfoundry:tough_binding"
+}

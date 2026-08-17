@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:severing",
+  "entity": {
+    "type": "modernfoundry:sky_slime"
+  },
+  "id": "modernfoundry:tools/severing/skyslime_ball",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "modernfoundry:sky_slime_ball"
+}

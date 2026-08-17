@@ -1,8 +1,8 @@
 {
   "values": [
-    "tconstruct:travelers_chestplate",
-    "tconstruct:plate_chestplate",
-    "tconstruct:slimy_chestplate",
-    "tconstruct:slime_wings"
+    "modernfoundry:travelers_chestplate",
+    "modernfoundry:plate_chestplate",
+    "modernfoundry:slimy_chestplate",
+    "modernfoundry:slime_wings"
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:modifier_salvage",
+  "id": "modernfoundry:tools/modifiers/salvage/upgrade/punch",
+  "modifier": "modernfoundry:punch",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/ranged/launcher"
+}

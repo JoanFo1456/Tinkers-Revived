@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/enderium"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/lead"
+    }
+  ],
+  "type": "modernfoundry:alloy",
+  "id": "modernfoundry:smeltery/alloys/molten_enderium",
+  "inputs": [
+    {
+      "amount": 270,
+      "tag": "c:molten_lead"
+    },
+    {
+      "amount": 100,
+      "tag": "modernfoundry:molten_diamond"
+    },
+    {
+      "amount": 500,
+      "tag": "c:ender"
+    }
+  ],
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_enderium"
+  },
+  "temperature": 1350
+}

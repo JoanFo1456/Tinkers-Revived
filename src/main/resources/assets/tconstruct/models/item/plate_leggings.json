@@ -1,7 +1,0 @@
-{
-  "parent": "neoforge:item/default",
-  "textures": {
-    "plating": "tconstruct:item/tool/armor/plate/leggings/plating",
-    "maille": "tconstruct:item/tool/armor/plate/leggings/maille"
-  }
-}

@@ -1,0 +1,24 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/springy",
+  "inputs": [
+    {
+      "ingredient": "minecraft:piston"
+    },
+    {
+      "ingredient": "modernfoundry:ichor_slime"
+    }
+  ],
+  "level": {
+    "max": 3
+  },
+  "result": "modernfoundry:springy",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/armor/worn",
+    "#modernfoundry:modifiable/shields"
+  ]
+}

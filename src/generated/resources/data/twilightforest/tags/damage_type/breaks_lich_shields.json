@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:fluid_magic_melee",
-    "tconstruct:fluid_magic_ranged"
+    "modernfoundry:fluid_magic_melee",
+    "modernfoundry:fluid_magic_ranged"
   ]
 }

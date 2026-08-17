@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:knightslime_ingot",
+  "key": {
+    "#": "#c:nuggets/knightslime",
+    "*": "modernfoundry:knightslime_nugget"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:knightslime_ingot"
+  }
+}

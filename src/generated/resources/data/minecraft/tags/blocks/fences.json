@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:scorched_bricks_fence",
-    "tconstruct:blazewood_fence",
-    "tconstruct:nahuatl_fence"
+    "modernfoundry:scorched_bricks_fence",
+    "modernfoundry:blazewood_fence",
+    "modernfoundry:nahuatl_fence"
   ]
 }

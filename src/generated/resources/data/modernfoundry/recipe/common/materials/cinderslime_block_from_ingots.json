@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:cinderslime_block",
+  "key": {
+    "#": "#c:ingots/cinderslime",
+    "*": "modernfoundry:cinderslime_ingot"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:cinderslime_block"
+  }
+}

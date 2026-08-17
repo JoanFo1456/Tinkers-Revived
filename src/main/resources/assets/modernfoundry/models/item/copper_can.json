@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "particle": "modernfoundry:item/copper_can",
+    "base": "modernfoundry:item/copper_can",
+    "fluid": "modernfoundry:item/copper_can_fluid"
+  }
+}

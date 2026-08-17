@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/cactus",
+  "ingredient": "minecraft:cactus",
+  "material": "modernfoundry:cactus",
+  "needed": 1,
+  "value": 1
+}

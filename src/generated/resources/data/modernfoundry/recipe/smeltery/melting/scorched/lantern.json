@@ -1,0 +1,24 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 25,
+      "fluid": "modernfoundry:molten_quartz"
+    },
+    {
+      "amount": 30,
+      "tag": "c:molten_iron"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/scorched/lantern",
+  "ingredient": {
+    "neoforge:ingredient_type": "modernfoundry:no_container",
+    "match": "modernfoundry:scorched_lantern"
+  },
+  "result": {
+    "amount": 500,
+    "fluid": "modernfoundry:scorched_stone"
+  },
+  "temperature": 500,
+  "time": 50
+}

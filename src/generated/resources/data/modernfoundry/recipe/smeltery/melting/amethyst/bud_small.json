@@ -1,0 +1,18 @@
+{
+  "type": "modernfoundry:ore_melting",
+  "byproducts": [
+    {
+      "amount": 100,
+      "fluid": "modernfoundry:molten_quartz"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/amethyst/bud_small",
+  "ingredient": "minecraft:small_amethyst_bud",
+  "rate": "gem",
+  "result": {
+    "amount": 100,
+    "fluid": "modernfoundry:molten_amethyst"
+  },
+  "temperature": 950,
+  "time": 65
+}

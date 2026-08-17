@@ -1,7 +1,0 @@
-{
-  "model": {
-    "type": "mantle:retextured",
-    "model": "tconstruct:item/scorched_anvil",
-    "retextured": ["particle", "top"]
-  }
-}

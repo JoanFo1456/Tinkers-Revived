@@ -1,7 +1,0 @@
-{
-  "model": {
-    "type": "mantle:retextured",
-    "model": "tconstruct:item/part_builder",
-    "retextured": ["leg", "legBottom"]
-  }
-}

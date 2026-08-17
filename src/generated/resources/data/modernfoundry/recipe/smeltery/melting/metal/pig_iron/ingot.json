@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/pig_iron/ingot",
+  "ingredient": "#c:ingots/pig_iron",
+  "result": {
+    "amount": 90,
+    "fluid": "modernfoundry:molten_pig_iron"
+  },
+  "temperature": 811,
+  "time": 60
+}

@@ -1,8 +1,8 @@
 {
   "values": [
-    "tconstruct:dagger",
-    "tconstruct:sword",
-    "tconstruct:cleaver",
-    "tconstruct:swasher"
+    "modernfoundry:dagger",
+    "modernfoundry:sword",
+    "modernfoundry:cleaver",
+    "modernfoundry:swasher"
   ]
 }

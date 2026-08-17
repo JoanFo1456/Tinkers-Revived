@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": "#modernfoundry:casts/multi_use/gem",
+  "cooling_time": 68,
+  "fluid": {
+    "amount": 100,
+    "tag": "modernfoundry:molten_emerald"
+  },
+  "id": "modernfoundry:smeltery/casting/emerald/gem_gold_cast",
+  "result": {
+    "tag": "c:gems/emerald"
+  }
+}

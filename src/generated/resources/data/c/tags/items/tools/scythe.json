@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:kama",
-    "tconstruct:scythe"
+    "modernfoundry:kama",
+    "modernfoundry:scythe"
   ]
 }

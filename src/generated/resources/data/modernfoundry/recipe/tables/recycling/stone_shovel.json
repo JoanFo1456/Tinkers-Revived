@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:part_builder_recycling",
+  "id": "modernfoundry:tables/recycling/stone_shovel",
+  "pattern": "modernfoundry:venom_bottle",
+  "results": {
+    "modernfoundry:block": "minecraft:cobblestone"
+  },
+  "tool": "minecraft:stone_shovel"
+}

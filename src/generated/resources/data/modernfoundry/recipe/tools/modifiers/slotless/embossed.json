@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "modernfoundry:boss_trophies"
+    }
+  ],
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/slotless/embossed",
+  "inputs": [
+    {
+      "ingredient": "#modernfoundry:boss_trophies"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:embossed",
+  "tools": "#modernfoundry:modifiable/bonus_slots"
+}

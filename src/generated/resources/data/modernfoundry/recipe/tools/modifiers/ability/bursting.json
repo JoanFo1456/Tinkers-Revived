@@ -1,0 +1,31 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/bursting",
+  "inputs": [
+    {
+      "ingredient": "minecraft:cactus"
+    },
+    {
+      "neoforge:ingredient_type": "modernfoundry:no_container",
+      "match": "#modernfoundry:tanks"
+    },
+    {
+      "ingredient": "minecraft:cactus"
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    }
+  ],
+  "result": "modernfoundry:bursting",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/armor/chestplate",
+    "#modernfoundry:modifiable/shields"
+  ]
+}

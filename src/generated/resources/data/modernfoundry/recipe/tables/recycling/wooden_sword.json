@@ -1,0 +1,15 @@
+{
+  "type": "modernfoundry:part_builder_recycling",
+  "id": "modernfoundry:tables/recycling/wooden_sword",
+  "pattern": "modernfoundry:venom_bottle",
+  "results": {
+    "modernfoundry:rod": {
+      "count": 5,
+      "item": "minecraft:stick"
+    }
+  },
+  "tool": [
+    "minecraft:wooden_sword",
+    "minecraft:wooden_hoe"
+  ]
+}

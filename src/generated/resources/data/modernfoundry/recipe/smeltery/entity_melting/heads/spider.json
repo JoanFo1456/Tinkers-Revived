@@ -1,0 +1,14 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/entity_melting/heads/spider",
+  "ingredient": [
+    "modernfoundry:spider_head",
+    "modernfoundry:cave_spider_head"
+  ],
+  "result": {
+    "amount": 500,
+    "fluid": "modernfoundry:venom"
+  },
+  "temperature": 10,
+  "time": 68
+}

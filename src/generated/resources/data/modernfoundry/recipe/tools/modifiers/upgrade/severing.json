@@ -1,0 +1,30 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/severing",
+  "inputs": [
+    {
+      "ingredient": "#c:wither_bones"
+    },
+    {
+      "ingredient": "minecraft:lightning_rod"
+    },
+    {
+      "ingredient": "#c:wither_bones"
+    },
+    {
+      "ingredient": "minecraft:tnt"
+    }
+  ],
+  "level": {
+    "max": 3
+  },
+  "result": "modernfoundry:severing",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/melee",
+    "#modernfoundry:modifiable/ranged/launcher"
+  ]
+}

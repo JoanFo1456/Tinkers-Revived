@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.5,
+  "ingredient": [
+    "modernfoundry:raw_cobalt",
+    "modernfoundry:cobalt_ore"
+  ],
+  "result": {
+    "id": "modernfoundry:cobalt_ingot"
+  }
+}

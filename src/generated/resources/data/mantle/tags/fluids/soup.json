@@ -1,8 +1,8 @@
 {
   "values": [
-    "#tconstruct:meat_soup",
+    "#modernfoundry:meat_soup",
     {
-      "id": "#tconstruct:tooltips/soup",
+      "id": "#modernfoundry:tooltips/soup",
       "required": false
     }
   ]

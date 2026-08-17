@@ -1,0 +1,21 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 1000,
+      "fluid": "modernfoundry:molten_glass"
+    },
+    {
+      "amount": 200,
+      "fluid": "modernfoundry:molten_amethyst"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/scorched/glass_tinted",
+  "ingredient": "modernfoundry:scorched_tinted_glass",
+  "result": {
+    "amount": 1000,
+    "fluid": "modernfoundry:scorched_stone"
+  },
+  "temperature": 500,
+  "time": 100
+}

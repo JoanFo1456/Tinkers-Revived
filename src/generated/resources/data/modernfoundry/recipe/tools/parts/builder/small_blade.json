@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 2,
+  "id": "modernfoundry:tools/parts/builder/small_blade",
+  "pattern": "modernfoundry:small_blade",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:small_blade_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:small_blade"
+  }
+}

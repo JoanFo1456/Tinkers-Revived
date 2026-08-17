@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 2,
+  "id": "modernfoundry:tools/parts/builder/bow_limb",
+  "pattern": "modernfoundry:bow_limb",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:bow_limb_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:bow_limb"
+  }
+}

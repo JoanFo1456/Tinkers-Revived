@@ -1,0 +1,29 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "check_trait_level": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/sinistral",
+  "inputs": [
+    {
+      "ingredient": "#c:ingots/slimesteel"
+    },
+    {
+      "ingredient": "minecraft:nautilus_shell"
+    },
+    {
+      "ingredient": "#c:ingots/slimesteel"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:sinistral",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/ranged/crossbows",
+      "#modernfoundry:modifiable/interactable/left"
+    ]
+  }
+}

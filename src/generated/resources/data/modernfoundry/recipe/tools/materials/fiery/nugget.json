@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/fiery"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/fiery/nugget",
+  "ingredient": "#c:nuggets/fiery",
+  "material": "modernfoundry:fiery",
+  "needed": 9,
+  "value": 1
+}

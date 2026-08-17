@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "modernfoundry:blazewood_stairs",
+  "key": {
+    "B": "modernfoundry:blazewood"
+  },
+  "pattern": [
+    "B  ",
+    "BB ",
+    "BBB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "modernfoundry:blazewood_stairs"
+  }
+}

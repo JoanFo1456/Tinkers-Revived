@@ -1,0 +1,24 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/ricochet",
+  "inputs": [
+    {
+      "ingredient": "minecraft:piston"
+    },
+    {
+      "ingredient": "modernfoundry:sky_slime"
+    }
+  ],
+  "level": {
+    "max": 2
+  },
+  "result": "modernfoundry:ricochet",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/armor/worn",
+    "#modernfoundry:modifiable/shields"
+  ]
+}

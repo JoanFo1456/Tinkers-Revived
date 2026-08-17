@@ -1,0 +1,14 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/seared/faucet",
+  "ingredient": [
+    "modernfoundry:seared_faucet",
+    "modernfoundry:seared_channel"
+  ],
+  "result": {
+    "amount": 250,
+    "fluid": "modernfoundry:seared_stone"
+  },
+  "temperature": 600,
+  "time": 80
+}

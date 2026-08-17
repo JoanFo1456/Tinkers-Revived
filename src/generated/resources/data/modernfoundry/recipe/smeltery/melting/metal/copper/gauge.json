@@ -1,0 +1,17 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 50,
+      "fluid": "modernfoundry:molten_glass"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/metal/copper/gauge",
+  "ingredient": "modernfoundry:copper_gauge",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_copper"
+  },
+  "temperature": 500,
+  "time": 50
+}

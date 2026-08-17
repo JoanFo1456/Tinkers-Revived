@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/slimesteel/nugget",
+  "ingredient": "#c:nuggets/slimesteel",
+  "material": "modernfoundry:slimesteel",
+  "needed": 9,
+  "value": 1
+}

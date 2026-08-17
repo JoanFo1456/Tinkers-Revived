@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:molding_table",
+  "id": "modernfoundry:smeltery/casts/red_sand/molding/broad_blade",
+  "material": "#modernfoundry:casts/red_sand",
+  "pattern": {
+    "neoforge:ingredient_type": "modernfoundry:material",
+    "match": "modernfoundry:broad_blade"
+  },
+  "result": "modernfoundry:broad_blade_red_sand_cast"
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "modernfoundry:item/tool/swasher/display",
+  "textures": {
+    "blade": "modernfoundry:item/tool/swasher/blade",
+    "barrel": "modernfoundry:item/tool/swasher/barrel",
+    "handle": "modernfoundry:item/tool/swasher/handle",
+    "tank": "modernfoundry:item/tool/swasher/tank"
+  }
+}

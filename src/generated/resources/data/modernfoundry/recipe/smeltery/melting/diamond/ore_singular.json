@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_combination_filled",
+      "ignore": "modernfoundry:non_singular_ore_rates",
+      "match": "c:ores/diamond"
+    }
+  ],
+  "type": "modernfoundry:ore_melting",
+  "byproducts": [
+    {
+      "amount": 90,
+      "fluid": "modernfoundry:molten_debris",
+      "rate": "metal"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/diamond/ore_singular",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#c:ores/diamond",
+    "subtracted": "#modernfoundry:non_singular_ore_rates"
+  },
+  "rate": "gem",
+  "result": {
+    "amount": 100,
+    "fluid": "modernfoundry:molten_diamond"
+  },
+  "temperature": 1450,
+  "time": 197
+}

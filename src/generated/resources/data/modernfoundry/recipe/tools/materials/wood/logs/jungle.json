@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/wood/logs/jungle",
+  "ingredient": "#minecraft:jungle_logs",
+  "leftover": "minecraft:jungle_planks",
+  "material": "modernfoundry:wood",
+  "needed": 1,
+  "value": 4
+}

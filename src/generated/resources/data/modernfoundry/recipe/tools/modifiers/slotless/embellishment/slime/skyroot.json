@@ -1,0 +1,22 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/slotless/embellishment/slime/skyroot",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:skyroot_planks"
+    },
+    {
+      "ingredient": "modernfoundry:sky_slime_sapling"
+    },
+    {
+      "ingredient": "modernfoundry:skyroot_planks"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:embellishment",
+    "value": "modernfoundry:skyslime"
+  },
+  "tools": "#modernfoundry:modifiable/embellishment/slime",
+  "variant_formatter": "modernfoundry:material"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:slimesteel_ingot",
+  "key": {
+    "#": "#c:nuggets/slimesteel",
+    "*": "modernfoundry:slimesteel_nugget"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:slimesteel_ingot"
+  }
+}

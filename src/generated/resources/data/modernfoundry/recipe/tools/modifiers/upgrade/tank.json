@@ -1,0 +1,19 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/tank",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "modernfoundry:no_container",
+      "match": "#modernfoundry:tanks"
+    }
+  ],
+  "result": "modernfoundry:tank",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/held",
+    "#modernfoundry:modifiable/armor"
+  ]
+}

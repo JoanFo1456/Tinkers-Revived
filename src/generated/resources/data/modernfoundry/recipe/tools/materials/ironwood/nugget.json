@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/ironwood"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/ironwood/nugget",
+  "ingredient": "#c:nuggets/ironwood",
+  "material": "modernfoundry:ironwood",
+  "needed": 9,
+  "value": 1
+}

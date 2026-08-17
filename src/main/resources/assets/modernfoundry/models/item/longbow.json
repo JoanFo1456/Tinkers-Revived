@@ -1,0 +1,13 @@
+{
+  "parent": "modernfoundry:item/base/bow",
+  "textures": {
+    "limb_bottom": "modernfoundry:item/tool/longbow/limb_bottom",
+    "limb_top": "modernfoundry:item/tool/longbow/limb_top",
+    "grip": "modernfoundry:item/tool/longbow/grip",
+    "bowstring": "modernfoundry:item/tool/longbow/bowstring",
+    "large_limb_bottom": "modernfoundry:item/tool/longbow/large/limb_bottom",
+    "large_limb_top": "modernfoundry:item/tool/longbow/large/limb_top",
+    "large_grip": "modernfoundry:item/tool/longbow/large/grip",
+    "large_bowstring": "modernfoundry:item/tool/longbow/large/bowstring"
+  }
+}

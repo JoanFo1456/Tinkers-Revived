@@ -1,0 +1,13 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates"
+    }
+  ],
+  "type": "modernfoundry:molding_table",
+  "id": "modernfoundry:smeltery/casts/red_sand/molding/plates",
+  "material": "#modernfoundry:casts/red_sand",
+  "pattern": "#c:plates",
+  "result": "modernfoundry:plate_red_sand_cast"
+}

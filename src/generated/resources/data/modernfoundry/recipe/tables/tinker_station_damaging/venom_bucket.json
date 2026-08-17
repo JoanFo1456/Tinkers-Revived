@@ -1,0 +1,6 @@
+{
+  "type": "modernfoundry:tinker_station_damaging",
+  "damage_amount": 1000,
+  "id": "modernfoundry:tables/tinker_station_damaging/venom_bucket",
+  "ingredient": "modernfoundry:venom_bucket"
+}

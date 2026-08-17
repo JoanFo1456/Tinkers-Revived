@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 2,
+  "id": "modernfoundry:tools/parts/builder/adze_head",
+  "pattern": "modernfoundry:adze_head",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:adze_head_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:adze_head"
+  }
+}

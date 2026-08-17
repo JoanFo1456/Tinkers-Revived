@@ -1,0 +1,16 @@
+{
+  "type": "modernfoundry:incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "id": "modernfoundry:tools/modifiers/defense/magic_protection",
+  "input": "modernfoundry:gold_reinforcement",
+  "needed_per_level": 5,
+  "result": "modernfoundry:magic_protection",
+  "slots": {
+    "defense": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/armor",
+    "#modernfoundry:modifiable/held"
+  ]
+}

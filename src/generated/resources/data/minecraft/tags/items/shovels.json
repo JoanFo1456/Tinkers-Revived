@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:mattock",
-    "tconstruct:pickadze",
-    "tconstruct:excavator"
+    "modernfoundry:mattock",
+    "modernfoundry:pickadze",
+    "modernfoundry:excavator"
   ]
 }

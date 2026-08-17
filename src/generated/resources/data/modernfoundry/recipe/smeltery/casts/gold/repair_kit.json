@@ -1,0 +1,16 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": {
+    "neoforge:ingredient_type": "modernfoundry:material",
+    "match": "modernfoundry:repair_kit"
+  },
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_gold"
+  },
+  "id": "modernfoundry:smeltery/casts/gold/repair_kit",
+  "result": "modernfoundry:repair_kit_cast",
+  "switch_slots": true
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/cadmium"
+    }
+  ],
+  "type": "modernfoundry:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_cadmium"
+  },
+  "id": "modernfoundry:tools/materials/composite/whitestone_from_cadmium",
+  "input": "modernfoundry:rock",
+  "output": "modernfoundry:whitestone#composite",
+  "temperature": 294
+}

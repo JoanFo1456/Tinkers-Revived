@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:damagable_melting",
+  "id": "modernfoundry:smeltery/melting/metal/gold/shovel",
+  "ingredient": "#modernfoundry:melting/gold/tools_costing_1",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_gold",
+    "unit_size": 10
+  },
+  "temperature": 700,
+  "time": 57
+}

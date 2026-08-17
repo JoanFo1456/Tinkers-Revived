@@ -1,0 +1,25 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/slotless/draconic_from_scales",
+  "inputs": [
+    {
+      "ingredient": "minecraft:dragon_breath"
+    },
+    {
+      "ingredient": "modernfoundry:dragon_scale"
+    },
+    {
+      "ingredient": "minecraft:dragon_breath"
+    },
+    {
+      "ingredient": "modernfoundry:dragon_scale"
+    },
+    {
+      "ingredient": "modernfoundry:dragon_scale"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:draconic",
+  "tools": "#modernfoundry:modifiable/bonus_slots"
+}

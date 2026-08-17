@@ -1,0 +1,24 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/sleeves",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:silky_cloth"
+    },
+    {
+      "ingredient": "#c:ingots/cinderslime"
+    },
+    {
+      "ingredient": "modernfoundry:silky_cloth"
+    }
+  ],
+  "level": {
+    "max": 3
+  },
+  "result": "modernfoundry:sleeves",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/armor/chestplate"
+}

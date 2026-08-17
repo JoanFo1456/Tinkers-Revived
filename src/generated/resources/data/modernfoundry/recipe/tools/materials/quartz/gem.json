@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/quartz/gem",
+  "ingredient": "#c:gems/quartz",
+  "material": "modernfoundry:quartz",
+  "needed": 1,
+  "value": 1
+}

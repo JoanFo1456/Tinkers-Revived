@@ -1,7 +1,0 @@
-{
-  "parent": "tconstruct:item/tool/dagger/display",
-  "textures": {
-    "head": "tconstruct:item/tool/dagger/blade",
-    "crossguard": "tconstruct:item/tool/dagger/crossguard"
-  }
-}

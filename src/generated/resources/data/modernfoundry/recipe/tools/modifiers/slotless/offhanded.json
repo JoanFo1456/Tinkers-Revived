@@ -1,0 +1,21 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/slotless/offhanded",
+  "inputs": [
+    {
+      "ingredient": "minecraft:leather"
+    },
+    {
+      "ingredient": "minecraft:fire_charge"
+    },
+    {
+      "ingredient": "#c:slimeball/ichor"
+    }
+  ],
+  "level": {
+    "max": 2
+  },
+  "result": "modernfoundry:offhanded",
+  "tools": "#modernfoundry:modifiable/interactable/charge/modifier"
+}

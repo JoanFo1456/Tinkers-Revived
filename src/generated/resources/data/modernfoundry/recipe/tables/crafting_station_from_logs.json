@@ -1,0 +1,17 @@
+{
+  "type": "mantle:crafting_shaped_retextured",
+  "category": "misc",
+  "key": {
+    "p": "modernfoundry:pattern",
+    "w": "#minecraft:logs"
+  },
+  "match_all": false,
+  "pattern": [
+    "p",
+    "w"
+  ],
+  "result": {
+    "id": "modernfoundry:crafting_station"
+  },
+  "texture": "w"
+}

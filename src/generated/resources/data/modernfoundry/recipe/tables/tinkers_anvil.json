@@ -1,0 +1,18 @@
+{
+  "type": "mantle:crafting_shaped_retextured",
+  "category": "misc",
+  "key": {
+    "m": "#modernfoundry:anvil_metal",
+    "s": "#modernfoundry:seared_blocks"
+  },
+  "match_all": true,
+  "pattern": [
+    "mmm",
+    " s ",
+    "sss"
+  ],
+  "result": {
+    "id": "modernfoundry:tinkers_anvil"
+  },
+  "texture": "m"
+}

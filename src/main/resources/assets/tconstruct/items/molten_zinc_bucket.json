@@ -1,7 +1,0 @@
-{
-  "model": {
-    "type": "tconstruct:fluid_container",
-    "base_model": "tconstruct:item/molten_zinc_bucket",
-    "flip_gas": false
-  }
-}

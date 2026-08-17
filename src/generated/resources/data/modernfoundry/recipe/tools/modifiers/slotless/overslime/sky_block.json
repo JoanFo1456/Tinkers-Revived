@@ -1,0 +1,7 @@
+{
+  "type": "modernfoundry:overslime_modifier",
+  "id": "modernfoundry:tools/modifiers/slotless/overslime/sky_block",
+  "ingredient": "modernfoundry:sky_slime",
+  "restore_amount": 450,
+  "tools": "#modernfoundry:modifiable/durability"
+}

@@ -14,7 +14,7 @@
     "#c:storage_blocks/knightmetal",
     "#c:storage_blocks/knightslime",
     "#c:storage_blocks/raw_cobalt",
-    "tconstruct:fake_storage_block",
+    "modernfoundry:fake_storage_block",
     "#c:storage_blocks/iron",
     "#c:storage_blocks/gold",
     "#c:storage_blocks/copper",

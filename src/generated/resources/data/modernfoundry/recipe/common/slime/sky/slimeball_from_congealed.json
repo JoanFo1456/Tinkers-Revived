@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "modernfoundry:slime_balls",
+  "ingredients": [
+    "modernfoundry:sky_congealed_slime"
+  ],
+  "result": {
+    "count": 4,
+    "id": "modernfoundry:sky_slime_ball"
+  }
+}

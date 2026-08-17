@@ -1,0 +1,19 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/ability/tool_belt_5",
+  "inputs": [
+    {
+      "ingredient": "minecraft:leather"
+    },
+    {
+      "ingredient": "#c:ingots/hepatizon"
+    },
+    {
+      "ingredient": "minecraft:leather"
+    }
+  ],
+  "level": 5,
+  "result": "modernfoundry:tool_belt",
+  "tools": "#modernfoundry:modifiable/armor/leggings"
+}

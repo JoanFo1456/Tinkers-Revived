@@ -1,0 +1,13 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:coins"
+    }
+  ],
+  "type": "modernfoundry:item_part_builder",
+  "id": "modernfoundry:smeltery/casts/red_sand/builder_cast/coins",
+  "pattern": "modernfoundry:coin",
+  "pattern_item": "#modernfoundry:casts/red_sand",
+  "result": "modernfoundry:coin_red_sand_cast"
+}

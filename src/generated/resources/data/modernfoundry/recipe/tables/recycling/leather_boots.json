@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:part_builder_recycling",
+  "id": "modernfoundry:tables/recycling/leather_boots",
+  "pattern": "modernfoundry:venom_bottle",
+  "results": {
+    "modernfoundry:maille": {
+      "count": 4,
+      "item": "minecraft:leather"
+    }
+  },
+  "tool": "minecraft:leather_boots"
+}

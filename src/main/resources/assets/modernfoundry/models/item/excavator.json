@@ -1,0 +1,13 @@
+{
+  "parent": "modernfoundry:item/base/tall",
+  "textures": {
+    "head": "modernfoundry:item/tool/excavator/head",
+    "handle": "modernfoundry:item/tool/excavator/handle",
+    "grip": "modernfoundry:item/tool/excavator/grip",
+    "binding": "modernfoundry:item/tool/excavator/binding",
+    "large_head": "modernfoundry:item/tool/excavator/large/head",
+    "large_handle": "modernfoundry:item/tool/excavator/large/handle",
+    "large_grip": "modernfoundry:item/tool/excavator/large/grip",
+    "large_binding": "modernfoundry:item/tool/excavator/large/binding"
+  }
+}

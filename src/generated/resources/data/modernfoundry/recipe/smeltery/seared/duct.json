@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "modernfoundry:seared_brick",
+    "C": "#c:ingots/gold"
+  },
+  "pattern": [
+    "# #",
+    "C C",
+    "# #"
+  ],
+  "result": {
+    "id": "modernfoundry:seared_duct"
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "model": {
-    "type": "tconstruct:fluid_container",
-    "base_model": "tconstruct:item/mushroom_stew_bucket",
-    "flip_gas": false
-  }
-}

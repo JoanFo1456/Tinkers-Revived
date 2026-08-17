@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:part_builder_recycling",
+  "id": "modernfoundry:tables/recycling/flint_and_steel",
+  "pattern": "modernfoundry:venom_bottle",
+  "results": {
+    "modernfoundry:ingot": "minecraft:iron_ingot",
+    "modernfoundry:shard": "minecraft:flint"
+  },
+  "tool": "minecraft:flint_and_steel"
+}

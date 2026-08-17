@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/lead"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/lead/ingot",
+  "ingredient": "#c:ingots/lead",
+  "material": "modernfoundry:lead",
+  "needed": 1,
+  "value": 1
+}

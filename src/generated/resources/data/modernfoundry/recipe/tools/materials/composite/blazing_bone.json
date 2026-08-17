@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:material_fluid",
+  "fluid": {
+    "amount": 200,
+    "tag": "modernfoundry:blazing_blood"
+  },
+  "id": "modernfoundry:tools/materials/composite/blazing_bone",
+  "input": "modernfoundry:necrotic_bone",
+  "output": "modernfoundry:blazing_bone",
+  "temperature": 1500
+}

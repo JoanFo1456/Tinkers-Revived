@@ -1,0 +1,24 @@
+{
+  "type": "modernfoundry:multilevel_incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "id": "modernfoundry:tools/modifiers/upgrade/leaping_from_crystal",
+  "input": "modernfoundry:sky_slime_crystal",
+  "levels": [
+    {
+      "level": 1,
+      "slots": {
+        "upgrades": 1
+      }
+    },
+    {
+      "level": 2,
+      "slots": {
+        "abilities": 1
+      }
+    }
+  ],
+  "needed_per_level": 36,
+  "result": "modernfoundry:leaping",
+  "tools": "#modernfoundry:modifiable/armor/leggings"
+}

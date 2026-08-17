@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:raw_materials/aluminum"
+    }
+  ],
+  "type": "modernfoundry:ore_melting",
+  "byproducts": [
+    {
+      "amount": 90,
+      "rate": "metal",
+      "tag": "c:molten_iron"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/metal/aluminum/raw",
+  "ingredient": "#c:raw_materials/aluminum",
+  "rate": "metal",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_aluminum"
+  },
+  "temperature": 425,
+  "time": 71
+}

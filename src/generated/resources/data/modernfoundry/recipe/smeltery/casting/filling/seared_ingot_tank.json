@@ -1,0 +1,5 @@
+{
+  "type": "modernfoundry:basin_filling",
+  "container": "modernfoundry:seared_ingot_tank",
+  "fluid_amount": 90
+}

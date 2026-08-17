@@ -1,0 +1,17 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 50,
+      "fluid": "modernfoundry:molten_glass"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/obsidian/gauge",
+  "ingredient": "modernfoundry:obsidian_gauge",
+  "result": {
+    "amount": 250,
+    "fluid": "modernfoundry:molten_obsidian"
+  },
+  "temperature": 1000,
+  "time": 166
+}

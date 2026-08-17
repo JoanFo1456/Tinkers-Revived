@@ -1,0 +1,25 @@
+{
+  "type": "modernfoundry:modifier_salvage",
+  "id": "modernfoundry:tools/modifiers/salvage/ability/blocking",
+  "modifier": "modernfoundry:blocking",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": {
+      "neoforge:ingredient_type": "neoforge:intersection",
+      "children": [
+        "#modernfoundry:modifiable/interactable/charge",
+        "#modernfoundry:modifiable/durability"
+      ]
+    },
+    "subtracted": {
+      "neoforge:ingredient_type": "neoforge:compound",
+      "children": [
+        "#modernfoundry:modifiable/melee/parry",
+        "#modernfoundry:modifiable/shields"
+      ]
+    }
+  }
+}

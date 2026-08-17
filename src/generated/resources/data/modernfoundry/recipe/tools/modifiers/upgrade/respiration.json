@@ -1,0 +1,30 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/respiration",
+  "inputs": [
+    {
+      "ingredient": "#minecraft:fishes"
+    },
+    {
+      "ingredient": "#c:glass_blocks/colorless"
+    },
+    {
+      "ingredient": "#minecraft:fishes"
+    },
+    {
+      "ingredient": "minecraft:kelp"
+    },
+    {
+      "ingredient": "minecraft:kelp"
+    }
+  ],
+  "level": {
+    "max": 3
+  },
+  "result": "modernfoundry:respiration",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/armor/helmets"
+}

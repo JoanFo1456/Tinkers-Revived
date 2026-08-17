@@ -1,8 +1,0 @@
-{
-  "parent": "tconstruct:item/base/rod",
-  "textures": {
-    "rod": "tconstruct:item/tool/fishing_rod/rod",
-    "string": "tconstruct:item/tool/fishing_rod/string",
-    "hook": "tconstruct:item/tool/fishing_rod/hook"
-  }
-}

@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
+    }
+  ],
+  "type": "modernfoundry:part_builder_recycling",
+  "id": "modernfoundry:tables/recycling/twilightforest/yeti_boots",
+  "pattern": "modernfoundry:venom_bottle",
+  "results": {
+    "modernfoundry:maille": {
+      "count": 4,
+      "item": "twilightforest:alpha_yeti_fur"
+    }
+  },
+  "tool": {
+    "item": "twilightforest:yeti_boots"
+  }
+}

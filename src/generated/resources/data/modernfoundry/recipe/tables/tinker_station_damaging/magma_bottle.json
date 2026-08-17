@@ -1,0 +1,6 @@
+{
+  "type": "modernfoundry:tinker_station_damaging",
+  "damage_amount": 20,
+  "id": "modernfoundry:tables/tinker_station_damaging/magma_bottle",
+  "ingredient": "modernfoundry:magma_bottle"
+}

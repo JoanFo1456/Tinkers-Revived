@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:registered",
+      "value": "twilightforest:steeleaf_chestplate"
+    }
+  ],
+  "type": "modernfoundry:damagable_melting",
+  "id": "modernfoundry:smeltery/melting/metal/steeleaf/twilightforest_chestplate",
+  "ingredient": {
+    "item": "twilightforest:steeleaf_chestplate"
+  },
+  "result": {
+    "amount": 720,
+    "fluid": "modernfoundry:molten_steeleaf",
+    "unit_size": 10
+  },
+  "temperature": 934,
+  "time": 182
+}

@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:faucet",
-    "tconstruct:channel"
+    "modernfoundry:faucet",
+    "modernfoundry:channel"
   ]
 }

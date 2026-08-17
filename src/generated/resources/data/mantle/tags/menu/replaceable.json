@@ -1,14 +1,14 @@
 {
   "values": [
-    "tconstruct:tool_container",
-    "tconstruct:tinker_chest",
-    "tconstruct:single_item",
-    "tconstruct:crafting_station",
-    "tconstruct:part_builder",
-    "tconstruct:tinker_station",
-    "tconstruct:modifier_worktable",
-    "tconstruct:melter",
-    "tconstruct:alloyer",
-    "tconstruct:smeltery"
+    "modernfoundry:tool_container",
+    "modernfoundry:tinker_chest",
+    "modernfoundry:single_item",
+    "modernfoundry:crafting_station",
+    "modernfoundry:part_builder",
+    "modernfoundry:tinker_station",
+    "modernfoundry:modifier_worktable",
+    "modernfoundry:melter",
+    "modernfoundry:alloyer",
+    "modernfoundry:smeltery"
   ]
 }

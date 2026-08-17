@@ -1,0 +1,31 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/wetting",
+  "inputs": [
+    {
+      "ingredient": "#c:dusts/redstone"
+    },
+    {
+      "neoforge:ingredient_type": "modernfoundry:no_container",
+      "match": "#modernfoundry:tanks"
+    },
+    {
+      "ingredient": "#c:dusts/redstone"
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    }
+  ],
+  "result": "modernfoundry:wetting",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/armor/leggings",
+    "#modernfoundry:modifiable/shields"
+  ]
+}

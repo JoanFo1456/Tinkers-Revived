@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:wires/copper"
+    }
+  ],
+  "type": "modernfoundry:casting_table",
+  "cast": "#modernfoundry:casts/single_use/wire",
+  "cast_consumed": true,
+  "cooling_time": 35,
+  "fluid": {
+    "amount": 45,
+    "tag": "c:molten_copper"
+  },
+  "id": "modernfoundry:smeltery/casting/metal/copper/wire_sand_cast",
+  "result": {
+    "tag": "c:wires/copper"
+  }
+}

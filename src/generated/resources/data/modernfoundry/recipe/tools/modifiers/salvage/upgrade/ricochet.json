@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:modifier_salvage",
+  "id": "modernfoundry:tools/modifiers/salvage/upgrade/ricochet",
+  "modifier": "modernfoundry:ricochet",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/armor/worn",
+    "#modernfoundry:modifiable/shields"
+  ]
+}

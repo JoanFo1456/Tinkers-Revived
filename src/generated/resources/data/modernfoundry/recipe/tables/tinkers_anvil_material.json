@@ -1,0 +1,24 @@
+{
+  "type": "modernfoundry:crafting_shaped_materials",
+  "category": "misc",
+  "key": {
+    "m": {
+      "neoforge:ingredient_type": "modernfoundry:material",
+      "match": "modernfoundry:fake_storage_block",
+      "material": {
+        "type": "mantle:tag",
+        "tag": "modernfoundry:compatibility_metals/alloys"
+      }
+    },
+    "s": "#modernfoundry:seared_blocks"
+  },
+  "parts": "m",
+  "pattern": [
+    "mmm",
+    " s ",
+    "sss"
+  ],
+  "result": {
+    "id": "modernfoundry:tinkers_anvil"
+  }
+}

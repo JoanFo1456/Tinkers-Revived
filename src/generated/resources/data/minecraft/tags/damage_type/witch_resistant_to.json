@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:smeltery_magic",
-    "tconstruct:fluid_magic_melee",
-    "tconstruct:fluid_magic_ranged"
+    "modernfoundry:smeltery_magic",
+    "modernfoundry:fluid_magic_melee",
+    "modernfoundry:fluid_magic_ranged"
   ]
 }

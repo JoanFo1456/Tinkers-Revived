@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:table_casting_part_swapping",
+  "id": "modernfoundry:tools/armor/travelers/swapping_metal",
+  "index": 0,
+  "item_cost": 2,
+  "tools": [
+    "modernfoundry:travelers_helmet",
+    "modernfoundry:travelers_chestplate",
+    "modernfoundry:travelers_leggings",
+    "modernfoundry:travelers_boots"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:seared_bricks_wall",
-    "tconstruct:seared_cobble_wall"
+    "modernfoundry:seared_bricks_wall",
+    "modernfoundry:seared_cobble_wall"
   ]
 }

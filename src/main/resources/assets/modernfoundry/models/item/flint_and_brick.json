@@ -1,0 +1,6 @@
+{
+  "parent": "neoforge:item/default",
+  "textures": {
+    "tool": "modernfoundry:item/tool/flint_and_brick/tool"
+  }
+}

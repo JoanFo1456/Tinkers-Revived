@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/silver"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/silver/nugget",
+  "ingredient": "#c:nuggets/silver",
+  "material": "modernfoundry:silver",
+  "needed": 9,
+  "value": 1
+}

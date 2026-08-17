@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "modernfoundry:hepatizon_nugget",
+  "ingredients": [
+    "modernfoundry:hepatizon_ingot"
+  ],
+  "result": {
+    "count": 9,
+    "id": "modernfoundry:hepatizon_nugget"
+  }
+}

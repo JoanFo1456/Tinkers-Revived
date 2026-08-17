@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": "modernfoundry:earth_slime_crystal",
+    "I": "#c:ingots/cobalt",
+    "W": "#modernfoundry:greenheart_logs"
+  },
+  "pattern": [
+    "CWC",
+    " I ",
+    " W "
+  ],
+  "result": {
+    "id": "modernfoundry:earth_staff"
+  }
+}

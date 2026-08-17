@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:registered",
+      "value": "twilightforest:knightmetal_ring"
+    }
+  ],
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/knightmetal/twilightforest_ring",
+  "ingredient": {
+    "item": "twilightforest:knightmetal_ring"
+  },
+  "result": {
+    "amount": 360,
+    "fluid": "modernfoundry:molten_knightmetal"
+  },
+  "temperature": 1300,
+  "time": 150
+}

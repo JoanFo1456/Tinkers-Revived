@@ -1,0 +1,30 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/ability/crystalshot_skyslime",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:sky_slime_crystal_cluster"
+    },
+    {
+      "ingredient": "minecraft:blaze_rod"
+    },
+    {
+      "ingredient": "modernfoundry:sky_slime_crystal_cluster"
+    },
+    {
+      "ingredient": "#c:ingots/manyullyn"
+    },
+    {
+      "ingredient": "#c:ingots/manyullyn"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:crystalshot",
+    "value": "skyslime"
+  },
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#modernfoundry:modifiable/ranged/bows"
+}

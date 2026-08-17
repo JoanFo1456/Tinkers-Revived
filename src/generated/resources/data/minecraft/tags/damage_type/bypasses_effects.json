@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:entangled",
-    "tconstruct:spiny",
-    "tconstruct:update_health"
+    "modernfoundry:entangled",
+    "modernfoundry:spiny",
+    "modernfoundry:update_health"
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#modernfoundry:scorched_blocks",
+    "subtracted": "modernfoundry:polished_scorched_stone"
+  },
+  "result": {
+    "id": "modernfoundry:polished_scorched_stone"
+  }
+}

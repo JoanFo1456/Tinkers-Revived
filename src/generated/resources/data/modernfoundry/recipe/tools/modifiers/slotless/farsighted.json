@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "id": "modernfoundry:tools/modifiers/slotless/farsighted",
+  "input": "#c:crops/carrot",
+  "needed_per_level": 45,
+  "result": "modernfoundry:farsighted",
+  "tools": [
+    "#modernfoundry:modifiable/held",
+    "#modernfoundry:modifiable/armor"
+  ]
+}

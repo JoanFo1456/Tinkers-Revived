@@ -1,0 +1,6 @@
+{
+  "parent": "neoforge:item/default",
+  "textures": {
+    "texture": "modernfoundry:item/tool/cleaver/head"
+  }
+}

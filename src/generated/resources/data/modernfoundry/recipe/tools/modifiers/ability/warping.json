@@ -1,0 +1,35 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "check_trait_level": true,
+  "id": "modernfoundry:tools/modifiers/ability/warping",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:ender_slime_vine"
+    },
+    {
+      "ingredient": "modernfoundry:ender_slime_crystal"
+    },
+    {
+      "ingredient": "modernfoundry:ender_slime_vine"
+    },
+    {
+      "ingredient": "modernfoundry:ender_congealed_slime"
+    },
+    {
+      "ingredient": "modernfoundry:ender_congealed_slime"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:warping",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/durability",
+      "#modernfoundry:modifiable/interactable/charge"
+    ]
+  }
+}

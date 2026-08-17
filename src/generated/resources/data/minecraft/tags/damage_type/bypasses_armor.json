@@ -1,14 +1,14 @@
 {
   "values": [
-    "tconstruct:piercing",
-    "tconstruct:self_destruct",
-    "tconstruct:bleeding",
-    "tconstruct:entangled",
-    "tconstruct:spiny",
-    "tconstruct:update_health",
-    "tconstruct:water_melee",
-    "tconstruct:water_ranged",
-    "tconstruct:fluid_spike_melee",
-    "tconstruct:fluid_spike_ranged"
+    "modernfoundry:piercing",
+    "modernfoundry:self_destruct",
+    "modernfoundry:bleeding",
+    "modernfoundry:entangled",
+    "modernfoundry:spiny",
+    "modernfoundry:update_health",
+    "modernfoundry:water_melee",
+    "modernfoundry:water_ranged",
+    "modernfoundry:fluid_spike_melee",
+    "modernfoundry:fluid_spike_ranged"
   ]
 }

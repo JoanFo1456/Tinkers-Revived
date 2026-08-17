@@ -1,0 +1,29 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/ability/luck_level_2",
+  "inputs": [
+    {
+      "ingredient": "#c:ingots/gold"
+    },
+    {
+      "ingredient": "minecraft:golden_carrot"
+    },
+    {
+      "ingredient": "#c:ingots/gold"
+    },
+    {
+      "ingredient": "#c:ender_pearls"
+    },
+    {
+      "ingredient": "#c:ender_pearls"
+    }
+  ],
+  "level": 2,
+  "result": "modernfoundry:luck",
+  "tools": [
+    "#modernfoundry:modifiable/melee/weapon",
+    "#modernfoundry:modifiable/harvest",
+    "#modernfoundry:modifiable/ranged/launcher"
+  ]
+}

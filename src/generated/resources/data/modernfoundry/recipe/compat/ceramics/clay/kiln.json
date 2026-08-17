@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ceramics"
+    }
+  ],
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:compat/ceramics/clay/kiln",
+  "ingredient": {
+    "item": "ceramics:kiln"
+  },
+  "result": {
+    "amount": 4250,
+    "fluid": "modernfoundry:molten_clay"
+  },
+  "temperature": 450,
+  "time": 192
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/steeleaf"
+    }
+  ],
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/steeleaf/nugget",
+  "ingredient": "#c:nuggets/steeleaf",
+  "result": {
+    "amount": 10,
+    "fluid": "modernfoundry:molten_steeleaf"
+  },
+  "temperature": 934,
+  "time": 21
+}

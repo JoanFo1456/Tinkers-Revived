@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "modernfoundry:melting/constantan/tools_costing_2"
+    }
+  ],
+  "type": "modernfoundry:damagable_melting",
+  "id": "modernfoundry:smeltery/melting/metal/constantan/sword",
+  "ingredient": "#modernfoundry:melting/constantan/tools_costing_2",
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_constantan",
+    "unit_size": 10
+  },
+  "temperature": 920,
+  "time": 90
+}

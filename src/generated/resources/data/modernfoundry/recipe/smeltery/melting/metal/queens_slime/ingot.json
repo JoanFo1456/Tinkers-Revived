@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/queens_slime/ingot",
+  "ingredient": "#c:ingots/queens_slime",
+  "result": {
+    "amount": 90,
+    "fluid": "modernfoundry:molten_queens_slime"
+  },
+  "temperature": 1150,
+  "time": 71
+}

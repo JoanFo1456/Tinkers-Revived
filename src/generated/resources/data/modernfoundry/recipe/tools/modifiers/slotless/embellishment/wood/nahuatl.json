@@ -1,0 +1,22 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/slotless/embellishment/wood/nahuatl",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:nahuatl"
+    },
+    {
+      "ingredient": "modernfoundry:pattern"
+    },
+    {
+      "ingredient": "modernfoundry:nahuatl"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:embellishment",
+    "value": "modernfoundry:nahuatl"
+  },
+  "tools": "#modernfoundry:modifiable/embellishment/wood",
+  "variant_formatter": "modernfoundry:material"
+}

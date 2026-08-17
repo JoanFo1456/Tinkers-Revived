@@ -1,8 +1,0 @@
-{
-  "parent": "tconstruct:item/base/axe",
-  "textures": {
-    "adze": "tconstruct:item/tool/pickadze/adze",
-    "pick": "tconstruct:item/tool/pickadze/pick",
-    "handle": "tconstruct:item/tool/pickaxe/handle"
-  }
-}

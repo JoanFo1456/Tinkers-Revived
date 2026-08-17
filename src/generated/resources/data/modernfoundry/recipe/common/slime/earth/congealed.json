@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "modernfoundry:congealed_slime",
+  "key": {
+    "#": "#c:slimeball/earth"
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "id": "modernfoundry:earth_congealed_slime"
+  }
+}

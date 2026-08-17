@@ -1,0 +1,32 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/boundless",
+  "inputs": [
+    {
+      "amount_needed": 4,
+      "ingredient": "modernfoundry:obsidian_pane"
+    },
+    {
+      "ingredient": "minecraft:writable_book"
+    },
+    {
+      "amount_needed": 4,
+      "ingredient": "modernfoundry:obsidian_pane"
+    },
+    {
+      "amount_needed": 2,
+      "ingredient": "modernfoundry:ichor_slime_crystal"
+    },
+    {
+      "amount_needed": 2,
+      "ingredient": "modernfoundry:ichor_slime_crystal"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:boundless",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#modernfoundry:modifiable/shields"
+}

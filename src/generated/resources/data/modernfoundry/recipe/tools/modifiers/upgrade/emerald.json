@@ -1,0 +1,16 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/emerald",
+  "inputs": [
+    {
+      "ingredient": "#c:gems/emerald"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:emerald",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/durability"
+}

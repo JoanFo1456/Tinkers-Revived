@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/amethyst_bronze/nugget",
+  "ingredient": "#c:nuggets/amethyst_bronze",
+  "material": "modernfoundry:amethyst_bronze",
+  "needed": 9,
+  "value": 1
+}

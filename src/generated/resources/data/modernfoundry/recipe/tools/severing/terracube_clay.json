@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:severing",
+  "entity": {
+    "type": "modernfoundry:terracube"
+  },
+  "id": "modernfoundry:tools/severing/terracube_clay",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "minecraft:clay_ball"
+}

@@ -1,0 +1,14 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/copper/can",
+  "ingredient": {
+    "neoforge:ingredient_type": "modernfoundry:no_container",
+    "match": "modernfoundry:copper_can"
+  },
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_copper"
+  },
+  "temperature": 500,
+  "time": 50
+}

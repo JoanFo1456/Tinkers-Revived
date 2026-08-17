@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:hepatizon_ingot",
+  "key": {
+    "#": "#c:nuggets/hepatizon",
+    "*": "modernfoundry:hepatizon_nugget"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:hepatizon_ingot"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ceramics"
+    }
+  ],
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 50,
+      "fluid": "modernfoundry:molten_glass"
+    }
+  ],
+  "id": "modernfoundry:compat/ceramics/porcelain/gauge",
+  "ingredient": {
+    "item": "ceramics:porcelain_gauge"
+  },
+  "result": {
+    "amount": 250,
+    "fluid": "modernfoundry:molten_porcelain"
+  },
+  "temperature": 700,
+  "time": 57
+}

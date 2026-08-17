@@ -1,0 +1,13 @@
+{
+  "parent": "modernfoundry:item/base/tall",
+  "textures": {
+    "head": "modernfoundry:item/tool/cleaver/head",
+    "handle": "modernfoundry:item/tool/cleaver/handle",
+    "guard": "modernfoundry:item/tool/cleaver/guard",
+    "shield": "modernfoundry:item/tool/cleaver/shield",
+    "large_head": "modernfoundry:item/tool/cleaver/large/head",
+    "large_handle": "modernfoundry:item/tool/cleaver/large/handle",
+    "large_guard": "modernfoundry:item/tool/cleaver/large/guard",
+    "large_shield": "modernfoundry:item/tool/cleaver/large/shield"
+  }
+}

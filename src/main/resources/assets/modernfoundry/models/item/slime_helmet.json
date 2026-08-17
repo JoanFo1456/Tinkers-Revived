@@ -1,0 +1,7 @@
+{
+  "parent": "neoforge:item/default",
+  "textures": {
+    "slime": "modernfoundry:item/tool/armor/slime/helmet/slime",
+    "skull": "modernfoundry:item/tool/armor/slime/helmet/skull"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 2,
+  "id": "modernfoundry:tools/parts/builder/bow_grip",
+  "pattern": "modernfoundry:bow_grip",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:bow_grip_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:bow_grip"
+  }
+}

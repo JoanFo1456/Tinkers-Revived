@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/manyullyn/nugget",
+  "ingredient": "#c:nuggets/manyullyn",
+  "material": "modernfoundry:manyullyn",
+  "needed": 9,
+  "value": 1
+}

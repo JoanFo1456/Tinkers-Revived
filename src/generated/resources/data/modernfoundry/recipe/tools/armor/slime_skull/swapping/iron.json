@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:fixed_material_swapping",
+  "id": "modernfoundry:tools/armor/slime_skull/swapping/iron",
+  "index": 0,
+  "ingredient": {
+    "ingredient": "modernfoundry:husk_head"
+  },
+  "material": "modernfoundry:iron",
+  "max_stack_size": 16,
+  "repair_value": 6,
+  "tools": "#modernfoundry:modifiable/skulls/swappable"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/slotless/barebow",
+  "inputs": [
+    {
+      "ingredient": "#c:strings"
+    },
+    {
+      "ingredient": "#c:rods/wooden"
+    },
+    {
+      "ingredient": "#c:strings"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:barebow",
+  "tools": "#modernfoundry:modifiable/ranged/bows"
+}

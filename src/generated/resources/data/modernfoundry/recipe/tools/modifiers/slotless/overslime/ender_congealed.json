@@ -1,0 +1,7 @@
+{
+  "type": "modernfoundry:overslime_modifier",
+  "id": "modernfoundry:tools/modifiers/slotless/overslime/ender_congealed",
+  "ingredient": "modernfoundry:ender_congealed_slime",
+  "restore_amount": 320,
+  "tools": "#modernfoundry:modifiable/durability"
+}

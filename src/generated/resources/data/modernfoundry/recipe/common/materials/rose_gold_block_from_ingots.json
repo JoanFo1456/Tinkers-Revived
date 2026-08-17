@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:rose_gold_block",
+  "key": {
+    "#": "#c:ingots/rose_gold",
+    "*": "modernfoundry:rose_gold_ingot"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:rose_gold_block"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 1000,
+      "fluid": "modernfoundry:scorched_stone"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/obsidian/foundry_io",
+  "ingredient": [
+    "modernfoundry:scorched_drain",
+    "modernfoundry:scorched_chute"
+  ],
+  "result": {
+    "amount": 500,
+    "fluid": "modernfoundry:molten_obsidian"
+  },
+  "temperature": 1000,
+  "time": 166
+}

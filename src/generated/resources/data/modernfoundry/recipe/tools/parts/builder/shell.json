@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 2,
+  "id": "modernfoundry:tools/parts/builder/shell",
+  "pattern": "modernfoundry:shell",
+  "result": {
+    "item": "modernfoundry:shell"
+  }
+}

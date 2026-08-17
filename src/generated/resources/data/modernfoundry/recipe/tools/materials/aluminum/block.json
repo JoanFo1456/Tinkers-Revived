@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/aluminum"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/aluminum/block",
+  "ingredient": "#c:storage_blocks/aluminum",
+  "leftover": {
+    "count": 1,
+    "tag": "c:ingots/aluminum"
+  },
+  "material": "modernfoundry:aluminum",
+  "needed": 1,
+  "value": 9
+}

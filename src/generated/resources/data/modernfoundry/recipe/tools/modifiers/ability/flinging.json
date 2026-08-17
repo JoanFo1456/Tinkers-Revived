@@ -1,0 +1,35 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "check_trait_level": true,
+  "id": "modernfoundry:tools/modifiers/ability/flinging",
+  "inputs": [
+    {
+      "ingredient": "minecraft:vine"
+    },
+    {
+      "ingredient": "modernfoundry:earth_slime_crystal"
+    },
+    {
+      "ingredient": "minecraft:vine"
+    },
+    {
+      "ingredient": "modernfoundry:earth_congealed_slime"
+    },
+    {
+      "ingredient": "modernfoundry:earth_congealed_slime"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:flinging",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/durability",
+      "#modernfoundry:modifiable/interactable/charge"
+    ]
+  }
+}

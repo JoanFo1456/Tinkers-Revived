@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/diamond/smithing_template",
+  "ingredient": "minecraft:netherite_upgrade_smithing_template",
+  "result": {
+    "amount": 500,
+    "fluid": "modernfoundry:molten_diamond"
+  },
+  "temperature": 1450,
+  "time": 186
+}

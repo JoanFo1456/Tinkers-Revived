@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates/brick"
+    }
+  ],
+  "type": "modernfoundry:casting_table",
+  "cast": "#modernfoundry:casts/multi_use/plate",
+  "cooling_time": 80,
+  "fluid": {
+    "amount": 250,
+    "tag": "modernfoundry:molten_clay"
+  },
+  "id": "modernfoundry:smeltery/casting/clay/plate_gold_cast",
+  "result": {
+    "tag": "c:plates/brick"
+  }
+}

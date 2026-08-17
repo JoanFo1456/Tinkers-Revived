@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:modifier_salvage",
+  "id": "modernfoundry:tools/modifiers/salvage/upgrade/smelting",
+  "modifier": "modernfoundry:smelting",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/interactable",
+    "#modernfoundry:modifiable/armor/worn"
+  ]
+}

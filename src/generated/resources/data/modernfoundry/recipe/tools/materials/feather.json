@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/feather",
+  "ingredient": "minecraft:feather",
+  "material": "modernfoundry:feather",
+  "needed": 1,
+  "value": 1
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "modernfoundry:scorched_road_stairs",
+  "key": {
+    "B": "modernfoundry:scorched_road"
+  },
+  "pattern": [
+    "B  ",
+    "BB ",
+    "BBB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "modernfoundry:scorched_road_stairs"
+  }
+}

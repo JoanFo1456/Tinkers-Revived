@@ -1,0 +1,22 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/slotless/embellishment/wood/slimewood_bloodshroom",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:bloodshroom_planks"
+    },
+    {
+      "ingredient": "modernfoundry:pattern"
+    },
+    {
+      "ingredient": "modernfoundry:bloodshroom_planks"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:embellishment",
+    "value": "modernfoundry:slimewood#bloodshroom"
+  },
+  "tools": "#modernfoundry:modifiable/embellishment/wood",
+  "variant_formatter": "modernfoundry:material"
+}

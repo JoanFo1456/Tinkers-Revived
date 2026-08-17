@@ -1,0 +1,15 @@
+{
+  "type": "modernfoundry:entity_melting",
+  "damage": 3,
+  "entity": {
+    "type": "minecraft:turtle"
+  },
+  "id": "modernfoundry:smeltery/entity_melting/turtle",
+  "result": {
+    "amount": 25,
+    "nbt": {
+      "Potion": "minecraft:turtle_master"
+    },
+    "tag": "c:potion"
+  }
+}

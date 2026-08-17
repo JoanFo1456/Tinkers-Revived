@@ -1,0 +1,22 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/slotless/draconic_for_skull",
+  "inputs": [
+    {
+      "ingredient": "minecraft:dragon_head"
+    },
+    {
+      "ingredient": "#c:slime_balls"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:draconic",
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/bonus_slots",
+      "#modernfoundry:modifiable/skulls"
+    ]
+  }
+}

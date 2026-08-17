@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/seared/heater",
+  "ingredient": "modernfoundry:seared_heater",
+  "result": {
+    "amount": 2000,
+    "fluid": "modernfoundry:seared_stone"
+  },
+  "temperature": 600,
+  "time": 160
+}

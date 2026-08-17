@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/pewter"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/pewter/ingot",
+  "ingredient": "#c:ingots/pewter",
+  "material": "modernfoundry:pewter",
+  "needed": 1,
+  "value": 1
+}

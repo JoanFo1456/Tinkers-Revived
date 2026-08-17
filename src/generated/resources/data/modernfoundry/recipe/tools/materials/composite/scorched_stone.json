@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:material_fluid",
+  "fluid": {
+    "amount": 125,
+    "tag": "c:magma"
+  },
+  "id": "modernfoundry:tools/materials/composite/scorched_stone",
+  "input": "modernfoundry:flint",
+  "output": "modernfoundry:scorched_stone",
+  "temperature": 300
+}

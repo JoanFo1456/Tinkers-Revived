@@ -1,0 +1,18 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/swift_sneak",
+  "inputs": [
+    {
+      "ingredient": "minecraft:sculk_sensor"
+    }
+  ],
+  "level": {
+    "max": 5
+  },
+  "result": "modernfoundry:swift_sneak",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/armor/leggings"
+}

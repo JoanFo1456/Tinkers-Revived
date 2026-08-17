@@ -1,8 +1,0 @@
-{
-  "type": "tconstruct:basin_tool_casting",
-  "cast": "tconstruct:laces",
-  "cast_purpose": "first_material",
-  "id": "tconstruct:tools/building/slime_boots",
-  "item_cost": 4,
-  "result": "tconstruct:slime_boots"
-}

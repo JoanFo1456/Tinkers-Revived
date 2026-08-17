@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cooling_time": 77,
+  "fluid": {
+    "amount": 250,
+    "tag": "modernfoundry:liquid_soul"
+  },
+  "id": "modernfoundry:smeltery/casting/soul/pane",
+  "result": "modernfoundry:soul_glass_pane"
+}

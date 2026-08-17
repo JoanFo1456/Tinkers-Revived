@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "modernfoundry:manyullyn_ingot",
+  "ingredients": [
+    "modernfoundry:manyullyn_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "modernfoundry:manyullyn_ingot"
+  }
+}

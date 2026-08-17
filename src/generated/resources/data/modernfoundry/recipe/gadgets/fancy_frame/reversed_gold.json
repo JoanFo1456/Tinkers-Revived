@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "modernfoundry:reverse_fancy_item_frame",
+  "ingredients": [
+    "modernfoundry:gold_item_frame",
+    "minecraft:redstone_torch"
+  ],
+  "result": {
+    "id": "modernfoundry:reversed_gold_item_frame"
+  }
+}

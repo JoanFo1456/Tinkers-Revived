@@ -1,0 +1,17 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 4000,
+      "fluid": "modernfoundry:molten_obsidian"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/diamond/enchanting_table",
+  "ingredient": "minecraft:enchanting_table",
+  "result": {
+    "amount": 200,
+    "fluid": "modernfoundry:molten_diamond"
+  },
+  "temperature": 1450,
+  "time": 118
+}

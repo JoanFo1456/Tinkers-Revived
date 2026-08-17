@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/silver"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/silver/block",
+  "ingredient": "#c:storage_blocks/silver",
+  "leftover": {
+    "count": 1,
+    "tag": "c:ingots/silver"
+  },
+  "material": "modernfoundry:silver",
+  "needed": 1,
+  "value": 9
+}

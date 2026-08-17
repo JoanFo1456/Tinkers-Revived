@@ -1,0 +1,13 @@
+{
+  "parent": "modernfoundry:item/base/tall",
+  "textures": {
+    "head": "modernfoundry:item/tool/sledge_hammer/head",
+    "handle": "modernfoundry:item/tool/sledge_hammer/handle",
+    "back": "modernfoundry:item/tool/sledge_hammer/back",
+    "front": "modernfoundry:item/tool/sledge_hammer/front",
+    "large_head": "modernfoundry:item/tool/sledge_hammer/large/head",
+    "large_handle": "modernfoundry:item/tool/sledge_hammer/large/handle",
+    "large_back": "modernfoundry:item/tool/sledge_hammer/large/back",
+    "large_front": "modernfoundry:item/tool/sledge_hammer/large/front"
+  }
+}

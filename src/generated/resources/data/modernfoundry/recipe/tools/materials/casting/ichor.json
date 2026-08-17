@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:material_fluid",
+  "fluid": {
+    "amount": 250,
+    "tag": "modernfoundry:ichor"
+  },
+  "id": "modernfoundry:tools/materials/casting/ichor",
+  "output": "modernfoundry:ichor",
+  "temperature": 700
+}

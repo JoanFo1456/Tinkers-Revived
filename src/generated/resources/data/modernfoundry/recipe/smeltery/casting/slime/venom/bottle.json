@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": "minecraft:glass_bottle",
+  "cast_consumed": true,
+  "cooling_time": 1,
+  "fluid": {
+    "amount": 250,
+    "tag": "modernfoundry:venom"
+  },
+  "id": "modernfoundry:smeltery/casting/slime/venom/bottle",
+  "result": "modernfoundry:venom_bottle"
+}

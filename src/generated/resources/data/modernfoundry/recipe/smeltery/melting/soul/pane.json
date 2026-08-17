@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/soul/pane",
+  "ingredient": "modernfoundry:soul_glass_pane",
+  "result": {
+    "amount": 250,
+    "fluid": "modernfoundry:liquid_soul"
+  },
+  "temperature": 400,
+  "time": 23
+}

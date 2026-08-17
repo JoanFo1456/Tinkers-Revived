@@ -1,0 +1,7 @@
+{
+  "parent": "modernfoundry:item/tool/dagger/display",
+  "textures": {
+    "head": "modernfoundry:item/tool/dagger/blade",
+    "crossguard": "modernfoundry:item/tool/dagger/crossguard"
+  }
+}

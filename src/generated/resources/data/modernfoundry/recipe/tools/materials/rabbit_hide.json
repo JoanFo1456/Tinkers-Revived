@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/rabbit_hide",
+  "ingredient": "minecraft:rabbit_hide",
+  "material": "modernfoundry:leather",
+  "needed": 2,
+  "value": 1
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "neoforge:item/default-tool",
+  "textures": {
+    "head": "modernfoundry:item/tool/ammo/axe_head",
+    "shaft": "modernfoundry:item/tool/ammo/arrow_shaft"
+  }
+}

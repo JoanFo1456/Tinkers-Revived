@@ -1,0 +1,17 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 250,
+      "fluid": "modernfoundry:molten_obsidian"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/metal/emerald/reinforcement",
+  "ingredient": "modernfoundry:emerald_reinforcement",
+  "result": {
+    "amount": 25,
+    "fluid": "modernfoundry:molten_emerald"
+  },
+  "temperature": 934,
+  "time": 34
+}

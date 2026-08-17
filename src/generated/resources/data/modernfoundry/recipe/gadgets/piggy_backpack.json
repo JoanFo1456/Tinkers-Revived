@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": "minecraft:saddle",
+  "cast_consumed": true,
+  "cooling_time": 96,
+  "fluid": {
+    "amount": 1000,
+    "tag": "modernfoundry:sky_slime"
+  },
+  "id": "modernfoundry:gadgets/piggy_backpack",
+  "result": "modernfoundry:piggy_backpack"
+}

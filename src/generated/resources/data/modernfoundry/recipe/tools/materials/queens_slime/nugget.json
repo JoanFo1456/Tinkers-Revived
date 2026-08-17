@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/queens_slime/nugget",
+  "ingredient": "#c:nuggets/queens_slime",
+  "material": "modernfoundry:queens_slime",
+  "needed": 9,
+  "value": 1
+}

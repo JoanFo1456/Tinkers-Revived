@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:ore_melting",
+  "id": "modernfoundry:smeltery/melting/slime/earth/bud_cluster",
+  "ingredient": "modernfoundry:earth_slime_crystal_cluster",
+  "rate": "gem",
+  "result": {
+    "amount": 1000,
+    "tag": "c:slime"
+  },
+  "temperature": 50,
+  "time": 77
+}

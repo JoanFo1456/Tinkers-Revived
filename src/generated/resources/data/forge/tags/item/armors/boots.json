@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:travelers_boots",
-    "tconstruct:plate_boots",
-    "tconstruct:slime_boots"
+    "modernfoundry:travelers_boots",
+    "modernfoundry:plate_boots",
+    "modernfoundry:slime_boots"
   ]
 }

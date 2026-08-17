@@ -1,0 +1,21 @@
+{
+  "type": "modernfoundry:modifier_salvage",
+  "id": "modernfoundry:tools/modifiers/salvage/ability/pathing",
+  "modifier": "modernfoundry:pathing",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/durability",
+      {
+        "neoforge:ingredient_type": "neoforge:compound",
+        "children": [
+          "#modernfoundry:modifiable/interactable",
+          "#modernfoundry:modifiable/armor/boots"
+        ]
+      }
+    ]
+  }
+}

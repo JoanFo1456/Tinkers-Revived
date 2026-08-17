@@ -1,0 +1,8 @@
+{
+  "parent": "neoforge:item/default-tool",
+  "textures": {
+    "head": "modernfoundry:item/tool/sword/blade",
+    "handle": "modernfoundry:item/tool/sword/handle",
+    "guard": "modernfoundry:item/tool/sword/guard"
+  }
+}

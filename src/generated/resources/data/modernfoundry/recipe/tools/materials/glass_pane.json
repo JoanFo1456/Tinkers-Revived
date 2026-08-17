@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/glass_pane",
+  "ingredient": "#c:glass_panes",
+  "material": "modernfoundry:glass",
+  "needed": 1,
+  "value": 1
+}

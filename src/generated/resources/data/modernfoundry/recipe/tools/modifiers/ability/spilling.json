@@ -1,0 +1,34 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/ability/spilling",
+  "inputs": [
+    {
+      "ingredient": [
+        "modernfoundry:seared_channel",
+        "modernfoundry:scorched_channel"
+      ]
+    },
+    {
+      "neoforge:ingredient_type": "modernfoundry:no_container",
+      "match": "#modernfoundry:tanks"
+    },
+    {
+      "ingredient": [
+        "modernfoundry:seared_channel",
+        "modernfoundry:scorched_channel"
+      ]
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    },
+    {
+      "ingredient": "#c:ingots/copper"
+    }
+  ],
+  "result": "modernfoundry:spilling",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#modernfoundry:modifiable/melee"
+}

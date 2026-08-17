@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": "modernfoundry:ender_slime_crystal",
+    "I": "#c:ingots/netherite",
+    "W": "#modernfoundry:enderbark_logs"
+  },
+  "pattern": [
+    "CWC",
+    " I ",
+    " W "
+  ],
+  "result": {
+    "id": "modernfoundry:ender_staff"
+  }
+}

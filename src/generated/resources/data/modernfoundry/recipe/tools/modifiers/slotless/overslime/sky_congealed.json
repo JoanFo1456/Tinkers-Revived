@@ -1,0 +1,7 @@
+{
+  "type": "modernfoundry:overslime_modifier",
+  "id": "modernfoundry:tools/modifiers/slotless/overslime/sky_congealed",
+  "ingredient": "modernfoundry:sky_congealed_slime",
+  "restore_amount": 200,
+  "tools": "#modernfoundry:modifiable/durability"
+}

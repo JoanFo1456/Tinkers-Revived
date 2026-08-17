@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "modernfoundry:scorched_bricks",
+    "b": "modernfoundry:scorched_brick"
+  },
+  "pattern": [
+    "BbB",
+    "BbB"
+  ],
+  "result": {
+    "count": 6,
+    "id": "modernfoundry:scorched_bricks_fence"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/impaling",
+  "inputs": [
+    {
+      "ingredient": "minecraft:pointed_dripstone"
+    },
+    {
+      "ingredient": "minecraft:pointed_dripstone"
+    },
+    {
+      "ingredient": "minecraft:pointed_dripstone"
+    }
+  ],
+  "level": {
+    "max": 4
+  },
+  "result": "modernfoundry:impaling",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/ranged/crossbows"
+}

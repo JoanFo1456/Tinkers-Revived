@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:travelers_leggings",
-    "tconstruct:plate_leggings",
-    "tconstruct:slime_leggings"
+    "modernfoundry:travelers_leggings",
+    "modernfoundry:plate_leggings",
+    "modernfoundry:slime_leggings"
   ]
 }

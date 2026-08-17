@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:molding_table",
+  "id": "modernfoundry:smeltery/casts/red_sand/molding/helmet_plating",
+  "material": "#modernfoundry:casts/red_sand",
+  "pattern": [
+    "modernfoundry:helmet_plating_dummy",
+    {
+      "neoforge:ingredient_type": "modernfoundry:material",
+      "match": "modernfoundry:helmet_plating"
+    }
+  ],
+  "result": "modernfoundry:helmet_plating_red_sand_cast"
+}

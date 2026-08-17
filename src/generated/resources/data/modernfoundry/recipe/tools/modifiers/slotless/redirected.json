@@ -1,0 +1,16 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/slotless/redirected",
+  "inputs": [
+    {
+      "ingredient": "minecraft:dragon_breath"
+    }
+  ],
+  "result": "modernfoundry:redirected",
+  "tools": {
+    "neoforge:ingredient_type": "modernfoundry:tool_hook",
+    "hook": "modernfoundry:rebalanced_trait",
+    "tag": "modernfoundry:modifiable/ammo"
+  }
+}

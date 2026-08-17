@@ -1,0 +1,21 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/smelting",
+  "inputs": [
+    {
+      "ingredient": "minecraft:campfire"
+    }
+  ],
+  "level": {
+    "max": 4
+  },
+  "result": "modernfoundry:smelting",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/interactable",
+    "#modernfoundry:modifiable/armor/worn"
+  ]
+}

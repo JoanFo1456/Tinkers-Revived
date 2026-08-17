@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/knightslime/ingot",
+  "ingredient": "#c:ingots/knightslime",
+  "material": "modernfoundry:knightslime",
+  "needed": 1,
+  "value": 1
+}

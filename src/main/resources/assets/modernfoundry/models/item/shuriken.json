@@ -1,0 +1,7 @@
+{
+  "parent": "neoforge:item/default",
+  "textures": {
+    "top": "modernfoundry:item/tool/ammo/shuriken_top",
+    "bottom": "modernfoundry:item/tool/ammo/shuriken_bottom"
+  }
+}

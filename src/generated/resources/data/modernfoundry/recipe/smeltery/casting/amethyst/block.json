@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:casting_basin",
+  "cooling_time": 137,
+  "fluid": {
+    "amount": 400,
+    "tag": "modernfoundry:molten_amethyst"
+  },
+  "id": "modernfoundry:smeltery/casting/amethyst/block",
+  "result": {
+    "tag": "c:storage_blocks/amethyst"
+  }
+}

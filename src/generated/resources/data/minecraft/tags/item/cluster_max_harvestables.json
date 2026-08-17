@@ -1,8 +1,8 @@
 {
   "values": [
-    "tconstruct:pickaxe",
-    "tconstruct:sledge_hammer",
-    "tconstruct:vein_hammer",
-    "tconstruct:war_pick"
+    "modernfoundry:pickaxe",
+    "modernfoundry:sledge_hammer",
+    "modernfoundry:vein_hammer",
+    "modernfoundry:war_pick"
   ]
 }

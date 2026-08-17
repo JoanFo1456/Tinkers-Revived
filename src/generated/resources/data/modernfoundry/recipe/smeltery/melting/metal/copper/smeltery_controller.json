@@ -1,0 +1,17 @@
+{
+  "type": "modernfoundry:melting",
+  "byproducts": [
+    {
+      "amount": 1000,
+      "fluid": "modernfoundry:seared_stone"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/metal/copper/smeltery_controller",
+  "ingredient": "modernfoundry:smeltery_controller",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_copper"
+  },
+  "temperature": 500,
+  "time": 175
+}

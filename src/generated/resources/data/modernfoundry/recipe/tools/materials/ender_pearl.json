@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/ender_pearl",
+  "ingredient": "#c:ender_pearls",
+  "material": "modernfoundry:ender_pearl",
+  "needed": 1,
+  "value": 1
+}

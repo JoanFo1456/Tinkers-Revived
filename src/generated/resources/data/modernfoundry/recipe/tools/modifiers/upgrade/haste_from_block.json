@@ -1,0 +1,20 @@
+{
+  "type": "modernfoundry:incremental_modifier",
+  "allow_crystal": false,
+  "amount_per_item": 9,
+  "id": "modernfoundry:tools/modifiers/upgrade/haste_from_block",
+  "input": "#c:storage_blocks/redstone",
+  "leftover": "minecraft:redstone",
+  "level": {
+    "max": 5
+  },
+  "needed_per_level": 45,
+  "result": "modernfoundry:haste",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": [
+    "#modernfoundry:modifiable/harvest",
+    "#modernfoundry:modifiable/armor/chestplate"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:cobalt_ingot",
+  "key": {
+    "#": "#c:nuggets/cobalt",
+    "*": "modernfoundry:cobalt_nugget"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:cobalt_ingot"
+  }
+}

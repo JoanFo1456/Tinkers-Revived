@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:part_builder_tool_recycling",
+  "id": "modernfoundry:tools/recycling/general",
+  "pattern": "modernfoundry:venom_bottle",
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#modernfoundry:modifiable/multipart",
+    "subtracted": "#modernfoundry:modifiable/unrecyclable"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "modernfoundry:item_part_builder",
+  "id": "modernfoundry:smeltery/casts/sand/builder_cast/maille",
+  "pattern": "modernfoundry:maille",
+  "pattern_item": "#modernfoundry:casts/sand",
+  "result": "modernfoundry:maille_sand_cast"
+}

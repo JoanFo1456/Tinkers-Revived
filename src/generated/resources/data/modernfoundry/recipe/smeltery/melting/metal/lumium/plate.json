@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates/lumium"
+    }
+  ],
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/metal/lumium/plate",
+  "ingredient": "#c:plates/lumium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_lumium"
+  },
+  "temperature": 1050,
+  "time": 68
+}

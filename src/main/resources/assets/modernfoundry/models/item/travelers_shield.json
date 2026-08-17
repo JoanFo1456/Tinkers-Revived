@@ -1,0 +1,7 @@
+{
+  "parent": "modernfoundry:item/base/shield",
+  "textures": {
+    "cuirass": "modernfoundry:item/tool/armor/travelers/shield/cuirass",
+    "wood": "modernfoundry:item/tool/armor/travelers/shield/wood"
+  }
+}

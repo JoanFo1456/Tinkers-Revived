@@ -1,0 +1,16 @@
+{
+  "type": "modernfoundry:tool_building",
+  "extra_materials": [
+    "modernfoundry:flint",
+    "modernfoundry:wood",
+    "modernfoundry:feather"
+  ],
+  "extra_requirements": [
+    "minecraft:arrow"
+  ],
+  "id": "modernfoundry:tools/building/arrow_from_vanilla",
+  "parts_override": [],
+  "result": "modernfoundry:arrow",
+  "result_count": 1,
+  "slot_layout": "modernfoundry:tinker_station"
+}

@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/pewter"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/pewter/nugget",
+  "ingredient": "#c:nuggets/pewter",
+  "material": "modernfoundry:pewter",
+  "needed": 9,
+  "value": 1
+}

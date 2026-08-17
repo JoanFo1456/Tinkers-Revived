@@ -1,0 +1,19 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/slotless/recapitated",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "neoforge:difference",
+      "base": "#minecraft:skulls",
+      "subtracted": "minecraft:dragon_head"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:recapitated",
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#modernfoundry:modifiable/bonus_slots",
+    "subtracted": "#modernfoundry:modifiable/skulls"
+  }
+}

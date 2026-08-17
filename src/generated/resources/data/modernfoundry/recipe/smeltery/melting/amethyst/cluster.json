@@ -1,0 +1,18 @@
+{
+  "type": "modernfoundry:ore_melting",
+  "byproducts": [
+    {
+      "amount": 400,
+      "fluid": "modernfoundry:molten_quartz"
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/amethyst/cluster",
+  "ingredient": "minecraft:amethyst_cluster",
+  "rate": "gem",
+  "result": {
+    "amount": 400,
+    "fluid": "modernfoundry:molten_amethyst"
+  },
+  "temperature": 950,
+  "time": 259
+}

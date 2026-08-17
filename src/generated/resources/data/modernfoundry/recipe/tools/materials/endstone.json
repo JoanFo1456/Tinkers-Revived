@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/endstone",
+  "ingredient": "#c:end_stones",
+  "material": "modernfoundry:whitestone#end",
+  "needed": 1,
+  "value": 1
+}

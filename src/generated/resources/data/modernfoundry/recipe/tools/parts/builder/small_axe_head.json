@@ -1,0 +1,13 @@
+{
+  "type": "modernfoundry:part_builder",
+  "cost": 2,
+  "id": "modernfoundry:tools/parts/builder/small_axe_head",
+  "pattern": "modernfoundry:small_axe_head",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:small_axe_head_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:small_axe_head"
+  }
+}

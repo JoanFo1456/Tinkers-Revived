@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:knightmetal_block",
-    "tconstruct:knightslime_block"
+    "modernfoundry:knightmetal_block",
+    "modernfoundry:knightslime_block"
   ]
 }

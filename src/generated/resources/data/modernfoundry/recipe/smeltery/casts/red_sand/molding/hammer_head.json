@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:molding_table",
+  "id": "modernfoundry:smeltery/casts/red_sand/molding/hammer_head",
+  "material": "#modernfoundry:casts/red_sand",
+  "pattern": {
+    "neoforge:ingredient_type": "modernfoundry:material",
+    "match": "modernfoundry:hammer_head"
+  },
+  "result": "modernfoundry:hammer_head_red_sand_cast"
+}

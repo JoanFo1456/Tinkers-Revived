@@ -1,0 +1,11 @@
+{
+  "type": "modernfoundry:material_fluid",
+  "fluid": {
+    "amount": 125,
+    "tag": "modernfoundry:molten_clay"
+  },
+  "id": "modernfoundry:tools/materials/composite/seared_stone",
+  "input": "modernfoundry:rock",
+  "output": "modernfoundry:seared_stone",
+  "temperature": 450
+}

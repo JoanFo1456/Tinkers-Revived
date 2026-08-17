@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:registered",
+      "value": "twilightforest:fiery_sword"
+    }
+  ],
+  "type": "modernfoundry:damagable_melting",
+  "byproducts": [
+    {
+      "amount": 180,
+      "tag": "c:molten_iron",
+      "unit_size": 10
+    }
+  ],
+  "id": "modernfoundry:smeltery/melting/fiery/twilightforest_sword",
+  "ingredient": {
+    "item": "twilightforest:fiery_sword"
+  },
+  "result": {
+    "amount": 500,
+    "fluid": "modernfoundry:fiery_liquid",
+    "unit_size": 50
+  },
+  "temperature": 1500,
+  "time": 113
+}

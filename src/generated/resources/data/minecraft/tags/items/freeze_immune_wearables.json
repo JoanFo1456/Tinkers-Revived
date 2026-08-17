@@ -1,8 +1,8 @@
 {
   "values": [
-    "tconstruct:travelers_helmet",
-    "tconstruct:travelers_chestplate",
-    "tconstruct:travelers_leggings",
-    "tconstruct:travelers_boots"
+    "modernfoundry:travelers_helmet",
+    "modernfoundry:travelers_chestplate",
+    "modernfoundry:travelers_leggings",
+    "modernfoundry:travelers_boots"
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "type": "modernfoundry:part_builder",
+  "allow_uncraftable": true,
+  "cost": 1,
+  "id": "modernfoundry:tools/parts/builder/fletching",
+  "pattern": "modernfoundry:fletching",
+  "pattern_item": [
+    "#modernfoundry:patterns/default",
+    "modernfoundry:arrow_cast"
+  ],
+  "result": {
+    "item": "modernfoundry:fletching"
+  }
+}

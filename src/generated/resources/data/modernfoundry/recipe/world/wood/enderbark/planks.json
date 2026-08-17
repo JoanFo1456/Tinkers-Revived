@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    "#modernfoundry:enderbark_logs"
+  ],
+  "result": {
+    "count": 4,
+    "id": "modernfoundry:enderbark_planks"
+  }
+}

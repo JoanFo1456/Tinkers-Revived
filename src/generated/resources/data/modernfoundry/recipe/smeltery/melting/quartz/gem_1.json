@@ -1,0 +1,15 @@
+{
+  "type": "modernfoundry:melting",
+  "id": "modernfoundry:smeltery/melting/quartz/gem_1",
+  "ingredient": [
+    "minecraft:observer",
+    "minecraft:comparator",
+    "modernfoundry:quartz_shuriken"
+  ],
+  "result": {
+    "amount": 100,
+    "fluid": "modernfoundry:molten_quartz"
+  },
+  "temperature": 637,
+  "time": 58
+}

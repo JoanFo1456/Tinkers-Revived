@@ -1,7 +1,0 @@
-{
-  "parent": "neoforge:item/default",
-  "textures": {
-    "slime": "tconstruct:item/tool/armor/slime/boots/slime",
-    "laces": "tconstruct:item/tool/armor/slime/boots/laces"
-  }
-}

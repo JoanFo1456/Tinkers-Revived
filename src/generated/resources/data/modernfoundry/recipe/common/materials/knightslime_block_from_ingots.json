@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:knightslime_block",
+  "key": {
+    "#": "#c:ingots/knightslime",
+    "*": "modernfoundry:knightslime_ingot"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:knightslime_block"
+  }
+}

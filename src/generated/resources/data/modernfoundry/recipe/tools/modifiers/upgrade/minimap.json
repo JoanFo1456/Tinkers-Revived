@@ -1,0 +1,21 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "id": "modernfoundry:tools/modifiers/upgrade/minimap",
+  "inputs": [
+    {
+      "ingredient": "minecraft:compass"
+    },
+    {
+      "ingredient": "#c:slime_balls"
+    },
+    {
+      "ingredient": "minecraft:paper"
+    }
+  ],
+  "result": "modernfoundry:minimap",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#modernfoundry:modifiable/armor/helmets"
+}

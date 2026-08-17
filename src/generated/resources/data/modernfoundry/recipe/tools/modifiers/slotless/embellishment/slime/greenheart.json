@@ -1,0 +1,22 @@
+{
+  "type": "modernfoundry:swappable_modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/slotless/embellishment/slime/greenheart",
+  "inputs": [
+    {
+      "ingredient": "modernfoundry:greenheart_planks"
+    },
+    {
+      "ingredient": "modernfoundry:earth_slime_sapling"
+    },
+    {
+      "ingredient": "modernfoundry:greenheart_planks"
+    }
+  ],
+  "result": {
+    "name": "modernfoundry:embellishment",
+    "value": "modernfoundry:earthslime"
+  },
+  "tools": "#modernfoundry:modifiable/embellishment/slime",
+  "variant_formatter": "modernfoundry:material"
+}

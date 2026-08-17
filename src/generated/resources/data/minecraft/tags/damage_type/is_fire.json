@@ -1,7 +1,7 @@
 {
   "values": [
-    "tconstruct:smeltery_heat",
-    "tconstruct:fluid_fire_melee",
-    "tconstruct:fluid_fire_ranged"
+    "modernfoundry:smeltery_heat",
+    "modernfoundry:fluid_fire_melee",
+    "modernfoundry:fluid_fire_ranged"
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/invar"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/invar/nugget",
+  "ingredient": "#c:nuggets/invar",
+  "material": "modernfoundry:invar",
+  "needed": 9,
+  "value": 1
+}

@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:crossbow",
-    "tconstruct:war_pick"
+    "modernfoundry:crossbow",
+    "modernfoundry:war_pick"
   ]
 }

@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/zinc"
+    },
+    {
+      "type": "neoforge:or",
+      "values": [
+        {
+          "type": "modernfoundry:config",
+          "prop": "allow_ingotless_alloys"
+        },
+        {
+          "type": "mantle:tag_filled",
+          "tag": "c:ingots/brass"
+        }
+      ]
+    }
+  ],
+  "type": "modernfoundry:alloy",
+  "id": "modernfoundry:smeltery/alloys/molten_brass",
+  "inputs": [
+    {
+      "amount": 90,
+      "tag": "c:molten_copper"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_zinc"
+    }
+  ],
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_brass"
+  },
+  "temperature": 605
+}

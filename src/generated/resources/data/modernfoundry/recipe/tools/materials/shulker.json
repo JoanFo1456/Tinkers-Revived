@@ -1,0 +1,8 @@
+{
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/shulker",
+  "ingredient": "minecraft:shulker_shell",
+  "material": "modernfoundry:shulker",
+  "needed": 1,
+  "value": 2
+}

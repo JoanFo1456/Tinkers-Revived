@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "modernfoundry:nahuatl_stairs",
+  "key": {
+    "B": "modernfoundry:nahuatl"
+  },
+  "pattern": [
+    "B  ",
+    "BB ",
+    "BBB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "modernfoundry:nahuatl_stairs"
+  }
+}

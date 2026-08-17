@@ -1,0 +1,9 @@
+{
+  "type": "modernfoundry:tinker_station_part_swapping",
+  "id": "modernfoundry:tables/ammo_part_swapping",
+  "max_stack_size": 4,
+  "tools": [
+    "modernfoundry:arrow",
+    "modernfoundry:shuriken"
+  ]
+}

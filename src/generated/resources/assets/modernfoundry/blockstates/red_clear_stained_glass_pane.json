@@ -1,0 +1,149 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_post",
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      }
+    },
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_side",
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_noside",
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      },
+      "when": {
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_side_alt",
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_noside_alt",
+        "y": 90,
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      },
+      "when": {
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_side_alt",
+        "y": 90,
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_noside",
+        "y": 270,
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      },
+      "when": {
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_side",
+        "y": 90,
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "type": "mantle:connected",
+        "model": "modernfoundry:block/clear_glass/red/pane_noside_alt",
+        "connection": {
+          "predicate": "pane",
+          "textures": {
+            "pane": "cornerless_full"
+          }
+        },
+        "color": -6737101
+      },
+      "when": {
+        "east": "false"
+      }
+    }
+  ]
+}

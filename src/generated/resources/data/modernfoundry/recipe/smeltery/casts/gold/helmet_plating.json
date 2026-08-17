@@ -1,0 +1,19 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": [
+    "modernfoundry:helmet_plating_dummy",
+    {
+      "neoforge:ingredient_type": "modernfoundry:material",
+      "match": "modernfoundry:helmet_plating"
+    }
+  ],
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_gold"
+  },
+  "id": "modernfoundry:smeltery/casts/gold/helmet_plating",
+  "result": "modernfoundry:helmet_plating_cast",
+  "switch_slots": true
+}

@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cooling_time": 95,
+  "fluid": {
+    "amount": 250,
+    "tag": "modernfoundry:ichor"
+  },
+  "id": "modernfoundry:smeltery/casting/slime/ichor/slimeball",
+  "result": "modernfoundry:ichor_slime_ball"
+}

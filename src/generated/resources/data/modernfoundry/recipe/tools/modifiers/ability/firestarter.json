@@ -1,0 +1,26 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": true,
+  "check_trait_level": true,
+  "id": "modernfoundry:tools/modifiers/ability/firestarter",
+  "inputs": [
+    {
+      "ingredient": "#c:ingots/steel"
+    },
+    {
+      "ingredient": "minecraft:flint"
+    }
+  ],
+  "level": 1,
+  "result": "modernfoundry:firestarter",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#modernfoundry:modifiable/durability",
+      "#modernfoundry:modifiable/interactable"
+    ]
+  }
+}

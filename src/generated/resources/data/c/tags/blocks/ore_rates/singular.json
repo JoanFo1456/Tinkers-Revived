@@ -1,6 +1,6 @@
 {
   "values": [
-    "tconstruct:cobalt_ore",
+    "modernfoundry:cobalt_ore",
     "#c:ores/coal",
     "#c:ores/copper",
     "#c:ores/diamond",

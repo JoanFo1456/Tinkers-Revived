@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
+    }
+  ],
+  "type": "modernfoundry:part_builder_tool_recycling",
+  "id": "modernfoundry:tools/recycling/minotaur_axe",
+  "parts": [
+    "modernfoundry:small_axe_head",
+    "modernfoundry:repair_kit",
+    "modernfoundry:tool_handle"
+  ],
+  "pattern": "modernfoundry:venom_bottle",
+  "tools": {
+    "item": "modernfoundry:minotaur_axe"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/nicrosil"
+    }
+  ],
+  "type": "modernfoundry:material",
+  "id": "modernfoundry:tools/materials/nicrosil/ingot",
+  "ingredient": "#c:ingots/nicrosil",
+  "material": "modernfoundry:nicrosil",
+  "needed": 1,
+  "value": 1
+}

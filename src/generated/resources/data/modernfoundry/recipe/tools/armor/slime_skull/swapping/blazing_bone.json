@@ -1,0 +1,12 @@
+{
+  "type": "modernfoundry:fixed_material_swapping",
+  "id": "modernfoundry:tools/armor/slime_skull/swapping/blazing_bone",
+  "index": 0,
+  "ingredient": {
+    "ingredient": "modernfoundry:blazing_bone_head"
+  },
+  "material": "modernfoundry:blazing_bone",
+  "max_stack_size": 16,
+  "repair_value": 6,
+  "tools": "#modernfoundry:modifiable/skulls/swappable"
+}

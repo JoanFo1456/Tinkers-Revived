@@ -1,0 +1,7 @@
+{
+  "parent": "neoforge:item/default",
+  "textures": {
+    "slime": "modernfoundry:item/tool/armor/slime/chestplate/slime",
+    "ribcage": "modernfoundry:item/tool/armor/slime/chestplate/ribcage"
+  }
+}

@@ -1,8 +1,8 @@
 {
   "values": [
-    "tconstruct:greenheart_button",
-    "tconstruct:skyroot_button",
-    "tconstruct:bloodshroom_button",
-    "tconstruct:enderbark_button"
+    "modernfoundry:greenheart_button",
+    "modernfoundry:skyroot_button",
+    "modernfoundry:bloodshroom_button",
+    "modernfoundry:enderbark_button"
   ]
 }

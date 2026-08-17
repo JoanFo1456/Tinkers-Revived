@@ -1,5 +1,5 @@
 {
-  "type": "tconstruct:alloy",
+  "type": "modernfoundry:alloy",
   "id": "minecraft:empty",
   "inputs": [
     {
@@ -8,11 +8,11 @@
     },
     {
       "amount": 100,
-      "tag": "tconstruct:molten_emerald"
+      "tag": "modernfoundry:molten_emerald"
     },
     {
       "amount": 100,
-      "tag": "tconstruct:molten_quartz"
+      "tag": "modernfoundry:molten_quartz"
     }
   ],
   "result": {

@@ -1,0 +1,10 @@
+{
+  "type": "modernfoundry:severing",
+  "entity": {
+    "type": "minecraft:shulker"
+  },
+  "id": "modernfoundry:tools/severing/shulker_shell",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "minecraft:shulker_shell"
+}

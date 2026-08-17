@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:or",
+      "values": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "c:ingots/bronze"
+        },
+        {
+          "type": "mantle:tag_filled",
+          "tag": "c:ingots/tin"
+        }
+      ]
+    }
+  ],
+  "type": "modernfoundry:material_melting",
+  "id": "modernfoundry:tools/materials/melting/bronze",
+  "input": "modernfoundry:bronze",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_bronze"
+  },
+  "temperature": 700
+}

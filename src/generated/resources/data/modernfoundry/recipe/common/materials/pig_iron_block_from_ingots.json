@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "modernfoundry:pig_iron_block",
+  "key": {
+    "#": "#c:ingots/pig_iron",
+    "*": "modernfoundry:pig_iron_ingot"
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "id": "modernfoundry:pig_iron_block"
+  }
+}

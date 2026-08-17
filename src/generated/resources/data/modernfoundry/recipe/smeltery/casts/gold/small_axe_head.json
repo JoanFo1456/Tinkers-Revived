@@ -1,0 +1,16 @@
+{
+  "type": "modernfoundry:casting_table",
+  "cast": {
+    "neoforge:ingredient_type": "modernfoundry:material",
+    "match": "modernfoundry:small_axe_head"
+  },
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_gold"
+  },
+  "id": "modernfoundry:smeltery/casts/gold/small_axe_head",
+  "result": "modernfoundry:small_axe_head_cast",
+  "switch_slots": true
+}

@@ -1,0 +1,29 @@
+{
+  "type": "modernfoundry:modifier",
+  "allow_crystal": false,
+  "id": "modernfoundry:tools/modifiers/ability/luck_level_3",
+  "inputs": [
+    {
+      "ingredient": "#c:ingots/rose_gold"
+    },
+    {
+      "ingredient": "minecraft:rabbit_foot"
+    },
+    {
+      "ingredient": "#c:ingots/rose_gold"
+    },
+    {
+      "ingredient": "#c:gems/diamond"
+    },
+    {
+      "ingredient": "minecraft:name_tag"
+    }
+  ],
+  "level": 3,
+  "result": "modernfoundry:luck",
+  "tools": [
+    "#modernfoundry:modifiable/melee/weapon",
+    "#modernfoundry:modifiable/harvest",
+    "#modernfoundry:modifiable/ranged/launcher"
+  ]
+}

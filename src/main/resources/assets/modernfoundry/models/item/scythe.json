@@ -1,0 +1,13 @@
+{
+  "parent": "modernfoundry:item/tool/scythe/display",
+  "textures": {
+    "head": "modernfoundry:item/tool/scythe/head",
+    "handle": "modernfoundry:item/tool/scythe/handle",
+    "binding": "modernfoundry:item/tool/scythe/binding",
+    "accessory": "modernfoundry:item/tool/scythe/accessory",
+    "large_head": "modernfoundry:item/tool/scythe/large/head",
+    "large_handle": "modernfoundry:item/tool/scythe/large/handle",
+    "large_binding": "modernfoundry:item/tool/scythe/large/binding",
+    "large_accessory": "modernfoundry:item/tool/scythe/large/accessory"
+  }
+}

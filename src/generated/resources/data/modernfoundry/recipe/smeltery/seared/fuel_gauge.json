@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "modernfoundry:seared_brick",
+    "B": "#c:glass_blocks"
+  },
+  "pattern": [
+    "#B#",
+    "BBB",
+    "#B#"
+  ],
+  "result": {
+    "id": "modernfoundry:seared_fuel_gauge"
+  }
+}

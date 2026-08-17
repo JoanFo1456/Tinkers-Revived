@@ -1,7 +1,0 @@
-{
-  "model": {
-    "type": "mantle:retextured",
-    "model": "tconstruct:item/tinkers_anvil",
-    "retextured": ["particle", "top"]
-  }
-}
