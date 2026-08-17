@@ -1,7 +1,13 @@
 {
   "variants": {
     "": {
-      "model": "tconstruct:block/foundry/soul_glass/block"
+      "type": "mantle:connected",
+      "model": "tconstruct:block/foundry/soul_glass/block",
+      "connection": {
+        "textures": {
+          "all": "cornerless_full"
+        }
+      }
     }
   }
 }

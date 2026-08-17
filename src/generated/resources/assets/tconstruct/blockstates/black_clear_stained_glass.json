@@ -1,7 +1,14 @@
 {
   "variants": {
     "": {
-      "model": "tconstruct:block/clear_glass/black/block"
+      "type": "mantle:connected",
+      "model": "tconstruct:block/clear_glass/black/block",
+      "connection": {
+        "textures": {
+          "all": "cornerless_full"
+        }
+      },
+      "color": -15132391
     }
   }
 }
