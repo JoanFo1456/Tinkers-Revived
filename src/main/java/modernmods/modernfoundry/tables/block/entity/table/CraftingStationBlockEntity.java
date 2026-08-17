@@ -165,31 +165,39 @@ public class CraftingStationBlockEntity extends RetexturedTableBlockEntity imple
     result.onCraftedBy(player, amount);
     ForgeEventFactory.firePlayerCraftingEvent(player, result, this.craftingInventory);
 
-    // update all slots in the inventory
-    // remove remaining items
+    // consume the ingredients and place any remaining items (buckets, etc).
+    // CraftingInput.of() TRIMS empty edge rows/columns, so getRemainingItems is sized to the trimmed grid; mapping those
+    // indices straight onto the untrimmed 3x3 block-entity slots (the old `remaining.get(i)` -> getItem(i)) decrements the
+    // wrong slots, so any partial recipe (notably a 1x1 ore->ingot) never consumes its ingredient -> infinite crafting.
+    // Use the positioned input's left/top offset to map back to the real slot, mirroring vanilla ResultSlot.onTake.
     ForgeHooks.setCraftingPlayer(player);
-    CraftingInput input = craftingInventory.asCraftingInput();
+    CraftingInput.Positioned positioned = craftingInventory.asPositionedCraftInput();
+    CraftingInput input = positioned.input();
+    int recipeLeft = positioned.left();
+    int recipeTop = positioned.top();
     NonNullList<ItemStack> remaining = recipe.value().getRemainingItems(input);
     ForgeHooks.setCraftingPlayer(null);
-    for (int i = 0; i < remaining.size(); ++i) {
-      ItemStack original = this.getItem(i);
-      ItemStack newStack = remaining.get(i);
-
-      // if empty or size 1, set directly (decreases by 1)
-      if (original.isEmpty() || original.getCount() == 1) {
-        this.setItem(i, newStack);
-      }
-      else if (ItemStack.isSameItemSameComponents(original, newStack)) {
-        // if matching, merge (decreasing by 1
-        newStack.grow(original.getCount() - 1);
-        this.setItem(i, newStack);
-      }
-      else {
-        // directly update the slot
-        this.setItem(i, original.copyWithCount(original.getCount() - 1));
-        // otherwise, drop the item as the player
-        if (!newStack.isEmpty() && !player.getInventory().add(newStack)) {
-          player.drop(newStack, false);
+    int width = craftingInventory.getWidth();
+    for (int y = 0; y < input.height(); y++) {
+      for (int x = 0; x < input.width(); x++) {
+        int slot = x + recipeLeft + (y + recipeTop) * width;
+        ItemStack current = this.getItem(slot);
+        ItemStack replacement = remaining.get(x + y * input.width());
+        if (!current.isEmpty()) {
+          this.removeItem(slot, 1);
+          current = this.getItem(slot);
+        }
+        if (!replacement.isEmpty()) {
+          if (current.isEmpty()) {
+            this.setItem(slot, replacement);
+          }
+          else if (ItemStack.isSameItemSameComponents(current, replacement)) {
+            replacement.grow(current.getCount());
+            this.setItem(slot, replacement);
+          }
+          else if (!player.getInventory().add(replacement)) {
+            player.drop(replacement, false);
+          }
         }
       }
     }
