@@ -1,5 +1,5 @@
 {
-  "loader": "tconstruct:material_block",
+  "loader": "mantle:retextured",
   "parent": "block/block",
   "textures": {
     "particle": "tconstruct:block/storage/fallback",
