@@ -14,6 +14,11 @@ import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.resources.VanillaClientListeners;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.minecraft.client.color.block.BlockTintSource;
+import modernmods.modernfoundry.shared.block.ClearStainedGlassBlock;
+import modernmods.modernfoundry.shared.block.ClearStainedGlassBlock.GlassColor;
+import java.util.List;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -65,6 +70,19 @@ public class CommonsClientEvents extends ClientEventBase {
   @SubscribeEvent
   static void registerParticleFactories(RegisterParticleProvidersEvent event) {
     event.registerSpecial(TinkerCommons.fluidParticle.get(), new FluidParticle.Factory());
+  }
+
+  @SubscribeEvent
+  static void registerBlockTintSources(RegisterColorHandlersEvent.BlockTintSources event) {
+    // Coloured clear glass bakes its colour into the connected-model quads (the plain cube_all model has no tintindex),
+    // so break/terrain particles — which tint via BlockColors.getTintSource(state, 0) — rendered grey/white. Register a
+    // constant tint at index 0 per glass so the particles pick up the colour; the block model has no tintindex-0 face,
+    // so this does not affect the block's own rendering.
+    for (GlassColor color : GlassColor.values()) {
+      ClearStainedGlassBlock block = TinkerCommons.clearStainedGlass.get(color);
+      int rgb = color.getColor() & 0xFFFFFF;
+      event.register(List.of((BlockTintSource) state -> rgb), block);
+    }
   }
 
   private static Font unicodeRenderer;
