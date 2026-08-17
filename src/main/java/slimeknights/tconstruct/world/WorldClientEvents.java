@@ -110,15 +110,23 @@ public class WorldClientEvents extends ClientEventBase {
     event.registerLayerDefinition(SkullModelHelper.FLUID_CANNON, headOverlayCustom);
   }
 
-  // 26.1.2: client render overhaul — EntityRenderersEvent.CreateSkullModels#registerSkullModel no longer
-  // accepts a pre-built SkullModelBase; the new overloads are registerSkullModel(Type, ModelLayerLocation,
-  // Identifier texture) / (Type, Function<EntityModelSet,SkullModelBase>, Identifier). The per-type textures
-  // that used to be stashed in SkullBlockRenderer.SKIN_BY_TYPE (removed) must now be threaded in here, so
-  // this registration needs the texture-sourcing rework of the skull render pass.
+  // 26.1.2: client render overhaul — modded skull blocks are resolved through the model + texture registered here on
+  // CreateSkullModels (SkullBlockRenderer.createModel delegates modded types to ClientHooks#getModdedSkullModel, and the
+  // texture replaces the removed SkullBlockRenderer.SKIN_BY_TYPE lookup). Piglin heads use PiglinHeadModel; the rest use
+  // the vanilla SkullModel over the per-type layer registered in registerRenderers above.
   @SubscribeEvent
   static void registerSkullModels(EntityRenderersEvent.CreateSkullModels event) {
-    // pending the render pass: iterate SkullModelHelper.HEAD_LAYERS and call
-    // event.registerSkullModel(type, layer, texture) once the per-type textures are available here
+    for (TinkerHeadType type : TinkerHeadType.values()) {
+      Identifier texture = SkullModelHelper.HEAD_TEXTURES.get(type);
+      if (texture == null) {
+        continue;
+      }
+      ModelLayerLocation layer = SkullModelHelper.HEAD_LAYERS.get(type);
+      switch (type) {
+        case PIGLIN_BRUTE, ZOMBIFIED_PIGLIN -> event.registerSkullModel(type, modelSet -> new PiglinHeadModel(modelSet.bakeLayer(layer)), texture);
+        default -> event.registerSkullModel(type, modelSet -> new SkullModel(modelSet.bakeLayer(layer)), texture);
+      }
+    }
   }
 
   @SubscribeEvent
