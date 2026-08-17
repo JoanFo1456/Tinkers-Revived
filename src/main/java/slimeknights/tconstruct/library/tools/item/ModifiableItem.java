@@ -12,8 +12,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlot.Type;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -265,6 +268,19 @@ public class ModifiableItem extends Item implements IModifiableDisplay {
       return ImmutableMultimap.of();
     }
     return getAttributeModifiers(ToolStack.from(stack), slot);
+  }
+
+  // 26.1: the pre-26.1 IItemExtension#getAttributeModifiers(EquipmentSlot, ItemStack) hook is no longer consulted by the
+  // attribute system; item modifiers now flow through the ATTRIBUTE_MODIFIERS component, which NeoForge lets an item
+  // supply dynamically via getDefaultAttributeModifiers(ItemStack). Without this the tool's attack-damage/attack-speed
+  // modifiers (notably ATTACK_SPEED - 4) were never applied, so tools swung at the player's base 4.0 attack speed.
+  @Override
+  public ItemAttributeModifiers getDefaultAttributeModifiers(ItemStack stack) {
+    ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+    EquipmentSlot slot = EquipmentSlot.MAINHAND;
+    getAttributeModifiers(slot, stack).forEach((attribute, modifier) ->
+      builder.add(BuiltInRegistries.ATTRIBUTE.wrapAsHolder(attribute), modifier, EquipmentSlotGroup.bySlot(slot)));
+    return builder.build();
   }
 
   // Note: NeoForge's canDisableShield hook was removed in 26.1; shield disabling is now driven by the
