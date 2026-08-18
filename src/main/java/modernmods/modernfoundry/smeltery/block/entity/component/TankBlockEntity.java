@@ -99,6 +99,13 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
    * are part of a smeltery/foundry (they have a master) are skipped — the structure manages their fluid.
    */
   public static void serverTick(Level level, BlockPos pos, BlockState state, TankBlockEntity tank) {
+    // TEMP [tank-flow] diagnostic (throttled): confirms the ticker fires and reports what it sees below.
+    if (level.getGameTime() % 40 == 0) {
+      net.minecraft.world.level.block.entity.BlockEntity belowBe = level.getBlockEntity(pos.below());
+      modernmods.modernfoundry.TConstruct.LOG.info("[tank-flow] tick pos={} hasMaster={} fluid={}mB belowIsTank={} belowHasMaster={}",
+        pos, tank.hasMaster(), tank.tank.getFluidAmount(), belowBe instanceof TankBlockEntity,
+        belowBe instanceof TankBlockEntity tbe2 && tbe2.hasMaster());
+    }
     if (tank.hasMaster() || tank.tank.isEmpty()) {
       return;
     }
