@@ -82,6 +82,16 @@ public class SearedTankBlock extends SearedBlock implements ITankBlock, EntityBl
     return new TankBlockEntity(pPos, pState, this);
   }
 
+  @Override
+  @Nullable
+  public <T extends BlockEntity> net.minecraft.world.level.block.entity.BlockEntityTicker<T> getTicker(Level level, BlockState state, net.minecraft.world.level.block.entity.BlockEntityType<T> type) {
+    // server-side gravity flow so a stack of standalone tanks behaves like one reservoir (fills bottom-up, drains top-down)
+    if (level.isClientSide() || type != modernmods.modernfoundry.smeltery.TinkerSmeltery.tank.get()) {
+      return null;
+    }
+    return (lvl, pos, st, be) -> TankBlockEntity.serverTick(lvl, pos, st, (TankBlockEntity) be);
+  }
+
   @Deprecated
   @Override
   protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {

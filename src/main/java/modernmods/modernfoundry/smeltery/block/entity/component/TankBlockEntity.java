@@ -93,6 +93,32 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
     return tank;
   }
 
+  /**
+   * Server tick for standalone tanks: pushes this tank's fluid into the tank directly below, so a vertical stack of
+   * seared/scorched tanks fills from the bottom and drains from the top, behaving like one connected reservoir. Tanks that
+   * are part of a smeltery/foundry (they have a master) are skipped — the structure manages their fluid.
+   */
+  public static void serverTick(Level level, BlockPos pos, BlockState state, TankBlockEntity tank) {
+    if (tank.hasMaster() || tank.tank.isEmpty()) {
+      return;
+    }
+    if (level.getBlockEntity(pos.below()) instanceof TankBlockEntity below && !below.hasMaster()) {
+      FluidStack fluid = tank.tank.getFluid();
+      if (fluid.isEmpty()) {
+        return;
+      }
+      // fill the lower tank with what fits, then move exactly that amount out of this one (fill-simulate then
+      // execute both sides with the same amount -> no duplication)
+      int fillable = below.tank.fill(fluid, IFluidHandler.FluidAction.SIMULATE);
+      if (fillable > 0) {
+        FluidStack moved = tank.tank.drain(fillable, IFluidHandler.FluidAction.EXECUTE);
+        if (!moved.isEmpty()) {
+          below.tank.fill(moved, IFluidHandler.FluidAction.EXECUTE);
+        }
+      }
+    }
+  }
+
   public int getLastStrength() {
     return lastStrength;
   }
