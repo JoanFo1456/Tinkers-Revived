@@ -13,9 +13,17 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import modernmods.modernfoundry.common.TinkerTags;
+import modernmods.modernfoundry.world.TinkerWorld;
+
+import java.util.List;
 
 public class SlimeLeavesBlock extends LeavesBlock {
   /** Chance a falling leaf particle spawns per tick, matching vanilla leaves */
@@ -27,6 +35,19 @@ public class SlimeLeavesBlock extends LeavesBlock {
   public SlimeLeavesBlock(Properties properties, FoliageType foliageType) {
     super(LEAF_PARTICLE_CHANCE, properties);
     this.foliageType = foliageType;
+  }
+
+  @Override
+  protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+    // The data-driven loot table for these leaves was verified correct (shears/silk -> leaf block, otherwise sapling) yet
+    // the leaf block kept dropping on a bare-hand break in-game. Force the drop here so it no longer depends on the loot
+    // pipeline: shears or silk touch drop the leaf block; anything else (bare hand, non-shears tools) drops the sapling.
+    var tool = params.getOptionalParameter(LootContextParams.TOOL);
+    if (tool != null && tool.is(Items.SHEARS)) {
+      return List.of(new ItemStack(this));
+    }
+    Block sapling = TinkerWorld.slimeSapling.get(foliageType);
+    return sapling != null ? List.of(new ItemStack(sapling)) : super.getDrops(state, params);
   }
 
   @Override
