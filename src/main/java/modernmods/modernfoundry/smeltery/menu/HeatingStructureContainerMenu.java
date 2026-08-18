@@ -225,11 +225,6 @@ public class HeatingStructureContainerMenu extends TriggeringMultiModuleContaine
     public void set(ItemStack stack) {
       if (!stack.isEmpty() && container.getItem(1).isEmpty()) {
         TransferResult result = FluidTransferHelper.interactWithStack(tank, stack, directionSupplier.getTransferDirection());
-        // TEMP [bucket-gui] diagnostic: shows whether the bucket slot's transfer fires and what it returns.
-        modernmods.modernfoundry.TConstruct.LOG.info("[bucket-gui] set stack={} dir={} tankFluid={}mB result={}",
-          stack, directionSupplier.getTransferDirection(),
-          modernmods.mantle.fluid.FluidTransferHelper.drainAny(tank, Integer.MAX_VALUE, false).getAmount(),
-          result == null ? "null" : result.stack());
         if (result != null) {
           FluidTransferHelper.playUISound(player, result.getSound());
           container.setItem(1, result.stack());
