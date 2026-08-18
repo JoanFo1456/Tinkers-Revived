@@ -99,17 +99,13 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
    * are part of a smeltery/foundry (they have a master) are skipped — the structure manages their fluid.
    */
   public static void serverTick(Level level, BlockPos pos, BlockState state, TankBlockEntity tank) {
-    // TEMP [tank-flow] diagnostic (throttled): confirms the ticker fires and reports what it sees below.
-    if (level.getGameTime() % 40 == 0) {
-      net.minecraft.world.level.block.entity.BlockEntity belowBe = level.getBlockEntity(pos.below());
-      modernmods.modernfoundry.TConstruct.LOG.info("[tank-flow] tick pos={} hasMaster={} fluid={}mB belowIsTank={} belowHasMaster={}",
-        pos, tank.hasMaster(), tank.tank.getFluidAmount(), belowBe instanceof TankBlockEntity,
-        belowBe instanceof TankBlockEntity tbe2 && tbe2.hasMaster());
-    }
-    if (tank.hasMaster() || tank.tank.isEmpty()) {
+    // skip only tanks that are part of a VALID (formed) smeltery/foundry. hasMaster() is too broad: orphaned standalone
+    // tanks keep a stale masterPos and report hasMaster()=true even though no real structure owns them. validateMaster()
+    // re-checks the master block + IN_STRUCTURE and CLEARS a stale master, so those tanks fall through to the gravity flow.
+    if (tank.validateMaster() || tank.tank.isEmpty()) {
       return;
     }
-    if (level.getBlockEntity(pos.below()) instanceof TankBlockEntity below && !below.hasMaster()) {
+    if (level.getBlockEntity(pos.below()) instanceof TankBlockEntity below && !below.validateMaster()) {
       FluidStack fluid = tank.tank.getFluid();
       if (fluid.isEmpty()) {
         return;
