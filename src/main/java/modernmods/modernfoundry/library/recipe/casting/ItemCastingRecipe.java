@@ -94,7 +94,14 @@ public class ItemCastingRecipe extends AbstractCastingRecipe implements IDisplay
 
   @Override
   public List<ItemStack> getCastItems() {
-    return Arrays.asList(getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
+    // cast is nullable (null = no cast; the item is poured into an empty basin/table). getCast().items() NPEs on those,
+    // and setRecipe calls this before checking isEmpty(), so a no-cast recipe (metal blocks, glass, ...) would throw and
+    // JEI would drop it -> the recipe wouldn't appear when looking it up. Return no cast items instead.
+    net.minecraft.world.item.crafting.Ingredient cast = getCast();
+    if (cast == null) {
+      return List.of();
+    }
+    return Arrays.asList(cast.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
   }
 
   @Override

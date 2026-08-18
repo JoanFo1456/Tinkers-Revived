@@ -80,7 +80,10 @@ public class MaterialCastingRecipe extends AbstractMaterialCastingRecipe impleme
   public List<IDisplayableCastingRecipe> getRecipes(RegistryAccess access) {
     if (multiRecipes == null) {
       RecipeType<?> type = getType();
-      List<ItemStack> castItems = Arrays.asList(getCast().items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
+      // cast is nullable (null = no cast); guard against the NPE so cast-less material casting still expands for JEI
+      net.minecraft.world.item.crafting.Ingredient castIngredient = getCast();
+      List<ItemStack> castItems = castIngredient == null ? List.of()
+        : Arrays.asList(castIngredient.items().map(h -> new net.minecraft.world.item.ItemStack(h)).toArray(net.minecraft.world.item.ItemStack[]::new));
       multiRecipes = MaterialCastingLookup
         .getAllCastingFluids().stream()
         .filter(recipe -> {
