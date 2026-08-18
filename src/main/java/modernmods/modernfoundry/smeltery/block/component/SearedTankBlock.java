@@ -96,29 +96,6 @@ public class SearedTankBlock extends SearedBlock implements ITankBlock, EntityBl
   @Override
   protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
     boolean transferred = FluidTransferHelper.interactWithTank(world, pos, player, hand, hit);
-    // TEMP [tank-diag]: after transfer, log what actually ended up in the tank and whether that fluid is a recognized melting fuel.
-    // This disambiguates "fill did not persist" from "fluid is not registered as fuel" (which is what a dark/no-heat smeltery menu means).
-    if (!world.isClientSide()) {
-      FluidStack tankFluid = FluidStack.EMPTY;
-      if (world.getBlockEntity(pos) instanceof modernmods.modernfoundry.smeltery.block.entity.component.TankBlockEntity tankBe) {
-        tankFluid = tankBe.getTank().getFluid();
-      }
-      modernmods.modernfoundry.library.recipe.fuel.MeltingFuel fuel =
-        tankFluid.isEmpty() ? null : modernmods.modernfoundry.library.recipe.fuel.MeltingFuelLookup.findFuel(tankFluid.getFluid());
-      // probe: simulate inserting a bucket of lava straight into the tank's own ResourceHandler. This isolates
-      // whether tank.insert works from whether the bucket->tank interaction glue works.
-      int probeInsert = -1;
-      net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource> cap =
-        world.getCapability(net.neoforged.neoforge.capabilities.Capabilities.Fluid.BLOCK, pos, hit.getDirection());
-      if (cap != null) {
-        try (net.neoforged.neoforge.transfer.transaction.Transaction tx = net.neoforged.neoforge.transfer.transaction.Transaction.openRoot()) {
-          probeInsert = cap.insert(net.neoforged.neoforge.transfer.fluid.FluidResource.of(new FluidStack(net.minecraft.world.level.material.Fluids.LAVA, 1000)), 1000, tx);
-        }
-      }
-      modernmods.modernfoundry.TConstruct.LOG.info("[tank-diag] held={} transferred={} tankFluid={} amount={} recognizedFuel={} temp={} probeInsert={}",
-        stack, transferred, tankFluid.isEmpty() ? "EMPTY" : tankFluid.getFluid(), tankFluid.getAmount(),
-        fuel != null, fuel != null ? fuel.getTemperature() : 0, probeInsert);
-    }
     if (transferred) {
       return InteractionResult.SUCCESS;
     }
