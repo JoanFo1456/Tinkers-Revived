@@ -193,8 +193,9 @@ public class BlockLootTableProvider extends BlockLootSubProvider {
       this.add(TinkerWorld.slimeFern.get(type), BlockLootTableProvider::onlyShears);
     }
     for (FoliageType type : FoliageType.NETHER) {
-      // nether leaves drop self
-      this.dropSelf(TinkerWorld.slimeLeaves.get(type));
+      // nether slime leaves have a sapling too, so drop it like the overworld leaves (was dropSelf, which meant they only
+      // ever dropped the leaf block, never a sapling); the nether fern (roots/fungus) has no sapling so it still drops self
+      this.add(TinkerWorld.slimeLeaves.get(type), block -> dropSapling(block, TinkerWorld.slimeSapling.get(type), NORMAL_LEAVES_SAPLING_CHANCES));
       this.dropSelf(TinkerWorld.slimeFern.get(type));
     }
     // mangrove leaves do not drop saplings, they just drop sticks. We do slimeballs instead
