@@ -79,9 +79,9 @@ public class CommonsClientEvents extends ClientEventBase {
     // constant tint at index 0 per glass so the particles pick up the colour; the block model has no tintindex-0 face,
     // so this does not affect the block's own rendering.
     for (GlassColor color : GlassColor.values()) {
-      ClearStainedGlassBlock block = TinkerCommons.clearStainedGlass.get(color);
       int rgb = color.getColor() & 0xFFFFFF;
-      event.register(List.of((BlockTintSource) state -> rgb), block);
+      BlockTintSource source = state -> rgb;
+      event.register(List.of(source), TinkerCommons.clearStainedGlass.get(color), TinkerCommons.clearStainedGlassPane.get(color));
     }
   }
 
