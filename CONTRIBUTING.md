@@ -6,7 +6,7 @@ Provide clear steps to reproduce the issue, especially in the case of crashes. "
 
 ## Versions
 
-Always test with the latest versions of all relevant mods; chances are the bug you are reporting has been fixed in a later version of Tinkers Construct, Mantle, or even Forge. We do not support versions Minecraft versions before the latest stable Forge release, which is currently 1.12.2. No more work is being done on older versions so issues from those versions will be closed.
+Always test with the latest versions of all relevant mods; chances are the bug you are reporting has been fixed in a later version of Tinkers Construct, Hilt, or even Forge. We do not support versions Minecraft versions before the latest stable Forge release, which is currently 1.12.2. No more work is being done on older versions so issues from those versions will be closed.
 
 ## Crashes
 

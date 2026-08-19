@@ -43,9 +43,9 @@ body:
     validations:
       required: true
   - type: input
-    id: mantle-version
+    id: hilt-version
     attributes:
-      label: Mantle Version
+      label: Hilt Version
     validations:
       required: true
   - type: input
