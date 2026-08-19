@@ -1,5 +1,5 @@
 {
-  "loader": "mantle:retextured",
+  "loader": "hilt:retextured",
   "parent": "modernfoundry:block/table/table",
   "textures": {
     "particle": "modernfoundry:block/table/tinker_station_top",

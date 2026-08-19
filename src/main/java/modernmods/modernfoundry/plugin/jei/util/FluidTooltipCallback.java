@@ -10,7 +10,7 @@ import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.fluid.tooltip.FluidTooltipHandler;
+import modernmods.hilt.fluid.tooltip.FluidTooltipHandler;
 
 import java.util.ArrayList;
 import java.util.List;

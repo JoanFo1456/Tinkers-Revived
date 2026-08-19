@@ -11,10 +11,10 @@
         {
           "neoforge:ingredient_type": "modernfoundry:material_value",
           "material": {
-            "type": "mantle:and",
+            "type": "hilt:and",
             "predicates": [
               {
-                "type": "mantle:or",
+                "type": "hilt:or",
                 "predicates": [
                   "modernfoundry:castable",
                   "modernfoundry:composite"

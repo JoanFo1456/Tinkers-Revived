@@ -5,12 +5,12 @@ import com.mojang.math.Transformation;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
-import modernmods.mantle.data.loadable.common.ColorLoadable;
-import modernmods.mantle.data.loadable.field.LoadableField;
-import modernmods.mantle.data.loadable.primitive.IntLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
+import modernmods.hilt.data.loadable.common.ColorLoadable;
+import modernmods.hilt.data.loadable.field.LoadableField;
+import modernmods.hilt.data.loadable.primitive.IntLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.library.client.modifiers.model.SimpleModifierModel;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.tools.nbt.IToolStackView;
@@ -84,7 +84,7 @@ public class NormalModifierModel implements SimpleModifierModel {
   public void addQuads(IToolStackView tool, ModifierEntry entry, Function<Material,TextureAtlasSprite> spriteGetter, Transformation transforms, boolean isLarge, int startTintIndex, Consumer<Collection<BakedQuad>> quadConsumer, @Nullable ItemLayerPixels pixels) {
     Material spriteName = isLarge ? large : small;
     if (spriteName != null) {
-      quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(color, -1, new Material.Baked(spriteGetter.apply(spriteName), false), transforms, luminosity, pixels));
+      quadConsumer.accept(HiltItemLayerModel.getQuadsForSprite(color, -1, new Material.Baked(spriteGetter.apply(spriteName), false), transforms, luminosity, pixels));
     }
   }
 

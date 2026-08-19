@@ -4,7 +4,7 @@ import net.minecraft.world.item.crafting.CookingBookCategory;
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.data.PackOutput;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -55,7 +55,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                        .pattern(" b ")
                        .pattern("bbb")
                        .unlockedBy("has_item", has(Items.BAMBOO))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerGadgets.punji, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerGadgets.punji, folder)));
 
     // frames
     folder = "gadgets/fancy_frame/";
@@ -70,7 +70,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                        .pattern(" e ")
                        .unlockedBy("has_item", has(Tags.Items.GEMS_DIAMOND))
                        .group(prefix("fancy_item_frame"))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("gadgets/frame/" + FrameType.DIAMOND.getSerializedName())));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("gadgets/frame/" + FrameType.DIAMOND.getSerializedName())));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerGadgets.itemFrame.get(FrameType.CLEAR))
                        .define('e', Tags.Items.GLASS_PANES_COLORLESS)
                        .define('M', Tags.Items.GLASS_BLOCKS_COLORLESS)
@@ -79,7 +79,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                        .pattern(" e ")
                        .unlockedBy("has_item", has(Tags.Items.GLASS_PANES_COLORLESS))
                        .group(prefix("fancy_item_frame"))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + FrameType.CLEAR.getSerializedName())));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + FrameType.CLEAR.getSerializedName())));
     Item goldFrame = TinkerGadgets.itemFrame.get(FrameType.GOLD);
     Item reversedFrame = TinkerGadgets.itemFrame.get(FrameType.REVERSED_GOLD);
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.DECORATIONS, reversedFrame)
@@ -87,13 +87,13 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                           .requires(Items.REDSTONE_TORCH)
                           .unlockedBy("has_item", has(goldFrame))
                           .group(prefix("reverse_fancy_item_frame"))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + FrameType.REVERSED_GOLD.getSerializedName())));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + FrameType.REVERSED_GOLD.getSerializedName())));
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.DECORATIONS, goldFrame)
                           .requires(reversedFrame)
                           .requires(Items.REDSTONE_TORCH)
                           .unlockedBy("has_item", has(reversedFrame))
                           .group(prefix("reverse_fancy_item_frame"))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "reversed_reversed_gold")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "reversed_reversed_gold")));
 
     String cakeFolder = "gadgets/cake/";
     TinkerGadgets.cake.forEach((foliage, cake) -> {
@@ -109,7 +109,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                            .define('W', TinkerWorld.slimeTallGrass.get(foliage))
                            .pattern("MMM").pattern("SES").pattern("WWW")
                            .unlockedBy("has_slime", has(grass))
-                           .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(cakeFolder + foliage.getSerializedName())));
+                           .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(cakeFolder + foliage.getSerializedName())));
       }
     });
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.FOOD, TinkerGadgets.cake.get(FoliageType.ICHOR))
@@ -119,7 +119,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
       .define('W', Blocks.WARPED_ROOTS) // TODO: switch to ichor foliage one day
       .pattern("WWW").pattern("SES").pattern("MMM")
       .unlockedBy("has_slime", has(TinkerFluids.ichor))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(cakeFolder + "ichor")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(cakeFolder + "ichor")));
     Item bucket = TinkerFluids.magma.asItem();
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.FOOD, TinkerGadgets.magmaCake)
                        .define('M', bucket)
@@ -128,7 +128,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                        .define('W', Blocks.CRIMSON_ROOTS)
                        .pattern("MMM").pattern("SES").pattern("WWW")
                        .unlockedBy("has_slime", has(bucket))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(cakeFolder + "magma")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(cakeFolder + "magma")));
   }
 
 
@@ -145,17 +145,17 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
   private void foodCooking(Consumer<FinishedRecipe> consumer, ItemLike input, ItemLike output, float experience, String folder) {
     SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(input), RecipeCategory.FOOD, output, experience, 600)
                               .unlockedBy("has_item", has(input))
-                              .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(id(output), folder, "_campfire")));
+                              .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(id(output), folder, "_campfire")));
     // furnace is 200 ticks
     Identifier outputId = id(output);
     Criterion<?> criteria = has(input);
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(input), RecipeCategory.FOOD, CookingBookCategory.FOOD, output, experience, 200)
                               .unlockedBy("has_item", criteria)
-                              .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(outputId, folder, "_furnace")));
+                              .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(outputId, folder, "_furnace")));
     // smoker 100 ticks
     SimpleCookingRecipeBuilder.smoking(Ingredient.of(input), RecipeCategory.FOOD, output, experience, 100)
                               .unlockedBy("has_item", criteria)
-                              .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(outputId, folder, "_smoker")));
+                              .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(outputId, folder, "_smoker")));
   }
 
   /**
@@ -173,6 +173,6 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                        .pattern(" e ")
                        .unlockedBy("has_item", has(edges))
                        .group(prefix("fancy_item_frame"))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("gadgets/frame/" + type.getSerializedName())));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("gadgets/frame/" + type.getSerializedName())));
   }
 }

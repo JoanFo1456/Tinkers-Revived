@@ -3,8 +3,8 @@ package modernmods.modernfoundry.library.utils;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
-import modernmods.mantle.network.packet.ISimplePacket;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.network.packet.ISimplePacket;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 
 /** Helpers for a few JSON related tasks */
@@ -23,7 +23,7 @@ public class JsonUtils {
     return json;
   }
 
-  /** Creates a JSON object with the given type set, makes using {@link modernmods.mantle.data.gson.GenericRegisteredSerializer} easier */
+  /** Creates a JSON object with the given type set, makes using {@link modernmods.hilt.data.gson.GenericRegisteredSerializer} easier */
   public static JsonObject withType(Identifier type) {
     return withLocation("type", type);
   }

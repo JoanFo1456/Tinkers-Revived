@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.material.Fluid;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.recipe.RecipeCacheInvalidator;
 import modernmods.modernfoundry.common.recipe.RecipeCacheInvalidator.DuelSidedListener;

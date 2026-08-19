@@ -7,7 +7,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.util.TablePrinter;
-import modernmods.mantle.command.MantleCommand;
+import modernmods.hilt.command.HiltCommand;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.Modifier;
 import modernmods.modernfoundry.library.modifiers.ModifierManager;
@@ -28,7 +28,7 @@ public class ModifierPriorityCommand {
    * @param subCommand  Command builder
    */
   public static void register(LiteralArgumentBuilder<CommandSourceStack> subCommand) {
-    subCommand.requires(sender -> MantleCommand.hasPermission(sender, MantleCommand.PERMISSION_EDIT_SPAWN))
+    subCommand.requires(sender -> HiltCommand.hasPermission(sender, HiltCommand.PERMISSION_EDIT_SPAWN))
               // no argument: list all priorities
               .executes(context -> run(context, false))
               // argument: list only priorities of modifiers using that hook

@@ -11,9 +11,9 @@ import net.minecraft.world.entity.EntityType;
 import com.mojang.serialization.JsonOps;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
-import modernmods.mantle.data.GenericDataProvider;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.data.GenericDataProvider;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.library.json.loot.equipment.MobEquipment;
 import modernmods.modernfoundry.library.json.loot.equipment.MobEquipmentManager;
 

@@ -24,9 +24,9 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec2;
 import org.joml.Matrix4fc;
-import modernmods.mantle.client.model.util.DynamicItemModel;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.client.model.util.DynamicItemModel;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.config.Config;
 import modernmods.modernfoundry.library.client.modifiers.IBakedModifierModel;
@@ -518,7 +518,7 @@ public final class ToolModel {
           }
         } else {
           Material.Baked sprite = baker.materials().resolveSlot(textureSlots, name, resolvedModel);
-          for (BakedQuad quad : MantleItemLayerModel.getQuadsForSprite(-1, -1, sprite, transforms, 0, pixels)) {
+          for (BakedQuad quad : HiltItemLayerModel.getQuadsForSprite(-1, -1, sprite, transforms, 0, pixels)) {
             addToolQuad(builder, quad);
           }
         }

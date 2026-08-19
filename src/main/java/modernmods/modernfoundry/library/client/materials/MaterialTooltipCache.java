@@ -5,8 +5,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
-import modernmods.mantle.client.ResourceColorManager;
-import modernmods.mantle.data.listener.ISafeManagerReloadListener;
+import modernmods.hilt.client.ResourceColorManager;
+import modernmods.hilt.data.listener.ISafeManagerReloadListener;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 import modernmods.modernfoundry.library.utils.Util;
 

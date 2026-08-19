@@ -23,7 +23,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import modernmods.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
+import modernmods.hilt.compat.neoforged.neoforge.registries.ForgeRegistries;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.shared.TinkerCommons;
 import modernmods.modernfoundry.shared.block.SlimeType;

@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import modernmods.mantle.client.render.FluidCuboid;
+import modernmods.hilt.client.render.FluidCuboid;
 import modernmods.modernfoundry.common.config.Config;
 import modernmods.modernfoundry.library.client.RenderUtils;
 import modernmods.modernfoundry.library.fluid.FluidTankAnimated;
@@ -44,11 +44,11 @@ public class TankBlockEntityRenderer<T extends BlockEntity & ITankBlockEntity> i
     // decay the render offset toward 0 each frame so a fill/drain animates smoothly (quick, but not instant) instead of
     // snapping to the new level. Mirrors the pre-26.1 RenderUtils.renderFluidTank decay.
     final float offset = RenderUtils.decayRenderOffset(tank);
-    collector.submitCustomGeometry(poseStack, modernmods.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {
+    collector.submitCustomGeometry(poseStack, modernmods.hilt.client.render.HiltRenderTypes.FLUID, (pose, buffer) -> {
       PoseStack local = new PoseStack();
       local.last().pose().set(pose.pose());
       for (FluidCuboid cube : fluids) {
-        modernmods.mantle.client.render.FluidRenderer.renderScaledCuboid(local, buffer, cube, tank.getFluid(), offset, tank.getCapacity(), light, true);
+        modernmods.hilt.client.render.FluidRenderer.renderScaledCuboid(local, buffer, cube, tank.getFluid(), offset, tank.getCapacity(), light, true);
       }
     });
   }

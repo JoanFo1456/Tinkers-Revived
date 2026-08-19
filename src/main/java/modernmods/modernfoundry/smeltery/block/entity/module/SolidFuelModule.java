@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import modernmods.modernfoundry.compat.neoforged.neoforge.common.ForgeHooks;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
@@ -19,9 +19,9 @@ import net.neoforged.neoforge.transfer.EmptyResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.item.ItemResource;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.inventory.EmptyItemHandler;
-import modernmods.mantle.util.WeakConsumerWrapper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.inventory.EmptyItemHandler;
+import modernmods.hilt.util.WeakConsumerWrapper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.recipe.TinkerRecipeTypes;
 import modernmods.modernfoundry.library.recipe.fuel.MeltingFuel;
@@ -44,7 +44,7 @@ public class SolidFuelModule extends FuelModule {
   @Nullable
   private ResourceHandler<FluidResource> fluidTank;
 
-  public SolidFuelModule(MantleBlockEntity parent, BlockPos fuelPos) {
+  public SolidFuelModule(HiltBlockEntity parent, BlockPos fuelPos) {
     super(parent);
     this.fuelPos = fuelPos;
   }

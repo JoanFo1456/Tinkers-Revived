@@ -26,10 +26,10 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.HitResult;
-import modernmods.mantle.block.InventoryBlock;
-import modernmods.mantle.block.RetexturedBlock;
-import modernmods.mantle.util.BlockEntityHelper;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.block.InventoryBlock;
+import modernmods.hilt.block.RetexturedBlock;
+import modernmods.hilt.util.BlockEntityHelper;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.smeltery.block.entity.component.DuctBlockEntity;
 import modernmods.modernfoundry.smeltery.block.entity.component.SmelteryComponentBlockEntity;
 

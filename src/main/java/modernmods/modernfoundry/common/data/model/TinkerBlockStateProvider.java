@@ -27,12 +27,12 @@ import net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFi
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import modernmods.mantle.client.model.builder.ColoredModelBuilder;
-import modernmods.mantle.client.model.builder.ConnectedModelBuilder;
-import modernmods.mantle.client.model.builder.MantleItemLayerBuilder;
-import modernmods.mantle.registration.object.BuildingBlockObject;
-import modernmods.mantle.registration.object.FenceBuildingBlockObject;
-import modernmods.mantle.registration.object.WoodBlockObject;
+import modernmods.hilt.client.model.builder.ColoredModelBuilder;
+import modernmods.hilt.client.model.builder.ConnectedModelBuilder;
+import modernmods.hilt.client.model.builder.HiltItemLayerBuilder;
+import modernmods.hilt.registration.object.BuildingBlockObject;
+import modernmods.hilt.registration.object.FenceBuildingBlockObject;
+import modernmods.hilt.registration.object.WoodBlockObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.registration.GeodeItemObject;
 import modernmods.modernfoundry.common.registration.GeodeItemObject.BudSize;
@@ -495,7 +495,7 @@ public class TinkerBlockStateProvider extends BlockStateProvider {
     // build item model
     ItemModelBuilder item = itemModels().getBuilder(itemKey(block).toString()).parent(GENERATED).texture("layer0", pane);
     if (tint != -1) {
-      item.customLoader(MantleItemLayerBuilder::new).color(tint);
+      item.customLoader(HiltItemLayerBuilder::new).color(tint);
     }
     if (renderType != null) {
       item.renderType(renderType.name);

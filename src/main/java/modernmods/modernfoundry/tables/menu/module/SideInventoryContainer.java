@@ -7,11 +7,11 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.IItemHandler;
-import modernmods.mantle.inventory.BaseContainerMenu;
-import modernmods.mantle.inventory.EmptyItemHandler;
-import modernmods.mantle.inventory.SmartItemHandlerSlot;
+import modernmods.hilt.inventory.BaseContainerMenu;
+import modernmods.hilt.inventory.EmptyItemHandler;
+import modernmods.hilt.inventory.SmartItemHandlerSlot;
 
 import javax.annotation.Nullable;
 

@@ -65,21 +65,21 @@
     },
     {
       "type": "modernfoundry:is_effective",
-      "predicate_type": "mantle:tag",
+      "predicate_type": "hilt:tag",
       "tag": "modernfoundry:mineable/mattock"
     },
     {
       "type": "modernfoundry:mining_speed_modifier",
       "modifier": 2.0,
-      "predicate_type": "mantle:and",
+      "predicate_type": "hilt:and",
       "predicates": [
         {
-          "type": "mantle:tag",
+          "type": "hilt:tag",
           "tag": "minecraft:mineable/axe"
         },
         {
-          "type": "mantle:inverted",
-          "inverted_type": "mantle:tag",
+          "type": "hilt:inverted",
+          "inverted_type": "hilt:tag",
           "tag": "modernfoundry:mineable/mattock"
         }
       ]

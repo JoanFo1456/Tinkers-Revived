@@ -26,17 +26,17 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
-import modernmods.mantle.fluid.FluidTransferHelper;
-import modernmods.mantle.recipe.helper.RecipeHelper;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.fluid.FluidTransferHelper;
+import modernmods.hilt.recipe.helper.RecipeHelper;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.Sounds;
 import modernmods.modernfoundry.common.TinkerTags;
@@ -129,7 +129,7 @@ public abstract class CastingBlockEntity extends TableBlockEntity implements Wor
   public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction facing) {
     if (capability == ForgeCapabilities.FLUID_HANDLER)
       return holder.cast();
-    return modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
+    return modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
   /**

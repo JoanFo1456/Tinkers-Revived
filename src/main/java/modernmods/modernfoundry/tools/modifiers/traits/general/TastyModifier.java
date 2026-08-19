@@ -19,7 +19,7 @@ import modernmods.modernfoundry.shared.TinkerCommons;
 
 import java.util.List;
 
-/** @deprecated use {@link EdibleModule} and {@link modernmods.mantle.loot.AddEntryLootModifier} */
+/** @deprecated use {@link EdibleModule} and {@link modernmods.hilt.loot.AddEntryLootModifier} */
 @Deprecated(forRemoval = true)
 public class TastyModifier extends Modifier implements ProcessLootModifierHook {
   @Override

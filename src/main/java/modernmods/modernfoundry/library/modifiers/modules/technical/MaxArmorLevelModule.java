@@ -4,7 +4,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import modernmods.mantle.util.LogicHelper;
+import modernmods.hilt.util.LogicHelper;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierHooks;

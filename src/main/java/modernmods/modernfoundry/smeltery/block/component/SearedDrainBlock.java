@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import modernmods.mantle.fluid.FluidTransferHelper;
+import modernmods.hilt.fluid.FluidTransferHelper;
 import modernmods.modernfoundry.smeltery.block.entity.component.DrainBlockEntity;
 
 /** Extenson to include interaction behavior */

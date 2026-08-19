@@ -1,7 +1,7 @@
 package modernmods.modernfoundry.library.modifiers;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.field.ContextKey;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.utils.IdParser;
 import modernmods.modernfoundry.library.utils.ResourceId;

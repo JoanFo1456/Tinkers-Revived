@@ -22,7 +22,7 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.fluid.tooltip.FluidTooltipHandler;
+import modernmods.hilt.fluid.tooltip.FluidTooltipHandler;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.GuiUtil;
 import modernmods.modernfoundry.library.recipe.fuel.MeltingFuel;

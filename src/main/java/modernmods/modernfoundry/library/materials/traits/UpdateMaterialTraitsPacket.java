@@ -2,7 +2,7 @@ package modernmods.modernfoundry.library.materials.traits;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import modernmods.mantle.network.packet.IThreadsafePacket;
+import modernmods.hilt.network.packet.IThreadsafePacket;
 import modernmods.modernfoundry.library.materials.MaterialRegistry;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;
 

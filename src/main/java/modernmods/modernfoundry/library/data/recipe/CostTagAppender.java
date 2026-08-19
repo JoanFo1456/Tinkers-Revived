@@ -10,8 +10,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.ApiStatus.Internal;
-import modernmods.mantle.Mantle;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.Hilt;
+import modernmods.hilt.registration.object.FluidObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -85,7 +85,7 @@ public class CostTagAppender {
   public CostTagAppender metalTag(int cost, String prefix, String... names) {
     TagAppender<Item, Item> tag = tag(cost);
     for (String name : names) {
-      tag.add(TagEntry.optionalTag(Identifier.fromNamespaceAndPath(Mantle.COMMON, prefix + name + '/' + metal)));
+      tag.add(TagEntry.optionalTag(Identifier.fromNamespaceAndPath(Hilt.COMMON, prefix + name + '/' + metal)));
     }
     return this;
   }

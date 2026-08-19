@@ -1,12 +1,12 @@
 {
-  "type": "mantle:add_entry",
+  "type": "hilt:add_entry",
   "conditions": [
     {
-      "condition": "mantle:block_tag",
+      "condition": "hilt:block_tag",
       "tag": "c:ores/aluminum"
     },
     {
-      "condition": "mantle:tag_filled",
+      "condition": "hilt:tag_filled",
       "tag": "c:nuggets/aluminum"
     },
     {
@@ -15,7 +15,7 @@
     }
   ],
   "entry": {
-    "type": "mantle:tag_preference",
+    "type": "hilt:tag_preference",
     "tag": "c:nuggets/aluminum"
   },
   "functions": [
@@ -40,9 +40,9 @@
   ],
   "post_conditions": [
     {
-      "type": "mantle:inverted",
+      "type": "hilt:inverted",
       "condition": {
-        "type": "mantle:contains_item",
+        "type": "hilt:contains_item",
         "ingredient": {
           "tag": "c:ores/aluminum"
         }

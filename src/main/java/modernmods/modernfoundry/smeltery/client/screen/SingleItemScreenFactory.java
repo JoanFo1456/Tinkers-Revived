@@ -6,7 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import modernmods.mantle.client.screen.BackgroundContainerScreen;
+import modernmods.hilt.client.screen.BackgroundContainerScreen;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.smeltery.menu.SingleItemContainerMenu;
 

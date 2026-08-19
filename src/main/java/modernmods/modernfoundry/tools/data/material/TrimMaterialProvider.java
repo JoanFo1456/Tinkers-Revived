@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.registration.object.MetalItemObject;
+import modernmods.hilt.registration.object.MetalItemObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;
 import modernmods.modernfoundry.shared.TinkerMaterials;

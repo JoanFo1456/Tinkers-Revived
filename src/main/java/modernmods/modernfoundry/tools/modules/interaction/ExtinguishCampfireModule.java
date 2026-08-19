@@ -9,7 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.hook.interaction.InteractionSource;
 import modernmods.modernfoundry.library.modifiers.modules.behavior.BlockTransformModule;

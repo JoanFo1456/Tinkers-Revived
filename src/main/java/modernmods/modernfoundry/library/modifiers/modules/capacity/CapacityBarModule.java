@@ -1,8 +1,8 @@
 package modernmods.modernfoundry.library.modifiers.modules.capacity;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.library.json.LevelingInt;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierManager;

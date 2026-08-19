@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.recipe.ingredient.SizedIngredient;
+import modernmods.hilt.recipe.ingredient.SizedIngredient;
 import modernmods.modernfoundry.library.json.IntRange;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.tools.SlotType.SlotCount;

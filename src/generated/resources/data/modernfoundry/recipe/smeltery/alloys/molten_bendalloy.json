@@ -1,19 +1,19 @@
 {
   "neoforge:conditions": [
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:ingots/bendalloy"
     },
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:ingots/tin"
     },
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:ingots/lead"
     },
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:ingots/cadmium"
     }
   ],

@@ -5,7 +5,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.client.TooltipKey;
+import modernmods.hilt.client.TooltipKey;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.hook.interaction.InteractionSource;
 import modernmods.modernfoundry.library.tools.capability.inventory.ToolInventoryCapability;

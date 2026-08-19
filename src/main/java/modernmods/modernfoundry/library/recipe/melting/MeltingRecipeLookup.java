@@ -7,7 +7,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.ApiStatus.Internal;
-import modernmods.mantle.recipe.helper.FluidOutput;
+import modernmods.hilt.recipe.helper.FluidOutput;
 import modernmods.modernfoundry.common.recipe.RecipeCacheInvalidator;
 import modernmods.modernfoundry.common.recipe.RecipeCacheInvalidator.DuelSidedListener;
 

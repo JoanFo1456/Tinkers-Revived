@@ -5,7 +5,7 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import modernmods.mantle.client.screen.book.element.ItemElement;
+import modernmods.hilt.client.screen.book.element.ItemElement;
 
 import javax.annotation.Nullable;
 import java.util.Collection;

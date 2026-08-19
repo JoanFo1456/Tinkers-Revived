@@ -20,10 +20,10 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.fluid.tooltip.FluidTooltipHandler;
-import modernmods.mantle.plugin.jei.MantleJEIConstants;
-import modernmods.mantle.plugin.jei.entity.EntityIngredientRenderer;
-import modernmods.mantle.recipe.ingredient.EntityIngredient;
+import modernmods.hilt.fluid.tooltip.FluidTooltipHandler;
+import modernmods.hilt.plugin.jei.HiltJEIConstants;
+import modernmods.hilt.plugin.jei.entity.EntityIngredientRenderer;
+import modernmods.hilt.recipe.ingredient.EntityIngredient;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.recipe.FluidValues;
 import modernmods.modernfoundry.library.recipe.entitymelting.EntityMeltingRecipe;
@@ -98,8 +98,8 @@ public class EntityMeltingRecipeCategory implements IRecipeCategory<EntityMeltin
     // inputs, filtered by spawn egg item
     EntityIngredient input = recipe.getIngredient();
     IIngredientAcceptor<?> entities = builder.addSlot(RecipeIngredientRole.INPUT, 19, 11)
-                                             .setCustomRenderer(MantleJEIConstants.ENTITY_TYPE, entityRenderer)
-                                             .addIngredients(MantleJEIConstants.ENTITY_TYPE, input.getDisplay());
+                                             .setCustomRenderer(HiltJEIConstants.ENTITY_TYPE, entityRenderer)
+                                             .addIngredients(HiltJEIConstants.ENTITY_TYPE, input.getDisplay());
     // add spawn eggs as hidden inputs
     IIngredientAcceptor<?> eggs = builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addItemStacks(input.getEggs());
     builder.createFocusLink(entities, eggs);

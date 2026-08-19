@@ -18,7 +18,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
 import modernmods.modernfoundry.compat.neoforged.neoforge.network.NetworkHooks;
-import modernmods.mantle.inventory.BaseContainerMenu;
+import modernmods.hilt.inventory.BaseContainerMenu;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.Sounds;
 import modernmods.modernfoundry.common.TinkerTags;

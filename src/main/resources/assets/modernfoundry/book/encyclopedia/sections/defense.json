@@ -1,14 +1,14 @@
 [
   {
     "name": "group_protection",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "defense/protection.json",
     "extraData": { "modernfoundry:load_modifiers": { "tag": "modernfoundry:defense/protection", "path": "defense/protection", "prefix": "protection" }}
   },
 
   {
     "name": "group_special",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "defense/special.json",
     "extraData": { "modernfoundry:load_modifiers": { "tag": "modernfoundry:defense/special", "path": "defense/special", "prefix": "special" }}
   }

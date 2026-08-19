@@ -5,7 +5,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import modernmods.mantle.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.ElementScreen;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.GuiUtil;
 import modernmods.modernfoundry.smeltery.block.entity.controller.AlloyerBlockEntity;

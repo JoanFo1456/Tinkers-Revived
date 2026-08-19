@@ -5,9 +5,9 @@ import com.google.gson.JsonParseException;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.field.LoadableField;
-import modernmods.mantle.util.typed.TypedMap;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.field.LoadableField;
+import modernmods.hilt.util.typed.TypedMap;
 
 import java.util.function.Function;
 

@@ -12,15 +12,15 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import modernmods.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.compat.neoforged.neoforge.registries.ForgeRegistries;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.library.utils.TagUtil;
 import modernmods.modernfoundry.smeltery.block.component.SearedBlock;
 
 import javax.annotation.Nullable;
 
-public class ServantTileEntity extends MantleBlockEntity implements IServantLogic {
+public class ServantTileEntity extends HiltBlockEntity implements IServantLogic {
   private static final String TAG_MASTER_POS = "masterOffset";
   private static final String TAG_MASTER_BLOCK = "masterBlock";
 

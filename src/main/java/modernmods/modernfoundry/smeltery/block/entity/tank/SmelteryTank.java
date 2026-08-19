@@ -13,7 +13,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.transaction.SnapshotJournal;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.library.fluid.IMultitankListChange;
 import modernmods.modernfoundry.library.utils.TagUtil;
@@ -36,7 +36,7 @@ import java.util.function.Consumer;
  * notifications ({@link ISmelteryTankHandler#notifyFluidsChanged} and the {@link #tankListChange} listeners) are
  * reconstructed from the before/after diff and deferred to {@link SnapshotJournal#onRootCommit}.
  */
-public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> implements ResourceHandler<FluidResource>, IFluidHandler, IMultitankListChange {
+public class SmelteryTank<T extends HiltBlockEntity & ISmelteryTankHandler> implements ResourceHandler<FluidResource>, IFluidHandler, IMultitankListChange {
   private final T parent;
   /** Fluids actually contained in the tank */
   @Getter

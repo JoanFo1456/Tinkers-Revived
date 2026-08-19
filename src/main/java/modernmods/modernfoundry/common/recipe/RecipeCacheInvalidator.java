@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
-import modernmods.mantle.data.listener.IEarlySafeManagerReloadListener;
+import modernmods.hilt.data.listener.IEarlySafeManagerReloadListener;
 import modernmods.modernfoundry.TConstruct;
 
 import java.util.ArrayList;

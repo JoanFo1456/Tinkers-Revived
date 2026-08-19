@@ -11,8 +11,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
-import modernmods.mantle.Mantle;
-import modernmods.mantle.fluid.tooltip.FluidTooltipHandler;
+import modernmods.hilt.Hilt;
+import modernmods.hilt.fluid.tooltip.FluidTooltipHandler;
 import modernmods.modernfoundry.library.client.GuiUtil;
 import modernmods.modernfoundry.smeltery.client.screen.IScreenWithFluidTank;
 
@@ -26,7 +26,7 @@ import java.util.function.BiConsumer;
  */
 public class GuiTankModule implements IScreenWithFluidTank, ClickableTankModule {
   /** Tooltip for when the capacity is 0, it breaks some stuff */
-  private static final Component NO_CAPACITY = Component.translatable(Mantle.makeDescriptionId("gui", "fluid.millibucket"), 0).withStyle(ChatFormatting.GRAY);
+  private static final Component NO_CAPACITY = Component.translatable(Hilt.makeDescriptionId("gui", "fluid.millibucket"), 0).withStyle(ChatFormatting.GRAY);
 
   private static final int TANK_INDEX = 0;
   private final AbstractContainerScreen<?> screen;

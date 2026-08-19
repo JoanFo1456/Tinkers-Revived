@@ -31,15 +31,15 @@ import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import modernmods.mantle.item.BlockTooltipItem;
-import modernmods.mantle.item.TooltipItem;
-import modernmods.mantle.registration.deferred.BlockEntityTypeDeferredRegister;
-import modernmods.mantle.registration.deferred.EntityTypeDeferredRegister;
-import modernmods.mantle.registration.deferred.EnumDeferredRegister;
-import modernmods.mantle.registration.deferred.MenuTypeDeferredRegister;
-import modernmods.mantle.registration.deferred.SynchronizedDeferredRegister;
-import modernmods.mantle.registration.object.BuildingBlockObject;
-import modernmods.mantle.registration.object.EnumObject;
+import modernmods.hilt.item.BlockTooltipItem;
+import modernmods.hilt.item.TooltipItem;
+import modernmods.hilt.registration.deferred.BlockEntityTypeDeferredRegister;
+import modernmods.hilt.registration.deferred.EntityTypeDeferredRegister;
+import modernmods.hilt.registration.deferred.EnumDeferredRegister;
+import modernmods.hilt.registration.deferred.MenuTypeDeferredRegister;
+import modernmods.hilt.registration.deferred.SynchronizedDeferredRegister;
+import modernmods.hilt.registration.object.BuildingBlockObject;
+import modernmods.hilt.registration.object.EnumObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.registration.BlockDeferredRegisterExtension;
 import modernmods.modernfoundry.common.registration.FluidDeferredRegisterExtension;
@@ -87,12 +87,12 @@ public abstract class TinkerModule {
   /**
    * Registers a type aware recipe serializer. In 26.1 {@link RecipeSerializer} is a final record, so type aware serializers
    * are no longer registry entries; instead we register the memoized {@link net.minecraft.world.item.crafting.RecipeSerializer}
-   * record it wraps (stable instance thanks to Mantle memoization) while returning the type aware wrapper for datagen and recipe use.
+   * record it wraps (stable instance thanks to Hilt memoization) while returning the type aware wrapper for datagen and recipe use.
    * @param name        Registry name
    * @param serializer  Type aware serializer to register
    * @return  The passed type aware serializer, for use as a static field
    */
-  protected static <R extends net.minecraft.world.item.crafting.Recipe<?>> modernmods.mantle.recipe.helper.TypeAwareRecipeSerializer<R> registerTyped(String name, modernmods.mantle.recipe.helper.TypeAwareRecipeSerializer<R> serializer) {
+  protected static <R extends net.minecraft.world.item.crafting.Recipe<?>> modernmods.hilt.recipe.helper.TypeAwareRecipeSerializer<R> registerTyped(String name, modernmods.hilt.recipe.helper.TypeAwareRecipeSerializer<R> serializer) {
     RECIPE_SERIALIZERS.register(name, serializer::serializer);
     return serializer;
   }

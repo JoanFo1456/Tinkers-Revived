@@ -9,7 +9,7 @@ import com.google.gson.JsonSyntaxException;
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.utils.JsonUtils;
 

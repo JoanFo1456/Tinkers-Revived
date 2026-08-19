@@ -15,13 +15,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.ApiStatus.Internal;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.loadable.common.ColorLoadable;
-import modernmods.mantle.data.loadable.mapping.SimpleRecordLoadable;
-import modernmods.mantle.data.loadable.primitive.EnumLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.common.ColorLoadable;
+import modernmods.hilt.data.loadable.mapping.SimpleRecordLoadable;
+import modernmods.hilt.data.loadable.primitive.EnumLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.tools.nbt.IToolStackView;
@@ -112,7 +112,7 @@ public interface TrimModifierModel extends ModifierModel {
         }
         // no texture here mean the material is unknown, otherwise add it
         if (texture.sprite != null) {
-          quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(texture.color, -1, new Material.Baked(texture.sprite, false), transforms, 0, pixels));
+          quadConsumer.accept(HiltItemLayerModel.getQuadsForSprite(texture.color, -1, new Material.Baked(texture.sprite, false), transforms, 0, pixels));
         }
       }
     }

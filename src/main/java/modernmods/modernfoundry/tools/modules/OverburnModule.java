@@ -9,7 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.data.loadable.record.SingletonLoader;
+import modernmods.hilt.data.loadable.record.SingletonLoader;
 import modernmods.modernfoundry.library.modifiers.Modifier;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierHooks;

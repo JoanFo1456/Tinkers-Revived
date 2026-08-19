@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import modernmods.mantle.network.packet.IThreadsafePacket;
+import modernmods.hilt.network.packet.IThreadsafePacket;
 
 import java.util.Map;
 import java.util.Map.Entry;

@@ -1,5 +1,5 @@
 {
-  "loader": "mantle:nbt_key",
+  "loader": "hilt:nbt_key",
   "parent": "neoforge:item/default",
   "textures": {
     "default": "modernfoundry:item/slot/default",

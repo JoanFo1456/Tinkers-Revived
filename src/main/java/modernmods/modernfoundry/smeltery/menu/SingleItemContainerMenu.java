@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.IItemHandler;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import modernmods.modernfoundry.smeltery.block.entity.ILegacyCapabilityBlockEntity;
-import modernmods.mantle.inventory.SmartItemHandlerSlot;
+import modernmods.hilt.inventory.SmartItemHandlerSlot;
 import modernmods.modernfoundry.shared.inventory.TriggeringBaseContainerMenu;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
 

@@ -23,18 +23,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.model.data.ModelData;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
-import modernmods.mantle.fluid.FluidTransferHelper;
-import modernmods.mantle.fluid.transfer.FluidContainerTransferManager;
-import modernmods.mantle.fluid.transfer.IFluidContainerTransfer;
-import modernmods.mantle.fluid.transfer.IFluidContainerTransfer.TransferResult;
+import modernmods.hilt.fluid.FluidTransferHelper;
+import modernmods.hilt.fluid.transfer.FluidContainerTransferManager;
+import modernmods.hilt.fluid.transfer.IFluidContainerTransfer;
+import modernmods.hilt.fluid.transfer.IFluidContainerTransfer.TransferResult;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.Sounds;
 import modernmods.modernfoundry.library.client.model.ModelProperties;
@@ -244,7 +244,7 @@ public class CastingTankBlockEntity extends TableBlockEntity implements ITankBlo
     if (capability == ForgeCapabilities.FLUID_HANDLER) {
       return fluidHolder.cast();
     }
-    return modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
+    return modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
   public void invalidateCaps() {

@@ -5,8 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import modernmods.mantle.data.loadable.Loadable;
-import modernmods.mantle.data.loadable.primitive.FloatLoadable;
+import modernmods.hilt.data.loadable.Loadable;
+import modernmods.hilt.data.loadable.primitive.FloatLoadable;
 import modernmods.modernfoundry.library.tools.stat.INumericToolStat;
 import modernmods.modernfoundry.library.tools.stat.ToolStats;
 

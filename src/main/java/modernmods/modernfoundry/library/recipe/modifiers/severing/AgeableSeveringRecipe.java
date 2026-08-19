@@ -5,10 +5,10 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.ingredient.EntityIngredient;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.ingredient.EntityIngredient;
 import modernmods.modernfoundry.tools.TinkerModifiers;
 
 public class AgeableSeveringRecipe extends SeveringRecipe {

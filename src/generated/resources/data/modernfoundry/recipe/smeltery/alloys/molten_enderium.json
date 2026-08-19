@@ -1,11 +1,11 @@
 {
   "neoforge:conditions": [
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:ingots/enderium"
     },
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:ingots/lead"
     }
   ],

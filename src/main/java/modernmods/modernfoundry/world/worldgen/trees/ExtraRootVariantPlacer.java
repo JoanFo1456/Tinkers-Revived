@@ -26,7 +26,7 @@ import net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacer
 import net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacer;
 import net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacerType;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import modernmods.mantle.registration.object.EnumObject;
+import modernmods.hilt.registration.object.EnumObject;
 import modernmods.modernfoundry.shared.block.SlimeType;
 import modernmods.modernfoundry.world.TinkerStructures;
 import modernmods.modernfoundry.world.TinkerWorld;

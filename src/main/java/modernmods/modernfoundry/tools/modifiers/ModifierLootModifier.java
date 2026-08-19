@@ -12,7 +12,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import modernmods.mantle.loot.AbstractLootModifierBuilder.GenericLootModifierBuilder;
+import modernmods.hilt.loot.AbstractLootModifierBuilder.GenericLootModifierBuilder;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierHooks;

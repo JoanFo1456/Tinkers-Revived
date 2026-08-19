@@ -24,8 +24,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.crafting.ICustomIngredient;
 import net.neoforged.neoforge.common.crafting.IngredientType;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.util.RegistryHelper;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.util.RegistryHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.shared.TinkerCommons;
 

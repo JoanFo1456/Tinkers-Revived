@@ -3,7 +3,7 @@
   "cooling_time": 20,
   "fluid": {
     "amount": 50,
-    "tag": "mantle:water"
+    "tag": "hilt:water"
   },
   "id": "modernfoundry:tools/modifiers/slotless/ammo_tip_clearing",
   "modifier": "modernfoundry:tipped",

@@ -9,7 +9,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
-import modernmods.mantle.data.loadable.record.SingletonLoader;
+import modernmods.hilt.data.loadable.record.SingletonLoader;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierHooks;

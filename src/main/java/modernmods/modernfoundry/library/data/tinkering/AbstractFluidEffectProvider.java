@@ -22,12 +22,12 @@ import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.OrCondition;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.data.GenericDataProvider;
-import modernmods.mantle.data.predicate.IJsonPredicate;
-import modernmods.mantle.data.predicate.entity.LivingEntityPredicate;
-import modernmods.mantle.recipe.condition.TagFilledCondition;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.data.GenericDataProvider;
+import modernmods.hilt.data.predicate.IJsonPredicate;
+import modernmods.hilt.data.predicate.entity.LivingEntityPredicate;
+import modernmods.hilt.recipe.condition.TagFilledCondition;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.registration.object.FluidObject;
 import modernmods.modernfoundry.common.TinkerDamageTypes;
 import modernmods.modernfoundry.common.json.ConfigEnabledCondition;
 import modernmods.modernfoundry.library.modifiers.fluid.FluidEffect;
@@ -51,7 +51,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 
 /** Data provider for spilling fluids */
 @SuppressWarnings("deprecation")  // fluid registry is ours to use, not yours forge

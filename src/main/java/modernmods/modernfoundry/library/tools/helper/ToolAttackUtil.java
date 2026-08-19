@@ -29,8 +29,8 @@ import net.minecraft.world.level.Level;
 import modernmods.modernfoundry.compat.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
-import modernmods.mantle.util.CombatHelper;
-import modernmods.mantle.util.OffhandCooldownTracker;
+import modernmods.hilt.util.CombatHelper;
+import modernmods.hilt.util.OffhandCooldownTracker;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
@@ -74,7 +74,7 @@ public class ToolAttackUtil {
       return (float) holder.getAttributeBaseValue(attribute);
     }
 
-    // Mantle optimizes this method by skipping if the mainhand and offhand have no attributes
+    // Hilt optimizes this method by skipping if the mainhand and offhand have no attributes
     // for our case though, we wish to merge in the tool value so always have something
     // plus, its more efficient in the attribute builder if we can directly modify the final map
 

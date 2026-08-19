@@ -5,8 +5,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ResultSlot;
 import net.minecraft.world.item.ItemStack;
 import modernmods.modernfoundry.compat.neoforged.neoforge.event.ForgeEventFactory;
-import modernmods.mantle.inventory.CustomResultSlot;
-import modernmods.mantle.inventory.IContainerCraftingCustom;
+import modernmods.hilt.inventory.CustomResultSlot;
+import modernmods.hilt.inventory.IContainerCraftingCustom;
 
 import javax.annotation.Nonnull;
 

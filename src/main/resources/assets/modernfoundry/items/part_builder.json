@@ -1,6 +1,6 @@
 {
   "model": {
-    "type": "mantle:retextured",
+    "type": "hilt:retextured",
     "model": "modernfoundry:item/part_builder",
     "retextured": ["leg", "legBottom"]
   }

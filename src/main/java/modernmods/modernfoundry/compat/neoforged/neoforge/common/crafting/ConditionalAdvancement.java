@@ -8,7 +8,7 @@ import java.util.List;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.conditions.ICondition;
-import modernmods.mantle.recipe.condition.ConditionHelper;
+import modernmods.hilt.recipe.condition.ConditionHelper;
 
 /** Minimal datagen compatibility shim for conditional advancements. */
 public final class ConditionalAdvancement {

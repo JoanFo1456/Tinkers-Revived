@@ -20,13 +20,13 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyC
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
-import modernmods.mantle.loot.AddEntryLootModifier;
-import modernmods.mantle.loot.ReplaceItemLootModifier;
-import modernmods.mantle.loot.condition.BlockTagLootCondition;
-import modernmods.mantle.loot.condition.ContainsItemModifierLootCondition;
-import modernmods.mantle.loot.entry.TagPreferenceLootEntry;
-import modernmods.mantle.recipe.condition.TagFilledCondition;
-import modernmods.mantle.recipe.helper.ItemOutput;
+import modernmods.hilt.loot.AddEntryLootModifier;
+import modernmods.hilt.loot.ReplaceItemLootModifier;
+import modernmods.hilt.loot.condition.BlockTagLootCondition;
+import modernmods.hilt.loot.condition.ContainsItemModifierLootCondition;
+import modernmods.hilt.loot.entry.TagPreferenceLootEntry;
+import modernmods.hilt.recipe.condition.TagFilledCondition;
+import modernmods.hilt.recipe.helper.ItemOutput;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.json.BlockOrEntityCondition;
@@ -43,7 +43,7 @@ import modernmods.modernfoundry.tools.modifiers.loot.ChrysophiliteLootCondition;
 import modernmods.modernfoundry.tools.modifiers.loot.HasModifierLootCondition;
 import modernmods.modernfoundry.tools.modifiers.loot.ModifierBonusLootFunction;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 
 public class GlobalLootModifiersProvider extends GlobalLootModifierProvider {
   public GlobalLootModifiersProvider(PackOutput output) {

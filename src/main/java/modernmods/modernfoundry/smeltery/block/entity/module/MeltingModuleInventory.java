@@ -10,7 +10,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import modernmods.modernfoundry.library.recipe.melting.IMeltingContainer.IOreRate;
 import modernmods.modernfoundry.library.recipe.melting.IMeltingRecipe;
 
@@ -34,7 +34,7 @@ public class MeltingModuleInventory implements IItemHandlerModifiable {
   private static final String TAG_SIZE = "size";
 
   /** Parent tile entity */
-  private final MantleBlockEntity parent;
+  private final HiltBlockEntity parent;
   /** Fluid handler for outputs */
   protected final IFluidHandler fluidHandler;
   /** Array of modules containing each slot */
@@ -51,7 +51,7 @@ public class MeltingModuleInventory implements IItemHandlerModifiable {
    * @param oreRate        Ore rate
    * @param size           Size
    */
-  public MeltingModuleInventory(MantleBlockEntity parent, IFluidHandler fluidHandler, IOreRate oreRate, int size) {
+  public MeltingModuleInventory(HiltBlockEntity parent, IFluidHandler fluidHandler, IOreRate oreRate, int size) {
     this.parent = parent;
     this.fluidHandler = fluidHandler;
     this.modules = new MeltingModule[size];
@@ -65,7 +65,7 @@ public class MeltingModuleInventory implements IItemHandlerModifiable {
    * @param fluidHandler   Tank for output
    * @param oreRate        Ore rate
    */
-  public MeltingModuleInventory(MantleBlockEntity parent, IFluidHandler fluidHandler, IOreRate oreRate) {
+  public MeltingModuleInventory(HiltBlockEntity parent, IFluidHandler fluidHandler, IOreRate oreRate) {
     this(parent, fluidHandler, oreRate, 0);
   }
 

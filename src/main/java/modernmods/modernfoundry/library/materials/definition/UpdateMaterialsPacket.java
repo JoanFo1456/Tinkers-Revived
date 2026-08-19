@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.TagKey;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import modernmods.mantle.network.packet.IThreadsafePacket;
+import modernmods.hilt.network.packet.IThreadsafePacket;
 import modernmods.modernfoundry.library.materials.MaterialRegistry;
 import modernmods.modernfoundry.library.utils.GenericTagUtil;
 

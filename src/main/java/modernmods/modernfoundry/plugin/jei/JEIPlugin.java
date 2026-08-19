@@ -45,10 +45,10 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.fml.ModList;
-import modernmods.mantle.data.loadable.LoadableCodec;
-import modernmods.mantle.recipe.helper.RecipeHelper;
-import modernmods.mantle.recipe.sync.ClientRecipeCache;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.data.loadable.LoadableCodec;
+import modernmods.hilt.recipe.helper.RecipeHelper;
+import modernmods.hilt.recipe.sync.ClientRecipeCache;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.config.Config;
@@ -135,7 +135,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
@@ -200,7 +200,7 @@ public class JEIPlugin implements IModPlugin {
     Level level = Minecraft.getInstance().level;
     assert level != null;
     RegistryAccess access = level.registryAccess();
-    // client has no RecipeManager in 26.1; read custom recipes from Mantle's synced client recipe map
+    // client has no RecipeManager in 26.1; read custom recipes from Hilt's synced client recipe map
     RecipeMap manager = ClientRecipeCache.getRecipeMap();
     // casting
     List<IDisplayableCastingRecipe> castingBasinRecipes = RecipeHelper.getJEIRecipes(access, manager, TinkerRecipeTypes.CASTING_BASIN.get(), IDisplayableCastingRecipe.class);

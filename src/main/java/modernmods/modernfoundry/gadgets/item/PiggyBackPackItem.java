@@ -23,7 +23,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.client.extensions.common.IClientMobEffectExtensions;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import modernmods.mantle.item.TooltipItem;
+import modernmods.hilt.item.TooltipItem;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerEffect;
 import modernmods.modernfoundry.common.TinkerTags;

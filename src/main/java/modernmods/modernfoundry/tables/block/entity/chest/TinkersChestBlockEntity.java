@@ -13,7 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.tables.TinkerTables;
 import modernmods.modernfoundry.tables.block.entity.inventory.IChestItemHandler;
@@ -69,7 +69,7 @@ public class TinkersChestBlockEntity extends AbstractChestBlockEntity {
   /** Item handler for tinkers chests */
   public static class TinkersChestItemHandler extends ItemStackHandler implements IChestItemHandler {
     @Setter @Nullable
-    private MantleBlockEntity parent;
+    private HiltBlockEntity parent;
     public TinkersChestItemHandler() {
       super(64);
     }

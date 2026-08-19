@@ -6,7 +6,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import modernmods.mantle.network.packet.IThreadsafePacket;
+import modernmods.hilt.network.packet.IThreadsafePacket;
 import modernmods.modernfoundry.library.tools.layout.StationSlotLayoutLoader;
 import modernmods.modernfoundry.tables.menu.TinkerStationContainerMenu;
 

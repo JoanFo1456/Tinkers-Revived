@@ -20,7 +20,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.library.recipe.partbuilder.Pattern;
 import modernmods.modernfoundry.library.utils.TagUtil;
 

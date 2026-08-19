@@ -13,8 +13,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.model.data.ModelData;
-import modernmods.mantle.block.entity.IRetexturedBlockEntity;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.block.entity.IRetexturedBlockEntity;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.shared.block.entity.TableBlockEntity;
 
 import javax.annotation.Nonnull;

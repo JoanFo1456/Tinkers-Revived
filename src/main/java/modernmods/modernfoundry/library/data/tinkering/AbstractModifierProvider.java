@@ -7,7 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.PackOutput.Target;
 import com.mojang.serialization.JsonOps;
 import net.neoforged.neoforge.common.conditions.ICondition;
-import modernmods.mantle.data.GenericDataProvider;
+import modernmods.hilt.data.GenericDataProvider;
 import modernmods.modernfoundry.library.json.JsonRedirect;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
 import modernmods.modernfoundry.library.modifiers.ModifierManager;

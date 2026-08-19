@@ -15,14 +15,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.util.WeakConsumerWrapper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.util.WeakConsumerWrapper;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.library.recipe.FluidValues;
 import modernmods.modernfoundry.library.utils.TagUtil;
@@ -31,7 +31,7 @@ import modernmods.modernfoundry.smeltery.network.FaucetActivationPacket;
 
 import static modernmods.modernfoundry.smeltery.block.FaucetBlock.FACING;
 
-public class FaucetBlockEntity extends MantleBlockEntity {
+public class FaucetBlockEntity extends HiltBlockEntity {
   /** amount of MB to extract from the input at a time */
   public static final int PACKET_SIZE = FluidValues.INGOT;
   /** Transfer rate of the faucet */

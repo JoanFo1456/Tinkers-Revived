@@ -1,32 +1,32 @@
 [
   {
     "name": "index",
-    "type": "mantle:index",
+    "type": "hilt:index",
     "data": "modifiers/index.json"
   },
   {
     "name": "traits",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "modifiers/traits.json"
   },
   {
     "name": "upgrades",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "modifiers/upgrades.json"
   },
   {
     "name": "slotless",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "modifiers/slotless.json"
   },
   {
     "name": "abilities",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "modifiers/abilities.json"
   },
   {
     "name": "defense",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "modifiers/defense.json"
   }
 ]

@@ -1,9 +1,9 @@
 package modernmods.modernfoundry.library.tools.definition.module.build;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.loadable.primitive.IntLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.primitive.IntLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.library.module.HookProvider;
 import modernmods.modernfoundry.library.module.ModuleHook;
 import modernmods.modernfoundry.library.tools.definition.module.ToolHooks;

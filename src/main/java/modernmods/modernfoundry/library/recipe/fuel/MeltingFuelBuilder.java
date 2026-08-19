@@ -5,12 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.ApiStatus.Internal;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
 
 import java.util.function.Consumer;
 

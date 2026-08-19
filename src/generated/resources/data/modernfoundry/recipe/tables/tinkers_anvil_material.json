@@ -6,7 +6,7 @@
       "neoforge:ingredient_type": "modernfoundry:material",
       "match": "modernfoundry:fake_storage_block",
       "material": {
-        "type": "mantle:tag",
+        "type": "hilt:tag",
         "tag": "modernfoundry:compatibility_metals/alloys"
       }
     },

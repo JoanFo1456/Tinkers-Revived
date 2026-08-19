@@ -7,10 +7,10 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.data.listener.ResourceValidator;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.data.registry.GenericLoaderRegistry;
-import modernmods.mantle.data.registry.GenericLoaderRegistry.IHaveLoader;
+import modernmods.hilt.data.listener.ResourceValidator;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.registry.GenericLoaderRegistry;
+import modernmods.hilt.data.registry.GenericLoaderRegistry.IHaveLoader;
 
 /** Logic to get an armor texture given a stack */
 public interface ArmorTextureSupplier extends IHaveLoader {

@@ -8,9 +8,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.Identifier;
 import modernmods.modernfoundry.compat.minecraft.world.item.alchemy.PotionUtils;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.library.client.modifiers.model.SimpleModifierModel;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
@@ -84,7 +84,7 @@ public class PotionModifierModel implements SimpleModifierModel {
         Identifier id = Identifier.tryParse(toolData.getString(key));
         if (id != null) {
           BuiltInRegistries.POTION.get(id).ifPresent(holder ->
-            quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(0xFF000000 | PotionUtils.getColor(holder), -1, new Material.Baked(spriteGetter.apply(texture), false), transforms, 0, pixels)));
+            quadConsumer.accept(HiltItemLayerModel.getQuadsForSprite(0xFF000000 | PotionUtils.getColor(holder), -1, new Material.Baked(spriteGetter.apply(texture), false), transforms, 0, pixels)));
         }
       }
     }

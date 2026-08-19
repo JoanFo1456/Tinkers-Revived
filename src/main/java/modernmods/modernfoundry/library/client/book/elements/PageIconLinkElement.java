@@ -4,12 +4,12 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
-import modernmods.mantle.client.book.action.StringActionProcessor;
-import modernmods.mantle.client.book.data.PageData;
-import modernmods.mantle.client.book.data.element.TextData;
-import modernmods.mantle.client.screen.book.element.SizedBookElement;
+import modernmods.hilt.client.book.action.StringActionProcessor;
+import modernmods.hilt.client.book.data.PageData;
+import modernmods.hilt.client.book.data.element.TextData;
+import modernmods.hilt.client.screen.book.element.SizedBookElement;
 
-/** @deprecated use {@link modernmods.mantle.client.screen.book.element.PageIconLinkElement} */
+/** @deprecated use {@link modernmods.hilt.client.screen.book.element.PageIconLinkElement} */
 @Deprecated(forRemoval = true)
 public class PageIconLinkElement extends SizedBookElement {
 
@@ -28,7 +28,7 @@ public class PageIconLinkElement extends SizedBookElement {
     this.displayElement = displayElement;
     this.pageData = pageData;
 
-    this.action = "mantle:go-to-page-rtn " + pageData.parent.name + "." + pageData.name;
+    this.action = "hilt:go-to-page-rtn " + pageData.parent.name + "." + pageData.name;
 
     this.name = name;
   }

@@ -21,10 +21,10 @@ import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.bus.api.EventPriority;
 import org.jetbrains.annotations.ApiStatus.Internal;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
-import modernmods.mantle.util.JsonHelper;
-import modernmods.mantle.util.typed.TypedMapBuilder;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.util.JsonHelper;
+import modernmods.hilt.util.typed.TypedMapBuilder;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.utils.JsonUtils;
 

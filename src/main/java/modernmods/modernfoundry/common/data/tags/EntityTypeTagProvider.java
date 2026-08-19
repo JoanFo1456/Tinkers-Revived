@@ -14,7 +14,7 @@ import modernmods.modernfoundry.world.TinkerWorld;
 
 import java.util.concurrent.CompletableFuture;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 import static modernmods.modernfoundry.common.TinkerTags.EntityTypes.COLLECTABLES;
 import static modernmods.modernfoundry.common.TinkerTags.EntityTypes.DISCARDABLE_COLLECTABLES;
 import static modernmods.modernfoundry.common.TinkerTags.EntityTypes.NECROTIC_BLACKLIST;

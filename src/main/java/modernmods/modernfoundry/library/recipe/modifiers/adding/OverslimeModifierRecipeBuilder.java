@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
 import modernmods.modernfoundry.common.TinkerTags;
 
 import java.util.function.Consumer;

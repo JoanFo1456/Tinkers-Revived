@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.library.client.modifiers.model.SimpleModifierModel;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
@@ -73,7 +73,7 @@ public class DyedModifierModel implements SimpleModifierModel {
       IModDataView data = tool.getPersistentData();
       Identifier key = modifier.getId().getIdentifier();
       if (data.contains(key)) {
-        quadConsumer.accept(MantleItemLayerModel.getQuadsForSprite(0xFF000000 | data.getInt(key), -1, new Material.Baked(spriteGetter.apply(texture), false), transforms, 0, pixels));
+        quadConsumer.accept(HiltItemLayerModel.getQuadsForSprite(0xFF000000 | data.getInt(key), -1, new Material.Baked(spriteGetter.apply(texture), false), transforms, 0, pixels));
       }
     }
   }

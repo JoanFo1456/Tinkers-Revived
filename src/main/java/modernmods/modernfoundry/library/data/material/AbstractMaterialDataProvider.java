@@ -8,9 +8,9 @@ import net.minecraft.data.PackOutput.Target;
 import net.neoforged.neoforge.common.conditions.AndCondition;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.OrCondition;
-import modernmods.mantle.Mantle;
-import modernmods.mantle.data.GenericDataProvider;
-import modernmods.mantle.recipe.condition.TagFilledCondition;
+import modernmods.hilt.Hilt;
+import modernmods.hilt.data.GenericDataProvider;
+import modernmods.hilt.recipe.condition.TagFilledCondition;
 import modernmods.modernfoundry.common.json.ConfigEnabledCondition;
 import modernmods.modernfoundry.library.json.JsonRedirect;
 import modernmods.modernfoundry.library.materials.definition.IMaterial;
@@ -124,7 +124,7 @@ public abstract class AbstractMaterialDataProvider extends GenericDataProvider {
 
   /** Conditions on a forge tag existing */
   protected static ICondition tagExistsCondition(String name) {
-    return new TagFilledCondition<>(Registries.ITEM, Mantle.commonResource(name));
+    return new TagFilledCondition<>(Registries.ITEM, Hilt.commonResource(name));
   }
 
   /** Creates a normal material with a condition and a redirect */

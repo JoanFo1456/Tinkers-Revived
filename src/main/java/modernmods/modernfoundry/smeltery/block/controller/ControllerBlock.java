@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.pathfinder.PathType;
-import modernmods.mantle.block.InventoryBlock;
+import modernmods.hilt.block.InventoryBlock;
 import modernmods.modernfoundry.smeltery.block.component.SearedBlock;
 
 import javax.annotation.Nullable;

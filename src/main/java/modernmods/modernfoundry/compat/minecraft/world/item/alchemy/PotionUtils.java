@@ -44,10 +44,10 @@ public final class PotionUtils {
    * datagen time). Serializes the same {@code custom_data} {@link #TAG_POTION} that the item stack loadable would write
    * for a stack produced by {@link #setPotion(ItemStack, Holder)}, so the loaded output is identical at runtime.
    */
-  public static modernmods.mantle.recipe.helper.ItemOutput potionOutput(net.minecraft.world.level.ItemLike item, Holder<Potion> potion) {
+  public static modernmods.hilt.recipe.helper.ItemOutput potionOutput(net.minecraft.world.level.ItemLike item, Holder<Potion> potion) {
     CompoundTag tag = new CompoundTag();
     tag.putString(TAG_POTION, potion.unwrapKey().map(key -> key.identifier().toString()).orElse("minecraft:water"));
-    return modernmods.mantle.recipe.helper.ItemOutput.fromItem(item, 1, tag);
+    return modernmods.hilt.recipe.helper.ItemOutput.fromItem(item, 1, tag);
   }
 
   public static List<MobEffectInstance> getMobEffects(ItemStack stack) {

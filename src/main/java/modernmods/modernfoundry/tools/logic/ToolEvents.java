@@ -41,7 +41,7 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import modernmods.mantle.data.predicate.damage.DamageSourcePredicate;
+import modernmods.hilt.data.predicate.damage.DamageSourcePredicate;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerEffect;
 import modernmods.modernfoundry.common.TinkerTags;

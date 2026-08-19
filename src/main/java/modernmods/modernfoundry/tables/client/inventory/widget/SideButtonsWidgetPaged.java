@@ -4,7 +4,7 @@ package modernmods.modernfoundry.tables.client.inventory.widget;
 import net.minecraft.network.chat.Component;
 
 import net.minecraft.client.gui.components.Button;
-import modernmods.mantle.client.screen.MultiModuleScreen;
+import modernmods.hilt.client.screen.MultiModuleScreen;
 import lombok.Getter;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 

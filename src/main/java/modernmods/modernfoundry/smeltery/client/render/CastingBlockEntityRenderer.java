@@ -10,10 +10,10 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Con
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.client.render.FluidCuboid;
-import modernmods.mantle.client.render.FluidRenderer;
-import modernmods.mantle.client.render.RenderItem;
-import modernmods.mantle.client.render.RenderingHelper;
+import modernmods.hilt.client.render.FluidCuboid;
+import modernmods.hilt.client.render.FluidRenderer;
+import modernmods.hilt.client.render.RenderItem;
+import modernmods.hilt.client.render.RenderingHelper;
 import modernmods.modernfoundry.library.client.RenderUtils;
 import modernmods.modernfoundry.smeltery.block.entity.CastingBlockEntity;
 import modernmods.modernfoundry.smeltery.block.entity.tank.CastingFluidHandler;
@@ -50,7 +50,7 @@ public class CastingBlockEntityRenderer implements BlockEntityRenderer<CastingBl
       FluidStack fluidStack = tank.getFluid();
       int capacity = tank.getCapacity();
       if (!fluidStack.isEmpty() && capacity > 0) {
-        collector.submitCustomGeometry(poseStack, modernmods.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {
+        collector.submitCustomGeometry(poseStack, modernmods.hilt.client.render.HiltRenderTypes.FLUID, (pose, buffer) -> {
           PoseStack local = new PoseStack();
           local.last().pose().set(pose.pose());
           for (FluidCuboid cube : fluids) {

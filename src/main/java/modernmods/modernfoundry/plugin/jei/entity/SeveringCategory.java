@@ -14,9 +14,9 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.plugin.jei.MantleJEIConstants;
-import modernmods.mantle.plugin.jei.entity.EntityIngredientRenderer;
-import modernmods.mantle.recipe.ingredient.EntityIngredient;
+import modernmods.hilt.plugin.jei.HiltJEIConstants;
+import modernmods.hilt.plugin.jei.entity.EntityIngredientRenderer;
+import modernmods.hilt.recipe.ingredient.EntityIngredient;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.recipe.modifiers.severing.SeveringRecipe;
 import modernmods.modernfoundry.plugin.jei.TConstructJEIConstants;
@@ -68,8 +68,8 @@ public class SeveringCategory implements IRecipeCategory<SeveringRecipe> {
   public void setRecipe(IRecipeLayoutBuilder builder, SeveringRecipe recipe, IFocusGroup focuses) {
     EntityIngredient input = recipe.getIngredient();
     IIngredientAcceptor<?> entities = builder.addSlot(RecipeIngredientRole.INPUT, 3, 3)
-           .setCustomRenderer(MantleJEIConstants.ENTITY_TYPE, entityRenderer)
-           .addIngredients(MantleJEIConstants.ENTITY_TYPE, input.getDisplay());
+           .setCustomRenderer(HiltJEIConstants.ENTITY_TYPE, entityRenderer)
+           .addIngredients(HiltJEIConstants.ENTITY_TYPE, input.getDisplay());
     IIngredientAcceptor<?> eggs = builder.addInvisibleIngredients(RecipeIngredientRole.INPUT).addItemStacks(input.getEggs());
     builder.createFocusLink(entities, eggs);
 

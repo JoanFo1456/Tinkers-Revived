@@ -8,8 +8,8 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.model.data.ModelData;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.library.client.model.ModelProperties;
 import modernmods.modernfoundry.library.materials.definition.IMaterial;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
@@ -21,7 +21,7 @@ import java.util.Objects;
 import static modernmods.modernfoundry.library.tools.part.IMaterialItem.MATERIAL_TAG;
 
 /** Block entity logic for {@link MaterialBlock} */
-public class MaterialBlockEntity extends MantleBlockEntity {
+public class MaterialBlockEntity extends HiltBlockEntity {
   @Nonnull
   @Getter
   private MaterialVariantId material = IMaterial.UNKNOWN_ID;

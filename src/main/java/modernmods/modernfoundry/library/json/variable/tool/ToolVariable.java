@@ -4,9 +4,9 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.data.registry.GenericLoaderRegistry;
-import modernmods.mantle.data.registry.GenericLoaderRegistry.IHaveLoader;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.registry.GenericLoaderRegistry;
+import modernmods.hilt.data.registry.GenericLoaderRegistry.IHaveLoader;
 import modernmods.modernfoundry.library.json.variable.ToFloatFunction;
 import modernmods.modernfoundry.library.json.variable.VariableLoaderRegistry;
 import modernmods.modernfoundry.library.json.variable.melee.MeleeVariable;
@@ -18,7 +18,7 @@ import modernmods.modernfoundry.library.tools.nbt.IToolStackView;
 
 import javax.annotation.Nullable;
 
-import static modernmods.mantle.data.loadable.record.SingletonLoader.singleton;
+import static modernmods.hilt.data.loadable.record.SingletonLoader.singleton;
 
 /**
  * Variable that fetches a value from a tool instance.

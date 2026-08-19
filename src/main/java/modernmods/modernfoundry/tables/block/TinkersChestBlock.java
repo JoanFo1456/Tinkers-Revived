@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType.BlockEntitySupplier;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.tables.block.entity.chest.TinkersChestBlockEntity;
 
 public class TinkersChestBlock extends ChestBlock {

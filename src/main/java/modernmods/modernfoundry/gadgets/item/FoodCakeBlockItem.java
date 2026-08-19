@@ -5,7 +5,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.block.Block;
-import modernmods.mantle.item.BlockTooltipItem;
+import modernmods.hilt.item.BlockTooltipItem;
 import modernmods.modernfoundry.fluids.item.ContainerFoodItem;
 import modernmods.modernfoundry.gadgets.block.FoodCakeBlock;
 

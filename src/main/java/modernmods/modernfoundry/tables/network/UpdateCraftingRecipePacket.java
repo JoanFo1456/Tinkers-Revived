@@ -8,8 +8,8 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import modernmods.mantle.network.packet.IThreadsafePacket;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.network.packet.IThreadsafePacket;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.tables.block.entity.table.CraftingStationBlockEntity;
 
 /**

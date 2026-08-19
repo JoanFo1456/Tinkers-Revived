@@ -1,8 +1,8 @@
 package modernmods.modernfoundry.library.json.variable.tool;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.library.tools.nbt.IToolStackView;
 
 /** Variable that fetches a number from modifier data */

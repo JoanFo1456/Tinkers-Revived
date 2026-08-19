@@ -14,7 +14,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import modernmods.mantle.network.packet.IThreadsafePacket;
+import modernmods.hilt.network.packet.IThreadsafePacket;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.impl.ComposableModifier;
 import modernmods.modernfoundry.library.utils.GenericTagUtil;

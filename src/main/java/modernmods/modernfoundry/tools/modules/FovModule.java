@@ -1,9 +1,9 @@
 package modernmods.modernfoundry.tools.modules;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.primitive.EnumLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.util.LogicHelper;
+import modernmods.hilt.data.loadable.primitive.EnumLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.util.LogicHelper;
 import modernmods.modernfoundry.library.json.LevelingValue;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierHooks;

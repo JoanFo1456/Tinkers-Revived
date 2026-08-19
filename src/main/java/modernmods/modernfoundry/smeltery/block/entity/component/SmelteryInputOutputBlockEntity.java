@@ -14,18 +14,18 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.model.data.ModelData;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.block.entity.IRetexturedBlockEntity;
-import modernmods.mantle.inventory.EmptyItemHandler;
-import modernmods.mantle.util.RetexturedHelper;
-import modernmods.mantle.util.WeakConsumerWrapper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.block.entity.IRetexturedBlockEntity;
+import modernmods.hilt.inventory.EmptyItemHandler;
+import modernmods.hilt.util.RetexturedHelper;
+import modernmods.hilt.util.WeakConsumerWrapper;
 import modernmods.modernfoundry.common.multiblock.IMasterLogic;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
 import modernmods.modernfoundry.smeltery.block.entity.tank.ISmelteryTankHandler;
@@ -34,7 +34,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-import static modernmods.mantle.util.RetexturedHelper.TAG_TEXTURE;
+import static modernmods.hilt.util.RetexturedHelper.TAG_TEXTURE;
 
 /**
  * Shared logic between drains and ducts
@@ -135,7 +135,7 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
     if (capability == this.capability) {
       return getCachedCapability().cast();
     }
-    return modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
+    return modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
 

@@ -5,10 +5,10 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.InventoryMenu;
-import modernmods.mantle.data.loadable.common.ColorLoadable;
-import modernmods.mantle.data.loadable.primitive.IntLoadable;
-import modernmods.mantle.data.loadable.primitive.StringLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.common.ColorLoadable;
+import modernmods.hilt.data.loadable.primitive.IntLoadable;
+import modernmods.hilt.data.loadable.primitive.StringLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 
 import javax.annotation.Nullable;

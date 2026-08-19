@@ -12,10 +12,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
-import modernmods.mantle.client.render.FluidCuboid;
-import modernmods.mantle.client.render.FluidRenderer;
-import modernmods.mantle.client.render.MantleRenderTypes;
-import modernmods.mantle.client.render.RenderingHelper;
+import modernmods.hilt.client.render.FluidCuboid;
+import modernmods.hilt.client.render.FluidRenderer;
+import modernmods.hilt.client.render.HiltRenderTypes;
+import modernmods.hilt.client.render.RenderingHelper;
 import modernmods.modernfoundry.smeltery.block.FaucetBlock;
 import modernmods.modernfoundry.smeltery.block.entity.FaucetBlockEntity;
 
@@ -58,7 +58,7 @@ public class FaucetBlockEntityRenderer implements BlockEntityRenderer<FaucetBloc
 
     // if on the side of a block, rotate the fluid model to match the faucet
     boolean isRotated = RenderingHelper.applyRotation(poseStack, direction);
-    collector.submitCustomGeometry(poseStack, MantleRenderTypes.FLUID, (pose, buffer) -> {
+    collector.submitCustomGeometry(poseStack, HiltRenderTypes.FLUID, (pose, buffer) -> {
       PoseStack local = new PoseStack();
       local.last().pose().set(pose.pose());
       // fluid inside the faucet itself (color/gas resolved from the stack)

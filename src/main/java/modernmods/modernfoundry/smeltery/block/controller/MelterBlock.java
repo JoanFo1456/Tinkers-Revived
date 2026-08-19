@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
 import modernmods.modernfoundry.smeltery.block.entity.controller.MelterBlockEntity;
 

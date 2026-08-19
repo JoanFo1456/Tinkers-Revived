@@ -3,7 +3,7 @@ package modernmods.modernfoundry.library.client.model.block;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import net.neoforged.neoforge.client.model.UnbakedModelLoader;
-import modernmods.mantle.client.model.util.ColoredBlockModel;
+import modernmods.hilt.client.model.util.ColoredBlockModel;
 
 /**
  * Model that used to swap fluid textures with the fluid from model data.

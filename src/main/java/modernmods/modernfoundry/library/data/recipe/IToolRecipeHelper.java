@@ -1,12 +1,12 @@
 package modernmods.modernfoundry.library.data.recipe;
 
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.CompoundIngredient;
-import modernmods.mantle.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.helper.ItemOutput;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.registration.CastItemObject;
 import modernmods.modernfoundry.library.materials.stats.MaterialStatsId;

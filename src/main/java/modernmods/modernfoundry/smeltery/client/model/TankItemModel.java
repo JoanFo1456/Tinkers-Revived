@@ -20,9 +20,9 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.client.model.pipeline.QuadBakingVertexConsumer;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.joml.Matrix4fc;
-import modernmods.mantle.client.model.util.DynamicItemModel;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
-import modernmods.mantle.client.render.FluidRenderer;
+import modernmods.hilt.client.model.util.DynamicItemModel;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
+import modernmods.hilt.client.render.FluidRenderer;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.fluid.SimpleFluidResourceTank;
 import modernmods.modernfoundry.smeltery.item.TankItem;
@@ -141,22 +141,22 @@ public final class TankItemModel {
       QuadBakingVertexConsumer baker = new QuadBakingVertexConsumer();
       float u0 = sprite.getU0(), u1 = sprite.getU1(), v0 = sprite.getV0(), v1 = sprite.getV1();
       // south (+Z)
-      builder.addUnculledFace(MantleItemLayerModel.buildQuad(baker, baker, material, -1, Direction.SOUTH, color, 0,
+      builder.addUnculledFace(HiltItemLayerModel.buildQuad(baker, baker, material, -1, Direction.SOUTH, color, 0,
         x0, y0, z1, u0, v1, x1, y0, z1, u1, v1, x1, y1, z1, u1, v0, x0, y1, z1, u0, v0));
       // north (-Z)
-      builder.addUnculledFace(MantleItemLayerModel.buildQuad(baker, baker, material, -1, Direction.NORTH, color, 0,
+      builder.addUnculledFace(HiltItemLayerModel.buildQuad(baker, baker, material, -1, Direction.NORTH, color, 0,
         x0, y0, z0, u0, v1, x0, y1, z0, u0, v0, x1, y1, z0, u1, v0, x1, y0, z0, u1, v1));
       // up (+Y)
-      builder.addUnculledFace(MantleItemLayerModel.buildQuad(baker, baker, material, -1, Direction.UP, color, 0,
+      builder.addUnculledFace(HiltItemLayerModel.buildQuad(baker, baker, material, -1, Direction.UP, color, 0,
         x0, y1, z1, u0, v1, x1, y1, z1, u1, v1, x1, y1, z0, u1, v0, x0, y1, z0, u0, v0));
       // down (-Y)
-      builder.addUnculledFace(MantleItemLayerModel.buildQuad(baker, baker, material, -1, Direction.DOWN, color, 0,
+      builder.addUnculledFace(HiltItemLayerModel.buildQuad(baker, baker, material, -1, Direction.DOWN, color, 0,
         x0, y0, z0, u0, v0, x1, y0, z0, u1, v0, x1, y0, z1, u1, v1, x0, y0, z1, u0, v1));
       // west (-X)
-      builder.addUnculledFace(MantleItemLayerModel.buildQuad(baker, baker, material, -1, Direction.WEST, color, 0,
+      builder.addUnculledFace(HiltItemLayerModel.buildQuad(baker, baker, material, -1, Direction.WEST, color, 0,
         x0, y0, z0, u0, v1, x0, y0, z1, u1, v1, x0, y1, z1, u1, v0, x0, y1, z0, u0, v0));
       // east (+X)
-      builder.addUnculledFace(MantleItemLayerModel.buildQuad(baker, baker, material, -1, Direction.EAST, color, 0,
+      builder.addUnculledFace(HiltItemLayerModel.buildQuad(baker, baker, material, -1, Direction.EAST, color, 0,
         x1, y0, z1, u0, v1, x1, y0, z0, u1, v1, x1, y1, z0, u1, v0, x1, y1, z1, u0, v0));
     }
   }

@@ -3,7 +3,7 @@ package modernmods.modernfoundry.library.recipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
-import modernmods.mantle.recipe.container.IRecipeContainer;
+import modernmods.hilt.recipe.container.IRecipeContainer;
 import modernmods.modernfoundry.library.tools.nbt.ToolStack;
 
 /** Container that contains a tinkerable stack and a number of inputs after */

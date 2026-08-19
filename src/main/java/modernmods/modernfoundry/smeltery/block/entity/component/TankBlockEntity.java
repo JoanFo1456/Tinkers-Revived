@@ -14,9 +14,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.model.data.ModelData;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.IFluidTank;
@@ -140,7 +140,7 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
     if (capability == ForgeCapabilities.FLUID_HANDLER) {
       return holder.cast();
     }
-    return modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
+    return modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
   public void invalidateCaps() {

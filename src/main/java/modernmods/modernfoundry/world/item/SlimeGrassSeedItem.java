@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import modernmods.mantle.item.TooltipItem;
+import modernmods.hilt.item.TooltipItem;
 import modernmods.modernfoundry.world.TinkerWorld;
 import modernmods.modernfoundry.world.block.DirtType;
 import modernmods.modernfoundry.world.block.FoliageType;

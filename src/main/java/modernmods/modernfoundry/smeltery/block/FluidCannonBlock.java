@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import modernmods.mantle.block.InventoryBlock;
+import modernmods.hilt.block.InventoryBlock;
 import modernmods.modernfoundry.smeltery.block.component.SearedTankBlock;
 import modernmods.modernfoundry.smeltery.block.entity.FluidCannonBlockEntity;
 import modernmods.modernfoundry.smeltery.block.entity.FluidCannonBlockEntity.IFluidCannon;

@@ -4,11 +4,11 @@
       "type": "neoforge:or",
       "values": [
         {
-          "type": "mantle:tag_filled",
+          "type": "hilt:tag_filled",
           "tag": "c:ingots/bronze"
         },
         {
-          "type": "mantle:tag_filled",
+          "type": "hilt:tag_filled",
           "tag": "c:ingots/tin"
         }
       ]

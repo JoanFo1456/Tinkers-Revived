@@ -18,9 +18,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.lwjgl.glfw.GLFW;
-import modernmods.mantle.client.screen.ElementScreen;
-import modernmods.mantle.client.screen.ModuleScreen;
-import modernmods.mantle.client.screen.ScalableElementScreen;
+import modernmods.hilt.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.ModuleScreen;
+import modernmods.hilt.client.screen.ScalableElementScreen;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
@@ -465,8 +465,8 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
     return super.mouseDragged(event, timeSinceLastClick, unkowwn);
   }
 
-  // NOTE(26.1 port): this 3-arg mouseScrolled overrides Mantle's MultiModuleScreen helper, not vanilla's 4-arg entry point.
-  // Info-panel scroll flows through Mantle's 4-arg override; validate direct mouse-wheel scroll in-game.
+  // NOTE(26.1 port): this 3-arg mouseScrolled overrides Hilt's MultiModuleScreen helper, not vanilla's 4-arg entry point.
+  // Info-panel scroll flows through Hilt's 4-arg override; validate direct mouse-wheel scroll in-game.
   @Override
   public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
     if (this.tinkerInfo.handleMouseScrolled(mouseX, mouseY, delta)) {

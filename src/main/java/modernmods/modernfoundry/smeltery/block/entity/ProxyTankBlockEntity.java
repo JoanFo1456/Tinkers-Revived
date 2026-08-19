@@ -12,13 +12,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import org.jetbrains.annotations.Nullable;
-import modernmods.mantle.block.InventoryBlock;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.fluid.FluidTransferHelper;
+import modernmods.hilt.block.InventoryBlock;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.fluid.FluidTransferHelper;
 import modernmods.modernfoundry.library.fluid.IFluidTankUpdater;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
 import modernmods.modernfoundry.smeltery.block.entity.tank.ProxyItemTank;
@@ -26,7 +26,7 @@ import modernmods.modernfoundry.smeltery.block.entity.tank.ProxyItemTank;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 /** Block entity with a tank that proxies to the nested item handler */
-public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTankUpdater, ILegacyCapabilityBlockEntity {
+public class ProxyTankBlockEntity extends HiltBlockEntity implements IFluidTankUpdater, ILegacyCapabilityBlockEntity {
   /** Direct access to the fluid handler and item handler */
   @Getter
   private final ProxyItemTank<ProxyTankBlockEntity> itemTank = new ProxyItemTank<>(this);
@@ -63,7 +63,7 @@ public class ProxyTankBlockEntity extends MantleBlockEntity implements IFluidTan
     if (cap == ForgeCapabilities.FLUID_HANDLER) {
       return fluidCapability.cast();
     }
-    return modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty();
+    return modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional.empty();
   }
 
   public void invalidateCaps() {

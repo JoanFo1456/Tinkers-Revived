@@ -4,7 +4,7 @@ import modernmods.modernfoundry.TConstruct;
 
 /**
  * Base interface for all materials.
- * TODO 1.21: Make {@link modernmods.mantle.registration.object.IdAwareObject}
+ * TODO 1.21: Make {@link modernmods.hilt.registration.object.IdAwareObject}
  */
 public interface IMaterial extends Comparable<IMaterial> {
   /** ID of fallback material */

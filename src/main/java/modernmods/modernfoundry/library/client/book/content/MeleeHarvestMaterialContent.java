@@ -1,10 +1,10 @@
 package modernmods.modernfoundry.library.client.book.content;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.client.book.data.BookData;
-import modernmods.mantle.client.screen.book.element.ItemElement;
-import modernmods.mantle.util.html.HtmlElement;
-import modernmods.mantle.util.html.HtmlSerializable;
+import modernmods.hilt.client.book.data.BookData;
+import modernmods.hilt.client.screen.book.element.ItemElement;
+import modernmods.hilt.util.html.HtmlElement;
+import modernmods.hilt.util.html.HtmlSerializable;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.materials.MaterialRegistry;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;

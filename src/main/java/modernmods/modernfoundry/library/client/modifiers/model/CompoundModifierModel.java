@@ -4,10 +4,10 @@ import com.mojang.math.Transformation;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
-import modernmods.mantle.data.loadable.ErrorFactory;
-import modernmods.mantle.data.loadable.Loadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.data.loadable.ErrorFactory;
+import modernmods.hilt.data.loadable.Loadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.tools.nbt.IToolStackView;
 

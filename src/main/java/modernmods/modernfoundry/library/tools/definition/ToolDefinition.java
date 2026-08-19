@@ -4,7 +4,7 @@ import com.google.common.annotations.VisibleForTesting;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import modernmods.mantle.registration.object.IdAwareObject;
+import modernmods.hilt.registration.object.IdAwareObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.module.ModuleHook;
 import modernmods.modernfoundry.library.tools.definition.module.ToolHooks;

@@ -20,7 +20,7 @@ import net.minecraft.world.item.TooltipFlag.Default;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import modernmods.mantle.client.SafeClientAccess;
+import modernmods.hilt.client.SafeClientAccess;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.GuiUtil;
 import modernmods.modernfoundry.library.modifiers.Modifier;

@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-/** @deprecated use {@link modernmods.mantle.recipe.condition.TagCombinationCondition#intersection(TagKey[])} */
+/** @deprecated use {@link modernmods.hilt.recipe.condition.TagCombinationCondition#intersection(TagKey[])} */
 @Deprecated(forRemoval = true)
 public class TagIntersectionPresentCondition<T> implements ICondition {
   private static final Identifier NAME = TConstruct.getResource("tag_intersection_present");

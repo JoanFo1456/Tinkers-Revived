@@ -20,7 +20,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.fluid.tooltip.FluidTooltipHandler;
+import modernmods.hilt.fluid.tooltip.FluidTooltipHandler;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.config.Config;
 import modernmods.modernfoundry.library.recipe.FluidValues;

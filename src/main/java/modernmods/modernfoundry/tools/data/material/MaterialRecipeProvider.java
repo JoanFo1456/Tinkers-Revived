@@ -3,7 +3,7 @@ package modernmods.modernfoundry.tools.data.material;
 import net.neoforged.neoforge.common.conditions.NeoForgeConditions;
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
 import net.minecraft.data.PackOutput;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
@@ -17,13 +17,13 @@ import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import net.neoforged.neoforge.common.conditions.OrCondition;
 import net.neoforged.neoforge.fluids.FluidType;
-import modernmods.mantle.datagen.MantleTags;
-import modernmods.mantle.recipe.condition.TagCombinationCondition;
-import modernmods.mantle.recipe.condition.TagFilledCondition;
-import modernmods.mantle.recipe.helper.FluidOutput;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.datagen.HiltTags;
+import modernmods.hilt.recipe.condition.TagCombinationCondition;
+import modernmods.hilt.recipe.condition.TagFilledCondition;
+import modernmods.hilt.recipe.helper.FluidOutput;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.registration.object.FluidObject;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.data.BaseRecipeProvider;
 import modernmods.modernfoundry.common.json.ConfigEnabledCondition;
@@ -43,7 +43,7 @@ import modernmods.modernfoundry.world.TinkerWorld;
 
 import java.util.function.Consumer;
 
-import static modernmods.mantle.Mantle.COMMON;
+import static modernmods.hilt.Hilt.COMMON;
 
 public class MaterialRecipeProvider extends BaseRecipeProvider implements IMaterialRecipeHelper {
   public MaterialRecipeProvider(PackOutput packOutput) {
@@ -259,12 +259,12 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     // oxidize copper and iron via water, it does not rust iron because magic
     MaterialFluidRecipeBuilder.material(MaterialIds.oxidizedIron)
                               .setInputId(MaterialIds.iron)
-                              .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE)
+                              .setFluid(HiltTags.Fluids.WATER, FluidValues.BOTTLE)
                               .setTemperature(1)
                               .save(consumer, location(folder + "composite/iron_oxidized"));
     MaterialFluidRecipeBuilder.material(MaterialIds.oxidizedCopper)
                               .setInputId(MaterialIds.copper)
-                              .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE)
+                              .setFluid(HiltTags.Fluids.WATER, FluidValues.BOTTLE)
                               .setTemperature(1)
                               .save(consumer, location(folder + "composite/copper_oxidized"));
     // slimeskin

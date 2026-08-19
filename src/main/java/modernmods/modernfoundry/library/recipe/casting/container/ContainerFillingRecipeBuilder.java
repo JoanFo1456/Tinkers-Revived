@@ -3,12 +3,12 @@ package modernmods.modernfoundry.library.recipe.casting.container;
 import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
-import modernmods.mantle.recipe.helper.TypeAwareRecipeSerializer;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.helper.TypeAwareRecipeSerializer;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
 
 import javax.annotation.Nullable;

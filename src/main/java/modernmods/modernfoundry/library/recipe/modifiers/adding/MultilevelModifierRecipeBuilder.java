@@ -1,12 +1,12 @@
 package modernmods.modernfoundry.library.recipe.modifiers.adding;
 
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.recipe.ingredient.SizedIngredient;
+import modernmods.hilt.recipe.ingredient.SizedIngredient;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
 
 import java.util.ArrayList;

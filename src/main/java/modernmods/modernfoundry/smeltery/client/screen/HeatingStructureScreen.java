@@ -8,8 +8,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
-import modernmods.mantle.client.screen.ElementScreen;
-import modernmods.mantle.client.screen.MultiModuleScreen;
+import modernmods.hilt.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.MultiModuleScreen;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.GuiUtil;
 import modernmods.modernfoundry.smeltery.block.controller.ControllerBlock;
@@ -92,7 +92,7 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
       this.onClose();
     }
   }
-  // 26.1: container background moved to extractBackground (matches Mantle MultiModuleScreen)
+  // 26.1: container background moved to extractBackground (matches Hilt MultiModuleScreen)
   @Override
   public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
     // draw stuff with background

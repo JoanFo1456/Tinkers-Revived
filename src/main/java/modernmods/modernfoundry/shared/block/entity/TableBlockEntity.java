@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import modernmods.mantle.block.entity.InventoryBlockEntity;
+import modernmods.hilt.block.entity.InventoryBlockEntity;
 import modernmods.modernfoundry.common.SoundUtils;
 import modernmods.modernfoundry.common.Sounds;
 import modernmods.modernfoundry.common.network.InventorySlotSyncPacket;
@@ -54,7 +54,7 @@ public abstract class TableBlockEntity extends InventoryBlockEntity {
     return true;
   }
 
-  // saveSynced (inventory sync) and getUpdateTag are handled by the InventoryBlockEntity/MantleBlockEntity base
+  // saveSynced (inventory sync) and getUpdateTag are handled by the InventoryBlockEntity/HiltBlockEntity base
 
   /**
    * Sends a packet to all players with this container open

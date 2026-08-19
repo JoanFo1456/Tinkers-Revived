@@ -1,10 +1,10 @@
 package modernmods.modernfoundry.library.materials.stats;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.data.loadable.record.SingletonLoader;
-import modernmods.mantle.registration.object.IdAwareObject;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.record.SingletonLoader;
+import modernmods.hilt.registration.object.IdAwareObject;
 
 import java.util.function.Function;
 

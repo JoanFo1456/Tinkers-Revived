@@ -2,15 +2,15 @@ package modernmods.modernfoundry.library.recipe.alloying;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
-import modernmods.mantle.recipe.helper.FluidOutput;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.helper.FluidOutput;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.registration.object.FluidObject;
 import modernmods.modernfoundry.library.recipe.alloying.AlloyRecipe.AlloyIngredient;
 
 import java.util.ArrayList;

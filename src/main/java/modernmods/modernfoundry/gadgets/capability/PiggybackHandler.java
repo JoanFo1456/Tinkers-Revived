@@ -6,9 +6,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.protocol.game.ClientboundSetPassengersPacket;
 import net.minecraft.core.Direction;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ICapabilityProvider;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 
 import javax.annotation.Nullable;

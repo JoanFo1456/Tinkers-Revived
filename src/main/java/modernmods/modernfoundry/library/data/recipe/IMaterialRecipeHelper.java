@@ -2,15 +2,15 @@ package modernmods.modernfoundry.library.data.recipe;
 
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
 import net.neoforged.neoforge.common.conditions.NeoForgeConditions;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.conditions.OrCondition;
-import modernmods.mantle.recipe.data.IRecipeHelper;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.recipe.data.IRecipeHelper;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.registration.object.FluidObject;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 import modernmods.modernfoundry.library.recipe.FluidValues;
@@ -21,7 +21,7 @@ import modernmods.modernfoundry.library.recipe.melting.MaterialMeltingRecipeBuil
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
-import static modernmods.mantle.Mantle.COMMON;
+import static modernmods.hilt.Hilt.COMMON;
 import static modernmods.modernfoundry.library.recipe.melting.IMeltingRecipe.getTemperature;
 
 /**

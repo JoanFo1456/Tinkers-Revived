@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.MapColor;
-import modernmods.mantle.registration.deferred.FluidDeferredRegister;
+import modernmods.hilt.registration.deferred.FluidDeferredRegister;
 
 import java.util.function.Function;
 import java.util.function.Supplier;

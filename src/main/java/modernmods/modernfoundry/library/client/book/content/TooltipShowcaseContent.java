@@ -2,12 +2,12 @@ package modernmods.modernfoundry.library.client.book.content;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.client.book.data.BookData;
-import modernmods.mantle.client.book.data.content.ContentShowcase;
-import modernmods.mantle.client.screen.book.BookScreen;
-import modernmods.mantle.client.screen.book.element.BookElement;
-import modernmods.mantle.client.screen.book.element.ItemElement;
-import modernmods.mantle.client.screen.book.element.TextElement;
+import modernmods.hilt.client.book.data.BookData;
+import modernmods.hilt.client.book.data.content.ContentShowcase;
+import modernmods.hilt.client.screen.book.BookScreen;
+import modernmods.hilt.client.screen.book.element.BookElement;
+import modernmods.hilt.client.screen.book.element.ItemElement;
+import modernmods.hilt.client.screen.book.element.TextElement;
 import modernmods.modernfoundry.TConstruct;
 
 import java.util.ArrayList;

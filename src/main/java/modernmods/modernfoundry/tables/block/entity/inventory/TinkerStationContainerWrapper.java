@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import modernmods.mantle.recipe.container.ISingleStackContainer;
+import modernmods.hilt.recipe.container.ISingleStackContainer;
 import modernmods.modernfoundry.library.recipe.TinkerRecipeTypes;
 import modernmods.modernfoundry.library.recipe.material.MaterialRecipe;
 import modernmods.modernfoundry.library.recipe.tinkerstation.IMutableTinkerStationContainer;

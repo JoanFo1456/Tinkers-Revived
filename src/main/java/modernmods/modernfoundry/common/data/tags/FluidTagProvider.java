@@ -8,9 +8,9 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.Tags;
-import modernmods.mantle.datagen.MantleTags;
-import modernmods.mantle.registration.object.FlowingFluidObject;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.datagen.HiltTags;
+import modernmods.hilt.registration.object.FlowingFluidObject;
+import modernmods.hilt.registration.object.FluidObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.fluids.TinkerFluids;
@@ -226,7 +226,7 @@ public class FluidTagProvider extends FluidTagsProvider {
 
     this.tag(TinkerTags.Fluids.LARGE_GEM_TOOLTIPS).addTags(TinkerFluids.moltenEmerald.getTag(), TinkerFluids.moltenDiamond.getTag());
     this.tag(TinkerTags.Fluids.SMALL_GEM_TOOLTIPS).addTags(TinkerFluids.moltenQuartz.getTag(), TinkerFluids.moltenAmethyst.getTag());
-    this.tag(MantleTags.Fluids.SOUP).addTag(TinkerFluids.meatSoup.getTag()).add(TagEntry.optionalTag(TinkerTags.Fluids.SOUP_TOOLTIPS.location()));
+    this.tag(HiltTags.Fluids.SOUP).addTag(TinkerFluids.meatSoup.getTag()).add(TagEntry.optionalTag(TinkerTags.Fluids.SOUP_TOOLTIPS.location()));
 
     // hide upcoming fluids
     tag(TinkerTags.Fluids.HIDDEN_IN_RECIPE_VIEWERS).add(TinkerFluids.moltenSoulsteel.get());

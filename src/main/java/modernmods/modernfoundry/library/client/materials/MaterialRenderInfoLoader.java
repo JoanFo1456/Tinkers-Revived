@@ -13,12 +13,12 @@ import net.minecraft.util.GsonHelper;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.fml.ModLoader;
-import modernmods.mantle.data.datamap.RegistryDataMapLoader;
-import modernmods.mantle.data.listener.IEarlySafeManagerReloadListener;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.util.JsonHelper;
-import modernmods.mantle.util.typed.TypedMap;
-import modernmods.mantle.util.typed.TypedMapBuilder;
+import modernmods.hilt.data.datamap.RegistryDataMapLoader;
+import modernmods.hilt.data.listener.IEarlySafeManagerReloadListener;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.util.JsonHelper;
+import modernmods.hilt.util.typed.TypedMap;
+import modernmods.hilt.util.typed.TypedMapBuilder;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 import modernmods.modernfoundry.library.utils.Util;
 

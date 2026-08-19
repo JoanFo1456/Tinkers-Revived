@@ -2,12 +2,12 @@ package modernmods.modernfoundry.library.recipe.entitymelting;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
-import modernmods.mantle.recipe.helper.FluidOutput;
-import modernmods.mantle.recipe.ingredient.EntityIngredient;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.helper.FluidOutput;
+import modernmods.hilt.recipe.ingredient.EntityIngredient;
 
 import java.util.function.Consumer;
 

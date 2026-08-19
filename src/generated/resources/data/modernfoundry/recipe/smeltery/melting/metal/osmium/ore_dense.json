@@ -1,7 +1,7 @@
 {
   "neoforge:conditions": [
     {
-      "type": "mantle:tag_combination_filled",
+      "type": "hilt:tag_combination_filled",
       "match": [
         "c:ores/osmium",
         "c:ore_rates/dense"

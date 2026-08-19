@@ -6,7 +6,7 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
@@ -14,7 +14,7 @@ import net.neoforged.neoforge.transfer.CombinedResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class MultitankFuelModule extends FuelModule implements ResourceHandler<F
   @Nullable
   private ResourceHandler<FluidResource> combined;
 
-  public MultitankFuelModule(MantleBlockEntity parent, Supplier<List<BlockPos>> tankSupplier) {
+  public MultitankFuelModule(HiltBlockEntity parent, Supplier<List<BlockPos>> tankSupplier) {
     super(parent);
     this.tankSupplier = tankSupplier;
   }

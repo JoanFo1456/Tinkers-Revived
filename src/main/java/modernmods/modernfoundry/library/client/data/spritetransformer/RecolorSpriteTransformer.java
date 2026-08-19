@@ -9,7 +9,7 @@ import com.google.gson.JsonSerializationContext;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.TConstruct;
 
 import java.lang.reflect.Type;

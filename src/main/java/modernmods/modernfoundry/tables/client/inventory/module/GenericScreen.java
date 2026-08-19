@@ -1,8 +1,8 @@
 package modernmods.modernfoundry.tables.client.inventory.module;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.client.screen.ElementScreen;
-import modernmods.mantle.client.screen.ScalableElementScreen;
+import modernmods.hilt.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.ScalableElementScreen;
 import modernmods.modernfoundry.TConstruct;
 
 public class GenericScreen {

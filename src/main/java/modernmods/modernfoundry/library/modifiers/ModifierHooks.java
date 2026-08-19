@@ -12,7 +12,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent.BreakSpeed;
-import modernmods.mantle.data.registry.IdAwareComponentRegistry;
+import modernmods.hilt.data.registry.IdAwareComponentRegistry;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;
 import modernmods.modernfoundry.library.modifiers.hook.armor.ArmorWalkModifierHook;

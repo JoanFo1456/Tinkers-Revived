@@ -14,9 +14,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapelessRecipe;
-import modernmods.mantle.data.loadable.Loadable;
-import modernmods.mantle.data.loadable.field.LoadableField;
-import modernmods.mantle.recipe.helper.LoggingRecipeSerializer;
+import modernmods.hilt.data.loadable.Loadable;
+import modernmods.hilt.data.loadable.field.LoadableField;
+import modernmods.hilt.recipe.helper.LoggingRecipeSerializer;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 import modernmods.modernfoundry.tables.TinkerTables;
 

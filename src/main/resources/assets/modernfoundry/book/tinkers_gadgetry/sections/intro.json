@@ -1,10 +1,10 @@
 [
   {
-    "type": "mantle:blank"
+    "type": "hilt:blank"
   },
   {
     "name": "intro",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "intro.json"
   }
 ]

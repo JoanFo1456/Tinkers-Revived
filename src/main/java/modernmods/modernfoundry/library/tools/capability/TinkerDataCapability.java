@@ -7,15 +7,15 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.common.NeoForge;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.CapabilityManager;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.CapabilityToken;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ICapabilityProvider;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import modernmods.modernfoundry.compat.neoforged.neoforge.event.AttachCapabilitiesEvent;
 import net.neoforged.bus.api.EventPriority;
-import modernmods.mantle.registration.object.IdAwareObject;
+import modernmods.hilt.registration.object.IdAwareObject;
 import modernmods.modernfoundry.TConstruct;
 
 import javax.annotation.Nonnull;

@@ -11,11 +11,11 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import modernmods.mantle.client.screen.ElementScreen;
-import modernmods.mantle.client.screen.ModuleScreen;
-import modernmods.mantle.client.screen.MultiModuleScreen;
-import modernmods.mantle.client.screen.ScalableElementScreen;
-import modernmods.mantle.client.screen.SliderWidget;
+import modernmods.hilt.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.ModuleScreen;
+import modernmods.hilt.client.screen.MultiModuleScreen;
+import modernmods.hilt.client.screen.ScalableElementScreen;
+import modernmods.hilt.client.screen.SliderWidget;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.tables.client.inventory.widget.BorderWidget;
 

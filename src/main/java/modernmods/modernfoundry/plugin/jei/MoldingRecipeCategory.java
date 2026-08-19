@@ -18,7 +18,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import modernmods.mantle.client.SafeClientAccess;
+import modernmods.hilt.client.SafeClientAccess;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.GuiUtil;
 import modernmods.modernfoundry.library.recipe.TinkerRecipeTypes;

@@ -30,7 +30,7 @@ import net.minecraft.util.TriState;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import modernmods.mantle.client.TooltipKey;
+import modernmods.hilt.client.TooltipKey;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;

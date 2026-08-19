@@ -8,7 +8,7 @@ import net.minecraft.data.PackOutput.Target;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.data.GenericDataProvider;
+import modernmods.hilt.data.GenericDataProvider;
 import modernmods.modernfoundry.library.module.ModuleHook;
 import modernmods.modernfoundry.library.tools.definition.ModifiableArmorMaterial;
 import modernmods.modernfoundry.library.tools.definition.ToolDefinition;

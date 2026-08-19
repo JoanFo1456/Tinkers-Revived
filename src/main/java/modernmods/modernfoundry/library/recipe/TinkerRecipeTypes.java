@@ -5,7 +5,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import modernmods.mantle.registration.deferred.SynchronizedDeferredRegister;
+import modernmods.hilt.registration.deferred.SynchronizedDeferredRegister;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.recipe.alloying.AlloyRecipe;
 import modernmods.modernfoundry.library.recipe.casting.ICastingRecipe;

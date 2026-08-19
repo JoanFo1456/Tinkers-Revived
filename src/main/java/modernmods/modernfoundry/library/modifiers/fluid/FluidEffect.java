@@ -13,11 +13,11 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import modernmods.mantle.Mantle;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.data.loadable.record.SingletonLoader;
-import modernmods.mantle.data.registry.GenericLoaderRegistry;
-import modernmods.mantle.data.registry.GenericLoaderRegistry.IHaveLoader;
+import modernmods.hilt.Hilt;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.record.SingletonLoader;
+import modernmods.hilt.data.registry.GenericLoaderRegistry;
+import modernmods.hilt.data.registry.GenericLoaderRegistry.IHaveLoader;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.json.LevelingInt;
 import modernmods.modernfoundry.library.modifiers.fluid.entity.RandomTeleportFluidEffect;
@@ -145,7 +145,7 @@ public interface FluidEffect<C extends FluidEffectContext> extends IHaveLoader, 
     if (loaderId != null) {
       return loaderId;
     }
-    Mantle.logger.error("Failed to get default description for unregistered fluid effect loader {}", loader);
+    Hilt.logger.error("Failed to get default description for unregistered fluid effect loader {}", loader);
     return Identifier.withDefaultNamespace("missingno");
   }
 

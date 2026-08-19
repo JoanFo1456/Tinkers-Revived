@@ -10,9 +10,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import modernmods.mantle.client.render.FluidCuboid;
-import modernmods.mantle.client.render.RenderItem;
-import modernmods.mantle.client.render.RenderingHelper;
+import modernmods.hilt.client.render.FluidCuboid;
+import modernmods.hilt.client.render.RenderItem;
+import modernmods.hilt.client.render.RenderingHelper;
 import modernmods.modernfoundry.common.config.Config;
 import modernmods.modernfoundry.library.client.RenderUtils;
 import modernmods.modernfoundry.library.fluid.FluidTankAnimated;
@@ -52,11 +52,11 @@ public class TankInventoryBlockEntityRenderer<T extends BlockEntity & ITankInven
     final float offset = RenderUtils.decayRenderOffset(tank);
     // rotate to face the block's direction, matching the pre-26.1 renderer
     boolean isRotated = RenderingHelper.applyRotation(poseStack, blockState.getValue(directionProperty));
-    collector.submitCustomGeometry(poseStack, modernmods.mantle.client.render.MantleRenderTypes.FLUID, (pose, buffer) -> {
+    collector.submitCustomGeometry(poseStack, modernmods.hilt.client.render.HiltRenderTypes.FLUID, (pose, buffer) -> {
       PoseStack local = new PoseStack();
       local.last().pose().set(pose.pose());
       for (FluidCuboid cube : fluids) {
-        modernmods.mantle.client.render.FluidRenderer.renderScaledCuboid(local, buffer, cube, tank.getFluid(), offset, tank.getCapacity(), light, true);
+        modernmods.hilt.client.render.FluidRenderer.renderScaledCuboid(local, buffer, cube, tank.getFluid(), offset, tank.getCapacity(), light, true);
       }
     });
     if (isRotated) {

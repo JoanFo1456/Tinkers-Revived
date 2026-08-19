@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.tags.TagKey;
-import modernmods.mantle.data.predicate.IJsonPredicate;
+import modernmods.hilt.data.predicate.IJsonPredicate;
 import modernmods.modernfoundry.library.modifiers.IncrementalModifierEntry;
 import modernmods.modernfoundry.library.modifiers.Modifier;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;

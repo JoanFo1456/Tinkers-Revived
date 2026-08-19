@@ -35,9 +35,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import modernmods.mantle.datagen.MantleTags;
-import modernmods.mantle.util.BlockEntityHelper;
-import modernmods.mantle.util.RegistryHelper;
+import modernmods.hilt.datagen.HiltTags;
+import modernmods.hilt.util.BlockEntityHelper;
+import modernmods.hilt.util.RegistryHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.utils.Util;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
@@ -310,7 +310,7 @@ public class ChannelBlock extends Block implements EntityBlock {
 				return InteractionResult.PASS;
 			}
 			// if they are holding a gauge, set the side to in to make it easier to place a gauge on it
-			if (hitFace != Direction.DOWN && stack.getItem() instanceof BlockItem blockItem && RegistryHelper.contains(MantleTags.Blocks.ATTACHED_GAUGES, blockItem.getBlock())) {
+			if (hitFace != Direction.DOWN && stack.getItem() instanceof BlockItem blockItem && RegistryHelper.contains(HiltTags.Blocks.ATTACHED_GAUGES, blockItem.getBlock())) {
 				// for sides, need to toggle the property on
 				if (hitFace != Direction.UP) {
 					EnumProperty<ChannelConnection> prop = DIRECTION_MAP.get(hitFace);

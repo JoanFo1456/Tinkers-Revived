@@ -2,8 +2,8 @@ package modernmods.modernfoundry.library.materials;
 
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
-import modernmods.mantle.data.loadable.Loadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.Loadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.library.materials.definition.IMaterial;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;
 import modernmods.modernfoundry.library.materials.stats.IMaterialStats;

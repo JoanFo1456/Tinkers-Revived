@@ -23,7 +23,7 @@ import net.minecraft.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import modernmods.mantle.data.loadable.record.SingletonLoader;
+import modernmods.hilt.data.loadable.record.SingletonLoader;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.modifiers.fluid.EffectLevel;
 import modernmods.modernfoundry.library.modifiers.fluid.FluidEffect;

@@ -3,7 +3,7 @@ package modernmods.modernfoundry.compat.neoforged.neoforge.common.crafting;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.conditions.ICondition;
 

@@ -52,9 +52,9 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import modernmods.mantle.MantleEvents;
-import modernmods.mantle.util.CombatHelper;
-import modernmods.mantle.util.RegistryHelper;
+import modernmods.hilt.HiltEvents;
+import modernmods.hilt.util.CombatHelper;
+import modernmods.hilt.util.RegistryHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.Sounds;
 import modernmods.modernfoundry.common.TinkerDamageTypes;
@@ -192,7 +192,7 @@ public class ModifierEvents {
         ItemStack stack = inventory.getItem(i);
         if (!stack.isEmpty() && (soulBelt || ModifierUtil.checkVolatileFlag(stack, SOULBOUND))) {
           CompoundTag tag = TagUtil.getOrCreateTag(stack);
-          tag.putInt(MantleEvents.SOULBOUND_SLOT, i);
+          tag.putInt(HiltEvents.SOULBOUND_SLOT, i);
           TagUtil.setTag(stack, tag);
         }
       }
@@ -203,7 +203,7 @@ public class ModifierEvents {
         ItemStack stack = inventory.getItem(i);
         if (!stack.isEmpty() && ModifierUtil.checkVolatileFlag(stack, SOULBOUND)) {
           CompoundTag tag = TagUtil.getOrCreateTag(stack);
-          tag.putInt(MantleEvents.SOULBOUND_SLOT, i);
+          tag.putInt(HiltEvents.SOULBOUND_SLOT, i);
           TagUtil.setTag(stack, tag);
         }
       }

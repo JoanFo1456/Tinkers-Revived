@@ -12,7 +12,7 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
-import modernmods.mantle.command.MantleCommand;
+import modernmods.hilt.command.HiltCommand;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.tools.SlotType;
 import modernmods.modernfoundry.library.tools.nbt.ToolDataNBT;
@@ -36,7 +36,7 @@ public class SlotsCommand {
    * @param subCommand  Command builder
    */
   public static void register(LiteralArgumentBuilder<CommandSourceStack> subCommand) {
-    subCommand.requires(sender -> MantleCommand.hasPermission(sender, MantleCommand.PERMISSION_GAME_COMMANDS))
+    subCommand.requires(sender -> HiltCommand.hasPermission(sender, HiltCommand.PERMISSION_GAME_COMMANDS))
               .then(Commands.argument("targets", EntityArgument.entities())
                             // slots <target> add <slot_type> [<count>]
                             .then(Commands.literal("add")

@@ -1,14 +1,14 @@
 package modernmods.modernfoundry.library.recipe.modifiers.adding;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.helper.ItemOutput;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
 import modernmods.modernfoundry.library.modifiers.util.LazyModifier;

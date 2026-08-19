@@ -34,7 +34,7 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.common.ItemAbilities;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import modernmods.mantle.client.TooltipKey;
+import modernmods.hilt.client.TooltipKey;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.client.item.ModifiableCrossbowClientExtension;

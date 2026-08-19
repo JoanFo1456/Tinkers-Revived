@@ -27,7 +27,7 @@ import modernmods.modernfoundry.library.modifiers.Modifier;
 import modernmods.modernfoundry.library.modifiers.ModifierManager;
 import modernmods.modernfoundry.library.tools.stat.ToolStats;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 import static modernmods.modernfoundry.TConstruct.getResource;
 
 public class TinkerTags {
@@ -586,7 +586,7 @@ public class TinkerTags {
     public static final TagKey<Fluid> SMALL_GEM_TOOLTIPS = local("tooltips/gem_small");
     /** Causes the fluid to be formatted like glass in tooltips */
     public static final TagKey<Fluid> GLASS_TOOLTIPS = local("tooltips/glass");
-    /** @deprecated use {@link modernmods.mantle.datagen.MantleTags.Fluids#SOUP} */
+    /** @deprecated use {@link modernmods.hilt.datagen.HiltTags.Fluids#SOUP} */
     @Deprecated(forRemoval = true)
     public static final TagKey<Fluid> SOUP_TOOLTIPS = local("tooltips/soup");
 

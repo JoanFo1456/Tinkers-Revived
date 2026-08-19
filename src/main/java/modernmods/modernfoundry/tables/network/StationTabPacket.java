@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import modernmods.modernfoundry.compat.neoforged.neoforge.network.NetworkHooks;
-import modernmods.mantle.network.packet.IThreadsafePacket;
+import modernmods.hilt.network.packet.IThreadsafePacket;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.tables.block.ITabbedBlock;
 

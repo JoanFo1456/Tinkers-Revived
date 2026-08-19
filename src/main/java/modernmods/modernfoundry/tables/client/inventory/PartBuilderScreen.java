@@ -188,7 +188,7 @@ public class PartBuilderScreen extends BaseTabbedScreen<PartBuilderBlockEntity,P
       int y = top + (relative / 4) * PATTERN_SIZE + 1;
       // get the sprite for the pattern and draw
       Pattern pattern = list.get(i);
-      graphics.blitSprite(RenderPipelines.GUI_TEXTURED, modernmods.mantle.client.render.FluidRenderer.getBlockSprite(pattern.getTexture()), x, y, 16, 16);
+      graphics.blitSprite(RenderPipelines.GUI_TEXTURED, modernmods.hilt.client.render.FluidRenderer.getBlockSprite(pattern.getTexture()), x, y, 16, 16);
     }
   }
 
@@ -366,7 +366,7 @@ public class PartBuilderScreen extends BaseTabbedScreen<PartBuilderBlockEntity,P
   }
 
   @Override
-  // NOTE(26.1 port): this 3-arg mouseScrolled overrides Mantle's MultiModuleScreen helper, not vanilla's 4-arg entry point.
+  // NOTE(26.1 port): this 3-arg mouseScrolled overrides Hilt's MultiModuleScreen helper, not vanilla's 4-arg entry point.
   // Validate the pattern-list mouse-wheel scroll in-game (may need routing via the 4-arg mouseScrolled override).
   public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
     //if (this.infoPanelScreen.handleMouseScrolled(mouseX, mouseY, delta)) {

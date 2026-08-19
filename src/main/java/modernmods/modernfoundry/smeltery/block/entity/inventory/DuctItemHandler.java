@@ -8,7 +8,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
-import modernmods.mantle.inventory.SingleItemHandler;
+import modernmods.hilt.inventory.SingleItemHandler;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.network.InventorySlotSyncPacket;
 import modernmods.modernfoundry.common.network.TinkerNetwork;

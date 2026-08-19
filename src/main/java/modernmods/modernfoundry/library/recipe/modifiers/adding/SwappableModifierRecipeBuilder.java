@@ -2,7 +2,7 @@ package modernmods.modernfoundry.library.recipe.modifiers.adding;
 
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
 import modernmods.modernfoundry.library.modifiers.util.LazyModifier;

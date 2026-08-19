@@ -7,7 +7,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import modernmods.mantle.registration.object.FlowingFluidObject;
+import modernmods.hilt.registration.object.FlowingFluidObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.ClientEventBase;
 import modernmods.modernfoundry.library.client.model.FluidContainerModel;
@@ -41,13 +41,13 @@ public class FluidClientEvents extends ClientEventBase {
   static void registerFluidModels(net.neoforged.neoforge.client.event.RegisterFluidModelsEvent event) {
     // The potion fluid needs a per-stack (NBT) tint, which the data-driven fluid_texture color cannot express, so we
     // register its fluid model explicitly with PotionFluidTintSource. The still/flowing sprites come from the same
-    // mantle/fluid_texture data used by every other Tinkers fluid.
+    // hilt/fluid_texture data used by every other Tinkers fluid.
     // PLAIN NOTE (validate in-game): this reads FluidTextureManager, which is a resource-reload listener; if it is not
     // yet populated when fluid models bake, swap these lookups for the literal sprite ids
     // modernfoundry:fluid/potion/still and modernfoundry:fluid/potion/flowing.
     net.neoforged.neoforge.fluids.FluidType type = TinkerFluids.potion.getType();
-    net.minecraft.client.resources.model.sprite.Material still = new net.minecraft.client.resources.model.sprite.Material(modernmods.mantle.fluid.texture.FluidTextureManager.getStillTexture(type));
-    net.minecraft.client.resources.model.sprite.Material flowing = new net.minecraft.client.resources.model.sprite.Material(modernmods.mantle.fluid.texture.FluidTextureManager.getFlowingTexture(type));
+    net.minecraft.client.resources.model.sprite.Material still = new net.minecraft.client.resources.model.sprite.Material(modernmods.hilt.fluid.texture.FluidTextureManager.getStillTexture(type));
+    net.minecraft.client.resources.model.sprite.Material flowing = new net.minecraft.client.resources.model.sprite.Material(modernmods.hilt.fluid.texture.FluidTextureManager.getFlowingTexture(type));
     event.register(new net.minecraft.client.renderer.block.FluidModel.Unbaked(still, flowing, null, modernmods.modernfoundry.fluids.fluids.PotionFluidTintSource.INSTANCE), TinkerFluids.potion.get());
   }
 

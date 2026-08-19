@@ -11,7 +11,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
-import modernmods.mantle.registration.object.IdAwareObject;
+import modernmods.hilt.registration.object.IdAwareObject;
 
 import java.util.Map;
 

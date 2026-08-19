@@ -6,7 +6,7 @@ import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.library.json.LevelingInt;
 import modernmods.modernfoundry.library.json.TinkerLoadables;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;

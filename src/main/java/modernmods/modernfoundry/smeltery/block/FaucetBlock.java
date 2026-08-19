@@ -31,7 +31,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.joml.Vector3f;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
 import modernmods.modernfoundry.smeltery.block.entity.FaucetBlockEntity;
 

@@ -4,8 +4,8 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.inventory.MenuType;
-import modernmods.mantle.data.BuiltinRegistryTagProvider;
-import modernmods.mantle.datagen.MantleTags;
+import modernmods.hilt.data.BuiltinRegistryTagProvider;
+import modernmods.hilt.datagen.HiltTags;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
@@ -22,7 +22,7 @@ public class MenuTypeTagProvider extends BuiltinRegistryTagProvider<MenuType<?>>
 
   @Override
   protected void addTags(Provider provider) {
-    tag(MantleTags.MenuTypes.REPLACEABLE).add(
+    tag(HiltTags.MenuTypes.REPLACEABLE).add(
       // tool inventory allows really nice switching behavior
       TinkerTools.toolContainer.get(),
       TinkerTables.tinkerChestContainer.get(), TinkerSmeltery.singleItemContainer.get(),
@@ -30,7 +30,7 @@ public class MenuTypeTagProvider extends BuiltinRegistryTagProvider<MenuType<?>>
       TinkerTables.craftingStationContainer.get(), TinkerTables.partBuilderContainer.get(), TinkerTables.tinkerStationContainer.get(), TinkerTables.modifierWorktableContainer.get(),
       TinkerSmeltery.melterContainer.get(), TinkerSmeltery.alloyerContainer.get(), TinkerSmeltery.smelteryContainer.get()
     );
-    tag(TinkerTags.MenuTypes.TOOL_INVENTORY_REPLACEMENTS).addTag(MantleTags.MenuTypes.REPLACEABLE);
+    tag(TinkerTags.MenuTypes.TOOL_INVENTORY_REPLACEMENTS).addTag(HiltTags.MenuTypes.REPLACEABLE);
   }
 
   @Override

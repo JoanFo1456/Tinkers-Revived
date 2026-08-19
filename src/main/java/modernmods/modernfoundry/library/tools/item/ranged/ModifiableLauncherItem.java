@@ -40,7 +40,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.common.ItemAbility;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ICapabilityProvider;
-import modernmods.mantle.client.SafeClientAccess;
+import modernmods.hilt.client.SafeClientAccess;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.item.ModifiableItemClientExtension;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;

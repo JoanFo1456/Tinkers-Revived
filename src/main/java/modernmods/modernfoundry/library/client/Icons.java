@@ -1,7 +1,7 @@
 package modernmods.modernfoundry.library.client;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.ElementScreen;
 import modernmods.modernfoundry.TConstruct;
 
 /** TODO: consider using {@link modernmods.modernfoundry.library.recipe.partbuilder.Pattern} instead. */

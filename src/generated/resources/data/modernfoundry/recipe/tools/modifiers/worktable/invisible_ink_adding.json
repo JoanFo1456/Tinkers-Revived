@@ -6,14 +6,14 @@
   "id": "modernfoundry:tools/modifiers/worktable/invisible_ink_adding",
   "inputs": [
     {
-      "neoforge:ingredient_type": "mantle:fluid_container",
+      "neoforge:ingredient_type": "hilt:fluid_container",
       "amount": 250,
       "display": "modernfoundry:sky_slime_bottle",
       "tag": "modernfoundry:sky_slime"
     }
   ],
   "modifier_predicate": {
-    "type": "mantle:inverted",
+    "type": "hilt:inverted",
     "inverted_type": "modernfoundry:tag",
     "tag": "modernfoundry:invisible_ink_blacklist"
   },

@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_post",
         "connection": {
           "predicate": "pane",
@@ -14,7 +14,7 @@
     },
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_side",
         "connection": {
           "predicate": "pane",
@@ -29,7 +29,7 @@
     },
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_noside",
         "connection": {
           "predicate": "pane",
@@ -44,7 +44,7 @@
     },
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_side_alt",
         "connection": {
           "predicate": "pane",
@@ -59,7 +59,7 @@
     },
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_noside_alt",
         "y": 90,
         "connection": {
@@ -75,7 +75,7 @@
     },
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_side_alt",
         "y": 90,
         "connection": {
@@ -91,7 +91,7 @@
     },
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_noside",
         "y": 270,
         "connection": {
@@ -107,7 +107,7 @@
     },
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_side",
         "y": 90,
         "connection": {
@@ -123,7 +123,7 @@
     },
     {
       "apply": {
-        "type": "mantle:connected",
+        "type": "hilt:connected",
         "model": "modernfoundry:block/soul_glass/pane_noside_alt",
         "connection": {
           "predicate": "pane",

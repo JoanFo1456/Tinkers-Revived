@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import modernmods.modernfoundry.common.multiblock.IMasterLogic;
 import modernmods.modernfoundry.common.multiblock.IServantLogic;
 import modernmods.modernfoundry.smeltery.block.component.SearedBlock;
@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  *
  */
-public abstract class HeatingStructureMultiblock<T extends MantleBlockEntity & IMasterLogic> extends MultiblockCuboid<StructureData> {
+public abstract class HeatingStructureMultiblock<T extends HiltBlockEntity & IMasterLogic> extends MultiblockCuboid<StructureData> {
   private static final String TAG_TANKS = "tanks";
   private static final String TAG_INSIDE_CHECK = "insideCheck";
 

@@ -322,7 +322,7 @@ public class ModifierWorktableScreen extends ToolTableScreen<ModifierWorktableBl
   }
 
   @Override
-  // NOTE(26.1 port): this 3-arg mouseScrolled overrides Mantle's MultiModuleScreen helper, not vanilla's 4-arg entry point.
+  // NOTE(26.1 port): this 3-arg mouseScrolled overrides Hilt's MultiModuleScreen helper, not vanilla's 4-arg entry point.
   // Validate the recipe scrollbar mouse-wheel scroll in-game (may need routing via the 4-arg mouseScrolled override).
   public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
     if (this.tinkerInfo.handleMouseScrolled(mouseX, mouseY, delta)

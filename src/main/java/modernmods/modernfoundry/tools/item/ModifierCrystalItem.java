@@ -12,8 +12,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import modernmods.mantle.command.MantleCommand;
-import modernmods.mantle.fluid.FluidTransferHelper;
+import modernmods.hilt.command.HiltCommand;
+import modernmods.hilt.fluid.FluidTransferHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.TinkerTags.Modifiers;
@@ -126,7 +126,7 @@ public class ModifierCrystalItem extends Item {
     // see also - modifier removal command
 
     // must be op or in creative, right-clicking onto a modifiable slot with a tool
-    if (action == ClickAction.SECONDARY && slot.allowModification(player) && !toolItem.isEmpty() && toolItem.is(TinkerTags.Items.MODIFIABLE) && (player.isCreative() || MantleCommand.PERMISSION_GAME_COMMANDS.check(player.permissions()))) {
+    if (action == ClickAction.SECONDARY && slot.allowModification(player) && !toolItem.isEmpty() && toolItem.is(TinkerTags.Items.MODIFIABLE) && (player.isCreative() || HiltCommand.PERMISSION_GAME_COMMANDS.check(player.permissions()))) {
       // NBT must be valid
       ModifierId modifier = getModifier(stack);
       if (modifier != null) {

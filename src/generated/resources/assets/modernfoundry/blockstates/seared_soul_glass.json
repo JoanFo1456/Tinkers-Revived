@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "type": "mantle:connected",
+      "type": "hilt:connected",
       "model": "modernfoundry:block/smeltery/soul_glass/block",
       "connection": {
         "textures": {

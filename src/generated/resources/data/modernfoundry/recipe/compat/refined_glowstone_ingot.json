@@ -1,11 +1,11 @@
 {
   "neoforge:conditions": [
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:ingots/refined_glowstone"
     },
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:ingots/osmium"
     }
   ],

@@ -4,13 +4,13 @@ import net.neoforged.neoforge.common.conditions.NeoForgeConditions;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.FluidTags;
 import net.neoforged.neoforge.common.conditions.OrCondition;
-import modernmods.mantle.recipe.condition.TagFilledCondition;
+import modernmods.hilt.recipe.condition.TagFilledCondition;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.json.ConfigEnabledCondition;
 import modernmods.modernfoundry.library.data.material.AbstractMaterialDataProvider;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 
 public class MaterialDataProvider extends AbstractMaterialDataProvider {
   public MaterialDataProvider(PackOutput packOutput) {

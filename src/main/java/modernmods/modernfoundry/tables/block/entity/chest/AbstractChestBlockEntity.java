@@ -18,11 +18,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.TagValueInput;
 import net.minecraft.world.level.storage.TagValueOutput;
 import net.minecraft.world.level.storage.ValueInput;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.items.IItemHandler;
-import modernmods.mantle.block.entity.NameableBlockEntity;
+import modernmods.hilt.block.entity.NameableBlockEntity;
 import modernmods.modernfoundry.library.utils.TagUtil;
 import modernmods.modernfoundry.tables.block.ChestBlock;
 import modernmods.modernfoundry.tables.block.entity.inventory.IChestItemHandler;
@@ -50,7 +50,7 @@ public abstract class AbstractChestBlockEntity extends NameableBlockEntity {
     if (cap == ForgeCapabilities.ITEM_HANDLER) {
       return capability.cast();
     }
-    return modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
+    return modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
   public void invalidateCaps() {

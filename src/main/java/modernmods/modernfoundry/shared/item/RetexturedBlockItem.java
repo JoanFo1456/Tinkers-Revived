@@ -6,8 +6,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.block.Block;
-import modernmods.mantle.item.BlockTooltipItem;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.item.BlockTooltipItem;
+import modernmods.hilt.util.RetexturedHelper;
 
 import java.util.ArrayList;
 import java.util.List;

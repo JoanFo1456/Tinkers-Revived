@@ -76,13 +76,13 @@
     },
     {
       "type": "modernfoundry:is_effective",
-      "predicate_type": "mantle:tag",
+      "predicate_type": "hilt:tag",
       "tag": "minecraft:mineable/axe"
     },
     {
       "type": "modernfoundry:conditional_aoe",
       "condition": {
-        "type": "mantle:tag",
+        "type": "hilt:tag",
         "tag": "modernfoundry:tree_log"
       },
       "if_false": {

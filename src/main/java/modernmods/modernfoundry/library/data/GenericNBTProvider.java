@@ -11,7 +11,7 @@ import net.minecraft.data.PackOutput.Target;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.TConstruct;
 
 import java.io.ByteArrayOutputStream;

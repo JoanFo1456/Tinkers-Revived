@@ -11,10 +11,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.ingredient.EntityIngredient;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.ingredient.EntityIngredient;
 import modernmods.modernfoundry.library.recipe.modifiers.severing.SeveringRecipe;
 import modernmods.modernfoundry.tools.TinkerModifiers;
 

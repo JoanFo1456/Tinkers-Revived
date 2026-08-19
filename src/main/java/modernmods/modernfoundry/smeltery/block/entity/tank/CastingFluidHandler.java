@@ -13,7 +13,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.transaction.SnapshotJournal;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
-import modernmods.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
+import modernmods.hilt.compat.neoforged.neoforge.registries.ForgeRegistries;
 import modernmods.modernfoundry.library.utils.TagUtil;
 import modernmods.modernfoundry.smeltery.block.entity.CastingBlockEntity;
 import modernmods.modernfoundry.smeltery.item.TankItem;

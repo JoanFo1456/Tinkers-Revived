@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.json.LevelingInt;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;

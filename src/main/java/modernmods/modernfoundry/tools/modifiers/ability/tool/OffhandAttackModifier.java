@@ -6,7 +6,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import modernmods.mantle.util.OffhandCooldownTracker;
+import modernmods.hilt.util.OffhandCooldownTracker;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.Sounds;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;

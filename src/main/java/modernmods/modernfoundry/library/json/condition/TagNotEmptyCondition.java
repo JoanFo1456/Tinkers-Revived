@@ -10,10 +10,10 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.conditions.ICondition;
-import modernmods.mantle.util.RegistryHelper;
+import modernmods.hilt.util.RegistryHelper;
 import modernmods.modernfoundry.TConstruct;
 
-/** @deprecated use {@link modernmods.mantle.recipe.condition.TagFilledCondition} */
+/** @deprecated use {@link modernmods.hilt.recipe.condition.TagFilledCondition} */
 @Deprecated(forRemoval = true)
 @RequiredArgsConstructor
 public class TagNotEmptyCondition<T> implements LootItemCondition, ICondition {

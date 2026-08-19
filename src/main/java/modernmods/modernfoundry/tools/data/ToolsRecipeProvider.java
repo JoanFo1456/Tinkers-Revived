@@ -2,7 +2,7 @@ package modernmods.modernfoundry.tools.data;
 
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
 import net.minecraft.data.PackOutput;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -16,9 +16,9 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
-import modernmods.mantle.recipe.data.ItemNameIngredient;
-import modernmods.mantle.recipe.ingredient.PotionDisplayIngredient;
-import modernmods.mantle.recipe.ingredient.SizedIngredient;
+import modernmods.hilt.recipe.data.ItemNameIngredient;
+import modernmods.hilt.recipe.ingredient.PotionDisplayIngredient;
+import modernmods.hilt.recipe.ingredient.SizedIngredient;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.data.BaseRecipeProvider;
@@ -138,7 +138,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
                           .requires(Ingredient.of(TinkerSmeltery.searedBrick, TinkerSmeltery.scorchedBrick))
                           .unlockedBy("has_seared", has(TinkerSmeltery.searedBrick))
                           .unlockedBy("has_scorched", has(TinkerSmeltery.scorchedBrick))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.flintAndBrick, folder)));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.flintAndBrick, folder)));
 
     // staff
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.TOOLS, TinkerTools.skyStaff)
@@ -149,7 +149,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
                        .define('W', TinkerWorld.skyroot.getLogItemTag())
                        .define('I', TinkerMaterials.roseGold.getIngotTag())
                        .unlockedBy("has_wood", has(TinkerWorld.skyroot.getLogItemTag()))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.skyStaff, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.skyStaff, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.TOOLS, TinkerTools.earthStaff)
                        .pattern("CWC")
                        .pattern(" I ")
@@ -158,7 +158,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
                        .define('W', TinkerWorld.greenheart.getLogItemTag())
                        .define('I', TinkerMaterials.cobalt.getIngotTag())
                        .unlockedBy("has_wood", has(TinkerWorld.greenheart.getLogItemTag()))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.earthStaff, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.earthStaff, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.TOOLS, TinkerTools.ichorStaff)
                        .pattern("CWC")
                        .pattern(" I ")
@@ -167,7 +167,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
                        .define('W', TinkerWorld.bloodshroom.getLogItemTag())
                        .define('I', TinkerMaterials.queensSlime.getIngotTag())
                        .unlockedBy("has_wood", has(TinkerWorld.bloodshroom.getLogItemTag()))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.ichorStaff, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.ichorStaff, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.TOOLS, TinkerTools.enderStaff)
                        .pattern("CWC")
                        .pattern(" I ")
@@ -176,7 +176,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
                        .define('W', TinkerWorld.enderbark.getLogItemTag())
                        .define('I', Tags.Items.INGOTS_NETHERITE)
                        .unlockedBy("has_wood", has(TinkerWorld.enderbark.getLogItemTag()))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.enderStaff, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTools.enderStaff, folder)));
 
     // travelers gear
     String travelersFolder = armorFolder + "travelers/";
@@ -194,7 +194,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .define('l', Tags.Items.LEATHERS)
       .define('g', Tags.Items.GLASS_PANES_COLORLESS)
       .unlockedBy("has_item", has(Tags.Items.LEATHERS))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "goggles")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "goggles")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.COMBAT, TinkerTools.travelersGear.get(ArmorType.CHESTPLATE))
       .pattern("l l")
       .pattern("lcl")
@@ -202,7 +202,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .define('c', travelersMaterial.apply(PlatingMaterialStats.CHESTPLATE.getStatId()))
       .define('l', Tags.Items.LEATHERS)
       .unlockedBy("has_item", has(Tags.Items.LEATHERS))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "chestplate")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "chestplate")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.COMBAT, TinkerTools.travelersGear.get(ArmorType.LEGGINGS))
       .pattern("lll")
       .pattern("c c")
@@ -210,14 +210,14 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .define('c', travelersMaterial.apply(PlatingMaterialStats.LEGGINGS.getStatId()))
       .define('l', Tags.Items.LEATHERS)
       .unlockedBy("has_item", has(Tags.Items.LEATHERS))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "pants")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "pants")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.COMBAT, TinkerTools.travelersGear.get(ArmorType.BOOTS))
       .pattern("c c")
       .pattern("l l")
       .define('c', travelersMaterial.apply(PlatingMaterialStats.BOOTS.getStatId()))
       .define('l', Tags.Items.LEATHERS)
       .unlockedBy("has_item", has(Tags.Items.LEATHERS))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "boots")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "boots")));
     // shield needs no special variants, no compat shield cores exist
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.COMBAT, TinkerTools.travelersShield)
                        .pattern("cl")
@@ -225,7 +225,7 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
                        .define('l', Tags.Items.LEATHERS)
                        .define('c', MaterialValueIngredient.of(new MaterialStatTypePredicate(StatlessMaterialStats.SHIELD_CORE.getIdentifier()), 1))
                        .unlockedBy("has_item", has(Tags.Items.LEATHERS))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "shield")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(shapedMaterial), recipeId(location(travelersFolder + "shield")));
 
     // travelers part swapping
     PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersGear.get(ArmorType.HELMET)), 3)
@@ -420,12 +420,12 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .pattern("###")
       .pattern("###")
       .unlockedBy("has_item", has(TinkerToolParts.fakeIngot))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(MaterialsConsumerBuilder.shaped("#").build(consumer)), recipeId(location(partFolder + "fake_ingot_to_block")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(MaterialsConsumerBuilder.shaped("#").build(consumer)), recipeId(location(partFolder + "fake_ingot_to_block")));
     // block to ingot
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, TinkerToolParts.fakeIngot, 9)
       .requires(MaterialIngredient.of(TinkerToolParts.fakeStorageBlock, new MaterialHasPartPredicate(TinkerToolParts.fakeIngot.get())))
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(MaterialsConsumerBuilder.shapeless(1).build(consumer)), recipeId(location(partFolder + "fake_block_to_ingots")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(MaterialsConsumerBuilder.shapeless(1).build(consumer)), recipeId(location(partFolder + "fake_block_to_ingots")));
 
     // head
     partRecipes(consumer, TinkerToolParts.pickHead,     TinkerSmeltery.pickHeadCast,     2, partFolder, castFolder);

@@ -16,7 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
-import modernmods.mantle.recipe.helper.TagPreference;
+import modernmods.hilt.recipe.helper.TagPreference;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.Modifier;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
@@ -31,7 +31,7 @@ import modernmods.modernfoundry.shared.TinkerMaterials;
 
 import javax.annotation.Nullable;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 
 @Deprecated
 public class OlympicModifier extends Modifier implements ProjectileLaunchModifierHook, ProjectileHitModifierHook {

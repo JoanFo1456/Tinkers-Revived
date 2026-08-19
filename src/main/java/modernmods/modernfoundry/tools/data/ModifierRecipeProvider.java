@@ -3,7 +3,7 @@ package modernmods.modernfoundry.tools.data;
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
 import static net.neoforged.neoforge.common.conditions.NeoForgeConditions.modLoaded;
 import net.minecraft.data.PackOutput;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -20,17 +20,17 @@ import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import net.neoforged.neoforge.common.crafting.IntersectionIngredient;
 import net.neoforged.neoforge.fluids.FluidType;
-import modernmods.mantle.data.predicate.IJsonPredicate;
-import modernmods.mantle.datagen.MantleTags;
-import modernmods.mantle.recipe.condition.TagFilledCondition;
-import modernmods.mantle.recipe.data.ItemNameIngredient;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.helper.SimpleFinishedRecipe;
-import modernmods.mantle.recipe.ingredient.EntityIngredient;
-import modernmods.mantle.recipe.ingredient.FluidContainerIngredient;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
-import modernmods.mantle.recipe.ingredient.SizedIngredient;
-import modernmods.mantle.registration.object.WoodBlockObject;
+import modernmods.hilt.data.predicate.IJsonPredicate;
+import modernmods.hilt.datagen.HiltTags;
+import modernmods.hilt.recipe.condition.TagFilledCondition;
+import modernmods.hilt.recipe.data.ItemNameIngredient;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.helper.SimpleFinishedRecipe;
+import modernmods.hilt.recipe.ingredient.EntityIngredient;
+import modernmods.hilt.recipe.ingredient.FluidContainerIngredient;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.recipe.ingredient.SizedIngredient;
+import modernmods.hilt.registration.object.WoodBlockObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.data.BaseRecipeProvider;
@@ -85,7 +85,7 @@ import java.util.Arrays;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import static modernmods.mantle.Mantle.COMMON;
+import static modernmods.hilt.Hilt.COMMON;
 import static modernmods.modernfoundry.library.recipe.melting.IMeltingRecipe.getTemperature;
 
 public class ModifierRecipeProvider extends BaseRecipeProvider {
@@ -1364,9 +1364,9 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .saveSalvage(consumer, prefix(ModifierIds.spilling, abilitySalvage))
                          .save(consumer, prefix(ModifierIds.spilling, abilityFolder));
     ModifierRecipeBuilder.modifier(ModifierIds.splashing)
-                         .addInput(MantleTags.Items.SPLASH_BOTTLE)
+                         .addInput(HiltTags.Items.SPLASH_BOTTLE)
                          .addInput(tanks)
-                         .addInput(MantleTags.Items.SPLASH_BOTTLE)
+                         .addInput(HiltTags.Items.SPLASH_BOTTLE)
                          .addInput(Tags.Items.INGOTS_COPPER)
                          .addInput(Tags.Items.INGOTS_COPPER)
                          .setSlots(SlotType.ABILITY, 1)
@@ -1715,7 +1715,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
     PotionCastingRecipeBuilder.tableClearing(ModifierIds.tipped)
       .setBottle(TinkerTags.Items.AMMO)
       .setCoolingTime(20)
-      .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE / 5)
+      .setFluid(HiltTags.Fluids.WATER, FluidValues.BOTTLE / 5)
       .save(consumer, location(slotlessFolder + "ammo_tip_clearing"));
     PotionCastingRecipeBuilder.tableTipping(ModifierIds.tipped)
       .setBottle(TinkerTags.Items.FISHING_RODS)
@@ -1725,7 +1725,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
     PotionCastingRecipeBuilder.tableClearing(ModifierIds.tipped)
       .setBottle(TinkerTags.Items.FISHING_RODS)
       .setCoolingTime(20)
-      .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE)
+      .setFluid(HiltTags.Fluids.WATER, FluidValues.BOTTLE)
       .save(consumer, location(slotlessFolder + "fishing_rod_tip_clearing"));
 
     // removal

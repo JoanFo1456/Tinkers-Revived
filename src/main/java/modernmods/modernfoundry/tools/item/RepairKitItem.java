@@ -10,7 +10,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
-import modernmods.mantle.util.TranslationHelper;
+import modernmods.hilt.util.TranslationHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.Sounds;
 import modernmods.modernfoundry.common.TinkerTags;

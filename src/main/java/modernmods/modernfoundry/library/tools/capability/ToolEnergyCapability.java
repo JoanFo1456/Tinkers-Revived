@@ -2,9 +2,9 @@ package modernmods.modernfoundry.library.tools.capability;
 
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.modules.ModifierModule;

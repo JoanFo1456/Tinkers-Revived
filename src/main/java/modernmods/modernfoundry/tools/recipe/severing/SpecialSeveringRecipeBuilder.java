@@ -5,10 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
 import modernmods.modernfoundry.library.recipe.modifiers.severing.SeveringRecipe;
 
 import javax.annotation.Nullable;

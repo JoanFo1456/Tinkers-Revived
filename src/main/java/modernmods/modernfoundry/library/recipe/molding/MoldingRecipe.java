@@ -9,14 +9,14 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import modernmods.mantle.data.loadable.common.IngredientLoadable;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.primitive.BooleanLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.recipe.ICommonRecipe;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.helper.LoadableRecipeSerializer;
-import modernmods.mantle.recipe.helper.TypeAwareRecipeSerializer;
+import modernmods.hilt.data.loadable.common.IngredientLoadable;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.primitive.BooleanLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.recipe.ICommonRecipe;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.helper.LoadableRecipeSerializer;
+import modernmods.hilt.recipe.helper.TypeAwareRecipeSerializer;
 
 /** Recipe to combine two items on the top of a casting table, changing the first */
 public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
@@ -80,7 +80,7 @@ public class MoldingRecipe implements ICommonRecipe<IMoldingContainer> {
 
   @Override
   public ItemStack assemble(IMoldingContainer inv) {
-    // Mantle's ICommonRecipe#assemble defaults to empty; molding must return the actual output so the table produces the item
+    // Hilt's ICommonRecipe#assemble defaults to empty; molding must return the actual output so the table produces the item
     return recipeOutput.get().copy();
   }
 }

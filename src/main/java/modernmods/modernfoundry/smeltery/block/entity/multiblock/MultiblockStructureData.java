@@ -9,8 +9,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.common.multiblock.IMasterLogic;
 import modernmods.modernfoundry.common.multiblock.IServantLogic;
 import modernmods.modernfoundry.smeltery.block.component.SearedBlock;
@@ -193,7 +193,7 @@ public class MultiblockStructureData {
    * @param master        Master to assign
    * @param oldStructure  Previous structure instance. Reduces the number of masters assigned and removes old masters
    */
-  public <T extends MantleBlockEntity & IMasterLogic> void assignMaster(T master, @Nullable MultiblockStructureData oldStructure) {
+  public <T extends HiltBlockEntity & IMasterLogic> void assignMaster(T master, @Nullable MultiblockStructureData oldStructure) {
     Predicate<BlockPos> shouldUpdate;
     if (oldStructure == null) {
       shouldUpdate = pos -> true;
@@ -226,7 +226,7 @@ public class MultiblockStructureData {
    * Clears the master on all blocks in this structure
    * @param master  Master to remove
    */
-  public <T extends MantleBlockEntity & IMasterLogic> void clearMaster(T master) {
+  public <T extends HiltBlockEntity & IMasterLogic> void clearMaster(T master) {
     Level world = master.getLevel();
     assert world != null;
     forEachContained(pos -> {

@@ -69,7 +69,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers.AddFeaturesBiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers.AddSpawnsBiomeModifier;
-import modernmods.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
+import modernmods.hilt.compat.neoforged.neoforge.registries.ForgeRegistries;
 import net.neoforged.neoforge.registries.holdersets.AndHolderSet;
 import net.neoforged.neoforge.registries.holdersets.NotHolderSet;
 import net.neoforged.neoforge.registries.holdersets.OrHolderSet;

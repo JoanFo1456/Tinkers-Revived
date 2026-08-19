@@ -5,8 +5,8 @@ import com.google.gson.JsonSerializationContext;
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
-import modernmods.mantle.data.loadable.primitive.IntLoadable;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.data.loadable.primitive.IntLoadable;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.TConstruct;
 
 import javax.annotation.Nullable;

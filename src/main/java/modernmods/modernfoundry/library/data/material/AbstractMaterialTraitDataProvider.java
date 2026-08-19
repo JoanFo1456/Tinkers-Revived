@@ -6,7 +6,7 @@ import net.minecraft.data.CachedOutput;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.PackOutput.Target;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.GenericDataProvider;
+import modernmods.hilt.data.GenericDataProvider;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;
 import modernmods.modernfoundry.library.materials.json.MaterialTraitsJson;
 import modernmods.modernfoundry.library.materials.stats.MaterialStatsId;

@@ -5,7 +5,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.alchemy.Potion;
-import modernmods.mantle.data.BuiltinRegistryTagProvider;
+import modernmods.hilt.data.BuiltinRegistryTagProvider;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 

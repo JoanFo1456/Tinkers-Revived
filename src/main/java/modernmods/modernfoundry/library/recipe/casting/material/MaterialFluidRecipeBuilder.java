@@ -3,13 +3,13 @@ package modernmods.modernfoundry.library.recipe.casting.material;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 
 import javax.annotation.Nullable;

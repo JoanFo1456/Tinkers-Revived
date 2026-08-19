@@ -6,8 +6,8 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.item.ToolMaterial;
 import modernmods.modernfoundry.compat.neoforged.neoforge.common.TierSortingRegistry;
-import modernmods.mantle.client.ResourceColorManager;
-import modernmods.mantle.data.listener.ISafeManagerReloadListener;
+import modernmods.hilt.client.ResourceColorManager;
+import modernmods.hilt.data.listener.ISafeManagerReloadListener;
 import modernmods.modernfoundry.TConstruct;
 
 import java.util.List;

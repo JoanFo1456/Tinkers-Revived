@@ -13,8 +13,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
-import modernmods.mantle.data.predicate.IJsonPredicate;
-import modernmods.mantle.data.predicate.item.ItemPredicate;
+import modernmods.hilt.data.predicate.IJsonPredicate;
+import modernmods.hilt.data.predicate.item.ItemPredicate;
 import modernmods.modernfoundry.library.utils.TagUtil;
 
 import javax.annotation.Nullable;

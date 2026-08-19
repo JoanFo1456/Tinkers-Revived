@@ -9,7 +9,7 @@ import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.util.sync.LambdaDataSlot;
+import modernmods.hilt.util.sync.LambdaDataSlot;
 import modernmods.modernfoundry.tables.TinkerTables;
 import modernmods.modernfoundry.tables.block.entity.table.ModifierWorktableBlockEntity;
 import modernmods.modernfoundry.tables.menu.slot.ArmorSlot;

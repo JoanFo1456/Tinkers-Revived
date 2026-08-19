@@ -20,9 +20,9 @@ import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.util.context.ContextMap;
-import modernmods.mantle.Mantle;
-import modernmods.mantle.client.SafeClientAccess;
-import modernmods.mantle.plugin.jei.MantleJEIConstants;
+import modernmods.hilt.Hilt;
+import modernmods.hilt.client.SafeClientAccess;
+import modernmods.hilt.plugin.jei.HiltJEIConstants;
 import modernmods.modernfoundry.library.recipe.material.MaterialRecipeCache;
 import modernmods.modernfoundry.library.recipe.material.MaterialsCraftingTableRecipe;
 import modernmods.modernfoundry.library.recipe.material.ShapelessMaterialsRecipe;
@@ -143,14 +143,14 @@ public class MaterialsCraftingExtension<T extends CraftingRecipe & MaterialsCraf
     IRecipeSlotBuilder output = craftingGridHelper.createAndSetOutputs(builder, result);
     if (inputs.size() != 9) {
       Identifier id = recipe instanceof MaterialsCraftingTableRecipe materialRecipe ? materialRecipe.getId() : null;
-      Mantle.logger.error("Failed to create focus link for {} as the layout {} is not 3x3", id, builder.getClass().getName());
+      Hilt.logger.error("Failed to create focus link for {} as the layout {} is not 3x3", id, builder.getClass().getName());
     } else if (materialSlots != null) {
       // apply focus links
       int finalWidth = width;
       int finalHeight = height;
       builder.createFocusLink(Streams.concat(
         Stream.of(output),
-        Arrays.stream(materialSlots).mapToObj(i -> inputs.get(MantleJEIConstants.getCraftingIndex(i, finalWidth, finalHeight)))
+        Arrays.stream(materialSlots).mapToObj(i -> inputs.get(HiltJEIConstants.getCraftingIndex(i, finalWidth, finalHeight)))
       ).toArray(IRecipeSlotBuilder[]::new));
     }
   }

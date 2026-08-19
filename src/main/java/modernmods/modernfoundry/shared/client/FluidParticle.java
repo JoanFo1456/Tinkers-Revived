@@ -7,7 +7,7 @@ import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.RandomSource;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.client.render.FluidRenderer;
+import modernmods.hilt.client.render.FluidRenderer;
 import modernmods.modernfoundry.shared.particle.FluidParticleData;
 
 /** Particle type that renders a fluid still texture */

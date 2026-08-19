@@ -22,7 +22,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.crafting.ICustomIngredient;
 import net.neoforged.neoforge.common.crafting.IngredientType;
-import modernmods.mantle.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.Loadables;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.module.ModuleHook;

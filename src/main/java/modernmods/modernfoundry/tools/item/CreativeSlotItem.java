@@ -13,8 +13,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import modernmods.mantle.command.MantleCommand;
-import modernmods.mantle.fluid.FluidTransferHelper;
+import modernmods.hilt.command.HiltCommand;
+import modernmods.hilt.fluid.FluidTransferHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.config.Config;
@@ -101,7 +101,7 @@ public class CreativeSlotItem extends Item {
 
   /** Checks if the given player may apply this item */
   public static boolean canApply(Player player) {
-    return player.isCreative() || (Config.COMMON.quickApplyToolModifiersSurvival.get() && MantleCommand.PERMISSION_GAME_COMMANDS.check(player.permissions()));
+    return player.isCreative() || (Config.COMMON.quickApplyToolModifiersSurvival.get() && HiltCommand.PERMISSION_GAME_COMMANDS.check(player.permissions()));
   }
 
   /** Common logic between two stack methods */

@@ -2,7 +2,7 @@ package modernmods.modernfoundry.compat.minecraft.world.entity;
 
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.LivingEntity;
-import modernmods.mantle.data.predicate.entity.LivingEntityPredicate;
+import modernmods.hilt.data.predicate.entity.LivingEntityPredicate;
 
 /** Compatibility enum for the removed vanilla MobType API. */
 public enum MobType implements LivingEntityPredicate {
@@ -24,7 +24,7 @@ public enum MobType implements LivingEntityPredicate {
   }
 
   @Override
-  public modernmods.mantle.data.loadable.record.RecordLoadable<? extends LivingEntityPredicate> getLoader() {
-    return modernmods.mantle.data.predicate.entity.MobTypePredicate.LOADER;
+  public modernmods.hilt.data.loadable.record.RecordLoadable<? extends LivingEntityPredicate> getLoader() {
+    return modernmods.hilt.data.predicate.entity.MobTypePredicate.LOADER;
   }
 }

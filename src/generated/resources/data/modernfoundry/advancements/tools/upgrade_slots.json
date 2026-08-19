@@ -7,7 +7,7 @@
           {
             "type": "modernfoundry:tool_stack",
             "predicate": {
-              "type": "mantle:and",
+              "type": "hilt:and",
               "predicates": [
                 {
                   "type": "modernfoundry:has_modifier",

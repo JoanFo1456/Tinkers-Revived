@@ -6,14 +6,14 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import modernmods.mantle.registration.object.ItemObject;
+import modernmods.hilt.registration.object.ItemObject;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static modernmods.mantle.util.RegistryHelper.getHolder;
+import static modernmods.hilt.util.RegistryHelper.getHolder;
 
 /**
  * Deferred wrapper holding gold, sand, and red sand casts

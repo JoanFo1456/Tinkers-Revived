@@ -7,7 +7,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import modernmods.modernfoundry.common.network.InventorySlotSyncPacket;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.library.recipe.TinkerRecipeTypes;
@@ -34,7 +34,7 @@ public class MeltingModule implements IMeltingContainer, ContainerData {
   private static final int REQUIRED_TEMP = 2;
 
   /** Tile entity containing this melting module */
-  private final MantleBlockEntity parent;
+  private final HiltBlockEntity parent;
   /** Function that accepts fluid output from this module */
   private final Predicate<IMeltingRecipe> outputFunction;
   /** Function that boosts the ores based on the rate type */

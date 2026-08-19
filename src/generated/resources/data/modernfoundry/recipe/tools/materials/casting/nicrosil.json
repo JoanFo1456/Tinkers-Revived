@@ -4,19 +4,19 @@
       "type": "neoforge:or",
       "values": [
         {
-          "type": "mantle:tag_filled",
+          "type": "hilt:tag_filled",
           "tag": "c:ingots/nicrosil"
         },
         {
-          "type": "mantle:tag_filled",
+          "type": "hilt:tag_filled",
           "tag": "c:ingots/tin"
         },
         {
-          "type": "mantle:tag_filled",
+          "type": "hilt:tag_filled",
           "tag": "c:ingots/nickel"
         },
         {
-          "type": "mantle:tag_filled",
+          "type": "hilt:tag_filled",
           "tag": "c:ingots/chromium"
         }
       ]

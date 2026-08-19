@@ -2,7 +2,7 @@ package modernmods.modernfoundry.library.client.book.sectiontransformer;
 
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
-import modernmods.mantle.client.book.data.content.PageContent;
+import modernmods.hilt.client.book.data.content.PageContent;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.book.content.ContentModifier;
 import modernmods.modernfoundry.library.modifiers.Modifier;

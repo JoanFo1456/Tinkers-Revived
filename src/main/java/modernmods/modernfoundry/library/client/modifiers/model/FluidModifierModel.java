@@ -9,9 +9,9 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.joml.Vector3f;
-import modernmods.mantle.client.model.util.ColoredBlockModel;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.client.model.util.ColoredBlockModel;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.model.FluidContainerModel;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
@@ -90,7 +90,7 @@ public record FluidModifierModel(Material small, @Nullable Material large, ToolT
     int color = fluidModel.tintSource() instanceof net.neoforged.neoforge.client.fluid.FluidTintSource tint ? tint.colorAsStack(fluid) : -1;
     int luminosity = fluid.getFluid().getFluidType().getLightLevel(fluid);
     Transformation transform = transforms.applyOrigin(ORIGIN).compose(FluidContainerModel.FLUID_TRANSFORM);
-    List<BakedQuad> fluidQuads = modernmods.mantle.client.model.util.MantleItemLayerModel.getQuadsForSprite(color, -1, fluidModel.stillMaterial(), transform, luminosity);
+    List<BakedQuad> fluidQuads = modernmods.hilt.client.model.util.HiltItemLayerModel.getQuadsForSprite(color, -1, fluidModel.stillMaterial(), transform, luminosity);
     quadConsumer.accept(fluidQuads);
   }
 }

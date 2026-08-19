@@ -8,8 +8,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
-import modernmods.mantle.block.IMultipartConnectedBlock;
-import modernmods.mantle.client.model.connected.ConnectedModelRegistry;
+import modernmods.hilt.block.IMultipartConnectedBlock;
+import modernmods.hilt.client.model.connected.ConnectedModelRegistry;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 

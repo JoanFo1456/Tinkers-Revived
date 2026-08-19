@@ -1,12 +1,12 @@
 package modernmods.modernfoundry.library.data.recipe;
 
 import com.google.gson.JsonObject;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import modernmods.mantle.data.loadable.common.NBTLoadable;
+import modernmods.hilt.data.loadable.common.NBTLoadable;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;

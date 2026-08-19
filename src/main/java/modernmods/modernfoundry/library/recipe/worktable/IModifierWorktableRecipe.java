@@ -6,7 +6,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import modernmods.mantle.recipe.ICommonRecipe;
+import modernmods.hilt.recipe.ICommonRecipe;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.recipe.ITinkerableContainer;
 import modernmods.modernfoundry.library.recipe.RecipeResult;

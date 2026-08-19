@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.library.utils.TagUtil;
 import modernmods.modernfoundry.library.materials.definition.IMaterial;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;

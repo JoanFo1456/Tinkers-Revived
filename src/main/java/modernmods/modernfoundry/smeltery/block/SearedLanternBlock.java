@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.phys.HitResult;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.library.utils.NBTTags;
 import modernmods.modernfoundry.library.utils.TagUtil;
 import modernmods.modernfoundry.smeltery.block.component.SearedTankBlock;

@@ -20,13 +20,13 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.crafting.Ingredient;
-import modernmods.mantle.data.loadable.common.IngredientLoadable;
-import modernmods.mantle.util.typed.TypedMap;
+import modernmods.hilt.data.loadable.common.IngredientLoadable;
+import modernmods.hilt.util.typed.TypedMap;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.conditions.ICondition.IContext;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
-import modernmods.mantle.recipe.condition.ConditionHelper;
+import modernmods.hilt.recipe.condition.ConditionHelper;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.library.recipe.partbuilder.Pattern;
 
@@ -161,7 +161,7 @@ public class StationSlotLayoutLoader extends SimpleJsonResourceReloadListener<co
   private static class IngredientSerializer implements JsonSerializer<Ingredient>, JsonDeserializer<Ingredient> {
     @Override
     public Ingredient deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-      // route through Mantle's IngredientLoadable so tag ingredients (#tag / {"tag": id}) resolve lazily instead of
+      // route through Hilt's IngredientLoadable so tag ingredients (#tag / {"tag": id}) resolve lazily instead of
       // eagerly (vanilla Ingredient.CODEC with plain JsonOps rejects "#tag" and resolves tags before the reload binds them)
       return IngredientLoadable.ALLOW_EMPTY.convert(json, "filter", TypedMap.empty());
     }

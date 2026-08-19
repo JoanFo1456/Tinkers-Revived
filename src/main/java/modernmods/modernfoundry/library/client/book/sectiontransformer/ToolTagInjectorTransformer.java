@@ -4,7 +4,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
-import modernmods.mantle.client.book.data.content.PageContent;
+import modernmods.hilt.client.book.data.content.PageContent;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.book.content.ContentTool;
 

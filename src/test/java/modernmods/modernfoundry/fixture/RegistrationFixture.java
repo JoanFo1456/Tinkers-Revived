@@ -1,8 +1,8 @@
 package modernmods.modernfoundry.fixture;
 
 import net.minecraft.resources.ResourceLocation;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.data.registry.GenericLoaderRegistry;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.registry.GenericLoaderRegistry;
 
 /** Helpers for generic registration tasks */
 public class RegistrationFixture {

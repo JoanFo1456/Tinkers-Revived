@@ -9,7 +9,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
-import modernmods.mantle.data.listener.ResourceValidator;
+import modernmods.hilt.data.listener.ResourceValidator;
 import modernmods.modernfoundry.common.config.Config;
 
 import java.util.concurrent.CompletableFuture;

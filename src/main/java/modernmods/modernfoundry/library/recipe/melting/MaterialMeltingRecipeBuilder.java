@@ -2,13 +2,13 @@ package modernmods.modernfoundry.library.recipe.melting;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
-import modernmods.mantle.recipe.helper.FluidOutput;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.helper.FluidOutput;
+import modernmods.hilt.registration.object.FluidObject;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 
 import java.util.ArrayList;

@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
-import modernmods.mantle.client.render.FluidCuboid;
-import modernmods.mantle.client.render.FluidRenderer;
-import modernmods.mantle.client.render.MantleRenderTypes;
+import modernmods.hilt.client.render.FluidCuboid;
+import modernmods.hilt.client.render.FluidRenderer;
+import modernmods.hilt.client.render.HiltRenderTypes;
 import modernmods.modernfoundry.library.fluid.FluidTankAnimated;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -45,7 +45,7 @@ public final class RenderUtils {
       // clear bits in color and or in the new alpha
       color = (color & 0xFFFFFF) | (alpha << 24);
     }
-    FluidRenderer.renderCuboid(matrices, buffer.getBuffer(MantleRenderTypes.FLUID), cube, still, flowing, cube.getFromScaled(), cube.getToScaled(), color, light, isGas);
+    FluidRenderer.renderCuboid(matrices, buffer.getBuffer(HiltRenderTypes.FLUID), cube, still, flowing, cube.getFromScaled(), cube.getToScaled(), color, light, isGas);
   }
 
   /**

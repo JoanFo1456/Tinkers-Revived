@@ -19,7 +19,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.level.BlockGetter;
-import modernmods.mantle.block.InventoryBlock;
+import modernmods.hilt.block.InventoryBlock;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 

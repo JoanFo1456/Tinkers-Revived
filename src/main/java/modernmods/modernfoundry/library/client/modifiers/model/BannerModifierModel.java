@@ -8,10 +8,10 @@ import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.common.config.Config;
 import modernmods.modernfoundry.library.client.materials.MaterialRenderInfo;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
@@ -79,7 +79,7 @@ public record BannerModifierModel(@Nullable Identifier smallPrefix, @Nullable Id
             TextureAtlasSprite sprite = spriteGetter.apply(ModifierModel.blockAtlas(prefix.withSuffix(MaterialRenderInfo.getSuffix(pattern))));
             // skip if sprite is missing - deals with modded patterns that we haven't made textures for
             if (!MissingTextureAtlasSprite.getLocation().equals(sprite.contents().name())) {
-              quads.add(MantleItemLayerModel.getQuadForGui(color, -1, new Material.Baked(sprite, false), transforms, 0));
+              quads.add(HiltItemLayerModel.getQuadForGui(color, -1, new Material.Baked(sprite, false), transforms, 0));
             }
           }
         }

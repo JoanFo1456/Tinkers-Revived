@@ -11,12 +11,12 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagFile;
-import modernmods.mantle.Mantle;
-import modernmods.mantle.command.GeneratePackHelper;
-import modernmods.mantle.command.MantleCommand;
-import modernmods.mantle.registration.object.FlowingFluidObject;
-import modernmods.mantle.registration.object.FluidObject;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.Hilt;
+import modernmods.hilt.command.GeneratePackHelper;
+import modernmods.hilt.command.HiltCommand;
+import modernmods.hilt.registration.object.FlowingFluidObject;
+import modernmods.hilt.registration.object.FluidObject;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.common.TinkerTags.Fluids;
 import modernmods.modernfoundry.smeltery.data.SmelteryCompat;
 
@@ -29,14 +29,14 @@ import java.util.List;
 
 /** Command generating the relevant tag to hide fluids related to unused materials. */
 public class GenerateHiddenFluidsCommand {
-  private static final DynamicCommandExceptionType ERROR_WRITING_TAG = new DynamicCommandExceptionType(tag -> Component.translatable("command.mantle.modify_tag.write_error", "fluid", tag));
+  private static final DynamicCommandExceptionType ERROR_WRITING_TAG = new DynamicCommandExceptionType(tag -> Component.translatable("command.hilt.modify_tag.write_error", "fluid", tag));
 
   /**
    * Registers this sub command with the root command
    * @param subCommand Command builder
    */
   public static void register(LiteralArgumentBuilder<CommandSourceStack> subCommand) {
-    subCommand.requires(sender -> MantleCommand.hasPermission(sender, MantleCommand.PERMISSION_GAME_COMMANDS)).executes(GenerateHiddenFluidsCommand::run);
+    subCommand.requires(sender -> HiltCommand.hasPermission(sender, HiltCommand.PERMISSION_GAME_COMMANDS)).executes(GenerateHiddenFluidsCommand::run);
   }
 
   /** Runs the command */
@@ -82,7 +82,7 @@ public class GenerateHiddenFluidsCommand {
         writer.write(JsonHelper.DEFAULT_GSON.toJson(JsonHelper.serialize(TagFile.CODEC, contents)));
       }
     } catch (IOException ex) {
-      Mantle.logger.error("Couldn't save fluid tag {} to {}", tag, path, ex);
+      Hilt.logger.error("Couldn't save fluid tag {} to {}", tag, path, ex);
       throw ERROR_WRITING_TAG.create(tag);
     }
   }

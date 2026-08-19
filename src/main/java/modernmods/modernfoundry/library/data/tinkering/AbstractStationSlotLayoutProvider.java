@@ -9,7 +9,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.ItemLike;
 import com.mojang.serialization.JsonOps;
 import net.neoforged.neoforge.common.conditions.ICondition;
-import modernmods.mantle.data.GenericDataProvider;
+import modernmods.hilt.data.GenericDataProvider;
 import modernmods.modernfoundry.library.recipe.partbuilder.Pattern;
 import modernmods.modernfoundry.library.tools.helper.ToolBuildHandler;
 import modernmods.modernfoundry.library.tools.item.IModifiableDisplay;

@@ -3,7 +3,7 @@ package modernmods.modernfoundry.tools.modifiers.ability.ranged;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.client.ResourceColorManager;
+import modernmods.hilt.client.ResourceColorManager;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.impl.NoLevelsModifier;
 import modernmods.modernfoundry.library.modifiers.modules.behavior.InfinityModule;

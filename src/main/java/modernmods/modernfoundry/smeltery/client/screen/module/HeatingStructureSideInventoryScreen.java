@@ -4,7 +4,7 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
-import modernmods.mantle.client.screen.ScalableElementScreen;
+import modernmods.hilt.client.screen.ScalableElementScreen;
 import modernmods.modernfoundry.smeltery.block.entity.controller.HeatingStructureBlockEntity;
 import modernmods.modernfoundry.smeltery.client.screen.HeatingStructureScreen;
 import modernmods.modernfoundry.tables.client.inventory.module.SideInventoryScreen;

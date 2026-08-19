@@ -5,13 +5,13 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.helper.LoadableRecipeSerializer;
-import modernmods.mantle.recipe.helper.TypeAwareRecipeSerializer;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.helper.LoadableRecipeSerializer;
+import modernmods.hilt.recipe.helper.TypeAwareRecipeSerializer;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.util.RetexturedHelper;
 
 /** Extension of item recipe that sets the result block to the input block */
 public class RetexturedCastingRecipe extends ItemCastingRecipe {

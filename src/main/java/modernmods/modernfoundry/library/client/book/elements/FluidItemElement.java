@@ -6,8 +6,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.client.screen.book.element.ItemElement;
-import modernmods.mantle.fluid.tooltip.FluidTooltipHandler;
+import modernmods.hilt.client.screen.book.element.ItemElement;
+import modernmods.hilt.fluid.tooltip.FluidTooltipHandler;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
 import modernmods.modernfoundry.smeltery.item.CopperCanItem;
 

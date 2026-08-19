@@ -5,7 +5,7 @@ import lombok.Getter;
 import net.minecraft.core.Direction;
 import net.minecraft.util.GsonHelper;
 import org.joml.Vector3f;
-import modernmods.mantle.client.render.FluidCuboid;
+import modernmods.hilt.client.render.FluidCuboid;
 
 import java.util.Map;
 

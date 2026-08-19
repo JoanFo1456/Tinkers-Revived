@@ -8,8 +8,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.Mantle;
-import modernmods.mantle.data.registry.NamedComponentRegistry;
+import modernmods.hilt.Hilt;
+import modernmods.hilt.data.registry.NamedComponentRegistry;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.modules.ModifierModule;
 import modernmods.modernfoundry.library.modifiers.modules.build.ModifierTraitModule;
@@ -31,7 +31,7 @@ public class ToolTankHelper {
   public static final BiFunction<CompoundTag, String, FluidStack> PARSE_FLUID = (nbt, key) -> modernmods.modernfoundry.library.utils.TagUtil.readFluid(nbt.getCompoundOrEmpty(key));
 
   /** Format key for the stat */
-  public static final String MB_FORMAT = Mantle.makeDescriptionId("gui", "fluid.millibucket");
+  public static final String MB_FORMAT = Hilt.makeDescriptionId("gui", "fluid.millibucket");
   /** Stat controlling the max for the default helper */
   public static final CapacityStat CAPACITY_STAT = new CapacityStat(new ToolStatId(TConstruct.MOD_ID, "tank_capacity"), 0xA0A0A0, MB_FORMAT);
   /** Default tank helper for setting fluids */

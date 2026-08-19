@@ -10,7 +10,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.TooltipFlag;
-import modernmods.mantle.client.TooltipKey;
+import modernmods.hilt.client.TooltipKey;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierHooks;

@@ -9,7 +9,7 @@ import net.minecraft.tags.TagBuilder;
 import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagFile;
 import net.minecraft.tags.TagKey;
-import modernmods.mantle.data.GenericDataProvider;
+import modernmods.hilt.data.GenericDataProvider;
 
 import java.util.List;
 import java.util.Map;

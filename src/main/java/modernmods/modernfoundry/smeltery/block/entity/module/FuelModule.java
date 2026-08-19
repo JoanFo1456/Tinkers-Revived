@@ -9,13 +9,13 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.util.WeakConsumerWrapper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.util.WeakConsumerWrapper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.recipe.fuel.MeltingFuel;
 import modernmods.modernfoundry.library.recipe.fuel.MeltingFuelLookup;
@@ -33,7 +33,7 @@ public abstract class FuelModule implements ContainerData {
   protected final Consumer<LazyOptional<IFluidHandler>> fluidListener = new WeakConsumerWrapper<>(this, FuelModule::resetHandler);
 
   /** Parent TE */
-  protected final MantleBlockEntity parent;
+  protected final HiltBlockEntity parent;
 
   /** Last fuel recipe used */
   @Nullable

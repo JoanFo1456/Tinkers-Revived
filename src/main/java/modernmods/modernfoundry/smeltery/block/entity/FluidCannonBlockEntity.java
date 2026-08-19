@@ -21,14 +21,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.items.IItemHandler;
-import modernmods.mantle.fluid.FluidTransferHelper;
-import modernmods.mantle.inventory.SingleItemHandler;
+import modernmods.hilt.fluid.FluidTransferHelper;
+import modernmods.hilt.inventory.SingleItemHandler;
 import modernmods.modernfoundry.common.network.InventorySlotSyncPacket;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.library.modifiers.fluid.FluidEffectContext;
@@ -77,7 +77,7 @@ public class FluidCannonBlockEntity extends TankBlockEntity implements ITankInve
     super.preRemoveSideEffects(pos, state);
     // 26.1.2 removed Block#onRemove; drop the held item when the cannon is removed (formerly in FluidCannonBlock#onRemove)
     if (this.level != null) {
-      modernmods.mantle.block.InventoryBlock.dropInventoryItems(this.level, pos, itemHandler);
+      modernmods.hilt.block.InventoryBlock.dropInventoryItems(this.level, pos, itemHandler);
     }
   }
 

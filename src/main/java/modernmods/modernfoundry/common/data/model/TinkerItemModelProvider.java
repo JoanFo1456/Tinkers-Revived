@@ -10,7 +10,7 @@ import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile.UncheckedModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import modernmods.mantle.registration.object.ItemObject;
+import modernmods.hilt.registration.object.ItemObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.registration.CastItemObject;
 import modernmods.modernfoundry.library.tools.part.MaterialItem;

@@ -21,9 +21,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import modernmods.mantle.data.loadable.Loadable;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.util.typed.TypedMap;
+import modernmods.hilt.data.loadable.Loadable;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.util.typed.TypedMap;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.json.TinkerLoadables;
 

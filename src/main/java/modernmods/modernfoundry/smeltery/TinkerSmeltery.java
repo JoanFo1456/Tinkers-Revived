@@ -35,18 +35,18 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.registries.RegisterEvent;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import modernmods.mantle.block.GaugeBlock;
-import modernmods.mantle.fluid.transfer.FluidContainerTransferManager;
-import modernmods.mantle.recipe.helper.LoadableRecipeSerializer;
-import modernmods.mantle.recipe.helper.TypeAwareRecipeSerializer;
-import modernmods.mantle.registration.object.BuildingBlockObject;
-import modernmods.mantle.registration.object.EnumObject;
-import modernmods.mantle.registration.object.FenceBuildingBlockObject;
-import modernmods.mantle.registration.object.ItemObject;
-import modernmods.mantle.registration.object.WallBuildingBlockObject;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.block.GaugeBlock;
+import modernmods.hilt.fluid.transfer.FluidContainerTransferManager;
+import modernmods.hilt.recipe.helper.LoadableRecipeSerializer;
+import modernmods.hilt.recipe.helper.TypeAwareRecipeSerializer;
+import modernmods.hilt.registration.object.BuildingBlockObject;
+import modernmods.hilt.registration.object.EnumObject;
+import modernmods.hilt.registration.object.FenceBuildingBlockObject;
+import modernmods.hilt.registration.object.ItemObject;
+import modernmods.hilt.registration.object.WallBuildingBlockObject;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerModule;
 import modernmods.modernfoundry.common.TinkerTags;
@@ -144,7 +144,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 
 /**
  * Contains logic for the multiblocks in the mod
@@ -509,11 +509,11 @@ public final class TinkerSmeltery extends TinkerModule {
     scorchedTank.forEach(block -> registerTankItem(event, block));
   }
 
-  private static <BE extends MantleBlockEntity & modernmods.modernfoundry.smeltery.block.entity.ILegacyCapabilityBlockEntity> void registerFluid(RegisterCapabilitiesEvent event, BlockEntityType<BE> type) {
+  private static <BE extends HiltBlockEntity & modernmods.modernfoundry.smeltery.block.entity.ILegacyCapabilityBlockEntity> void registerFluid(RegisterCapabilitiesEvent event, BlockEntityType<BE> type) {
     event.registerBlockEntity(Capabilities.Fluid.BLOCK, type, (be, side) -> (net.neoforged.neoforge.transfer.ResourceHandler<net.neoforged.neoforge.transfer.fluid.FluidResource>)(Object) be.getCapability(ForgeCapabilities.FLUID_HANDLER, side).orElse(null));
   }
 
-  private static <BE extends MantleBlockEntity & modernmods.modernfoundry.smeltery.block.entity.ILegacyCapabilityBlockEntity> void registerItem(RegisterCapabilitiesEvent event, BlockEntityType<BE> type) {
+  private static <BE extends HiltBlockEntity & modernmods.modernfoundry.smeltery.block.entity.ILegacyCapabilityBlockEntity> void registerItem(RegisterCapabilitiesEvent event, BlockEntityType<BE> type) {
     // item automation capability deferred: the block entity exposes a legacy IItemHandler which cannot be force-cast to a
     // ResourceHandler (ClassCastException when queried — crashes on menu open / adjacent automation). Menus read the
     // inventory via the legacy ForgeCapabilities.ITEM_HANDLER directly, so return null here until the transfer-API port.

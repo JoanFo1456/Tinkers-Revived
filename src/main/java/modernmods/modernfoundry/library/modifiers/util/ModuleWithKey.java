@@ -3,9 +3,9 @@ package modernmods.modernfoundry.library.modifiers.util;
 import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.loadable.field.LoadableField;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.field.LoadableField;
+import modernmods.hilt.util.JsonHelper;
 import modernmods.modernfoundry.library.modifiers.Modifier;
 
 import javax.annotation.Nullable;

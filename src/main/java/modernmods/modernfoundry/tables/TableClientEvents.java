@@ -11,7 +11,7 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import modernmods.mantle.client.render.InventoryBlockEntityRenderer;
+import modernmods.hilt.client.render.InventoryBlockEntityRenderer;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.ClientEventBase;
 import modernmods.modernfoundry.shared.block.entity.TableBlockEntity;

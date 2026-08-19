@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.ingredient.EntityIngredient;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.ingredient.EntityIngredient;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;

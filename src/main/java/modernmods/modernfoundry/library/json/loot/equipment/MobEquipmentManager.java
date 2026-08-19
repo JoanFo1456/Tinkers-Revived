@@ -23,11 +23,11 @@ import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.entity.living.FinalizeSpawnEvent;
 import net.neoforged.bus.api.EventPriority;
 import org.jetbrains.annotations.ApiStatus.Internal;
-import modernmods.mantle.data.loadable.Loadable;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.util.JsonHelper;
-import modernmods.mantle.util.typed.TypedMapBuilder;
+import modernmods.hilt.data.loadable.Loadable;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.util.JsonHelper;
+import modernmods.hilt.util.typed.TypedMapBuilder;
 import modernmods.modernfoundry.TConstruct;
 
 import java.util.ArrayList;

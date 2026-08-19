@@ -3,9 +3,9 @@ package modernmods.modernfoundry.library.recipe.casting;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.recipe.data.ItemNameOutput;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.util.RegistryHelper;
+import modernmods.hilt.recipe.data.ItemNameOutput;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.util.RegistryHelper;
 import modernmods.modernfoundry.common.recipe.RecipeCacheInvalidator;
 import modernmods.modernfoundry.common.recipe.RecipeCacheInvalidator.DuelSidedListener;
 

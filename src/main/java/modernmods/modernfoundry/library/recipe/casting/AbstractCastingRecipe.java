@@ -6,9 +6,9 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeType;
-import modernmods.mantle.data.loadable.common.IngredientLoadable;
-import modernmods.mantle.data.loadable.field.LoadableField;
-import modernmods.mantle.data.loadable.primitive.BooleanLoadable;
+import modernmods.hilt.data.loadable.common.IngredientLoadable;
+import modernmods.hilt.data.loadable.field.LoadableField;
+import modernmods.hilt.data.loadable.primitive.BooleanLoadable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

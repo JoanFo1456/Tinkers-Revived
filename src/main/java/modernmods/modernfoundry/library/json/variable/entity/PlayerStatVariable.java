@@ -5,8 +5,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.LivingEntity;
-import modernmods.mantle.data.loadable.primitive.FloatLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.primitive.FloatLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.library.json.variable.StatLoadable;
 
 /** Variable type for fetching a stat from a player. Note this only provides stat values on the server as the client lacks accurate access. */

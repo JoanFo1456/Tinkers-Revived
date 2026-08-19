@@ -28,7 +28,7 @@ import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.fluids.TinkerFluids;
 import modernmods.modernfoundry.gadgets.TinkerGadgets;
 import modernmods.modernfoundry.library.TinkerItemDisplays;
-import modernmods.mantle.recipe.sync.SyncableRecipes;
+import modernmods.hilt.recipe.sync.SyncableRecipes;
 import modernmods.modernfoundry.library.materials.MaterialRegistry;
 import modernmods.modernfoundry.library.recipe.TinkerRecipeTypes;
 import modernmods.modernfoundry.library.tools.capability.TinkerDataCapability.ComputableDataKey;
@@ -121,7 +121,7 @@ public class TConstruct {
   static void commonSetup(final FMLCommonSetupEvent event) {
     ToolDefinitionLoader.init();
     StationSlotLayoutLoader.init();
-    // opt into Mantle's client recipe sync for every custom recipe type that JEI or the book need client-side.
+    // opt into Hilt's client recipe sync for every custom recipe type that JEI or the book need client-side.
     // must run before any world join, as the syncable set freezes on first sync. Vanilla crafting is not synced here.
     event.enqueueWork(() -> {
       SyncableRecipes.register(TinkerRecipeTypes.PART_BUILDER.get());

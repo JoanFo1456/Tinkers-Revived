@@ -22,7 +22,7 @@ import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import modernmods.mantle.util.CombatHelper;
+import modernmods.hilt.util.CombatHelper;
 import modernmods.modernfoundry.common.TinkerDamageTypes;
 
 /** Block implementing knightmetal's spiky behavior. Based on <a href="https://github.com/TeamTwilight/twilightforest/blob/1.21.x/src/main/java/twilightforest/block/KnightmetalBlock.java">Twilight Forest</a> */

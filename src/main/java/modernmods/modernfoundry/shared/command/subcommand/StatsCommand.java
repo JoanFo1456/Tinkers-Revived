@@ -16,7 +16,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
-import modernmods.mantle.command.MantleCommand;
+import modernmods.hilt.command.HiltCommand;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.ModifierHooks;
 import modernmods.modernfoundry.library.tools.nbt.IToolStackView;
@@ -49,7 +49,7 @@ public class StatsCommand {
    * @param subCommand  Command builder
    */
   public static void register(LiteralArgumentBuilder<CommandSourceStack> subCommand) {
-    subCommand.requires(sender -> MantleCommand.hasPermission(sender, MantleCommand.PERMISSION_GAME_COMMANDS))
+    subCommand.requires(sender -> HiltCommand.hasPermission(sender, HiltCommand.PERMISSION_GAME_COMMANDS))
               .then(Commands.argument("targets", EntityArgument.entities())
                             // stats <target> bonus add|set <stat_type> <value>
                             .then(Commands.literal("bonus")

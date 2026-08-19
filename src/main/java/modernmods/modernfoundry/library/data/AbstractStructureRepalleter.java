@@ -18,7 +18,7 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import modernmods.mantle.data.GenericDataProvider;
+import modernmods.hilt.data.GenericDataProvider;
 import modernmods.modernfoundry.TConstruct;
 
 import java.io.IOException;

@@ -23,7 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import modernmods.mantle.util.CombatHelper;
+import modernmods.hilt.util.CombatHelper;
 import modernmods.modernfoundry.library.modifiers.entity.ProjectileWithPower;
 import modernmods.modernfoundry.shared.TinkerEffects;
 import modernmods.modernfoundry.tools.TinkerModifiers;

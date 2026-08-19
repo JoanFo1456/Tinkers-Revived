@@ -13,7 +13,7 @@
     "minecraft:sponge"
   ],
   "modifier_predicate": {
-    "type": "mantle:inverted",
+    "type": "hilt:inverted",
     "inverted_type": "modernfoundry:tag",
     "tag": "modernfoundry:extract_blacklist/tools"
   },

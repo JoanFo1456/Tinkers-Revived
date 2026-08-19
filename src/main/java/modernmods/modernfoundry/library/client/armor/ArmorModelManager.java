@@ -16,7 +16,7 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.armor.texture.ArmorTextureSupplier;
 import modernmods.modernfoundry.library.client.materials.MaterialRenderInfo;

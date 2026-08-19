@@ -3,7 +3,7 @@ package modernmods.modernfoundry.shared.data;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
 import net.minecraft.data.PackOutput;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.neoforged.neoforge.common.Tags;
-import modernmods.mantle.recipe.data.ConsumerWrapperBuilder;
-import modernmods.mantle.recipe.data.ICommonRecipeHelper;
+import modernmods.hilt.recipe.data.ConsumerWrapperBuilder;
+import modernmods.hilt.recipe.data.ICommonRecipeHelper;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.data.BaseRecipeProvider;
 import modernmods.modernfoundry.common.json.ConfigEnabledCondition;
@@ -59,7 +59,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern("WWW").pattern("WWW")
                        .define('W', TinkerMaterials.blazewood)
                        .unlockedBy("has_planks", has(TinkerMaterials.blazewood))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "blazewood_fence")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "blazewood_fence")));
 
     // nahuatl
     slabStairsCrafting(consumer, TinkerMaterials.nahuatl, folder, false);
@@ -67,7 +67,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern("WWW").pattern("WWW")
                        .define('W', TinkerMaterials.nahuatl)
                        .unlockedBy("has_planks", has(TinkerMaterials.nahuatl))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "nahuatl_fence")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "nahuatl_fence")));
 
     // gold
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerCommons.goldBars, 16)
@@ -75,7 +75,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern("###")
                        .pattern("###")
                        .unlockedBy("has_ingot", has(Tags.Items.INGOTS_GOLD))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/gold_bars")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/gold_bars")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerCommons.goldPlatform, 4)
                        .define('#', Tags.Items.INGOTS_GOLD)
                        .define('.', Tags.Items.NUGGETS_GOLD)
@@ -83,7 +83,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern(". .")
                        .pattern("#.#")
                        .unlockedBy("has_gold", has(Tags.Items.INGOTS_GOLD))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/gold_platform")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/gold_platform")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerCommons.ironPlatform, 4)
                        .define('#', Tags.Items.INGOTS_IRON)
                        .define('.', Tags.Items.NUGGETS_IRON)
@@ -91,7 +91,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern(". .")
                        .pattern("#.#")
                        .unlockedBy("has_bars", has(Tags.Items.INGOTS_IRON))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/iron_platform")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/iron_platform")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerCommons.copperPlatform.get(WeatherState.UNAFFECTED), 4)
                        .define('#', Tags.Items.INGOTS_COPPER)
                        .define('.', TinkerTags.Items.NUGGETS_COPPER)
@@ -99,7 +99,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern(". .")
                        .pattern("#.#")
                        .unlockedBy("has_bars", has(Tags.Items.INGOTS_COPPER))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/copper_platform")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/copper_platform")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerCommons.cobaltPlatform, 4)
                        .define('#', TinkerMaterials.cobalt.getIngotTag())
                        .define('.', TinkerMaterials.cobalt.getNuggetTag())
@@ -107,7 +107,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern(". .")
                        .pattern("#.#")
                        .unlockedBy("has_bars", has(TinkerMaterials.cobalt.getIngotTag()))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/cobalt_platform")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/cobalt_platform")));
     TinkerCommons.waxedCopperPlatform.forEach((age, block) -> {
       Block unwaxed = TinkerCommons.copperPlatform.get(age);
       ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.DECORATIONS, block)
@@ -115,7 +115,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                             .requires(Items.HONEYCOMB)
                             .group("modernfoundry:wax_copper_platform")
                             .unlockedBy("has_block", has(unwaxed))
-                            .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/copper_platform_waxing_" + age.toString().toLowerCase(Locale.ROOT))));
+                            .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/copper_platform_waxing_" + age.toString().toLowerCase(Locale.ROOT))));
     });
 
 
@@ -125,17 +125,17 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                           .requires(Items.BOOK)
                           .requires(TinkerTables.pattern)
                           .unlockedBy("has_item", has(TinkerTables.pattern))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.materialsAndYou, "common/")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.materialsAndYou, "common/")));
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, TinkerCommons.tinkersGadgetry)
                           .requires(Items.BOOK)
                           .requires(SlimeType.SKY.getSlimeballTag())
                           .unlockedBy("has_item", has(SlimeType.SKY.getSlimeballTag()))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.tinkersGadgetry, "common/")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.tinkersGadgetry, "common/")));
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, TinkerCommons.punySmelting)
                           .requires(Items.BOOK)
                           .requires(TinkerSmeltery.grout)
                           .unlockedBy("has_item", has(TinkerSmeltery.grout))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.punySmelting, "common/")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.punySmelting, "common/")));
     ItemCastingRecipeBuilder.tableRecipe(TinkerCommons.mightySmelting)
                             .setFluidAndTime(TinkerFluids.searedStone, FluidValues.BRICK)
                             .setCast(Items.BOOK, true)
@@ -144,7 +144,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                           .requires(Items.BOOK)
                           .requires(TinkerSmeltery.netherGrout)
                           .unlockedBy("has_item", has(TinkerSmeltery.netherGrout))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.fantasticFoundry, "common/")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.fantasticFoundry, "common/")));
     ItemCastingRecipeBuilder.tableRecipe(TinkerCommons.encyclopedia)
                             .setFluidAndTime(TinkerFluids.moltenGold, FluidValues.INGOT)
                             .setCast(Items.BOOK, true)
@@ -157,7 +157,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern("###")
                        .pattern("###")
                        .unlockedBy("has_block", has(TinkerCommons.clearGlass))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.clearGlassPane, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerCommons.clearGlassPane, folder)));
     for (GlassColor color : GlassColor.values()) {
       Block block = TinkerCommons.clearStainedGlass.get(color);
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, block, 8)
@@ -168,7 +168,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                          .pattern("###")
                          .group(prefix("stained_clear_glass"))
                          .unlockedBy("has_clear_glass", has(TinkerCommons.clearGlass))
-                         .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(id(block), folder)));
+                         .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(id(block), folder)));
       Block pane = TinkerCommons.clearStainedGlassPane.get(color);
       Identifier paneId = id(pane);
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, pane, 16)
@@ -177,7 +177,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                          .pattern("###")
                          .group(prefix("stained_clear_glass_pane"))
                          .unlockedBy("has_block", has(block))
-                         .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(paneId, folder)));
+                         .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(paneId, folder)));
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, pane, 8)
                          .define('#', TinkerCommons.clearGlassPane)
                          .define('X', color.getDye().getTag())
@@ -186,7 +186,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                          .pattern("###")
                          .group(prefix("stained_clear_glass_pane"))
                          .unlockedBy("has_clear_glass", has(TinkerCommons.clearGlassPane))
-                         .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(paneId, folder, "_from_panes")));
+                         .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(paneId, folder, "_from_panes")));
     }
     // fix vanilla recipes not using tinkers glass
     String glassVanillaFolder = folder + "vanilla/";
@@ -199,7 +199,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern("GSG")
                        .pattern("OOO")
                        .unlockedBy("has_nether_star", has(Items.NETHER_STAR))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(vanillaGlassConsumer), recipeId(prefix(id(Blocks.BEACON), glassVanillaFolder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(vanillaGlassConsumer), recipeId(prefix(id(Blocks.BEACON), glassVanillaFolder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, Blocks.DAYLIGHT_DETECTOR)
                        .define('Q', Items.QUARTZ)
                        .define('G', Tags.Items.GLASS_BLOCKS_COLORLESS)
@@ -208,7 +208,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern("QQQ")
                        .pattern("WWW")
                        .unlockedBy("has_quartz", has(Items.QUARTZ))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(vanillaGlassConsumer), recipeId(prefix(id(Blocks.DAYLIGHT_DETECTOR), glassVanillaFolder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(vanillaGlassConsumer), recipeId(prefix(id(Blocks.DAYLIGHT_DETECTOR), glassVanillaFolder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, Items.END_CRYSTAL)
                        .define('T', Items.GHAST_TEAR)
                        .define('E', Items.ENDER_EYE)
@@ -217,13 +217,13 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern("GEG")
                        .pattern("GTG")
                        .unlockedBy("has_ender_eye", has(Items.ENDER_EYE))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(vanillaGlassConsumer), recipeId(prefix(id(Items.END_CRYSTAL), glassVanillaFolder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(vanillaGlassConsumer), recipeId(prefix(id(Items.END_CRYSTAL), glassVanillaFolder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BREWING, Items.GLASS_BOTTLE, 3)
                        .define('#', Tags.Items.GLASS_BLOCKS_COLORLESS)
                        .pattern("# #")
                        .pattern(" # ")
                        .unlockedBy("has_glass", has(Tags.Items.GLASS_BLOCKS_COLORLESS))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(vanillaGlassConsumer), recipeId(prefix(id(Items.GLASS_BOTTLE), glassVanillaFolder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(vanillaGlassConsumer), recipeId(prefix(id(Items.GLASS_BOTTLE), glassVanillaFolder)));
 
 
     // vanilla recipes
@@ -233,7 +233,7 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                           .requires(Blocks.GRAVEL)
                           .unlockedBy("has_item", has(Blocks.GRAVEL))
                           .save(
-                            modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(ConsumerWrapperBuilder.wrap()
+                            modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(ConsumerWrapperBuilder.wrap()
                                                   .addCondition(ConfigEnabledCondition.GRAVEL_TO_FLINT)
                                                   .build(consumer)),
                             recipeId(location("common/flint")));
@@ -247,18 +247,18 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
                        .pattern("IXI")
                        .pattern("###")
                        .unlockedBy("has_smooth_stone", has(Blocks.SMOOTH_BASALT))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/basalt_blast_furnace")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/basalt_blast_furnace")));
 
     // cheese
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.FOOD, TinkerCommons.cheeseBlock)
                        .define('#', TinkerCommons.cheeseIngot)
                        .pattern("##").pattern("##")
                        .unlockedBy("has_cheese", has(TinkerCommons.cheeseIngot))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/cheese_block_from_ingot")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/cheese_block_from_ingot")));
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.FOOD, TinkerCommons.cheeseIngot, 4)
                           .requires(TinkerCommons.cheeseBlock)
                           .unlockedBy("has_cheese", has(TinkerCommons.cheeseBlock))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/cheese_ingot_from_block")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("common/cheese_ingot_from_block")));
   }
 
   private void addMaterialRecipes(Consumer<FinishedRecipe> consumer) {
@@ -287,24 +287,24 @@ public class CommonRecipeProvider extends BaseRecipeProvider implements ICommonR
     // smelt ore into ingots, must use a blast furnace for nether ores
     SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerWorld.rawCobalt, TinkerWorld.cobaltOre), RecipeCategory.MISC, CookingBookCategory.MISC, TinkerMaterials.cobalt.getIngot(), 1.5f, 200)
       .unlockedBy("has_item", has(TinkerWorld.rawCobalt))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "cobalt_ingot_blasting")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "cobalt_ingot_blasting")));
     SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerWorld.cobaltShard), RecipeCategory.MISC, CookingBookCategory.MISC, TinkerMaterials.cobalt.getNugget(), 0.2f, 50)
       .unlockedBy("has_item", has(TinkerWorld.cobaltShard))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "cobalt_nugget_blasting")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "cobalt_nugget_blasting")));
     // steel can use either furnace
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(TinkerWorld.steelShard), RecipeCategory.MISC, CookingBookCategory.MISC, TinkerMaterials.steel.getNugget(), 0.2f, 50)
       .unlockedBy("has_item", has(TinkerWorld.steelShard))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "steel_nugget_smelting")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "steel_nugget_smelting")));
     SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerWorld.steelShard), RecipeCategory.MISC, CookingBookCategory.MISC, TinkerMaterials.steel.getNugget(), 0.2f, 25)
       .unlockedBy("has_item", has(TinkerWorld.steelShard))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "steel_nugget_blasting")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "steel_nugget_blasting")));
     // knightmetal - normally would not use the tag, but we know TF does not provide nuggets for armor shards
     SimpleCookingRecipeBuilder.smelting(LazyTagIngredient.of(TinkerTags.Items.KNIGHTMETAL_SHARD), RecipeCategory.MISC, CookingBookCategory.MISC, TinkerMaterials.knightmetal.getNugget(), 0.2f, 50)
       .unlockedBy("has_item", has(TinkerWorld.knightmetalShard))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "knightmetal_nugget_smelting")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "knightmetal_nugget_smelting")));
     SimpleCookingRecipeBuilder.blasting(LazyTagIngredient.of(TinkerTags.Items.KNIGHTMETAL_SHARD), RecipeCategory.MISC, CookingBookCategory.MISC, TinkerMaterials.knightmetal.getNugget(), 0.2f, 25)
       .unlockedBy("has_item", has(TinkerWorld.knightmetalShard))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "knightmetal_nugget_blasting")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "knightmetal_nugget_blasting")));
 
     // pack raw cobalt
     packingRecipe(consumer, RecipeCategory.MISC, "raw_block", TinkerWorld.rawCobaltBlock, "raw", TinkerWorld.rawCobalt, TinkerTags.Items.RAW_COBALT, folder);

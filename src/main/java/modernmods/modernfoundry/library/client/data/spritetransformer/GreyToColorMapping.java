@@ -12,7 +12,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
-import modernmods.mantle.data.loadable.common.ColorLoadable;
+import modernmods.hilt.data.loadable.common.ColorLoadable;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.utils.Util;
 

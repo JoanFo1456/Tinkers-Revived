@@ -1,7 +1,7 @@
 package modernmods.modernfoundry.library.module;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.registration.object.IdAwareObject;
+import modernmods.hilt.registration.object.IdAwareObject;
 
 import javax.annotation.Nullable;
 import java.util.Collection;

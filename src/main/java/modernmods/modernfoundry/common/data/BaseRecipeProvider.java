@@ -3,7 +3,7 @@ package modernmods.modernfoundry.common.data;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.data.CachedOutput;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -11,8 +11,8 @@ import net.minecraft.data.PackOutput.Target;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
-import modernmods.mantle.data.GenericDataProvider;
-import modernmods.mantle.recipe.data.IRecipeHelper;
+import modernmods.hilt.data.GenericDataProvider;
+import modernmods.hilt.recipe.data.IRecipeHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.utils.ResourceId;
 
@@ -99,7 +99,7 @@ public abstract class BaseRecipeProvider extends GenericDataProvider implements 
   }
 
   /* Recipe key helpers: 26.1 RecipeBuilder.save takes a ResourceKey<Recipe<?>>, and vanilla builders are bridged
-     to Mantle's Consumer<FinishedRecipe> framework via VanillaFinishedRecipe.output(...). */
+     to Hilt's Consumer<FinishedRecipe> framework via VanillaFinishedRecipe.output(...). */
 
   /** Wraps a recipe id into the registry key vanilla builders now require */
   protected static net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>> recipeId(Identifier id) {

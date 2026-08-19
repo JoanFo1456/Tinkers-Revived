@@ -1,5 +1,5 @@
 {
-	"loader": "mantle:colored_block",
+	"loader": "hilt:colored_block",
     "parent": "block/cube_bottom_top",
     "textures": {
         "bottom":   "modernfoundry:block/storage/queens_slime_bottom",

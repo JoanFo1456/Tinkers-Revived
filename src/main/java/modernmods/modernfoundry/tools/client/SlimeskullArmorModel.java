@@ -15,7 +15,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.WalkAnimationState;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.data.listener.ISafeManagerReloadListener;
+import modernmods.hilt.data.listener.ISafeManagerReloadListener;
 import modernmods.modernfoundry.library.client.armor.ArmorModelManager.ArmorModel;
 import modernmods.modernfoundry.library.client.armor.MultilayerArmorModel;
 import modernmods.modernfoundry.library.client.materials.MaterialRenderInfo;

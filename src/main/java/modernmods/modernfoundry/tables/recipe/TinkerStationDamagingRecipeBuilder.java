@@ -2,11 +2,11 @@ package modernmods.modernfoundry.tables.recipe;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
 
 import java.util.function.Consumer;
 

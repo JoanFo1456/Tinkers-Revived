@@ -3,7 +3,7 @@ package modernmods.modernfoundry.library.client.model;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import net.neoforged.neoforge.client.model.UnbakedModelLoader;
-import modernmods.mantle.client.model.util.SimpleBlockModel;
+import modernmods.hilt.client.model.util.SimpleBlockModel;
 
 /**
  * Model providing a variant for the GUI.

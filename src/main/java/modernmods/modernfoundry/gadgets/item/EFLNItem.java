@@ -13,7 +13,7 @@ import net.minecraft.world.item.Item.TooltipContext;
 import net.minecraft.world.item.SnowballItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import modernmods.mantle.util.TranslationHelper;
+import modernmods.hilt.util.TranslationHelper;
 import modernmods.modernfoundry.common.Sounds;
 import modernmods.modernfoundry.gadgets.entity.EFLNEntity;
 

@@ -2,7 +2,7 @@
   "type": "modernfoundry:material_fluid",
   "fluid": {
     "amount": 250,
-    "tag": "mantle:water"
+    "tag": "hilt:water"
   },
   "id": "modernfoundry:tools/materials/composite/iron_oxidized",
   "input": "modernfoundry:iron",

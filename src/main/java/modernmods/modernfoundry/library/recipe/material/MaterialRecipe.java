@@ -8,13 +8,13 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import modernmods.mantle.data.loadable.common.IngredientLoadable;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.recipe.ICustomOutputRecipe;
-import modernmods.mantle.recipe.container.ISingleStackContainer;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.helper.LoadableRecipeSerializer;
+import modernmods.hilt.data.loadable.common.IngredientLoadable;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.recipe.ICustomOutputRecipe;
+import modernmods.hilt.recipe.container.ISingleStackContainer;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.helper.LoadableRecipeSerializer;
 import modernmods.modernfoundry.library.materials.definition.IMaterial;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariant;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
@@ -117,13 +117,13 @@ public class MaterialRecipe implements ICustomOutputRecipe<ISingleStackContainer
   /**
    * Finds the material recipe matching the given inventory, reading from the correct recipe source per side. 26.1 removed
    * {@code Level#getRecipeManager}: the server uses {@code getServer().getRecipeManager()} (null on the client, so calling
-   * it client-side NPEs), while the client reads the synced {@link modernmods.mantle.recipe.sync.ClientRecipeCache}
+   * it client-side NPEs), while the client reads the synced {@link modernmods.hilt.recipe.sync.ClientRecipeCache}
    * (MATERIAL is registered syncable). Used by the tinker station / part builder which resolve materials on both sides.
    */
   @javax.annotation.Nullable
   public static MaterialRecipe getRecipe(ISingleStackContainer inv, Level world) {
     if (world.isClientSide()) {
-      for (MaterialRecipe recipe : modernmods.mantle.recipe.helper.RecipeHelper.getRecipes(modernmods.mantle.recipe.sync.ClientRecipeCache.getRecipeMap(), TinkerRecipeTypes.MATERIAL.get(), MaterialRecipe.class)) {
+      for (MaterialRecipe recipe : modernmods.hilt.recipe.helper.RecipeHelper.getRecipes(modernmods.hilt.recipe.sync.ClientRecipeCache.getRecipeMap(), TinkerRecipeTypes.MATERIAL.get(), MaterialRecipe.class)) {
         if (recipe.matches(inv, world)) {
           return recipe;
         }

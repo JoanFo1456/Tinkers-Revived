@@ -3,7 +3,7 @@ package modernmods.modernfoundry.tools.client;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
-import modernmods.mantle.client.render.FluidCuboid;
+import modernmods.hilt.client.render.FluidCuboid;
 import modernmods.modernfoundry.tools.entity.FluidEffectProjectile;
 
 import java.util.List;

@@ -11,7 +11,7 @@
   "cooling_time": 50,
   "fluid": {
     "amount": 250,
-    "tag": "mantle:water"
+    "tag": "hilt:water"
   },
   "id": "modernfoundry:compat/wheat_dough",
   "result": "farmersdelight:wheat_dough"

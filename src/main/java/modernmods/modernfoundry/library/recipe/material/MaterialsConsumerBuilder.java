@@ -3,10 +3,10 @@ package modernmods.modernfoundry.library.recipe.material;
 import com.google.gson.JsonObject;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import modernmods.mantle.recipe.data.ConsumerWrapperBuilder;
+import modernmods.hilt.recipe.data.ConsumerWrapperBuilder;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 import modernmods.modernfoundry.tables.TinkerTables;
 

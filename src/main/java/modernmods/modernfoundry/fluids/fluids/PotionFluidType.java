@@ -11,7 +11,7 @@ import modernmods.modernfoundry.compat.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
-import modernmods.mantle.recipe.helper.FluidOutput;
+import modernmods.hilt.recipe.helper.FluidOutput;
 import modernmods.modernfoundry.fluids.TinkerFluids;
 import modernmods.modernfoundry.library.utils.TagUtil;
 

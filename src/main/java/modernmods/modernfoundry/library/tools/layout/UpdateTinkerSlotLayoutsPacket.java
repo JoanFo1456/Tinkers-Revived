@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.network.FriendlyByteBuf;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import modernmods.mantle.network.packet.IThreadsafePacket;
+import modernmods.hilt.network.packet.IThreadsafePacket;
 
 import java.util.Collection;
 

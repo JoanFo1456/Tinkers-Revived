@@ -15,7 +15,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import modernmods.mantle.fluid.FluidTransferHelper;
+import modernmods.hilt.fluid.FluidTransferHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.smeltery.block.entity.ITankBlockEntity;

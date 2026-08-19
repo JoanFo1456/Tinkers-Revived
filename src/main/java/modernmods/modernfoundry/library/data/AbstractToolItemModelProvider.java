@@ -15,10 +15,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.Vec2;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.ApiStatus.NonExtendable;
-import modernmods.mantle.data.GenericDataProvider;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.registration.object.EnumObject;
-import modernmods.mantle.registration.object.IdAwareObject;
+import modernmods.hilt.data.GenericDataProvider;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.registration.object.EnumObject;
+import modernmods.hilt.registration.object.IdAwareObject;
 import modernmods.modernfoundry.library.tools.item.ranged.ModifiableCrossbowItem;
 import modernmods.modernfoundry.library.tools.item.ranged.ModifiableLauncherItem;
 

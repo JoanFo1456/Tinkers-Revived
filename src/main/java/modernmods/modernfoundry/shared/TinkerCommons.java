@@ -29,16 +29,16 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import modernmods.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
+import modernmods.hilt.compat.neoforged.neoforge.registries.ForgeRegistries;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import modernmods.mantle.data.predicate.block.BlockPredicate;
-import modernmods.mantle.data.predicate.damage.DamageSourcePredicate;
-import modernmods.mantle.data.predicate.entity.LivingEntityPredicate;
-import modernmods.mantle.data.predicate.item.ItemPredicate;
-import modernmods.mantle.item.EdibleItem;
-import modernmods.mantle.registration.object.EnumObject;
-import modernmods.mantle.registration.object.ItemObject;
+import modernmods.hilt.data.predicate.block.BlockPredicate;
+import modernmods.hilt.data.predicate.damage.DamageSourcePredicate;
+import modernmods.hilt.data.predicate.entity.LivingEntityPredicate;
+import modernmods.hilt.data.predicate.item.ItemPredicate;
+import modernmods.hilt.item.EdibleItem;
+import modernmods.hilt.registration.object.EnumObject;
+import modernmods.hilt.registration.object.ItemObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerModule;
 import modernmods.modernfoundry.common.json.BlockOrEntityCondition;
@@ -156,11 +156,11 @@ public final class TinkerCommons extends TinkerModule {
   public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> lootConfig = LOOT_CONDITIONS.register(ConfigEnabledCondition.ID.getPath(), () -> ConfigEnabledCondition.CODEC);
   public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> lootBlockOrEntity = LOOT_CONDITIONS.register("block_or_entity", () -> BlockOrEntityCondition.CODEC);
   public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> hasLootContextSet = LOOT_CONDITIONS.register("has_context_set", () -> HasLootContextSetCondition.CODEC);
-  /** @deprecated use {@link modernmods.mantle.loot.MantleLoot#TAG_FILLED} */
+  /** @deprecated use {@link modernmods.hilt.loot.HiltLoot#TAG_FILLED} */
   @SuppressWarnings("removal")
   @Deprecated(forRemoval = true)
   public static final DeferredHolder<MapCodec<? extends LootItemCondition>, ? extends MapCodec<? extends LootItemCondition>> lootTagNotEmptyCondition = LOOT_CONDITIONS.register("tag_not_empty", () -> TagNotEmptyCondition.CODEC);
-  /** @deprecated use {@link modernmods.mantle.loot.MantleLoot#TAG_PREFERENCE} */
+  /** @deprecated use {@link modernmods.hilt.loot.HiltLoot#TAG_PREFERENCE} */
   @SuppressWarnings("removal")
   @Deprecated(forRemoval = true)
   public static final DeferredHolder<MapCodec<? extends LootPoolEntryContainer>, ? extends MapCodec<? extends LootPoolEntryContainer>> lootTagPreference = LOOT_ENTRIES.register("tag_preference", () -> TagPreferenceLootEntry.CODEC);
@@ -199,7 +199,7 @@ public final class TinkerCommons extends TinkerModule {
   void registerRecipeSerializers(RegisterEvent event) {
     if (event.getRegistryKey() == Registries.RECIPE_SERIALIZER) {
       CriteriaTriggers.register(TConstruct.getResource("block_container_opened").toString(), CONTAINER_OPENED_TRIGGER);
-      // mantle
+      // hilt
       DamageSourcePredicate.LOADER.register(getResource("direct"), TinkerPredicate.DIRECT_DAMAGE.getLoader());
       // entity
       LivingEntityPredicate.LOADER.register(getResource("airborne"), TinkerPredicate.AIRBORNE.getLoader());

@@ -14,7 +14,7 @@ import net.minecraft.commands.arguments.ResourceArgument;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
@@ -41,19 +41,19 @@ import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import modernmods.modernfoundry.library.fluid.SimpleFluidResourceTank;
 import org.apache.commons.lang3.mutable.MutableInt;
-import modernmods.mantle.command.GeneratePackHelper;
-import modernmods.mantle.command.MantleCommand;
-import modernmods.mantle.data.loadable.Loadable;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.predicate.IJsonPredicate;
-import modernmods.mantle.data.predicate.item.ItemPredicate;
-import modernmods.mantle.fluid.transfer.FluidContainerTransferManager;
-import modernmods.mantle.fluid.transfer.IFluidContainerTransfer;
-import modernmods.mantle.fluid.transfer.IFluidContainerTransfer.TransferDirection;
-import modernmods.mantle.fluid.transfer.IFluidContainerTransfer.TransferResult;
-import modernmods.mantle.recipe.helper.FluidOutput;
-import modernmods.mantle.util.JsonHelper;
-import modernmods.mantle.util.LogicHelper;
+import modernmods.hilt.command.GeneratePackHelper;
+import modernmods.hilt.command.HiltCommand;
+import modernmods.hilt.data.loadable.Loadable;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.predicate.IJsonPredicate;
+import modernmods.hilt.data.predicate.item.ItemPredicate;
+import modernmods.hilt.fluid.transfer.FluidContainerTransferManager;
+import modernmods.hilt.fluid.transfer.IFluidContainerTransfer;
+import modernmods.hilt.fluid.transfer.IFluidContainerTransfer.TransferDirection;
+import modernmods.hilt.fluid.transfer.IFluidContainerTransfer.TransferResult;
+import modernmods.hilt.recipe.helper.FluidOutput;
+import modernmods.hilt.util.JsonHelper;
+import modernmods.hilt.util.LogicHelper;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.recipe.melting.MeltingRecipeBuilder;
 import modernmods.modernfoundry.library.recipe.melting.MeltingRecipeLookup;
@@ -93,7 +93,7 @@ public class GenerateMeltingRecipesCommand {
    * @param context    Context to fetch the recipe type argument
    */
   public static void register(LiteralArgumentBuilder<CommandSourceStack> subCommand, CommandBuildContext context) {
-    subCommand.requires(sender -> MantleCommand.hasPermission(sender, MantleCommand.PERMISSION_GAME_COMMANDS))
+    subCommand.requires(sender -> HiltCommand.hasPermission(sender, HiltCommand.PERMISSION_GAME_COMMANDS))
       .then(Commands.argument("recipe_type", ResourceArgument.resource(context, Registries.RECIPE_TYPE))
         .executes(GenerateMeltingRecipesCommand::run));
   }

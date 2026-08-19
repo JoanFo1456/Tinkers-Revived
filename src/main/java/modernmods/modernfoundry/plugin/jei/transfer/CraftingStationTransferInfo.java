@@ -9,7 +9,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import modernmods.modernfoundry.compat.neoforged.neoforge.common.crafting.IShapedRecipe;
-import modernmods.mantle.client.SafeClientAccess;
+import modernmods.hilt.client.SafeClientAccess;
 import modernmods.modernfoundry.tables.TinkerTables;
 import modernmods.modernfoundry.tables.menu.CraftingStationContainerMenu;
 

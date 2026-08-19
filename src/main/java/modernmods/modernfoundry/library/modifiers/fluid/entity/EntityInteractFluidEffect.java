@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 import modernmods.modernfoundry.compat.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import modernmods.mantle.data.loadable.record.SingletonLoader;
+import modernmods.hilt.data.loadable.record.SingletonLoader;
 import modernmods.modernfoundry.library.modifiers.fluid.EffectLevel;
 import modernmods.modernfoundry.library.modifiers.fluid.FluidEffect;
 import modernmods.modernfoundry.library.modifiers.fluid.FluidEffectContext;

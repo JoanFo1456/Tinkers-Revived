@@ -28,7 +28,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import modernmods.mantle.util.CombatHelper;
+import modernmods.hilt.util.CombatHelper;
 import modernmods.modernfoundry.common.TinkerDamageTypes;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
 import modernmods.modernfoundry.library.modifiers.ModifierHooks;

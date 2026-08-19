@@ -9,7 +9,7 @@ import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.EntityHitResult;
-import modernmods.mantle.util.CombatHelper;
+import modernmods.hilt.util.CombatHelper;
 import modernmods.modernfoundry.common.TinkerDamageTypes;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.modifiers.Modifier;

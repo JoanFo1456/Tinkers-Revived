@@ -12,9 +12,9 @@ import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.data.loadable.Loadable;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.data.loadable.primitive.StringLoadable;
+import modernmods.hilt.data.loadable.Loadable;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.data.loadable.primitive.StringLoadable;
 import modernmods.modernfoundry.library.tools.part.IMaterialItem;
 import modernmods.modernfoundry.library.utils.IdParser;
 

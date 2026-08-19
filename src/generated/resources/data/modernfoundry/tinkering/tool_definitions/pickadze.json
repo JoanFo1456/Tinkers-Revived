@@ -65,7 +65,7 @@
     },
     {
       "type": "modernfoundry:is_effective",
-      "predicate_type": "mantle:tag",
+      "predicate_type": "hilt:tag",
       "tag": "modernfoundry:mineable/pickadze"
     },
     {

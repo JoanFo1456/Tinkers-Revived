@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Basic interface for all material stats.
- * TODO 1.21: Make {@link modernmods.mantle.registration.object.IdAwareObject}
+ * TODO 1.21: Make {@link modernmods.hilt.registration.object.IdAwareObject}
  */
 public interface IMaterialStats {
   /**

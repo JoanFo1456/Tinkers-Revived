@@ -2,7 +2,7 @@ package modernmods.modernfoundry.library.tools.definition.module;
 
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.RandomSource;
-import modernmods.mantle.data.registry.IdAwareComponentRegistry;
+import modernmods.hilt.data.registry.IdAwareComponentRegistry;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.materials.MaterialRegistry;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;

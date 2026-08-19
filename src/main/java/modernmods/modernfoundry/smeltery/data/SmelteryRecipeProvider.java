@@ -4,7 +4,7 @@ import net.minecraft.world.item.crafting.CookingBookCategory;
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -39,18 +39,18 @@ import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.OrCondition;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
-import modernmods.mantle.datagen.MantleTags;
-import modernmods.mantle.recipe.condition.TagFilledCondition;
-import modernmods.mantle.recipe.crafting.ShapedRetexturedRecipeBuilder;
-import modernmods.mantle.recipe.data.ConsumerWrapperBuilder;
-import modernmods.mantle.recipe.data.ICommonRecipeHelper;
-import modernmods.mantle.recipe.data.ItemNameIngredient;
-import modernmods.mantle.recipe.data.ItemNameOutput;
-import modernmods.mantle.recipe.helper.ItemOutput;
-import modernmods.mantle.recipe.ingredient.EntityIngredient;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
-import modernmods.mantle.recipe.ingredient.PotionDisplayIngredient;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.datagen.HiltTags;
+import modernmods.hilt.recipe.condition.TagFilledCondition;
+import modernmods.hilt.recipe.crafting.ShapedRetexturedRecipeBuilder;
+import modernmods.hilt.recipe.data.ConsumerWrapperBuilder;
+import modernmods.hilt.recipe.data.ICommonRecipeHelper;
+import modernmods.hilt.recipe.data.ItemNameIngredient;
+import modernmods.hilt.recipe.data.ItemNameOutput;
+import modernmods.hilt.recipe.helper.ItemOutput;
+import modernmods.hilt.recipe.ingredient.EntityIngredient;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.recipe.ingredient.PotionDisplayIngredient;
+import modernmods.hilt.registration.object.FluidObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.data.BaseRecipeProvider;
@@ -95,8 +95,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import static modernmods.mantle.Mantle.COMMON;
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.COMMON;
+import static modernmods.hilt.Hilt.commonResource;
 import static modernmods.modernfoundry.library.data.recipe.SmelteryRecipeBuilder.ARMOR;
 import static modernmods.modernfoundry.library.data.recipe.SmelteryRecipeBuilder.ARMOR_PLUS;
 import static modernmods.modernfoundry.library.data.recipe.SmelteryRecipeBuilder.AXES;
@@ -139,17 +139,17 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("c c")
                        .pattern(" c ")
                        .unlockedBy("has_item", has(Tags.Items.INGOTS_COPPER))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.copperCan, "smeltery/")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.copperCan, "smeltery/")));
 
     // sand casts
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, TinkerSmeltery.blankSandCast, 4)
                           .requires(Tags.Items.SANDS_COLORLESS)
                           .unlockedBy("has_casting", has(TinkerSmeltery.searedTable))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("smeltery/sand_cast")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("smeltery/sand_cast")));
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, TinkerSmeltery.blankRedSandCast, 4)
                           .requires(Tags.Items.SANDS_RED)
                           .unlockedBy("has_casting", has(TinkerSmeltery.searedTable))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("smeltery/red_sand_cast")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("smeltery/red_sand_cast")));
 
     // pick up sand casts from the table
     MoldingRecipeBuilder.moldingTable(TinkerSmeltery.blankSandCast)
@@ -167,7 +167,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("CTC")
       .pattern("CCC")
       .unlockedBy("has_item", has(TinkerMaterials.knightmetal.getIngotTag()))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("smeltery/end_fluid_cannon")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location("smeltery/end_fluid_cannon")));
   }
 
   private void addSmelteryRecipes(Consumer<FinishedRecipe> consumer) {
@@ -178,21 +178,21 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                           .requires(ItemTags.SAND)
                           .requires(Blocks.GRAVEL)
                           .unlockedBy("has_item", has(Items.CLAY_BALL))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(id(TinkerSmeltery.grout), folder)));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(id(TinkerSmeltery.grout), folder)));
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.grout, 8)
                           .requires(Blocks.CLAY)
                           .requires(ItemTags.SAND).requires(ItemTags.SAND).requires(ItemTags.SAND).requires(ItemTags.SAND)
                           .requires(Blocks.GRAVEL).requires(Blocks.GRAVEL).requires(Blocks.GRAVEL).requires(Blocks.GRAVEL)
                           .unlockedBy("has_item", has(Blocks.CLAY))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.grout, folder, "_multiple")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.grout, folder, "_multiple")));
 
     // seared bricks from grout
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(TinkerSmeltery.grout), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.searedBrick, 0.3f, 200)
                         .unlockedBy("has_item", has(TinkerSmeltery.grout))
-                        .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedBrick, folder)));
+                        .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedBrick, folder)));
     Consumer<Consumer<FinishedRecipe>> fastGrout = c ->
       SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerSmeltery.grout), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.searedBrick, 0.3f, 100)
-                          .unlockedBy("has_item", has(TinkerSmeltery.grout)).save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(c));
+                          .unlockedBy("has_item", has(TinkerSmeltery.grout)).save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(c));
     ConditionalRecipe.builder()
                      .addCondition(new ModLoadedCondition("ceramics"))
                      .addRecipe(c -> fastGrout.accept(ConsumerWrapperBuilder.wrap(Identifier.fromNamespaceAndPath("ceramics", "kiln")).build(c)))
@@ -208,7 +208,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bb")
                        .pattern("bb")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedBricks, folder, "_from_brick")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedBricks, folder, "_from_brick")));
     // ladder from bricks
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.searedLadder, 4)
                        .define('b', TinkerSmeltery.searedBrick)
@@ -217,34 +217,34 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("b b")
                        .pattern("BBB")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedLadder, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedLadder, folder)));
 
     // cobble -> stone
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(TinkerSmeltery.searedCobble.get()), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.searedStone, 0.1f, 200)
                         .unlockedBy("has_item", has(TinkerSmeltery.searedCobble.get()))
-                        .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedStone, folder, "_smelting")));
+                        .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedStone, folder, "_smelting")));
     // stone -> paver
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(TinkerSmeltery.searedStone.get()), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.searedPaver, 0.1f, 200)
                         .unlockedBy("has_item", has(TinkerSmeltery.searedStone.get()))
-                        .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedPaver, folder, "_smelting")));
+                        .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedPaver, folder, "_smelting")));
     // stone -> bricks
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.searedBricks, 4)
                        .define('b', TinkerSmeltery.searedStone)
                        .pattern("bb")
                        .pattern("bb")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedStone))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedBricks, folder, "_crafting")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedBricks, folder, "_crafting")));
     // bricks -> cracked
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(TinkerSmeltery.searedBricks), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.searedCrackedBricks, 0.1f, 200)
                         .unlockedBy("has_item", has(TinkerSmeltery.searedBricks))
-                        .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedCrackedBricks, folder, "_smelting")));
+                        .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedCrackedBricks, folder, "_smelting")));
     // brick slabs -> fancy
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.searedFancyBricks)
                        .define('s', TinkerSmeltery.searedBricks.getSlab())
                        .pattern("s")
                        .pattern("s")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBricks.getSlab()))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedFancyBricks, folder, "_crafting")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.searedFancyBricks, folder, "_crafting")));
     // bricks or stone as input
     this.searedStonecutter(consumer, TinkerSmeltery.searedBricks, folder);
     this.searedStonecutter(consumer, TinkerSmeltery.searedFancyBricks, folder);
@@ -258,7 +258,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bGb")
                        .pattern(" b ")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedGlass, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedGlass, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.searedLamp)
       .define('b', TinkerSmeltery.searedBrick)
       .define('G', Blocks.GLOWSTONE)
@@ -266,13 +266,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("bGb")
       .pattern(" b ")
       .unlockedBy("has_item", has(Blocks.GLOWSTONE))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedLamp, folder)));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedLamp, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.searedGlassPane, 16)
                        .define('#', TinkerSmeltery.searedGlass)
                        .pattern("###")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedGlass))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedGlassPane, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedGlassPane, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.searedSoulGlass)
                        .define('b', TinkerSmeltery.searedBrick)
                        .define('G', TinkerCommons.soulGlass)
@@ -280,13 +280,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bGb")
                        .pattern(" b ")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedSoulGlass, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedSoulGlass, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.searedSoulGlassPane, 16)
                        .define('#', TinkerSmeltery.searedSoulGlass)
                        .pattern("###")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedSoulGlass))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedSoulGlassPane, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedSoulGlassPane, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.searedTintedGlass)
                        .define('b', TinkerSmeltery.searedBrick)
                        .define('G', Tags.Items.GLASS_BLOCKS_TINTED)
@@ -294,7 +294,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bGb")
                        .pattern(" b ")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedTintedGlass, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.searedTintedGlass, folder)));
 
     // stairs and slabs
     this.slabStairsCrafting(consumer, TinkerSmeltery.searedStone, folder, true);
@@ -310,7 +310,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("#B#")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fuel_tank")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fuel_tank")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedTank.get(TankType.FUEL_GAUGE))
                        .define('#', TinkerSmeltery.searedBrick)
                        .define('B', Tags.Items.GLASS_BLOCKS)
@@ -318,7 +318,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("BBB")
                        .pattern("#B#")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fuel_gauge")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fuel_gauge")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedTank.get(TankType.INGOT_TANK))
                        .define('#', TinkerSmeltery.searedBrick)
                        .define('B', Tags.Items.GLASS_BLOCKS)
@@ -326,7 +326,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("#B#")
                        .pattern("#B#")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "ingot_tank")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "ingot_tank")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedTank.get(TankType.INGOT_GAUGE))
                        .define('#', TinkerSmeltery.searedBrick)
                        .define('B', Tags.Items.GLASS_BLOCKS)
@@ -334,7 +334,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("#B#")
                        .pattern("B#B")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "ingot_gauge")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "ingot_gauge")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.searedLantern.get(), 3)
                        .define('C', Tags.Items.INGOTS_IRON)
                        .define('B', TinkerSmeltery.searedBrick)
@@ -343,7 +343,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("PPP")
                        .pattern("BBB")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "lantern")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "lantern")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedCastingTank.get())
                        .define('B', TinkerSmeltery.searedBrick)
                        .define('G', Tags.Items.GLASS_BLOCKS)
@@ -352,7 +352,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("CGC")
                        .pattern("BGB")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "seared_casting_tank")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "seared_casting_tank")));
 
     // fluid transfer
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedFaucet.get(), 3)
@@ -360,13 +360,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("# #")
                        .pattern(" # ")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "faucet")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "faucet")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedChannel.get(), 5)
                        .define('#', TinkerSmeltery.searedBrick)
                        .pattern("# #")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "channel")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "channel")));
 
     // casting
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.searedBasin.get())
@@ -375,14 +375,14 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("# #")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "basin")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "basin")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.searedTable.get())
                        .define('#', TinkerSmeltery.searedBrick)
                        .pattern("###")
                        .pattern("# #")
                        .pattern("# #")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "table")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "table")));
 
     // peripherals
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.copperGauge, 4)
@@ -392,7 +392,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("CGC")
       .pattern(" C ")
       .unlockedBy("has_item", has(Tags.Items.INGOTS_COPPER))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "gauge")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "gauge")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedDrain)
                        .define('#', TinkerSmeltery.searedBrick)
                        .define('C', Tags.Items.INGOTS_COPPER)
@@ -400,7 +400,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("C C")
                        .pattern("# #")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "drain")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "drain")));
     ShapedRetexturedRecipeBuilder.fromShaped(
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedDrain)
         .define('#', TinkerTags.Items.SMELTERY_BRICKS)
@@ -416,7 +416,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("   ")
                        .pattern("#C#")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "chute")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "chute")));
     ShapedRetexturedRecipeBuilder.fromShaped(
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedChute)
         .define('#', TinkerTags.Items.SMELTERY_BRICKS)
@@ -434,7 +434,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("C C")
                        .pattern("# #")
                        .unlockedBy("has_item", has(Tags.Items.INGOTS_GOLD))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "duct")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "duct")));
     ShapedRetexturedRecipeBuilder.fromShaped(
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedDuct)
         .define('#', TinkerTags.Items.SMELTERY_BRICKS)
@@ -452,14 +452,14 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("BGB")
                        .pattern("BBB")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "melter")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "melter")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.searedHeater)
                        .define('B', TinkerSmeltery.searedBrick)
                        .pattern("BBB")
                        .pattern("B B")
                        .pattern("BBB")
                        .unlockedBy("has_item", has(TinkerSmeltery.searedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "heater")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "heater")));
     // fluid cannon
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.searedFluidCannon)
       .define('R', Tags.Items.DUSTS_REDSTONE)
@@ -469,7 +469,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("CTC")
       .pattern("CCC")
       .unlockedBy("has_item", has(Tags.Items.INGOTS_COPPER))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fluid_cannon")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fluid_cannon")));
 
     // casting
     String castingFolder = "smeltery/casting/seared/";
@@ -629,21 +629,21 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                           .requires(soulSand)
                           .requires(Blocks.GRAVEL)
                           .unlockedBy("has_item", has(Items.MAGMA_CREAM))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.netherGrout, folder)));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.netherGrout, folder)));
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.netherGrout, 8)
                           .requires(Blocks.MAGMA_BLOCK)
                           .requires(soulSand).requires(soulSand).requires(soulSand).requires(soulSand)
                           .requires(Blocks.GRAVEL).requires(Blocks.GRAVEL).requires(Blocks.GRAVEL).requires(Blocks.GRAVEL)
                           .unlockedBy("has_item", has(Items.MAGMA_CREAM))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.netherGrout, folder, "_multiple")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.netherGrout, folder, "_multiple")));
 
     // scorched bricks from grout
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(TinkerSmeltery.netherGrout), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.scorchedBrick, 0.3f, 200)
                               .unlockedBy("has_item", has(TinkerSmeltery.netherGrout))
-                              .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedBrick, folder)));
+                              .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedBrick, folder)));
     Consumer<Consumer<FinishedRecipe>> fastGrout = c ->
       SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerSmeltery.netherGrout), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.scorchedBrick, 0.3f, 100)
-                                .unlockedBy("has_item", has(TinkerSmeltery.netherGrout)).save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(c));
+                                .unlockedBy("has_item", has(TinkerSmeltery.netherGrout)).save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(c));
     ConditionalRecipe.builder()
                      .addCondition(new ModLoadedCondition("ceramics"))
                      .addRecipe(c -> fastGrout.accept(ConsumerWrapperBuilder.wrap(Identifier.fromNamespaceAndPath("ceramics", "kiln")).build(c)))
@@ -658,7 +658,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bb")
                        .pattern("bb")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.scorchedBricks, folder, "_from_brick")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.scorchedBricks, folder, "_from_brick")));
     // ladder from bricks
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.scorchedLadder, 4)
                        .define('b', TinkerSmeltery.scorchedBrick)
@@ -667,7 +667,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("b b")
                        .pattern("BBB")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedLadder, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedLadder, folder)));
 
     // stone -> polished
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.polishedScorchedStone, 4)
@@ -675,25 +675,25 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bb")
                        .pattern("bb")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedStone))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.polishedScorchedStone, folder, "_crafting")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.polishedScorchedStone, folder, "_crafting")));
     // polished -> bricks
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.scorchedBricks, 4)
                        .define('b', TinkerSmeltery.polishedScorchedStone)
                        .pattern("bb")
                        .pattern("bb")
                        .unlockedBy("has_item", has(TinkerSmeltery.polishedScorchedStone))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.scorchedBricks, folder, "_crafting")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.scorchedBricks, folder, "_crafting")));
     // stone -> road
     SimpleCookingRecipeBuilder.smelting(Ingredient.of(TinkerSmeltery.scorchedStone), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.scorchedRoad, 0.1f, 200)
                         .unlockedBy("has_item", has(TinkerSmeltery.scorchedStone))
-                        .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.scorchedRoad, folder, "_smelting")));
+                        .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.scorchedRoad, folder, "_smelting")));
     // brick slabs -> chiseled
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.chiseledScorchedBricks)
                        .define('s', TinkerSmeltery.scorchedBricks.getSlab())
                        .pattern("s")
                        .pattern("s")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBricks.getSlab()))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.chiseledScorchedBricks, folder, "_crafting")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(TinkerSmeltery.chiseledScorchedBricks, folder, "_crafting")));
     // stonecutting
     this.scorchedStonecutter(consumer, TinkerSmeltery.polishedScorchedStone, folder);
     this.scorchedStonecutter(consumer, TinkerSmeltery.scorchedBricks, folder);
@@ -707,7 +707,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bGb")
                        .pattern(" b ")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedGlass, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedGlass, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.scorchedLamp)
       .define('b', TinkerSmeltery.scorchedBrick)
       .define('G', Blocks.GLOWSTONE)
@@ -715,7 +715,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("bGb")
       .pattern(" b ")
       .unlockedBy("has_item", has(Blocks.GLOWSTONE))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedLamp, folder)));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedLamp, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.scorchedSoulGlass)
                        .define('b', TinkerSmeltery.scorchedBrick)
                        .define('G', TinkerCommons.soulGlass)
@@ -723,7 +723,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bGb")
                        .pattern(" b ")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedSoulGlass, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedSoulGlass, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.scorchedTintedGlass)
                        .define('b', TinkerSmeltery.scorchedBrick)
                        .define('G', Tags.Items.GLASS_BLOCKS_TINTED)
@@ -731,19 +731,19 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("bGb")
                        .pattern(" b ")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedTintedGlass, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedTintedGlass, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.scorchedGlassPane, 16)
                        .define('#', TinkerSmeltery.scorchedGlass)
                        .pattern("###")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedGlass))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedGlassPane, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedGlassPane, folder)));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.scorchedSoulGlassPane, 16)
                        .define('#', TinkerSmeltery.scorchedSoulGlass)
                        .pattern("###")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedSoulGlass))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedSoulGlassPane, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerSmeltery.scorchedSoulGlassPane, folder)));
 
     // stairs, slabs, and fences
     this.slabStairsCrafting(consumer, TinkerSmeltery.scorchedBricks, folder, true);
@@ -754,7 +754,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("BbB")
                        .pattern("BbB")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBricks))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(id(TinkerSmeltery.scorchedBricks.getFence()), folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(id(TinkerSmeltery.scorchedBricks.getFence()), folder)));
 
     // tanks
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedTank.get(TankType.FUEL_TANK))
@@ -764,7 +764,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("#B#")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fuel_tank")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fuel_tank")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedTank.get(TankType.FUEL_GAUGE))
                        .define('#', TinkerSmeltery.scorchedBrick)
                        .define('B', Tags.Items.GEMS_QUARTZ)
@@ -772,7 +772,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("BBB")
                        .pattern("#B#")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fuel_gauge")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fuel_gauge")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedTank.get(TankType.INGOT_TANK))
                        .define('#', TinkerSmeltery.scorchedBrick)
                        .define('B', Tags.Items.GEMS_QUARTZ)
@@ -780,7 +780,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("#B#")
                        .pattern("#B#")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "ingot_tank")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "ingot_tank")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedTank.get(TankType.INGOT_GAUGE))
                        .define('#', TinkerSmeltery.scorchedBrick)
                        .define('B', Tags.Items.GEMS_QUARTZ)
@@ -788,7 +788,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("#B#")
                        .pattern("B#B")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "ingot_gauge")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "ingot_gauge")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.scorchedLantern.get(), 3)
                        .define('C', Tags.Items.INGOTS_IRON)
                        .define('B', TinkerSmeltery.scorchedBrick)
@@ -797,7 +797,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("PPP")
                        .pattern("BBB")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "lantern")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "lantern")));
 
     // fluid transfer
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedFaucet.get(), 3)
@@ -805,13 +805,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("# #")
                        .pattern(" # ")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "faucet")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "faucet")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedChannel.get(), 5)
                        .define('#', TinkerSmeltery.scorchedBrick)
                        .pattern("# #")
                        .pattern("###")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "channel")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "channel")));
 
     // casting
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.scorchedBasin.get())
@@ -821,7 +821,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("#G#")
       .pattern("###")
       .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "basin")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "basin")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerSmeltery.scorchedTable.get())
       .define('#', TinkerSmeltery.scorchedBrick)
       .define('G', TinkerCommons.goldBars)
@@ -829,7 +829,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("#G#")
       .pattern("# #")
       .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "table")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "table")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedProxyTank.get())
       .define('#', TinkerSmeltery.scorchedBrick)
       .define('G', Tags.Items.GEMS_QUARTZ)
@@ -838,7 +838,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("CGC")
       .pattern("#G#")
       .unlockedBy("has_item", has(TinkerCommons.obsidianPane))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "proxy_tank")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "proxy_tank")));
 
 
     // peripherals
@@ -849,7 +849,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("CGC")
       .pattern(" C ")
       .unlockedBy("has_item", has(TinkerCommons.obsidianPane))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "gauge")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "gauge")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedDrain)
                        .define('#', TinkerSmeltery.scorchedBrick)
                        .define('C', TinkerCommons.obsidianPane)
@@ -857,7 +857,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("C C")
                        .pattern("# #")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "drain")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "drain")));
     ShapedRetexturedRecipeBuilder.fromShaped(
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedDrain)
         .define('#', TinkerTags.Items.FOUNDRY_BRICKS)
@@ -873,7 +873,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("   ")
                        .pattern("#C#")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "chute")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "chute")));
     ShapedRetexturedRecipeBuilder.fromShaped(
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedChute)
         .define('#', TinkerTags.Items.FOUNDRY_BRICKS)
@@ -891,7 +891,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("C C")
                        .pattern("# #")
                        .unlockedBy("has_item", has(Tags.Items.INGOTS_GOLD))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "duct")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "duct")));
     ShapedRetexturedRecipeBuilder.fromShaped(
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedDuct)
         .define('#', TinkerTags.Items.FOUNDRY_BRICKS)
@@ -909,7 +909,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                        .pattern("BGB")
                        .pattern("BBB")
                        .unlockedBy("has_item", has(TinkerSmeltery.scorchedBrick))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "alloyer")));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "alloyer")));
     // fluid cannon
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.REDSTONE, TinkerSmeltery.scorchedFluidCannon)
       .define('R', Tags.Items.DUSTS_REDSTONE)
@@ -919,7 +919,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .pattern("CTC")
       .pattern("CCC")
       .unlockedBy("has_item", has(TinkerMaterials.cobalt.getIngotTag()))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fluid_cannon")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "fluid_cannon")));
 
     // casting
     String castingFolder = "smeltery/casting/scorched/";
@@ -1087,7 +1087,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                               .save(consumer, location(folder + "filling/tipped_arrow"));
     ItemCastingRecipeBuilder.tableRecipe(Items.ARROW)
       .setCast(PotionDisplayIngredient.of(Items.TIPPED_ARROW), true)
-      .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE / 5)
+      .setFluid(HiltTags.Fluids.WATER, FluidValues.BOTTLE / 5)
       .setCoolingTime(1)
       .save(consumer, location(folder + "filling/tipped_arrow_clean"));
     // tank filling - seared
@@ -1197,17 +1197,17 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                             .setCast(BlockTagIngredient.of(BlockTags.CONVERTABLE_TO_MUD), true)
                             .save(consumer, location(waterFolder + "mud"));
     ItemCastingRecipeBuilder.tableRecipe(PotionUtils.potionOutput(Items.POTION, Potions.WATER))
-                            .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE * 2)
+                            .setFluid(HiltTags.Fluids.WATER, FluidValues.BOTTLE * 2)
                             .setCoolingTime(1)
                             .setCast(Items.GLASS_BOTTLE, true)
                             .save(consumer, location(waterFolder + "bottle"));
     ItemCastingRecipeBuilder.tableRecipe(PotionUtils.potionOutput(Items.SPLASH_POTION, Potions.WATER))
-                            .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE * 2)
+                            .setFluid(HiltTags.Fluids.WATER, FluidValues.BOTTLE * 2)
                             .setCoolingTime(1)
                             .setCast(TinkerTags.Items.SPLASH_BOTTLE, true)
                             .save(consumer, location(waterFolder + "splash"));
     ItemCastingRecipeBuilder.tableRecipe(PotionUtils.potionOutput(Items.LINGERING_POTION, Potions.WATER))
-                            .setFluid(MantleTags.Fluids.WATER, FluidValues.BOTTLE * 2)
+                            .setFluid(HiltTags.Fluids.WATER, FluidValues.BOTTLE * 2)
                             .setCoolingTime(1)
                             .setCast(TinkerTags.Items.LINGERING_BOTTLE, true)
                             .save(consumer, location(waterFolder + "lingering"));
@@ -2381,7 +2381,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     Identifier dough = Identifier.fromNamespaceAndPath("farmersdelight", "wheat_dough");
     ItemCastingRecipeBuilder.tableRecipe(ItemNameOutput.fromName(dough))
       .setCast(Items.WHEAT, true)
-      .setFluid(MantleTags.Fluids.WATER, 250)
+      .setFluid(HiltTags.Fluids.WATER, 250)
       .setCoolingTime(50)
       .save(withCondition(consumer, NeoForgeConditions.itemRegistered(dough)), location(folder + "wheat_dough"));
 
@@ -2611,7 +2611,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
         DifferenceIngredient.of(LazyTagIngredient.of(TinkerTags.Items.SEARED_BRICKS), Ingredient.of(output))), RecipeCategory.BUILDING_BLOCKS, output, 1)
                            .unlockedBy("has_stone", has(TinkerSmeltery.searedStone))
                            .unlockedBy("has_bricks", has(TinkerTags.Items.SEARED_BRICKS))
-                           .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(id(output), folder, "_stonecutting")));
+                           .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(id(output), folder, "_stonecutting")));
   }
 
   /**
@@ -2663,7 +2663,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
   private void scorchedStonecutter(Consumer<FinishedRecipe> consumer, ItemLike output, String folder) {
     SingleItemRecipeBuilder.stonecutting(DifferenceIngredient.of(LazyTagIngredient.of(TinkerTags.Items.SCORCHED_BLOCKS), Ingredient.of(output)), RecipeCategory.BUILDING_BLOCKS, output, 1)
                            .unlockedBy("has_block", has(TinkerTags.Items.SCORCHED_BLOCKS))
-                           .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(id(output), folder, "_stonecutting")));
+                           .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(wrap(id(output), folder, "_stonecutting")));
   }
 
   /**

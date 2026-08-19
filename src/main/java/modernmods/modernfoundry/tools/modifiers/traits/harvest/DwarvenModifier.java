@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent.BreakSpeed;
-import modernmods.mantle.client.TooltipKey;
+import modernmods.hilt.client.TooltipKey;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.Modifier;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;

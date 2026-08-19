@@ -4,7 +4,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
-import modernmods.mantle.command.argument.TagSource;
+import modernmods.hilt.command.argument.TagSource;
 import modernmods.modernfoundry.library.modifiers.Modifier;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
 import modernmods.modernfoundry.library.modifiers.ModifierManager;

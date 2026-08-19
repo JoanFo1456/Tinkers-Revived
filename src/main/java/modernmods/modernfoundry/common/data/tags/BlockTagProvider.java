@@ -14,11 +14,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import modernmods.mantle.datagen.MantleTags;
-import modernmods.mantle.registration.object.BuildingBlockObject;
-import modernmods.mantle.registration.object.EnumObject;
-import modernmods.mantle.registration.object.MetalItemObject;
-import modernmods.mantle.registration.object.WoodBlockObject;
+import modernmods.hilt.datagen.HiltTags;
+import modernmods.hilt.registration.object.BuildingBlockObject;
+import modernmods.hilt.registration.object.EnumObject;
+import modernmods.hilt.registration.object.MetalItemObject;
+import modernmods.hilt.registration.object.WoodBlockObject;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.registration.GeodeItemObject;
@@ -54,7 +54,7 @@ import static net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL;
 import static net.minecraft.tags.BlockTags.NEEDS_STONE_TOOL;
 import static net.neoforged.neoforge.common.Tags.Blocks.NEEDS_GOLD_TOOL;
 import static net.neoforged.neoforge.common.Tags.Blocks.NEEDS_NETHERITE_TOOL;
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 import static modernmods.modernfoundry.common.TinkerTags.Blocks.MINEABLE_MELTING_BLACKLIST;
 import static modernmods.modernfoundry.common.TinkerTags.Blocks.UNREPLACABLE_BY_LIQUID;
 
@@ -361,7 +361,7 @@ public class BlockTagProvider extends BlockTagsProvider {
     TinkerSmeltery.scorchedTank.values().forEach(scorchedTankTagAppender::add);
 
     // gauges
-    this.tag(MantleTags.Blocks.ATTACHED_GAUGES).add(TinkerSmeltery.copperGauge.get(), TinkerSmeltery.obsidianGauge.get());
+    this.tag(HiltTags.Blocks.ATTACHED_GAUGES).add(TinkerSmeltery.copperGauge.get(), TinkerSmeltery.obsidianGauge.get());
 
     // structure tags
     // melter supports the heater as a tank

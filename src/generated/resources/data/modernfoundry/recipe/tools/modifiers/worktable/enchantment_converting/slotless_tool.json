@@ -8,11 +8,11 @@
   ],
   "match_book": false,
   "modifier_predicate": {
-    "type": "mantle:and",
+    "type": "hilt:and",
     "predicates": [
       "modernfoundry:slot_type",
       {
-        "type": "mantle:inverted",
+        "type": "hilt:inverted",
         "inverted_type": "modernfoundry:tag",
         "tag": "modernfoundry:extract_blacklist/slotless"
       }

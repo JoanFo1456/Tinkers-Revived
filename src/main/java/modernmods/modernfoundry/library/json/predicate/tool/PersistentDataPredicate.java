@@ -1,9 +1,9 @@
 package modernmods.modernfoundry.library.json.predicate.tool;
 
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.data.predicate.IJsonPredicate;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.predicate.IJsonPredicate;
 import modernmods.modernfoundry.library.json.variable.tool.ModDataSource;
 import modernmods.modernfoundry.library.tools.nbt.IToolContext;
 

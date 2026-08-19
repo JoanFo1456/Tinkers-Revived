@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.rendertype.LayeringTransform;
 import net.minecraft.client.renderer.rendertype.OutputTarget;
 import net.minecraft.client.renderer.rendertype.RenderSetup;
 import net.minecraft.client.renderer.rendertype.RenderType;
-import modernmods.mantle.client.render.MantleRenderTypes;
+import modernmods.hilt.client.render.HiltRenderTypes;
 import modernmods.modernfoundry.TConstruct;
 
 import java.util.function.Consumer;
@@ -40,10 +40,10 @@ public class TinkerRenderTypes {
     .createRenderSetup());
 
   /**
-   * Render type for smeltery fluids. Mantle's {@link MantleRenderTypes#FLUID} is already a no-cull translucent block
+   * Render type for smeltery fluids. Hilt's {@link HiltRenderTypes#FLUID} is already a no-cull translucent block
    * type in 26.1, so both faces of the fluid render; reuse it directly.
    */
-  public static final RenderType SMELTERY_FLUID = MantleRenderTypes.FLUID;
+  public static final RenderType SMELTERY_FLUID = HiltRenderTypes.FLUID;
 
   /** Registers Tinkers' custom render pipelines so their shaders are compiled. Call from {@code RegisterRenderPipelinesEvent}. */
   public static void registerPipelines(Consumer<RenderPipeline> registrar) {

@@ -11,7 +11,7 @@ import modernmods.modernfoundry.world.block.FoliageType;
 
 import java.util.Locale;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 
 /** Types of slime available in tinkers, all types notably have balls, congealed, and blocks */
 @Getter

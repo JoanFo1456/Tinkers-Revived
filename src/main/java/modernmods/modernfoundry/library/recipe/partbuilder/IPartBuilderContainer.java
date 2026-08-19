@@ -1,7 +1,7 @@
 package modernmods.modernfoundry.library.recipe.partbuilder;
 
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.recipe.container.ISingleStackContainer;
+import modernmods.hilt.recipe.container.ISingleStackContainer;
 import modernmods.modernfoundry.library.recipe.material.IMaterialValue;
 
 import javax.annotation.Nullable;

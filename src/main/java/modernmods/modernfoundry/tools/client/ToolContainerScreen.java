@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.Slot;
-import modernmods.mantle.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.ElementScreen;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.fluid.SimpleFluidTank;
 import modernmods.modernfoundry.library.modifiers.ModifierEntry;
@@ -217,7 +217,7 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
         Slot slot = menu.getSlot(start + i);
         Pattern pattern = inventory.getPattern(tool, entry, i, slot.hasItem());
         if (pattern != null) {
-          graphics.blitSprite(RenderPipelines.GUI_TEXTURED, modernmods.mantle.client.render.FluidRenderer.getBlockSprite(pattern.getTexture()), xStart + slot.x, yStart + slot.y, 16, 16);
+          graphics.blitSprite(RenderPipelines.GUI_TEXTURED, modernmods.hilt.client.render.FluidRenderer.getBlockSprite(pattern.getTexture()), xStart + slot.x, yStart + slot.y, 16, 16);
         }
       }
       start += size;
@@ -227,7 +227,7 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
     if (menu.isShowOffhand()) {
       Slot slot = menu.getSlot(menu.getPlayerInventoryStart() - 1);
       if (!slot.hasItem()) {
-        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, modernmods.mantle.client.render.FluidRenderer.getBlockSprite(Patterns.SHIELD.getTexture()), xStart + slot.x, yStart + slot.y, 16, 16);
+        graphics.blitSprite(RenderPipelines.GUI_TEXTURED, modernmods.hilt.client.render.FluidRenderer.getBlockSprite(Patterns.SHIELD.getTexture()), xStart + slot.x, yStart + slot.y, 16, 16);
       }
     }
 

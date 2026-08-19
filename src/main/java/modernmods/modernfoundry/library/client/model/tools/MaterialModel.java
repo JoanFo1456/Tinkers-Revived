@@ -21,9 +21,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec2;
 import org.joml.Matrix4fc;
 import org.joml.Vector3f;
-import modernmods.mantle.client.model.util.DynamicItemModel;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
-import modernmods.mantle.util.ItemLayerPixels;
+import modernmods.hilt.client.model.util.DynamicItemModel;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
+import modernmods.hilt.util.ItemLayerPixels;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.client.materials.MaterialRenderInfo;
 import modernmods.modernfoundry.library.client.materials.MaterialRenderInfo.TintedSprite;
@@ -102,7 +102,7 @@ public final class MaterialModel {
       return List.of();
     }
     // wrap the atlas sprite as a baked material for the 26.1 quad generator
-    return MantleItemLayerModel.getQuadsForSprite(sprite.color(), tintIndex, new Material.Baked(sprite.sprite(), false), transformation, sprite.emissivity(), pixels);
+    return HiltItemLayerModel.getQuadsForSprite(sprite.color(), tintIndex, new Material.Baked(sprite.sprite(), false), transformation, sprite.emissivity(), pixels);
   }
 
   /** Builds the transformation applied to the quads from a pixel offset */

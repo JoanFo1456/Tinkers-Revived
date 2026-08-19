@@ -1,7 +1,7 @@
 {
   "neoforge:conditions": [
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "modernfoundry:melting/refined_glowstone/tools_costing_7"
     }
   ],

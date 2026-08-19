@@ -1,8 +1,8 @@
 {
-  "type": "mantle:add_entry",
+  "type": "hilt:add_entry",
   "conditions": [
     {
-      "condition": "mantle:block_tag",
+      "condition": "hilt:block_tag",
       "tag": "c:ores/gold"
     },
     {
@@ -11,7 +11,7 @@
     }
   ],
   "entry": {
-    "type": "mantle:tag_preference",
+    "type": "hilt:tag_preference",
     "tag": "c:nuggets/gold"
   },
   "functions": [
@@ -36,9 +36,9 @@
   ],
   "post_conditions": [
     {
-      "type": "mantle:inverted",
+      "type": "hilt:inverted",
       "condition": {
-        "type": "mantle:contains_item",
+        "type": "hilt:contains_item",
         "ingredient": {
           "tag": "c:ores/gold"
         }

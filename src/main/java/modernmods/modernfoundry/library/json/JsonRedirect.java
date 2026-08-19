@@ -5,7 +5,7 @@ import com.google.gson.JsonParseException;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.conditions.ICondition;
-import modernmods.mantle.util.JsonHelper;
+import modernmods.hilt.util.JsonHelper;
 
 import javax.annotation.Nullable;
 

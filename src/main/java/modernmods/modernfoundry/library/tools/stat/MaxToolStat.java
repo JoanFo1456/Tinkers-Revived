@@ -13,7 +13,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
-import modernmods.mantle.util.RegistryHelper;
+import modernmods.hilt.util.RegistryHelper;
 import modernmods.modernfoundry.library.utils.TagUtil;
 import modernmods.modernfoundry.library.utils.Util;
 

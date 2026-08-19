@@ -16,11 +16,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.client.render.ChannelFluids;
-import modernmods.mantle.client.render.FluidCuboid;
-import modernmods.mantle.client.render.FluidRenderer;
-import modernmods.mantle.client.render.MantleRenderTypes;
-import modernmods.mantle.client.render.RenderingHelper;
+import modernmods.hilt.client.render.ChannelFluids;
+import modernmods.hilt.client.render.FluidCuboid;
+import modernmods.hilt.client.render.FluidRenderer;
+import modernmods.hilt.client.render.HiltRenderTypes;
+import modernmods.hilt.client.render.RenderingHelper;
 import modernmods.modernfoundry.smeltery.block.ChannelBlock;
 import modernmods.modernfoundry.smeltery.block.ChannelBlock.ChannelConnection;
 import modernmods.modernfoundry.smeltery.block.entity.ChannelBlockEntity;
@@ -59,7 +59,7 @@ public class ChannelBlockEntityRenderer implements BlockEntityRenderer<ChannelBl
 		IClientFluidTypeExtensions attributes = IClientFluidTypeExtensions.of(fluid.getFluid());
 		TextureAtlasSprite still = FluidRenderer.getBlockSprite(attributes.getStillTexture(fluid));
 		TextureAtlasSprite flowing = FluidRenderer.getBlockSprite(attributes.getFlowingTexture(fluid));
-		VertexConsumer builder = buffer.getBuffer(MantleRenderTypes.FLUID);
+		VertexConsumer builder = buffer.getBuffer(HiltRenderTypes.FLUID);
 		int color = attributes.getTintColor(fluid);
 		light = FluidRenderer.withBlockLight(light, fluid.getFluid().getFluidType().getLightLevel(fluid));
 

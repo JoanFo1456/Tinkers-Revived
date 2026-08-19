@@ -13,7 +13,7 @@ repositories {
         name 'NeoForge'
         url 'https://maven.neoforged.net/releases'
     }
-    maven { // Mantle
+    maven { // Hilt
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
     }
@@ -238,8 +238,8 @@ neoForge {
 dependencies {
     // NeoForge/Minecraft is provided by the moddev plugin via neoForge.version above.
 
-    // Mantle, built locally from Mantle-Revived Neo/26.1.2 and dropped into libs/
-    implementation files("libs/MantleRevived-${mantle_version}.jar")
+    // Hilt, built locally from Hilt Neo/26.1.2 and dropped into libs/
+    implementation files("libs/Hilt-${hilt_version}.jar")
 
     // compile against the JEI API but do not include it at runtime
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
@@ -265,8 +265,8 @@ tasks.named('processResources', ProcessResources).configure {
         'loader_range': loader_range,
         'minecraft_range': minecraft_range,
         'neo_range': neo_range,
-        'mantle_range': mantle_range,
-        'mantle_version': mantle_version,
+        'hilt_range': hilt_range,
+        'hilt_version': hilt_version,
         'jei_range': jei_range,
         'json_things_range': json_things_range
     ]

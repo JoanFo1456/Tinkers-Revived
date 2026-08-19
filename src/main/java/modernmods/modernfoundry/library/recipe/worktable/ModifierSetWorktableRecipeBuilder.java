@@ -6,12 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
-import modernmods.mantle.data.predicate.IJsonPredicate;
+import modernmods.hilt.data.predicate.IJsonPredicate;
 import modernmods.modernfoundry.library.json.predicate.modifier.ModifierPredicate;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
 

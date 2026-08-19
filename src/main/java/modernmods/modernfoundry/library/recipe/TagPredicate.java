@@ -2,8 +2,8 @@ package modernmods.modernfoundry.library.recipe;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
-import modernmods.mantle.data.loadable.common.NBTLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
+import modernmods.hilt.data.loadable.common.NBTLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
 
 import javax.annotation.Nullable;
 import java.util.function.Predicate;

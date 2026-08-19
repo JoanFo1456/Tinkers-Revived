@@ -14,7 +14,7 @@ import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import modernmods.modernfoundry.common.TinkerDamageTypes;
 import modernmods.modernfoundry.common.TinkerTags.EntityTypes;
 import modernmods.modernfoundry.fluids.TinkerFluids;
@@ -34,7 +34,7 @@ import java.util.function.Supplier;
 @RequiredArgsConstructor
 public class EntityMeltingModule {
   // Note: revisit alignment with vanilla damage handling
-  private final MantleBlockEntity parent;
+  private final HiltBlockEntity parent;
   private final IFluidHandler tank;
   /** Supplier that returns true if the tank has space */
   private final BooleanSupplier canMeltEntities;

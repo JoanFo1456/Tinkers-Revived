@@ -3,7 +3,7 @@ package modernmods.modernfoundry.tools.stats;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
-import modernmods.mantle.util.RegistryHelper;
+import modernmods.hilt.util.RegistryHelper;
 import modernmods.modernfoundry.common.TinkerTags;
 
 import javax.annotation.Nullable;

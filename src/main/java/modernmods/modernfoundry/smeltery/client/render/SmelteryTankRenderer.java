@@ -11,7 +11,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
-import modernmods.mantle.client.render.FluidRenderer;
+import modernmods.hilt.client.render.FluidRenderer;
 import modernmods.modernfoundry.library.client.TinkerRenderTypes;
 import modernmods.modernfoundry.smeltery.block.entity.tank.SmelteryTank;
 import modernmods.modernfoundry.smeltery.client.screen.module.GuiSmelteryTank;
@@ -113,7 +113,7 @@ public class SmelteryTankRenderer {
     if(yMin >= yMax || fluid.isEmpty()) {
       return;
     }
-    // fluid attributes (26.1.2 removed IClientFluidTypeExtensions#getStillTexture/getTintColor; use Mantle's FluidTextures)
+    // fluid attributes (26.1.2 removed IClientFluidTypeExtensions#getStillTexture/getTintColor; use Hilt's FluidTextures)
     FluidRenderer.FluidTextures textures = FluidRenderer.getFluidTextures(fluid);
     TextureAtlasSprite still = textures.still();
     int color = textures.color();

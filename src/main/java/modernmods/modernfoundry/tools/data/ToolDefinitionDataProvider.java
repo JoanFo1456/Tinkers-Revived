@@ -7,7 +7,7 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.ItemAbilities;
-import modernmods.mantle.data.predicate.block.BlockPredicate;
+import modernmods.hilt.data.predicate.block.BlockPredicate;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.data.tinkering.AbstractToolDefinitionDataProvider;

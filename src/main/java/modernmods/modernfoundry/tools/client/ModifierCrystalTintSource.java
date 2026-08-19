@@ -7,7 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import modernmods.mantle.client.ResourceColorManager;
+import modernmods.hilt.client.ResourceColorManager;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.modifiers.ModifierId;
 import modernmods.modernfoundry.library.utils.Util;

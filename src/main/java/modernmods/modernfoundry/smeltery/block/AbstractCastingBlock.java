@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.shared.block.TableBlock;
 import modernmods.modernfoundry.smeltery.block.entity.CastingBlockEntity;
 

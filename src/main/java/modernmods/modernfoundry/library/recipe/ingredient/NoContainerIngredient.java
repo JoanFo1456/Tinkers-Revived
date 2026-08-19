@@ -97,11 +97,11 @@ public class NoContainerIngredient extends NestedIngredient {
       // object forms, arrays, and custom ingredients -- the raw Ingredient.CODEC (HolderSet-based) rejects a bare item id
       Ingredient ingredient;
       if (json.has("match")) {
-        ingredient = modernmods.mantle.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(json.get("match"), "match", modernmods.mantle.util.typed.TypedMap.empty());
+        ingredient = modernmods.hilt.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(json.get("match"), "match", modernmods.hilt.util.typed.TypedMap.empty());
       } else {
         JsonObject copy = json.deepCopy();
         copy.remove("type");
-        ingredient = modernmods.mantle.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(copy, "match", modernmods.mantle.util.typed.TypedMap.empty());
+        ingredient = modernmods.hilt.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(copy, "match", modernmods.hilt.util.typed.TypedMap.empty());
       }
       return new NoContainerIngredient(ingredient);
     }

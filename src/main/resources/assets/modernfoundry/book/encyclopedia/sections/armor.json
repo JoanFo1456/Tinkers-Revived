@@ -1,7 +1,7 @@
 [
   {
     "name": "info",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "armor/info.json",
     "extraData": { "modernfoundry:load_tools": { "tag": "modernfoundry:modifiable/book_armor", "path": "armor", "sort": false }}
   }

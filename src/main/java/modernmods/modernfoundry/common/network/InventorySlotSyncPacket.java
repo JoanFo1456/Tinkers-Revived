@@ -11,9 +11,9 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import modernmods.mantle.block.entity.InventoryBlockEntity;
+import modernmods.hilt.block.entity.InventoryBlockEntity;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import modernmods.mantle.network.packet.IThreadsafePacket;
+import modernmods.hilt.network.packet.IThreadsafePacket;
 
 public class InventorySlotSyncPacket implements IThreadsafePacket {
 

@@ -18,8 +18,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.IngredientType;
-import modernmods.mantle.data.loadable.field.LoadableField;
-import modernmods.mantle.data.predicate.IJsonPredicate;
+import modernmods.hilt.data.loadable.field.LoadableField;
+import modernmods.hilt.data.predicate.IJsonPredicate;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.json.TinkerLoadables;
 import modernmods.modernfoundry.library.json.predicate.material.MaterialPredicate;
@@ -224,11 +224,11 @@ public class MaterialIngredient extends NestedIngredient {
       // object forms, arrays, and custom ingredients -- the raw Ingredient.CODEC (HolderSet-based) rejects a bare item id
       Ingredient ingredient;
       if (json.has("match")) {
-        ingredient = modernmods.mantle.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(json.get("match"), "match", modernmods.mantle.util.typed.TypedMap.empty());
+        ingredient = modernmods.hilt.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(json.get("match"), "match", modernmods.hilt.util.typed.TypedMap.empty());
       } else {
         JsonObject copy = json.deepCopy();
         copy.remove("type");
-        ingredient = modernmods.mantle.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(copy, "match", modernmods.mantle.util.typed.TypedMap.empty());
+        ingredient = modernmods.hilt.data.loadable.common.IngredientLoadable.DISALLOW_EMPTY.convert(copy, "match", modernmods.hilt.util.typed.TypedMap.empty());
       }
       IJsonPredicate<MaterialVariantId> material = MATERIAL_FIELD.get(json);
       // deprecated tag field

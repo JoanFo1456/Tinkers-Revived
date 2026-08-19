@@ -1,8 +1,8 @@
 {
   "variants": {
-    "facing=north": { "type": "mantle:retextured", "model": "modernfoundry:block/table/scorched_anvil", "retextured": ["particle", "top"], "y":  90 },
-    "facing=south": { "type": "mantle:retextured", "model": "modernfoundry:block/table/scorched_anvil", "retextured": ["particle", "top"], "y": 270 },
-    "facing=west":  { "type": "mantle:retextured", "model": "modernfoundry:block/table/scorched_anvil", "retextured": ["particle", "top"] },
-    "facing=east":  { "type": "mantle:retextured", "model": "modernfoundry:block/table/scorched_anvil", "retextured": ["particle", "top"], "y": 180 }
+    "facing=north": { "type": "hilt:retextured", "model": "modernfoundry:block/table/scorched_anvil", "retextured": ["particle", "top"], "y":  90 },
+    "facing=south": { "type": "hilt:retextured", "model": "modernfoundry:block/table/scorched_anvil", "retextured": ["particle", "top"], "y": 270 },
+    "facing=west":  { "type": "hilt:retextured", "model": "modernfoundry:block/table/scorched_anvil", "retextured": ["particle", "top"] },
+    "facing=east":  { "type": "hilt:retextured", "model": "modernfoundry:block/table/scorched_anvil", "retextured": ["particle", "top"], "y": 180 }
   }
 }

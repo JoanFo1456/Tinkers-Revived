@@ -11,9 +11,9 @@ import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.inventory.SingleItemHandler;
-import modernmods.mantle.util.RegistryHelper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.inventory.SingleItemHandler;
+import modernmods.hilt.util.RegistryHelper;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.network.InventorySlotSyncPacket;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
@@ -24,7 +24,7 @@ import modernmods.modernfoundry.library.fluid.IFluidTankUpdater;
  * The item slot itself is a {@code ResourceHandler<ItemResource>} (via {@link SingleItemHandler}); the fluid side
  * is a separate {@code ResourceHandler<FluidResource>} obtained from {@link #getFluidHandler()}.
  */
-public class ProxyItemTank<T extends MantleBlockEntity & IFluidTankUpdater> extends SingleItemHandler<T> {
+public class ProxyItemTank<T extends HiltBlockEntity & IFluidTankUpdater> extends SingleItemHandler<T> {
   /** Item access bound to this slot, so fluid operations swap the stored container in place */
   private final ItemAccess fluidAccess = ItemAccess.forHandlerIndex(this, 0);
   /** Fluid handler proxying to the contained item */

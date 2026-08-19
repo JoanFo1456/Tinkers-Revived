@@ -2,7 +2,7 @@ package modernmods.modernfoundry.tables.data;
 
 import modernmods.modernfoundry.library.recipe.ingredient.LazyTagIngredient;
 import net.minecraft.data.PackOutput;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -19,11 +19,11 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
-import modernmods.mantle.Mantle;
-import modernmods.mantle.recipe.crafting.ShapedRetexturedRecipeBuilder;
-import modernmods.mantle.recipe.data.ItemNameIngredient;
-import modernmods.mantle.recipe.data.ItemNameOutput;
-import modernmods.mantle.recipe.helper.SimpleFinishedRecipe;
+import modernmods.hilt.Hilt;
+import modernmods.hilt.recipe.crafting.ShapedRetexturedRecipeBuilder;
+import modernmods.hilt.recipe.data.ItemNameIngredient;
+import modernmods.hilt.recipe.data.ItemNameOutput;
+import modernmods.hilt.recipe.helper.SimpleFinishedRecipe;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.common.data.BaseRecipeProvider;
@@ -71,7 +71,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern("ps")
       .pattern("sp")
       .unlockedBy("has_item", has(Tags.Items.RODS_WOODEN))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.pattern, folder)));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.pattern, folder)));
 
     // book from patterns and slime
     ShapelessRecipeBuilder.shapeless(ITEM_LOOKUP, RecipeCategory.MISC, Items.BOOK)
@@ -82,7 +82,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
                           .requires(TinkerTables.pattern)
                           .requires(TinkerTables.pattern)
                           .unlockedBy("has_item", has(TinkerTables.pattern))
-                          .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "book_substitute")));
+                          .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(location(folder + "book_substitute")));
 
     // crafting station -> crafting table upgrade
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.craftingStation)
@@ -91,7 +91,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern("p")
       .pattern("w")
       .unlockedBy("has_item", has(TinkerTables.pattern))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.craftingStation, folder)));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.craftingStation, folder)));
     // station with log texture
     ShapedRetexturedRecipeBuilder.fromShaped(
       ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.craftingStation)
@@ -147,7 +147,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
                        .pattern("sCs")
                        .pattern("sws")
                        .unlockedBy("has_item", has(TinkerTables.pattern))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.partChest, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.partChest, folder)));
     // modifier chest
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.tinkersChest)
                        .define('p', TinkerTables.pattern)
@@ -158,7 +158,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
                        .pattern("lCl")
                        .pattern("lwl")
                        .unlockedBy("has_item", has(TinkerTables.pattern))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.tinkersChest, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.tinkersChest, folder)));
     // cast chest
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.castChest)
                        .define('c', TinkerTags.Items.GOLD_CASTS)
@@ -169,7 +169,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
                        .pattern("bCb")
                        .pattern("bBb")
                        .unlockedBy("has_item", has(TinkerTags.Items.GOLD_CASTS))
-                       .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.castChest, folder)));
+                       .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(consumer), recipeId(prefix(TinkerTables.castChest, folder)));
 
     // modifier worktable
     ShapedRetexturedRecipeBuilder.fromShaped(
@@ -252,7 +252,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern(" s ")
       .pattern("sss")
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(wrap(TinkerTables.tinkersAnvil, folder, "_material")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(wrap(TinkerTables.tinkersAnvil, folder, "_material")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.MISC, TinkerTables.scorchedAnvil)
       .define('m', fakeStorageBlock)
       .define('s', TinkerTags.Items.SCORCHED_BLOCKS)
@@ -260,7 +260,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern(" s ")
       .pattern("sss")
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(wrap(TinkerTables.scorchedAnvil, folder, "_material")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(wrap(TinkerTables.scorchedAnvil, folder, "_material")));
     materialConsumer = MaterialsConsumerBuilder.shaped("m").build(toolForge);
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.tinkersAnvil)
       .define('m', fakeStorageBlock)
@@ -270,7 +270,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern("mtm")
       .pattern("m m")
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(location(folder + "seared_forge_material")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(location(folder + "seared_forge_material")));
     ShapedRecipeBuilder.shaped(ITEM_LOOKUP, RecipeCategory.DECORATIONS, TinkerTables.scorchedAnvil)
       .define('m', fakeStorageBlock)
       .define('s', TinkerTags.Items.SCORCHED_BLOCKS)
@@ -279,7 +279,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .pattern("mtm")
       .pattern("m m")
       .unlockedBy("has_item", has(TinkerToolParts.fakeStorageBlock))
-      .save(modernmods.mantle.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(location(folder + "scorched_forge_material")));
+      .save(modernmods.hilt.recipe.data.VanillaFinishedRecipe.output(materialConsumer), recipeId(location(folder + "scorched_forge_material")));
 
     // part swapping
     TinkerStationPartSwappingBuilder.tools(DifferenceIngredient.of(LazyTagIngredient.of(TinkerTags.Items.MULTIPART_TOOL), LazyTagIngredient.of(TinkerTags.Items.UNSWAPPABLE_PARTS)))
@@ -398,7 +398,7 @@ public class TableRecipeProvider extends BaseRecipeProvider {
       .result(scale, ItemNameOutput.fromName(nagaScale, 7))
       .save(tfConsumer, location(folder + "twilightforest/naga_leggings"));
     // ironwood armor and tools
-    TagKey<Item> ironwoodIngot = ItemTags.create(Mantle.commonResource("ingots/ironwood"));
+    TagKey<Item> ironwoodIngot = ItemTags.create(Hilt.commonResource("ingots/ironwood"));
     PartBuilderRecycleBuilder.tool(ItemNameIngredient.from(tf.apply("ironwood_pickaxe"), tf.apply("ironwood_axe")))
       .result(ingot, ironwoodIngot, 3)
       .save(tfConsumer, location(folder + "twilightforest/ironwood_axe"));

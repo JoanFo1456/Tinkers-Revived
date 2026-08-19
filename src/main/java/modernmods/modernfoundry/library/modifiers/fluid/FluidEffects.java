@@ -5,10 +5,10 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import org.jetbrains.annotations.ApiStatus.Internal;
-import modernmods.mantle.data.loadable.Loadables;
-import modernmods.mantle.data.loadable.primitive.BooleanLoadable;
-import modernmods.mantle.data.loadable.record.RecordLoadable;
-import modernmods.mantle.recipe.ingredient.FluidIngredient;
+import modernmods.hilt.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.primitive.BooleanLoadable;
+import modernmods.hilt.data.loadable.record.RecordLoadable;
+import modernmods.hilt.recipe.ingredient.FluidIngredient;
 import modernmods.modernfoundry.library.modifiers.fluid.FluidEffectContext.Block;
 import modernmods.modernfoundry.library.modifiers.fluid.FluidEffectContext.Entity;
 

@@ -10,15 +10,15 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.fluid.transfer.EmptyFluidWithNBTTransfer;
-import modernmods.mantle.recipe.helper.FluidOutput;
-import modernmods.mantle.recipe.helper.ItemOutput;
+import modernmods.hilt.fluid.transfer.EmptyFluidWithNBTTransfer;
+import modernmods.hilt.recipe.helper.FluidOutput;
+import modernmods.hilt.recipe.helper.ItemOutput;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.utils.TagUtil;
 
 /**
  * Fluid transfer info that empties a fluid from an item, copying the fluid's NBT to the stack
- * @deprecated use {@link modernmods.mantle.fluid.transfer.EmptyPotionTransfer}
+ * @deprecated use {@link modernmods.hilt.fluid.transfer.EmptyPotionTransfer}
  */
 @Deprecated(forRemoval = true)
 public class EmptyPotionTransfer extends EmptyFluidWithNBTTransfer {

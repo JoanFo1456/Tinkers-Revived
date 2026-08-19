@@ -9,9 +9,9 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import modernmods.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
-import modernmods.mantle.compat.neoforged.neoforge.registries.ForgeRegistry;
-import modernmods.mantle.compat.neoforged.neoforge.registries.IForgeRegistry;
+import modernmods.hilt.compat.neoforged.neoforge.registries.ForgeRegistries;
+import modernmods.hilt.compat.neoforged.neoforge.registries.ForgeRegistry;
+import modernmods.hilt.compat.neoforged.neoforge.registries.IForgeRegistry;
 import modernmods.modernfoundry.common.TinkerEffect;
 
 import java.util.Objects;

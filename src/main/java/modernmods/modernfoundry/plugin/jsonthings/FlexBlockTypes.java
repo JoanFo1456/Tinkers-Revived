@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.neoforged.neoforge.common.util.Lazy;
-import modernmods.mantle.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.Loadables;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.plugin.jsonthings.block.FlexBurningLiquidBlock;
 import modernmods.modernfoundry.plugin.jsonthings.block.FlexMobEffectLiquidBlock;

@@ -32,7 +32,7 @@ public class GaugeBlockEntityRenderer implements BlockEntityRenderer<GaugeBlockE
     //     IFluidHandler tank = tile.getTank();
     //     if (tank.getTanks() > 0) {
     //       FluidStack fluid = tank.getFluidInTank(0);
-    //       FluidRenderer.renderCuboids(matrices, buffer.getBuffer(MantleRenderTypes.FLUID), fluids, fluid, light);
+    //       FluidRenderer.renderCuboids(matrices, buffer.getBuffer(HiltRenderTypes.FLUID), fluids, fluid, light);
     //     }
     //   }
   }

@@ -5,7 +5,7 @@ import net.neoforged.neoforge.client.event.AddClientReloadListenersEvent;
 import modernmods.modernfoundry.compat.neoforged.neoforge.common.ForgeI18n;
 import net.neoforged.fml.ModList;
 import org.apache.commons.lang3.text.WordUtils;
-import modernmods.mantle.data.listener.ISafeManagerReloadListener;
+import modernmods.hilt.data.listener.ISafeManagerReloadListener;
 
 import java.util.HashMap;
 import java.util.Map;

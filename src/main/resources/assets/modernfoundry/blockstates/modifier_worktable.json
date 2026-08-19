@@ -1,24 +1,24 @@
 {
     "variants": {
         "facing=north": {
-            "type": "mantle:retextured",
+            "type": "hilt:retextured",
             "model": "modernfoundry:block/table/modifier_worktable",
             "retextured": ["leg", "legBottom"]
         },
         "facing=south": {
-            "type": "mantle:retextured",
+            "type": "hilt:retextured",
             "model": "modernfoundry:block/table/modifier_worktable",
             "retextured": ["leg", "legBottom"],
             "y": 180
         },
         "facing=west": {
-            "type": "mantle:retextured",
+            "type": "hilt:retextured",
             "model": "modernfoundry:block/table/modifier_worktable",
             "retextured": ["leg", "legBottom"],
             "y": 270
         },
         "facing=east": {
-            "type": "mantle:retextured",
+            "type": "hilt:retextured",
             "model": "modernfoundry:block/table/modifier_worktable",
             "retextured": ["leg", "legBottom"],
             "y": 90

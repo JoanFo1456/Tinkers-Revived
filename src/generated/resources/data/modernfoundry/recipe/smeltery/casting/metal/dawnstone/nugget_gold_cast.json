@@ -1,11 +1,11 @@
 {
   "neoforge:conditions": [
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "tag": "c:nuggets/dawnstone"
     },
     {
-      "type": "mantle:tag_filled",
+      "type": "hilt:tag_filled",
       "registry": "minecraft:fluid",
       "tag": "c:molten_dawnstone"
     }

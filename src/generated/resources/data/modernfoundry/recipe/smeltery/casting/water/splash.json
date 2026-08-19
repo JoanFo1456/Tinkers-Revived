@@ -5,7 +5,7 @@
   "cooling_time": 1,
   "fluid": {
     "amount": 500,
-    "tag": "mantle:water"
+    "tag": "hilt:water"
   },
   "id": "modernfoundry:smeltery/casting/water/splash",
   "result": {

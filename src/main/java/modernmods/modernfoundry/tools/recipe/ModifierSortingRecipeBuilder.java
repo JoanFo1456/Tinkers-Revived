@@ -2,7 +2,7 @@ package modernmods.modernfoundry.tools.recipe;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.registries.BuiltInRegistries;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import modernmods.modernfoundry.library.recipe.worktable.AbstractSizedIngredientRecipeBuilder;
 

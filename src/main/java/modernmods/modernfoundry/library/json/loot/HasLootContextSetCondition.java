@@ -10,7 +10,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 /**
  * Loot condition that only runs if all required values in the given loot context set are present. Good heuristic for using that set.
- * TODO: migrate to Mantle
+ * TODO: migrate to Hilt
  */
 public record HasLootContextSetCondition(ContextKeySet set) implements LootItemCondition {
   public static final MapCodec<HasLootContextSetCondition> CODEC = RecordCodecBuilder.mapCodec(

@@ -7,10 +7,10 @@ import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
-import modernmods.mantle.client.book.data.BookData;
-import modernmods.mantle.client.screen.book.ArrowButton;
-import modernmods.mantle.client.screen.book.element.ArrowElement;
-import modernmods.mantle.client.screen.book.element.BookElement;
+import modernmods.hilt.client.book.data.BookData;
+import modernmods.hilt.client.screen.book.ArrowButton;
+import modernmods.hilt.client.screen.book.element.ArrowElement;
+import modernmods.hilt.client.screen.book.element.BookElement;
 import modernmods.modernfoundry.library.client.book.content.ContentModifier;
 
 import java.util.ArrayList;

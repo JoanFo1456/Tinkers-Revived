@@ -5,9 +5,9 @@ import com.google.gson.JsonObject;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
-import modernmods.mantle.data.loadable.field.RecordField;
-import modernmods.mantle.util.JsonHelper;
-import modernmods.mantle.util.typed.TypedMap;
+import modernmods.hilt.data.loadable.field.RecordField;
+import modernmods.hilt.util.JsonHelper;
+import modernmods.hilt.util.typed.TypedMap;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.library.materials.definition.MaterialVariantId;
 

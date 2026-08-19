@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.materials.MaterialRegistry;
 import modernmods.modernfoundry.library.materials.definition.IMaterial;
@@ -61,7 +61,7 @@ public class AnvilBlockItem extends MaterialBlockItem {
     List<Component> tooltip = new java.util.ArrayList<>();
     // ditch the super call advanced tooltip material ID, we will handle it ourselves later
     // 26.1.2 removed block-level appendHoverText; add the retextured tooltip directly (formerly via the block)
-    modernmods.mantle.util.RetexturedHelper.addTooltip(stack, tooltip, flag);
+    modernmods.hilt.util.RetexturedHelper.addTooltip(stack, tooltip, flag);
     MaterialVariantId material = getMaterial(stack);
     if (!IMaterial.UNKNOWN_ID.equals(material)) {
       // put tool material in tooltip. Its technically below texture but the two should never coexist.

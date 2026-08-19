@@ -2,7 +2,7 @@
   "redirect": [
     {
       "condition": {
-        "type": "mantle:tag_filled",
+        "type": "hilt:tag_filled",
         "tag": "c:ingots/lead"
       },
       "id": "modernfoundry:lead"
@@ -12,11 +12,11 @@
         "type": "neoforge:or",
         "values": [
           {
-            "type": "mantle:tag_filled",
+            "type": "hilt:tag_filled",
             "tag": "c:ingots/invar"
           },
           {
-            "type": "mantle:tag_filled",
+            "type": "hilt:tag_filled",
             "tag": "c:ingots/nickel"
           }
         ]

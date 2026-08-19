@@ -17,7 +17,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import modernmods.modernfoundry.compat.neoforged.neoforge.common.ForgeHooks;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import modernmods.modernfoundry.compat.neoforged.neoforge.event.ForgeEventFactory;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.network.TinkerNetwork;

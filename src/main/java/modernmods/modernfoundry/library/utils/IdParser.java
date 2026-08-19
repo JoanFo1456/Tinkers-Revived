@@ -7,8 +7,8 @@ import io.netty.handler.codec.EncoderException;
 import net.minecraft.IdentifierException;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.data.loadable.primitive.StringLoadable;
-import modernmods.mantle.util.typed.TypedMap;
+import modernmods.hilt.data.loadable.primitive.StringLoadable;
+import modernmods.hilt.util.typed.TypedMap;
 
 import javax.annotation.Nullable;
 import java.util.function.Function;

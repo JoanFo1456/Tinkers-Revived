@@ -14,8 +14,8 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.transfer.EmptyResourceHandler;
 import net.neoforged.neoforge.transfer.ResourceHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.fluid.FluidTransferHelper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.fluid.FluidTransferHelper;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.recipe.alloying.IMutableAlloyTank;
 
@@ -32,7 +32,7 @@ import java.util.Map;
 public class MixerAlloyTank implements IMutableAlloyTank {
   // parameters
   /** Handler parent */
-  private final MantleBlockEntity parent;
+  private final HiltBlockEntity parent;
   /** Tank for outputs */
   private final IFluidHandler outputTank;
 

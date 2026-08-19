@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.client.render.FluidRenderer;
-import modernmods.mantle.client.screen.ElementScreen;
+import modernmods.hilt.client.render.FluidRenderer;
+import modernmods.hilt.client.screen.ElementScreen;
 import modernmods.modernfoundry.library.recipe.partbuilder.Pattern;
 
 /**
@@ -113,7 +113,7 @@ public final class GuiUtil {
    */
   public static void renderTiledFluid(GuiGraphicsExtractor graphics, AbstractContainerScreen<?> screen, FluidStack stack, int x, int y, int width, int height, int depth) {
     if (!stack.isEmpty()) {
-      // 26.1: fluid sprites/tint now come from the FluidStateModelSet via Mantle's helper
+      // 26.1: fluid sprites/tint now come from the FluidStateModelSet via Hilt's helper
       FluidRenderer.FluidTextures textures = FluidRenderer.getFluidTextures(stack);
       int color = textures.color() | 0xFF000000;
       renderTiledTextureAtlas(graphics, screen, textures.still(), x, y, width, height, depth, stack.getFluid().getFluidType().isLighterThanAir(), color);

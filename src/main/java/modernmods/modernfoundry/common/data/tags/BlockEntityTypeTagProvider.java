@@ -9,7 +9,7 @@ import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.data.tags.TagAppender;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import modernmods.mantle.datagen.MantleTags;
+import modernmods.hilt.datagen.HiltTags;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
@@ -52,7 +52,7 @@ public class BlockEntityTypeTagProvider extends IntrinsicHolderTagsProvider<Bloc
     ironchest(sideInventories, "dirt");
 
     // these block entities don't fully sync the fluid to client, so show simplified information
-    tag(MantleTags.BlockEntities.HIDES_GAUGE_AMOUNT).add(TinkerSmeltery.faucet.get(), TinkerSmeltery.channel.get());
+    tag(HiltTags.BlockEntities.HIDES_GAUGE_AMOUNT).add(TinkerSmeltery.faucet.get(), TinkerSmeltery.channel.get());
   }
 
   @Override

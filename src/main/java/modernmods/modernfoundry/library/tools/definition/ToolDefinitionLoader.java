@@ -12,9 +12,9 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.conditions.ICondition.IContext;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
-import modernmods.mantle.data.loadable.field.ContextKey;
-import modernmods.mantle.util.JsonHelper;
-import modernmods.mantle.util.typed.TypedMapBuilder;
+import modernmods.hilt.data.loadable.field.ContextKey;
+import modernmods.hilt.util.JsonHelper;
+import modernmods.hilt.util.typed.TypedMapBuilder;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 
 import java.util.Collection;

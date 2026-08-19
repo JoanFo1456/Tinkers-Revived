@@ -4,7 +4,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.IItemHandler;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 
 /** Compatibility shim for old Forge capability constants. */
 public final class ForgeCapabilities {

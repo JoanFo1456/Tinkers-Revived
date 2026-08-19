@@ -3,7 +3,7 @@ package modernmods.modernfoundry.smeltery.block.entity.module.alloying;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import modernmods.modernfoundry.library.recipe.TinkerRecipeTypes;
 import modernmods.modernfoundry.library.recipe.alloying.AlloyRecipe;
 import modernmods.modernfoundry.library.recipe.alloying.IMutableAlloyTank;
@@ -15,7 +15,7 @@ import java.util.Optional;
 /** Alloying module that supports only a single output */
 @RequiredArgsConstructor
 public class SingleAlloyingModule implements IAlloyingModule {
-  private final MantleBlockEntity parent;
+  private final HiltBlockEntity parent;
   private final IMutableAlloyTank alloyTank;
   private AlloyRecipe lastRecipe;
 

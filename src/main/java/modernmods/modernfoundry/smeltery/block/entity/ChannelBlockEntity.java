@@ -14,16 +14,16 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import java.util.function.Consumer;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.fluids.capability.templates.EmptyFluidHandler;
-import modernmods.mantle.block.entity.MantleBlockEntity;
-import modernmods.mantle.util.WeakConsumerWrapper;
+import modernmods.hilt.block.entity.HiltBlockEntity;
+import modernmods.hilt.util.WeakConsumerWrapper;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.library.fluid.FillOnlyFluidHandler;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
@@ -42,7 +42,7 @@ import java.util.Map;
 /**
  * Logic for channel fluid transfer
  */
-public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacketReceiver, ILegacyCapabilityBlockEntity {
+public class ChannelBlockEntity extends HiltBlockEntity implements IFluidPacketReceiver, ILegacyCapabilityBlockEntity {
 	/** Channel internal tank */
 	private final ChannelTank tank = new ChannelTank(FaucetBlockEntity.MB_PER_TICK * 4, this);
 	/** Handler to return from channel top */
@@ -121,7 +121,7 @@ public class ChannelBlockEntity extends MantleBlockEntity implements IFluidPacke
       }
     }
 
-		return modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
+		return modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
 	}
 
 	/**

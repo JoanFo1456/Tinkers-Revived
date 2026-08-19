@@ -9,7 +9,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent.BreakSpeed;
-import modernmods.mantle.client.TooltipKey;
+import modernmods.hilt.client.TooltipKey;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerEffect;
 import modernmods.modernfoundry.common.TinkerTags;

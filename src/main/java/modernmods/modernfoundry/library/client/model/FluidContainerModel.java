@@ -23,8 +23,8 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import org.joml.Matrix4fc;
-import modernmods.mantle.client.model.util.DynamicItemModel;
-import modernmods.mantle.client.model.util.MantleItemLayerModel;
+import modernmods.hilt.client.model.util.DynamicItemModel;
+import modernmods.hilt.client.model.util.HiltItemLayerModel;
 import modernmods.modernfoundry.TConstruct;
 
 import javax.annotation.Nullable;
@@ -128,7 +128,7 @@ public final class FluidContainerModel {
 
       // base layer from the model's "base" texture
       Material.Baked baseSprite = baker.materials().resolveSlot(slots, "base", resolved);
-      for (BakedQuad quad : MantleItemLayerModel.getQuadsForSprite(-1, -1, baseSprite, Transformation.IDENTITY, 0)) {
+      for (BakedQuad quad : HiltItemLayerModel.getQuadsForSprite(-1, -1, baseSprite, Transformation.IDENTITY, 0)) {
         builder.addUnculledFace(quad);
       }
 
@@ -142,7 +142,7 @@ public final class FluidContainerModel {
         FluidModel fluidModel = Minecraft.getInstance().getModelManager().getFluidStateModelSet().get(state);
         int color = fluidModel.tintSource() instanceof FluidTintSource tint ? tint.colorAsStack(fluid) : -1;
         int light = fluid.getFluid().getFluidType().getLightLevel(fluid);
-        for (BakedQuad quad : MantleItemLayerModel.getMaskedQuadsForSprite(color, -1, fluidModel.stillMaterial(), fluidMask, FLUID_TRANSFORM, light)) {
+        for (BakedQuad quad : HiltItemLayerModel.getMaskedQuadsForSprite(color, -1, fluidModel.stillMaterial(), fluidMask, FLUID_TRANSFORM, light)) {
           builder.addUnculledFace(quad);
         }
       }

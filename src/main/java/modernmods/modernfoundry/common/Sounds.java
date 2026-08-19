@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
-import modernmods.mantle.compat.neoforged.neoforge.registries.ForgeRegistries;
+import modernmods.hilt.compat.neoforged.neoforge.registries.ForgeRegistries;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.registration.GeodeItemObject.BudSize;

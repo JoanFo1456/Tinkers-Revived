@@ -3,7 +3,7 @@ package modernmods.modernfoundry.library.tools.capability;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.CapabilityManager;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.CapabilityToken;
 import modernmods.modernfoundry.TConstruct;

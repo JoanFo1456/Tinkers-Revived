@@ -25,17 +25,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.model.data.ModelData;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 import modernmods.modernfoundry.compat.neoforged.neoforge.capabilities.ForgeCapabilities;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import modernmods.mantle.block.entity.IRetexturedBlockEntity;
-import modernmods.mantle.block.entity.NameableBlockEntity;
-import modernmods.mantle.util.BlockEntityHelper;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.block.entity.IRetexturedBlockEntity;
+import modernmods.hilt.block.entity.NameableBlockEntity;
+import modernmods.hilt.util.BlockEntityHelper;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.common.multiblock.IMasterLogic;
 import modernmods.modernfoundry.common.multiblock.IServantLogic;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
@@ -65,7 +65,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import static modernmods.mantle.util.RetexturedHelper.TAG_TEXTURE;
+import static modernmods.hilt.util.RetexturedHelper.TAG_TEXTURE;
 
 public abstract class HeatingStructureBlockEntity extends NameableBlockEntity implements IMasterLogic, ISmelteryTankHandler, IRetexturedBlockEntity, ILegacyCapabilityBlockEntity {
   private static final String TAG_STRUCTURE = "multiblock";
@@ -351,7 +351,7 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
     if (capability == ForgeCapabilities.ITEM_HANDLER) {
       return itemCapability.cast();
     }
-    return modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
+    return modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional.empty(); // TODO(neoforge-capabilities): re-expose via RegisterCapabilitiesEvent
   }
 
 

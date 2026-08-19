@@ -7,7 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeType;
-import modernmods.mantle.recipe.ICommonRecipe;
+import modernmods.hilt.recipe.ICommonRecipe;
 import modernmods.modernfoundry.TConstruct;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.recipe.TinkerRecipeTypes;

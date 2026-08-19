@@ -33,7 +33,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.ItemAbilities;
-import modernmods.mantle.util.CombatHelper;
+import modernmods.hilt.util.CombatHelper;
 import modernmods.modernfoundry.common.TinkerDamageTypes;
 import modernmods.modernfoundry.common.TinkerTags;
 import modernmods.modernfoundry.library.materials.definition.IMaterial;

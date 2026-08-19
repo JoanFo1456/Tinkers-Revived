@@ -3,10 +3,10 @@ package modernmods.modernfoundry.tools.recipe;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Ingredient;
-import modernmods.mantle.data.loadable.Loadables;
+import modernmods.hilt.data.loadable.Loadables;
 import modernmods.modernfoundry.library.recipe.worktable.AbstractSizedIngredientRecipeBuilder;
 import modernmods.modernfoundry.library.recipe.worktable.AbstractWorktableRecipe;
 

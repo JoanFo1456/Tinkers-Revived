@@ -3,7 +3,7 @@ package modernmods.modernfoundry.tables.client.inventory.widget;
 import lombok.Getter;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
-import modernmods.mantle.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.ElementScreen;
 import modernmods.modernfoundry.library.client.Icons;
 import modernmods.modernfoundry.library.tools.layout.StationSlotLayout;
 import modernmods.modernfoundry.tables.client.inventory.TinkerStationScreen;

@@ -1,6 +1,6 @@
 package modernmods.modernfoundry.compat.neoforged.neoforge.capabilities;
 
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
 
 /** Compatibility shim for old Forge capability declarations. */
 public final class CapabilityManager {

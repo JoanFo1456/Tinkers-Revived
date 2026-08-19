@@ -3,8 +3,8 @@ package modernmods.modernfoundry.library.client.book.elements;
 import com.google.common.collect.Lists;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import modernmods.mantle.client.book.data.element.TextData;
-import modernmods.mantle.client.screen.book.element.TextElement;
+import modernmods.hilt.client.book.data.element.TextData;
+import modernmods.hilt.client.screen.book.element.TextElement;
 
 public class ListingCenteredElement extends TextElement {
 

@@ -81,7 +81,7 @@
     },
     {
       "type": "modernfoundry:is_effective",
-      "predicate_type": "mantle:tag",
+      "predicate_type": "hilt:tag",
       "tag": "c:mineable/sword"
     },
     {
@@ -90,7 +90,7 @@
         "minecraft:cobweb"
       ],
       "modifier": 7.5,
-      "predicate_type": "mantle:set"
+      "predicate_type": "hilt:set"
     },
     {
       "type": "modernfoundry:sweep_melee",

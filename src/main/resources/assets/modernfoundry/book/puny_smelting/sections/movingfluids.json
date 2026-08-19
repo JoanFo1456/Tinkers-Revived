@@ -1,52 +1,52 @@
 [
   {
     "name": "thruul",
-    "type": "mantle:image_text",
+    "type": "hilt:image_text",
     "data": "movingfluids/thruul.json"
   },
   {
     "name": "moving_fluids",
-    "type": "mantle:image_text",
+    "type": "hilt:image_text",
     "data": "movingfluids/intro.json"
   },
   {
     "name": "faucets",
-    "type": "mantle:image_text",
+    "type": "hilt:image_text",
     "data": "movingfluids/faucet.json"
   },
   {
     "name": "faucets2",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "movingfluids/faucet2.json"
   },
   {
     "name": "channels",
-    "type": "mantle:image_text",
+    "type": "hilt:image_text",
     "data": "movingfluids/channel.json"
   },
   {
     "name": "channels2",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "movingfluids/channel2.json"
   },
   {
     "name": "copper_cans",
-    "type": "mantle:text",
+    "type": "hilt:text",
     "data": "movingfluids/copper_can.json"
   },
   {
     "name": "copper_cans_craft",
-    "type": "mantle:crafting",
+    "type": "hilt:crafting",
     "data": "movingfluids/copper_can_craft.json"
   },
   {
     "name": "gauge",
-    "type": "mantle:showcase",
+    "type": "hilt:showcase",
     "data": "movingfluids/gauge.json"
   },
   {
     "name": "fluid_cannon",
-    "type": "mantle:showcase",
+    "type": "hilt:showcase",
     "data": "movingfluids/fluid_cannon.json"
   }
 ]

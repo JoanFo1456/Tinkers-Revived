@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.model.data.ModelData;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.util.RetexturedHelper;
+import modernmods.hilt.util.RetexturedHelper;
 import modernmods.modernfoundry.library.client.model.ModelProperties;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
 import modernmods.modernfoundry.smeltery.block.entity.component.SmelteryInputOutputBlockEntity.SmelteryFluidIO;

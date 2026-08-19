@@ -1,9 +1,9 @@
 package modernmods.modernfoundry.library.recipe.tinkerstation.repairing;
 
 import lombok.RequiredArgsConstructor;
-import modernmods.mantle.recipe.data.FinishedRecipe;
+import modernmods.hilt.recipe.data.FinishedRecipe;
 import net.minecraft.resources.Identifier;
-import modernmods.mantle.recipe.data.AbstractRecipeBuilder;
+import modernmods.hilt.recipe.data.AbstractRecipeBuilder;
 import modernmods.modernfoundry.library.materials.definition.MaterialId;
 import modernmods.modernfoundry.library.materials.stats.MaterialStatsId;
 import modernmods.modernfoundry.library.modifiers.ModifierId;

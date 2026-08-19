@@ -1,10 +1,10 @@
 package modernmods.modernfoundry.tables.client.inventory.widget;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import modernmods.mantle.client.screen.ElementScreen;
-import modernmods.mantle.client.screen.ModuleScreen;
-import modernmods.mantle.client.screen.ScalableElementScreen;
-import modernmods.mantle.client.screen.Widget;
+import modernmods.hilt.client.screen.ElementScreen;
+import modernmods.hilt.client.screen.ModuleScreen;
+import modernmods.hilt.client.screen.ScalableElementScreen;
+import modernmods.hilt.client.screen.Widget;
 import modernmods.modernfoundry.tables.client.inventory.module.GenericScreen;
 
 public class BorderWidget extends Widget {

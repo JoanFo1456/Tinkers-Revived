@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import org.jetbrains.annotations.ApiStatus.Internal;
 import org.jetbrains.annotations.Nullable;
-import modernmods.mantle.registration.object.FluidObject;
+import modernmods.hilt.registration.object.FluidObject;
 import modernmods.modernfoundry.fluids.TinkerFluids;
 import modernmods.modernfoundry.library.materials.MaterialRegistry;
 import modernmods.modernfoundry.library.materials.definition.IMaterial;
@@ -18,7 +18,7 @@ import modernmods.modernfoundry.tools.data.material.MaterialIds;
 import java.util.Locale;
 import java.util.Optional;
 
-import static modernmods.mantle.Mantle.commonResource;
+import static modernmods.hilt.Hilt.commonResource;
 
 /**
  * Enum holding all relevant smeltery compat, used in datagen and JEI.

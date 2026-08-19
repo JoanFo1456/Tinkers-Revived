@@ -8,7 +8,7 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
 import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import modernmods.mantle.block.entity.MantleBlockEntity;
+import modernmods.hilt.block.entity.HiltBlockEntity;
 import modernmods.modernfoundry.common.network.TinkerNetwork;
 import modernmods.modernfoundry.smeltery.network.FluidUpdatePacket;
 
@@ -16,7 +16,7 @@ import modernmods.modernfoundry.smeltery.network.FluidUpdatePacket;
  * Single fluid tank backed by the 26.1 {@link net.neoforged.neoforge.transfer.ResourceHandler} API, exposing the legacy
  * fill/drain/getFluid convenience methods used throughout Tinkers on top of the transactional handler.
  */
-public class FluidTankBase<T extends MantleBlockEntity> extends FluidStacksResourceHandler implements IFluidHandler, IFluidTank {
+public class FluidTankBase<T extends HiltBlockEntity> extends FluidStacksResourceHandler implements IFluidHandler, IFluidTank {
 
   protected T parent;
 

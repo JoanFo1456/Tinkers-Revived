@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import modernmods.mantle.util.BlockEntityHelper;
+import modernmods.hilt.util.BlockEntityHelper;
 import modernmods.modernfoundry.smeltery.block.entity.component.SmelteryComponentBlockEntity;
 
 import javax.annotation.Nullable;

@@ -3,7 +3,7 @@ package modernmods.modernfoundry.library.recipe.casting;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
-import modernmods.mantle.recipe.ICommonRecipe;
+import modernmods.hilt.recipe.ICommonRecipe;
 import modernmods.modernfoundry.library.recipe.TinkerRecipeTypes;
 import modernmods.modernfoundry.library.recipe.melting.IMeltingRecipe;
 import modernmods.modernfoundry.smeltery.TinkerSmeltery;
@@ -27,7 +27,7 @@ public interface ICastingRecipe extends ICommonRecipe<ICastingContainer> {
 
   /**
    * Builds the output stack for this casting recipe. This is TConstruct's canonical assemble carrying registry access;
-   * Mantle's vanilla-facing single-arg {@link modernmods.mantle.recipe.ICommonRecipe#assemble} defaults to empty, so
+   * Hilt's vanilla-facing single-arg {@link modernmods.hilt.recipe.ICommonRecipe#assemble} defaults to empty, so
    * casting logic must call this two-arg variant (see {@code CastingBlockEntity}).
    * @param inv     Casting container
    * @param access  Registry access, needed by recipes that resolve components (retextured, tipped, potions)

@@ -1,8 +1,8 @@
 package modernmods.modernfoundry.compat.neoforged.neoforge.capabilities;
 
 import net.minecraft.core.Direction;
-import modernmods.mantle.compat.neoforged.neoforge.capabilities.Capability;
-import modernmods.mantle.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.compat.neoforged.neoforge.capabilities.Capability;
+import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
 
 /** Compatibility shim for old serializable capability providers. */
 public interface ICapabilitySerializable<T> {
