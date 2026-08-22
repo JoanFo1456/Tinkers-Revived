@@ -95,6 +95,9 @@ public class ChestBlock extends TabbedTableBlock {
       }
     }
 
-    return InteractionResult.PASS;
+    // Nothing was quick-deposited: fall back to the vanilla default (TRY_WITH_EMPTY_HAND) so the game proceeds to
+    // useWithoutItem, which is where InventoryBlock opens the chest GUI. Returning PASS here would abort that
+    // fall-through, so the chest would never open on right-click (empty hand or a non-insertable held item).
+    return super.useItemOn(stack, state, worldIn, pos, player, handIn, hit);
   }
 }
