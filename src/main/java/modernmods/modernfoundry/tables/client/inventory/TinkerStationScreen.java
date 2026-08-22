@@ -10,6 +10,7 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.input.InputQuirks;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.Rect2i;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -332,6 +333,11 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
     }
   }
 
+  /** Draws an ElementScreen at reduced opacity. 26.1 removed RenderSystem.color4f, so the alpha rides along as a per-blit ARGB tint. */
+  private static void drawTinted(GuiGraphicsExtractor graphics, ElementScreen element, int x, int y, int argb) {
+    graphics.blit(RenderPipelines.GUI_TEXTURED, element.texture, x, y, (float) element.x, (float) element.y, element.w, element.h, element.texW, element.texH, argb);
+  }
+
   @Override
   public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
     // 26.1: RenderSystem alpha/blend/depth calls removed (GPU rewrite); slot-background transparency is a runtime-visual detail
@@ -356,16 +362,18 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
     // rebind gui texture since itemstack drawing sets it to something else
     //RenderSystem.enableAlphaTest();
     //RenderHelper.turnOff();
-    ITEM_COVER.draw(graphics, this.cornerX + 7, this.cornerY + 18);
+    // 26.1 removed RenderSystem.color4f, so the pre-port alpha for these overlays (ITEM_COVER 0.82, SLOT_BACKGROUND 0.28)
+    // is now applied as a per-blit ARGB tint. Without it the opaque-black SLOT_BACKGROUND drew empty slots as solid black.
+    drawTinted(graphics, ITEM_COVER, this.cornerX + 7, this.cornerY + 18, 0xD1FFFFFF);
 
-    // slot backgrounds, are transparent
+    // slot backgrounds, are transparent (0.28 alpha)
     if (!this.currentLayout.getToolSlot().isHidden()) {
       Slot slot = this.getMenu().getSlot(TINKER_SLOT);
-      SLOT_BACKGROUND.draw(graphics, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1);
+      drawTinted(graphics, SLOT_BACKGROUND, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1, 0x47FFFFFF);
     }
     for (int i = 0; i < this.activeInputs; i++) {
       Slot slot = this.getMenu().getSlot(i + INPUT_SLOT);
-      SLOT_BACKGROUND.draw(graphics, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1);
+      drawTinted(graphics, SLOT_BACKGROUND, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1, 0x47FFFFFF);
     }
 
     // slot borders, are opaque
