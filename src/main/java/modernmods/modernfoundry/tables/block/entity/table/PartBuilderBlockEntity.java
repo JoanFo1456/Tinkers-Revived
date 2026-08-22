@@ -8,8 +8,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
+import net.minecraft.world.item.crafting.RecipeMap;
 import net.minecraft.world.level.block.state.BlockState;
 import modernmods.hilt.compat.neoforged.neoforge.common.util.LazyOptional;
+import modernmods.hilt.recipe.sync.ClientRecipeCache;
 import modernmods.modernfoundry.compat.neoforged.neoforge.event.ForgeEventFactory;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import modernmods.modernfoundry.TConstruct;
@@ -79,15 +81,16 @@ public class PartBuilderBlockEntity extends RetexturedTableBlockEntity implement
       if (getItem(PATTERN_SLOT).isEmpty()) {
         recipes = Collections.emptyMap();
         sortedButtons = Collections.emptyList();
-      } else if (level.getServer() == null) {
-        // 26.1: recipe matching needs the server-side RecipeManager, which the client no longer has (level.getServer() is
-        // null on the client). Without this guard the part builder screen NPE-crashed on render. Client shows no buttons.
-        recipes = Collections.emptyMap();
-        sortedButtons = Collections.emptyList();
       } else {
+        // 26.1: the full RecipeManager is server-only (level.getServer() is null on the client, so the old code NPE'd and
+        // was band-aided to show no buttons). PART_BUILDER is registered syncable, so on the client read the same recipes
+        // from Hilt's synced client recipe map; both sides expose a RecipeMap, so the matching below is identical.
+        RecipeMap recipeMap = level.getServer() != null
+                              ? level.getServer().getRecipeManager().recipeMap()
+                              : ClientRecipeCache.getRecipeMap();
         record PatternRecipe(Pattern pattern, IPartBuilderRecipe recipe) {}
         // fetch all recipes that can match these inputs, the map ensures the patterns are unique
-        recipes = level.getServer().getRecipeManager().recipeMap().byType(TinkerRecipeTypes.PART_BUILDER.get()).stream()
+        recipes = recipeMap.byType(TinkerRecipeTypes.PART_BUILDER.get()).stream()
                        .filter(holder -> holder.value().partialMatch(inventoryWrapper))
                        .sorted(Comparator.comparing(holder -> holder.id().identifier()))
                        .flatMap(holder -> holder.value().getPatterns(inventoryWrapper).map(p -> new PatternRecipe(p, holder.value())))
